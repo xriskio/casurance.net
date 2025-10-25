@@ -526,6 +526,50 @@ export const coverages: CoverageContent[] = [
     ]
   },
 
+  // MID TO LARGE SIZE BUSINESS
+  {
+    title: "Mid to Large Size Business",
+    slug: "mid-large-business",
+    category: "Business Size Programs",
+    summary: "Comprehensive commercial insurance solutions for medium to large enterprises with complex risk exposures.",
+    description: "Our mid to large size business program provides sophisticated insurance solutions for established companies with complex operations, multiple locations, or significant revenue. We offer broad appetite across numerous industries with customizable coverage, high limits, and specialized risk management services. With access to domestic and multinational markets, we can provide coverage in over 200 countries for global operations.",
+    whoNeeds: [
+      "Companies with revenues between $10M-$500M+",
+      "Multi-location businesses and franchises",
+      "Companies with complex supply chains",
+      "Businesses with international operations",
+      "Enterprises requiring high policy limits",
+      "Organizations with specialized risk exposures"
+    ],
+    coverageIncludes: [
+      "Workers' Compensation programs",
+      "Commercial Auto and fleet coverage",
+      "General Liability with high limits",
+      "Commercial Property (all risk)",
+      "Umbrella and Excess Liability",
+      "Multinational and global programs",
+      "Inland Marine and equipment coverage",
+      "Ocean Marine for international shipping",
+      "Environmental liability",
+      "Cyber liability and data breach",
+      "Management Liability (D&O, EPLI, Fiduciary)",
+      "Professional Liability and E&O",
+      "Kidnap & Ransom for executives",
+      "Crime and Fidelity coverage"
+    ],
+    benefits: [
+      "Broad industry appetite and specialized expertise",
+      "Customizable coverage tailored to your operations",
+      "High-limit capacity for significant exposures",
+      "Global coverage in 200+ countries",
+      "Dedicated risk engineering services",
+      "Specialized claims management",
+      "Flexible policy structures",
+      "Competitive pricing for well-managed risks",
+      "Single-source solution for complex programs"
+    ]
+  },
+
   // SPECIALTY COVERAGES
   {
     title: "Antique Auto & Collector Vehicle",
@@ -1864,6 +1908,7 @@ export function getCoveragesByCategory(category: string): CoverageContent[] {
 }
 
 export const categories = [
+  "Business Size Programs",
   "Casualty",
   "Energy",
   "Entertainment",
