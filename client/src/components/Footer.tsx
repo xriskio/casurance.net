@@ -20,10 +20,10 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold text-foreground mb-3">Coverage Types</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="/" className="hover:text-foreground cursor-pointer">General Liability</Link></li>
-              <li><Link href="/" className="hover:text-foreground cursor-pointer">Workers Comp</Link></li>
-              <li><Link href="/" className="hover:text-foreground cursor-pointer">Commercial Auto</Link></li>
-              <li><Link href="/" className="hover:text-foreground cursor-pointer">Commercial Property</Link></li>
+              <li><Link href="/coverage/general-casualty" className="hover:text-foreground cursor-pointer">General Liability</Link></li>
+              <li><Link href="/coverage/commercial-auto" className="hover:text-foreground cursor-pointer">Commercial Auto</Link></li>
+              <li><Link href="/coverage/commercial-property" className="hover:text-foreground cursor-pointer">Commercial Property</Link></li>
+              <li><Link href="/coverages" className="hover:text-foreground cursor-pointer">View All Coverage</Link></li>
             </ul>
           </div>
 
@@ -32,7 +32,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li><Link href="/quote" className="hover:text-foreground cursor-pointer">Request Quote</Link></li>
               <li><Link href="/service" className="hover:text-foreground cursor-pointer">Service Request</Link></li>
-              <li><Link href="/" className="hover:text-foreground cursor-pointer">About Us</Link></li>
+              <li><Link href="/industries" className="hover:text-foreground cursor-pointer">Industries</Link></li>
               <li><Link href="/" className="hover:text-foreground cursor-pointer">Contact</Link></li>
             </ul>
           </div>

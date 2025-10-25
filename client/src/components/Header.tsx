@@ -20,8 +20,11 @@ export default function Header() {
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">
-            <Link href="/" data-testid="link-coverage">
-              <span className="text-sm font-medium text-muted-foreground hover:text-foreground cursor-pointer">Coverage Types</span>
+            <Link href="/coverages" data-testid="link-coverage">
+              <span className="text-sm font-medium text-muted-foreground hover:text-foreground cursor-pointer">Coverage</span>
+            </Link>
+            <Link href="/industries" data-testid="link-industries">
+              <span className="text-sm font-medium text-muted-foreground hover:text-foreground cursor-pointer">Industries</span>
             </Link>
             <Link href="/quote" data-testid="link-quote">
               <span className="text-sm font-medium text-muted-foreground hover:text-foreground cursor-pointer">Get a Quote</span>

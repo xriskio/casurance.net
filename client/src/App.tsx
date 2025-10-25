@@ -6,6 +6,10 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/Home";
 import QuotePage from "@/pages/QuotePage";
 import ServicePage from "@/pages/ServicePage";
+import CoveragesIndex from "@/pages/CoveragesIndex";
+import IndustriesIndex from "@/pages/IndustriesIndex";
+import CoveragePage from "@/pages/CoveragePage";
+import IndustryPage from "@/pages/IndustryPage";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -14,6 +18,10 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/quote" component={QuotePage} />
       <Route path="/service" component={ServicePage} />
+      <Route path="/coverages" component={CoveragesIndex} />
+      <Route path="/coverage/:slug" component={CoveragePage} />
+      <Route path="/industries" component={IndustriesIndex} />
+      <Route path="/industry/:slug" component={IndustryPage} />
       <Route component={NotFound} />
     </Switch>
   );
