@@ -39,7 +39,7 @@ export default function Hero() {
 
           <div className="mt-12 grid grid-cols-3 gap-8">
             <div>
-              <div className="text-3xl font-bold text-primary-foreground mb-1">20+</div>
+              <div className="text-3xl font-bold text-primary-foreground mb-1">15+</div>
               <div className="text-sm text-primary-foreground/80">Years Experience</div>
             </div>
             <div>

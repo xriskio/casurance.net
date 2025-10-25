@@ -13,7 +13,7 @@ export default function Header() {
                 <span className="text-primary-foreground font-bold text-xl">C</span>
               </div>
               <div className="hidden sm:block">
-                <div className="font-semibold text-lg text-foreground">California Insurance Service</div>
+                <div className="font-semibold text-lg text-foreground">Casurance Agency</div>
                 <div className="text-xs text-muted-foreground">Commercial Insurance Specialists</div>
               </div>
             </div>

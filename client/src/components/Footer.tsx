@@ -10,10 +10,10 @@ export default function Footer() {
               <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center">
                 <span className="text-primary-foreground font-bold">C</span>
               </div>
-              <span className="font-semibold text-foreground">California Insurance Service</span>
+              <span className="font-semibold text-foreground">Casurance Agency</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              California's trusted independent commercial insurance agency since 2003.
+              Casurance Inc d/b/a Casurance Agency Insurance Services. California's trusted independent commercial insurance agency since 2010.
             </p>
           </div>
 
@@ -51,12 +51,12 @@ export default function Footer() {
         <div className="border-t pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground">
-              © 2025 California Insurance Service, Inc. All rights reserved.
+              © 2025 Casurance Inc. All rights reserved.
             </p>
             <div className="flex gap-6 text-sm text-muted-foreground">
               <Link href="/" className="hover:text-foreground cursor-pointer">Privacy Policy</Link>
               <Link href="/" className="hover:text-foreground cursor-pointer">Terms of Service</Link>
-              <span>License #0E37462</span>
+              <span>License # 6005562</span>
             </div>
           </div>
         </div>
