@@ -526,6 +526,217 @@ export const coverages: CoverageContent[] = [
     ]
   },
 
+  // SPECIALTY COVERAGES
+  {
+    title: "Antique Auto & Collector Vehicle",
+    slug: "antique-auto-collector",
+    category: "Specialty",
+    summary: "Specialized insurance for antique automobiles, classic cars, and collector vehicles.",
+    description: "Antique auto and collector vehicle insurance provides agreed value coverage and specialized protection for vintage automobiles, classic cars, and collector vehicles. This coverage is designed for vehicles that appreciate in value and require specialized care and expertise.",
+    whoNeeds: [
+      "Antique and classic car collectors",
+      "Vintage automobile enthusiasts",
+      "Classic car restoration businesses",
+      "Automobile museums and exhibitions",
+      "Classic car dealerships"
+    ],
+    coverageIncludes: [
+      "Agreed value coverage (no depreciation)",
+      "Spare parts and accessories coverage",
+      "Coverage during restoration and repair",
+      "Auto show and event coverage",
+      "Flexible usage and mileage options",
+      "Worldwide coverage territory"
+    ],
+    benefits: [
+      "Agreed value ensures full replacement cost",
+      "Specialized claims handling for classic vehicles",
+      "No depreciation on valued vehicles",
+      "Coverage for restoration work in progress",
+      "Competitive rates for well-maintained vehicles"
+    ]
+  },
+
+  {
+    title: "Business Owners Policy (BOP)",
+    slug: "business-owners-policy",
+    category: "Specialty",
+    summary: "Comprehensive package policy combining property and liability coverage for small to medium businesses.",
+    description: "A Business Owners Policy (BOP) packages essential commercial property and liability coverages into a single, cost-effective policy designed specifically for small to medium-sized businesses. This bundled approach provides comprehensive protection at lower premiums than purchasing coverages separately.",
+    whoNeeds: [
+      "Small retail and office businesses",
+      "Professional service firms",
+      "Restaurants and food service businesses",
+      "Contractors and trade businesses",
+      "Technology and consulting companies"
+    ],
+    coverageIncludes: [
+      "Commercial property coverage for buildings and contents",
+      "Business liability protection",
+      "Business interruption and extra expense",
+      "Equipment breakdown coverage",
+      "Crime and employee dishonesty protection",
+      "Optional coverages and endorsements"
+    ],
+    benefits: [
+      "Comprehensive coverage in one package",
+      "Lower premiums than separate policies",
+      "Simplified insurance management",
+      "Tailored for small business needs",
+      "Easy to add endorsements as you grow"
+    ]
+  },
+
+  {
+    title: "Flood Coverage",
+    slug: "flood-coverage",
+    category: "Specialty",
+    summary: "Essential flood insurance for commercial properties in flood-prone areas.",
+    description: "Commercial flood insurance protects business properties from flood damage, which is typically excluded from standard commercial property policies. This coverage is essential for businesses in flood zones and provides protection for buildings, contents, and business income losses from flooding events.",
+    whoNeeds: [
+      "Businesses in FEMA flood zones",
+      "Coastal and waterfront properties",
+      "Properties near rivers and lakes",
+      "Businesses in low-lying areas",
+      "Properties with flooding history"
+    ],
+    coverageIncludes: [
+      "Building coverage for structure damage",
+      "Contents and business personal property",
+      "Debris removal and cleanup costs",
+      "Building foundation and systems",
+      "Optional excess flood coverage",
+      "Loss of income protection available"
+    ],
+    benefits: [
+      "Protection when standard policies exclude flood",
+      "Required by lenders in flood zones",
+      "Coverage for rising water damage",
+      "Access to NFIP and private flood markets",
+      "Essential disaster protection"
+    ]
+  },
+
+  {
+    title: "Special Events",
+    slug: "special-events",
+    category: "Specialty",
+    summary: "Short-term liability and event cancellation coverage for concerts, festivals, and special events.",
+    description: "Special events insurance provides liability protection, event cancellation coverage, and specialized protections for one-time or recurring events including concerts, festivals, trade shows, weddings, and corporate gatherings. This flexible coverage addresses the unique risks of temporary events.",
+    whoNeeds: [
+      "Event planners and coordinators",
+      "Concert and festival promoters",
+      "Trade show and convention organizers",
+      "Wedding and party venues",
+      "Corporate event managers"
+    ],
+    coverageIncludes: [
+      "General liability for event operations",
+      "Liquor liability for alcohol service",
+      "Event cancellation and postponement",
+      "Weather-related cancellation coverage",
+      "Vendor and participant liability",
+      "Hired and non-owned auto coverage"
+    ],
+    benefits: [
+      "Flexible short-term coverage options",
+      "Protection for weather-related cancellations",
+      "Quick quote and binding process",
+      "Coverage for one-time or series of events",
+      "Meets venue and permit requirements"
+    ]
+  },
+
+  {
+    title: "Surety Bonds",
+    slug: "surety-bonds",
+    category: "Specialty",
+    summary: "Performance, payment, and license bonds for contractors and businesses.",
+    description: "Surety bonds provide a financial guarantee that contractors and businesses will fulfill their contractual, licensing, or regulatory obligations. These bonds protect project owners, government agencies, and the public from financial loss if the bonded party fails to perform.",
+    whoNeeds: [
+      "General contractors and construction companies",
+      "Subcontractors and specialty trade contractors",
+      "Auto dealers and mortgage brokers",
+      "Court-appointed fiduciaries",
+      "Businesses requiring license or permit bonds"
+    ],
+    coverageIncludes: [
+      "Bid bonds for contract bidding",
+      "Performance bonds guaranteeing project completion",
+      "Payment bonds for subcontractors and suppliers",
+      "License and permit bonds",
+      "Court and fiduciary bonds",
+      "Miscellaneous commercial bonds"
+    ],
+    benefits: [
+      "Required for public construction projects",
+      "Demonstrates financial stability",
+      "Protects project owners and public",
+      "Access to bonding capacity",
+      "Competitive rates for qualified contractors"
+    ]
+  },
+
+  {
+    title: "Accident & Health",
+    slug: "accident-health",
+    category: "Specialty",
+    summary: "Supplemental accident and health coverage for employees, teams, and organizations.",
+    description: "Accident and health insurance provides supplemental coverage for medical expenses, disability income, and accidental death benefits. This coverage complements primary health insurance and provides additional financial protection for accidents, injuries, and specific health events.",
+    whoNeeds: [
+      "Sports teams and athletic organizations",
+      "Schools and educational institutions",
+      "Volunteer organizations and non-profits",
+      "Event participants and spectators",
+      "Businesses seeking employee supplemental coverage"
+    ],
+    coverageIncludes: [
+      "Accidental injury medical expenses",
+      "Accidental death and dismemberment (AD&D)",
+      "Disability income benefits",
+      "Hospital indemnity coverage",
+      "Critical illness protection",
+      "Team and participant accident coverage"
+    ],
+    benefits: [
+      "Supplements primary health insurance",
+      "Affordable protection for groups",
+      "Cash benefits paid directly to insured",
+      "No deductibles on most plans",
+      "Coverage for sports and activities"
+    ]
+  },
+
+  {
+    title: "Storage Tank Environmental Policy (STEP)",
+    slug: "storage-tank-environmental",
+    category: "Environmental",
+    summary: "Pollution liability coverage for underground and aboveground storage tank operations.",
+    description: "Storage Tank Environmental Policy (STEP) provides pollution liability coverage specifically for businesses operating underground storage tanks (USTs) or aboveground storage tanks (ASTs). This coverage protects against costs of environmental cleanup, third-party claims, and regulatory action related to fuel and chemical storage.",
+    whoNeeds: [
+      "Gas stations and convenience stores",
+      "Fleet operations with fuel storage",
+      "Manufacturing facilities with chemical tanks",
+      "Heating oil dealers and distributors",
+      "Agricultural operations with fuel storage"
+    ],
+    coverageIncludes: [
+      "Pollution cleanup and remediation costs",
+      "Third-party bodily injury from pollution",
+      "Third-party property damage from contamination",
+      "Regulatory defense and compliance costs",
+      "Tank removal and replacement coverage",
+      "Legal defense expenses"
+    ],
+    benefits: [
+      "Specialized coverage for tank operations",
+      "Meets state UST financial responsibility requirements",
+      "Environmental regulatory compliance",
+      "Protection for gradual and sudden releases",
+      "Expert environmental claims handling"
+    ]
+  },
+
   // PERSONAL LINES
   {
     title: "High Value Homeowners",
@@ -618,7 +829,338 @@ export const coverages: CoverageContent[] = [
     ]
   },
 
+  // HABITATIONAL
+  {
+    title: "Affordable Housing",
+    slug: "affordable-housing",
+    category: "Habitational",
+    summary: "Specialized property and liability coverage for affordable housing developments and low-income properties.",
+    description: "Affordable housing insurance provides comprehensive coverage designed for subsidized housing properties, low-income housing tax credit (LIHTC) developments, and affordable housing communities. This specialized program addresses the unique regulatory and operational requirements of affordable housing.",
+    whoNeeds: [
+      "LIHTC property owners and developers",
+      "Subsidized housing operators",
+      "Section 8 housing providers",
+      "Affordable housing non-profits",
+      "Community development corporations"
+    ],
+    coverageIncludes: [
+      "Property coverage for buildings and improvements",
+      "General liability for property operations",
+      "Fair housing and discrimination coverage",
+      "Loss of rents and income protection",
+      "Crime and employee dishonesty",
+      "Equipment breakdown coverage"
+    ],
+    benefits: [
+      "Understands affordable housing requirements",
+      "Compliance with HUD regulations",
+      "Fair housing liability protection",
+      "Flexible payment programs",
+      "Experience with LIHTC properties"
+    ]
+  },
+
+  {
+    title: "Apartments",
+    slug: "apartments",
+    category: "Habitational",
+    summary: "Comprehensive property and liability insurance for apartment buildings and multifamily residential properties.",
+    description: "Apartment insurance provides complete coverage for apartment buildings, multifamily complexes, and residential rental properties. This program addresses property damage, liability risks, loss of income, and the unique exposures of residential property ownership and management.",
+    whoNeeds: [
+      "Apartment building owners",
+      "Multifamily property investors",
+      "Property management companies",
+      "Student housing operators",
+      "Senior living apartment communities"
+    ],
+    coverageIncludes: [
+      "Building and property coverage",
+      "General liability for premises",
+      "Loss of rents and rental income",
+      "Ordinance or law coverage",
+      "Fair housing liability protection",
+      "Property management errors and omissions"
+    ],
+    benefits: [
+      "Comprehensive apartment property coverage",
+      "Loss of income protection",
+      "Fair housing claim defense",
+      "Multiple location discounts",
+      "Flexible replacement cost options"
+    ]
+  },
+
+  {
+    title: "Condominiums",
+    slug: "condominiums",
+    category: "Habitational",
+    summary: "Insurance for condominium associations, master policies, and individual unit owners.",
+    description: "Condominium insurance provides coverage for condominium associations (master policies), common areas, and individual unit owners. This specialized coverage addresses the unique property ownership structure and liability exposures of condominium communities.",
+    whoNeeds: [
+      "Condominium associations and HOAs",
+      "Condominium developers and converters",
+      "Property management companies for condos",
+      "Commercial condo associations",
+      "Mixed-use condominium properties"
+    ],
+    coverageIncludes: [
+      "Master policy for common property",
+      "General liability for association",
+      "Directors and officers liability for board",
+      "Loss assessment coverage",
+      "Equipment and common area property",
+      "Fidelity bond for association funds"
+    ],
+    benefits: [
+      "Comprehensive master policy coverage",
+      "Protection for association board members",
+      "Assessment coverage for unit owners",
+      "Understanding of condo bylaws and documents",
+      "Specialized condominium expertise"
+    ]
+  },
+
+  {
+    title: "Homeowners Associations & PUD",
+    slug: "homeowners-associations-pud",
+    category: "Habitational",
+    summary: "Insurance for homeowners associations and planned unit developments managing common property.",
+    description: "HOA and PUD insurance provides comprehensive coverage for homeowners associations and planned unit developments responsible for common areas, amenities, and community property. This program protects association assets, board members, and community operations.",
+    whoNeeds: [
+      "Homeowners associations (HOAs)",
+      "Planned unit developments (PUDs)",
+      "Community association boards",
+      "Property management companies for HOAs",
+      "Residential community associations"
+    ],
+    coverageIncludes: [
+      "Common property and amenities coverage",
+      "General liability for association operations",
+      "Directors and officers liability",
+      "Employee dishonesty and crime coverage",
+      "Equipment and grounds coverage",
+      "Special assessments protection"
+    ],
+    benefits: [
+      "Protects association assets and board members",
+      "Coverage for community amenities",
+      "Defense costs for lawsuits against board",
+      "Fidelity coverage for association funds",
+      "Understanding of CC&R requirements"
+    ]
+  },
+
+  {
+    title: "Mobile Home Parks",
+    slug: "mobile-home-parks",
+    category: "Habitational",
+    summary: "Property and liability coverage for mobile home parks and manufactured housing communities.",
+    description: "Mobile home park insurance provides specialized coverage for owners and operators of mobile home parks, manufactured housing communities, and RV parks. This program addresses the unique property configurations and liability exposures of mobile home communities.",
+    whoNeeds: [
+      "Mobile home park owners",
+      "Manufactured housing community operators",
+      "RV park and campground owners",
+      "Seasonal mobile home communities",
+      "Mobile home park developers"
+    ],
+    coverageIncludes: [
+      "Property coverage for common buildings",
+      "General liability for park operations",
+      "Utility infrastructure coverage",
+      "Loss of rents and income protection",
+      "Equipment breakdown for utilities",
+      "Crime and vandalism coverage"
+    ],
+    benefits: [
+      "Specialized mobile home park coverage",
+      "Protection for infrastructure and utilities",
+      "Seasonal occupancy considerations",
+      "Experience with manufactured housing",
+      "Competitive rates for well-maintained parks"
+    ]
+  },
+
+  {
+    title: "Resorts & Lodges",
+    slug: "resorts-lodges",
+    category: "Habitational",
+    summary: "Comprehensive insurance for resort properties, lodges, and vacation rental operations.",
+    description: "Resorts and lodges insurance provides complete coverage for resort properties, mountain lodges, vacation rental operations, and seasonal hospitality properties. This program addresses property damage, guest liability, seasonal operations, and business income protection.",
+    whoNeeds: [
+      "Resort and hotel properties",
+      "Mountain and ski lodges",
+      "Vacation rental property owners",
+      "Dude ranches and guest ranches",
+      "Seasonal resort operations"
+    ],
+    coverageIncludes: [
+      "Property coverage for buildings and contents",
+      "General liability for guest operations",
+      "Liquor liability for bars and restaurants",
+      "Business interruption for seasonal operations",
+      "Equipment breakdown and utilities",
+      "Guest property and bailees coverage"
+    ],
+    benefits: [
+      "Comprehensive resort property coverage",
+      "Seasonal operations flexibility",
+      "Guest liability protection",
+      "Business income during closures",
+      "Understanding of hospitality operations"
+    ]
+  },
+
   // TRANSPORTATION
+  {
+    title: "Auto Daily Rental",
+    slug: "auto-daily-rental",
+    category: "Transportation",
+    summary: "Commercial auto insurance for daily car rental operations and short-term vehicle rentals.",
+    description: "Auto daily rental insurance provides specialized commercial auto coverage for car rental businesses, including liability protection, physical damage coverage, and loss of use protection for rental vehicle fleets. This coverage addresses the high-frequency rental exposures of daily rental operations.",
+    whoNeeds: [
+      "Car rental agencies and franchises",
+      "Airport car rental locations",
+      "Truck and van rental operations",
+      "Exotic and luxury car rental businesses",
+      "Peer-to-peer car sharing platforms"
+    ],
+    coverageIncludes: [
+      "Liability coverage for rental vehicles",
+      "Physical damage to rental fleet",
+      "Loss of use and diminished value",
+      "Non-owned and hired auto liability",
+      "Garage keepers liability",
+      "Rental agreement coverage gaps"
+    ],
+    benefits: [
+      "Specialized rental vehicle coverage",
+      "High-limit capacity for fleets",
+      "Loss of rental income protection",
+      "Coverage for multiple rental locations",
+      "Experience with rental operations"
+    ]
+  },
+
+  {
+    title: "Chauffeured Transportation",
+    slug: "chauffeured-transportation",
+    category: "Transportation",
+    summary: "Commercial auto and liability coverage for limousine services and executive transportation.",
+    description: "Chauffeured transportation insurance provides comprehensive coverage for limousine services, executive car services, and chauffeured vehicle operations. This specialized program addresses passenger liability, luxury vehicle protection, and professional transportation services.",
+    whoNeeds: [
+      "Limousine and sedan services",
+      "Executive car and chauffeur companies",
+      "Airport shuttle and transfer services",
+      "Wedding and event transportation services",
+      "Ride-sharing and app-based transportation"
+    ],
+    coverageIncludes: [
+      "Commercial auto liability for chauffeurs",
+      "Physical damage for luxury vehicles",
+      "Passenger liability and medical payments",
+      "Hired and non-owned auto coverage",
+      "General liability for transportation services",
+      "Professional liability for drivers"
+    ],
+    benefits: [
+      "Specialized luxury vehicle coverage",
+      "High passenger liability limits",
+      "Protection for premium vehicles",
+      "Coverage for commercial transportation",
+      "Competitive rates for professional drivers"
+    ]
+  },
+
+  {
+    title: "School Bus Contractor",
+    slug: "school-bus-contractor",
+    category: "Transportation",
+    summary: "Commercial auto insurance for school bus contractors and student transportation services.",
+    description: "School bus contractor insurance provides comprehensive coverage for companies providing student transportation services to school districts. This specialized program addresses the unique liability exposures, regulatory requirements, and safety standards of school bus operations.",
+    whoNeeds: [
+      "School bus contractors and operators",
+      "Student transportation service providers",
+      "Charter school transportation companies",
+      "Special needs student transportation",
+      "Activity and field trip bus services"
+    ],
+    coverageIncludes: [
+      "Commercial auto liability for school buses",
+      "Physical damage to bus fleet",
+      "Student passenger liability protection",
+      "Hired and non-owned auto coverage",
+      "General liability for transportation operations",
+      "Comprehensive safety and compliance coverage"
+    ],
+    benefits: [
+      "Specialized school transportation coverage",
+      "High passenger capacity liability limits",
+      "Regulatory compliance expertise",
+      "Safety program support and training",
+      "Experience with school district contracts"
+    ]
+  },
+
+  {
+    title: "Interim Liability & Physical Damage",
+    slug: "interim-liability-physical-damage",
+    category: "Transportation",
+    summary: "Short-term commercial auto coverage during vehicle gaps in coverage or dealer operations.",
+    description: "Interim liability and physical damage insurance provides temporary commercial auto coverage for vehicles during gaps in coverage, dealer operations, or short-term needs. This flexible coverage addresses temporary transportation exposures and coverage gaps.",
+    whoNeeds: [
+      "Auto dealers between policies",
+      "Businesses with temporary vehicle needs",
+      "Companies during policy transitions",
+      "Rental operations with short-term needs",
+      "Fleet operators with coverage gaps"
+    ],
+    coverageIncludes: [
+      "Temporary liability coverage",
+      "Short-term physical damage protection",
+      "Coverage for gaps between policies",
+      "Dealer and garage operations",
+      "Flexible coverage periods",
+      "Quick binding and cancellation"
+    ],
+    benefits: [
+      "Immediate coverage availability",
+      "Flexible short-term protection",
+      "Prevents coverage gaps",
+      "Simple application process",
+      "Daily or monthly coverage options"
+    ]
+  },
+
+  {
+    title: "Lessors' Contingent & Excess Coverage",
+    slug: "lessors-contingent-excess",
+    category: "Transportation",
+    summary: "Contingent liability protection for vehicle lessors when lessee coverage is insufficient.",
+    description: "Lessors' contingent and excess coverage provides backup liability protection for companies leasing vehicles when the lessee's insurance is insufficient or non-existent. This coverage protects lessor interests and fills coverage gaps in lease agreements.",
+    whoNeeds: [
+      "Equipment leasing companies",
+      "Fleet leasing operations",
+      "Truck and trailer lessors",
+      "Vehicle financing companies",
+      "Commercial vehicle rental operations"
+    ],
+    coverageIncludes: [
+      "Contingent liability for lessor",
+      "Excess coverage over lessee's insurance",
+      "Physical damage protection for leased assets",
+      "Gap coverage when lessee coverage fails",
+      "Lessor's contractual liability",
+      "Repossession coverage"
+    ],
+    benefits: [
+      "Protects lessor from lessee insurance gaps",
+      "Backup protection for lease portfolio",
+      "Covers when lessee insurance is inadequate",
+      "Protects leased asset value",
+      "Essential for equipment leasing operations"
+    ]
+  },
+
   {
     title: "Aviation",
     slug: "aviation",
@@ -1280,6 +1822,36 @@ export const industries: CoverageContent[] = [
       "Equipment breakdown protection",
       "Understanding of logistics operations"
     ]
+  },
+
+  {
+    title: "Transportation",
+    slug: "transportation",
+    category: "Industries",
+    summary: "Comprehensive insurance for trucking, logistics, and commercial transportation companies.",
+    description: "Transportation insurance provides specialized coverage for trucking companies, freight carriers, logistics providers, and commercial transportation businesses. This program addresses motor carrier liability, cargo protection, physical damage, and the unique regulatory requirements of the transportation industry.",
+    whoNeeds: [
+      "Trucking and freight carriers",
+      "Logistics and transportation companies",
+      "For-hire motor carriers",
+      "Courier and delivery services",
+      "Moving and storage companies"
+    ],
+    coverageIncludes: [
+      "Motor truck cargo insurance",
+      "Auto liability for commercial vehicles",
+      "Physical damage for truck fleet",
+      "General liability for operations",
+      "Non-trucking liability coverage",
+      "Trailer interchange coverage"
+    ],
+    benefits: [
+      "Specialized transportation coverage",
+      "Meets DOT and FMCSA requirements",
+      "High-limit cargo capacity",
+      "Regulatory compliance expertise",
+      "Coverage for interstate and intrastate operations"
+    ]
   }
 ];
 
@@ -1303,5 +1875,7 @@ export const categories = [
   "Personal Lines",
   "Property",
   "Transportation",
-  "Agribusiness"
+  "Agribusiness",
+  "Specialty",
+  "Habitational"
 ];
