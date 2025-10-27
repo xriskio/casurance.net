@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Phone, Menu } from "lucide-react";
 import { Link } from "wouter";
+import casuranceLogo from "@assets/casurance-logo.png";
 
 export default function Header() {
   return (
@@ -9,13 +10,11 @@ export default function Header() {
         <div className="flex items-center justify-between h-20">
           <Link href="/">
             <div className="flex items-center gap-3 cursor-pointer" data-testid="link-home">
-              <div className="w-10 h-10 bg-primary rounded-md flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xl">C</span>
-              </div>
-              <div className="hidden sm:block">
-                <div className="font-semibold text-lg text-foreground">Casurance Agency</div>
-                <div className="text-xs text-muted-foreground">Commercial Insurance Specialists</div>
-              </div>
+              <img 
+                src={casuranceLogo} 
+                alt="Casurance Insurance Agency" 
+                className="h-12 w-auto"
+              />
             </div>
           </Link>
 
