@@ -1419,6 +1419,38 @@ export const coverages: CoverageContent[] = [
 
 export const industries: CoverageContent[] = [
   {
+    title: "Agribusiness",
+    slug: "agribusiness-industry",
+    category: "Industries",
+    summary: "Specialized insurance for farms, ranches, agricultural producers, and agribusiness operations.",
+    description: "Agribusiness insurance provides comprehensive coverage for farming operations, ranches, agricultural producers, food processors, and agribusiness enterprises. This specialized program addresses the unique risks of agricultural operations including crop damage, livestock coverage, equipment protection, and liability exposures specific to farming and ranching.",
+    whoNeeds: [
+      "Crop farmers and grain producers",
+      "Livestock ranchers and dairy operations",
+      "Agricultural equipment dealers",
+      "Food processing and packing facilities",
+      "Agribusiness supply and distribution companies"
+    ],
+    coverageIncludes: [
+      "Farm and ranch property coverage",
+      "Agricultural equipment and machinery",
+      "Livestock mortality and medical coverage",
+      "Crop insurance and hail coverage",
+      "General liability for farming operations",
+      "Products liability for agricultural products",
+      "Pollution liability for farming operations",
+      "Workers compensation for farm employees"
+    ],
+    benefits: [
+      "Specialized agricultural expertise",
+      "Coverage for crops, livestock, and equipment",
+      "Protection during harvest and growing seasons",
+      "Weather-related loss protection",
+      "Understanding of farming operations and cycles"
+    ]
+  },
+
+  {
     title: "Aerospace",
     slug: "aerospace",
     category: "Industries",
@@ -1535,6 +1567,102 @@ export const industries: CoverageContent[] = [
       "Compliance with educational regulations",
       "Sexual abuse and molestation coverage",
       "Crisis management and response services"
+    ]
+  },
+
+  {
+    title: "Entertainment",
+    slug: "entertainment-industry",
+    category: "Industries",
+    summary: "Insurance for production companies, venues, performers, and entertainment businesses.",
+    description: "Entertainment industry insurance provides specialized coverage for film and television production, live events, theaters, concert venues, and entertainment companies. This program addresses production risks, event liability, equipment protection, and the unique exposures in the entertainment business.",
+    whoNeeds: [
+      "Film and television production companies",
+      "Concert venues and theaters",
+      "Event promoters and festival organizers",
+      "Recording studios and music companies",
+      "Sports and entertainment arenas"
+    ],
+    coverageIncludes: [
+      "Production liability insurance",
+      "Equipment and property coverage",
+      "Cast and crew protection",
+      "Event cancellation and postponement",
+      "Errors and omissions for content",
+      "General liability for venues",
+      "Non-appearance insurance",
+      "Weather-related cancellation coverage"
+    ],
+    benefits: [
+      "Specialized entertainment industry expertise",
+      "Protection for high-value productions",
+      "Event cancellation coverage",
+      "Quick turnaround for time-sensitive projects",
+      "Comprehensive entertainment risk management"
+    ]
+  },
+
+  {
+    title: "Financial",
+    slug: "financial",
+    category: "Industries",
+    summary: "Insurance for banks, credit unions, investment firms, and financial services companies.",
+    description: "Financial services insurance provides comprehensive coverage for banks, credit unions, investment advisors, mortgage lenders, and other financial institutions. This specialized program addresses professional liability, cyber risks, fidelity protection, and regulatory compliance requirements unique to the financial services industry.",
+    whoNeeds: [
+      "Banks and credit unions",
+      "Investment advisory firms",
+      "Mortgage lenders and brokers",
+      "Financial planning and wealth management firms",
+      "Insurance agencies and brokerages"
+    ],
+    coverageIncludes: [
+      "Professional liability and E&O coverage",
+      "Directors and officers liability",
+      "Financial institution bonds and fidelity",
+      "Cyber liability and data breach coverage",
+      "Employment practices liability",
+      "Kidnap and ransom for executives",
+      "Property and general liability coverage",
+      "Regulatory investigation defense"
+    ],
+    benefits: [
+      "Specialized financial services expertise",
+      "Regulatory compliance support",
+      "High-limit professional liability capacity",
+      "Cyber security and data breach protection",
+      "Expert claims handling for financial matters"
+    ]
+  },
+
+  {
+    title: "Healthcare",
+    slug: "healthcare",
+    category: "Industries",
+    summary: "Comprehensive insurance for hospitals, clinics, healthcare facilities, and medical providers.",
+    description: "Healthcare insurance provides complete coverage for hospitals, medical centers, clinics, long-term care facilities, and healthcare organizations. This comprehensive program addresses medical malpractice, facility operations, regulatory compliance, and the complex risks in healthcare delivery.",
+    whoNeeds: [
+      "Hospitals and medical centers",
+      "Outpatient clinics and surgery centers",
+      "Long-term care and nursing facilities",
+      "Home health and hospice agencies",
+      "Integrated healthcare delivery systems"
+    ],
+    coverageIncludes: [
+      "Medical malpractice liability",
+      "General liability for healthcare facilities",
+      "Property coverage for medical facilities",
+      "Professional liability for all staff",
+      "Cyber liability for patient data (HIPAA)",
+      "Employment practices liability",
+      "Directors and officers liability",
+      "Medical equipment coverage"
+    ],
+    benefits: [
+      "Comprehensive healthcare coverage",
+      "Expert medical malpractice defense",
+      "HIPAA and regulatory compliance",
+      "Risk management and patient safety programs",
+      "Coverage for all healthcare professionals"
     ]
   },
 
@@ -1719,6 +1847,70 @@ export const industries: CoverageContent[] = [
   },
 
   {
+    title: "Nonprofit",
+    slug: "nonprofit",
+    category: "Industries",
+    summary: "Specialized insurance for nonprofit organizations, charities, and social service agencies.",
+    description: "Nonprofit insurance provides tailored coverage for charitable organizations, foundations, social service agencies, and nonprofit entities. This specialized program addresses the unique liability exposures, volunteer activities, and operational risks faced by nonprofit organizations serving their communities.",
+    whoNeeds: [
+      "Charitable organizations and foundations",
+      "Social service agencies",
+      "Arts and cultural nonprofits",
+      "Youth development organizations",
+      "Community development corporations"
+    ],
+    coverageIncludes: [
+      "General liability for nonprofit operations",
+      "Directors and officers liability for board members",
+      "Professional liability for services provided",
+      "Property coverage for nonprofit facilities",
+      "Volunteer accident insurance",
+      "Sexual abuse and molestation coverage",
+      "Event liability coverage",
+      "Employment practices liability"
+    ],
+    benefits: [
+      "Coverage designed for nonprofit budgets",
+      "Protection for volunteers and board members",
+      "Sexual misconduct coverage",
+      "Special event and fundraiser coverage",
+      "Understanding of nonprofit operations"
+    ]
+  },
+
+  {
+    title: "Public Sector",
+    slug: "public-sector",
+    category: "Industries",
+    summary: "Insurance for government agencies, municipalities, and public entities.",
+    description: "Public sector insurance provides comprehensive coverage for federal, state, and local government agencies, municipalities, public schools, and other governmental entities. This specialized program addresses public entity liability, law enforcement risks, civil rights claims, and the unique exposures of serving the public.",
+    whoNeeds: [
+      "Cities, counties, and municipalities",
+      "Public school districts",
+      "Law enforcement and fire departments",
+      "Public utilities and transit systems",
+      "Parks and recreation departments"
+    ],
+    coverageIncludes: [
+      "General liability for public operations",
+      "Law enforcement professional liability",
+      "Public officials errors and omissions",
+      "Employment practices liability",
+      "Civil rights violation coverage",
+      "Property coverage for public facilities",
+      "Auto liability for public vehicles",
+      "Cyber liability for government data"
+    ],
+    benefits: [
+      "Specialized public sector expertise",
+      "Protection for elected and appointed officials",
+      "Law enforcement liability coverage",
+      "Civil rights claim defense",
+      "Risk management services for public entities"
+    ]
+  },
+
+  {
     title: "Real Estate",
     slug: "real-estate",
     category: "Industries",
@@ -1805,6 +1997,38 @@ export const industries: CoverageContent[] = [
       "Seasonal coverage adjustments",
       "E-commerce and online sales coverage",
       "Multiple location discounts available"
+    ]
+  },
+
+  {
+    title: "Sports",
+    slug: "sports",
+    category: "Industries",
+    summary: "Insurance for sports teams, athletic facilities, tournaments, and sports organizations.",
+    description: "Sports insurance provides comprehensive coverage for professional and amateur sports organizations, athletic facilities, sports teams, and sporting events. This specialized program addresses participant injuries, spectator liability, facility operations, and the unique risks in sports and recreation.",
+    whoNeeds: [
+      "Professional and amateur sports teams",
+      "Sports facilities and arenas",
+      "Youth sports leagues and organizations",
+      "Fitness centers and gyms",
+      "Tournament and event organizers"
+    ],
+    coverageIncludes: [
+      "General liability for sports operations",
+      "Participant accident insurance",
+      "Spectator liability coverage",
+      "Property coverage for facilities and equipment",
+      "Professional liability for coaches and trainers",
+      "Event cancellation insurance",
+      "Assault and battery coverage",
+      "Concussion and head injury coverage"
+    ],
+    benefits: [
+      "Specialized sports industry expertise",
+      "Participant and spectator protection",
+      "Coverage for contact and non-contact sports",
+      "Event cancellation and weather coverage",
+      "Risk management and safety programs"
     ]
   },
 
