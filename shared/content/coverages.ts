@@ -2096,29 +2096,47 @@ export const industries: CoverageContent[] = [
     title: "Transportation",
     slug: "transportation",
     category: "Industries",
-    summary: "Comprehensive insurance for trucking, logistics, and commercial transportation companies.",
-    description: "Transportation insurance provides specialized coverage for trucking companies, freight carriers, logistics providers, and commercial transportation businesses. This program addresses motor carrier liability, cargo protection, physical damage, and the unique regulatory requirements of the transportation industry.",
+    summary: "Keep your business rolling with comprehensive insurance solutions for all transportation operations.",
+    description: "Transportation insurance provides specialized coverage designed specifically for the unique challenges facing the transportation and logistics industry. Whether you operate commercial trucks, last-mile delivery services, moving companies, limousines, buses, or auto dealerships, we understand the complex risks you face daily. Our comprehensive programs address motor carrier liability, cargo protection, regulatory compliance, and operational risks while helping you meet DOT and FMCSA requirements. We serve fleets of all sizes, from owner-operators to large transportation companies, with tailored solutions that keep your business moving forward.",
     whoNeeds: [
-      "Trucking and freight carriers",
-      "Logistics and transportation companies",
-      "For-hire motor carriers",
-      "Courier and delivery services",
-      "Moving and storage companies"
+      "Commercial trucking and freight carriers (for-hire and private fleets)",
+      "Owner-operators and independent drivers",
+      "Last-mile delivery and courier services",
+      "Moving and storage companies",
+      "Limousine and executive transportation services",
+      "Bus companies and passenger transportation",
+      "Auto and truck dealerships",
+      "Shared economy and ride-sharing platforms",
+      "Logistics and distribution companies",
+      "Intermodal and drayage operations"
     ],
     coverageIncludes: [
-      "Motor truck cargo insurance",
-      "Auto liability for commercial vehicles",
-      "Physical damage for truck fleet",
-      "General liability for operations",
-      "Non-trucking liability coverage",
-      "Trailer interchange coverage"
+      "Commercial auto liability (meets federal and state requirements)",
+      "Motor truck cargo insurance (protects freight in transit)",
+      "Physical damage coverage for vehicles and trailers",
+      "General liability for operations and premises",
+      "Non-trucking liability (bobtail coverage)",
+      "Trailer interchange and rental coverage",
+      "Occupational accident insurance for drivers",
+      "Workers' compensation for employees",
+      "Garage liability for dealerships",
+      "Garagekeepers legal liability",
+      "Contingent cargo and liability",
+      "Environmental liability and pollution coverage",
+      "Cyber liability for digital operations",
+      "Inland marine for equipment and tools"
     ],
     benefits: [
-      "Specialized transportation coverage",
-      "Meets DOT and FMCSA requirements",
-      "High-limit cargo capacity",
-      "Regulatory compliance expertise",
-      "Coverage for interstate and intrastate operations"
+      "Industry expertise with deep understanding of transportation risks",
+      "Comprehensive DOT and FMCSA regulatory compliance support",
+      "High-limit capacity for cargo and liability exposures",
+      "Flexible programs for fleets of all sizes",
+      "Coverage for both interstate and intrastate operations",
+      "Risk management and driver safety programs",
+      "Claims advocacy and expert loss control services",
+      "Competitive rates for well-managed operations",
+      "Access to specialty transportation markets",
+      "24/7 certificate of insurance services"
     ]
   }
 ];
