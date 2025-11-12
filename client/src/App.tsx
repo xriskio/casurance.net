@@ -10,6 +10,7 @@ import CoveragesIndex from "@/pages/CoveragesIndex";
 import IndustriesIndex from "@/pages/IndustriesIndex";
 import CoveragePage from "@/pages/CoveragePage";
 import IndustryPage from "@/pages/IndustryPage";
+import CommercialAutoQuote from "@/pages/CommercialAutoQuote";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -17,6 +18,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/quote" component={QuotePage} />
+      <Route path="/quote/commercial-auto" component={CommercialAutoQuote} />
       <Route path="/service" component={ServicePage} />
       <Route path="/coverages" component={CoveragesIndex} />
       <Route path="/coverage/:slug" component={CoveragePage} />
