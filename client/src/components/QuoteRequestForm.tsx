@@ -129,6 +129,21 @@ export default function QuoteRequestForm() {
                 </a>
               </div>
             )}
+            {formData.insuranceType === "General Liability" && (
+              <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-md border border-blue-200 dark:border-blue-900">
+                <p className="text-sm text-blue-900 dark:text-blue-100 mb-3">
+                  For General Liability insurance, we have a comprehensive application form that follows industry-standard underwriting requirements.
+                </p>
+                <a
+                  href="/quote/general-liability"
+                  className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                  data-testid="link-general-liability-form"
+                >
+                  Use General Liability Application Form
+                  <ArrowRight className="ml-1 h-4 w-4" />
+                </a>
+              </div>
+            )}
           </div>
         )}
 
