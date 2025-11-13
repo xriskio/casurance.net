@@ -12,6 +12,7 @@ const insuranceTypes = [
   "General Liability",
   "Workers Compensation",
   "Commercial Auto",
+  "Habitational (Apartments/Condos)",
   "Business Owners Policy (BOP)",
   "Commercial Property",
   "Cyber Liability",
@@ -155,6 +156,21 @@ export default function QuoteRequestForm() {
                   data-testid="link-workers-comp-form"
                 >
                   Use Workers' Compensation Quote Form
+                  <ArrowRight className="ml-1 h-4 w-4" />
+                </a>
+              </div>
+            )}
+            {formData.insuranceType === "Habitational (Apartments/Condos)" && (
+              <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-md border border-blue-200 dark:border-blue-900">
+                <p className="text-sm text-blue-900 dark:text-blue-100 mb-3">
+                  For Habitational insurance (apartments, condominiums, co-ops, townhouses, and mixed-use properties), we have a comprehensive application that collects detailed property, occupancy, and safety information.
+                </p>
+                <a
+                  href="/quote/habitational"
+                  className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                  data-testid="link-habitational-form"
+                >
+                  Use Habitational Insurance Application
                   <ArrowRight className="ml-1 h-4 w-4" />
                 </a>
               </div>
