@@ -1,0 +1,92 @@
+Submit Workers' Compensation Risk
+Complete the form below to submit your workers' compensation risk for a quick quote
+
+Insured Information
+Insured Name
+DBA (if applicable)
+Contact Name
+Contact Email
+Contact Phone
+Business Website
+https://
+Years in Business
+FEIN/Tax ID
+Mailing Address
+City
+State
+ZIP Code
+Type of Business
+
+Select Business Type
+Business Description
+Coverage Information
+Requested Effective Date
+
+mm/dd/yyyy
+Expiration Date
+
+mm/dd/yyyy
+Current Carrier
+Current Premium ($)
+Experience Modifier
+Deductible Requested
+
+Select Deductible
+States Where Coverage is Needed
+e.g., CA, NY, FL
+USL&H Coverage Needed?
+
+No
+Payroll Information
+Total Number of Employees
+Number of Full-Time Employees
+Number of Part-Time Employees
+Number of 1099 Contractors
+Payroll by Classification
+Classification 1
+Class Code
+Classification Description
+Number of Employees
+Annual Payroll ($)
+
+Add Another Classification
+Claims History
+Number of Claims in Last 5 Years
+Total Incurred Amount ($)
+Largest Claim Amount ($)
+Number of Open Claims
+Safety Program
+Do you have a written safety program?
+
+Select Option
+Do you have a return to work program?
+
+Select Option
+Do you conduct drug testing?
+
+Select Option
+Do you conduct background checks?
+
+Select Option
+Document Upload
+Upload Loss Runs (5 years)
+ Drag and drop your loss runs here or click to browse
+No file chosen
+Upload Experience Modification Worksheet
+ Drag and drop your experience mod worksheet here or click to browse
+No file chosen
+Upload ACORD Forms
+ Drag and drop your ACORD forms here or click to browse
+No file chosen
+Upload Current Declarations Page
+ Drag and drop your declarations page here or click to browse
+No file chosen
+Upload Safety Program (if available)
+ Drag and drop your safety program document here or click to browse
+No file chosen
+Upload Additional Documents
+ Drag and drop additional documents here or click to browse
+No file chosen
+Additional Comments
+Please provide any additional information that may be helpful...
+Submit Workers' Compensation Risk

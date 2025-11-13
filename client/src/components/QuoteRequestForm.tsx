@@ -144,6 +144,21 @@ export default function QuoteRequestForm() {
                 </a>
               </div>
             )}
+            {formData.insuranceType === "Workers Compensation" && (
+              <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-md border border-blue-200 dark:border-blue-900">
+                <p className="text-sm text-blue-900 dark:text-blue-100 mb-3">
+                  For Workers' Compensation insurance, we have a specialized form that collects payroll data, classification codes, claims history, and safety program information.
+                </p>
+                <a
+                  href="/quote/workers-compensation"
+                  className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                  data-testid="link-workers-comp-form"
+                >
+                  Use Workers' Compensation Quote Form
+                  <ArrowRight className="ml-1 h-4 w-4" />
+                </a>
+              </div>
+            )}
           </div>
         )}
 
