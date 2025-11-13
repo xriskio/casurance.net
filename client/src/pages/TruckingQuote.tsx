@@ -1,8 +1,8 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import CommercialAutoQuoteForm from "@/components/CommercialAutoQuoteForm";
+import TruckingQuoteForm from "@/components/TruckingQuoteForm";
 
-export default function CommercialAutoQuote() {
+export default function TruckingQuote() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Header />
@@ -10,13 +10,13 @@ export default function CommercialAutoQuote() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-8">
             <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-              Commercial Auto Insurance - Limousine/Taxi/TNC/Buses
+              Transportation & Trucking Insurance Application
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Get a comprehensive quote for commercial auto, limousine, taxi, TNC (Uber/Lyft), and bus operations. Complete the form below with detailed information about your fleet, drivers, and operations.
+              Complete this comprehensive application for commercial trucking and transportation insurance. Our specialists will review your fleet, drivers, and operations to provide a competitive quote within 24-48 hours.
             </p>
           </div>
-          <CommercialAutoQuoteForm />
+          <TruckingQuoteForm />
         </div>
       </main>
       <Footer />

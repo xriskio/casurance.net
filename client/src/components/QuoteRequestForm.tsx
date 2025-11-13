@@ -12,12 +12,12 @@ const insuranceTypes = [
   "General Liability",
   "Workers Compensation",
   "Commercial Auto",
+  "Truck & Trucking",
   "Habitational (Apartments/Condos)",
   "Business Owners Policy (BOP)",
   "Commercial Property",
   "Cyber Liability",
   "Professional Liability",
-  "Truck & Trucking",
   "Restaurant Insurance",
   "Contractors Insurance",
 ];
@@ -118,14 +118,14 @@ export default function QuoteRequestForm() {
             {formData.insuranceType === "Commercial Auto" && (
               <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-md border border-blue-200 dark:border-blue-900">
                 <p className="text-sm text-blue-900 dark:text-blue-100 mb-3">
-                  For Commercial Auto insurance, we have a specialized quote form that collects detailed information about your fleet, drivers, and operations.
+                  For Commercial Auto insurance (including limousine, taxi, TNC, and bus operations), we have a specialized quote form that collects detailed information about your fleet, drivers, and operations.
                 </p>
                 <a
                   href="/quote/commercial-auto"
                   className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
                   data-testid="link-commercial-auto-form"
                 >
-                  Use Commercial Auto Quote Form
+                  Use Commercial Auto Quote Form (Limousine/Taxi/TNC/Buses)
                   <ArrowRight className="ml-1 h-4 w-4" />
                 </a>
               </div>
@@ -156,6 +156,21 @@ export default function QuoteRequestForm() {
                   data-testid="link-workers-comp-form"
                 >
                   Use Workers' Compensation Quote Form
+                  <ArrowRight className="ml-1 h-4 w-4" />
+                </a>
+              </div>
+            )}
+            {formData.insuranceType === "Truck & Trucking" && (
+              <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-md border border-blue-200 dark:border-blue-900">
+                <p className="text-sm text-blue-900 dark:text-blue-100 mb-3">
+                  For Trucking & Transportation insurance, we have a specialized application that collects fleet details, driver information, DOT numbers, and specialized cargo coverage options.
+                </p>
+                <a
+                  href="/quote/trucking"
+                  className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                  data-testid="link-trucking-form"
+                >
+                  Use Transportation Insurance Application
                   <ArrowRight className="ml-1 h-4 w-4" />
                 </a>
               </div>
