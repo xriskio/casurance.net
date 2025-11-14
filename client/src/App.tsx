@@ -15,6 +15,7 @@ import GeneralLiabilityQuote from "@/pages/GeneralLiabilityQuote";
 import WorkersCompQuote from "@/pages/WorkersCompQuote";
 import HabitationalQuote from "@/pages/HabitationalQuote";
 import TruckingQuote from "@/pages/TruckingQuote";
+import HotelQuote from "@/pages/HotelQuote";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -27,6 +28,7 @@ function Router() {
       <Route path="/quote/workers-compensation" component={WorkersCompQuote} />
       <Route path="/quote/habitational" component={HabitationalQuote} />
       <Route path="/quote/trucking" component={TruckingQuote} />
+      <Route path="/quote/hotel" component={HotelQuote} />
       <Route path="/service" component={ServicePage} />
       <Route path="/coverages" component={CoveragesIndex} />
       <Route path="/coverage/:slug" component={CoveragePage} />
