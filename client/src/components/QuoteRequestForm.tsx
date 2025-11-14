@@ -15,11 +15,11 @@ const insuranceTypes = [
   "Truck & Trucking",
   "Habitational (Apartments/Condos)",
   "Hotel/Motel/Hospitality",
+  "Restaurant Insurance",
   "Business Owners Policy (BOP)",
   "Commercial Property",
   "Cyber Liability",
   "Professional Liability",
-  "Restaurant Insurance",
   "Contractors Insurance",
 ];
 
@@ -202,6 +202,21 @@ export default function QuoteRequestForm() {
                   data-testid="link-hotel-form"
                 >
                   Use Hotel Insurance Application
+                  <ArrowRight className="ml-1 h-4 w-4" />
+                </a>
+              </div>
+            )}
+            {formData.insuranceType === "Restaurant Insurance" && (
+              <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-md border border-blue-200 dark:border-blue-900">
+                <p className="text-sm text-blue-900 dark:text-blue-100 mb-3">
+                  For Restaurant insurance, we have a comprehensive BOP application that evaluates your restaurant type, cooking methods, safety features, liquor service, and unique operational risks.
+                </p>
+                <a
+                  href="/quote/restaurant"
+                  className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                  data-testid="link-restaurant-form"
+                >
+                  Use Restaurant BOP Application
                   <ArrowRight className="ml-1 h-4 w-4" />
                 </a>
               </div>
