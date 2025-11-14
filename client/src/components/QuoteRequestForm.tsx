@@ -16,8 +16,12 @@ const insuranceTypes = [
   "Habitational (Apartments/Condos)",
   "Hotel/Motel/Hospitality",
   "Restaurant Insurance",
+  "Religious Organizations",
+  "Commercial Property/Real Estate",
+  "Builders Risk",
+  "Vacant Building & Land",
+  "Crane & Riggers Liability",
   "Business Owners Policy (BOP)",
-  "Commercial Property",
   "Cyber Liability",
   "Professional Liability",
   "Contractors Insurance",
@@ -217,6 +221,81 @@ export default function QuoteRequestForm() {
                   data-testid="link-restaurant-form"
                 >
                   Use Restaurant BOP Application
+                  <ArrowRight className="ml-1 h-4 w-4" />
+                </a>
+              </div>
+            )}
+            {formData.insuranceType === "Religious Organizations" && (
+              <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-md border border-blue-200 dark:border-blue-900">
+                <p className="text-sm text-blue-900 dark:text-blue-100 mb-3">
+                  For Religious Organizations (churches, mosques, temples, synagogues, and other places of worship), we have a comprehensive application that addresses the unique risks and coverage needs of faith-based organizations.
+                </p>
+                <a
+                  href="/quote/religious-organization"
+                  className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                  data-testid="link-religious-org-form"
+                >
+                  Use Religious Organization Application
+                  <ArrowRight className="ml-1 h-4 w-4" />
+                </a>
+              </div>
+            )}
+            {formData.insuranceType === "Commercial Property/Real Estate" && (
+              <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-md border border-blue-200 dark:border-blue-900">
+                <p className="text-sm text-blue-900 dark:text-blue-100 mb-3">
+                  For Commercial Property and Real Estate insurance, we have a detailed application that covers property management, shopping centers, residential complexes, warehouses, and other real estate investments.
+                </p>
+                <a
+                  href="/quote/commercial-property"
+                  className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                  data-testid="link-commercial-property-form"
+                >
+                  Use Commercial Property/Real Estate Application
+                  <ArrowRight className="ml-1 h-4 w-4" />
+                </a>
+              </div>
+            )}
+            {formData.insuranceType === "Builders Risk" && (
+              <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-md border border-blue-200 dark:border-blue-900">
+                <p className="text-sm text-blue-900 dark:text-blue-100 mb-3">
+                  For Builders Risk insurance covering construction projects, we have a specialized application that addresses project details, construction specifications, and site protection measures.
+                </p>
+                <a
+                  href="/quote/builders-risk"
+                  className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                  data-testid="link-builders-risk-form"
+                >
+                  Use Builders Risk Application
+                  <ArrowRight className="ml-1 h-4 w-4" />
+                </a>
+              </div>
+            )}
+            {formData.insuranceType === "Vacant Building & Land" && (
+              <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-md border border-blue-200 dark:border-blue-900">
+                <p className="text-sm text-blue-900 dark:text-blue-100 mb-3">
+                  For Vacant Building and Land insurance, we have an application that evaluates property conditions, security measures, development plans, and potential hazards.
+                </p>
+                <a
+                  href="/quote/vacant-building"
+                  className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                  data-testid="link-vacant-building-form"
+                >
+                  Use Vacant Building & Land Application
+                  <ArrowRight className="ml-1 h-4 w-4" />
+                </a>
+              </div>
+            )}
+            {formData.insuranceType === "Crane & Riggers Liability" && (
+              <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-md border border-blue-200 dark:border-blue-900">
+                <p className="text-sm text-blue-900 dark:text-blue-100 mb-3">
+                  For Crane & Riggers Liability insurance, we have a specialized application covering equipment operations, safety protocols, and high-risk lifting operations across various industries.
+                </p>
+                <a
+                  href="/quote/crane-riggers"
+                  className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                  data-testid="link-crane-riggers-form"
+                >
+                  Use Crane & Riggers Liability Application
                   <ArrowRight className="ml-1 h-4 w-4" />
                 </a>
               </div>

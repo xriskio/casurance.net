@@ -166,12 +166,9 @@ export default function ReligiousOrgQuoteForm() {
 
   const submitMutation = useMutation({
     mutationFn: async (data: FormData) => {
-      return apiRequest("/api/quote-requests", {
-        method: "POST",
-        body: JSON.stringify({
-          ...data,
-          type: "religious_organization",
-        }),
+      return apiRequest("POST", "/api/quote-requests", {
+        ...data,
+        type: "religious_organization",
       });
     },
     onSuccess: () => {
@@ -851,7 +848,7 @@ export default function ReligiousOrgQuoteForm() {
                           <FormControl>
                             <Textarea {...field} placeholder="List artifacts with descriptions and values..." data-testid="textarea-artifacts" />
                           </FormControl>
-                          <FormDescription>Include appraisals for items > $5,000</FormDescription>
+                          <FormDescription>Include appraisals for items over $5,000</FormDescription>
                           <FormMessage />
                         </FormItem>
                       )}
