@@ -134,7 +134,19 @@ export default function ReligiousOrgQuoteForm() {
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      applicantName: "",
+      denomination: "",
+      numberOfMembers: "",
+      numberOfVolunteers: "",
+      mailingAddress: "",
+      city: "",
+      state: "",
+      zip: "",
       is501c3: true,
+      websiteAddress: "",
+      riskManagementContact: "",
+      contactPhone: "",
+      contactEmail: "",
       hasFireAlarms: true,
       smokeDetectorType: "hardwired",
       hasEmergencyLighting: true,
@@ -161,6 +173,7 @@ export default function ReligiousOrgQuoteForm() {
       verifiesCredentials: true,
       usesContractedCounselors: false,
       counselingTypes: [],
+      additionalComments: "",
     },
   });
 
