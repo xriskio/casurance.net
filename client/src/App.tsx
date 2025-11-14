@@ -22,6 +22,7 @@ import VacantBuildingQuote from "@/pages/VacantBuildingQuote";
 import CraneRiggersQuote from "@/pages/CraneRiggersQuote";
 import ReligiousOrgQuote from "@/pages/ReligiousOrgQuote";
 import CommercialPropertyQuote from "@/pages/CommercialPropertyQuote";
+import CyberLiabilityQuote from "@/pages/CyberLiabilityQuote";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -41,6 +42,7 @@ function Router() {
       <Route path="/quote/crane-riggers" component={CraneRiggersQuote} />
       <Route path="/quote/religious-organization" component={ReligiousOrgQuote} />
       <Route path="/quote/commercial-property" component={CommercialPropertyQuote} />
+      <Route path="/quote/cyber-liability" component={CyberLiabilityQuote} />
       <Route path="/service" component={ServicePage} />
       <Route path="/coverages" component={CoveragesIndex} />
       <Route path="/coverage/:slug" component={CoveragePage} />

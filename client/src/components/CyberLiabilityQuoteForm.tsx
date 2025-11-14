@@ -15,6 +15,9 @@ import { useToast } from "@/hooks/use-toast";
 import { CheckCircle, ChevronLeft, ChevronRight, Building, Shield, Users, FileText, Database, Lock } from "lucide-react";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 
+// Safe file schema that works in both browser and non-browser environments
+const fileSchema = typeof File !== 'undefined' ? z.instanceof(File) : z.any();
+
 const formSchema = z.object({
   // Step 1: General Information
   companyName: z.string().min(2, "Company name is required"),
@@ -95,9 +98,9 @@ const formSchema = z.object({
   additionalComments: z.string().optional(),
 
   // Files
-  lossRuns: z.instanceof(File).optional(),
-  financialStatements: z.instanceof(File).optional(),
-  additionalDocuments: z.instanceof(File).optional(),
+  lossRuns: fileSchema.optional(),
+  financialStatements: fileSchema.optional(),
+  additionalDocuments: fileSchema.optional(),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -126,6 +129,7 @@ export default function CyberLiabilityQuoteForm() {
       zip: "",
       hasWebsite: true,
       websiteUrl: "",
+      emailHostedOnDomain: false,
       hasSubsidiaries: false,
       hasProhibitedActivities: false,
       isTechnologyCompany: false,
@@ -134,6 +138,7 @@ export default function CyberLiabilityQuoteForm() {
       currentYearRevenue: "",
       hasInternationalOperations: false,
       isSubsidiary: false,
+      parentDomiciledOutsideUS: false,
       hasMergerOrAcquisition: false,
       hasCybersecurityTeam: false,
       contactName: "",
@@ -148,13 +153,16 @@ export default function CyberLiabilityQuoteForm() {
       encryptedInTransit: false,
       encryptedOnMobile: false,
       backupFrequency: "no_backup",
+      backupsOffline: false,
       hasIncidentResponsePlan: false,
       hasMediaReviewProcess: false,
       acquiredTrademarks: false,
+      trademarksScreened: false,
       mfaForRemoteAccess: "unknown",
       mfaForEmail: false,
       hasDualAuthFundsTransfer: false,
       acceptsFundTransfers: false,
+      validatesFundTransfers: false,
       hasAntivirusComputers: false,
       hasAntivirusNetwork: false,
       hasAntivirusMobile: false,
