@@ -1,0 +1,178 @@
+Commercial Package”
+Drafted
+Broker
+Broker *
+Xrisk
+Broker commission
+17.5
+Policy Information
+Effective Date *
+11/15/2025
+Expiration Date *
+11/15/2026
+Does your agency currently control this account? *
+Target Premium (Insert dollar amount) *
+Inspection Fee
+Administration fee
+Insured Information
+Full Legal Name of the Business *
+Doing Business As
+Address search
+Mailing Address *
+Line 2
+City *
+State *
+Postcode *
+Select the Legal Entity type of the business *
+Is this Lessor's Risk Only? *
+Please provide the website address of the business
+Did this business begin under the applicants ownership within the last 3 years? *
+FEIN # (please no SSN's)
+At any time over the past (5) five years, has the applicant experienced a gap of coverage, been cancelled or nonrenewed due to underwriting reasons including failure to comply with safety or inspection recommendations? *
+Does the applicant have a financial interest of 50% or more in other businesses requiring additional named insured status under this policy? *
+
+Yes
+
+No
+Is the applicant a subsidiary of another entity? *
+
+Yes
+
+No
+Has the applicant had a judgement or lien, unpaid taxes, suffered foreclosure, bankruptcy or filed for bankruptcy during the past five (5) years? *
+
+Yes
+
+No
+We cannot insure operations performing exposures resembling any of the following. Does the applicant's operation perform any of the following businesses, in whole or in any amount: Daycare, concert/arenas, kids clubs, shelters, general contractor, habitational tenants, assisted living, nursing, mentoring, trade contractors performing work on roads, highways, fence work for prisons, foundation or structural repair OR SELL any of the following products: Adult entertainment products, gun or ammunition, private label or repackaged goods, car/vehicles, heavy equipment, gas, fuel, children's toys, children's clothing? *
+
+Yes
+
+No
+Claims
+Have you made any claims on this address, or any other risk you are/were responsible for, in the last 3 years? *
+Location Information
+Location
+
+Address search
+Street *
+Line 2
+City *
+State *
+Risk Zip Code *
+All Other Perils/AOP Deductible *
+Is the applicant's business located on the first floor? *
+
+Yes
+
+No
+Square Feet *
+Building Construction Type *
+Year Built *
+Is the premises sprinklered? *
+In what year was the Roof last updated? If not updated or unknown, leave blank
+In what year was the Plumbing last updated? If not updated or unknown, leave blank
+In what year was the Electrical/Wiring updated? If not updated or unknown, leave blank
+In what year was the Heating/HVAC updated? If not updated or unknown, leave blank
+Are the applicant's immediate neighboring properties vacant, or demonstrate evidence of vacancy? *
+
+Yes
+
+No
+Does the applicant have a burglar alarm? *
+
+Yes
+
+No
+Does the applicant have a fire alarm? *
+
+Yes
+
+No
+Does the applicant's business close after midnight?
+
+Yes
+
+No
+
+Building Coverage
+Building Valuation
+Replacement Cost
+Building Limit *
+What is or will be the vacancy percentage now, or within the next 30 days? *
+What type of roof does the applicant have? *
+How many tenants (separate units) make up the occupancy of the building?
+Does the applicant wish to add outdoor/detached sign coverage (Limit per sign - $1,000)? *
+
+Yes
+
+No
+Please select the applicant's financial interest in the BUILDING the business operations is being performed: *
+Is there a Mortgage Holder on the Building *
+
+Yes
+
+No
+Premium *
+0
+
+Business Personal Property (Contents)
+Requested Business Personal Property Limit: *
+Business Personal Property Valuation *
+Replacement Cost
+Is there an additional interest or loss payee for the BPP?
+
+Yes
+
+No
+Premium *
+0
+
+Business Income with Extra Expense
+
+District Limit Coverage (Coverage enhancement including items like debris removal, accounts receivable, etc.)
+District Limit Coverage Limit *
+50,000
+Premium *
+0
+
+Utility Services Direct Damage
+
+Utility Services Time Element
+
+Back up Water and Sump
+
+Perishable Product
+
+Equipment Breakdown
+
+Employee Dishonesty
+
+Contractor's Installation, Tools and Equipment
+
+Terrorism (TRIA) Coverage
+Liability Coverages
+
+
+Liability Coverage $1M/$2M
+BI/PD Deductible
+0
+Is the applicant named as an additional insured and/or held harmless on any vendor, subcontractor, maintenance provider or entity's insurance policy? *
+
+Yes
+
+No
+Premium *
+0
+
+Liquor Liability
+
+Additional Insured (Blanket AI will be added; you have the option to add specific AI forms below)
+
+Employee Benefits Liability
+
+Waiver of Subrogation
+Documents
+No documents
+
+To upload, drag file here or browse
