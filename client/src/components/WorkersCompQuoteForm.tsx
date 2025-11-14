@@ -5,14 +5,30 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { ArrowRight, ArrowLeft, CheckCircle, Plus, X } from "lucide-react";
+import { ArrowRight, ArrowLeft, CheckCircle, Plus, Trash2 } from "lucide-react";
 
-interface Classification {
+interface Employee {
+  id: string;
   classCode: string;
   description: string;
-  numberOfEmployees: string;
+  fullTimeCount: string;
+  partTimeCount: string;
   annualPayroll: string;
+  location: string;
+}
+
+interface PriorCarrier {
+  id: string;
+  year: string;
+  carrier: string;
+  policyNumber: string;
+  annualPremium: string;
+  modFactor: string;
+  claimsCount: string;
+  amountPaid: string;
+  reserve: string;
 }
 
 export default function WorkersCompQuoteForm() {
@@ -20,74 +36,190 @@ export default function WorkersCompQuoteForm() {
   const [submitted, setSubmitted] = useState(false);
   
   const [formData, setFormData] = useState({
-    // Insured Information
-    insuredName: "",
-    dba: "",
-    contactName: "",
-    contactEmail: "",
-    contactPhone: "",
-    businessWebsite: "",
-    yearsInBusiness: "",
-    fein: "",
-    mailingAddress: "",
-    city: "",
-    state: "",
-    zipCode: "",
-    typeOfBusiness: "",
-    businessDescription: "",
+    // Agency Information
+    agencyName: "",
+    agencyAddress: "",
+    producerName: "",
+    producerPhone: "",
+    producerEmail: "",
     
-    // Coverage Information
+    // Applicant Information
+    applicantName: "",
+    officePhone: "",
+    mobilePhone: "",
+    mailingAddress: "",
+    yearsInBusiness: "",
+    sic: "",
+    naics: "",
+    website: "",
+    email: "",
+    
+    // Business Structure
+    businessStructure: "",
+    federalEin: "",
+    ncciRiskId: "",
+    stateRegistrationNumber: "",
+    
+    // Policy Information
     effectiveDate: "",
     expirationDate: "",
-    currentCarrier: "",
-    currentPremium: "",
-    experienceModifier: "",
-    deductible: "",
-    statesCoverage: "",
-    uslhCoverage: "no",
+    ratingDate: "",
+    policyType: "",
     
-    // Payroll Information
-    totalEmployees: "",
-    fullTimeEmployees: "",
-    partTimeEmployees: "",
-    contractors1099: "",
+    // Coverage Limits (Employer's Liability)
+    eachAccident: "",
+    diseasePolicyLimit: "",
+    diseaseEachEmployee: "",
     
-    // Claims History
-    claimsLast5Years: "",
-    totalIncurred: "",
-    largestClaim: "",
-    openClaims: "",
+    // Billing Information
+    billingPlan: "",
+    paymentPlan: "",
+    auditFrequency: "",
     
-    // Safety Program
-    writtenSafetyProgram: "",
-    returnToWorkProgram: "",
-    drugTesting: "",
-    backgroundChecks: "",
+    // Deductibles
+    medicalDeductible: "",
+    indemnityDeductible: "",
     
-    // Additional Comments
-    additionalComments: "",
+    // Additional Coverages
+    uslh: false,
+    voluntaryComp: false,
+    foreignCoverage: false,
+    managedCareOption: false,
+    
+    // Nature of Business
+    businessDescription: "",
+    manufacturingDetails: "",
+    contractorDetails: "",
+    mercantileDetails: "",
+    serviceDetails: "",
+    
+    // Premium Estimates
+    totalEstimatedPremium: "",
+    minimumPremium: "",
+    depositPremium: "",
   });
 
-  const [classifications, setClassifications] = useState<Classification[]>([
-    { classCode: "", description: "", numberOfEmployees: "", annualPayroll: "" }
+  const [employees, setEmployees] = useState<Employee[]>([
+    {
+      id: "1",
+      classCode: "",
+      description: "",
+      fullTimeCount: "",
+      partTimeCount: "",
+      annualPayroll: "",
+      location: "",
+    }
   ]);
 
-  const addClassification = () => {
-    setClassifications([...classifications, { classCode: "", description: "", numberOfEmployees: "", annualPayroll: "" }]);
+  const [priorCarriers, setPriorCarriers] = useState<PriorCarrier[]>([
+    {
+      id: "1",
+      year: "",
+      carrier: "",
+      policyNumber: "",
+      annualPremium: "",
+      modFactor: "",
+      claimsCount: "",
+      amountPaid: "",
+      reserve: "",
+    }
+  ]);
+
+  const [locations, setLocations] = useState([""]);
+
+  const [generalInfo, setGeneralInfo] = useState({
+    aircraftWatercraft: "",
+    hazardousMaterial: "",
+    workAbove15Feet: "",
+    workOverWater: "",
+    otherBusiness: "",
+    useSubcontractors: "",
+    subcontractorPercent: "",
+    workWithoutCerts: "",
+    safetyProgram: "",
+    groupTransportation: "",
+    employeesUnder16Over60: "",
+    seasonalEmployees: "",
+    volunteerLabor: "",
+    physicalHandicaps: "",
+    outOfStateTravel: "",
+    athleticTeams: "",
+    physicalsRequired: "",
+    otherInsurance: "",
+    priorDeclined: "",
+    healthPlans: "",
+    workForOthers: "",
+    leaseEmployees: "",
+    workFromHome: "",
+    workFromHomeCount: "",
+  });
+
+  const addEmployee = () => {
+    setEmployees([...employees, {
+      id: Date.now().toString(),
+      classCode: "",
+      description: "",
+      fullTimeCount: "",
+      partTimeCount: "",
+      annualPayroll: "",
+      location: "",
+    }]);
   };
 
-  const removeClassification = (index: number) => {
-    setClassifications(classifications.filter((_, i) => i !== index));
+  const removeEmployee = (id: string) => {
+    setEmployees(employees.filter(emp => emp.id !== id));
   };
 
-  const updateClassification = (index: number, field: keyof Classification, value: string) => {
-    const updated = [...classifications];
-    updated[index][field] = value;
-    setClassifications(updated);
+  const updateEmployee = (id: string, field: keyof Employee, value: string) => {
+    setEmployees(employees.map(emp => 
+      emp.id === id ? { ...emp, [field]: value } : emp
+    ));
+  };
+
+  const addPriorCarrier = () => {
+    setPriorCarriers([...priorCarriers, {
+      id: Date.now().toString(),
+      year: "",
+      carrier: "",
+      policyNumber: "",
+      annualPremium: "",
+      modFactor: "",
+      claimsCount: "",
+      amountPaid: "",
+      reserve: "",
+    }]);
+  };
+
+  const removePriorCarrier = (id: string) => {
+    setPriorCarriers(priorCarriers.filter(carrier => carrier.id !== id));
+  };
+
+  const updatePriorCarrier = (id: string, field: keyof PriorCarrier, value: string) => {
+    setPriorCarriers(priorCarriers.map(carrier => 
+      carrier.id === id ? { ...carrier, [field]: value } : carrier
+    ));
+  };
+
+  const addLocation = () => {
+    setLocations([...locations, ""]);
+  };
+
+  const removeLocation = (index: number) => {
+    setLocations(locations.filter((_, i) => i !== index));
+  };
+
+  const updateLocation = (index: number, value: string) => {
+    setLocations(locations.map((loc, i) => i === index ? value : loc));
   };
 
   const handleSubmit = () => {
-    console.log("Workers' Compensation quote request submitted:", { formData, classifications });
+    console.log("Workers Compensation quote request submitted:", { 
+      formData, 
+      employees, 
+      priorCarriers, 
+      locations,
+      generalInfo 
+    });
     setSubmitted(true);
   };
 
@@ -98,12 +230,12 @@ export default function WorkersCompQuoteForm() {
           <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
             <CheckCircle className="h-8 w-8 text-green-600" />
           </div>
-          <h3 className="text-2xl font-bold text-foreground mb-4">Workers' Compensation Quote Request Received!</h3>
+          <h3 className="text-2xl font-bold text-foreground mb-4">Workers Compensation Application Submitted!</h3>
           <p className="text-muted-foreground mb-6">
-            Thank you for your detailed submission. One of our workers' compensation specialists will review your information and contact you within 24 hours with a competitive quote.
+            Thank you for your comprehensive submission. Our workers compensation specialists will review your employee classifications, payroll data, and risk factors to provide an accurate quote within 24-48 hours.
           </p>
           <Button onClick={() => { setSubmitted(false); setStep(1); }} data-testid="button-submit-another">
-            Submit Another Request
+            Submit Another Application
           </Button>
         </CardContent>
       </Card>
@@ -113,9 +245,9 @@ export default function WorkersCompQuoteForm() {
   return (
     <Card className="max-w-4xl mx-auto">
       <CardHeader>
-        <CardTitle>Workers' Compensation Insurance Quote Request</CardTitle>
+        <CardTitle>Workers Compensation Insurance Application</CardTitle>
         <p className="text-sm text-muted-foreground mt-2">
-          Complete this form to submit your workers' compensation risk for a quick quote. All information helps us provide the most accurate pricing.
+          Complete this ACORD 130 application for workers compensation coverage. Provide detailed employee classifications, payroll information, and operational details for accurate pricing.
         </p>
         <div className="flex gap-2 mt-4">
           {[1, 2, 3, 4, 5, 6].map((s) => (
@@ -128,103 +260,43 @@ export default function WorkersCompQuoteForm() {
         </div>
       </CardHeader>
       <CardContent className="space-y-6">
-        {/* Step 1: Insured Information */}
+        {/* Step 1: Business Information */}
         {step === 1 && (
           <div className="space-y-4">
-            <h3 className="font-semibold text-lg">Insured Information</h3>
+            <h3 className="font-semibold text-lg">Business & Contact Information</h3>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="insuredName">Insured Name *</Label>
-                <Input
-                  id="insuredName"
-                  value={formData.insuredName}
-                  onChange={(e) => setFormData({ ...formData, insuredName: e.target.value })}
-                  placeholder="Legal business name"
-                  data-testid="input-insured-name"
-                />
-              </div>
-              <div>
-                <Label htmlFor="dba">DBA (if applicable)</Label>
-                <Input
-                  id="dba"
-                  value={formData.dba}
-                  onChange={(e) => setFormData({ ...formData, dba: e.target.value })}
-                  placeholder="Doing Business As"
-                  data-testid="input-dba"
-                />
-              </div>
+            <div>
+              <Label htmlFor="applicantName">Applicant Business Name *</Label>
+              <Input
+                id="applicantName"
+                value={formData.applicantName}
+                onChange={(e) => setFormData({ ...formData, applicantName: e.target.value })}
+                placeholder="Legal business name"
+                data-testid="input-applicant-name"
+              />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="contactName">Contact Name *</Label>
+                <Label htmlFor="officePhone">Office Phone *</Label>
                 <Input
-                  id="contactName"
-                  value={formData.contactName}
-                  onChange={(e) => setFormData({ ...formData, contactName: e.target.value })}
-                  placeholder="Full name"
-                  data-testid="input-contact-name"
-                />
-              </div>
-              <div>
-                <Label htmlFor="contactEmail">Contact Email *</Label>
-                <Input
-                  id="contactEmail"
-                  type="email"
-                  value={formData.contactEmail}
-                  onChange={(e) => setFormData({ ...formData, contactEmail: e.target.value })}
-                  placeholder="email@example.com"
-                  data-testid="input-contact-email"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="contactPhone">Contact Phone *</Label>
-                <Input
-                  id="contactPhone"
+                  id="officePhone"
                   type="tel"
-                  value={formData.contactPhone}
-                  onChange={(e) => setFormData({ ...formData, contactPhone: e.target.value })}
+                  value={formData.officePhone}
+                  onChange={(e) => setFormData({ ...formData, officePhone: e.target.value })}
                   placeholder="(555) 123-4567"
-                  data-testid="input-contact-phone"
+                  data-testid="input-office-phone"
                 />
               </div>
               <div>
-                <Label htmlFor="businessWebsite">Business Website</Label>
+                <Label htmlFor="mobilePhone">Mobile Phone</Label>
                 <Input
-                  id="businessWebsite"
-                  type="url"
-                  value={formData.businessWebsite}
-                  onChange={(e) => setFormData({ ...formData, businessWebsite: e.target.value })}
-                  placeholder="https://www.example.com"
-                  data-testid="input-business-website"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="yearsInBusiness">Years in Business *</Label>
-                <Input
-                  id="yearsInBusiness"
-                  type="number"
-                  value={formData.yearsInBusiness}
-                  onChange={(e) => setFormData({ ...formData, yearsInBusiness: e.target.value })}
-                  placeholder="0"
-                  data-testid="input-years-in-business"
-                />
-              </div>
-              <div>
-                <Label htmlFor="fein">FEIN/Tax ID *</Label>
-                <Input
-                  id="fein"
-                  value={formData.fein}
-                  onChange={(e) => setFormData({ ...formData, fein: e.target.value })}
-                  placeholder="XX-XXXXXXX"
-                  data-testid="input-fein"
+                  id="mobilePhone"
+                  type="tel"
+                  value={formData.mobilePhone}
+                  onChange={(e) => setFormData({ ...formData, mobilePhone: e.target.value })}
+                  placeholder="(555) 987-6543"
+                  data-testid="input-mobile-phone"
                 />
               </div>
             </div>
@@ -235,90 +307,186 @@ export default function WorkersCompQuoteForm() {
                 id="mailingAddress"
                 value={formData.mailingAddress}
                 onChange={(e) => setFormData({ ...formData, mailingAddress: e.target.value })}
-                placeholder="Street address"
+                placeholder="Street address, City, State, ZIP+4"
                 data-testid="input-mailing-address"
               />
             </div>
 
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="email">Email Address *</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  placeholder="email@example.com"
+                  data-testid="input-email"
+                />
+              </div>
+              <div>
+                <Label htmlFor="website">Website</Label>
+                <Input
+                  id="website"
+                  type="url"
+                  value={formData.website}
+                  onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                  placeholder="https://www.example.com"
+                  data-testid="input-website"
+                />
+              </div>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
-                <Label htmlFor="city">City *</Label>
+                <Label htmlFor="yearsInBusiness">Years in Business *</Label>
                 <Input
-                  id="city"
-                  value={formData.city}
-                  onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                  placeholder="City"
-                  data-testid="input-city"
+                  id="yearsInBusiness"
+                  type="number"
+                  value={formData.yearsInBusiness}
+                  onChange={(e) => setFormData({ ...formData, yearsInBusiness: e.target.value })}
+                  placeholder="0"
+                  data-testid="input-years-business"
                 />
               </div>
               <div>
-                <Label htmlFor="state">State *</Label>
+                <Label htmlFor="sic">SIC Code</Label>
                 <Input
-                  id="state"
-                  value={formData.state}
-                  onChange={(e) => setFormData({ ...formData, state: e.target.value })}
-                  placeholder="CA"
-                  maxLength={2}
-                  data-testid="input-state"
+                  id="sic"
+                  value={formData.sic}
+                  onChange={(e) => setFormData({ ...formData, sic: e.target.value })}
+                  placeholder="0000"
+                  data-testid="input-sic"
                 />
               </div>
               <div>
-                <Label htmlFor="zipCode">ZIP Code *</Label>
+                <Label htmlFor="naics">NAICS Code</Label>
                 <Input
-                  id="zipCode"
-                  value={formData.zipCode}
-                  onChange={(e) => setFormData({ ...formData, zipCode: e.target.value })}
-                  placeholder="90001"
-                  data-testid="input-zip-code"
+                  id="naics"
+                  value={formData.naics}
+                  onChange={(e) => setFormData({ ...formData, naics: e.target.value })}
+                  placeholder="000000"
+                  data-testid="input-naics"
                 />
               </div>
             </div>
 
             <div>
-              <Label htmlFor="typeOfBusiness">Type of Business *</Label>
+              <Label htmlFor="businessStructure">Business Structure *</Label>
               <Select
-                value={formData.typeOfBusiness}
-                onValueChange={(value) => setFormData({ ...formData, typeOfBusiness: value })}
+                value={formData.businessStructure}
+                onValueChange={(value) => setFormData({ ...formData, businessStructure: value })}
               >
-                <SelectTrigger data-testid="select-business-type">
-                  <SelectValue placeholder="Select business type" />
+                <SelectTrigger data-testid="select-business-structure">
+                  <SelectValue placeholder="Select business structure" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="construction">Construction</SelectItem>
-                  <SelectItem value="manufacturing">Manufacturing</SelectItem>
-                  <SelectItem value="retail">Retail</SelectItem>
-                  <SelectItem value="restaurant">Restaurant/Food Service</SelectItem>
-                  <SelectItem value="healthcare">Healthcare</SelectItem>
-                  <SelectItem value="professional">Professional Services</SelectItem>
-                  <SelectItem value="transportation">Transportation</SelectItem>
-                  <SelectItem value="warehouse">Warehouse/Distribution</SelectItem>
+                  <SelectItem value="sole-proprietor">Sole Proprietor</SelectItem>
+                  <SelectItem value="corporation">Corporation</SelectItem>
+                  <SelectItem value="llc">LLC</SelectItem>
+                  <SelectItem value="partnership">Partnership</SelectItem>
+                  <SelectItem value="s-corp">Subchapter S Corporation</SelectItem>
+                  <SelectItem value="joint-venture">Joint Venture</SelectItem>
+                  <SelectItem value="trust">Trust</SelectItem>
+                  <SelectItem value="unincorporated">Unincorporated Association</SelectItem>
                   <SelectItem value="other">Other</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="federalEin">Federal Employer ID Number *</Label>
+                <Input
+                  id="federalEin"
+                  value={formData.federalEin}
+                  onChange={(e) => setFormData({ ...formData, federalEin: e.target.value })}
+                  placeholder="00-0000000"
+                  data-testid="input-federal-ein"
+                />
+              </div>
+              <div>
+                <Label htmlFor="ncciRiskId">NCCI Risk ID Number</Label>
+                <Input
+                  id="ncciRiskId"
+                  value={formData.ncciRiskId}
+                  onChange={(e) => setFormData({ ...formData, ncciRiskId: e.target.value })}
+                  placeholder="Optional"
+                  data-testid="input-ncci-risk"
+                />
+              </div>
+            </div>
+
             <div>
-              <Label htmlFor="businessDescription">Business Description *</Label>
-              <Textarea
-                id="businessDescription"
-                value={formData.businessDescription}
-                onChange={(e) => setFormData({ ...formData, businessDescription: e.target.value })}
-                placeholder="Describe your business operations, products, and services..."
-                rows={4}
-                data-testid="textarea-business-description"
-              />
+              <Label>Business Locations *</Label>
+              <p className="text-xs text-muted-foreground mb-2">List all locations where employees work</p>
+              {locations.map((location, index) => (
+                <div key={index} className="flex gap-2 mb-2">
+                  <Input
+                    value={location}
+                    onChange={(e) => updateLocation(index, e.target.value)}
+                    placeholder="Street, City, County, State, ZIP"
+                    data-testid={`input-location-${index}`}
+                  />
+                  {locations.length > 1 && (
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="icon"
+                      onClick={() => removeLocation(index)}
+                      data-testid={`button-remove-location-${index}`}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  )}
+                </div>
+              ))}
+              <Button
+                type="button"
+                variant="outline"
+                onClick={addLocation}
+                className="mt-2"
+                data-testid="button-add-location"
+              >
+                <Plus className="mr-2 h-4 w-4" />
+                Add Location
+              </Button>
+            </div>
+
+            <h4 className="font-medium mt-6">Agency Information</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="agencyName">Agency Name</Label>
+                <Input
+                  id="agencyName"
+                  value={formData.agencyName}
+                  onChange={(e) => setFormData({ ...formData, agencyName: e.target.value })}
+                  placeholder="Insurance agency name"
+                  data-testid="input-agency-name"
+                />
+              </div>
+              <div>
+                <Label htmlFor="producerName">Producer Name</Label>
+                <Input
+                  id="producerName"
+                  value={formData.producerName}
+                  onChange={(e) => setFormData({ ...formData, producerName: e.target.value })}
+                  placeholder="Agent/broker name"
+                  data-testid="input-producer-name"
+                />
+              </div>
             </div>
           </div>
         )}
 
-        {/* Step 2: Coverage Information */}
+        {/* Step 2: Policy Information */}
         {step === 2 && (
           <div className="space-y-4">
-            <h3 className="font-semibold text-lg">Coverage Information</h3>
+            <h3 className="font-semibold text-lg">Policy Information & Coverage</h3>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="effectiveDate">Requested Effective Date *</Label>
+                <Label htmlFor="effectiveDate">Proposed Effective Date *</Label>
                 <Input
                   id="effectiveDate"
                   type="date"
@@ -328,7 +496,7 @@ export default function WorkersCompQuoteForm() {
                 />
               </div>
               <div>
-                <Label htmlFor="expirationDate">Expiration Date *</Label>
+                <Label htmlFor="expirationDate">Proposed Expiration Date *</Label>
                 <Input
                   id="expirationDate"
                   type="date"
@@ -339,465 +507,1064 @@ export default function WorkersCompQuoteForm() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="currentCarrier">Current Carrier</Label>
-                <Input
-                  id="currentCarrier"
-                  value={formData.currentCarrier}
-                  onChange={(e) => setFormData({ ...formData, currentCarrier: e.target.value })}
-                  placeholder="Current insurance carrier"
-                  data-testid="input-current-carrier"
-                />
-              </div>
-              <div>
-                <Label htmlFor="currentPremium">Current Premium ($)</Label>
-                <Input
-                  id="currentPremium"
-                  type="number"
-                  value={formData.currentPremium}
-                  onChange={(e) => setFormData({ ...formData, currentPremium: e.target.value })}
-                  placeholder="0"
-                  data-testid="input-current-premium"
-                />
-              </div>
+            <div>
+              <Label htmlFor="policyType">Policy Type *</Label>
+              <Select
+                value={formData.policyType}
+                onValueChange={(value) => setFormData({ ...formData, policyType: value })}
+              >
+                <SelectTrigger data-testid="select-policy-type">
+                  <SelectValue placeholder="Select policy type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="participating">Participating</SelectItem>
+                  <SelectItem value="non-participating">Non-Participating</SelectItem>
+                  <SelectItem value="retro">Retrospective Rating Plan</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <h4 className="font-medium mt-6">Employer's Liability Limits</h4>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
-                <Label htmlFor="experienceModifier">Experience Modifier</Label>
-                <Input
-                  id="experienceModifier"
-                  type="number"
-                  step="0.01"
-                  value={formData.experienceModifier}
-                  onChange={(e) => setFormData({ ...formData, experienceModifier: e.target.value })}
-                  placeholder="1.00"
-                  data-testid="input-experience-modifier"
-                />
-                <p className="text-xs text-muted-foreground mt-1">E.g., 0.85, 1.00, 1.15</p>
-              </div>
-              <div>
-                <Label htmlFor="deductible">Deductible Requested</Label>
+                <Label htmlFor="eachAccident">Each Accident ($) *</Label>
                 <Select
-                  value={formData.deductible}
-                  onValueChange={(value) => setFormData({ ...formData, deductible: value })}
+                  value={formData.eachAccident}
+                  onValueChange={(value) => setFormData({ ...formData, eachAccident: value })}
                 >
-                  <SelectTrigger data-testid="select-deductible">
-                    <SelectValue placeholder="Select deductible" />
+                  <SelectTrigger data-testid="select-each-accident">
+                    <SelectValue placeholder="Select limit" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="0">$0</SelectItem>
-                    <SelectItem value="500">$500</SelectItem>
-                    <SelectItem value="1000">$1,000</SelectItem>
-                    <SelectItem value="2500">$2,500</SelectItem>
-                    <SelectItem value="5000">$5,000</SelectItem>
-                    <SelectItem value="10000">$10,000</SelectItem>
+                    <SelectItem value="100000">$100,000</SelectItem>
+                    <SelectItem value="500000">$500,000</SelectItem>
+                    <SelectItem value="1000000">$1,000,000</SelectItem>
+                    <SelectItem value="2000000">$2,000,000</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label htmlFor="diseasePolicyLimit">Disease - Policy Limit ($) *</Label>
+                <Select
+                  value={formData.diseasePolicyLimit}
+                  onValueChange={(value) => setFormData({ ...formData, diseasePolicyLimit: value })}
+                >
+                  <SelectTrigger data-testid="select-disease-policy">
+                    <SelectValue placeholder="Select limit" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="100000">$100,000</SelectItem>
+                    <SelectItem value="500000">$500,000</SelectItem>
+                    <SelectItem value="1000000">$1,000,000</SelectItem>
+                    <SelectItem value="2000000">$2,000,000</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label htmlFor="diseaseEachEmployee">Disease - Each Employee ($) *</Label>
+                <Select
+                  value={formData.diseaseEachEmployee}
+                  onValueChange={(value) => setFormData({ ...formData, diseaseEachEmployee: value })}
+                >
+                  <SelectTrigger data-testid="select-disease-employee">
+                    <SelectValue placeholder="Select limit" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="100000">$100,000</SelectItem>
+                    <SelectItem value="500000">$500,000</SelectItem>
+                    <SelectItem value="1000000">$1,000,000</SelectItem>
+                    <SelectItem value="2000000">$2,000,000</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
             </div>
 
-            <div>
-              <Label htmlFor="statesCoverage">States Where Coverage is Needed *</Label>
-              <Input
-                id="statesCoverage"
-                value={formData.statesCoverage}
-                onChange={(e) => setFormData({ ...formData, statesCoverage: e.target.value })}
-                placeholder="e.g., CA, NY, FL"
-                data-testid="input-states-coverage"
-              />
-              <p className="text-xs text-muted-foreground mt-1">Separate multiple states with commas</p>
+            <h4 className="font-medium mt-6">Billing & Audit Information</h4>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <Label htmlFor="billingPlan">Billing Plan</Label>
+                <Select
+                  value={formData.billingPlan}
+                  onValueChange={(value) => setFormData({ ...formData, billingPlan: value })}
+                >
+                  <SelectTrigger data-testid="select-billing-plan">
+                    <SelectValue placeholder="Select billing plan" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="agency-bill">Agency Bill</SelectItem>
+                    <SelectItem value="direct-bill">Direct Bill</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label htmlFor="paymentPlan">Payment Plan</Label>
+                <Select
+                  value={formData.paymentPlan}
+                  onValueChange={(value) => setFormData({ ...formData, paymentPlan: value })}
+                >
+                  <SelectTrigger data-testid="select-payment-plan">
+                    <SelectValue placeholder="Select payment plan" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="annual">Annual</SelectItem>
+                    <SelectItem value="semi-annual">Semi-Annual</SelectItem>
+                    <SelectItem value="quarterly">Quarterly</SelectItem>
+                    <SelectItem value="monthly">Monthly</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label htmlFor="auditFrequency">Audit Frequency</Label>
+                <Select
+                  value={formData.auditFrequency}
+                  onValueChange={(value) => setFormData({ ...formData, auditFrequency: value })}
+                >
+                  <SelectTrigger data-testid="select-audit-frequency">
+                    <SelectValue placeholder="Select frequency" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="expiration">At Expiration</SelectItem>
+                    <SelectItem value="monthly">Monthly</SelectItem>
+                    <SelectItem value="quarterly">Quarterly</SelectItem>
+                    <SelectItem value="semi-annual">Semi-Annual</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
 
-            <div>
-              <Label>USL&H Coverage Needed? *</Label>
-              <RadioGroup
-                value={formData.uslhCoverage}
-                onValueChange={(value) => setFormData({ ...formData, uslhCoverage: value })}
-              >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="yes" id="uslh-yes" data-testid="radio-uslh-yes" />
-                  <Label htmlFor="uslh-yes" className="font-normal cursor-pointer">Yes</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="no" id="uslh-no" data-testid="radio-uslh-no" />
-                  <Label htmlFor="uslh-no" className="font-normal cursor-pointer">No</Label>
-                </div>
-              </RadioGroup>
-              <p className="text-xs text-muted-foreground mt-1">U.S. Longshoremen and Harbor Workers Coverage</p>
+            <h4 className="font-medium mt-6">Deductibles (if applicable)</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="medicalDeductible">Medical Deductible</Label>
+                <Select
+                  value={formData.medicalDeductible}
+                  onValueChange={(value) => setFormData({ ...formData, medicalDeductible: value })}
+                >
+                  <SelectTrigger data-testid="select-medical-deductible">
+                    <SelectValue placeholder="Select deductible" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="0">No Deductible</SelectItem>
+                    <SelectItem value="500">$500</SelectItem>
+                    <SelectItem value="1000">$1,000</SelectItem>
+                    <SelectItem value="2500">$2,500</SelectItem>
+                    <SelectItem value="5000">$5,000</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label htmlFor="indemnityDeductible">Indemnity Deductible</Label>
+                <Select
+                  value={formData.indemnityDeductible}
+                  onValueChange={(value) => setFormData({ ...formData, indemnityDeductible: value })}
+                >
+                  <SelectTrigger data-testid="select-indemnity-deductible">
+                    <SelectValue placeholder="Select deductible" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="0">No Deductible</SelectItem>
+                    <SelectItem value="500">$500</SelectItem>
+                    <SelectItem value="1000">$1,000</SelectItem>
+                    <SelectItem value="2500">$2,500</SelectItem>
+                    <SelectItem value="5000">$5,000</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
+            <h4 className="font-medium mt-6">Additional Coverages</h4>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="uslh"
+                  checked={formData.uslh}
+                  onCheckedChange={(checked) => setFormData({ ...formData, uslh: checked as boolean })}
+                  data-testid="checkbox-uslh"
+                />
+                <Label htmlFor="uslh" className="font-normal cursor-pointer">
+                  U.S. Longshore and Harbor Workers' Compensation Act Coverage
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="voluntaryComp"
+                  checked={formData.voluntaryComp}
+                  onCheckedChange={(checked) => setFormData({ ...formData, voluntaryComp: checked as boolean })}
+                  data-testid="checkbox-voluntary-comp"
+                />
+                <Label htmlFor="voluntaryComp" className="font-normal cursor-pointer">
+                  Voluntary Compensation
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="foreignCoverage"
+                  checked={formData.foreignCoverage}
+                  onCheckedChange={(checked) => setFormData({ ...formData, foreignCoverage: checked as boolean })}
+                  data-testid="checkbox-foreign"
+                />
+                <Label htmlFor="foreignCoverage" className="font-normal cursor-pointer">
+                  Foreign Coverage
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="managedCareOption"
+                  checked={formData.managedCareOption}
+                  onCheckedChange={(checked) => setFormData({ ...formData, managedCareOption: checked as boolean })}
+                  data-testid="checkbox-managed-care"
+                />
+                <Label htmlFor="managedCareOption" className="font-normal cursor-pointer">
+                  Managed Care Option
+                </Label>
+              </div>
             </div>
           </div>
         )}
 
-        {/* Step 3: Payroll Information */}
+        {/* Step 3: Employee Classifications */}
         {step === 3 && (
           <div className="space-y-4">
-            <h3 className="font-semibold text-lg">Payroll Information</h3>
+            <h3 className="font-semibold text-lg">Employee Classifications & Payroll</h3>
+            <p className="text-sm text-muted-foreground">
+              List all employee classifications with accurate payroll information for proper rating
+            </p>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="totalEmployees">Total Number of Employees *</Label>
-                <Input
-                  id="totalEmployees"
-                  type="number"
-                  value={formData.totalEmployees}
-                  onChange={(e) => setFormData({ ...formData, totalEmployees: e.target.value })}
-                  placeholder="0"
-                  data-testid="input-total-employees"
-                />
-              </div>
-              <div>
-                <Label htmlFor="fullTimeEmployees">Number of Full-Time Employees *</Label>
-                <Input
-                  id="fullTimeEmployees"
-                  type="number"
-                  value={formData.fullTimeEmployees}
-                  onChange={(e) => setFormData({ ...formData, fullTimeEmployees: e.target.value })}
-                  placeholder="0"
-                  data-testid="input-full-time-employees"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="partTimeEmployees">Number of Part-Time Employees</Label>
-                <Input
-                  id="partTimeEmployees"
-                  type="number"
-                  value={formData.partTimeEmployees}
-                  onChange={(e) => setFormData({ ...formData, partTimeEmployees: e.target.value })}
-                  placeholder="0"
-                  data-testid="input-part-time-employees"
-                />
-              </div>
-              <div>
-                <Label htmlFor="contractors1099">Number of 1099 Contractors</Label>
-                <Input
-                  id="contractors1099"
-                  type="number"
-                  value={formData.contractors1099}
-                  onChange={(e) => setFormData({ ...formData, contractors1099: e.target.value })}
-                  placeholder="0"
-                  data-testid="input-contractors-1099"
-                />
-              </div>
-            </div>
-
-            <div className="mt-6">
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <h4 className="font-semibold">Payroll by Classification</h4>
-                  <p className="text-xs text-muted-foreground">Provide detailed payroll breakdown by job classification</p>
-                </div>
-                <Button type="button" variant="outline" size="sm" onClick={addClassification} data-testid="button-add-classification">
-                  <Plus className="h-4 w-4 mr-1" />
-                  Add Classification
-                </Button>
-              </div>
-
-              {classifications.map((classification, index) => (
-                <Card key={index} className="p-4 mb-4">
-                  <div className="flex items-center justify-between mb-4">
+            {employees.map((employee, index) => (
+              <Card key={employee.id} className="p-4">
+                <div className="space-y-4">
+                  <div className="flex justify-between items-start">
                     <h4 className="font-medium">Classification {index + 1}</h4>
-                    {classifications.length > 1 && (
+                    {employees.length > 1 && (
                       <Button
                         type="button"
-                        variant="ghost"
+                        variant="outline"
                         size="sm"
-                        onClick={() => removeClassification(index)}
-                        data-testid={`button-remove-classification-${index}`}
+                        onClick={() => removeEmployee(employee.id)}
+                        data-testid={`button-remove-employee-${index}`}
                       >
-                        <X className="h-4 w-4" />
+                        <Trash2 className="h-4 w-4" />
                       </Button>
                     )}
                   </div>
-
+                  
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <Label>Class Code *</Label>
                       <Input
-                        value={classification.classCode}
-                        onChange={(e) => updateClassification(index, 'classCode', e.target.value)}
-                        placeholder="e.g., 8810, 5645"
+                        value={employee.classCode}
+                        onChange={(e) => updateEmployee(employee.id, 'classCode', e.target.value)}
+                        placeholder="e.g., 8810"
                         data-testid={`input-class-code-${index}`}
                       />
                     </div>
                     <div>
-                      <Label>Number of Employees *</Label>
+                      <Label>Location</Label>
+                      <Select
+                        value={employee.location}
+                        onValueChange={(value) => updateEmployee(employee.id, 'location', value)}
+                      >
+                        <SelectTrigger data-testid={`select-location-${index}`}>
+                          <SelectValue placeholder="Select location" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {locations.map((loc, i) => (
+                            <SelectItem key={i} value={`location-${i}`}>
+                              {loc || `Location ${i + 1}`}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <Label>Classification Description *</Label>
+                    <Input
+                      value={employee.description}
+                      onChange={(e) => updateEmployee(employee.id, 'description', e.target.value)}
+                      placeholder="e.g., Clerical Office Employees"
+                      data-testid={`input-description-${index}`}
+                    />
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                      <Label>Full-Time Employees</Label>
                       <Input
                         type="number"
-                        value={classification.numberOfEmployees}
-                        onChange={(e) => updateClassification(index, 'numberOfEmployees', e.target.value)}
+                        value={employee.fullTimeCount}
+                        onChange={(e) => updateEmployee(employee.id, 'fullTimeCount', e.target.value)}
                         placeholder="0"
-                        data-testid={`input-class-employees-${index}`}
+                        data-testid={`input-ft-count-${index}`}
+                      />
+                    </div>
+                    <div>
+                      <Label>Part-Time Employees</Label>
+                      <Input
+                        type="number"
+                        value={employee.partTimeCount}
+                        onChange={(e) => updateEmployee(employee.id, 'partTimeCount', e.target.value)}
+                        placeholder="0"
+                        data-testid={`input-pt-count-${index}`}
+                      />
+                    </div>
+                    <div>
+                      <Label>Estimated Annual Payroll ($) *</Label>
+                      <Input
+                        type="number"
+                        value={employee.annualPayroll}
+                        onChange={(e) => updateEmployee(employee.id, 'annualPayroll', e.target.value)}
+                        placeholder="0"
+                        data-testid={`input-payroll-${index}`}
                       />
                     </div>
                   </div>
+                </div>
+              </Card>
+            ))}
+            
+            <Button
+              type="button"
+              variant="outline"
+              onClick={addEmployee}
+              className="w-full"
+              data-testid="button-add-classification"
+            >
+              <Plus className="mr-2 h-4 w-4" />
+              Add Employee Classification
+            </Button>
 
-                  <div className="mt-4">
-                    <Label>Classification Description *</Label>
-                    <Input
-                      value={classification.description}
-                      onChange={(e) => updateClassification(index, 'description', e.target.value)}
-                      placeholder="e.g., Clerical Office, Construction - General, Manufacturing"
-                      data-testid={`input-class-description-${index}`}
-                    />
-                  </div>
+            <div className="bg-muted/50 p-4 rounded-md">
+              <h4 className="font-medium mb-2">Common Classification Codes</h4>
+              <ul className="text-sm text-muted-foreground space-y-1">
+                <li><strong>8810:</strong> Clerical Office Employees</li>
+                <li><strong>8742:</strong> Salespersons - Outside</li>
+                <li><strong>5183:</strong> Plumbing</li>
+                <li><strong>5403:</strong> Carpentry</li>
+                <li><strong>5213:</strong> Concrete Construction</li>
+                <li><strong>3724:</strong> Millwright Work</li>
+                <li><strong>8227:</strong> Construction - General Contractors</li>
+              </ul>
+            </div>
 
-                  <div className="mt-4">
-                    <Label>Annual Payroll ($) *</Label>
-                    <Input
-                      type="number"
-                      value={classification.annualPayroll}
-                      onChange={(e) => updateClassification(index, 'annualPayroll', e.target.value)}
-                      placeholder="0"
-                      data-testid={`input-class-payroll-${index}`}
-                    />
-                  </div>
-                </Card>
-              ))}
+            <h4 className="font-medium mt-6">Premium Estimates</h4>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <Label htmlFor="totalEstimatedPremium">Total Estimated Annual Premium ($)</Label>
+                <Input
+                  id="totalEstimatedPremium"
+                  type="number"
+                  value={formData.totalEstimatedPremium}
+                  onChange={(e) => setFormData({ ...formData, totalEstimatedPremium: e.target.value })}
+                  placeholder="0"
+                  data-testid="input-total-premium"
+                />
+              </div>
+              <div>
+                <Label htmlFor="minimumPremium">Minimum Premium ($)</Label>
+                <Input
+                  id="minimumPremium"
+                  type="number"
+                  value={formData.minimumPremium}
+                  onChange={(e) => setFormData({ ...formData, minimumPremium: e.target.value })}
+                  placeholder="0"
+                  data-testid="input-min-premium"
+                />
+              </div>
+              <div>
+                <Label htmlFor="depositPremium">Deposit Premium ($)</Label>
+                <Input
+                  id="depositPremium"
+                  type="number"
+                  value={formData.depositPremium}
+                  onChange={(e) => setFormData({ ...formData, depositPremium: e.target.value })}
+                  placeholder="0"
+                  data-testid="input-deposit-premium"
+                />
+              </div>
             </div>
           </div>
         )}
 
-        {/* Step 4: Claims History */}
+        {/* Step 4: Prior Coverage & Loss History */}
         {step === 4 && (
           <div className="space-y-4">
-            <h3 className="font-semibold text-lg">Claims History</h3>
+            <h3 className="font-semibold text-lg">Prior Coverage & Loss History</h3>
+            <p className="text-sm text-muted-foreground">
+              Provide information for the past 5 years
+            </p>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="claimsLast5Years">Number of Claims in Last 5 Years *</Label>
-                <Input
-                  id="claimsLast5Years"
-                  type="number"
-                  value={formData.claimsLast5Years}
-                  onChange={(e) => setFormData({ ...formData, claimsLast5Years: e.target.value })}
-                  placeholder="0"
-                  data-testid="input-claims-last-5-years"
-                />
-              </div>
-              <div>
-                <Label htmlFor="totalIncurred">Total Incurred Amount ($) *</Label>
-                <Input
-                  id="totalIncurred"
-                  type="number"
-                  value={formData.totalIncurred}
-                  onChange={(e) => setFormData({ ...formData, totalIncurred: e.target.value })}
-                  placeholder="0"
-                  data-testid="input-total-incurred"
-                />
-              </div>
-            </div>
+            {priorCarriers.map((carrier, index) => (
+              <Card key={carrier.id} className="p-4">
+                <div className="space-y-4">
+                  <div className="flex justify-between items-start">
+                    <h4 className="font-medium">Year {index + 1}</h4>
+                    {priorCarriers.length > 1 && (
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => removePriorCarrier(carrier.id)}
+                        data-testid={`button-remove-carrier-${index}`}
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    )}
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                      <Label>Policy Year</Label>
+                      <Input
+                        type="number"
+                        value={carrier.year}
+                        onChange={(e) => updatePriorCarrier(carrier.id, 'year', e.target.value)}
+                        placeholder="YYYY"
+                        data-testid={`input-carrier-year-${index}`}
+                      />
+                    </div>
+                    <div>
+                      <Label>Carrier Name</Label>
+                      <Input
+                        value={carrier.carrier}
+                        onChange={(e) => updatePriorCarrier(carrier.id, 'carrier', e.target.value)}
+                        placeholder="Insurance company"
+                        data-testid={`input-carrier-name-${index}`}
+                      />
+                    </div>
+                    <div>
+                      <Label>Policy Number</Label>
+                      <Input
+                        value={carrier.policyNumber}
+                        onChange={(e) => updatePriorCarrier(carrier.id, 'policyNumber', e.target.value)}
+                        placeholder="Policy #"
+                        data-testid={`input-policy-number-${index}`}
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Label>Annual Premium ($)</Label>
+                      <Input
+                        type="number"
+                        value={carrier.annualPremium}
+                        onChange={(e) => updatePriorCarrier(carrier.id, 'annualPremium', e.target.value)}
+                        placeholder="0"
+                        data-testid={`input-carrier-premium-${index}`}
+                      />
+                    </div>
+                    <div>
+                      <Label>Experience Mod Factor</Label>
+                      <Input
+                        value={carrier.modFactor}
+                        onChange={(e) => updatePriorCarrier(carrier.id, 'modFactor', e.target.value)}
+                        placeholder="e.g., 1.00"
+                        data-testid={`input-mod-factor-${index}`}
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                      <Label>Number of Claims</Label>
+                      <Input
+                        type="number"
+                        value={carrier.claimsCount}
+                        onChange={(e) => updatePriorCarrier(carrier.id, 'claimsCount', e.target.value)}
+                        placeholder="0"
+                        data-testid={`input-claims-count-${index}`}
+                      />
+                    </div>
+                    <div>
+                      <Label>Amount Paid ($)</Label>
+                      <Input
+                        type="number"
+                        value={carrier.amountPaid}
+                        onChange={(e) => updatePriorCarrier(carrier.id, 'amountPaid', e.target.value)}
+                        placeholder="0"
+                        data-testid={`input-amount-paid-${index}`}
+                      />
+                    </div>
+                    <div>
+                      <Label>Reserve ($)</Label>
+                      <Input
+                        type="number"
+                        value={carrier.reserve}
+                        onChange={(e) => updatePriorCarrier(carrier.id, 'reserve', e.target.value)}
+                        placeholder="0"
+                        data-testid={`input-reserve-${index}`}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            ))}
+            
+            <Button
+              type="button"
+              variant="outline"
+              onClick={addPriorCarrier}
+              className="w-full"
+              data-testid="button-add-prior-carrier"
+            >
+              <Plus className="mr-2 h-4 w-4" />
+              Add Prior Year Coverage
+            </Button>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="largestClaim">Largest Claim Amount ($)</Label>
-                <Input
-                  id="largestClaim"
-                  type="number"
-                  value={formData.largestClaim}
-                  onChange={(e) => setFormData({ ...formData, largestClaim: e.target.value })}
-                  placeholder="0"
-                  data-testid="input-largest-claim"
-                />
-              </div>
-              <div>
-                <Label htmlFor="openClaims">Number of Open Claims</Label>
-                <Input
-                  id="openClaims"
-                  type="number"
-                  value={formData.openClaims}
-                  onChange={(e) => setFormData({ ...formData, openClaims: e.target.value })}
-                  placeholder="0"
-                  data-testid="input-open-claims"
-                />
-              </div>
-            </div>
-
-            <div className="bg-muted/50 p-4 rounded-md">
-              <p className="text-sm text-muted-foreground">
-                <strong>Note:</strong> Detailed loss run information will be requested in the document upload section. Please have your 5-year loss runs available for a more accurate quote.
+            <div className="mt-6">
+              <Label htmlFor="businessDescription">Nature of Business / Description of Operations *</Label>
+              <Textarea
+                id="businessDescription"
+                value={formData.businessDescription}
+                onChange={(e) => setFormData({ ...formData, businessDescription: e.target.value })}
+                placeholder="Provide detailed description of business operations, products, services, equipment used, etc."
+                rows={5}
+                data-testid="textarea-business-description"
+              />
+              <p className="text-xs text-muted-foreground mt-1">
+                Include: Manufacturing processes, raw materials, contractor work types, merchandise types, service locations, etc.
               </p>
             </div>
           </div>
         )}
 
-        {/* Step 5: Safety Program */}
+        {/* Step 5: General Information Questionnaire */}
         {step === 5 && (
           <div className="space-y-4">
-            <h3 className="font-semibold text-lg">Safety Program</h3>
-            <p className="text-sm text-muted-foreground">Safety programs can help reduce claims and may qualify for premium discounts</p>
+            <h3 className="font-semibold text-lg">General Information & Risk Assessment</h3>
+            <p className="text-sm text-muted-foreground">
+              Please answer all questions accurately for proper underwriting
+            </p>
             
-            <div>
-              <Label>Do you have a written safety program? *</Label>
-              <Select
-                value={formData.writtenSafetyProgram}
-                onValueChange={(value) => setFormData({ ...formData, writtenSafetyProgram: value })}
-              >
-                <SelectTrigger data-testid="select-written-safety-program">
-                  <SelectValue placeholder="Select option" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="yes">Yes</SelectItem>
-                  <SelectItem value="no">No</SelectItem>
-                  <SelectItem value="in-development">In Development</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+            <div className="space-y-4">
+              <div>
+                <Label>1. Does applicant own, operate or lease aircraft/watercraft? *</Label>
+                <RadioGroup
+                  value={generalInfo.aircraftWatercraft}
+                  onValueChange={(value) => setGeneralInfo({ ...generalInfo, aircraftWatercraft: value })}
+                >
+                  <div className="flex items-center space-x-2 mt-2">
+                    <RadioGroupItem value="yes" id="aircraft-yes" />
+                    <Label htmlFor="aircraft-yes" className="font-normal cursor-pointer">Yes</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="no" id="aircraft-no" />
+                    <Label htmlFor="aircraft-no" className="font-normal cursor-pointer">No</Label>
+                  </div>
+                </RadioGroup>
+              </div>
 
-            <div>
-              <Label>Do you have a return to work program? *</Label>
-              <Select
-                value={formData.returnToWorkProgram}
-                onValueChange={(value) => setFormData({ ...formData, returnToWorkProgram: value })}
-              >
-                <SelectTrigger data-testid="select-return-to-work">
-                  <SelectValue placeholder="Select option" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="yes">Yes</SelectItem>
-                  <SelectItem value="no">No</SelectItem>
-                  <SelectItem value="informal">Informal/Not Written</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+              <div>
+                <Label>2. Do operations involve storing, treating, or transporting hazardous materials? *</Label>
+                <RadioGroup
+                  value={generalInfo.hazardousMaterial}
+                  onValueChange={(value) => setGeneralInfo({ ...generalInfo, hazardousMaterial: value })}
+                >
+                  <div className="flex items-center space-x-2 mt-2">
+                    <RadioGroupItem value="yes" id="hazardous-yes" />
+                    <Label htmlFor="hazardous-yes" className="font-normal cursor-pointer">Yes</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="no" id="hazardous-no" />
+                    <Label htmlFor="hazardous-no" className="font-normal cursor-pointer">No</Label>
+                  </div>
+                </RadioGroup>
+              </div>
 
-            <div>
-              <Label>Do you conduct drug testing? *</Label>
-              <Select
-                value={formData.drugTesting}
-                onValueChange={(value) => setFormData({ ...formData, drugTesting: value })}
-              >
-                <SelectTrigger data-testid="select-drug-testing">
-                  <SelectValue placeholder="Select option" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="yes-pre-employment">Yes - Pre-Employment Only</SelectItem>
-                  <SelectItem value="yes-random">Yes - Pre-Employment & Random</SelectItem>
-                  <SelectItem value="yes-post-accident">Yes - Pre-Employment & Post-Accident</SelectItem>
-                  <SelectItem value="yes-comprehensive">Yes - Comprehensive (All of the Above)</SelectItem>
-                  <SelectItem value="no">No</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+              <div>
+                <Label>3. Any work performed underground or above 15 feet? *</Label>
+                <RadioGroup
+                  value={generalInfo.workAbove15Feet}
+                  onValueChange={(value) => setGeneralInfo({ ...generalInfo, workAbove15Feet: value })}
+                >
+                  <div className="flex items-center space-x-2 mt-2">
+                    <RadioGroupItem value="yes" id="height-yes" />
+                    <Label htmlFor="height-yes" className="font-normal cursor-pointer">Yes</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="no" id="height-no" />
+                    <Label htmlFor="height-no" className="font-normal cursor-pointer">No</Label>
+                  </div>
+                </RadioGroup>
+              </div>
 
-            <div>
-              <Label>Do you conduct background checks? *</Label>
-              <Select
-                value={formData.backgroundChecks}
-                onValueChange={(value) => setFormData({ ...formData, backgroundChecks: value })}
-              >
-                <SelectTrigger data-testid="select-background-checks">
-                  <SelectValue placeholder="Select option" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="yes-all">Yes - All Employees</SelectItem>
-                  <SelectItem value="yes-selective">Yes - Select Positions</SelectItem>
-                  <SelectItem value="no">No</SelectItem>
-                </SelectContent>
-              </Select>
+              <div>
+                <Label>4. Any work performed on barges, vessels, docks, or bridges over water? *</Label>
+                <RadioGroup
+                  value={generalInfo.workOverWater}
+                  onValueChange={(value) => setGeneralInfo({ ...generalInfo, workOverWater: value })}
+                >
+                  <div className="flex items-center space-x-2 mt-2">
+                    <RadioGroupItem value="yes" id="water-yes" />
+                    <Label htmlFor="water-yes" className="font-normal cursor-pointer">Yes</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="no" id="water-no" />
+                    <Label htmlFor="water-no" className="font-normal cursor-pointer">No</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+
+              <div>
+                <Label>5. Is applicant engaged in any other type of business? *</Label>
+                <RadioGroup
+                  value={generalInfo.otherBusiness}
+                  onValueChange={(value) => setGeneralInfo({ ...generalInfo, otherBusiness: value })}
+                >
+                  <div className="flex items-center space-x-2 mt-2">
+                    <RadioGroupItem value="yes" id="other-business-yes" />
+                    <Label htmlFor="other-business-yes" className="font-normal cursor-pointer">Yes</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="no" id="other-business-no" />
+                    <Label htmlFor="other-business-no" className="font-normal cursor-pointer">No</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+
+              <div>
+                <Label>6. Are sub-contractors used? *</Label>
+                <RadioGroup
+                  value={generalInfo.useSubcontractors}
+                  onValueChange={(value) => setGeneralInfo({ ...generalInfo, useSubcontractors: value })}
+                >
+                  <div className="flex items-center space-x-2 mt-2">
+                    <RadioGroupItem value="yes" id="subs-yes" />
+                    <Label htmlFor="subs-yes" className="font-normal cursor-pointer">Yes</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="no" id="subs-no" />
+                    <Label htmlFor="subs-no" className="font-normal cursor-pointer">No</Label>
+                  </div>
+                </RadioGroup>
+                {generalInfo.useSubcontractors === "yes" && (
+                  <div className="mt-2">
+                    <Label htmlFor="subcontractorPercent">Percentage of work subcontracted (%)</Label>
+                    <Input
+                      id="subcontractorPercent"
+                      type="number"
+                      value={generalInfo.subcontractorPercent}
+                      onChange={(e) => setGeneralInfo({ ...generalInfo, subcontractorPercent: e.target.value })}
+                      placeholder="0"
+                      data-testid="input-sub-percent"
+                    />
+                  </div>
+                )}
+              </div>
+
+              <div>
+                <Label>7. Any work sublet without certificates of insurance? *</Label>
+                <RadioGroup
+                  value={generalInfo.workWithoutCerts}
+                  onValueChange={(value) => setGeneralInfo({ ...generalInfo, workWithoutCerts: value })}
+                >
+                  <div className="flex items-center space-x-2 mt-2">
+                    <RadioGroupItem value="yes" id="no-certs-yes" />
+                    <Label htmlFor="no-certs-yes" className="font-normal cursor-pointer">Yes</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="no" id="no-certs-no" />
+                    <Label htmlFor="no-certs-no" className="font-normal cursor-pointer">No</Label>
+                  </div>
+                </RadioGroup>
+                <p className="text-xs text-muted-foreground mt-1">
+                  If YES, payroll for this work must be included in classifications
+                </p>
+              </div>
+
+              <div>
+                <Label>8. Is a written safety program in operation? *</Label>
+                <RadioGroup
+                  value={generalInfo.safetyProgram}
+                  onValueChange={(value) => setGeneralInfo({ ...generalInfo, safetyProgram: value })}
+                >
+                  <div className="flex items-center space-x-2 mt-2">
+                    <RadioGroupItem value="yes" id="safety-yes" />
+                    <Label htmlFor="safety-yes" className="font-normal cursor-pointer">Yes</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="no" id="safety-no" />
+                    <Label htmlFor="safety-no" className="font-normal cursor-pointer">No</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+
+              <div>
+                <Label>9. Any group transportation provided? *</Label>
+                <RadioGroup
+                  value={generalInfo.groupTransportation}
+                  onValueChange={(value) => setGeneralInfo({ ...generalInfo, groupTransportation: value })}
+                >
+                  <div className="flex items-center space-x-2 mt-2">
+                    <RadioGroupItem value="yes" id="transport-yes" />
+                    <Label htmlFor="transport-yes" className="font-normal cursor-pointer">Yes</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="no" id="transport-no" />
+                    <Label htmlFor="transport-no" className="font-normal cursor-pointer">No</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+
+              <div>
+                <Label>10. Any employees under 16 or over 60 years of age? *</Label>
+                <RadioGroup
+                  value={generalInfo.employeesUnder16Over60}
+                  onValueChange={(value) => setGeneralInfo({ ...generalInfo, employeesUnder16Over60: value })}
+                >
+                  <div className="flex items-center space-x-2 mt-2">
+                    <RadioGroupItem value="yes" id="age-yes" />
+                    <Label htmlFor="age-yes" className="font-normal cursor-pointer">Yes</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="no" id="age-no" />
+                    <Label htmlFor="age-no" className="font-normal cursor-pointer">No</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+
+              <div>
+                <Label>11. Any seasonal employees? *</Label>
+                <RadioGroup
+                  value={generalInfo.seasonalEmployees}
+                  onValueChange={(value) => setGeneralInfo({ ...generalInfo, seasonalEmployees: value })}
+                >
+                  <div className="flex items-center space-x-2 mt-2">
+                    <RadioGroupItem value="yes" id="seasonal-yes" />
+                    <Label htmlFor="seasonal-yes" className="font-normal cursor-pointer">Yes</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="no" id="seasonal-no" />
+                    <Label htmlFor="seasonal-no" className="font-normal cursor-pointer">No</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+
+              <div>
+                <Label>12. Is there any volunteer or donated labor? *</Label>
+                <RadioGroup
+                  value={generalInfo.volunteerLabor}
+                  onValueChange={(value) => setGeneralInfo({ ...generalInfo, volunteerLabor: value })}
+                >
+                  <div className="flex items-center space-x-2 mt-2">
+                    <RadioGroupItem value="yes" id="volunteer-yes" />
+                    <Label htmlFor="volunteer-yes" className="font-normal cursor-pointer">Yes</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="no" id="volunteer-no" />
+                    <Label htmlFor="volunteer-no" className="font-normal cursor-pointer">No</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+
+              <div>
+                <Label>13. Any employees with physical handicaps? *</Label>
+                <RadioGroup
+                  value={generalInfo.physicalHandicaps}
+                  onValueChange={(value) => setGeneralInfo({ ...generalInfo, physicalHandicaps: value })}
+                >
+                  <div className="flex items-center space-x-2 mt-2">
+                    <RadioGroupItem value="yes" id="handicaps-yes" />
+                    <Label htmlFor="handicaps-yes" className="font-normal cursor-pointer">Yes</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="no" id="handicaps-no" />
+                    <Label htmlFor="handicaps-no" className="font-normal cursor-pointer">No</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+
+              <div>
+                <Label>14. Do employees travel out of state? *</Label>
+                <RadioGroup
+                  value={generalInfo.outOfStateTravel}
+                  onValueChange={(value) => setGeneralInfo({ ...generalInfo, outOfStateTravel: value })}
+                >
+                  <div className="flex items-center space-x-2 mt-2">
+                    <RadioGroupItem value="yes" id="travel-yes" />
+                    <Label htmlFor="travel-yes" className="font-normal cursor-pointer">Yes (specify states in comments)</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="no" id="travel-no" />
+                    <Label htmlFor="travel-no" className="font-normal cursor-pointer">No</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+
+              <div>
+                <Label>15. Are athletic teams sponsored? *</Label>
+                <RadioGroup
+                  value={generalInfo.athleticTeams}
+                  onValueChange={(value) => setGeneralInfo({ ...generalInfo, athleticTeams: value })}
+                >
+                  <div className="flex items-center space-x-2 mt-2">
+                    <RadioGroupItem value="yes" id="athletic-yes" />
+                    <Label htmlFor="athletic-yes" className="font-normal cursor-pointer">Yes</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="no" id="athletic-no" />
+                    <Label htmlFor="athletic-no" className="font-normal cursor-pointer">No</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+
+              <div>
+                <Label>16. Are physicals required after offers of employment are made? *</Label>
+                <RadioGroup
+                  value={generalInfo.physicalsRequired}
+                  onValueChange={(value) => setGeneralInfo({ ...generalInfo, physicalsRequired: value })}
+                >
+                  <div className="flex items-center space-x-2 mt-2">
+                    <RadioGroupItem value="yes" id="physicals-yes" />
+                    <Label htmlFor="physicals-yes" className="font-normal cursor-pointer">Yes</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="no" id="physicals-no" />
+                    <Label htmlFor="physicals-no" className="font-normal cursor-pointer">No</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+
+              <div>
+                <Label>17. Any other insurance with this insurer? *</Label>
+                <RadioGroup
+                  value={generalInfo.otherInsurance}
+                  onValueChange={(value) => setGeneralInfo({ ...generalInfo, otherInsurance: value })}
+                >
+                  <div className="flex items-center space-x-2 mt-2">
+                    <RadioGroupItem value="yes" id="other-insurance-yes" />
+                    <Label htmlFor="other-insurance-yes" className="font-normal cursor-pointer">Yes</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="no" id="other-insurance-no" />
+                    <Label htmlFor="other-insurance-no" className="font-normal cursor-pointer">No</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+
+              <div>
+                <Label>18. Any prior coverage declined/cancelled/non-renewed in last 3 years? *</Label>
+                <RadioGroup
+                  value={generalInfo.priorDeclined}
+                  onValueChange={(value) => setGeneralInfo({ ...generalInfo, priorDeclined: value })}
+                >
+                  <div className="flex items-center space-x-2 mt-2">
+                    <RadioGroupItem value="yes" id="declined-yes" />
+                    <Label htmlFor="declined-yes" className="font-normal cursor-pointer">Yes</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="no" id="declined-no" />
+                    <Label htmlFor="declined-no" className="font-normal cursor-pointer">No</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="na" id="declined-na" />
+                    <Label htmlFor="declined-na" className="font-normal cursor-pointer">N/A (Missouri applicants)</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+
+              <div>
+                <Label>19. Are employee health plans provided? *</Label>
+                <RadioGroup
+                  value={generalInfo.healthPlans}
+                  onValueChange={(value) => setGeneralInfo({ ...generalInfo, healthPlans: value })}
+                >
+                  <div className="flex items-center space-x-2 mt-2">
+                    <RadioGroupItem value="yes" id="health-yes" />
+                    <Label htmlFor="health-yes" className="font-normal cursor-pointer">Yes</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="no" id="health-no" />
+                    <Label htmlFor="health-no" className="font-normal cursor-pointer">No</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+
+              <div>
+                <Label>20. Do employees perform work for other businesses or subsidiaries? *</Label>
+                <RadioGroup
+                  value={generalInfo.workForOthers}
+                  onValueChange={(value) => setGeneralInfo({ ...generalInfo, workForOthers: value })}
+                >
+                  <div className="flex items-center space-x-2 mt-2">
+                    <RadioGroupItem value="yes" id="work-others-yes" />
+                    <Label htmlFor="work-others-yes" className="font-normal cursor-pointer">Yes</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="no" id="work-others-no" />
+                    <Label htmlFor="work-others-no" className="font-normal cursor-pointer">No</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+
+              <div>
+                <Label>21. Do you lease employees to or from other employers? *</Label>
+                <RadioGroup
+                  value={generalInfo.leaseEmployees}
+                  onValueChange={(value) => setGeneralInfo({ ...generalInfo, leaseEmployees: value })}
+                >
+                  <div className="flex items-center space-x-2 mt-2">
+                    <RadioGroupItem value="yes" id="lease-yes" />
+                    <Label htmlFor="lease-yes" className="font-normal cursor-pointer">Yes</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="no" id="lease-no" />
+                    <Label htmlFor="lease-no" className="font-normal cursor-pointer">No</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+
+              <div>
+                <Label>22. Do any employees predominantly work at home? *</Label>
+                <RadioGroup
+                  value={generalInfo.workFromHome}
+                  onValueChange={(value) => setGeneralInfo({ ...generalInfo, workFromHome: value })}
+                >
+                  <div className="flex items-center space-x-2 mt-2">
+                    <RadioGroupItem value="yes" id="wfh-yes" />
+                    <Label htmlFor="wfh-yes" className="font-normal cursor-pointer">Yes</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="no" id="wfh-no" />
+                    <Label htmlFor="wfh-no" className="font-normal cursor-pointer">No</Label>
+                  </div>
+                </RadioGroup>
+                {generalInfo.workFromHome === "yes" && (
+                  <div className="mt-2">
+                    <Label htmlFor="workFromHomeCount">Number of employees working from home</Label>
+                    <Input
+                      id="workFromHomeCount"
+                      type="number"
+                      value={generalInfo.workFromHomeCount}
+                      onChange={(e) => setGeneralInfo({ ...generalInfo, workFromHomeCount: e.target.value })}
+                      placeholder="0"
+                      data-testid="input-wfh-count"
+                    />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         )}
 
-        {/* Step 6: Document Upload & Additional Comments */}
+        {/* Step 6: Document Upload */}
         {step === 6 && (
           <div className="space-y-4">
-            <h3 className="font-semibold text-lg">Document Upload</h3>
-            <p className="text-sm text-muted-foreground">Upload supporting documents to help us provide the most accurate quote</p>
+            <h3 className="font-semibold text-lg">Supporting Documents & Additional Information</h3>
             
-            <div>
-              <Label htmlFor="lossRuns">Upload Loss Runs (5 years) *</Label>
-              <Input
-                id="lossRuns"
-                type="file"
-                accept=".pdf,.doc,.docx,.xls,.xlsx"
-                multiple
-                data-testid="input-loss-runs"
-              />
-              <p className="text-xs text-muted-foreground mt-1">PDF, DOC, DOCX, XLS, or XLSX format</p>
-            </div>
+            <div className="space-y-4">
+              <div>
+                <Label htmlFor="lossRuns">Loss Runs (5 years) *</Label>
+                <Input
+                  id="lossRuns"
+                  type="file"
+                  accept=".pdf,.xls,.xlsx"
+                  data-testid="input-loss-runs"
+                />
+                <p className="text-xs text-muted-foreground mt-1">Currently valued company loss runs from prior carriers</p>
+              </div>
 
-            <div>
-              <Label htmlFor="experienceMod">Upload Experience Modification Worksheet</Label>
-              <Input
-                id="experienceMod"
-                type="file"
-                accept=".pdf,.doc,.docx,.xls,.xlsx"
-                data-testid="input-experience-mod"
-              />
-              <p className="text-xs text-muted-foreground mt-1">PDF, DOC, DOCX, XLS, or XLSX format</p>
-            </div>
+              <div>
+                <Label htmlFor="experienceMod">Experience Modification Worksheet</Label>
+                <Input
+                  id="experienceMod"
+                  type="file"
+                  accept=".pdf"
+                  data-testid="input-exp-mod"
+                />
+                <p className="text-xs text-muted-foreground mt-1">If experience rating applies</p>
+              </div>
 
-            <div>
-              <Label htmlFor="acordForms">Upload ACORD Forms</Label>
-              <Input
-                id="acordForms"
-                type="file"
-                accept=".pdf,.doc,.docx"
-                multiple
-                data-testid="input-acord-forms"
-              />
-              <p className="text-xs text-muted-foreground mt-1">PDF, DOC, or DOCX format</p>
-            </div>
+              <div>
+                <Label htmlFor="safetyManual">Safety Program Manual</Label>
+                <Input
+                  id="safetyManual"
+                  type="file"
+                  accept=".pdf"
+                  data-testid="input-safety-manual"
+                />
+                <p className="text-xs text-muted-foreground mt-1">If written safety program is in operation</p>
+              </div>
 
-            <div>
-              <Label htmlFor="declarationsPage">Upload Current Declarations Page</Label>
-              <Input
-                id="declarationsPage"
-                type="file"
-                accept=".pdf,.doc,.docx"
-                data-testid="input-declarations-page"
-              />
-              <p className="text-xs text-muted-foreground mt-1">PDF, DOC, or DOCX format</p>
-            </div>
+              <div>
+                <Label htmlFor="subcontractorCerts">Subcontractor Certificates</Label>
+                <Input
+                  id="subcontractorCerts"
+                  type="file"
+                  accept=".pdf"
+                  multiple
+                  data-testid="input-sub-certs"
+                />
+                <p className="text-xs text-muted-foreground mt-1">Certificates of insurance for all subcontractors</p>
+              </div>
 
-            <div>
-              <Label htmlFor="safetyProgram">Upload Safety Program (if available)</Label>
-              <Input
-                id="safetyProgram"
-                type="file"
-                accept=".pdf,.doc,.docx"
-                data-testid="input-safety-program"
-              />
-              <p className="text-xs text-muted-foreground mt-1">PDF, DOC, or DOCX format</p>
-            </div>
+              <div>
+                <Label htmlFor="payrollRecords">Payroll Records</Label>
+                <Input
+                  id="payrollRecords"
+                  type="file"
+                  accept=".pdf,.xls,.xlsx"
+                  data-testid="input-payroll"
+                />
+                <p className="text-xs text-muted-foreground mt-1">Recent payroll reports by classification</p>
+              </div>
 
-            <div>
-              <Label htmlFor="additionalDocs">Upload Additional Documents</Label>
-              <Input
-                id="additionalDocs"
-                type="file"
-                accept=".pdf,.doc,.docx,.xls,.xlsx"
-                multiple
-                data-testid="input-additional-docs"
-              />
-              <p className="text-xs text-muted-foreground mt-1">Any additional supporting documents</p>
-            </div>
+              <div>
+                <Label htmlFor="federalReturns">Federal Tax Returns (941s)</Label>
+                <Input
+                  id="federalReturns"
+                  type="file"
+                  accept=".pdf"
+                  data-testid="input-941s"
+                />
+                <p className="text-xs text-muted-foreground mt-1">Quarterly federal tax returns</p>
+              </div>
 
-            <div className="mt-6">
-              <Label htmlFor="additionalComments">Additional Comments</Label>
-              <Textarea
-                id="additionalComments"
-                value={formData.additionalComments}
-                onChange={(e) => setFormData({ ...formData, additionalComments: e.target.value })}
-                placeholder="Please provide any additional information that may be helpful..."
-                rows={5}
-                data-testid="textarea-additional-comments"
-              />
+              <div>
+                <Label htmlFor="stateReturns">State Unemployment Returns</Label>
+                <Input
+                  id="stateReturns"
+                  type="file"
+                  accept=".pdf"
+                  data-testid="input-state-returns"
+                />
+                <p className="text-xs text-muted-foreground mt-1">State unemployment insurance returns</p>
+              </div>
+
+              <div>
+                <Label htmlFor="contractSamples">Sample Contracts</Label>
+                <Input
+                  id="contractSamples"
+                  type="file"
+                  accept=".pdf"
+                  data-testid="input-contracts"
+                />
+                <p className="text-xs text-muted-foreground mt-1">For contractors: Sample contracts with hold harmless agreements</p>
+              </div>
             </div>
 
             <div className="bg-muted/50 p-4 rounded-md">
               <h4 className="font-medium mb-2">What Happens Next?</h4>
               <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
-                <li>Your submission will be reviewed by our workers' compensation specialists</li>
-                <li>We'll analyze your payroll, classification codes, and loss history</li>
-                <li>You'll receive a competitive quote within 24 hours</li>
-                <li>Our team will help with any questions about coverage options</li>
-                <li>We can assist with safety program development if needed</li>
+                <li>Your application will be reviewed by our workers compensation underwriters</li>
+                <li>We'll verify employee classifications and calculate appropriate rates</li>
+                <li>Experience modification factors will be confirmed if applicable</li>
+                <li>You'll receive a comprehensive quote within 24-48 hours</li>
+                <li>Our team can assist with safety programs and risk management</li>
+                <li>Payroll audits will be scheduled according to your selected frequency</li>
+              </ul>
+            </div>
+
+            <div className="p-4 bg-yellow-50 dark:bg-yellow-950/20 rounded-md border border-yellow-200 dark:border-yellow-900">
+              <h4 className="font-medium text-yellow-900 dark:text-yellow-100 mb-2">Important Notes</h4>
+              <ul className="text-sm text-yellow-800 dark:text-yellow-200 space-y-1">
+                <li>• All payroll must be accurately reported by proper classification</li>
+                <li>• Certificates of insurance required for all subcontractors</li>
+                <li>• Payroll for uninsured subcontractors must be included</li>
+                <li>• Officers/owners can be included or excluded per state regulations</li>
+                <li>• Premium audit will verify actual vs. estimated payroll</li>
               </ul>
             </div>
           </div>
@@ -817,7 +1584,7 @@ export default function WorkersCompQuoteForm() {
             </Button>
           ) : (
             <Button onClick={handleSubmit} className="ml-auto" data-testid="button-submit-quote">
-              Submit Workers' Compensation Risk
+              Submit Workers Compensation Application
             </Button>
           )}
         </div>
