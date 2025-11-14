@@ -14,12 +14,6 @@ export default function RestaurantQuoteForm() {
   const [submitted, setSubmitted] = useState(false);
   
   const [formData, setFormData] = useState({
-    // Agent Information
-    agencyName: "",
-    agencyContactName: "",
-    agencyEmail: "",
-    agencyAddress: "",
-    
     // Basic Information
     businessName: "",
     dba: "",
@@ -328,53 +322,6 @@ export default function RestaurantQuoteForm() {
               </Label>
             </div>
 
-            <h4 className="font-medium mt-6">Agency Information</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="agencyName">Agency Name</Label>
-                <Input
-                  id="agencyName"
-                  value={formData.agencyName}
-                  onChange={(e) => setFormData({ ...formData, agencyName: e.target.value })}
-                  placeholder="Insurance agency name"
-                  data-testid="input-agency-name"
-                />
-              </div>
-              <div>
-                <Label htmlFor="agencyContactName">Agency Contact Name</Label>
-                <Input
-                  id="agencyContactName"
-                  value={formData.agencyContactName}
-                  onChange={(e) => setFormData({ ...formData, agencyContactName: e.target.value })}
-                  placeholder="Agent name"
-                  data-testid="input-agency-contact"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="agencyEmail">Agency Email</Label>
-                <Input
-                  id="agencyEmail"
-                  type="email"
-                  value={formData.agencyEmail}
-                  onChange={(e) => setFormData({ ...formData, agencyEmail: e.target.value })}
-                  placeholder="agency@example.com"
-                  data-testid="input-agency-email"
-                />
-              </div>
-              <div>
-                <Label htmlFor="agencyAddress">Agency Address</Label>
-                <Input
-                  id="agencyAddress"
-                  value={formData.agencyAddress}
-                  onChange={(e) => setFormData({ ...formData, agencyAddress: e.target.value })}
-                  placeholder="Agency street address"
-                  data-testid="input-agency-address"
-                />
-              </div>
-            </div>
           </div>
         )}
 
