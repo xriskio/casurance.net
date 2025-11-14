@@ -467,6 +467,45 @@ export const coverages: CoverageContent[] = [
   },
 
   {
+    title: "Cyber Liability",
+    slug: "cyber-liability",
+    category: "Professional Lines",
+    summary: "Comprehensive protection against cyber incidents, data breaches, and technology errors and omissions.",
+    description: "Cyber liability insurance protects businesses from the financial impact of cyber incidents including data breaches, network security failures, ransomware attacks, and technology errors. With coverage for both first-party costs and third-party liability, this essential policy helps businesses recover from cyber events while meeting regulatory requirements and protecting customer trust.",
+    whoNeeds: [
+      "Technology companies and software developers",
+      "Healthcare providers handling protected health information",
+      "Financial institutions and professional services firms",
+      "Retailers and e-commerce businesses collecting customer data",
+      "Any business storing sensitive customer or employee information",
+      "Organizations subject to data privacy regulations (GDPR, CCPA, HIPAA)"
+    ],
+    coverageIncludes: [
+      "Data breach response and notification costs",
+      "Cyber extortion and ransomware payments",
+      "Business interruption from network outages",
+      "Data recovery and system restoration",
+      "Third-party liability for privacy violations",
+      "Regulatory fines and penalties (where insurable)",
+      "Media liability and copyright infringement",
+      "Technology errors and omissions coverage",
+      "Cyber crime and fraudulent funds transfer",
+      "Crisis management and public relations"
+    ],
+    benefits: [
+      "24/7 incident response hotline and cyber risk advisors",
+      "Access to specialized breach response service providers",
+      "Complimentary vulnerability management and security training",
+      "Coverage for both cyber incidents and technology E&O",
+      "No minimum premiums with flexible limits and retentions",
+      "State-of-the-art enhancement endorsements available",
+      "Proactive risk mitigation services worth up to $28,000 annually"
+    ],
+    seoTitle: "Cyber Liability Insurance - Data Breach & Network Security Coverage",
+    seoDescription: "Protect your business from cyber attacks, data breaches, and technology errors. Comprehensive cyber liability insurance with 24/7 incident response, regulatory defense, and business interruption coverage."
+  },
+
+  {
     title: "Professional Liability",
     slug: "professional-liability",
     category: "Professional Lines",
