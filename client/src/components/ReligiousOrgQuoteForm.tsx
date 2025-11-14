@@ -140,7 +140,7 @@ export default function ReligiousOrgQuoteForm() {
       numberOfVolunteers: "",
       mailingAddress: "",
       city: "",
-      state: "",
+      state: "CA",
       zip: "",
       is501c3: true,
       websiteAddress: "",
