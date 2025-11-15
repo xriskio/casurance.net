@@ -506,6 +506,45 @@ export const coverages: CoverageContent[] = [
   },
 
   {
+    title: "Employment Practices Liability",
+    slug: "employment-practices-liability",
+    category: "Professional Lines",
+    summary: "Protection against employee claims of wrongful termination, discrimination, harassment, and other workplace violations.",
+    description: "Employment Practices Liability Insurance (EPLI) protects businesses from claims made by current, former, or prospective employees alleging wrongful employment practices. With workplace litigation on the rise and costly settlements becoming more common, EPLI coverage provides essential protection for businesses of all sizes. This claims-made policy covers defense costs, settlements, and judgments arising from employment-related allegations including discrimination, harassment, wrongful termination, retaliation, and wage violations.",
+    whoNeeds: [
+      "All employers with employees, regardless of size",
+      "Companies experiencing rapid growth or workforce changes",
+      "Businesses with employees in multiple states (especially CA, NY, FL, TX, NJ)",
+      "Organizations undergoing mergers, acquisitions, or restructuring",
+      "Employers with higher-paid employees or executives",
+      "Companies without comprehensive HR policies or dedicated HR staff"
+    ],
+    coverageIncludes: [
+      "Wrongful termination and discharge claims",
+      "Workplace discrimination (age, race, gender, disability, religion, etc.)",
+      "Sexual harassment and hostile work environment",
+      "Retaliation and whistleblower allegations",
+      "Failure to promote or hire claims",
+      "Wage and hour violations",
+      "Breach of employment contract",
+      "Infliction of emotional distress",
+      "Defense costs including attorney fees and court costs",
+      "Third-party liability (customer/vendor harassment claims)"
+    ],
+    benefits: [
+      "Comprehensive defense coverage with experienced employment law attorneys",
+      "Protection from devastating financial impact of employment claims",
+      "Covers settlements, judgments, and pre-judgment/post-judgment interest",
+      "Access to HR resources and risk management support",
+      "Coverage extends to defense costs even if claims are groundless",
+      "Protects both the company and individual employees named in suits",
+      "Competitive pricing with flexible limits and retention options"
+    ],
+    seoTitle: "Employment Practices Liability Insurance (EPLI) - Protect Against Employee Claims",
+    seoDescription: "Protect your business from wrongful termination, discrimination, and harassment claims with Employment Practices Liability Insurance. Comprehensive EPLI coverage for California businesses including defense costs and settlements."
+  },
+
+  {
     title: "Professional Liability",
     slug: "professional-liability",
     category: "Professional Lines",
