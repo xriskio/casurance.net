@@ -286,6 +286,36 @@ export default function QuoteRequestForm() {
                 </a>
               </div>
             )}
+            {formData.insuranceType === "Professional Liability" && (
+              <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-md border border-blue-200 dark:border-blue-900">
+                <p className="text-sm text-blue-900 dark:text-blue-100 mb-3">
+                  For Professional Liability insurance (including Errors & Omissions coverage for professionals), we have a comprehensive application that evaluates your professional services, revenue, experience, and claims history.
+                </p>
+                <a
+                  href="/quote/professional-liability"
+                  className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                  data-testid="link-professional-liability-form"
+                >
+                  Use Professional Liability Application
+                  <ArrowRight className="ml-1 h-4 w-4" />
+                </a>
+              </div>
+            )}
+            {formData.insuranceType === "Contractors Insurance" && (
+              <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-md border border-blue-200 dark:border-blue-900">
+                <p className="text-sm text-blue-900 dark:text-blue-100 mb-3">
+                  For Contractors and Construction businesses, we have a specialized Construction Casualty application that collects information about your contractor's license, operations, projects, and risk management practices.
+                </p>
+                <a
+                  href="/quote/construction-casualty"
+                  className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                  data-testid="link-construction-casualty-form"
+                >
+                  Use Construction Casualty (Contractors) Application
+                  <ArrowRight className="ml-1 h-4 w-4" />
+                </a>
+              </div>
+            )}
             {formData.insuranceType === "Builders Risk" && (
               <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-md border border-blue-200 dark:border-blue-900">
                 <p className="text-sm text-blue-900 dark:text-blue-100 mb-3">
