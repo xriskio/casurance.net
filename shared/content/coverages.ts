@@ -470,13 +470,19 @@ export const coverages: CoverageContent[] = [
     title: "Cyber Liability",
     slug: "cyber-liability",
     category: "Professional Lines",
-    summary: "Comprehensive protection against cyber incidents, data breaches, and technology errors and omissions.",
-    description: "Cyber liability insurance protects businesses from the financial impact of cyber incidents including data breaches, network security failures, ransomware attacks, and technology errors. With coverage for both first-party costs and third-party liability, this essential policy helps businesses recover from cyber events while meeting regulatory requirements and protecting customer trust.",
+    summary: "Comprehensive protection against cyber incidents, data breaches, and technology errors with over 25 years of industry-leading expertise.",
+    description: "For over 25 years, Chubb has been a leader in the cyber insurance space, offering tailored solutions for businesses of all sizes. Our cyber liability insurance protects businesses from the financial impact of cyber incidents including data breaches, network security failures, ransomware attacks, and technology errors. With coverage for both first-party costs and third-party liability through our Cyber ERM and DigiTech ERM products, this essential policy helps businesses recover from cyber events while meeting regulatory requirements and protecting customer trust. Did you know that 68% of all breaches involve a non-malicious human element such as errors or falling victim to phishing scams? And 31% of breaches involve stolen credentials. That's why we've designed comprehensive protection and prevention services to address these critical vulnerabilities.",
     whoNeeds: [
       "Technology companies and software developers",
-      "Healthcare providers handling protected health information",
-      "Financial institutions and professional services firms",
-      "Retailers and e-commerce businesses collecting customer data",
+      "Healthcare providers including medical offices, dentists, and life sciences",
+      "Financial institutions, accountants, and investment advisors",
+      "Professional services including lawyers, architects, engineers, and consultants",
+      "Retailers, e-commerce, and hospitality businesses",
+      "Real estate agents, property managers, and associations",
+      "Manufacturers and wholesale distributors",
+      "Transportation and logistics companies",
+      "Educational institutions, museums, and libraries",
+      "Entertainment and media companies",
       "Any business storing sensitive customer or employee information",
       "Organizations subject to data privacy regulations (GDPR, CCPA, HIPAA)"
     ],
@@ -488,21 +494,28 @@ export const coverages: CoverageContent[] = [
       "Third-party liability for privacy violations",
       "Regulatory fines and penalties (where insurable)",
       "Media liability and copyright infringement",
-      "Technology errors and omissions coverage",
+      "Technology errors and omissions coverage (DigiTech ERM)",
       "Cyber crime and fraudulent funds transfer",
-      "Crisis management and public relations"
+      "Crisis management and public relations",
+      "Coverage available from $500,000 to $3,000,000+ limits",
+      "Tailored solutions for businesses with revenues under $100 million"
     ],
     benefits: [
-      "24/7 incident response hotline and cyber risk advisors",
+      "Chubb Cyber Stack: Up to $28,000 in complimentary cybersecurity services for small businesses (under 100 employees) including Attack Surface Management, Continuous Vulnerability Scanning, Security Alerts, Cyber Awareness Training, Password Management, and Incident Response Planning",
+      "Dedicated Cyber Risk Advisor with deep cybersecurity knowledge to tailor services to your needs",
+      "24/7 incident response hotline with knowledgeable Incident Response Team",
+      "Vulnerability Management Outreach Program - biweekly alerts for critical vulnerabilities",
       "Access to specialized breach response service providers",
-      "Complimentary vulnerability management and security training",
-      "Coverage for both cyber incidents and technology E&O",
+      "Coverage for both cyber incidents (Cyber ERM) and technology E&O (DigiTech ERM)",
       "No minimum premiums with flexible limits and retentions",
+      "20.5% commission structure",
       "State-of-the-art enhancement endorsements available",
-      "Proactive risk mitigation services worth up to $28,000 annually"
+      "Auto-renewal eligible subject to underwriting restrictions",
+      "Fast and simple quoting through digital platforms",
+      "Market-leading API integrations with comparative raters"
     ],
-    seoTitle: "Cyber Liability Insurance - Data Breach & Network Security Coverage",
-    seoDescription: "Protect your business from cyber attacks, data breaches, and technology errors. Comprehensive cyber liability insurance with 24/7 incident response, regulatory defense, and business interruption coverage."
+    seoTitle: "Cyber Liability Insurance - 25+ Years of Data Breach & Network Security Coverage",
+    seoDescription: "Protect your business from cyber attacks, data breaches, and technology errors with Chubb's industry-leading cyber insurance. Get up to $28,000 in complimentary cybersecurity services, 24/7 incident response, and comprehensive coverage tailored to your business."
   },
 
   {
