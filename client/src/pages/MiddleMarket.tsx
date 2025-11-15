@@ -50,6 +50,198 @@ export default function MiddleMarket() {
           </CardContent>
         </Card>
 
+        {/* Lines of Business */}
+        <Card className="mb-8">
+          <CardContent className="p-8">
+            <h2 className="text-2xl font-semibold text-foreground mb-4">Comprehensive Coverage Under One Package</h2>
+            <p className="text-muted-foreground mb-6">
+              Benchmarq Package combines multiple lines of business into a single, streamlined policy. 
+              This package approach simplifies insurance management while providing comprehensive protection tailored to your business needs.
+            </p>
+            
+            <div className="bg-muted/30 rounded-lg p-6 mb-6">
+              <h3 className="font-semibold text-foreground mb-4">Available Lines of Insurance</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                {[
+                  "General Liability",
+                  "Commercial Property",
+                  "Commercial Auto",
+                  "Workers' Compensation",
+                  "Professional Liability (E&O)",
+                  "Cyber Liability (DigiTech)",
+                  "Umbrella/Excess Liability",
+                  "Equipment Breakdown",
+                  "Crime Coverage",
+                  "Employment Practices Liability",
+                  "Commercial Accident",
+                  "Inland Marine"
+                ].map((line, index) => (
+                  <div key={index} className="flex items-center gap-2">
+                    <Check className="h-4 w-4 text-primary flex-shrink-0" />
+                    <span className="text-sm text-foreground">{line}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <h3 className="text-xl font-semibold text-foreground mb-4">Package Examples by Industry</h3>
+            <p className="text-sm text-muted-foreground mb-4">
+              See how businesses across different industries combine coverages for comprehensive protection:
+            </p>
+            
+            <div className="space-y-4">
+              {/* Example 1 */}
+              <div className="border rounded-lg overflow-hidden">
+                <div className="bg-muted/50 p-4 border-b">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                    <h4 className="font-semibold text-foreground">Commercial Printer - Manufacturing</h4>
+                    <span className="text-sm text-muted-foreground">Premium: $122,000</span>
+                  </div>
+                </div>
+                <div className="p-4">
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Benchmarq Package</span>
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Commercial Auto</span>
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Umbrella</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Example 2 */}
+              <div className="border rounded-lg overflow-hidden">
+                <div className="bg-muted/50 p-4 border-b">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                    <h4 className="font-semibold text-foreground">Law Firm - Professional Services</h4>
+                    <span className="text-sm text-muted-foreground">Premium: $54,000</span>
+                  </div>
+                </div>
+                <div className="p-4">
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Benchmarq Package</span>
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Commercial Auto</span>
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Umbrella</span>
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Workers' Compensation</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Example 3 */}
+              <div className="border rounded-lg overflow-hidden">
+                <div className="bg-muted/50 p-4 border-b">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                    <h4 className="font-semibold text-foreground">Printed Circuit Boards - Technology</h4>
+                    <span className="text-sm text-muted-foreground">Premium: $93,000</span>
+                  </div>
+                </div>
+                <div className="p-4">
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">DigiTech - Cyber & E&O</span>
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Benchmarq Package</span>
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Workers' Compensation</span>
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Commercial Auto</span>
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Umbrella</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Example 4 */}
+              <div className="border rounded-lg overflow-hidden">
+                <div className="bg-muted/50 p-4 border-b">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                    <h4 className="font-semibold text-foreground">Pre-packaged Software - Technology</h4>
+                    <span className="text-sm text-muted-foreground">Premium: $42,000</span>
+                  </div>
+                </div>
+                <div className="p-4">
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Benchmarq Package</span>
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Commercial Auto</span>
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Umbrella</span>
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">E&O</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Example 5 */}
+              <div className="border rounded-lg overflow-hidden">
+                <div className="bg-muted/50 p-4 border-b">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                    <h4 className="font-semibold text-foreground">Non-residential Building Operators - Real Estate</h4>
+                    <span className="text-sm text-muted-foreground">Premium: $160,000</span>
+                  </div>
+                </div>
+                <div className="p-4">
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Benchmarq Package</span>
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Umbrella</span>
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Excess</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Example 6 */}
+              <div className="border rounded-lg overflow-hidden">
+                <div className="bg-muted/50 p-4 border-b">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                    <h4 className="font-semibold text-foreground">Bakery Cookies and Crackers - Food</h4>
+                    <span className="text-sm text-muted-foreground">Premium: $105,000</span>
+                  </div>
+                </div>
+                <div className="p-4">
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Benchmarq Package</span>
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Commercial Auto</span>
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Umbrella</span>
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Workers' Compensation</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Example 7 */}
+              <div className="border rounded-lg overflow-hidden">
+                <div className="bg-muted/50 p-4 border-b">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                    <h4 className="font-semibold text-foreground">Insurance Agents and Brokers - Financial Institution</h4>
+                    <span className="text-sm text-muted-foreground">Premium: $50,000</span>
+                  </div>
+                </div>
+                <div className="p-4">
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Benchmarq Package</span>
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Commercial Auto</span>
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Umbrella</span>
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Accident</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Example 8 */}
+              <div className="border rounded-lg overflow-hidden">
+                <div className="bg-muted/50 p-4 border-b">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                    <h4 className="font-semibold text-foreground">Paper Products - Manufacturing</h4>
+                    <span className="text-sm text-muted-foreground">Premium: $120,000</span>
+                  </div>
+                </div>
+                <div className="p-4">
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Benchmarq Package</span>
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Commercial Auto</span>
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Umbrella</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+              <p className="text-sm text-blue-900">
+                <strong>Flexible Coverage Solutions:</strong> These examples demonstrate the flexibility of Benchmarq Package. 
+                Each business receives a customized combination of coverages based on their specific operations, risk profile, and industry requirements.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Eligibility Criteria */}
         <Card className="mb-8 border-primary/20">
           <CardContent className="p-8">
