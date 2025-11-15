@@ -26,6 +26,8 @@ import CyberLiabilityQuote from "@/pages/CyberLiabilityQuote";
 import EmploymentPracticesQuote from "@/pages/EmploymentPracticesQuote";
 import ProfessionalLiabilityQuote from "@/pages/ProfessionalLiabilityQuote";
 import ConstructionCasualtyQuote from "@/pages/ConstructionCasualtyQuote";
+import OceanCargoQuote from "@/pages/OceanCargoQuote";
+import SelfStorageQuote from "@/pages/SelfStorageQuote";
 import MiddleMarket from "@/pages/MiddleMarket";
 import NotFound from "@/pages/not-found";
 
@@ -50,6 +52,8 @@ function Router() {
       <Route path="/quote/employment-practices" component={EmploymentPracticesQuote} />
       <Route path="/quote/professional-liability" component={ProfessionalLiabilityQuote} />
       <Route path="/quote/construction-casualty" component={ConstructionCasualtyQuote} />
+      <Route path="/quote/ocean-cargo" component={OceanCargoQuote} />
+      <Route path="/quote/self-storage" component={SelfStorageQuote} />
       <Route path="/service" component={ServicePage} />
       <Route path="/coverages" component={CoveragesIndex} />
       <Route path="/middle-market" component={MiddleMarket} />
