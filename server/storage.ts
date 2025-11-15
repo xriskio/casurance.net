@@ -1,38 +1,40 @@
-import { type User, type InsertUser } from "@shared/schema";
+import { quoteRequests, serviceRequests, oceanCargoQuotes, type InsertQuoteRequest, type QuoteRequest, type InsertServiceRequest, type ServiceRequest, type InsertOceanCargoQuote, type OceanCargoQuote } from "@shared/schema";
+import { db } from "./db";
 import { randomUUID } from "crypto";
 
-// modify the interface with any CRUD methods
-// you might need
-
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  createQuoteRequest(quote: InsertQuoteRequest): Promise<QuoteRequest>;
+  createServiceRequest(service: InsertServiceRequest): Promise<ServiceRequest>;
+  createOceanCargoQuote(quote: InsertOceanCargoQuote): Promise<OceanCargoQuote>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<string, User>;
-
-  constructor() {
-    this.users = new Map();
-  }
-
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
-  }
-
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
-  }
-
-  async createUser(insertUser: InsertUser): Promise<User> {
+export class DatabaseStorage implements IStorage {
+  async createQuoteRequest(insertQuote: InsertQuoteRequest): Promise<QuoteRequest> {
     const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+    const [quote] = await db
+      .insert(quoteRequests)
+      .values({ ...insertQuote, id })
+      .returning();
+    return quote;
+  }
+
+  async createServiceRequest(insertService: InsertServiceRequest): Promise<ServiceRequest> {
+    const id = randomUUID();
+    const [service] = await db
+      .insert(serviceRequests)
+      .values({ ...insertService, id })
+      .returning();
+    return service;
+  }
+
+  async createOceanCargoQuote(insertQuote: InsertOceanCargoQuote): Promise<OceanCargoQuote> {
+    const id = randomUUID();
+    const [quote] = await db
+      .insert(oceanCargoQuotes)
+      .values({ ...insertQuote, id })
+      .returning();
+    return quote;
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();

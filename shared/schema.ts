@@ -1,4 +1,4 @@
-import { pgTable, text, varchar, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, timestamp, json } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -30,6 +30,20 @@ export const serviceRequests = pgTable("service_requests", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const oceanCargoQuotes = pgTable("ocean_cargo_quotes", {
+  id: varchar("id").primaryKey(),
+  applicantName: text("applicant_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone"),
+  effectiveDate: text("effective_date").notNull(),
+  vesselLimit: text("vessel_limit"),
+  aircraftLimit: text("aircraft_limit"),
+  optionalCoverages: text("optional_coverages").array().notNull().default([]),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const insertQuoteRequestSchema = createInsertSchema(quoteRequests).omit({
   id: true,
   createdAt: true,
@@ -40,7 +54,14 @@ export const insertServiceRequestSchema = createInsertSchema(serviceRequests).om
   createdAt: true,
 });
 
+export const insertOceanCargoQuoteSchema = createInsertSchema(oceanCargoQuotes).omit({
+  id: true,
+  createdAt: true,
+});
+
 export type InsertQuoteRequest = z.infer<typeof insertQuoteRequestSchema>;
 export type QuoteRequest = typeof quoteRequests.$inferSelect;
 export type InsertServiceRequest = z.infer<typeof insertServiceRequestSchema>;
 export type ServiceRequest = typeof serviceRequests.$inferSelect;
+export type InsertOceanCargoQuote = z.infer<typeof insertOceanCargoQuoteSchema>;
+export type OceanCargoQuote = typeof oceanCargoQuotes.$inferSelect;
