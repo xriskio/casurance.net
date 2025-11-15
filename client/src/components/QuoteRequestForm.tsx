@@ -23,6 +23,7 @@ const insuranceTypes = [
   "Crane & Riggers Liability",
   "Business Owners Policy (BOP)",
   "Cyber Liability",
+  "Employment Practices Liability",
   "Professional Liability",
   "Contractors Insurance",
 ];
@@ -266,6 +267,21 @@ export default function QuoteRequestForm() {
                   data-testid="link-cyber-liability-form"
                 >
                   Use Cyber Liability Application
+                  <ArrowRight className="ml-1 h-4 w-4" />
+                </a>
+              </div>
+            )}
+            {formData.insuranceType === "Employment Practices Liability" && (
+              <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-md border border-blue-200 dark:border-blue-900">
+                <p className="text-sm text-blue-900 dark:text-blue-100 mb-3">
+                  For Employment Practices Liability insurance, we have a comprehensive application that evaluates your workforce demographics, HR policies, claims history, and coverage needs for employment-related claims including wrongful termination, discrimination, and harassment.
+                </p>
+                <a
+                  href="/quote/employment-practices"
+                  className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                  data-testid="link-employment-practices-form"
+                >
+                  Use Employment Practices Liability Application
                   <ArrowRight className="ml-1 h-4 w-4" />
                 </a>
               </div>
