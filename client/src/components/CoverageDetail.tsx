@@ -9,6 +9,16 @@ interface CoverageDetailProps {
 }
 
 export default function CoverageDetail({ coverage }: CoverageDetailProps) {
+  const getQuoteLink = () => {
+    if (coverage.slug === 'cyber-liability') {
+      return '/quote/cyber-liability';
+    }
+    if (coverage.slug === 'employment-practices-liability') {
+      return '/quote/employment-practices';
+    }
+    return '/quote';
+  };
+
   return (
     <div className="py-12 lg:py-16">
       <div className="max-w-4xl mx-auto px-6 lg:px-8">
@@ -112,7 +122,7 @@ export default function CoverageDetail({ coverage }: CoverageDetailProps) {
             Get a customized quote for {coverage.title.toLowerCase()} from our expert team.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/quote">
+            <Link href={getQuoteLink()}>
               <Button size="lg" variant="secondary" className="group" data-testid="button-get-quote-detail">
                 Request a Quote
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
