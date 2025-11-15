@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import SelfStorageQuoteForm from "@/components/SelfStorageQuoteForm";
 
 export default function SelfStorageQuote() {
   return (
@@ -27,31 +27,18 @@ export default function SelfStorageQuote() {
           <Card className="mb-8">
             <CardContent className="pt-6">
               <h1 className="text-3xl font-bold mb-4">Self Storage Insurance Quote</h1>
-              <p className="text-muted-foreground mb-4">
+              <p className="text-muted-foreground mb-2">
                 Protect your self storage facility with comprehensive insurance coverage.
               </p>
-              <p className="text-sm text-muted-foreground mb-6">
+              <p className="text-sm text-muted-foreground">
                 Our self storage insurance provides comprehensive coverage for facility owners and operators, including 
                 property protection, liability coverage, and specialized protection for unique risks associated with 
                 self storage operations such as tenant disputes, security issues, and environmental concerns.
               </p>
-              <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg">
-                <p className="text-sm text-amber-900">
-                  <strong>Coming Soon:</strong> The specialized Self Storage quote form is currently being developed. 
-                  Please contact us directly at <a href="tel:+1234567890" className="underline">123-456-7890</a> or 
-                  email <a href="mailto:quotes@casurance.com" className="underline">quotes@casurance.com</a> to request a quote.
-                </p>
-              </div>
-              <div className="mt-6">
-                <Link href="/quote">
-                  <Button variant="outline" data-testid="button-back-quote">
-                    <ArrowLeft className="mr-2 h-4 w-4" />
-                    Back to Quote Options
-                  </Button>
-                </Link>
-              </div>
             </CardContent>
           </Card>
+
+          <SelfStorageQuoteForm />
         </div>
       </main>
 

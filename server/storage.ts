@@ -1,4 +1,4 @@
-import { quoteRequests, serviceRequests, oceanCargoQuotes, type InsertQuoteRequest, type QuoteRequest, type InsertServiceRequest, type ServiceRequest, type InsertOceanCargoQuote, type OceanCargoQuote } from "@shared/schema";
+import { quoteRequests, serviceRequests, oceanCargoQuotes, selfStorageQuotes, type InsertQuoteRequest, type QuoteRequest, type InsertServiceRequest, type ServiceRequest, type InsertOceanCargoQuote, type OceanCargoQuote, type InsertSelfStorageQuote, type SelfStorageQuote } from "@shared/schema";
 import { db } from "./db";
 import { randomUUID } from "crypto";
 
@@ -6,6 +6,7 @@ export interface IStorage {
   createQuoteRequest(quote: InsertQuoteRequest): Promise<QuoteRequest>;
   createServiceRequest(service: InsertServiceRequest): Promise<ServiceRequest>;
   createOceanCargoQuote(quote: InsertOceanCargoQuote): Promise<OceanCargoQuote>;
+  createSelfStorageQuote(quote: InsertSelfStorageQuote): Promise<SelfStorageQuote>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -31,6 +32,15 @@ export class DatabaseStorage implements IStorage {
     const id = randomUUID();
     const [quote] = await db
       .insert(oceanCargoQuotes)
+      .values({ ...insertQuote, id })
+      .returning();
+    return quote;
+  }
+
+  async createSelfStorageQuote(insertQuote: InsertSelfStorageQuote): Promise<SelfStorageQuote> {
+    const id = randomUUID();
+    const [quote] = await db
+      .insert(selfStorageQuotes)
       .values({ ...insertQuote, id })
       .returning();
     return quote;

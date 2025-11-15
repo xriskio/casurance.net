@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema } from "@shared/schema";
+import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Quote Requests
@@ -31,6 +31,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const validatedData = insertOceanCargoQuoteSchema.parse(req.body);
       const quote = await storage.createOceanCargoQuote(validatedData);
+      res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // Self Storage Quotes
+  app.post("/api/self-storage-quotes", async (req, res) => {
+    try {
+      const validatedData = insertSelfStorageQuoteSchema.parse(req.body);
+      const quote = await storage.createSelfStorageQuote(validatedData);
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
