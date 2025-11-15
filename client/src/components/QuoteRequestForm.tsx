@@ -26,6 +26,8 @@ const insuranceTypes = [
   "Employment Practices Liability",
   "Professional Liability",
   "Contractors Insurance",
+  "Ocean Cargo/Marine",
+  "Self Storage",
 ];
 
 const coverageOptions = [
@@ -357,6 +359,36 @@ export default function QuoteRequestForm() {
                   data-testid="link-crane-riggers-form"
                 >
                   Use Crane & Riggers Liability Application
+                  <ArrowRight className="ml-1 h-4 w-4" />
+                </a>
+              </div>
+            )}
+            {formData.insuranceType === "Ocean Cargo/Marine" && (
+              <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-md border border-blue-200 dark:border-blue-900">
+                <p className="text-sm text-blue-900 dark:text-blue-100 mb-3">
+                  For Ocean Cargo and Marine insurance, we have a specialized application that covers cargo shipments, vessel details, commodity types, routing information, and risk management practices.
+                </p>
+                <a
+                  href="/quote/ocean-cargo"
+                  className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                  data-testid="link-ocean-cargo-form"
+                >
+                  Use Ocean Cargo Application
+                  <ArrowRight className="ml-1 h-4 w-4" />
+                </a>
+              </div>
+            )}
+            {formData.insuranceType === "Self Storage" && (
+              <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-md border border-blue-200 dark:border-blue-900">
+                <p className="text-sm text-blue-900 dark:text-blue-100 mb-3">
+                  For Self Storage facilities, we have a specialized application that evaluates your facility's security features, occupancy levels, climate control systems, and operational risks.
+                </p>
+                <a
+                  href="/quote/self-storage"
+                  className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                  data-testid="link-self-storage-form"
+                >
+                  Use Self Storage Application
                   <ArrowRight className="ml-1 h-4 w-4" />
                 </a>
               </div>
