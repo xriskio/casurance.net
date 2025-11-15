@@ -44,6 +44,20 @@ export const oceanCargoQuotes = pgTable("ocean_cargo_quotes", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const selfStorageQuotes = pgTable("self_storage_quotes", {
+  id: varchar("id").primaryKey(),
+  namedInsured: text("named_insured").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  effectiveDate: text("effective_date").notNull(),
+  totalLocations: text("total_locations"),
+  generalLiabilityLimit: text("general_liability_limit"),
+  totalGrossSales: text("total_gross_sales"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const insertQuoteRequestSchema = createInsertSchema(quoteRequests).omit({
   id: true,
   createdAt: true,
@@ -59,9 +73,16 @@ export const insertOceanCargoQuoteSchema = createInsertSchema(oceanCargoQuotes).
   createdAt: true,
 });
 
+export const insertSelfStorageQuoteSchema = createInsertSchema(selfStorageQuotes).omit({
+  id: true,
+  createdAt: true,
+});
+
 export type InsertQuoteRequest = z.infer<typeof insertQuoteRequestSchema>;
 export type QuoteRequest = typeof quoteRequests.$inferSelect;
 export type InsertServiceRequest = z.infer<typeof insertServiceRequestSchema>;
 export type ServiceRequest = typeof serviceRequests.$inferSelect;
 export type InsertOceanCargoQuote = z.infer<typeof insertOceanCargoQuoteSchema>;
 export type OceanCargoQuote = typeof oceanCargoQuotes.$inferSelect;
+export type InsertSelfStorageQuote = z.infer<typeof insertSelfStorageQuoteSchema>;
+export type SelfStorageQuote = typeof selfStorageQuotes.$inferSelect;
