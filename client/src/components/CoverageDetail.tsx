@@ -16,6 +16,9 @@ export default function CoverageDetail({ coverage }: CoverageDetailProps) {
     if (coverage.slug === 'employment-practices-liability') {
       return '/quote/employment-practices';
     }
+    if (coverage.slug === 'management-liability') {
+      return '/quote/professional-liability';
+    }
     return '/quote';
   };
 
