@@ -24,6 +24,7 @@ import ReligiousOrgQuote from "@/pages/ReligiousOrgQuote";
 import CommercialPropertyQuote from "@/pages/CommercialPropertyQuote";
 import CyberLiabilityQuote from "@/pages/CyberLiabilityQuote";
 import EmploymentPracticesQuote from "@/pages/EmploymentPracticesQuote";
+import MiddleMarket from "@/pages/MiddleMarket";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -47,6 +48,7 @@ function Router() {
       <Route path="/quote/employment-practices" component={EmploymentPracticesQuote} />
       <Route path="/service" component={ServicePage} />
       <Route path="/coverages" component={CoveragesIndex} />
+      <Route path="/middle-market" component={MiddleMarket} />
       <Route path="/coverage/:slug" component={CoveragePage} />
       <Route path="/industries" component={IndustriesIndex} />
       <Route path="/industry/:slug" component={IndustryPage} />

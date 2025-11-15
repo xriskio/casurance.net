@@ -643,6 +643,69 @@ export const coverages: CoverageContent[] = [
     ]
   },
 
+  // MIDDLE MARKET
+  {
+    title: "Middle Market - Benchmarq Package",
+    slug: "middle-market",
+    category: "Middle Market",
+    summary: "The 'Marq' of Excellence - Industry-leading package policy with superior protection for middle market businesses.",
+    description: "Benchmarq Package sets a new industry benchmark for package policies, offering unmatched scalability and superior insurance protection compared to standard industry policies. Designed to meet the needs of a wide range of commercial clients, Benchmarq offers broad property and liability coverage with automatic blanket limits beginning at $50,000, scaling up through higher limits and coverage endorsements to create a fully customized package. With over 20 years of experience in property and liability markets, our specialized underwriting expertise, cutting-edge risk engineering services, and exceptional claims handling make Benchmarq the package product of choice for growing businesses.",
+    whoNeeds: [
+      "Cultural institutions and art galleries",
+      "Federal contractors and government suppliers",
+      "Life sciences and pharmaceutical companies",
+      "Professional services firms",
+      "Educational institutions and universities",
+      "Financial institutions and banks",
+      "Manufacturing operations",
+      "Public entities and municipalities",
+      "Energy sector businesses",
+      "Healthcare providers and medical facilities",
+      "Media and entertainment companies",
+      "Technology companies and software developers",
+      "Food service and hospitality businesses",
+      "Retail and wholesale operations",
+      "Real estate management and development",
+      "Wine industry and beverage distributors"
+    ],
+    coverageIncludes: [
+      "Automatic blanket limit of insurance starting at $50,000 (applies separately at each premises)",
+      "Property coverage with building foundations and supports included",
+      "Mechanical breakdown provided at policy limits with no sub-limit",
+      "Ordinance or Law included in valuation for building and personal property with no sub-limit",
+      "Business Income with Extended Period of Restoration for 365 days",
+      "Extra Expense included up to full Business Income limit with no waiting period",
+      "Dependent Business Premises coverage with worldwide territory",
+      "Ocean Cargo coverage automatically included",
+      "Crime coverage with automatic $25,000 limits",
+      "General Liability with enhancement endorsement",
+      "Blanket additional insureds automatically included",
+      "Primary non-contributory where required by contract",
+      "$50,000 Product Withdrawal Expense coverage",
+      "$50,000 Crisis Assistance coverage",
+      "Utility interruption with no sub-limit",
+      "Total loss of property - 2 years to rebuild at existing or new location",
+      "Global Extension to overseas locations available"
+    ],
+    benefits: [
+      "Unmatched scalability from small businesses to complex middle market risks",
+      "Superior insurance protection compared to standard ISO package policies",
+      "Faster quote times with intuitive policy structure",
+      "Specialized industry-specific underwriting expertise",
+      "Cutting-edge risk engineering services including IoT devices, drones, and infrared thermography",
+      "Exceptional claims services - #1 in Property and Primary Casualty satisfaction surveys",
+      "Automatic blanket limits of insurance with no scheduling required",
+      "No minimum premiums with flexible limits and retentions",
+      "Automatic coverage enhancements valued at significantly more than standard policies",
+      "One of the largest networks of owned local branches worldwide",
+      "Financial strength rated A++ (Superior) by AM Best",
+      "Quick turnaround on proposals and policy issuance",
+      "Installment payment plans available for qualifying accounts"
+    ],
+    seoTitle: "Middle Market Insurance - Benchmarq Package Policy Excellence",
+    seoDescription: "Benchmarq Package sets the new industry benchmark for middle market commercial insurance. Superior property and liability coverage with automatic blanket limits, scalable solutions, and exceptional service for growing businesses."
+  },
+
   // MID TO LARGE SIZE BUSINESS
   {
     title: "Mid to Large Size Business",
@@ -2800,6 +2863,7 @@ export function getCoveragesByCategory(category: string): CoverageContent[] {
 
 export const categories = [
   "Business Size Programs",
+  "Middle Market",
   "Casualty",
   "Energy",
   "Entertainment",
