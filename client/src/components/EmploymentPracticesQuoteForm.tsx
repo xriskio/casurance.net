@@ -40,12 +40,20 @@ const formSchema = z.object({
 
   // Step 2: Employment Information
   eplContinuouslySince: z.string().optional(),
+  // Current employee counts
   totalFullTimeEmployees: z.string().min(1, "Number of full-time employees is required"),
   totalPartTimeEmployees: z.string().optional(),
   totalVolunteers: z.string().optional(),
   totalTemporary: z.string().optional(),
   totalLeased: z.string().optional(),
   totalNonUSEmployees: z.string().optional(),
+  // One year ago employee counts
+  totalFullTimeEmployeesOneYearAgo: z.string().optional(),
+  totalPartTimeEmployeesOneYearAgo: z.string().optional(),
+  totalVolunteersOneYearAgo: z.string().optional(),
+  totalTemporaryOneYearAgo: z.string().optional(),
+  totalLeasedOneYearAgo: z.string().optional(),
+  totalNonUSEmployeesOneYearAgo: z.string().optional(),
   employeesInCA: z.string().optional(),
   employeesInFL: z.string().optional(),
   employeesInNJ: z.string().optional(),
@@ -152,6 +160,12 @@ export default function EmploymentPracticesQuoteForm() {
       totalTemporary: "",
       totalLeased: "",
       totalNonUSEmployees: "",
+      totalFullTimeEmployeesOneYearAgo: "",
+      totalPartTimeEmployeesOneYearAgo: "",
+      totalVolunteersOneYearAgo: "",
+      totalTemporaryOneYearAgo: "",
+      totalLeasedOneYearAgo: "",
+      totalNonUSEmployeesOneYearAgo: "",
       employeesInCA: "",
       employeesInFL: "",
       employeesInNJ: "",
@@ -698,91 +712,188 @@ export default function EmploymentPracticesQuoteForm() {
                   />
 
                   <div className="border-t pt-4 mt-6">
-                    <h3 className="font-semibold mb-4">Current Employee Count</h3>
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <FormField
-                        control={form.control}
-                        name="totalFullTimeEmployees"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Total Full-Time Employees</FormLabel>
-                            <FormControl>
-                              <Input type="number" placeholder="50" {...field} data-testid="input-full-time" />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
+                    <h3 className="font-semibold mb-4">Employee Count</h3>
+                    <div className="space-y-6">
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <div className="space-y-4">
+                          <h4 className="font-medium text-sm">Currently</h4>
+                          <FormField
+                            control={form.control}
+                            name="totalFullTimeEmployees"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Full-Time Employees</FormLabel>
+                                <FormControl>
+                                  <Input type="number" placeholder="0" {...field} data-testid="input-full-time" />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+                        
+                        <div className="space-y-4">
+                          <h4 className="font-medium text-sm">One Year Ago</h4>
+                          <FormField
+                            control={form.control}
+                            name="totalFullTimeEmployeesOneYearAgo"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Full-Time Employees (1 Year Ago)</FormLabel>
+                                <FormControl>
+                                  <Input type="number" placeholder="0" {...field} data-testid="input-full-time-one-year" />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+                      </div>
 
-                      <FormField
-                        control={form.control}
-                        name="totalPartTimeEmployees"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Total Part-Time Employees</FormLabel>
-                            <FormControl>
-                              <Input type="number" placeholder="10" {...field} data-testid="input-part-time" />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <FormField
+                          control={form.control}
+                          name="totalPartTimeEmployees"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Part-Time Employees</FormLabel>
+                              <FormControl>
+                                <Input type="number" placeholder="0" {...field} data-testid="input-part-time" />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name="totalPartTimeEmployeesOneYearAgo"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Part-Time Employees (1 Year Ago)</FormLabel>
+                              <FormControl>
+                                <Input type="number" placeholder="0" {...field} data-testid="input-part-time-one-year" />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
 
-                      <FormField
-                        control={form.control}
-                        name="totalVolunteers"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Volunteers</FormLabel>
-                            <FormControl>
-                              <Input type="number" placeholder="0" {...field} data-testid="input-volunteers" />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <FormField
+                          control={form.control}
+                          name="totalVolunteers"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Volunteers</FormLabel>
+                              <FormControl>
+                                <Input type="number" placeholder="0" {...field} data-testid="input-volunteers" />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name="totalVolunteersOneYearAgo"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Volunteers (1 Year Ago)</FormLabel>
+                              <FormControl>
+                                <Input type="number" placeholder="0" {...field} data-testid="input-volunteers-one-year" />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
 
-                      <FormField
-                        control={form.control}
-                        name="totalTemporary"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Temporary Employees</FormLabel>
-                            <FormControl>
-                              <Input type="number" placeholder="0" {...field} data-testid="input-temporary" />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <FormField
+                          control={form.control}
+                          name="totalTemporary"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Temporary Employees</FormLabel>
+                              <FormControl>
+                                <Input type="number" placeholder="0" {...field} data-testid="input-temporary" />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name="totalTemporaryOneYearAgo"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Temporary Employees (1 Year Ago)</FormLabel>
+                              <FormControl>
+                                <Input type="number" placeholder="0" {...field} data-testid="input-temporary-one-year" />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
 
-                      <FormField
-                        control={form.control}
-                        name="totalLeased"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Leased Employees</FormLabel>
-                            <FormControl>
-                              <Input type="number" placeholder="0" {...field} data-testid="input-leased" />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <FormField
+                          control={form.control}
+                          name="totalLeased"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Leased Employees</FormLabel>
+                              <FormControl>
+                                <Input type="number" placeholder="0" {...field} data-testid="input-leased" />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name="totalLeasedOneYearAgo"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Leased Employees (1 Year Ago)</FormLabel>
+                              <FormControl>
+                                <Input type="number" placeholder="0" {...field} data-testid="input-leased-one-year" />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
 
-                      <FormField
-                        control={form.control}
-                        name="totalNonUSEmployees"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Non-US Based Employees</FormLabel>
-                            <FormControl>
-                              <Input type="number" placeholder="0" {...field} data-testid="input-non-us" />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <FormField
+                          control={form.control}
+                          name="totalNonUSEmployees"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Non-US Based Employees</FormLabel>
+                              <FormControl>
+                                <Input type="number" placeholder="0" {...field} data-testid="input-non-us" />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name="totalNonUSEmployeesOneYearAgo"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Non-US Based Employees (1 Year Ago)</FormLabel>
+                              <FormControl>
+                                <Input type="number" placeholder="0" {...field} data-testid="input-non-us-one-year" />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
                     </div>
                   </div>
 
