@@ -33,6 +33,8 @@ import ProductLiabilitySelector from "@/pages/ProductLiabilitySelector";
 import ProductLiabilityQuote from "@/pages/ProductLiabilityQuote";
 import SecurityServicesQuote from "@/pages/SecurityServicesQuote";
 import MiddleMarket from "@/pages/MiddleMarket";
+import AgentLogin from "@/pages/AgentLogin";
+import AgentPortal from "@/pages/AgentPortal";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -68,6 +70,8 @@ function Router() {
       <Route path="/coverage/:slug" component={CoveragePage} />
       <Route path="/industries" component={IndustriesIndex} />
       <Route path="/industry/:slug" component={IndustryPage} />
+      <Route path="/agent/login" component={AgentLogin} />
+      <Route path="/agent/portal" component={AgentPortal} />
       <Route component={NotFound} />
     </Switch>
   );
