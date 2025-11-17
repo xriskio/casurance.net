@@ -29,6 +29,7 @@ const insuranceTypes = [
   "Ocean Cargo/Marine",
   "Self Storage",
   "Film Production",
+  "Product Liability",
 ];
 
 const coverageOptions = [
@@ -135,6 +136,11 @@ const comprehensiveFormLinks: Record<string, { url: string; title: string; descr
     url: "/quote/film-production",
     title: "Use Film Production Application",
     description: "For Film Production, we have a comprehensive application covering all aspects of production insurance including general liability, equipment coverage, hired/non-owned auto, and winter weather protection.",
+  },
+  "Product Liability": {
+    url: "/quote/product-liability",
+    title: "Use Product Liability Application",
+    description: "For Product Liability insurance, select your specific product type (manufacturing, cannabis, firearms, electronics, etc.) to access our specialized application tailored to your industry's unique risks and coverage requirements.",
   },
 };
 
