@@ -1,4 +1,4 @@
-import { quoteRequests, serviceRequests, oceanCargoQuotes, selfStorageQuotes, filmProductionQuotes, productLiabilityQuotes, type InsertQuoteRequest, type QuoteRequest, type InsertServiceRequest, type ServiceRequest, type InsertOceanCargoQuote, type OceanCargoQuote, type InsertSelfStorageQuote, type SelfStorageQuote, type InsertFilmProductionQuote, type FilmProductionQuote, type InsertProductLiabilityQuote, type ProductLiabilityQuote } from "@shared/schema";
+import { quoteRequests, serviceRequests, oceanCargoQuotes, selfStorageQuotes, filmProductionQuotes, productLiabilityQuotes, securityServicesQuotes, type InsertQuoteRequest, type QuoteRequest, type InsertServiceRequest, type ServiceRequest, type InsertOceanCargoQuote, type OceanCargoQuote, type InsertSelfStorageQuote, type SelfStorageQuote, type InsertFilmProductionQuote, type FilmProductionQuote, type InsertProductLiabilityQuote, type ProductLiabilityQuote, type InsertSecurityServicesQuote, type SecurityServicesQuote } from "@shared/schema";
 import { db } from "./db";
 import { randomUUID } from "crypto";
 
@@ -9,6 +9,7 @@ export interface IStorage {
   createSelfStorageQuote(quote: InsertSelfStorageQuote): Promise<SelfStorageQuote>;
   createFilmProductionQuote(quote: InsertFilmProductionQuote): Promise<FilmProductionQuote>;
   createProductLiabilityQuote(quote: InsertProductLiabilityQuote): Promise<ProductLiabilityQuote>;
+  createSecurityServicesQuote(quote: InsertSecurityServicesQuote): Promise<SecurityServicesQuote>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -61,6 +62,15 @@ export class DatabaseStorage implements IStorage {
     const id = randomUUID();
     const [quote] = await db
       .insert(productLiabilityQuotes)
+      .values({ ...insertQuote, id })
+      .returning();
+    return quote;
+  }
+
+  async createSecurityServicesQuote(insertQuote: InsertSecurityServicesQuote): Promise<SecurityServicesQuote> {
+    const id = randomUUID();
+    const [quote] = await db
+      .insert(securityServicesQuotes)
       .values({ ...insertQuote, id })
       .returning();
     return quote;

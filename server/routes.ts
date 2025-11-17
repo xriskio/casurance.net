@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema, insertFilmProductionQuoteSchema, insertProductLiabilityQuoteSchema } from "@shared/schema";
+import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema, insertFilmProductionQuoteSchema, insertProductLiabilityQuoteSchema, insertSecurityServicesQuoteSchema } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Quote Requests
@@ -64,6 +64,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const validatedData = insertProductLiabilityQuoteSchema.parse(req.body);
       const quote = await storage.createProductLiabilityQuote(validatedData);
+      res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // Security Services Quotes
+  app.post("/api/security-services-quotes", async (req, res) => {
+    try {
+      const validatedData = insertSecurityServicesQuoteSchema.parse(req.body);
+      const quote = await storage.createSecurityServicesQuote(validatedData);
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });

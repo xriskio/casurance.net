@@ -86,6 +86,20 @@ export const productLiabilityQuotes = pgTable("product_liability_quotes", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const securityServicesQuotes = pgTable("security_services_quotes", {
+  id: varchar("id").primaryKey(),
+  namedInsured: text("named_insured").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  effectiveDate: text("effective_date"),
+  totalGuardHours: text("total_guard_hours"),
+  limitOfInsurance: text("limit_of_insurance"),
+  yearsInBusiness: text("years_in_business"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const insertQuoteRequestSchema = createInsertSchema(quoteRequests).omit({
   id: true,
   createdAt: true,
@@ -116,6 +130,11 @@ export const insertProductLiabilityQuoteSchema = createInsertSchema(productLiabi
   createdAt: true,
 });
 
+export const insertSecurityServicesQuoteSchema = createInsertSchema(securityServicesQuotes).omit({
+  id: true,
+  createdAt: true,
+});
+
 export type InsertQuoteRequest = z.infer<typeof insertQuoteRequestSchema>;
 export type QuoteRequest = typeof quoteRequests.$inferSelect;
 export type InsertServiceRequest = z.infer<typeof insertServiceRequestSchema>;
@@ -128,3 +147,5 @@ export type InsertFilmProductionQuote = z.infer<typeof insertFilmProductionQuote
 export type FilmProductionQuote = typeof filmProductionQuotes.$inferSelect;
 export type InsertProductLiabilityQuote = z.infer<typeof insertProductLiabilityQuoteSchema>;
 export type ProductLiabilityQuote = typeof productLiabilityQuotes.$inferSelect;
+export type InsertSecurityServicesQuote = z.infer<typeof insertSecurityServicesQuoteSchema>;
+export type SecurityServicesQuote = typeof securityServicesQuotes.$inferSelect;
