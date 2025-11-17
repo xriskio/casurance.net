@@ -1,4 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { Link } from "wouter";
 import generalLiabilityImg from "@assets/stock_images/business_storefront__13355656.jpg";
 import workersCompImg from "@assets/stock_images/workers_compensation_4558873f.jpg";
 import commercialAutoImg from "@assets/stock_images/delivery_van_commerc_5fbbbbba.jpg";
@@ -13,41 +14,49 @@ const products = [
     image: generalLiabilityImg,
     title: "General Liability",
     description: "Protect your business from claims of bodily injury, property damage, and advertising injury.",
+    link: "/coverage/general-liability",
   },
   {
     image: workersCompImg,
     title: "Workers Compensation",
     description: "Required coverage for employee injuries and illnesses that occur on the job.",
+    link: "/coverage/workers-compensation",
   },
   {
     image: commercialAutoImg,
     title: "Commercial Auto",
     description: "Coverage for vehicles used in your business operations, including cars, trucks, and vans.",
+    link: "/coverage/commercial-auto",
   },
   {
     image: businessOwnersImg,
     title: "Business Owners Policy (BOP)",
     description: "Bundled coverage combining property and liability protection for small to medium businesses.",
+    link: "/coverage/business-owners-policy",
   },
   {
     image: commercialPropertyImg,
     title: "Commercial Property",
     description: "Protection for your business building, equipment, inventory, and other physical assets.",
+    link: "/coverage/commercial-property",
   },
   {
     image: truckingImg,
     title: "Truck & Trucking",
     description: "Specialized coverage for commercial trucking operations and transportation businesses.",
+    link: "/coverage/trucking",
   },
   {
     image: cyberLiabilityImg,
     title: "Cyber Liability",
     description: "Protection against data breaches, cyber attacks, and digital business interruptions.",
+    link: "/coverage/cyber-liability",
   },
   {
     image: professionalLiabilityImg,
     title: "Professional Liability",
     description: "Errors and omissions coverage for professional services and advice-based businesses.",
+    link: "/coverage/professional-liability",
   },
 ];
 
@@ -67,21 +76,23 @@ export default function InsuranceProducts() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {products.map((product, index) => {
             return (
-              <Card key={index} className="hover-elevate cursor-pointer overflow-hidden" data-testid={`card-product-${index}`}>
-                <div className="aspect-video w-full overflow-hidden">
-                  <img 
-                    src={product.image} 
-                    alt={`${product.title} insurance coverage`}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="font-semibold text-foreground mb-2">{product.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {product.description}
-                  </p>
-                </CardContent>
-              </Card>
+              <Link key={index} href={product.link}>
+                <Card className="hover-elevate cursor-pointer overflow-hidden h-full" data-testid={`card-product-${index}`}>
+                  <div className="aspect-video w-full overflow-hidden">
+                    <img 
+                      src={product.image} 
+                      alt={`${product.title} insurance coverage`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <CardContent className="p-6">
+                    <h3 className="font-semibold text-foreground mb-2">{product.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {product.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
             );
           })}
         </div>
