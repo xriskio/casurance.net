@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Phone, Menu } from "lucide-react";
 import { Link } from "wouter";
-import casuranceLogo from "@assets/casurance-logo.png";
+import casuranceLogo from "@assets/generated_images/Casurance_corporate_logo_design_50cc5ac0.png";
 
 export default function Header() {
   return (
