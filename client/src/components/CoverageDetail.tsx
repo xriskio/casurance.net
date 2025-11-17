@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Check, ArrowRight, Phone } from "lucide-react";
 import { Link } from "wouter";
 import type { CoverageContent } from "@shared/content/coverages";
+import { getIndustryImage } from "@shared/industryImages";
 
 interface CoverageDetailProps {
   coverage: CoverageContent;
@@ -25,34 +26,62 @@ export default function CoverageDetail({ coverage }: CoverageDetailProps) {
     return '/quote';
   };
 
-  return (
-    <div className="py-12 lg:py-16">
-      <div className="max-w-4xl mx-auto px-6 lg:px-8">
-        {/* Breadcrumb */}
-        <div className="mb-8 text-sm text-muted-foreground">
-          <Link href="/">
-            <span className="hover:text-foreground cursor-pointer">Home</span>
-          </Link>
-          <span className="mx-2">/</span>
-          <Link href="/coverages">
-            <span className="hover:text-foreground cursor-pointer">Coverage</span>
-          </Link>
-          <span className="mx-2">/</span>
-          <span className="text-foreground">{coverage.title}</span>
-        </div>
+  const industryImage = coverage.category === "Industries" ? getIndustryImage(coverage.slug) : undefined;
 
-        {/* Header */}
-        <div className="mb-12">
-          <div className="inline-block px-3 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full mb-4">
-            {coverage.category}
+  return (
+    <div>
+      {/* Hero Image for Industries */}
+      {industryImage && (
+        <div className="relative h-64 lg:h-80 overflow-hidden">
+          <img 
+            src={industryImage} 
+            alt={coverage.title}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/30" />
+          <div className="relative h-full max-w-4xl mx-auto px-6 lg:px-8 flex flex-col justify-end pb-8">
+            <div className="inline-block px-3 py-1 bg-white/90 text-primary text-sm font-medium rounded-full mb-3 self-start">
+              {coverage.category}
+            </div>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2">
+              {coverage.title}
+            </h1>
+            <p className="text-lg text-white/90 max-w-2xl">
+              {coverage.summary}
+            </p>
           </div>
-          <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
-            {coverage.title}
-          </h1>
-          <p className="text-xl text-muted-foreground">
-            {coverage.summary}
-          </p>
         </div>
+      )}
+
+      <div className="py-12 lg:py-16">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8">
+          {/* Breadcrumb */}
+          <div className="mb-8 text-sm text-muted-foreground">
+            <Link href="/">
+              <span className="hover:text-foreground cursor-pointer">Home</span>
+            </Link>
+            <span className="mx-2">/</span>
+            <Link href="/coverages">
+              <span className="hover:text-foreground cursor-pointer">Coverage</span>
+            </Link>
+            <span className="mx-2">/</span>
+            <span className="text-foreground">{coverage.title}</span>
+          </div>
+
+          {/* Header - Only show if not an industry (industries have hero image) */}
+          {!industryImage && (
+            <div className="mb-12">
+              <div className="inline-block px-3 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full mb-4">
+                {coverage.category}
+              </div>
+              <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
+                {coverage.title}
+              </h1>
+              <p className="text-xl text-muted-foreground">
+                {coverage.summary}
+              </p>
+            </div>
+          )}
 
         {/* Overview */}
         <Card className="mb-8">
@@ -142,6 +171,7 @@ export default function CoverageDetail({ coverage }: CoverageDetailProps) {
             </a>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

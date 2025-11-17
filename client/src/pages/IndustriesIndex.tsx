@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { industries } from "@shared/content/coverages";
+import { getIndustryImage } from "@shared/industryImages";
 import { Link, useLocation } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { useState } from "react";
@@ -90,33 +91,46 @@ export default function IndustriesIndex() {
             {/* Featured Industry Showcases - Right Column */}
             <div className="lg:col-span-8">
               <div className="space-y-8">
-                {featuredIndustries.map((industry) => (
-                  <Link key={industry.slug} href={`/industry/${industry.slug}`}>
-                    <Card className="overflow-hidden hover-elevate cursor-pointer" data-testid={`card-featured-${industry.slug}`}>
-                      <div className="grid grid-cols-1 md:grid-cols-2">
-                        <div className="aspect-video md:aspect-square bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
-                          <div className="text-center p-8">
-                            <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
-                              <ArrowRight className="h-8 w-8 text-primary" />
-                            </div>
-                            <p className="text-sm font-medium text-muted-foreground">
-                              {industry.title}
-                            </p>
+                {featuredIndustries.map((industry) => {
+                  const industryImage = getIndustryImage(industry.slug);
+                  return (
+                    <Link key={industry.slug} href={`/industry/${industry.slug}`}>
+                      <Card className="overflow-hidden hover-elevate cursor-pointer" data-testid={`card-featured-${industry.slug}`}>
+                        <div className="grid grid-cols-1 md:grid-cols-2">
+                          <div className="aspect-video md:aspect-square relative overflow-hidden bg-gradient-to-br from-primary/10 to-primary/5">
+                            {industryImage ? (
+                              <img 
+                                src={industryImage} 
+                                alt={industry.title}
+                                className="absolute inset-0 w-full h-full object-cover"
+                              />
+                            ) : (
+                              <div className="flex items-center justify-center h-full">
+                                <div className="text-center p-8">
+                                  <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
+                                    <ArrowRight className="h-8 w-8 text-primary" />
+                                  </div>
+                                  <p className="text-sm font-medium text-muted-foreground">
+                                    {industry.title}
+                                  </p>
+                                </div>
+                              </div>
+                            )}
                           </div>
+                          <CardContent className="p-6 flex flex-col justify-center">
+                            <h3 className="text-xl font-semibold text-primary mb-3 flex items-center gap-2">
+                              {industry.title}
+                              <ArrowRight className="h-5 w-5" />
+                            </h3>
+                            <p className="text-muted-foreground line-clamp-4">
+                              {industry.description}
+                            </p>
+                          </CardContent>
                         </div>
-                        <CardContent className="p-6 flex flex-col justify-center">
-                          <h3 className="text-xl font-semibold text-primary mb-3 flex items-center gap-2">
-                            {industry.title}
-                            <ArrowRight className="h-5 w-5" />
-                          </h3>
-                          <p className="text-muted-foreground line-clamp-4">
-                            {industry.description}
-                          </p>
-                        </CardContent>
-                      </div>
-                    </Card>
-                  </Link>
-                ))}
+                      </Card>
+                    </Link>
+                  );
+                })}
               </div>
 
               {/* View All Industries CTA */}
