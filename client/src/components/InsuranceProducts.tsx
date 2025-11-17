@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
-import generalLiabilityImg from "@assets/stock_images/general_liability_in_b7430cb1.jpg";
+import generalLiabilityImg from "@assets/stock_images/business_storefront__13355656.jpg";
 import workersCompImg from "@assets/stock_images/workers_compensation_4558873f.jpg";
-import commercialAutoImg from "@assets/stock_images/commercial_auto_vehi_c2646151.jpg";
+import commercialAutoImg from "@assets/stock_images/delivery_van_commerc_5fbbbbba.jpg";
 import businessOwnersImg from "@assets/stock_images/business_owners_offi_bcbeb4ef.jpg";
 import commercialPropertyImg from "@assets/stock_images/commercial_property__6f849862.jpg";
 import truckingImg from "@assets/stock_images/trucking_semi_truck__ad45ae4c.jpg";
