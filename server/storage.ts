@@ -1,4 +1,4 @@
-import { quoteRequests, serviceRequests, oceanCargoQuotes, selfStorageQuotes, filmProductionQuotes, type InsertQuoteRequest, type QuoteRequest, type InsertServiceRequest, type ServiceRequest, type InsertOceanCargoQuote, type OceanCargoQuote, type InsertSelfStorageQuote, type SelfStorageQuote, type InsertFilmProductionQuote, type FilmProductionQuote } from "@shared/schema";
+import { quoteRequests, serviceRequests, oceanCargoQuotes, selfStorageQuotes, filmProductionQuotes, productLiabilityQuotes, type InsertQuoteRequest, type QuoteRequest, type InsertServiceRequest, type ServiceRequest, type InsertOceanCargoQuote, type OceanCargoQuote, type InsertSelfStorageQuote, type SelfStorageQuote, type InsertFilmProductionQuote, type FilmProductionQuote, type InsertProductLiabilityQuote, type ProductLiabilityQuote } from "@shared/schema";
 import { db } from "./db";
 import { randomUUID } from "crypto";
 
@@ -8,6 +8,7 @@ export interface IStorage {
   createOceanCargoQuote(quote: InsertOceanCargoQuote): Promise<OceanCargoQuote>;
   createSelfStorageQuote(quote: InsertSelfStorageQuote): Promise<SelfStorageQuote>;
   createFilmProductionQuote(quote: InsertFilmProductionQuote): Promise<FilmProductionQuote>;
+  createProductLiabilityQuote(quote: InsertProductLiabilityQuote): Promise<ProductLiabilityQuote>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -51,6 +52,15 @@ export class DatabaseStorage implements IStorage {
     const id = randomUUID();
     const [quote] = await db
       .insert(filmProductionQuotes)
+      .values({ ...insertQuote, id })
+      .returning();
+    return quote;
+  }
+
+  async createProductLiabilityQuote(insertQuote: InsertProductLiabilityQuote): Promise<ProductLiabilityQuote> {
+    const id = randomUUID();
+    const [quote] = await db
+      .insert(productLiabilityQuotes)
       .values({ ...insertQuote, id })
       .returning();
     return quote;
