@@ -28,6 +28,7 @@ const insuranceTypes = [
   "Contractors Insurance",
   "Ocean Cargo/Marine",
   "Self Storage",
+  "Film Production",
 ];
 
 const coverageOptions = [
@@ -129,6 +130,11 @@ const comprehensiveFormLinks: Record<string, { url: string; title: string; descr
     url: "/quote/self-storage",
     title: "Use Self Storage Application",
     description: "For Self Storage facilities, we have a specialized application that evaluates your facility's security features, occupancy levels, climate control systems, and operational risks.",
+  },
+  "Film Production": {
+    url: "/quote/film-production",
+    title: "Use Film Production Application",
+    description: "For Film Production, we have a comprehensive application covering all aspects of production insurance including general liability, equipment coverage, hired/non-owned auto, and winter weather protection.",
   },
 };
 
