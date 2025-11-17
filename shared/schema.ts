@@ -58,6 +58,20 @@ export const selfStorageQuotes = pgTable("self_storage_quotes", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const filmProductionQuotes = pgTable("film_production_quotes", {
+  id: varchar("id").primaryKey(),
+  applicantName: text("applicant_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  productionStartDate: text("production_start_date"),
+  productionEndDate: text("production_end_date"),
+  grossProductionCost: text("gross_production_cost"),
+  numberOfProductions: text("number_of_productions"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const insertQuoteRequestSchema = createInsertSchema(quoteRequests).omit({
   id: true,
   createdAt: true,
@@ -78,6 +92,11 @@ export const insertSelfStorageQuoteSchema = createInsertSchema(selfStorageQuotes
   createdAt: true,
 });
 
+export const insertFilmProductionQuoteSchema = createInsertSchema(filmProductionQuotes).omit({
+  id: true,
+  createdAt: true,
+});
+
 export type InsertQuoteRequest = z.infer<typeof insertQuoteRequestSchema>;
 export type QuoteRequest = typeof quoteRequests.$inferSelect;
 export type InsertServiceRequest = z.infer<typeof insertServiceRequestSchema>;
@@ -86,3 +105,5 @@ export type InsertOceanCargoQuote = z.infer<typeof insertOceanCargoQuoteSchema>;
 export type OceanCargoQuote = typeof oceanCargoQuotes.$inferSelect;
 export type InsertSelfStorageQuote = z.infer<typeof insertSelfStorageQuoteSchema>;
 export type SelfStorageQuote = typeof selfStorageQuotes.$inferSelect;
+export type InsertFilmProductionQuote = z.infer<typeof insertFilmProductionQuoteSchema>;
+export type FilmProductionQuote = typeof filmProductionQuotes.$inferSelect;
