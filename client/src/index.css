@@ -242,6 +242,39 @@
   body {
     @apply font-sans antialiased bg-background text-foreground;
   }
+
+  /* WCAG 2.4.7: Enhanced focus indicators with 3:1 minimum contrast */
+  *:focus {
+    outline: 3px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  *:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  *:focus-visible {
+    outline: 3px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  /* Skip to content link for keyboard navigation (WCAG 2.4.1) */
+  .skip-to-content {
+    position: absolute;
+    left: -9999px;
+    z-index: 999;
+    padding: 1rem 1.5rem;
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    text-decoration: none;
+    border-radius: 0 0 0.5rem 0;
+    font-weight: 600;
+  }
+
+  .skip-to-content:focus {
+    left: 0;
+    top: 0;
+  }
 }
 
 /**

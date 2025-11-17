@@ -1,0 +1,22 @@
+ADA compliance for websites is primarily guided by the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA standard. The following checklist highlights essential requirements to ensure your website is accessible to individuals with disabilities: 
+Perceivable
+Text Alternatives for Non-Text Content: All meaningful images, graphs, charts, and buttons must have descriptive "alt text" so screen readers can interpret them. Decorative images should have empty alt attributes.
+Captions and Transcripts for Multimedia: All pre-recorded and live video content with audio must have accurate, synchronized captions. Provide transcripts for audio-only content and audio descriptions for video-only or video with insufficient audio description.
+Sufficient Color Contrast: Text and images of text must have a minimum contrast ratio of 4.5:1 against their background to be readable for users with low vision or color blindness.
+Information Conveyed Without Color Alone: Color should not be the only means of conveying information (e.g., use an asterisk in addition to red color to indicate required fields in a form).
+Text Resizing and Reflow: Users must be able to resize text up to 200% without loss of content or functionality and without requiring horizontal scrolling. 
+Operable
+Keyboard Navigation: All website functionality must be operable using only a keyboard (no mouse needed). This includes all links, forms, and menus.
+Visible Focus Indicator: There must be a clear and visible indicator (like an outline or highlight) showing which element has keyboard focus.
+"Skip to Content" Link: Provide a "skip navigation" link at the top of each page, allowing keyboard users to bypass repetitive header/navigation links and jump directly to the main content.
+Control Time Limits and Moving Content: Users should have enough time to read and interact with content. Provide options to pause, stop, or hide any auto-playing, moving, blinking, or scrolling content.
+Seizure Safety: Web pages should not contain anything that flashes more than three times per second, as this can induce seizures. 
+Understandable
+Clear and Descriptive Page Titles and Headings: Each web page needs a clear, unique, and descriptive title. Content must be structured using a logical heading hierarchy (H1, H2, H3, etc.).
+Descriptive Links: The purpose of each link should be clear from the link text alone or within its immediate context, avoiding generic phrases like "click here" or "read more".
+Understandable Forms and Error Messages: Form elements must have clear, programmatically associated labels. When a user makes an input error, the error must be clearly identified and described to the user in text, with suggestions on how to correct it.
+Consistent Navigation and Layout: Menus, icons, and buttons should appear and function consistently and predictably across all pages of the website. 
+Robust
+Assistive Technology Compatibility: Use clean, semantic HTML markup to ensure compatibility with various assistive technologies, including screen readers and screen magnifiers.
+Language Identification: The default human language of each page should be programmatically determined in the code using a lang attribute, and any language changes on the page should also be indicated.
+Accessible Documents: All downloadable documents (like PDFs, Word files) must also be accessible, meaning they are properly tagged for reading order and include alternative text for images. 

@@ -5,20 +5,20 @@ import casuranceLogo from "@assets/generated_images/Casurance_corporate_logo_des
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 bg-background border-b">
+    <header className="sticky top-0 z-50 bg-background border-b" role="banner">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <Link href="/">
             <div className="flex items-center gap-3 cursor-pointer" data-testid="link-home">
               <img 
                 src={casuranceLogo} 
-                alt="Casurance Insurance Agency" 
+                alt="Casurance Insurance Agency - Return to homepage" 
                 className="h-12 w-auto"
               />
             </div>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-8" role="navigation" aria-label="Main navigation">
             <Link href="/coverages" data-testid="link-coverage">
               <span className="text-sm font-medium text-muted-foreground hover:text-foreground cursor-pointer">Coverage</span>
             </Link>
@@ -31,8 +31,8 @@ export default function Header() {
             <Link href="/service" data-testid="link-service">
               <span className="text-sm font-medium text-muted-foreground hover:text-foreground cursor-pointer">Service Request</span>
             </Link>
-            <a href="tel:18882540089" className="flex items-center gap-2 text-sm font-medium text-foreground" data-testid="link-phone">
-              <Phone className="h-4 w-4" />
+            <a href="tel:18882540089" className="flex items-center gap-2 text-sm font-medium text-foreground" data-testid="link-phone" aria-label="Call us at 1-888-254-0089">
+              <Phone className="h-4 w-4" aria-hidden="true" />
               <span>1-888-254-0089</span>
             </a>
           </nav>
@@ -43,8 +43,8 @@ export default function Header() {
                 Get a Quote
               </Button>
             </Link>
-            <Button variant="ghost" size="icon" className="md:hidden" data-testid="button-menu">
-              <Menu className="h-5 w-5" />
+            <Button variant="ghost" size="icon" className="md:hidden" data-testid="button-menu" aria-label="Open navigation menu">
+              <Menu className="h-5 w-5" aria-hidden="true" />
             </Button>
           </div>
         </div>
