@@ -1,4 +1,4 @@
-import { pgTable, text, varchar, timestamp, json } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, timestamp, json, serial, integer } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -100,6 +100,33 @@ export const securityServicesQuotes = pgTable("security_services_quotes", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const agents = pgTable("agents", {
+  id: serial("id").primaryKey(),
+  email: text("email").notNull().unique(),
+  hashedPassword: text("hashed_password").notNull(),
+  fullName: text("full_name").notNull(),
+  role: text("role").notNull().default("agent"),
+  createdAt: timestamp("created_at").defaultNow(),
+  lastLoginAt: timestamp("last_login_at"),
+});
+
+export const agentSessions = pgTable("agent_sessions", {
+  sid: varchar("sid").primaryKey(),
+  sess: json("sess").notNull(),
+  expire: timestamp("expire").notNull(),
+});
+
+export const submissionStatusHistory = pgTable("submission_status_history", {
+  id: serial("id").primaryKey(),
+  submissionType: text("submission_type").notNull(),
+  submissionId: varchar("submission_id").notNull(),
+  status: text("status").notNull(),
+  notes: text("notes"),
+  changedBy: integer("changed_by").references(() => agents.id),
+  confirmedAt: timestamp("confirmed_at"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const insertQuoteRequestSchema = createInsertSchema(quoteRequests).omit({
   id: true,
   createdAt: true,
@@ -135,6 +162,17 @@ export const insertSecurityServicesQuoteSchema = createInsertSchema(securityServ
   createdAt: true,
 });
 
+export const insertAgentSchema = createInsertSchema(agents).omit({
+  id: true,
+  createdAt: true,
+  lastLoginAt: true,
+});
+
+export const insertSubmissionStatusHistorySchema = createInsertSchema(submissionStatusHistory).omit({
+  id: true,
+  createdAt: true,
+});
+
 export type InsertQuoteRequest = z.infer<typeof insertQuoteRequestSchema>;
 export type QuoteRequest = typeof quoteRequests.$inferSelect;
 export type InsertServiceRequest = z.infer<typeof insertServiceRequestSchema>;
@@ -149,3 +187,7 @@ export type InsertProductLiabilityQuote = z.infer<typeof insertProductLiabilityQ
 export type ProductLiabilityQuote = typeof productLiabilityQuotes.$inferSelect;
 export type InsertSecurityServicesQuote = z.infer<typeof insertSecurityServicesQuoteSchema>;
 export type SecurityServicesQuote = typeof securityServicesQuotes.$inferSelect;
+export type InsertAgent = z.infer<typeof insertAgentSchema>;
+export type Agent = typeof agents.$inferSelect;
+export type InsertSubmissionStatusHistory = z.infer<typeof insertSubmissionStatusHistorySchema>;
+export type SubmissionStatusHistory = typeof submissionStatusHistory.$inferSelect;

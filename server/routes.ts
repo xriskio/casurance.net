@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema, insertFilmProductionQuoteSchema, insertProductLiabilityQuoteSchema, insertSecurityServicesQuoteSchema } from "@shared/schema";
+import { registerAgentRoutes } from "./routes/agent";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Quote Requests
@@ -80,6 +81,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(400).json({ message: error.message || "Invalid request data" });
     }
   });
+
+  registerAgentRoutes(app);
 
   const httpServer = createServer(app);
 
