@@ -1,4 +1,5 @@
-import { useRoute } from "wouter";
+import { useRoute, useLocation } from "wouter";
+import { useEffect } from "react";
 import ProductLiabilityQuoteForm from "@/components/ProductLiabilityQuoteForm";
 
 const productTypeRoutes: Record<string, string> = {
@@ -13,9 +14,20 @@ const productTypeRoutes: Record<string, string> = {
 };
 
 export default function ProductLiabilityQuote() {
-  const [, params] = useRoute("/quote/product-liability/:type");
+  const [match, params] = useRoute("/quote/product-liability/:type");
+  const [, setLocation] = useLocation();
   
-  const productType = params?.type ? productTypeRoutes[params.type] : "general-manufacturing";
+  useEffect(() => {
+    if (!match || !params?.type || !productTypeRoutes[params.type]) {
+      setLocation("/quote/product-liability");
+    }
+  }, [match, params, setLocation]);
+
+  if (!match || !params?.type || !productTypeRoutes[params.type]) {
+    return null;
+  }
+
+  const productType = productTypeRoutes[params.type];
 
   return <ProductLiabilityQuoteForm productType={productType} />;
 }
