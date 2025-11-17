@@ -225,20 +225,19 @@ export default function QuoteRequestForm() {
             </Select>
           </div>
 
-          {/* Show Comprehensive Application Link */}
+          {/* Show Comprehensive Application Notice */}
           {comprehensiveForm && (
             <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-md border border-blue-200 dark:border-blue-900">
-              <p className="text-sm text-blue-900 dark:text-blue-100 mb-3">
+              <p className="text-sm text-blue-900 dark:text-blue-100 mb-4">
                 {comprehensiveForm.description}
               </p>
-              <a
-                href={comprehensiveForm.url}
-                className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
-                data-testid={`link-${formData.insuranceType.toLowerCase().replace(/[/\s&]+/g, '-')}-form`}
+              <Button
+                onClick={() => window.location.href = comprehensiveForm.url}
+                data-testid={`button-${formData.insuranceType.toLowerCase().replace(/[/\s&]+/g, '-')}-next`}
               >
-                {comprehensiveForm.title}
-                <ArrowRight className="ml-1 h-4 w-4" />
-              </a>
+                Next
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
             </div>
           )}
 
