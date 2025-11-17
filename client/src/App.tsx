@@ -31,6 +31,7 @@ import SelfStorageQuote from "@/pages/SelfStorageQuote";
 import FilmProductionQuote from "@/pages/FilmProductionQuote";
 import ProductLiabilitySelector from "@/pages/ProductLiabilitySelector";
 import ProductLiabilityQuote from "@/pages/ProductLiabilityQuote";
+import SecurityServicesQuote from "@/pages/SecurityServicesQuote";
 import MiddleMarket from "@/pages/MiddleMarket";
 import NotFound from "@/pages/not-found";
 
@@ -60,6 +61,7 @@ function Router() {
       <Route path="/quote/film-production" component={FilmProductionQuote} />
       <Route path="/quote/product-liability" component={ProductLiabilitySelector} />
       <Route path="/quote/product-liability/:type" component={ProductLiabilityQuote} />
+      <Route path="/quote/security-services" component={SecurityServicesQuote} />
       <Route path="/service" component={ServicePage} />
       <Route path="/coverages" component={CoveragesIndex} />
       <Route path="/middle-market" component={MiddleMarket} />

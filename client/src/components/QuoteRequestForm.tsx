@@ -30,6 +30,7 @@ const insuranceTypes = [
   "Self Storage",
   "Film Production",
   "Product Liability",
+  "Security Services",
 ];
 
 const coverageOptions = [
@@ -141,6 +142,11 @@ const comprehensiveFormLinks: Record<string, { url: string; title: string; descr
     url: "/quote/product-liability",
     title: "Use Product Liability Application",
     description: "For Product Liability insurance, select your specific product type (manufacturing, cannabis, firearms, electronics, etc.) to access our specialized application tailored to your industry's unique risks and coverage requirements.",
+  },
+  "Security Services": {
+    url: "/quote/security-services",
+    title: "Use Security Services / Security Guard Application",
+    description: "For Security Services and Security Guard companies, we have a comprehensive application that evaluates your guard operations, training programs, employee screening, weaponry policies, client contracts, and claims history.",
   },
 };
 
