@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema } from "@shared/schema";
+import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema, insertFilmProductionQuoteSchema } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Quote Requests
@@ -42,6 +42,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const validatedData = insertSelfStorageQuoteSchema.parse(req.body);
       const quote = await storage.createSelfStorageQuote(validatedData);
+      res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // Film Production Quotes
+  app.post("/api/film-production-quotes", async (req, res) => {
+    try {
+      const validatedData = insertFilmProductionQuoteSchema.parse(req.body);
+      const quote = await storage.createFilmProductionQuote(validatedData);
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
