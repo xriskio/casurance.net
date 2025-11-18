@@ -44,6 +44,8 @@ import PublicTransportationQuote from "@/pages/PublicTransportationQuote";
 import TaxiQuote from "@/pages/TaxiQuote";
 import AboutPage from "@/pages/AboutPage";
 import ContactPage from "@/pages/ContactPage";
+import BlogPage from "@/pages/BlogPage";
+import BlogPostPage from "@/pages/BlogPostPage";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -79,6 +81,8 @@ function Router() {
       <Route path="/coverage/:slug" component={CoveragePage} />
       <Route path="/industries" component={IndustriesIndex} />
       <Route path="/industry/:slug" component={IndustryPage} />
+      <Route path="/blog" component={BlogPage} />
+      <Route path="/blog/:slug" component={BlogPostPage} />
       <Route path="/about" component={AboutPage} />
       <Route path="/contact" component={ContactPage} />
       <Route path="/agent/login" component={AgentLogin} />
