@@ -305,6 +305,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Create manual blog post (authenticated agents only)
+  app.post("/api/blog-posts", async (req, res) => {
+    try {
+      if (!req.isAuthenticated || !req.isAuthenticated()) {
+        return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
+      }
+
+      const result = insertBlogPostSchema.safeParse(req.body);
+      if (!result.success) {
+        return res.status(400).json({ 
+          message: "Invalid blog post data", 
+          errors: result.error.errors 
+        });
+      }
+
+      const post = await storage.createBlogPost({
+        ...result.data,
+        isAiGenerated: "false",
+        author: "Casurance Team"
+      });
+
+      res.json(post);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message || "Error creating blog post" });
+    }
+  });
+
   // File download endpoint for authenticated agents
   app.get("/api/files/:fileId", async (req, res) => {
     try {

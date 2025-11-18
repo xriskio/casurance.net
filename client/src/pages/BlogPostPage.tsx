@@ -7,6 +7,8 @@ import { Separator } from "@/components/ui/separator";
 import { Calendar, ArrowLeft, Sparkles } from "lucide-react";
 import type { BlogPost } from "@shared/schema";
 import ReactMarkdown from "react-markdown";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export default function BlogPostPage() {
   const [, params] = useRoute("/blog/:slug");
@@ -33,7 +35,8 @@ export default function BlogPostPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background flex flex-col">
+        <Header />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="animate-pulse space-y-6">
             <div className="h-8 bg-muted rounded w-3/4"></div>
@@ -45,13 +48,15 @@ export default function BlogPostPage() {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background flex flex-col">
+        <Header />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <Card>
             <CardContent className="p-12 text-center">
@@ -68,13 +73,15 @@ export default function BlogPostPage() {
             </CardContent>
           </Card>
         </div>
+        <Footer />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="min-h-screen bg-background flex flex-col">
+      <Header />
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-1">
         <Link href="/blog">
           <Button variant="ghost" className="mb-6" data-testid="button-back-to-blog">
             <ArrowLeft className="h-4 w-4 mr-2" aria-hidden="true" />
@@ -172,6 +179,7 @@ export default function BlogPostPage() {
           </footer>
         </article>
       </div>
+      <Footer />
     </div>
   );
 }

@@ -7,6 +7,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Select,
   SelectContent,
@@ -22,7 +25,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Search, LogOut, FileText, Sparkles, NewspaperIcon } from "lucide-react";
+import { Search, LogOut, FileText, Sparkles, NewspaperIcon, PenLine } from "lucide-react";
 import { format } from "date-fns";
 import { useToast } from "@/hooks/use-toast";
 import type { BlogPost } from "@shared/schema";
@@ -168,6 +171,15 @@ export default function AgentPortal() {
   const [selectedTopic, setSelectedTopic] = useState<string>("RANDOM");
   const [selectedBlogCategory, setSelectedBlogCategory] = useState<string>("RANDOM");
 
+  const [manualBlogForm, setManualBlogForm] = useState({
+    title: "",
+    excerpt: "",
+    content: "",
+    category: "",
+    tags: "",
+    imageUrl: "",
+  });
+
   const { data: blogPosts = [] } = useQuery<BlogPost[]>({
     queryKey: ["/api/blog-posts"],
     enabled: isAuthenticated,
@@ -204,6 +216,41 @@ export default function AgentPortal() {
         variant: "destructive",
         title: "Error",
         description: "Failed to generate blog post. Please try again.",
+      });
+    },
+  });
+
+  const createManualBlogPostMutation = useMutation({
+    mutationFn: async () => {
+      return await apiRequest("POST", "/api/blog-posts", {
+        title: manualBlogForm.title,
+        excerpt: manualBlogForm.excerpt,
+        content: manualBlogForm.content,
+        category: manualBlogForm.category,
+        tags: manualBlogForm.tags.split(",").map((t) => t.trim()).filter(Boolean),
+        imageUrl: manualBlogForm.imageUrl || undefined,
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/blog-posts"] });
+      setManualBlogForm({
+        title: "",
+        excerpt: "",
+        content: "",
+        category: "",
+        tags: "",
+        imageUrl: "",
+      });
+      toast({
+        title: "Success",
+        description: "Blog post created successfully!",
+      });
+    },
+    onError: () => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to create blog post. Please try again.",
       });
     },
   });
@@ -264,56 +311,179 @@ export default function AgentPortal() {
               <CardTitle>Blog Management</CardTitle>
             </div>
             <CardDescription>
-              Generate AI-powered blog posts with professional images. Posts appear immediately on the public blog page. Generation takes 30-60 seconds.
+              Create blog posts using AI generation or write your own content with custom images.
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Topic (optional)</label>
-                <Select value={selectedTopic} onValueChange={setSelectedTopic}>
-                  <SelectTrigger data-testid="select-blog-topic">
-                    <SelectValue placeholder="Random topic..." />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="RANDOM">Random topic</SelectItem>
-                    {blogTopics.map((topic) => (
-                      <SelectItem key={topic} value={topic}>
-                        {topic}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Category (optional)</label>
-                <Select value={selectedBlogCategory} onValueChange={setSelectedBlogCategory}>
-                  <SelectTrigger data-testid="select-blog-category">
-                    <SelectValue placeholder="Random category..." />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="RANDOM">Random category</SelectItem>
-                    {blogCategories.map((category) => (
-                      <SelectItem key={category} value={category}>
-                        {category}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
+          <CardContent>
+            <Tabs defaultValue="ai" className="w-full">
+              <TabsList className="grid w-full grid-cols-2 mb-6">
+                <TabsTrigger value="ai" data-testid="tab-ai-generation">
+                  <Sparkles className="h-4 w-4 mr-2" />
+                  AI Generation
+                </TabsTrigger>
+                <TabsTrigger value="manual" data-testid="tab-manual-creation">
+                  <PenLine className="h-4 w-4 mr-2" />
+                  Manual Creation
+                </TabsTrigger>
+              </TabsList>
 
-            <Button
-              onClick={() => generateBlogPostMutation.mutate()}
-              disabled={generateBlogPostMutation.isPending}
-              className="w-full"
-              data-testid="button-generate-blog-post"
-            >
-              <Sparkles className="h-4 w-4 mr-2" aria-hidden="true" />
-              {generateBlogPostMutation.isPending ? "Generating..." : "Generate New Post"}
-            </Button>
+              <TabsContent value="ai" className="space-y-4">
+                <p className="text-sm text-muted-foreground">
+                  Generate AI-powered blog posts with professional images. Posts appear immediately on the public blog page. Generation takes 30-60 seconds.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="ai-topic">Topic (optional)</Label>
+                    <Select value={selectedTopic} onValueChange={setSelectedTopic}>
+                      <SelectTrigger id="ai-topic" data-testid="select-blog-topic">
+                        <SelectValue placeholder="Random topic..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="RANDOM">Random topic</SelectItem>
+                        {blogTopics.map((topic) => (
+                          <SelectItem key={topic} value={topic}>
+                            {topic}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="ai-category">Category (optional)</Label>
+                    <Select value={selectedBlogCategory} onValueChange={setSelectedBlogCategory}>
+                      <SelectTrigger id="ai-category" data-testid="select-blog-category">
+                        <SelectValue placeholder="Random category..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="RANDOM">Random category</SelectItem>
+                        {blogCategories.map((category) => (
+                          <SelectItem key={category} value={category}>
+                            {category}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
 
-            <div className="pt-4 border-t space-y-2">
+                <Button
+                  onClick={() => generateBlogPostMutation.mutate()}
+                  disabled={generateBlogPostMutation.isPending}
+                  className="w-full"
+                  data-testid="button-generate-blog-post"
+                >
+                  <Sparkles className="h-4 w-4 mr-2" aria-hidden="true" />
+                  {generateBlogPostMutation.isPending ? "Generating..." : "Generate New Post"}
+                </Button>
+              </TabsContent>
+
+              <TabsContent value="manual" className="space-y-4">
+                <p className="text-sm text-muted-foreground">
+                  Write your own blog post content and add custom images. All fields are required except image URL.
+                </p>
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="manual-title">Title *</Label>
+                    <Input
+                      id="manual-title"
+                      placeholder="Enter blog post title..."
+                      value={manualBlogForm.title}
+                      onChange={(e) => setManualBlogForm({ ...manualBlogForm, title: e.target.value })}
+                      data-testid="input-blog-title"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="manual-excerpt">Excerpt *</Label>
+                    <Textarea
+                      id="manual-excerpt"
+                      placeholder="Write a brief summary (2-3 sentences)..."
+                      value={manualBlogForm.excerpt}
+                      onChange={(e) => setManualBlogForm({ ...manualBlogForm, excerpt: e.target.value })}
+                      rows={3}
+                      data-testid="textarea-blog-excerpt"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="manual-content">Content * (Markdown supported)</Label>
+                    <Textarea
+                      id="manual-content"
+                      placeholder="Write your blog post content in Markdown..."
+                      value={manualBlogForm.content}
+                      onChange={(e) => setManualBlogForm({ ...manualBlogForm, content: e.target.value })}
+                      rows={12}
+                      data-testid="textarea-blog-content"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="manual-category">Category *</Label>
+                      <Select
+                        value={manualBlogForm.category}
+                        onValueChange={(value) => setManualBlogForm({ ...manualBlogForm, category: value })}
+                      >
+                        <SelectTrigger id="manual-category" data-testid="select-manual-category">
+                          <SelectValue placeholder="Select category..." />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {blogCategories.map((category) => (
+                            <SelectItem key={category} value={category}>
+                              {category}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="manual-tags">Tags * (comma-separated)</Label>
+                      <Input
+                        id="manual-tags"
+                        placeholder="risk management, compliance, insurance..."
+                        value={manualBlogForm.tags}
+                        onChange={(e) => setManualBlogForm({ ...manualBlogForm, tags: e.target.value })}
+                        data-testid="input-blog-tags"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="manual-image">Featured Image URL (optional)</Label>
+                    <Input
+                      id="manual-image"
+                      placeholder="https://example.com/image.jpg"
+                      value={manualBlogForm.imageUrl}
+                      onChange={(e) => setManualBlogForm({ ...manualBlogForm, imageUrl: e.target.value })}
+                      data-testid="input-blog-image"
+                    />
+                    <p className="text-xs text-muted-foreground">
+                      Enter a direct image URL or leave blank
+                    </p>
+                  </div>
+
+                  <Button
+                    onClick={() => createManualBlogPostMutation.mutate()}
+                    disabled={
+                      createManualBlogPostMutation.isPending ||
+                      !manualBlogForm.title ||
+                      !manualBlogForm.excerpt ||
+                      !manualBlogForm.content ||
+                      !manualBlogForm.category ||
+                      !manualBlogForm.tags
+                    }
+                    className="w-full"
+                    data-testid="button-create-blog-post"
+                  >
+                    <PenLine className="h-4 w-4 mr-2" aria-hidden="true" />
+                    {createManualBlogPostMutation.isPending ? "Creating..." : "Create Blog Post"}
+                  </Button>
+                </div>
+              </TabsContent>
+            </Tabs>
+
+            <div className="pt-6 mt-6 border-t space-y-2">
               <div className="flex items-center justify-between text-sm">
                 <span className="text-muted-foreground">Total blog posts:</span>
                 <Badge variant="secondary">{blogPosts.length}</Badge>
