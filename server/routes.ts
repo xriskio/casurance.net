@@ -1,8 +1,9 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema, insertFilmProductionQuoteSchema, insertProductLiabilityQuoteSchema, insertSecurityServicesQuoteSchema, insertNemtApplicationSchema, insertAmbulanceApplicationSchema, insertTncApplicationSchema, insertLimousineQuoteSchema, insertPublicTransportationQuoteSchema, insertTaxiBlackCarQuoteSchema, insertQuickQuoteSchema, insertContactRequestSchema } from "@shared/schema";
+import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema, insertFilmProductionQuoteSchema, insertProductLiabilityQuoteSchema, insertSecurityServicesQuoteSchema, insertNemtApplicationSchema, insertAmbulanceApplicationSchema, insertTncApplicationSchema, insertLimousineQuoteSchema, insertPublicTransportationQuoteSchema, insertTaxiBlackCarQuoteSchema, insertQuickQuoteSchema, insertContactRequestSchema, insertBlogPostSchema } from "@shared/schema";
 import { registerAgentRoutes } from "./routes/agent";
+import { generateBlogPost, getCategories } from "./lib/ai-blog-generator";
 import multer from "multer";
 import path from "path";
 import { randomUUID } from "crypto";
@@ -234,6 +235,59 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(request);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // Blog Posts - List all or filter by category/search
+  app.get("/api/blog-posts", async (req, res) => {
+    try {
+      const category = req.query.category as string | undefined;
+      const search = req.query.search as string | undefined;
+      const posts = await storage.getBlogPosts(category, search);
+      res.json(posts);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message || "Error fetching blog posts" });
+    }
+  });
+
+  // Blog Post - Get by slug
+  app.get("/api/blog-posts/:slug", async (req, res) => {
+    try {
+      const post = await storage.getBlogPostBySlug(req.params.slug);
+      if (!post) {
+        return res.status(404).json({ message: "Blog post not found" });
+      }
+      res.json(post);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message || "Error fetching blog post" });
+    }
+  });
+
+  // Generate AI blog post
+  app.post("/api/blog-posts/generate", async (req, res) => {
+    try {
+      const { topic, category } = req.body;
+      const generatedContent = await generateBlogPost(topic, category);
+      
+      const post = await storage.createBlogPost({
+        ...generatedContent,
+        isAiGenerated: "true",
+        author: "Casurance Team"
+      });
+      
+      res.json(post);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message || "Error generating blog post" });
+    }
+  });
+
+  // Get blog categories
+  app.get("/api/blog-categories", async (req, res) => {
+    try {
+      const categories = getCategories();
+      res.json(categories);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message || "Error fetching categories" });
     }
   });
 
