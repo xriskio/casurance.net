@@ -248,6 +248,17 @@ export const taxiBlackCarQuotes = pgTable("taxi_black_car_quotes", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const quickQuotes = pgTable("quick_quotes", {
+  id: varchar("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  insuranceType: text("insurance_type").notNull(),
+  message: text("message"),
+  status: text("status").notNull().default("pending"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const applicationFiles = pgTable("application_files", {
   id: serial("id").primaryKey(),
   applicationType: text("application_type").notNull(),
@@ -306,6 +317,11 @@ export const insertPublicTransportationQuoteSchema = createInsertSchema(publicTr
 });
 
 export const insertTaxiBlackCarQuoteSchema = createInsertSchema(taxiBlackCarQuotes).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertQuickQuoteSchema = createInsertSchema(quickQuotes).omit({
   id: true,
   createdAt: true,
 });
@@ -371,5 +387,7 @@ export type InsertPublicTransportationQuote = z.infer<typeof insertPublicTranspo
 export type PublicTransportationQuote = typeof publicTransportationQuotes.$inferSelect;
 export type InsertTaxiBlackCarQuote = z.infer<typeof insertTaxiBlackCarQuoteSchema>;
 export type TaxiBlackCarQuote = typeof taxiBlackCarQuotes.$inferSelect;
+export type InsertQuickQuote = z.infer<typeof insertQuickQuoteSchema>;
+export type QuickQuote = typeof quickQuotes.$inferSelect;
 export type InsertApplicationFile = z.infer<typeof insertApplicationFileSchema>;
 export type ApplicationFile = typeof applicationFiles.$inferSelect;
