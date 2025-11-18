@@ -593,6 +593,7 @@ export default function LimousineQuoteForm() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
+                    <SelectItem value="$750,000">$750,000</SelectItem>
                     <SelectItem value="$1,000,000">$1,000,000</SelectItem>
                     <SelectItem value="$1,500,000">$1,500,000</SelectItem>
                     <SelectItem value="$2,000,000">$2,000,000</SelectItem>
