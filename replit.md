@@ -4,11 +4,13 @@
 
 Casurance is a commercial insurance agency web application that provides quote requests, service requests, and information about various insurance coverage types and industries. The platform is built as a full-stack TypeScript application with a React frontend and Express backend, designed to help California businesses obtain insurance quotes and manage their policies.
 
-The application serves as a B2B platform for commercial insurance, emphasizing trust, professionalism, and efficiency in the quote process. It features multiple specialized quote forms for different insurance types (commercial auto, general liability, workers compensation, trucking, hotel, restaurant, etc.) and comprehensive coverage information organized by category.
+The application serves as a B2B platform for commercial insurance, emphasizing trust, professionalism, and efficiency in the quote process. It features multiple specialized quote forms for different insurance types (commercial auto, general liability, workers compensation, trucking, hotel, restaurant, limousine, NEMT, ambulance, TNC/rideshare, etc.) and comprehensive coverage information organized by category.
 
 **Agent Portal**: Authenticated portal for Casurance agents to view and manage all quote and service submissions. Features table-based layout with filtering, search, status management, and detailed submission views.
 
-**Latest Addition**: NEMT and Paratransit industry page (November 2025) - Specialized insurance coverage information for Non-Emergency Medical Transportation and Paratransit operators.
+**Latest Additions**: 
+- Limousine & Chauffeured Transportation Insurance Quote Form (November 2025) - Comprehensive 6-step application based on Philadelphia Insurance Companies standards covering auto liability, general liability, hired/non-owned liability, physical damage, UM/UIM/PIP, operations, drivers, prior insurance, and vehicle schedules (1908 lines)
+- NEMT and Paratransit industry page (November 2025) - Specialized insurance coverage information for Non-Emergency Medical Transportation and Paratransit operators
 
 ## User Preferences
 
