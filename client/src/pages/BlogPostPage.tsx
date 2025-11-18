@@ -110,6 +110,16 @@ export default function BlogPostPage() {
             <Separator className="mt-6" />
           </header>
 
+          {post.imageUrl && (
+            <div className="w-full mb-8 rounded-lg overflow-hidden">
+              <img 
+                src={post.imageUrl} 
+                alt={post.title}
+                className="w-full h-auto object-cover"
+              />
+            </div>
+          )}
+
           <div className="prose prose-lg max-w-none">
             <div className="text-xl text-muted-foreground mb-8 italic">
               {post.excerpt}

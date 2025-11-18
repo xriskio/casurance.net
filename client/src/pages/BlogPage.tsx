@@ -115,7 +115,16 @@ export default function BlogPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {posts.map((post) => (
               <Link key={post.id} href={`/blog/${post.slug}`}>
-                <Card className="h-full hover-elevate cursor-pointer transition-all" data-testid={`card-blog-post-${post.id}`}>
+                <Card className="h-full hover-elevate cursor-pointer transition-all overflow-hidden" data-testid={`card-blog-post-${post.id}`}>
+                  {post.imageUrl && (
+                    <div className="w-full h-48 overflow-hidden">
+                      <img 
+                        src={post.imageUrl} 
+                        alt={post.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
                   <CardHeader className="space-y-2">
                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
                       <Calendar className="h-4 w-4" aria-hidden="true" />
