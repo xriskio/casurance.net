@@ -14,6 +14,9 @@ export default function CoverageDetail({ coverage }: CoverageDetailProps) {
     if (coverage.slug === 'nemt-paratransit') {
       return '/apply/nemt';
     }
+    if (coverage.slug === 'limousine-insurance') {
+      return '/quote/limousine';
+    }
     if (coverage.slug === 'cyber-liability') {
       return '/quote/cyber-liability';
     }

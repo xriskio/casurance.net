@@ -27,6 +27,7 @@ const insuranceTypes = [
   "Ocean Cargo/Marine",
   "Product Liability",
   "Professional Liability",
+  "Public Transportation / Buses / Motorcoaches / School Buses",
   "Religious Organizations",
   "Restaurant Insurance",
   "Security Services",
@@ -151,6 +152,11 @@ const comprehensiveFormLinks: Record<string, { url: string; title: string; descr
     url: "/quote/product-liability",
     title: "Use Product Liability Application",
     description: "For Product Liability insurance, select your specific product type (manufacturing, cannabis, firearms, electronics, etc.) to access our specialized application tailored to your industry's unique risks and coverage requirements.",
+  },
+  "Public Transportation / Buses / Motorcoaches / School Buses": {
+    url: "/quote/public-transportation",
+    title: "Use Public Transportation Insurance Application",
+    description: "For Public Transportation operations including Charter/Tour Buses, Municipal Transit, School Bus Contractors, and Motorcoaches, we have a comprehensive 6-step application based on RLI Fleet and Carolina Casualty standards. Covers auto liability up to $10M, physical damage, general liability, garage liability, operations details, safety programs, driver information, and vehicle schedules.",
   },
   "Security Services": {
     url: "/quote/security-services",
