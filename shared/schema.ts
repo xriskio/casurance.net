@@ -181,6 +181,25 @@ export const ambulanceApplications = pgTable("ambulance_applications", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const tncApplications = pgTable("tnc_applications", {
+  id: varchar("id").primaryKey(),
+  companyName: text("company_name").notNull(),
+  contactName: text("contact_name").notNull(),
+  contactEmail: text("contact_email").notNull(),
+  contactPhone: text("contact_phone").notNull(),
+  primaryStreetAddress: text("primary_street_address"),
+  city: text("city"),
+  state: text("state"),
+  zipCode: text("zip_code"),
+  dateEstablished: text("date_established"),
+  totalDrivers: text("total_drivers"),
+  requestingGLCoverage: text("requesting_gl_coverage").default("no"),
+  requestingAutoCoverage: text("requesting_auto_coverage").default("no"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const applicationFiles = pgTable("application_files", {
   id: serial("id").primaryKey(),
   applicationType: text("application_type").notNull(),
@@ -249,6 +268,11 @@ export const insertAmbulanceApplicationSchema = createInsertSchema(ambulanceAppl
   createdAt: true,
 });
 
+export const insertTncApplicationSchema = createInsertSchema(tncApplications).omit({
+  id: true,
+  createdAt: true,
+});
+
 export const insertApplicationFileSchema = createInsertSchema(applicationFiles).omit({
   id: true,
   uploadedAt: true,
@@ -276,5 +300,7 @@ export type InsertNemtApplication = z.infer<typeof insertNemtApplicationSchema>;
 export type NemtApplication = typeof nemtApplications.$inferSelect;
 export type InsertAmbulanceApplication = z.infer<typeof insertAmbulanceApplicationSchema>;
 export type AmbulanceApplication = typeof ambulanceApplications.$inferSelect;
+export type InsertTncApplication = z.infer<typeof insertTncApplicationSchema>;
+export type TncApplication = typeof tncApplications.$inferSelect;
 export type InsertApplicationFile = z.infer<typeof insertApplicationFileSchema>;
 export type ApplicationFile = typeof applicationFiles.$inferSelect;

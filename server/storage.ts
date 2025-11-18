@@ -1,4 +1,4 @@
-import { quoteRequests, serviceRequests, oceanCargoQuotes, selfStorageQuotes, filmProductionQuotes, productLiabilityQuotes, securityServicesQuotes, nemtApplications, ambulanceApplications, applicationFiles, type InsertQuoteRequest, type QuoteRequest, type InsertServiceRequest, type ServiceRequest, type InsertOceanCargoQuote, type OceanCargoQuote, type InsertSelfStorageQuote, type SelfStorageQuote, type InsertFilmProductionQuote, type FilmProductionQuote, type InsertProductLiabilityQuote, type ProductLiabilityQuote, type InsertSecurityServicesQuote, type SecurityServicesQuote, type InsertNemtApplication, type NemtApplication, type InsertAmbulanceApplication, type AmbulanceApplication, type ApplicationFile } from "@shared/schema";
+import { quoteRequests, serviceRequests, oceanCargoQuotes, selfStorageQuotes, filmProductionQuotes, productLiabilityQuotes, securityServicesQuotes, nemtApplications, ambulanceApplications, tncApplications, applicationFiles, type InsertQuoteRequest, type QuoteRequest, type InsertServiceRequest, type ServiceRequest, type InsertOceanCargoQuote, type OceanCargoQuote, type InsertSelfStorageQuote, type SelfStorageQuote, type InsertFilmProductionQuote, type FilmProductionQuote, type InsertProductLiabilityQuote, type ProductLiabilityQuote, type InsertSecurityServicesQuote, type SecurityServicesQuote, type InsertNemtApplication, type NemtApplication, type InsertAmbulanceApplication, type AmbulanceApplication, type InsertTncApplication, type TncApplication, type ApplicationFile } from "@shared/schema";
 import { db } from "./db";
 import { randomUUID } from "crypto";
 import { eq } from "drizzle-orm";
@@ -13,6 +13,7 @@ export interface IStorage {
   createSecurityServicesQuote(quote: InsertSecurityServicesQuote): Promise<SecurityServicesQuote>;
   createNemtApplication(application: InsertNemtApplication, files: { [fieldname: string]: Express.Multer.File[] }): Promise<NemtApplication>;
   createAmbulanceApplication(application: InsertAmbulanceApplication, files: { [fieldname: string]: Express.Multer.File[] }): Promise<AmbulanceApplication>;
+  createTncApplication(application: InsertTncApplication, files: { [fieldname: string]: Express.Multer.File[] }): Promise<TncApplication>;
   getApplicationFile(fileId: number): Promise<ApplicationFile | undefined>;
 }
 
@@ -120,6 +121,33 @@ export class DatabaseStorage implements IStorage {
           const file = fileArray[0];
           await db.insert(applicationFiles).values({
             applicationType: "ambulance",
+            applicationId: id,
+            fileType: fieldName,
+            originalFilename: file.originalname,
+            storedFilename: file.filename,
+            fileSize: file.size,
+            mimeType: file.mimetype,
+          });
+        }
+      }
+    }
+
+    return application;
+  }
+
+  async createTncApplication(insertApplication: InsertTncApplication, files: { [fieldname: string]: Express.Multer.File[] }): Promise<TncApplication> {
+    const id = randomUUID();
+    const [application] = await db
+      .insert(tncApplications)
+      .values({ ...insertApplication, id })
+      .returning();
+
+    if (files) {
+      for (const [fieldName, fileArray] of Object.entries(files)) {
+        if (fileArray && fileArray.length > 0) {
+          const file = fileArray[0];
+          await db.insert(applicationFiles).values({
+            applicationType: "tnc",
             applicationId: id,
             fileType: fieldName,
             originalFilename: file.originalname,

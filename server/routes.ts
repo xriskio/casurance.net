@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema, insertFilmProductionQuoteSchema, insertProductLiabilityQuoteSchema, insertSecurityServicesQuoteSchema, insertNemtApplicationSchema, insertAmbulanceApplicationSchema } from "@shared/schema";
+import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema, insertFilmProductionQuoteSchema, insertProductLiabilityQuoteSchema, insertSecurityServicesQuoteSchema, insertNemtApplicationSchema, insertAmbulanceApplicationSchema, insertTncApplicationSchema } from "@shared/schema";
 import { registerAgentRoutes } from "./routes/agent";
 import multer from "multer";
 import path from "path";
@@ -155,6 +155,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const files = req.files as { [fieldname: string]: Express.Multer.File[] };
       const application = await storage.createAmbulanceApplication(validatedData, files);
+      
+      res.json(application);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // TNC/Rideshare Applications with file uploads
+  app.post("/api/tnc-applications", upload.fields([
+    { name: "termsOfService", maxCount: 1 },
+    { name: "financialStatements", maxCount: 1 },
+    { name: "lossRuns", maxCount: 1 },
+    { name: "vehicleSchedule", maxCount: 1 }
+  ]), async (req, res) => {
+    try {
+      const applicationData = JSON.parse(req.body.applicationData);
+      const validatedData = insertTncApplicationSchema.parse(applicationData);
+      
+      const files = req.files as { [fieldname: string]: Express.Multer.File[] };
+      const application = await storage.createTncApplication(validatedData, files);
       
       res.json(application);
     } catch (error: any) {

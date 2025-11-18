@@ -30,6 +30,7 @@ const insuranceTypes = [
   "Restaurant Insurance",
   "Security Services",
   "Self Storage",
+  "TNC / Rideshare / Mobility",
   "Truck & Trucking",
   "Vacant Building & Land",
   "Workers Compensation",
@@ -159,6 +160,11 @@ const comprehensiveFormLinks: Record<string, { url: string; title: string; descr
     url: "/apply/ambulance",
     title: "Use Ambulance Services Application",
     description: "For Ambulance and Emergency Medical Services, we have a comprehensive application that evaluates your fleet, driver qualifications, medical equipment, coverage needs, and operational risks specific to emergency medical transportation.",
+  },
+  "TNC / Rideshare / Mobility": {
+    url: "/apply/tnc-rideshare",
+    title: "Use TNC/Rideshare Application",
+    description: "For Transportation Network Companies, rideshare platforms, and on-demand mobility services, we have a specialized application designed for sharing economy and gig-economy platforms with comprehensive coverage for platform operations, driver networks, and passenger transportation.",
   },
 };
 

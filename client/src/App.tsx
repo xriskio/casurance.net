@@ -38,6 +38,7 @@ import AgentPortal from "@/pages/AgentPortal";
 import AgentSubmissionDetail from "@/pages/AgentSubmissionDetail";
 import NemtApplicationPage from "@/pages/NemtApplicationPage";
 import AmbulanceApplicationPage from "@/pages/AmbulanceApplicationPage";
+import TncRideshareApplicationPage from "@/pages/TncRideshareApplicationPage";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -78,6 +79,7 @@ function Router() {
       <Route path="/agent/submission/:type/:id" component={AgentSubmissionDetail} />
       <Route path="/apply/nemt" component={NemtApplicationPage} />
       <Route path="/apply/ambulance" component={AmbulanceApplicationPage} />
+      <Route path="/apply/tnc-rideshare" component={TncRideshareApplicationPage} />
       <Route component={NotFound} />
     </Switch>
   );
