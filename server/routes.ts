@@ -263,9 +263,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Generate AI blog post
+  // Generate AI blog post (authenticated agents only)
   app.post("/api/blog-posts/generate", async (req, res) => {
     try {
+      if (!req.isAuthenticated || !req.isAuthenticated()) {
+        return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
+      }
+
       const { topic, category } = req.body;
       const generatedContent = await generateBlogPost(topic, category);
       
