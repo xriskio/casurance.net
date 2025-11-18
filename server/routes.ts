@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema, insertFilmProductionQuoteSchema, insertProductLiabilityQuoteSchema, insertSecurityServicesQuoteSchema, insertNemtApplicationSchema, insertAmbulanceApplicationSchema, insertTncApplicationSchema, insertLimousineQuoteSchema, insertPublicTransportationQuoteSchema, insertTaxiBlackCarQuoteSchema, insertQuickQuoteSchema } from "@shared/schema";
+import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema, insertFilmProductionQuoteSchema, insertProductLiabilityQuoteSchema, insertSecurityServicesQuoteSchema, insertNemtApplicationSchema, insertAmbulanceApplicationSchema, insertTncApplicationSchema, insertLimousineQuoteSchema, insertPublicTransportationQuoteSchema, insertTaxiBlackCarQuoteSchema, insertQuickQuoteSchema, insertContactRequestSchema } from "@shared/schema";
 import { registerAgentRoutes } from "./routes/agent";
 import multer from "multer";
 import path from "path";
@@ -221,6 +221,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertQuickQuoteSchema.parse(req.body);
       const quote = await storage.createQuickQuote(validatedData);
       res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // Contact Requests
+  app.post("/api/contact-requests", async (req, res) => {
+    try {
+      const validatedData = insertContactRequestSchema.parse(req.body);
+      const request = await storage.createContactRequest(validatedData);
+      res.json(request);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
     }
