@@ -22,11 +22,31 @@ import publicEntityImg from "@assets/stock_images/government_public_bu_1b03ea65.
 import generalInsuranceImg from "@assets/stock_images/insurance_business_h_310d01ab.jpg";
 import warehouseImg from "@assets/stock_images/warehouse_logistics__28c62501.jpg";
 import specialtyImg from "@assets/stock_images/specialty_trade_tool_c8bb5010.jpg";
+import rentalCarImg from "@assets/stock_images/car_rental_fleet_veh_85fcca48.jpg";
+import schoolBusImg from "@assets/stock_images/yellow_school_bus_tr_b936956a.jpg";
+import limousineImg from "@assets/stock_images/luxury_limousine_cha_3a290e3a.jpg";
+import commercialPropertyImg from "@assets/stock_images/commercial_property__425653a3.jpg";
+import smallPropertyImg from "@assets/stock_images/small_property_retai_3bc6cc4b.jpg";
 
 const getCoverageImage = (title: string, category: string): string => {
   const titleLower = title.toLowerCase();
   const categoryLower = category.toLowerCase();
   
+  if (titleLower.includes("auto daily rental") || titleLower.includes("rental car")) {
+    return rentalCarImg;
+  }
+  if (titleLower.includes("school bus")) {
+    return schoolBusImg;
+  }
+  if (titleLower.includes("chauffeured") || titleLower.includes("limousine")) {
+    return limousineImg;
+  }
+  if (titleLower.includes("commercial property") && !titleLower.includes("small")) {
+    return commercialPropertyImg;
+  }
+  if (titleLower.includes("small property")) {
+    return smallPropertyImg;
+  }
   if (titleLower.includes("construction") || titleLower.includes("builder")) {
     return constructionImg;
   }
