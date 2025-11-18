@@ -119,16 +119,21 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-foreground mb-4" data-testid="text-contact-title">
-            Contact Us
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Get in touch with our team of licensed insurance professionals
-          </p>
+    <div className="min-h-screen bg-background">
+      <div className="bg-gradient-to-br from-[#1e3a8a] via-[#1e40af] to-[#3b5998] py-16 lg:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4" data-testid="text-contact-title">
+              Contact Us
+            </h1>
+            <p className="text-lg lg:text-xl text-white/90 max-w-3xl mx-auto">
+              Get in touch with our team of licensed insurance professionals
+            </p>
+          </div>
         </div>
+      </div>
+      <div className="py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
@@ -378,6 +383,7 @@ export default function ContactPage() {
               </CardContent>
             </Card>
           </div>
+        </div>
         </div>
       </div>
     </div>

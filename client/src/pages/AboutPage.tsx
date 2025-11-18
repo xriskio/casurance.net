@@ -5,15 +5,19 @@ import { Shield, Users, Target, Award } from "lucide-react";
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-foreground mb-4" data-testid="text-about-title">
-            About Casurance
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Your trusted partner for commercial insurance solutions across 15 states
-          </p>
+      <div className="bg-gradient-to-br from-[#1e3a8a] via-[#1e40af] to-[#3b5998] py-16 lg:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4" data-testid="text-about-title">
+              About Casurance
+            </h1>
+            <p className="text-lg lg:text-xl text-white/90 max-w-3xl mx-auto">
+              Your trusted partner for commercial insurance solutions across 15 states
+            </p>
+          </div>
         </div>
+      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           <Card>
