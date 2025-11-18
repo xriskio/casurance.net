@@ -6,6 +6,7 @@ import { apiRequest, queryClient } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Select,
   SelectContent,
@@ -21,9 +22,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Search, LogOut, FileText } from "lucide-react";
+import { Search, LogOut, FileText, Sparkles, NewspaperIcon } from "lucide-react";
 import { format } from "date-fns";
 import { useToast } from "@/hooks/use-toast";
+import type { BlogPost } from "@shared/schema";
 
 interface NormalizedSubmission {
   id: string;
@@ -163,6 +165,31 @@ export default function AgentPortal() {
     },
   });
 
+  const { data: blogPosts = [] } = useQuery<BlogPost[]>({
+    queryKey: ["/api/blog-posts"],
+    enabled: isAuthenticated,
+  });
+
+  const generateBlogPostMutation = useMutation({
+    mutationFn: async () => {
+      return await apiRequest("POST", "/api/blog-posts/generate", {});
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/blog-posts"] });
+      toast({
+        title: "Success",
+        description: "New blog post generated successfully! This took about 30-60 seconds.",
+      });
+    },
+    onError: () => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to generate blog post. Please try again.",
+      });
+    },
+  });
+
   if (authLoading || submissionsLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -212,6 +239,45 @@ export default function AgentPortal() {
       </header>
 
       <main className="container mx-auto px-4 py-8">
+        <Card className="mb-8">
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <NewspaperIcon className="h-5 w-5 text-primary" />
+                <CardTitle>Blog Management</CardTitle>
+              </div>
+              <Button
+                onClick={() => generateBlogPostMutation.mutate()}
+                disabled={generateBlogPostMutation.isPending}
+                data-testid="button-generate-blog-post"
+              >
+                <Sparkles className="h-4 w-4 mr-2" aria-hidden="true" />
+                {generateBlogPostMutation.isPending ? "Generating..." : "Generate New Post"}
+              </Button>
+            </div>
+            <CardDescription>
+              Generate AI-powered blog posts that will appear immediately on the public blog page. Generation takes 30-60 seconds.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-muted-foreground">Total blog posts:</span>
+                <Badge variant="secondary">{blogPosts.length}</Badge>
+              </div>
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-muted-foreground">Latest post:</span>
+                <span className="text-foreground">
+                  {blogPosts.length > 0 
+                    ? blogPosts[0]?.title 
+                    : "No posts yet"}
+                </span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <h2 className="text-2xl font-semibold mb-4">Form Submissions</h2>
         <div className="mb-6 flex flex-col sm:flex-row gap-4">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />

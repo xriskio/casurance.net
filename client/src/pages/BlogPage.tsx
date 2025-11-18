@@ -1,13 +1,10 @@
 import { useState } from "react";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Search, Calendar, Sparkles } from "lucide-react";
-import { queryClient, apiRequest } from "@/lib/queryClient";
-import { useToast } from "@/hooks/use-toast";
 import type { BlogPost } from "@shared/schema";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -15,7 +12,6 @@ import Footer from "@/components/Footer";
 export default function BlogPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const { toast } = useToast();
 
   const { data: categories = [] } = useQuery<string[]>({
     queryKey: ["/api/blog-categories"],
@@ -30,26 +26,6 @@ export default function BlogPage() {
       const response = await fetch(`/api/blog-posts?${params}`);
       if (!response.ok) throw new Error("Failed to fetch posts");
       return response.json();
-    },
-  });
-
-  const generateMutation = useMutation({
-    mutationFn: async () => {
-      return await apiRequest("/api/blog-posts/generate", "POST", {});
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/blog-posts"] });
-      toast({
-        title: "Success",
-        description: "New blog post generated successfully!",
-      });
-    },
-    onError: () => {
-      toast({
-        title: "Error",
-        description: "Failed to generate blog post. Please try again.",
-        variant: "destructive",
-      });
     },
   });
 
@@ -80,27 +56,16 @@ export default function BlogPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
         <div className="flex flex-col gap-6 mb-8">
-          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-            <div className="relative flex-1 w-full sm:max-w-md">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" aria-hidden="true" />
-              <Input
-                type="text"
-                placeholder="Search articles..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
-                data-testid="input-blog-search"
-              />
-            </div>
-
-            <Button
-              onClick={() => generateMutation.mutate()}
-              disabled={generateMutation.isPending}
-              data-testid="button-generate-post"
-            >
-              <Sparkles className="h-4 w-4 mr-2" aria-hidden="true" />
-              {generateMutation.isPending ? "Generating..." : "Generate New Post"}
-            </Button>
+          <div className="relative w-full sm:max-w-md">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" aria-hidden="true" />
+            <Input
+              type="text"
+              placeholder="Search articles..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-10"
+              data-testid="input-blog-search"
+            />
           </div>
 
           <div className="flex flex-wrap gap-2">
@@ -142,7 +107,7 @@ export default function BlogPage() {
           <Card>
             <CardContent className="p-12 text-center">
               <p className="text-muted-foreground text-lg">
-                No blog posts found. Click "Generate New Post" to create AI-powered content!
+                No blog posts found. Try adjusting your search or category filters.
               </p>
             </CardContent>
           </Card>
