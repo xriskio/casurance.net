@@ -14,8 +14,11 @@ export default function IndustriesIndex() {
 
   const handleIndustrySelect = (slug: string) => {
     setSelectedIndustry(slug);
-    if (slug) {
+    if (slug && slug !== "all") {
       setLocation(`/industry/${slug}`);
+    } else if (slug === "all") {
+      // Stay on current page - already showing all industries
+      setSelectedIndustry("");
     }
   };
 
