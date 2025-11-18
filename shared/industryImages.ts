@@ -23,6 +23,7 @@ import securityServicesImg from "@assets/generated_images/Professional_security_
 import warehousingImg from "@assets/generated_images/Modern_warehouse_distribution_center_0acd3ddc.png";
 import nemtParatransitImg from "@assets/generated_images/NEMT_wheelchair_accessible_van_19f1036f.png";
 import transportationImg from "@assets/generated_images/Professional_commercial_trucking_fleet_9adb2e6f.png";
+import limousineImg from "@assets/stock_images/luxury_limousine_fle_e1d5256a.jpg";
 
 export const industryImages: Record<string, string> = {
   "agribusiness-industry": agribusinessImg,
@@ -37,6 +38,7 @@ export const industryImages: Record<string, string> = {
   "firearms": firearmsImg,
   "hospitality": hospitalityImg,
   "life-sciences-industry": lifeSciencesImg,
+  "limousine-transportation": limousineImg,
   "manufacturing": manufacturingImg,
   "medical-professionals": medicalProfessionalsImg,
   "nemt-paratransit": nemtParatransitImg,

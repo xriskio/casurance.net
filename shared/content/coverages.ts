@@ -2536,6 +2536,58 @@ export const industries: CoverageContent[] = [
   },
 
   {
+    title: "Limousine & Chauffeured Transportation",
+    slug: "limousine-transportation",
+    category: "Industries",
+    summary: "Specialized insurance for limousine fleets, luxury transportation, and chauffeured services.",
+    description: "Comprehensive insurance solutions tailored specifically for limousine fleets and chauffeured transportation operators. Whether you operate luxury sedans, Mercedes Sprinters, stretch limousines, party buses, or executive transportation services—from a single vehicle to a 20+ vehicle fleet—we provide specialized coverage through industry-leading carriers including Philadelphia Insurance Companies (PHLY), National Interstate Insurance, Texas Insurance Company, Berkshire Hathaway, and Knightbrook Insurance.",
+    whoNeeds: [
+      "Luxury sedan and town car services",
+      "Limousine fleet operators (1-20+ vehicles)",
+      "Mercedes Sprinter fleet operators",
+      "Executive and corporate transportation",
+      "Airport shuttle and transfer services",
+      "Wedding and special event limousine services",
+      "Party bus operators",
+      "Non-fleet independent operators"
+    ],
+    coverageIncludes: [
+      "Auto Liability up to $1.5M Combined Single Limit",
+      "Uninsured/Underinsured Motorist coverage",
+      "Personal Injury Protection (PIP) where required",
+      "Comprehensive and Collision physical damage",
+      "Owned, non-owned, and hired auto coverage",
+      "Hired car physical damage including loss of use",
+      "Zero deductible glass coverage",
+      "Single deductible on comprehensive physical damage per occurrence",
+      "Lease Gap coverage",
+      "Towing and roadside assistance",
+      "Electronic equipment coverage",
+      "Passenger liability protection",
+      "Liquor liability for party buses",
+      "General liability for business operations",
+      "Workers' compensation for chauffeurs",
+      "Garagekeepers legal liability"
+    ],
+    benefits: [
+      "Specialized underwriting for chauffeured transportation",
+      "Partnership with Philadelphia Insurance Companies (PHLY) Chauffeured Transportation program",
+      "Free online interactive Defensive Driver Training course and examination",
+      "Product-specific web-based Risk Management Services",
+      "Regular e-flyer communications on risk management issues",
+      "Strategic partnership for discounted background checks and MVR checks",
+      "Competitive rates tailored to your operation size",
+      "Flexible payment options for fleet operators",
+      "24/7 claims reporting and experienced claims handling",
+      "Coverage for specialty vehicles and custom equipment",
+      "Loss of income protection during covered repairs",
+      "Passenger medical payments coverage"
+    ],
+    seoTitle: "Limousine Insurance | Chauffeured Transportation Coverage | Fleet & Individual Operators",
+    seoDescription: "Specialized limousine insurance for luxury sedan, Mercedes Sprinter, and party bus operators. Coverage for 1-20+ vehicle fleets through Philadelphia Insurance, Berkshire Hathaway, and more. Get competitive rates for chauffeured transportation services."
+  },
+
+  {
     title: "Manufacturing",
     slug: "manufacturing",
     category: "Industries",
