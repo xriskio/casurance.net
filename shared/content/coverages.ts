@@ -2942,6 +2942,53 @@ export const industries: CoverageContent[] = [
   },
 
   {
+    title: "Public Transportation",
+    slug: "public-transportation",
+    category: "Industries",
+    summary: "Comprehensive insurance solutions for charter buses, municipal transit, limousines, school districts, and passenger transportation operators.",
+    description: "Public Transportation insurance provides specialized coverage for operators serving communities through passenger transport services. Whether you operate charter buses, municipal transit systems, limousine services, school bus fleets, or paratransit operations, our comprehensive program addresses the unique liability exposures and regulatory requirements of passenger transportation. We understand the critical responsibility of safely transporting passengers and provide tailored coverage with high limits designed specifically for public and private transportation operators.",
+    whoNeeds: [
+      "Charter and tour bus operators",
+      "Municipal transit authorities and public bus systems",
+      "Limousine and executive car services",
+      "School districts and educational institutions",
+      "School bus contractors and pupil transportation",
+      "Paratransit and demand-response operators",
+      "Airport shuttle and hotel transportation services",
+      "Corporate and employee shuttle operations",
+      "Sightseeing and tourism transportation"
+    ],
+    coverageIncludes: [
+      "Auto liability up to $10,000,000 (meets federal and state passenger carrier requirements)",
+      "Uninsured/Underinsured Motorist (UM/UIM) coverage",
+      "Personal Injury Protection (PIP) and Medical Payments",
+      "General liability up to $10,000,000 for passenger and premises operations",
+      "Physical damage coverage with flexible deductibles starting at $1,000",
+      "Garage liability for maintenance operations",
+      "Garagekeepers legal liability for vehicles in your care",
+      "Hired and non-owned auto liability",
+      "Passenger accident coverage and medical payments",
+      "Sexual abuse and molestation coverage",
+      "Employee dishonesty and crime coverage",
+      "Excess liability and catastrophe coverage"
+    ],
+    benefits: [
+      "Specialized expertise in passenger transportation risks and regulations",
+      "High-limit capacity designed for public transportation exposures (up to $10M)",
+      "Coverage enhancements including blanket additional insured and waiver of subrogation",
+      "Extended towing and roadside assistance programs",
+      "Identity theft expense reimbursement for passengers",
+      "Excess physical damage catastrophe coverage for fleet protection",
+      "Limited abuse or molestation coverage protecting against serious allegations",
+      "Compliance with federal DOT, FMCSA, and state PUC requirements",
+      "Flexible deductibles and payment options to manage costs",
+      "Risk management programs focused on passenger safety and driver training",
+      "Coverage for wheelchair-equipped vehicles and accessibility equipment",
+      "24/7 certificate of insurance and compliance support"
+    ]
+  },
+
+  {
     title: "Transportation",
     slug: "transportation",
     category: "Industries",
