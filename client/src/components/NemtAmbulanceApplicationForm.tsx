@@ -11,6 +11,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowLeft, ArrowRight, Upload, CheckCircle2 } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
+import QuickQuoteForm from "./QuickQuoteForm";
 
 const applicationSchema = z.object({
   businessName: z.string().min(1, "Business name is required"),

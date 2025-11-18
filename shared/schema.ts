@@ -259,6 +259,22 @@ export const quickQuotes = pgTable("quick_quotes", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const contactRequests = pgTable("contact_requests", {
+  id: varchar("id").primaryKey(),
+  businessName: text("business_name"),
+  contactName: text("contact_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  title: text("title"),
+  preferredContactMethod: text("preferred_contact_method"),
+  preferredContactTime: text("preferred_contact_time"),
+  topicsOfInterest: text("topics_of_interest").array().notNull().default([]),
+  message: text("message").notNull(),
+  sourcePath: text("source_path"),
+  status: text("status").notNull().default("pending"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const applicationFiles = pgTable("application_files", {
   id: serial("id").primaryKey(),
   applicationType: text("application_type").notNull(),
@@ -326,6 +342,11 @@ export const insertQuickQuoteSchema = createInsertSchema(quickQuotes).omit({
   createdAt: true,
 });
 
+export const insertContactRequestSchema = createInsertSchema(contactRequests).omit({
+  id: true,
+  createdAt: true,
+});
+
 export const insertAgentSchema = createInsertSchema(agents).omit({
   id: true,
   createdAt: true,
@@ -389,5 +410,7 @@ export type InsertTaxiBlackCarQuote = z.infer<typeof insertTaxiBlackCarQuoteSche
 export type TaxiBlackCarQuote = typeof taxiBlackCarQuotes.$inferSelect;
 export type InsertQuickQuote = z.infer<typeof insertQuickQuoteSchema>;
 export type QuickQuote = typeof quickQuotes.$inferSelect;
+export type InsertContactRequest = z.infer<typeof insertContactRequestSchema>;
+export type ContactRequest = typeof contactRequests.$inferSelect;
 export type InsertApplicationFile = z.infer<typeof insertApplicationFileSchema>;
 export type ApplicationFile = typeof applicationFiles.$inferSelect;

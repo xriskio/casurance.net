@@ -11,6 +11,8 @@ import { ArrowRight, ArrowLeft, CheckCircle, Plus, Trash2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { useMutation } from "@tanstack/react-query";
+import { Separator } from "@/components/ui/separator";
+import QuickQuoteForm from "./QuickQuoteForm";
 
 interface Vehicle {
   year: string;
@@ -396,6 +398,8 @@ export default function TaxiQuoteForm() {
   }
 
   return (
+    <>
+    {/* Main Comprehensive Application Form */}
     <Card className="max-w-4xl mx-auto">
       <CardHeader>
         <CardTitle className="text-2xl">Taxi Insurance / Uber Black / Black Car Application</CardTitle>
@@ -2333,5 +2337,18 @@ export default function TaxiQuoteForm() {
         </div>
       </CardContent>
     </Card>
+
+    {/* Quick Quote Alternative */}
+    <div className="max-w-4xl mx-auto mt-12">
+      <Separator className="mb-8" />
+      <div className="text-center mb-6">
+        <h3 className="text-xl font-semibold text-foreground mb-2">Don't Have Time for the Full Application?</h3>
+        <p className="text-muted-foreground">
+          Submit a quick quote request and one of our agents will contact you to gather the necessary details.
+        </p>
+      </div>
+      <QuickQuoteForm insuranceType="Taxi/Black Car" />
+    </div>
+    </>
   );
 }
