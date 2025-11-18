@@ -9,6 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowRight, ArrowLeft, CheckCircle, ChevronDown, ChevronUp } from "lucide-react";
 
 const insuranceTypes = [
+  "Ambulance Services",
   "Builders Risk",
   "Business Owners Policy (BOP)",
   "Commercial Auto",
@@ -21,6 +22,7 @@ const insuranceTypes = [
   "General Liability",
   "Habitational (Apartments/Condos)",
   "Hotel/Motel/Hospitality",
+  "NEMT / Paratransit",
   "Ocean Cargo/Marine",
   "Product Liability",
   "Professional Liability",
@@ -147,6 +149,16 @@ const comprehensiveFormLinks: Record<string, { url: string; title: string; descr
     url: "/quote/security-services",
     title: "Use Security Services / Security Guard Application",
     description: "For Security Services and Security Guard companies, we have a comprehensive application that evaluates your guard operations, training programs, employee screening, weaponry policies, client contracts, and claims history.",
+  },
+  "NEMT / Paratransit": {
+    url: "/apply/nemt",
+    title: "Use NEMT / Paratransit Application",
+    description: "For Non-Emergency Medical Transportation (NEMT) and Paratransit services, we have a specialized application that collects fleet details, driver information, coverage selections, and supporting documentation for vehicle lists, driver lists, and loss runs.",
+  },
+  "Ambulance Services": {
+    url: "/apply/ambulance",
+    title: "Use Ambulance Services Application",
+    description: "For Ambulance and Emergency Medical Services, we have a comprehensive application that evaluates your fleet, driver qualifications, medical equipment, coverage needs, and operational risks specific to emergency medical transportation.",
   },
 };
 
