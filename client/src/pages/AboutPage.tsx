@@ -11,7 +11,7 @@ export default function AboutPage() {
             About Casurance
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Your trusted partner for commercial insurance solutions in California
+            Your trusted partner for commercial insurance solutions across 13 states
           </p>
         </div>
 
@@ -25,7 +25,7 @@ export default function AboutPage() {
                 <div>
                   <h2 className="text-2xl font-semibold text-foreground mb-3">Our Mission</h2>
                   <p className="text-muted-foreground leading-relaxed">
-                    Casurance Insurance Agency Services is dedicated to providing California businesses with comprehensive commercial insurance solutions. We specialize in serving transportation, hospitality, and specialty industries with tailored coverage designed to protect your operations and support your growth.
+                    Casurance Insurance Agency Services is dedicated to providing businesses across California, Nevada, Arizona, Oregon, Ohio, Illinois, New York, New Jersey, Pennsylvania, North Carolina, Texas, Alaska, and Florida with comprehensive commercial insurance solutions. We specialize in serving transportation, hospitality, and specialty industries with tailored coverage designed to protect your operations and support your growth.
                   </p>
                 </div>
               </div>
@@ -41,7 +41,7 @@ export default function AboutPage() {
                 <div>
                   <h2 className="text-2xl font-semibold text-foreground mb-3">Our Expertise</h2>
                   <p className="text-muted-foreground leading-relaxed">
-                    With deep industry knowledge and strong carrier relationships, we deliver competitive quotes and personalized service. Our team understands the unique risks facing California businesses and works to secure the right coverage at the best value.
+                    With deep industry knowledge and strong carrier relationships across multiple states, we deliver competitive quotes and personalized service. Our team understands the unique risks facing businesses nationwide and works to secure the right coverage at the best value.
                   </p>
                 </div>
               </div>

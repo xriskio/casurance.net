@@ -2,7 +2,7 @@
 
 ## Overview
 
-Casurance is a commercial insurance agency web application that provides quote requests, service requests, and information about various insurance coverage types and industries. The platform is built as a full-stack TypeScript application with a React frontend and Express backend, designed to help California businesses obtain insurance quotes and manage their policies.
+Casurance is a commercial insurance agency web application that provides quote requests, service requests, and information about various insurance coverage types and industries. The platform is built as a full-stack TypeScript application with a React frontend and Express backend, designed to help businesses across 13 states (California, Nevada, Arizona, Oregon, Ohio, Illinois, New York, New Jersey, Pennsylvania, North Carolina, Texas, Alaska, and Florida) obtain insurance quotes and manage their policies.
 
 The application serves as a B2B platform for commercial insurance, emphasizing trust, professionalism, and efficiency in the quote process. It features multiple specialized quote forms for different insurance types (commercial auto, general liability, workers compensation, trucking, hotel, restaurant, limousine, NEMT, ambulance, TNC/rideshare, etc.) and comprehensive coverage information organized by category.
 
