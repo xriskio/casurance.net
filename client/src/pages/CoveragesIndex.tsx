@@ -27,11 +27,30 @@ import schoolBusImg from "@assets/stock_images/yellow_school_bus_tr_b936956a.jpg
 import limousineImg from "@assets/stock_images/luxury_limousine_cha_3a290e3a.jpg";
 import commercialPropertyImg from "@assets/stock_images/commercial_property__425653a3.jpg";
 import smallPropertyImg from "@assets/stock_images/small_property_retai_3bc6cc4b.jpg";
+import tncImg from "@assets/stock_images/rideshare_uber_lyft__ec78d96a.jpg";
+import nemtImg from "@assets/stock_images/medical_transport_va_bea10e57.jpg";
+import busMotorcoachImg from "@assets/stock_images/charter_bus_tour_coa_c93b8a2a.jpg";
+import sprinterVanImg from "@assets/stock_images/commercial_cargo_van_619a433c.jpg";
 
 const getCoverageImage = (title: string, category: string): string => {
   const titleLower = title.toLowerCase();
   const categoryLower = category.toLowerCase();
   
+  if (titleLower.includes("tnc") || titleLower.includes("mobility insurance")) {
+    return tncImg;
+  }
+  if (titleLower.includes("nemt")) {
+    return nemtImg;
+  }
+  if (titleLower.includes("tcp") || titleLower.includes("transportation charter party")) {
+    return busMotorcoachImg;
+  }
+  if (titleLower.includes("bus") && titleLower.includes("motorcoach")) {
+    return busMotorcoachImg;
+  }
+  if (titleLower.includes("sprinter") || titleLower.includes("van insurance")) {
+    return sprinterVanImg;
+  }
   if (titleLower.includes("auto daily rental") || titleLower.includes("rental car")) {
     return rentalCarImg;
   }
