@@ -9,8 +9,10 @@ The application serves as a B2B platform for commercial insurance, emphasizing t
 **Agent Portal**: Authenticated portal for Casurance agents to view and manage all quote and service submissions. Features table-based layout with filtering, search, status management, and detailed submission views.
 
 **Latest Additions**: 
+- AI-Powered Blog & News Section (November 2025) - Automated content generation system using OpenAI GPT-5 via Replit AI Integrations to create commercial insurance articles, industry news, and risk management insights. Features category filtering, search, and markdown rendering
 - Limousine & Chauffeured Transportation Insurance Quote Form (November 2025) - Comprehensive 6-step application based on Philadelphia Insurance Companies standards covering auto liability, general liability, hired/non-owned liability, physical damage, UM/UIM/PIP, operations, drivers, prior insurance, and vehicle schedules (1908 lines)
 - NEMT and Paratransit industry page (November 2025) - Specialized insurance coverage information for Non-Emergency Medical Transportation and Paratransit operators
+- About Us and Contact pages (November 2025) - Company overview with mission, expertise areas, and multi-state service coverage; contact request form with comprehensive business information collection
 
 ## User Preferences
 
