@@ -214,18 +214,34 @@ export default function TncRideshareApplicationForm() {
 
   const mutation = useMutation({
     mutationFn: async (data: typeof formData) => {
-      const payload = {
-        ...data,
-        files: {
-          hasLossRuns: !!lossRunsFile,
-          hasFinancialStatements: !!financialStatementsFile,
-          hasTermsOfService: !!termsOfServiceFile,
-          hasVehicleSchedule: !!vehicleScheduleFile,
+      // Structure data to match database schema: top-level columns + payload
+      const applicationData = {
+        companyName: data.companyName,
+        contactName: data.contactName,
+        contactEmail: data.contactEmail,
+        contactPhone: data.contactPhone,
+        primaryStreetAddress: data.primaryStreetAddress,
+        city: data.city,
+        state: data.state,
+        zipCode: data.zipCode,
+        dateEstablished: data.dateEstablished,
+        totalDrivers: data.totalDrivers,
+        requestingGLCoverage: data.requestingGLCoverage ? "yes" : "no",
+        requestingAutoCoverage: data.requestingAutoCoverage ? "yes" : "no",
+        status: "pending",
+        payload: {
+          ...data,
+          files: {
+            hasLossRuns: !!lossRunsFile,
+            hasFinancialStatements: !!financialStatementsFile,
+            hasTermsOfService: !!termsOfServiceFile,
+            hasVehicleSchedule: !!vehicleScheduleFile,
+          },
         },
       };
 
       const formDataToSend = new FormData();
-      formDataToSend.append("applicationData", JSON.stringify(payload));
+      formDataToSend.append("applicationData", JSON.stringify(applicationData));
 
       if (lossRunsFile) formDataToSend.append("lossRuns", lossRunsFile);
       if (financialStatementsFile) formDataToSend.append("financialStatements", financialStatementsFile);
