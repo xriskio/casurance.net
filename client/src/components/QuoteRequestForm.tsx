@@ -32,6 +32,7 @@ const insuranceTypes = [
   "Restaurant Insurance",
   "Security Services",
   "Self Storage",
+  "Taxi Insurance / Uber Black / Black Car",
   "TNC / Rideshare / Mobility",
   "Truck & Trucking",
   "Vacant Building & Land",
@@ -162,6 +163,11 @@ const comprehensiveFormLinks: Record<string, { url: string; title: string; descr
     url: "/quote/security-services",
     title: "Use Security Services / Security Guard Application",
     description: "For Security Services and Security Guard companies, we have a comprehensive application that evaluates your guard operations, training programs, employee screening, weaponry policies, client contracts, and claims history.",
+  },
+  "Taxi Insurance / Uber Black / Black Car": {
+    url: "/quote/taxi",
+    title: "Use Taxi & Black Car Insurance Application",
+    description: "For Taxi, Uber Black, Black Car, and for-hire vehicle operations, we have a comprehensive 6-step application based on AGMI Public Auto standards. Covers auto liability up to $5M, TNC participation (Uber/Lyft), dispatch operations, fleet details with meter requirements, driver classification (employee vs independent contractor), safety programs, and regulatory compliance.",
   },
   "NEMT / Paratransit": {
     url: "/apply/nemt",
