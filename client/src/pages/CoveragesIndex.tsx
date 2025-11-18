@@ -4,6 +4,46 @@ import { Card, CardContent } from "@/components/ui/card";
 import { categories, getCoveragesByCategory } from "@shared/content/coverages";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
+import constructionImg from "@assets/stock_images/commercial_construct_058fad45.jpg";
+import professionalImg from "@assets/stock_images/business_professiona_81c0d3eb.jpg";
+import cyberImg from "@assets/stock_images/cybersecurity_data_p_2ea9d9c7.jpg";
+import healthcareImg from "@assets/stock_images/healthcare_medical_p_0d98da02.jpg";
+import manufacturingImg from "@assets/stock_images/manufacturing_factor_ff9ac498.jpg";
+import energyImg from "@assets/stock_images/energy_power_plant_i_b3f4b432.jpg";
+import environmentalImg from "@assets/stock_images/environmental_nature_b719c171.jpg";
+import restaurantImg from "@assets/stock_images/restaurant_food_serv_2b46c7dd.jpg";
+
+const getCoverageImage = (title: string, category: string): string => {
+  const titleLower = title.toLowerCase();
+  const categoryLower = category.toLowerCase();
+  
+  if (titleLower.includes("construction") || titleLower.includes("builder")) {
+    return constructionImg;
+  }
+  if (titleLower.includes("cyber")) {
+    return cyberImg;
+  }
+  if (titleLower.includes("health") || titleLower.includes("medical") || titleLower.includes("allied health")) {
+    return healthcareImg;
+  }
+  if (titleLower.includes("energy")) {
+    return energyImg;
+  }
+  if (titleLower.includes("environmental")) {
+    return environmentalImg;
+  }
+  if (titleLower.includes("manufacturing") || titleLower.includes("product")) {
+    return manufacturingImg;
+  }
+  if (titleLower.includes("restaurant") || titleLower.includes("hospitality")) {
+    return restaurantImg;
+  }
+  if (categoryLower.includes("professional")) {
+    return professionalImg;
+  }
+  
+  return professionalImg;
+};
 
 export default function CoveragesIndex() {
   return (
@@ -30,24 +70,35 @@ export default function CoveragesIndex() {
                   {category}
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {coverages.map((coverage) => (
-                    <Link key={coverage.slug} href={`/coverage/${coverage.slug}`}>
-                      <Card className="h-full hover-elevate cursor-pointer" data-testid={`card-coverage-${coverage.slug}`}>
-                        <CardContent className="p-6">
-                          <h3 className="font-semibold text-lg text-foreground mb-2">
-                            {coverage.title}
-                          </h3>
-                          <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
-                            {coverage.summary}
-                          </p>
-                          <div className="flex items-center text-primary text-sm font-medium">
-                            Learn More
-                            <ArrowRight className="ml-1 h-4 w-4" />
+                  {coverages.map((coverage) => {
+                    const imageUrl = getCoverageImage(coverage.title, category);
+                    return (
+                      <Link key={coverage.slug} href={`/coverage/${coverage.slug}`}>
+                        <Card className="h-full hover-elevate cursor-pointer overflow-hidden" data-testid={`card-coverage-${coverage.slug}`}>
+                          <div className="relative h-48 overflow-hidden">
+                            <img 
+                              src={imageUrl} 
+                              alt={coverage.title}
+                              className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                            <h3 className="absolute bottom-4 left-4 right-4 font-semibold text-xl text-white">
+                              {coverage.title}
+                            </h3>
                           </div>
-                        </CardContent>
-                      </Card>
-                    </Link>
-                  ))}
+                          <CardContent className="p-6">
+                            <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
+                              {coverage.summary}
+                            </p>
+                            <div className="flex items-center text-primary text-sm font-medium">
+                              Learn More
+                              <ArrowRight className="ml-1 h-4 w-4" />
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
             );
