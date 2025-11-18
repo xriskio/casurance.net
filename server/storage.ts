@@ -1,4 +1,4 @@
-import { quoteRequests, serviceRequests, oceanCargoQuotes, selfStorageQuotes, filmProductionQuotes, productLiabilityQuotes, securityServicesQuotes, nemtApplications, ambulanceApplications, tncApplications, limousineQuotes, applicationFiles, type InsertQuoteRequest, type QuoteRequest, type InsertServiceRequest, type ServiceRequest, type InsertOceanCargoQuote, type OceanCargoQuote, type InsertSelfStorageQuote, type SelfStorageQuote, type InsertFilmProductionQuote, type FilmProductionQuote, type InsertProductLiabilityQuote, type ProductLiabilityQuote, type InsertSecurityServicesQuote, type SecurityServicesQuote, type InsertNemtApplication, type NemtApplication, type InsertAmbulanceApplication, type AmbulanceApplication, type InsertTncApplication, type TncApplication, type InsertLimousineQuote, type LimousineQuote, type ApplicationFile } from "@shared/schema";
+import { quoteRequests, serviceRequests, oceanCargoQuotes, selfStorageQuotes, filmProductionQuotes, productLiabilityQuotes, securityServicesQuotes, nemtApplications, ambulanceApplications, tncApplications, limousineQuotes, publicTransportationQuotes, applicationFiles, type InsertQuoteRequest, type QuoteRequest, type InsertServiceRequest, type ServiceRequest, type InsertOceanCargoQuote, type OceanCargoQuote, type InsertSelfStorageQuote, type SelfStorageQuote, type InsertFilmProductionQuote, type FilmProductionQuote, type InsertProductLiabilityQuote, type ProductLiabilityQuote, type InsertSecurityServicesQuote, type SecurityServicesQuote, type InsertNemtApplication, type NemtApplication, type InsertAmbulanceApplication, type AmbulanceApplication, type InsertTncApplication, type TncApplication, type InsertLimousineQuote, type LimousineQuote, type InsertPublicTransportationQuote, type PublicTransportationQuote, type ApplicationFile } from "@shared/schema";
 import { db } from "./db";
 import { randomUUID } from "crypto";
 import { eq } from "drizzle-orm";
@@ -15,6 +15,7 @@ export interface IStorage {
   createAmbulanceApplication(application: InsertAmbulanceApplication, files: { [fieldname: string]: Express.Multer.File[] }): Promise<AmbulanceApplication>;
   createTncApplication(application: InsertTncApplication, files: { [fieldname: string]: Express.Multer.File[] }): Promise<TncApplication>;
   createLimousineQuote(quote: InsertLimousineQuote): Promise<LimousineQuote>;
+  createPublicTransportationQuote(quote: InsertPublicTransportationQuote): Promise<PublicTransportationQuote>;
   getApplicationFile(fileId: number): Promise<ApplicationFile | undefined>;
 }
 
@@ -167,6 +168,15 @@ export class DatabaseStorage implements IStorage {
     const id = randomUUID();
     const [quote] = await db
       .insert(limousineQuotes)
+      .values({ ...insertQuote, id })
+      .returning();
+    return quote;
+  }
+
+  async createPublicTransportationQuote(insertQuote: InsertPublicTransportationQuote): Promise<PublicTransportationQuote> {
+    const id = randomUUID();
+    const [quote] = await db
+      .insert(publicTransportationQuotes)
       .values({ ...insertQuote, id })
       .returning();
     return quote;
