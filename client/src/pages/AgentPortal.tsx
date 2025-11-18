@@ -165,8 +165,8 @@ export default function AgentPortal() {
     },
   });
 
-  const [selectedTopic, setSelectedTopic] = useState<string>("");
-  const [selectedBlogCategory, setSelectedBlogCategory] = useState<string>("");
+  const [selectedTopic, setSelectedTopic] = useState<string>("RANDOM");
+  const [selectedBlogCategory, setSelectedBlogCategory] = useState<string>("RANDOM");
 
   const { data: blogPosts = [] } = useQuery<BlogPost[]>({
     queryKey: ["/api/blog-posts"],
@@ -186,14 +186,14 @@ export default function AgentPortal() {
   const generateBlogPostMutation = useMutation({
     mutationFn: async () => {
       return await apiRequest("POST", "/api/blog-posts/generate", {
-        topic: selectedTopic || undefined,
-        category: selectedBlogCategory || undefined,
+        topic: selectedTopic === "RANDOM" ? undefined : selectedTopic,
+        category: selectedBlogCategory === "RANDOM" ? undefined : selectedBlogCategory,
       });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/blog-posts"] });
-      setSelectedTopic("");
-      setSelectedBlogCategory("");
+      setSelectedTopic("RANDOM");
+      setSelectedBlogCategory("RANDOM");
       toast({
         title: "Success",
         description: "New blog post generated successfully! This took about 30-60 seconds.",
@@ -276,7 +276,7 @@ export default function AgentPortal() {
                     <SelectValue placeholder="Random topic..." />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Random topic</SelectItem>
+                    <SelectItem value="RANDOM">Random topic</SelectItem>
                     {blogTopics.map((topic) => (
                       <SelectItem key={topic} value={topic}>
                         {topic}
@@ -292,7 +292,7 @@ export default function AgentPortal() {
                     <SelectValue placeholder="Random category..." />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Random category</SelectItem>
+                    <SelectItem value="RANDOM">Random category</SelectItem>
                     {blogCategories.map((category) => (
                       <SelectItem key={category} value={category}>
                         {category}
