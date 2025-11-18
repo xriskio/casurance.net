@@ -1,6 +1,7 @@
-import { quoteRequests, serviceRequests, oceanCargoQuotes, selfStorageQuotes, filmProductionQuotes, productLiabilityQuotes, securityServicesQuotes, type InsertQuoteRequest, type QuoteRequest, type InsertServiceRequest, type ServiceRequest, type InsertOceanCargoQuote, type OceanCargoQuote, type InsertSelfStorageQuote, type SelfStorageQuote, type InsertFilmProductionQuote, type FilmProductionQuote, type InsertProductLiabilityQuote, type ProductLiabilityQuote, type InsertSecurityServicesQuote, type SecurityServicesQuote } from "@shared/schema";
+import { quoteRequests, serviceRequests, oceanCargoQuotes, selfStorageQuotes, filmProductionQuotes, productLiabilityQuotes, securityServicesQuotes, nemtApplications, ambulanceApplications, applicationFiles, type InsertQuoteRequest, type QuoteRequest, type InsertServiceRequest, type ServiceRequest, type InsertOceanCargoQuote, type OceanCargoQuote, type InsertSelfStorageQuote, type SelfStorageQuote, type InsertFilmProductionQuote, type FilmProductionQuote, type InsertProductLiabilityQuote, type ProductLiabilityQuote, type InsertSecurityServicesQuote, type SecurityServicesQuote, type InsertNemtApplication, type NemtApplication, type InsertAmbulanceApplication, type AmbulanceApplication, type ApplicationFile } from "@shared/schema";
 import { db } from "./db";
 import { randomUUID } from "crypto";
+import { eq } from "drizzle-orm";
 
 export interface IStorage {
   createQuoteRequest(quote: InsertQuoteRequest): Promise<QuoteRequest>;
@@ -10,6 +11,9 @@ export interface IStorage {
   createFilmProductionQuote(quote: InsertFilmProductionQuote): Promise<FilmProductionQuote>;
   createProductLiabilityQuote(quote: InsertProductLiabilityQuote): Promise<ProductLiabilityQuote>;
   createSecurityServicesQuote(quote: InsertSecurityServicesQuote): Promise<SecurityServicesQuote>;
+  createNemtApplication(application: InsertNemtApplication, files: { [fieldname: string]: Express.Multer.File[] }): Promise<NemtApplication>;
+  createAmbulanceApplication(application: InsertAmbulanceApplication, files: { [fieldname: string]: Express.Multer.File[] }): Promise<AmbulanceApplication>;
+  getApplicationFile(fileId: number): Promise<ApplicationFile | undefined>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -74,6 +78,69 @@ export class DatabaseStorage implements IStorage {
       .values({ ...insertQuote, id })
       .returning();
     return quote;
+  }
+
+  async createNemtApplication(insertApplication: InsertNemtApplication, files: { [fieldname: string]: Express.Multer.File[] }): Promise<NemtApplication> {
+    const id = randomUUID();
+    const [application] = await db
+      .insert(nemtApplications)
+      .values({ ...insertApplication, id })
+      .returning();
+
+    if (files) {
+      for (const [fieldName, fileArray] of Object.entries(files)) {
+        if (fileArray && fileArray.length > 0) {
+          const file = fileArray[0];
+          await db.insert(applicationFiles).values({
+            applicationType: "nemt",
+            applicationId: id,
+            fileType: fieldName,
+            originalFilename: file.originalname,
+            storedFilename: file.filename,
+            fileSize: file.size,
+            mimeType: file.mimetype,
+          });
+        }
+      }
+    }
+
+    return application;
+  }
+
+  async createAmbulanceApplication(insertApplication: InsertAmbulanceApplication, files: { [fieldname: string]: Express.Multer.File[] }): Promise<AmbulanceApplication> {
+    const id = randomUUID();
+    const [application] = await db
+      .insert(ambulanceApplications)
+      .values({ ...insertApplication, id })
+      .returning();
+
+    if (files) {
+      for (const [fieldName, fileArray] of Object.entries(files)) {
+        if (fileArray && fileArray.length > 0) {
+          const file = fileArray[0];
+          await db.insert(applicationFiles).values({
+            applicationType: "ambulance",
+            applicationId: id,
+            fileType: fieldName,
+            originalFilename: file.originalname,
+            storedFilename: file.filename,
+            fileSize: file.size,
+            mimeType: file.mimetype,
+          });
+        }
+      }
+    }
+
+    return application;
+  }
+
+  async getApplicationFile(fileId: number): Promise<ApplicationFile | undefined> {
+    const [file] = await db
+      .select()
+      .from(applicationFiles)
+      .where(eq(applicationFiles.id, fileId))
+      .limit(1);
+    return file;
   }
 }
 

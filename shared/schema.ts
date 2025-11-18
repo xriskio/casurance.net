@@ -127,6 +127,72 @@ export const submissionStatusHistory = pgTable("submission_status_history", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const nemtApplications = pgTable("nemt_applications", {
+  id: varchar("id").primaryKey(),
+  businessName: text("business_name").notNull(),
+  contactName: text("contact_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  address: text("address"),
+  city: text("city"),
+  state: text("state"),
+  zipCode: text("zip_code"),
+  yearsInBusiness: text("years_in_business"),
+  numberOfVehicles: text("number_of_vehicles"),
+  numberOfDrivers: text("number_of_drivers"),
+  operatingRadius: text("operating_radius"),
+  autoLiabilityCoverage: text("auto_liability_coverage"),
+  autoPhysicalDamage: text("auto_physical_damage").default("no"),
+  hnoaCoverage: text("hnoa_coverage").default("no"),
+  workersCompensation: text("workers_compensation").default("no"),
+  generalLiability: text("general_liability").default("no"),
+  professionalLiability: text("professional_liability").default("no"),
+  umbrellaCoverage: text("umbrella_coverage").default("no"),
+  excessAutoLiability: text("excess_auto_liability").default("no"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const ambulanceApplications = pgTable("ambulance_applications", {
+  id: varchar("id").primaryKey(),
+  businessName: text("business_name").notNull(),
+  contactName: text("contact_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  address: text("address"),
+  city: text("city"),
+  state: text("state"),
+  zipCode: text("zip_code"),
+  yearsInBusiness: text("years_in_business"),
+  numberOfVehicles: text("number_of_vehicles"),
+  numberOfDrivers: text("number_of_drivers"),
+  operatingRadius: text("operating_radius"),
+  autoLiabilityCoverage: text("auto_liability_coverage"),
+  autoPhysicalDamage: text("auto_physical_damage").default("no"),
+  hnoaCoverage: text("hnoa_coverage").default("no"),
+  workersCompensation: text("workers_compensation").default("no"),
+  generalLiability: text("general_liability").default("no"),
+  professionalLiability: text("professional_liability").default("no"),
+  umbrellaCoverage: text("umbrella_coverage").default("no"),
+  excessAutoLiability: text("excess_auto_liability").default("no"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const applicationFiles = pgTable("application_files", {
+  id: serial("id").primaryKey(),
+  applicationType: text("application_type").notNull(),
+  applicationId: varchar("application_id").notNull(),
+  fileType: text("file_type").notNull(),
+  originalFilename: text("original_filename").notNull(),
+  storedFilename: text("stored_filename").notNull(),
+  fileSize: integer("file_size").notNull(),
+  mimeType: text("mime_type").notNull(),
+  uploadedAt: timestamp("uploaded_at").defaultNow(),
+});
+
 export const insertQuoteRequestSchema = createInsertSchema(quoteRequests).omit({
   id: true,
   createdAt: true,
@@ -173,6 +239,21 @@ export const insertSubmissionStatusHistorySchema = createInsertSchema(submission
   createdAt: true,
 });
 
+export const insertNemtApplicationSchema = createInsertSchema(nemtApplications).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertAmbulanceApplicationSchema = createInsertSchema(ambulanceApplications).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertApplicationFileSchema = createInsertSchema(applicationFiles).omit({
+  id: true,
+  uploadedAt: true,
+});
+
 export type InsertQuoteRequest = z.infer<typeof insertQuoteRequestSchema>;
 export type QuoteRequest = typeof quoteRequests.$inferSelect;
 export type InsertServiceRequest = z.infer<typeof insertServiceRequestSchema>;
@@ -191,3 +272,9 @@ export type InsertAgent = z.infer<typeof insertAgentSchema>;
 export type Agent = typeof agents.$inferSelect;
 export type InsertSubmissionStatusHistory = z.infer<typeof insertSubmissionStatusHistorySchema>;
 export type SubmissionStatusHistory = typeof submissionStatusHistory.$inferSelect;
+export type InsertNemtApplication = z.infer<typeof insertNemtApplicationSchema>;
+export type NemtApplication = typeof nemtApplications.$inferSelect;
+export type InsertAmbulanceApplication = z.infer<typeof insertAmbulanceApplicationSchema>;
+export type AmbulanceApplication = typeof ambulanceApplications.$inferSelect;
+export type InsertApplicationFile = z.infer<typeof insertApplicationFileSchema>;
+export type ApplicationFile = typeof applicationFiles.$inferSelect;

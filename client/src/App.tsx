@@ -36,6 +36,8 @@ import MiddleMarket from "@/pages/MiddleMarket";
 import AgentLogin from "@/pages/AgentLogin";
 import AgentPortal from "@/pages/AgentPortal";
 import AgentSubmissionDetail from "@/pages/AgentSubmissionDetail";
+import NemtApplicationPage from "@/pages/NemtApplicationPage";
+import AmbulanceApplicationPage from "@/pages/AmbulanceApplicationPage";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -74,6 +76,8 @@ function Router() {
       <Route path="/agent/login" component={AgentLogin} />
       <Route path="/agent/portal" component={AgentPortal} />
       <Route path="/agent/submission/:type/:id" component={AgentSubmissionDetail} />
+      <Route path="/apply/nemt" component={NemtApplicationPage} />
+      <Route path="/apply/ambulance" component={AmbulanceApplicationPage} />
       <Route component={NotFound} />
     </Switch>
   );

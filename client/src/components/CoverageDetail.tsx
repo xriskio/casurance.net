@@ -11,6 +11,9 @@ interface CoverageDetailProps {
 
 export default function CoverageDetail({ coverage }: CoverageDetailProps) {
   const getQuoteLink = () => {
+    if (coverage.slug === 'nemt-paratransit') {
+      return '/apply/nemt';
+    }
     if (coverage.slug === 'cyber-liability') {
       return '/quote/cyber-liability';
     }
