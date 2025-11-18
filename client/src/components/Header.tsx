@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Phone, Menu } from "lucide-react";
 import { Link } from "wouter";
-import casuranceLogo from "@assets/generated_images/Casurance_corporate_logo_design_50cc5ac0.png";
 
 export default function Header() {
   return (
@@ -9,12 +8,13 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-28">
           <Link href="/">
-            <div className="flex items-center gap-3 cursor-pointer" data-testid="link-home">
-              <img 
-                src={casuranceLogo} 
-                alt="Casurance Insurance Agency - Return to homepage" 
-                className="h-24 w-auto"
-              />
+            <div className="flex flex-col cursor-pointer" data-testid="link-home">
+              <span className="text-3xl font-bold tracking-tight text-foreground" style={{ letterSpacing: '-0.02em' }}>
+                CASURANCE
+              </span>
+              <span className="text-xs font-medium text-muted-foreground tracking-wide" style={{ letterSpacing: '0.05em' }}>
+                INSURANCE AGENCY SERVICES
+              </span>
             </div>
           </Link>
 
