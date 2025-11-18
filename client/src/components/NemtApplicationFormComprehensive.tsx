@@ -39,7 +39,7 @@ export default function NemtApplicationFormComprehensive({ applicationType, onSu
     garagingState: "",
     garagingZip: "",
     dotNumber: "",
-    pucNumber: "",
+    npiNumber: "",
     federalId: "",
     yearEstablished: "",
     yearsCurrentOwnership: "",
@@ -433,12 +433,12 @@ export default function NemtApplicationFormComprehensive({ applicationType, onSu
                 </div>
 
                 <div>
-                  <Label htmlFor="pucNumber">PUC Number</Label>
+                  <Label htmlFor="npiNumber">NPI Number</Label>
                   <Input
-                    id="pucNumber"
-                    value={formData.pucNumber}
-                    onChange={(e) => setFormData({ ...formData, pucNumber: e.target.value })}
-                    data-testid="input-puc-number"
+                    id="npiNumber"
+                    value={formData.npiNumber}
+                    onChange={(e) => setFormData({ ...formData, npiNumber: e.target.value })}
+                    data-testid="input-npi-number"
                   />
                 </div>
 
