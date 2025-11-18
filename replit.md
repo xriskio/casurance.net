@@ -6,7 +6,9 @@ Casurance is a commercial insurance agency web application that provides quote r
 
 The application serves as a B2B platform for commercial insurance, emphasizing trust, professionalism, and efficiency in the quote process. It features multiple specialized quote forms for different insurance types (commercial auto, general liability, workers compensation, trucking, hotel, restaurant, etc.) and comprehensive coverage information organized by category.
 
-**Agent Portal** (NEW): Authenticated portal for Casurance agents to view and manage all quote and service submissions. Features table-based layout with filtering, search, status management, and detailed submission views.
+**Agent Portal**: Authenticated portal for Casurance agents to view and manage all quote and service submissions. Features table-based layout with filtering, search, status management, and detailed submission views.
+
+**Latest Addition**: NEMT and Paratransit industry page (November 2025) - Specialized insurance coverage information for Non-Emergency Medical Transportation and Paratransit operators.
 
 ## User Preferences
 

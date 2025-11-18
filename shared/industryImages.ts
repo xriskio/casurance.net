@@ -21,6 +21,7 @@ import retailImg from "@assets/generated_images/Modern_retail_store_interior_e6c
 import sportsImg from "@assets/generated_images/Professional_sports_facility_interior_74e5eae2.png";
 import securityServicesImg from "@assets/generated_images/Professional_security_services_officer_5a548eee.png";
 import warehousingImg from "@assets/generated_images/Modern_warehouse_distribution_center_0acd3ddc.png";
+import nemtParatransitImg from "@assets/generated_images/NEMT_wheelchair_accessible_van_19f1036f.png";
 import transportationImg from "@assets/generated_images/Professional_commercial_trucking_fleet_9adb2e6f.png";
 
 export const industryImages: Record<string, string> = {
@@ -38,6 +39,7 @@ export const industryImages: Record<string, string> = {
   "life-sciences-industry": lifeSciencesImg,
   "manufacturing": manufacturingImg,
   "medical-professionals": medicalProfessionalsImg,
+  "nemt-paratransit": nemtParatransitImg,
   "nonprofit": nonprofitImg,
   "public-sector": publicSectorImg,
   "real-estate": realEstateImg,
