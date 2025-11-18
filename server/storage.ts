@@ -1,7 +1,7 @@
-import { quoteRequests, serviceRequests, oceanCargoQuotes, selfStorageQuotes, filmProductionQuotes, productLiabilityQuotes, securityServicesQuotes, nemtApplications, ambulanceApplications, tncApplications, limousineQuotes, publicTransportationQuotes, taxiBlackCarQuotes, quickQuotes, contactRequests, applicationFiles, type InsertQuoteRequest, type QuoteRequest, type InsertServiceRequest, type ServiceRequest, type InsertOceanCargoQuote, type OceanCargoQuote, type InsertSelfStorageQuote, type SelfStorageQuote, type InsertFilmProductionQuote, type FilmProductionQuote, type InsertProductLiabilityQuote, type ProductLiabilityQuote, type InsertSecurityServicesQuote, type SecurityServicesQuote, type InsertNemtApplication, type NemtApplication, type InsertAmbulanceApplication, type AmbulanceApplication, type InsertTncApplication, type TncApplication, type InsertLimousineQuote, type LimousineQuote, type InsertPublicTransportationQuote, type PublicTransportationQuote, type InsertTaxiBlackCarQuote, type TaxiBlackCarQuote, type InsertQuickQuote, type QuickQuote, type InsertContactRequest, type ContactRequest, type ApplicationFile } from "@shared/schema";
+import { quoteRequests, serviceRequests, oceanCargoQuotes, selfStorageQuotes, filmProductionQuotes, productLiabilityQuotes, securityServicesQuotes, nemtApplications, ambulanceApplications, tncApplications, limousineQuotes, publicTransportationQuotes, taxiBlackCarQuotes, quickQuotes, contactRequests, applicationFiles, blogPosts, type InsertQuoteRequest, type QuoteRequest, type InsertServiceRequest, type ServiceRequest, type InsertOceanCargoQuote, type OceanCargoQuote, type InsertSelfStorageQuote, type SelfStorageQuote, type InsertFilmProductionQuote, type FilmProductionQuote, type InsertProductLiabilityQuote, type ProductLiabilityQuote, type InsertSecurityServicesQuote, type SecurityServicesQuote, type InsertNemtApplication, type NemtApplication, type InsertAmbulanceApplication, type AmbulanceApplication, type InsertTncApplication, type TncApplication, type InsertLimousineQuote, type LimousineQuote, type InsertPublicTransportationQuote, type PublicTransportationQuote, type InsertTaxiBlackCarQuote, type TaxiBlackCarQuote, type InsertQuickQuote, type QuickQuote, type InsertContactRequest, type ContactRequest, type ApplicationFile, type InsertBlogPost, type BlogPost } from "@shared/schema";
 import { db } from "./db";
 import { randomUUID } from "crypto";
-import { eq } from "drizzle-orm";
+import { eq, desc, like, or } from "drizzle-orm";
 
 export interface IStorage {
   createQuoteRequest(quote: InsertQuoteRequest): Promise<QuoteRequest>;
@@ -20,6 +20,9 @@ export interface IStorage {
   createQuickQuote(quote: InsertQuickQuote): Promise<QuickQuote>;
   createContactRequest(request: InsertContactRequest): Promise<ContactRequest>;
   getApplicationFile(fileId: number): Promise<ApplicationFile | undefined>;
+  createBlogPost(post: InsertBlogPost): Promise<BlogPost>;
+  getBlogPosts(category?: string, search?: string): Promise<BlogPost[]>;
+  getBlogPostBySlug(slug: string): Promise<BlogPost | undefined>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -219,6 +222,44 @@ export class DatabaseStorage implements IStorage {
       .where(eq(applicationFiles.id, fileId))
       .limit(1);
     return file;
+  }
+
+  async createBlogPost(insertPost: InsertBlogPost): Promise<BlogPost> {
+    const [post] = await db
+      .insert(blogPosts)
+      .values(insertPost)
+      .returning();
+    return post;
+  }
+
+  async getBlogPosts(category?: string, search?: string): Promise<BlogPost[]> {
+    let query = db.select().from(blogPosts).orderBy(desc(blogPosts.publishedAt));
+
+    if (category) {
+      query = query.where(eq(blogPosts.category, category)) as any;
+    }
+
+    if (search) {
+      const searchPattern = `%${search}%`;
+      query = query.where(
+        or(
+          like(blogPosts.title, searchPattern),
+          like(blogPosts.excerpt, searchPattern),
+          like(blogPosts.content, searchPattern)
+        )
+      ) as any;
+    }
+
+    return await query;
+  }
+
+  async getBlogPostBySlug(slug: string): Promise<BlogPost | undefined> {
+    const [post] = await db
+      .select()
+      .from(blogPosts)
+      .where(eq(blogPosts.slug, slug))
+      .limit(1);
+    return post;
   }
 }
 
