@@ -8,6 +8,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ArrowRight, ArrowLeft, CheckCircle, Plus, Trash2 } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
+import { useMutation } from "@tanstack/react-query";
 
 interface Vehicle {
   year: string;
@@ -23,6 +26,15 @@ interface Vehicle {
   comprehensiveDeductible: string;
   collisionDeductible: string;
   personalUse: string;
+}
+
+interface Driver {
+  name: string;
+  licenseNumber: string;
+  state: string;
+  dateOfBirth: string;
+  yearsLicensed: string;
+  yearsExperience: string;
 }
 
 export default function LimousineQuoteForm() {
@@ -179,7 +191,28 @@ export default function LimousineQuoteForm() {
     }
   ]);
 
+  const [drivers, setDrivers] = useState<Driver[]>([
+    {
+      name: "",
+      licenseNumber: "",
+      state: "",
+      dateOfBirth: "",
+      yearsLicensed: "",
+      yearsExperience: ""
+    }
+  ]);
+
+  const { toast } = useToast();
+
   const addVehicle = () => {
+    if (vehicles.length >= 10) {
+      toast({
+        title: "Vehicle Limit Reached",
+        description: "You can add up to 10 vehicles maximum.",
+        variant: "destructive"
+      });
+      return;
+    }
     setVehicles([...vehicles, { 
       year: "", 
       make: "", 
@@ -209,6 +242,37 @@ export default function LimousineQuoteForm() {
     setVehicles(updated);
   };
 
+  const addDriver = () => {
+    if (drivers.length >= 10) {
+      toast({
+        title: "Driver Limit Reached",
+        description: "You can add up to 10 drivers maximum.",
+        variant: "destructive"
+      });
+      return;
+    }
+    setDrivers([...drivers, {
+      name: "",
+      licenseNumber: "",
+      state: "",
+      dateOfBirth: "",
+      yearsLicensed: "",
+      yearsExperience: ""
+    }]);
+  };
+
+  const removeDriver = (index: number) => {
+    if (drivers.length > 1) {
+      setDrivers(drivers.filter((_, i) => i !== index));
+    }
+  };
+
+  const updateDriver = (index: number, field: keyof Driver, value: string) => {
+    const updated = [...drivers];
+    updated[index][field] = value;
+    setDrivers(updated);
+  };
+
   const handleGaragingTypeToggle = (type: string) => {
     setFormData(prev => ({
       ...prev,
@@ -218,9 +282,40 @@ export default function LimousineQuoteForm() {
     }));
   };
 
+  const submitMutation = useMutation({
+    mutationFn: async (payload: any) => {
+      return await apiRequest("/api/limousine-quotes", "POST", payload);
+    },
+    onSuccess: () => {
+      setSubmitted(true);
+      toast({
+        title: "Quote Request Submitted",
+        description: "We'll contact you shortly with your quote.",
+      });
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Submission Failed",
+        description: error.message || "Please try again.",
+        variant: "destructive"
+      });
+    }
+  });
+
   const handleSubmit = () => {
-    console.log("Limousine quote request submitted:", { formData, vehicles });
-    setSubmitted(true);
+    const payload = {
+      businessName: formData.companyName,
+      contactName: formData.contactPerson,
+      email: formData.email,
+      phone: formData.businessPhone,
+      location: formData.mailingAddress,
+      payload: {
+        formData,
+        vehicles,
+        drivers
+      }
+    };
+    submitMutation.mutate(payload);
   };
 
   const totalSteps = 6;
@@ -1380,6 +1475,126 @@ export default function LimousineQuoteForm() {
                   </div>
                 )}
               </div>
+            </div>
+
+            <div className="mt-8 space-y-4 border-t pt-6">
+              <div className="flex justify-between items-center">
+                <h3 className="text-lg font-semibold text-foreground">Driver Schedule</h3>
+                <Button type="button" onClick={addDriver} variant="outline" size="sm" data-testid="button-add-driver">
+                  <Plus className="h-4 w-4 mr-1" />
+                  Add Driver
+                </Button>
+              </div>
+
+              {drivers.map((driver, index) => (
+                <Card key={index} className="p-4">
+                  <div className="flex justify-between items-start mb-4">
+                    <h4 className="font-medium">Driver #{index + 1}</h4>
+                    {drivers.length > 1 && (
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => removeDriver(index)}
+                        data-testid={`button-remove-driver-${index}`}
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    )}
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="md:col-span-2">
+                      <Label htmlFor={`driver-name-${index}`}>Driver Name *</Label>
+                      <Input
+                        id={`driver-name-${index}`}
+                        value={driver.name}
+                        onChange={(e) => updateDriver(index, "name", e.target.value)}
+                        placeholder="Full Name"
+                        data-testid={`input-driver-name-${index}`}
+                      />
+                    </div>
+
+                    <div>
+                      <Label htmlFor={`driver-dob-${index}`}>Date of Birth *</Label>
+                      <Input
+                        id={`driver-dob-${index}`}
+                        type="date"
+                        value={driver.dateOfBirth}
+                        onChange={(e) => updateDriver(index, "dateOfBirth", e.target.value)}
+                        data-testid={`input-driver-dob-${index}`}
+                      />
+                    </div>
+
+                    <div>
+                      <Label htmlFor={`driver-license-${index}`}>Driver's License Number *</Label>
+                      <Input
+                        id={`driver-license-${index}`}
+                        value={driver.licenseNumber}
+                        onChange={(e) => updateDriver(index, "licenseNumber", e.target.value)}
+                        placeholder="License Number"
+                        data-testid={`input-driver-license-${index}`}
+                      />
+                    </div>
+
+                    <div>
+                      <Label htmlFor={`driver-state-${index}`}>License State *</Label>
+                      <Select 
+                        value={driver.state} 
+                        onValueChange={(value) => updateDriver(index, "state", value)}
+                      >
+                        <SelectTrigger id={`driver-state-${index}`} data-testid={`select-driver-state-${index}`}>
+                          <SelectValue placeholder="Select State" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="CA">California</SelectItem>
+                          <SelectItem value="NY">New York</SelectItem>
+                          <SelectItem value="TX">Texas</SelectItem>
+                          <SelectItem value="FL">Florida</SelectItem>
+                          <SelectItem value="IL">Illinois</SelectItem>
+                          <SelectItem value="PA">Pennsylvania</SelectItem>
+                          <SelectItem value="OH">Ohio</SelectItem>
+                          <SelectItem value="GA">Georgia</SelectItem>
+                          <SelectItem value="NC">North Carolina</SelectItem>
+                          <SelectItem value="MI">Michigan</SelectItem>
+                          <SelectItem value="NJ">New Jersey</SelectItem>
+                          <SelectItem value="VA">Virginia</SelectItem>
+                          <SelectItem value="WA">Washington</SelectItem>
+                          <SelectItem value="AZ">Arizona</SelectItem>
+                          <SelectItem value="MA">Massachusetts</SelectItem>
+                          <SelectItem value="TN">Tennessee</SelectItem>
+                          <SelectItem value="IN">Indiana</SelectItem>
+                          <SelectItem value="MO">Missouri</SelectItem>
+                          <SelectItem value="MD">Maryland</SelectItem>
+                          <SelectItem value="WI">Wisconsin</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div>
+                      <Label htmlFor={`driver-years-licensed-${index}`}>Years Licensed *</Label>
+                      <Input
+                        id={`driver-years-licensed-${index}`}
+                        value={driver.yearsLicensed}
+                        onChange={(e) => updateDriver(index, "yearsLicensed", e.target.value)}
+                        placeholder="Years"
+                        data-testid={`input-driver-years-licensed-${index}`}
+                      />
+                    </div>
+
+                    <div>
+                      <Label htmlFor={`driver-years-experience-${index}`}>Years Experience *</Label>
+                      <Input
+                        id={`driver-years-experience-${index}`}
+                        value={driver.yearsExperience}
+                        onChange={(e) => updateDriver(index, "yearsExperience", e.target.value)}
+                        placeholder="Years"
+                        data-testid={`input-driver-years-experience-${index}`}
+                      />
+                    </div>
+                  </div>
+                </Card>
+              ))}
             </div>
           </div>
         )}
