@@ -18,6 +18,13 @@ export interface BlogPostContent {
 
 // Fetch stock image based on topic
 async function getStockImage(topic: string): Promise<string | undefined> {
+  const apiKey = process.env.PEXELS_API_KEY;
+  
+  if (!apiKey) {
+    console.warn("PEXELS_API_KEY not configured - blog posts will be generated without images");
+    return undefined;
+  }
+
   try {
     const searchQuery = topic
       .replace(/insurance/gi, "business")
@@ -30,7 +37,7 @@ async function getStockImage(topic: string): Promise<string | undefined> {
       `https://api.pexels.com/v1/search?query=${encodeURIComponent(searchQuery)}&per_page=1&orientation=landscape`,
       {
         headers: {
-          Authorization: "563492ad6f9170000100000112bc0e0d9e7f4f7e874f2bcd6dd74e0a"
+          Authorization: apiKey
         }
       }
     );
