@@ -296,6 +296,7 @@ export const blogPosts = pgTable("blog_posts", {
   category: text("category").notNull(),
   tags: text("tags").array().notNull().default([]),
   author: text("author").notNull().default("Casurance Team"),
+  imageUrl: text("image_url"),
   publishedAt: timestamp("published_at").defaultNow(),
   createdAt: timestamp("created_at").defaultNow(),
   isAiGenerated: text("is_ai_generated").notNull().default("true"),

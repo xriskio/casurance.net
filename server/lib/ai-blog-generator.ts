@@ -13,6 +13,39 @@ export interface BlogPostContent {
   content: string;
   category: string;
   tags: string[];
+  imageUrl?: string;
+}
+
+// Fetch stock image based on topic
+async function getStockImage(topic: string): Promise<string | undefined> {
+  try {
+    const searchQuery = topic
+      .replace(/insurance/gi, "business")
+      .replace(/coverage/gi, "professional")
+      .replace(/liability/gi, "agreement")
+      .split(":")[0]
+      .substring(0, 50);
+
+    const response = await fetch(
+      `https://api.pexels.com/v1/search?query=${encodeURIComponent(searchQuery)}&per_page=1&orientation=landscape`,
+      {
+        headers: {
+          Authorization: "563492ad6f9170000100000112bc0e0d9e7f4f7e874f2bcd6dd74e0a"
+        }
+      }
+    );
+
+    if (!response.ok) {
+      console.error("Failed to fetch stock image:", response.statusText);
+      return undefined;
+    }
+
+    const data: any = await response.json();
+    return data.photos?.[0]?.src?.large || undefined;
+  } catch (error) {
+    console.error("Error fetching stock image:", error);
+    return undefined;
+  }
 }
 
 const commercialInsuranceTopics = [
@@ -76,25 +109,34 @@ Return ONLY a valid JSON object with this exact structure:
 }`;
 
   try {
-    // the newest OpenAI model is "gpt-5" which was released August 7, 2025. do not change this unless explicitly requested by the user
-    const response = await openai.chat.completions.create({
-      model: "gpt-5",
-      messages: [{ role: "user", content: prompt }],
-      response_format: { type: "json_object" },
-      max_completion_tokens: 8192,
-    });
+    // Fetch stock image and generate blog post in parallel
+    const [imageUrl, aiResponse] = await Promise.all([
+      getStockImage(selectedTopic),
+      // the newest OpenAI model is "gpt-5" which was released August 7, 2025. do not change this unless explicitly requested by the user
+      openai.chat.completions.create({
+        model: "gpt-5",
+        messages: [{ role: "user", content: prompt }],
+        response_format: { type: "json_object" },
+        max_completion_tokens: 8192,
+      })
+    ]);
 
-    const content = response.choices[0]?.message?.content;
+    const content = aiResponse.choices[0]?.message?.content;
     if (!content) {
       throw new Error("No content generated");
     }
 
     const blogPost = JSON.parse(content) as BlogPostContent;
+    blogPost.imageUrl = imageUrl;
     return blogPost;
   } catch (error) {
     console.error("Error generating blog post:", error);
     throw error;
   }
+}
+
+export function getTopics(): string[] {
+  return commercialInsuranceTopics;
 }
 
 export function getRandomTopic(): string {

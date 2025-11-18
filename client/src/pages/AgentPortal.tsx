@@ -165,17 +165,35 @@ export default function AgentPortal() {
     },
   });
 
+  const [selectedTopic, setSelectedTopic] = useState<string>("");
+  const [selectedBlogCategory, setSelectedBlogCategory] = useState<string>("");
+
   const { data: blogPosts = [] } = useQuery<BlogPost[]>({
     queryKey: ["/api/blog-posts"],
     enabled: isAuthenticated,
   });
 
+  const { data: blogTopics = [] } = useQuery<string[]>({
+    queryKey: ["/api/blog-topics"],
+    enabled: isAuthenticated,
+  });
+
+  const { data: blogCategories = [] } = useQuery<string[]>({
+    queryKey: ["/api/blog-categories"],
+    enabled: isAuthenticated,
+  });
+
   const generateBlogPostMutation = useMutation({
     mutationFn: async () => {
-      return await apiRequest("POST", "/api/blog-posts/generate", {});
+      return await apiRequest("POST", "/api/blog-posts/generate", {
+        topic: selectedTopic || undefined,
+        category: selectedBlogCategory || undefined,
+      });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/blog-posts"] });
+      setSelectedTopic("");
+      setSelectedBlogCategory("");
       toast({
         title: "Success",
         description: "New blog post generated successfully! This took about 30-60 seconds.",
@@ -241,33 +259,68 @@ export default function AgentPortal() {
       <main className="container mx-auto px-4 py-8">
         <Card className="mb-8">
           <CardHeader>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <NewspaperIcon className="h-5 w-5 text-primary" />
-                <CardTitle>Blog Management</CardTitle>
-              </div>
-              <Button
-                onClick={() => generateBlogPostMutation.mutate()}
-                disabled={generateBlogPostMutation.isPending}
-                data-testid="button-generate-blog-post"
-              >
-                <Sparkles className="h-4 w-4 mr-2" aria-hidden="true" />
-                {generateBlogPostMutation.isPending ? "Generating..." : "Generate New Post"}
-              </Button>
+            <div className="flex items-center gap-2">
+              <NewspaperIcon className="h-5 w-5 text-primary" />
+              <CardTitle>Blog Management</CardTitle>
             </div>
             <CardDescription>
-              Generate AI-powered blog posts that will appear immediately on the public blog page. Generation takes 30-60 seconds.
+              Generate AI-powered blog posts with professional images. Posts appear immediately on the public blog page. Generation takes 30-60 seconds.
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-2">
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Topic (optional)</label>
+                <Select value={selectedTopic} onValueChange={setSelectedTopic}>
+                  <SelectTrigger data-testid="select-blog-topic">
+                    <SelectValue placeholder="Random topic..." />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">Random topic</SelectItem>
+                    {blogTopics.map((topic) => (
+                      <SelectItem key={topic} value={topic}>
+                        {topic}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Category (optional)</label>
+                <Select value={selectedBlogCategory} onValueChange={setSelectedBlogCategory}>
+                  <SelectTrigger data-testid="select-blog-category">
+                    <SelectValue placeholder="Random category..." />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">Random category</SelectItem>
+                    {blogCategories.map((category) => (
+                      <SelectItem key={category} value={category}>
+                        {category}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
+            <Button
+              onClick={() => generateBlogPostMutation.mutate()}
+              disabled={generateBlogPostMutation.isPending}
+              className="w-full"
+              data-testid="button-generate-blog-post"
+            >
+              <Sparkles className="h-4 w-4 mr-2" aria-hidden="true" />
+              {generateBlogPostMutation.isPending ? "Generating..." : "Generate New Post"}
+            </Button>
+
+            <div className="pt-4 border-t space-y-2">
               <div className="flex items-center justify-between text-sm">
                 <span className="text-muted-foreground">Total blog posts:</span>
                 <Badge variant="secondary">{blogPosts.length}</Badge>
               </div>
               <div className="flex items-center justify-between text-sm">
                 <span className="text-muted-foreground">Latest post:</span>
-                <span className="text-foreground">
+                <span className="text-foreground text-sm truncate max-w-md">
                   {blogPosts.length > 0 
                     ? blogPosts[0]?.title 
                     : "No posts yet"}

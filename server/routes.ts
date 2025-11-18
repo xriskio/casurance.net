@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema, insertFilmProductionQuoteSchema, insertProductLiabilityQuoteSchema, insertSecurityServicesQuoteSchema, insertNemtApplicationSchema, insertAmbulanceApplicationSchema, insertTncApplicationSchema, insertLimousineQuoteSchema, insertPublicTransportationQuoteSchema, insertTaxiBlackCarQuoteSchema, insertQuickQuoteSchema, insertContactRequestSchema, insertBlogPostSchema } from "@shared/schema";
 import { registerAgentRoutes } from "./routes/agent";
-import { generateBlogPost, getCategories } from "./lib/ai-blog-generator";
+import { generateBlogPost, getCategories, getTopics } from "./lib/ai-blog-generator";
 import multer from "multer";
 import path from "path";
 import { randomUUID } from "crypto";
@@ -292,6 +292,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(categories);
     } catch (error: any) {
       res.status(500).json({ message: error.message || "Error fetching categories" });
+    }
+  });
+
+  // Get blog topics (for agent portal topic selection)
+  app.get("/api/blog-topics", async (req, res) => {
+    try {
+      const topics = getTopics();
+      res.json(topics);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message || "Error fetching topics" });
     }
   });
 
