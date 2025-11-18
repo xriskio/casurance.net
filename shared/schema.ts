@@ -231,6 +231,23 @@ export const publicTransportationQuotes = pgTable("public_transportation_quotes"
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const taxiBlackCarQuotes = pgTable("taxi_black_car_quotes", {
+  id: varchar("id").primaryKey(),
+  companyName: text("company_name").notNull(),
+  contactPerson: text("contact_person").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  mailingAddress: text("mailing_address"),
+  yearsInBusiness: text("years_in_business"),
+  fleetSize: text("fleet_size"),
+  autoLiabilityLimit: text("auto_liability_limit"),
+  dispatchPercentage: text("dispatch_percentage"),
+  tncParticipation: text("tnc_participation").default("no"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const applicationFiles = pgTable("application_files", {
   id: serial("id").primaryKey(),
   applicationType: text("application_type").notNull(),
@@ -284,6 +301,11 @@ export const insertLimousineQuoteSchema = createInsertSchema(limousineQuotes).om
 });
 
 export const insertPublicTransportationQuoteSchema = createInsertSchema(publicTransportationQuotes).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertTaxiBlackCarQuoteSchema = createInsertSchema(taxiBlackCarQuotes).omit({
   id: true,
   createdAt: true,
 });
@@ -347,5 +369,7 @@ export type InsertLimousineQuote = z.infer<typeof insertLimousineQuoteSchema>;
 export type LimousineQuote = typeof limousineQuotes.$inferSelect;
 export type InsertPublicTransportationQuote = z.infer<typeof insertPublicTransportationQuoteSchema>;
 export type PublicTransportationQuote = typeof publicTransportationQuotes.$inferSelect;
+export type InsertTaxiBlackCarQuote = z.infer<typeof insertTaxiBlackCarQuoteSchema>;
+export type TaxiBlackCarQuote = typeof taxiBlackCarQuotes.$inferSelect;
 export type InsertApplicationFile = z.infer<typeof insertApplicationFileSchema>;
 export type ApplicationFile = typeof applicationFiles.$inferSelect;
