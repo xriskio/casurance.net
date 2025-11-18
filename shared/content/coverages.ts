@@ -2846,40 +2846,46 @@ export const industries: CoverageContent[] = [
     slug: "nemt-paratransit",
     category: "Industries",
     summary: "Specialized insurance coverage for Non-Emergency Medical Transportation and Paratransit operators.",
-    description: "Non-Emergency Medical Transportation (NEMT) and Paratransit insurance provides comprehensive coverage specifically designed for businesses that transport patients to medical appointments, dialysis centers, and healthcare facilities. This specialized program addresses the unique risks associated with transporting passengers with disabilities, special needs, and medical conditions. Whether you operate a single wheelchair-accessible van or manage a fleet of specially equipped vehicles, our coverage protects your business and the vulnerable passengers you serve. We understand the additional responsibilities involved in patient assistance, wheelchair securement, and medical equipment handling that make your operation distinct from standard transportation services.",
+    description: "Non-Emergency Medical Transportation (NEMT) and Paratransit insurance provides comprehensive coverage specifically designed for businesses that transport patients to medical appointments, dialysis centers, and healthcare facilities. For far too long, insurance companies have neglected the needs of this ever-growing industry. Our specialized program addresses the unique risks associated with transporting passengers with disabilities, special needs, and medical conditions. Whether you operate a single wheelchair-accessible van or manage a fleet of specially equipped vehicles, we provide tailored coverage at competitive rates that you can actually afford. We understand the additional responsibilities involved in patient assistance, wheelchair securement, and medical equipment handling that make your operation distinct from standard transportation services.",
     whoNeeds: [
       "Non-Emergency Medical Transportation (NEMT) providers",
       "Paratransit service operators",
       "Medicaid and Medicare transportation contractors",
       "Wheelchair van transportation services",
       "Ambulette and medical car services",
-      "Dialysis transportation companies",
+      "Dialysis transportation company operators",
       "Healthcare facility patient transport services",
-      "Social service organization transportation programs"
+      "Social service organization transportation programs",
+      "Demand-response transportation providers"
     ],
     coverageIncludes: [
       "Auto liability for bodily injury and property damage (meets state and contractual requirements)",
       "Physical damage for specialized vehicles, wheelchair lifts, ramps, and accessibility equipment",
       "Passenger liability with enhanced coverage for patient transportation",
-      "General liability for non-auto incidents including premises operations",
+      "General liability for non-automobile related accidents and premises operations",
+      "Sexual abuse and molestation (SAM) coverage for allegations",
       "Workers' compensation for drivers and patient assistance personnel",
       "Medical payments coverage for passenger injuries",
       "Hired and non-owned auto liability",
       "Loading and unloading liability coverage",
-      "Excess liability for catastrophic claims protection",
-      "Professional liability coverage"
+      "Excess liability for catastrophic claims protection up to $20,000,000",
+      "Professional liability coverage",
+      "Crime and employee dishonesty coverage"
     ],
     benefits: [
-      "Specialized coverage for NEMT and paratransit unique risks",
+      "Exclusive focus on NEMT and paratransit industry expertise",
+      "Competitive pricing designed specifically for medical transportation",
       "Protection for wheelchair lifts, ramps, and accessibility modifications",
       "Enhanced passenger liability for vulnerable populations",
+      "Critical SAM coverage protecting against serious allegations",
       "Coverage during patient loading, unloading, and assistance",
       "Compliance with Medicaid, Medicare, and healthcare facility contract requirements",
       "Understanding of patient transportation operations and safety protocols",
       "Flexible payment options to manage cash flow",
       "Coverage for specialized medical equipment securement",
       "Risk management programs focused on patient safety",
-      "Support for both contract-based and demand-response operations"
+      "Support for both contract-based and demand-response operations",
+      "High-limit capacity available for growing operations"
     ]
   },
 
