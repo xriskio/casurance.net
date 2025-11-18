@@ -12,6 +12,16 @@ import manufacturingImg from "@assets/stock_images/manufacturing_factor_ff9ac498
 import energyImg from "@assets/stock_images/energy_power_plant_i_b3f4b432.jpg";
 import environmentalImg from "@assets/stock_images/environmental_nature_b719c171.jpg";
 import restaurantImg from "@assets/stock_images/restaurant_food_serv_2b46c7dd.jpg";
+import smallBusinessImg from "@assets/stock_images/small_business_store_26bacd28.jpg";
+import entertainmentImg from "@assets/stock_images/entertainment_film_p_7e6c9bed.jpg";
+import lifeSciencesImg from "@assets/stock_images/life_sciences_labora_19957af7.jpg";
+import productRecallImg from "@assets/stock_images/product_recall_quali_3f235afe.jpg";
+import managementImg from "@assets/stock_images/corporate_executive__2a0562f0.jpg";
+import employmentImg from "@assets/stock_images/employment_workplace_847a0339.jpg";
+import publicEntityImg from "@assets/stock_images/government_public_bu_1b03ea65.jpg";
+import generalInsuranceImg from "@assets/stock_images/insurance_business_h_310d01ab.jpg";
+import warehouseImg from "@assets/stock_images/warehouse_logistics__28c62501.jpg";
+import specialtyImg from "@assets/stock_images/specialty_trade_tool_c8bb5010.jpg";
 
 const getCoverageImage = (title: string, category: string): string => {
   const titleLower = title.toLowerCase();
@@ -23,7 +33,7 @@ const getCoverageImage = (title: string, category: string): string => {
   if (titleLower.includes("cyber")) {
     return cyberImg;
   }
-  if (titleLower.includes("health") || titleLower.includes("medical") || titleLower.includes("allied health")) {
+  if (titleLower.includes("health care") || titleLower.includes("medical") || titleLower.includes("allied health")) {
     return healthcareImg;
   }
   if (titleLower.includes("energy")) {
@@ -32,17 +42,47 @@ const getCoverageImage = (title: string, category: string): string => {
   if (titleLower.includes("environmental")) {
     return environmentalImg;
   }
-  if (titleLower.includes("manufacturing") || titleLower.includes("product")) {
+  if (titleLower.includes("manufacturing") || titleLower.includes("products liability")) {
     return manufacturingImg;
   }
   if (titleLower.includes("restaurant") || titleLower.includes("hospitality")) {
     return restaurantImg;
   }
+  if (titleLower.includes("small business")) {
+    return smallBusinessImg;
+  }
+  if (titleLower.includes("entertainment")) {
+    return entertainmentImg;
+  }
+  if (titleLower.includes("life sciences")) {
+    return lifeSciencesImg;
+  }
+  if (titleLower.includes("product recall")) {
+    return productRecallImg;
+  }
+  if (titleLower.includes("management") || titleLower.includes("directors") || titleLower.includes("officers")) {
+    return managementImg;
+  }
+  if (titleLower.includes("employment")) {
+    return employmentImg;
+  }
+  if (titleLower.includes("public entity") || titleLower.includes("government")) {
+    return publicEntityImg;
+  }
+  if (titleLower.includes("warehouse") || titleLower.includes("distribution")) {
+    return warehouseImg;
+  }
+  if (titleLower.includes("specialty casualty")) {
+    return specialtyImg;
+  }
+  if (titleLower.includes("general casualty") || titleLower.includes("excess casualty")) {
+    return generalInsuranceImg;
+  }
   if (categoryLower.includes("professional")) {
     return professionalImg;
   }
   
-  return professionalImg;
+  return generalInsuranceImg;
 };
 
 export default function CoveragesIndex() {
