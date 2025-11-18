@@ -189,6 +189,7 @@ export default function NemtApplicationFormComprehensive({ applicationType, onSu
     professionalLiability: false,
     umbrellaCoverage: false,
     excessAutoLiability: false,
+    excessAutoLiabilityLimit: "",
     
     // Physical Damage Details
     physicalDamageDeductible: "",
@@ -230,9 +231,8 @@ export default function NemtApplicationFormComprehensive({ applicationType, onSu
 
   const mutation = useMutation({
     mutationFn: async (data: typeof formData) => {
-      const { customLiabilityAmount: _unused, ...formFields } = data;
       const payload = {
-        ...formFields,
+        ...data,
         files: {
           hasVehicleList: !!vehicleFile,
           hasDriverList: !!driverFile,
@@ -1755,6 +1755,31 @@ export default function NemtApplicationFormComprehensive({ applicationType, onSu
                     </Label>
                   </div>
                 </div>
+
+                {formData.excessAutoLiability && (
+                  <div className="mt-4">
+                    <Label htmlFor="excessAutoLiabilityLimit">Excess Auto Liability Limit *</Label>
+                    <Select
+                      value={formData.excessAutoLiabilityLimit}
+                      onValueChange={(value) => setFormData({ ...formData, excessAutoLiabilityLimit: value })}
+                      required
+                    >
+                      <SelectTrigger data-testid="select-excess-auto-limit">
+                        <SelectValue placeholder="Select limit amount" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="1000000">$1,000,000</SelectItem>
+                        <SelectItem value="2000000">$2,000,000</SelectItem>
+                        <SelectItem value="3000000">$3,000,000</SelectItem>
+                        <SelectItem value="4000000">$4,000,000</SelectItem>
+                        <SelectItem value="5000000">$5,000,000</SelectItem>
+                        <SelectItem value="10000000">$10,000,000</SelectItem>
+                        <SelectItem value="15000000">$15,000,000</SelectItem>
+                        <SelectItem value="20000000">$20,000,000</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                )}
 
                 {formData.autoPhysicalDamage && (
                   <div className="mt-6 p-4 bg-muted/50 rounded-md space-y-4">
