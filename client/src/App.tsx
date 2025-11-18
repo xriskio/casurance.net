@@ -42,6 +42,8 @@ import TncRideshareApplicationPage from "@/pages/TncRideshareApplicationPage";
 import LimousineQuote from "@/pages/LimousineQuote";
 import PublicTransportationQuote from "@/pages/PublicTransportationQuote";
 import TaxiQuote from "@/pages/TaxiQuote";
+import AboutPage from "@/pages/AboutPage";
+import ContactPage from "@/pages/ContactPage";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -77,6 +79,8 @@ function Router() {
       <Route path="/coverage/:slug" component={CoveragePage} />
       <Route path="/industries" component={IndustriesIndex} />
       <Route path="/industry/:slug" component={IndustryPage} />
+      <Route path="/about" component={AboutPage} />
+      <Route path="/contact" component={ContactPage} />
       <Route path="/agent/login" component={AgentLogin} />
       <Route path="/agent/portal" component={AgentPortal} />
       <Route path="/agent/submission/:type/:id" component={AgentSubmissionDetail} />
