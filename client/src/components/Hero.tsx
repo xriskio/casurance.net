@@ -37,14 +37,10 @@ export default function Hero() {
             </a>
           </div>
 
-          <div className="mt-12 grid grid-cols-3 gap-8">
+          <div className="mt-12 grid grid-cols-2 gap-8">
             <div>
               <div className="text-3xl font-bold text-primary-foreground mb-1">15+</div>
               <div className="text-sm text-primary-foreground/80">Years Experience</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-primary-foreground mb-1">A+</div>
-              <div className="text-sm text-primary-foreground/80">BBB Rating</div>
             </div>
             <div>
               <div className="text-3xl font-bold text-primary-foreground mb-1">50+</div>
