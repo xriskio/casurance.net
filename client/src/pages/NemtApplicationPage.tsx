@@ -1,4 +1,4 @@
-import NemtAmbulanceApplicationForm from "@/components/NemtAmbulanceApplicationForm";
+import NemtApplicationFormComprehensive from "@/components/NemtApplicationFormComprehensive";
 import { Link } from "wouter";
 
 export default function NemtApplicationPage() {
@@ -22,7 +22,7 @@ export default function NemtApplicationPage() {
             Complete this application to get comprehensive insurance coverage for your Non-Emergency Medical Transportation or Paratransit business.
           </p>
         </div>
-        <NemtAmbulanceApplicationForm applicationType="nemt" />
+        <NemtApplicationFormComprehensive applicationType="nemt" />
       </div>
     </div>
   );
