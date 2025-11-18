@@ -6,6 +6,8 @@ Casurance is a commercial insurance agency web application that provides quote r
 
 The application serves as a B2B platform for commercial insurance, emphasizing trust, professionalism, and efficiency in the quote process. It features multiple specialized quote forms for different insurance types (commercial auto, general liability, workers compensation, trucking, hotel, restaurant, etc.) and comprehensive coverage information organized by category.
 
+**Agent Portal** (NEW): Authenticated portal for Casurance agents to view and manage all quote and service submissions. Features table-based layout with filtering, search, status management, and detailed submission views.
+
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
@@ -177,3 +179,48 @@ The application implements comprehensive accessibility features to meet WCAG 2.1
 - Structured content types with SEO metadata
 - Category-based organization for coverage types
 - Slug-based routing for dynamic pages
+
+## Agent Portal
+
+The agent portal provides authenticated access for Casurance agents to view and manage all submission requests.
+
+**Authentication System**
+- Passport.js with local strategy for email/password authentication
+- Bcrypt password hashing for secure credential storage
+- PostgreSQL session management via connect-pg-simple
+- Session persistence with 7-day expiration
+- Default credentials: admin@casurance.com / admin123 (must be changed after first login)
+
+**Database Schema**
+- `agents` table: stores agent accounts (id, email, hashedPassword, fullName, role)
+- `agent_sessions` table: manages session persistence
+- `submission_status_history` table: tracks all status changes with audit trail
+
+**Agent Portal Features**
+- Table-based submission list with columns: Form Name, Name, Location, Date, Status, Actions
+- Real-time search across business names, contacts, and locations
+- Filter by submission type (general quotes, service requests, specialized insurance types)
+- "Mark as Read" functionality to track reviewed submissions
+- "View Details" page showing complete submission information
+- Status management (pending, read, completed)
+- Responsive design optimized for desktop use
+
+**API Endpoints**
+- POST `/api/auth/login` - authenticate agent with email/password
+- POST `/api/auth/logout` - end agent session
+- GET `/api/auth/me` - get current authenticated agent
+- GET `/api/agent/submissions` - list all submissions with optional filtering
+- PATCH `/api/agent/submissions/:type/:id/status` - update submission status
+
+**Frontend Components**
+- `AgentLogin` (/agent/login) - authentication form
+- `AgentPortal` (/agent/portal) - main submissions dashboard
+- `AgentSubmissionDetail` (/agent/submission/:type/:id) - detailed submission view
+- Custom hook `useAgentAuth` - manages authentication state
+
+**Security**
+- Session-based authentication with httpOnly cookies
+- CSRF protection via sameSite cookie attribute
+- Password requirements enforced (minimum 1 character for development)
+- Protected routes with authentication middleware
+- Credential-based API requests

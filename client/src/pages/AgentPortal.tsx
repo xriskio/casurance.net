@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { useAgentAuth } from "@/hooks/use-agent-auth";
+import { apiRequest, queryClient } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
   Select,
@@ -21,14 +21,97 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Search, LogOut, FileText, Phone, Mail } from "lucide-react";
+import { Search, LogOut, FileText } from "lucide-react";
 import { format } from "date-fns";
+import { useToast } from "@/hooks/use-toast";
+
+interface NormalizedSubmission {
+  id: string;
+  type: string;
+  formName: string;
+  name: string;
+  location: string;
+  date: string;
+  status: "complete" | "incomplete";
+  rawData: any;
+}
+
+function normalizeSubmission(submission: any): NormalizedSubmission {
+  const formNameMap: Record<string, string> = {
+    quote: "Contact (normal)",
+    service: "Service Request",
+    "ocean-cargo": "Ocean Cargo Insurance",
+    "self-storage": "Self Storage Insurance",
+    "film-production": "Film Production Insurance",
+    "product-liability": "Product Liability Insurance",
+    "security-services": "Security Services Insurance",
+  };
+
+  const insuranceTypeMap: Record<string, string> = {
+    "commercial-auto": "Commercial Auto",
+    "general-liability": "General Liability",
+    "workers-compensation": "Workers Compensation",
+    habitational: "Habitational",
+    trucking: "Trucking",
+    hotel: "Hotel Insurance",
+    restaurant: "Restaurant Insurance",
+    "builders-risk": "Builders Risk",
+    "vacant-building": "Vacant Building",
+    "crane-riggers": "Crane & Riggers",
+    "religious-organization": "Religious Organization",
+    "commercial-property": "Commercial Property",
+    "cyber-liability": "Cyber Liability",
+    "employment-practices": "Employment Practices",
+    "professional-liability": "Professional Liability",
+    "construction-casualty": "Construction Casualty",
+  };
+
+  let formName = formNameMap[submission.submissionType] || submission.submissionType;
+  
+  if (submission.submissionType === "quote" && submission.insuranceType) {
+    formName = insuranceTypeMap[submission.insuranceType] || submission.insuranceType;
+  }
+
+  const name = submission.contactName || submission.name || "N/A";
+  
+  let location = "N/A";
+  if (submission.city && submission.state) {
+    location = `${submission.city}, ${submission.state}`;
+  } else if (submission.businessAddress) {
+    const addressParts = submission.businessAddress.split(",");
+    if (addressParts.length >= 2) {
+      location = addressParts.slice(-2).join(",").trim();
+    }
+  } else if (submission.location) {
+    location = submission.location;
+  }
+
+  const date = submission.createdAt
+    ? format(new Date(submission.createdAt), "MMM d, yyyy")
+    : "N/A";
+
+  const status = submission.status === "read" || submission.status === "completed" 
+    ? "complete" 
+    : "incomplete";
+
+  return {
+    id: submission.id,
+    type: submission.submissionType,
+    formName,
+    name,
+    location,
+    date,
+    status,
+    rawData: submission,
+  };
+}
 
 export default function AgentPortal() {
   const [, setLocation] = useLocation();
   const { agent, isLoading: authLoading, isAuthenticated, logout } = useAgentAuth();
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("all");
+  const { toast } = useToast();
 
   useEffect(() => {
     if (!authLoading && !isAuthenticated) {
@@ -39,6 +122,45 @@ export default function AgentPortal() {
   const { data: submissionsData, isLoading: submissionsLoading } = useQuery({
     queryKey: ["/api/agent/submissions", { type: typeFilter !== "all" ? typeFilter : undefined, search }],
     enabled: isAuthenticated,
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      if (typeFilter !== "all") {
+        params.append("type", typeFilter);
+      }
+      if (search) {
+        params.append("search", search);
+      }
+      const url = `/api/agent/submissions${params.toString() ? `?${params.toString()}` : ""}`;
+      const res = await fetch(url, { credentials: "include" });
+      if (!res.ok) {
+        throw new Error("Failed to fetch submissions");
+      }
+      return await res.json();
+    },
+  });
+
+  const markAsReadMutation = useMutation({
+    mutationFn: async ({ type, id }: { type: string; id: string }) => {
+      return await apiRequest("PATCH", `/api/agent/submissions/${type}/${id}/status`, {
+        status: "read",
+        notes: "Marked as read by agent",
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/agent/submissions", { type: typeFilter !== "all" ? typeFilter : undefined, search }] });
+      queryClient.invalidateQueries({ queryKey: ["/api/agent/submissions"] });
+      toast({
+        title: "Success",
+        description: "Submission marked as read",
+      });
+    },
+    onError: () => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to mark submission as read",
+      });
+    },
   });
 
   if (authLoading || submissionsLoading) {
@@ -56,32 +178,24 @@ export default function AgentPortal() {
   }
 
   const submissions = (submissionsData as any)?.submissions || [];
+  const normalizedSubmissions = submissions.map(normalizeSubmission);
 
-  const getSubmissionTypeBadge = (type: string) => {
-    const typeMap: Record<string, { label: string; variant: "default" | "secondary" }> = {
-      quote: { label: "Quote", variant: "default" },
-      service: { label: "Service", variant: "secondary" },
-      "ocean-cargo": { label: "Ocean Cargo", variant: "default" },
-      "self-storage": { label: "Self Storage", variant: "default" },
-      "film-production": { label: "Film Production", variant: "default" },
-      "product-liability": { label: "Product Liability", variant: "default" },
-      "security-services": { label: "Security Services", variant: "default" },
-    };
-
-    const config = typeMap[type] || { label: type, variant: "default" as const };
+  const filteredSubmissions = normalizedSubmissions.filter((sub: NormalizedSubmission) => {
+    if (!search) return true;
+    const searchLower = search.toLowerCase();
     return (
-      <Badge variant={config.variant} data-testid={`badge-type-${type}`}>
-        {config.label}
-      </Badge>
+      sub.formName.toLowerCase().includes(searchLower) ||
+      sub.name.toLowerCase().includes(searchLower) ||
+      sub.location.toLowerCase().includes(searchLower)
     );
-  };
+  });
 
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b bg-card">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-semibold">Agent Portal</h1>
+            <h1 className="text-2xl font-semibold">Submitted Forms for casurance.com</h1>
             <p className="text-sm text-muted-foreground">
               Welcome, {agent?.fullName}
             </p>
@@ -98,114 +212,111 @@ export default function AgentPortal() {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        <Card>
-          <CardHeader>
-            <CardTitle>Submissions</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex flex-col sm:flex-row gap-4">
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <Input
-                  placeholder="Search by business name, contact, or email..."
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  className="pl-10"
-                  data-testid="input-search"
-                />
-              </div>
-              <Select value={typeFilter} onValueChange={setTypeFilter}>
-                <SelectTrigger className="w-full sm:w-48" data-testid="select-type-filter">
-                  <SelectValue placeholder="Filter by type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Types</SelectItem>
-                  <SelectItem value="quote">General Quotes</SelectItem>
-                  <SelectItem value="service">Service Requests</SelectItem>
-                  <SelectItem value="ocean-cargo">Ocean Cargo</SelectItem>
-                  <SelectItem value="self-storage">Self Storage</SelectItem>
-                  <SelectItem value="film-production">Film Production</SelectItem>
-                  <SelectItem value="product-liability">Product Liability</SelectItem>
-                  <SelectItem value="security-services">Security Services</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+        <div className="mb-6 flex flex-col sm:flex-row gap-4">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Input
+              placeholder="Search by form name, contact name, or location..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="pl-10"
+              data-testid="input-search"
+            />
+          </div>
+          <Select value={typeFilter} onValueChange={setTypeFilter}>
+            <SelectTrigger className="w-full sm:w-48" data-testid="select-type-filter">
+              <SelectValue placeholder="Filter by type" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Types</SelectItem>
+              <SelectItem value="quote">General Quotes</SelectItem>
+              <SelectItem value="service">Service Requests</SelectItem>
+              <SelectItem value="ocean-cargo">Ocean Cargo</SelectItem>
+              <SelectItem value="self-storage">Self Storage</SelectItem>
+              <SelectItem value="film-production">Film Production</SelectItem>
+              <SelectItem value="product-liability">Product Liability</SelectItem>
+              <SelectItem value="security-services">Security Services</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
 
-            {submissions.length === 0 ? (
-              <div className="text-center py-12">
-                <FileText className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
-                <p className="text-lg text-muted-foreground">No submissions found</p>
-                <p className="text-sm text-muted-foreground">
-                  Submissions will appear here as they come in
-                </p>
-              </div>
-            ) : (
-              <div className="rounded-md border">
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Date</TableHead>
-                      <TableHead>Type</TableHead>
-                      <TableHead>Business</TableHead>
-                      <TableHead>Contact</TableHead>
-                      <TableHead>Insurance Type</TableHead>
-                      <TableHead>Status</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {submissions.map((submission: any, index: number) => (
-                      <TableRow
-                        key={`${submission.submissionType}-${submission.id || index}`}
-                        data-testid={`row-submission-${index}`}
+        {filteredSubmissions.length === 0 ? (
+          <div className="text-center py-12 border rounded-md bg-card">
+            <FileText className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
+            <p className="text-lg text-muted-foreground">No submissions found</p>
+            <p className="text-sm text-muted-foreground">
+              Submissions will appear here as they come in
+            </p>
+          </div>
+        ) : (
+          <div className="rounded-md border bg-card">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Form Name</TableHead>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Location</TableHead>
+                  <TableHead>Date</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead></TableHead>
+                  <TableHead></TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {filteredSubmissions.map((submission: NormalizedSubmission, index: number) => (
+                  <TableRow
+                    key={submission.id}
+                    data-testid={`row-submission-${index}`}
+                  >
+                    <TableCell data-testid={`text-form-name-${index}`}>
+                      {submission.formName}
+                    </TableCell>
+                    <TableCell data-testid={`text-name-${index}`}>
+                      {submission.name}
+                    </TableCell>
+                    <TableCell data-testid={`text-location-${index}`}>
+                      {submission.location}
+                    </TableCell>
+                    <TableCell data-testid={`text-date-${index}`}>
+                      {submission.date}
+                    </TableCell>
+                    <TableCell>
+                      <Badge 
+                        variant={submission.status === "complete" ? "default" : "outline"}
+                        data-testid={`badge-status-${index}`}
                       >
-                        <TableCell data-testid={`text-date-${index}`}>
-                          {submission.createdAt
-                            ? format(new Date(submission.createdAt), "MMM d, yyyy")
-                            : "N/A"}
-                        </TableCell>
-                        <TableCell>
-                          {getSubmissionTypeBadge(submission.submissionType)}
-                        </TableCell>
-                        <TableCell data-testid={`text-business-${index}`}>
-                          {submission.businessName || submission.companyName || "N/A"}
-                        </TableCell>
-                        <TableCell>
-                          <div className="space-y-1">
-                            <div className="font-medium" data-testid={`text-contact-name-${index}`}>
-                              {submission.contactName || submission.name || "N/A"}
-                            </div>
-                            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                              {submission.email && (
-                                <span className="flex items-center gap-1" data-testid={`text-email-${index}`}>
-                                  <Mail className="w-3 h-3" />
-                                  {submission.email}
-                                </span>
-                              )}
-                              {submission.phone && (
-                                <span className="flex items-center gap-1" data-testid={`text-phone-${index}`}>
-                                  <Phone className="w-3 h-3" />
-                                  {submission.phone}
-                                </span>
-                              )}
-                            </div>
-                          </div>
-                        </TableCell>
-                        <TableCell data-testid={`text-insurance-type-${index}`}>
-                          {submission.insuranceType || submission.submissionType}
-                        </TableCell>
-                        <TableCell>
-                          <Badge variant="outline" data-testid={`badge-status-${index}`}>
-                            {submission.status || "Pending"}
-                          </Badge>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </div>
-            )}
-          </CardContent>
-        </Card>
+                        {submission.status}
+                      </Badge>
+                    </TableCell>
+                    <TableCell>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => markAsReadMutation.mutate({ type: submission.type, id: submission.id })}
+                        disabled={markAsReadMutation.isPending}
+                        data-testid={`button-mark-read-${index}`}
+                        className="text-destructive hover:text-destructive px-0"
+                      >
+                        Mark as Read
+                      </Button>
+                    </TableCell>
+                    <TableCell>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setLocation(`/agent/submission/${submission.type}/${submission.id}`)}
+                        data-testid={`button-view-details-${index}`}
+                        className="text-destructive hover:text-destructive px-0"
+                      >
+                        View Details
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        )}
       </main>
     </div>
   );
