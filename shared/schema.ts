@@ -200,6 +200,23 @@ export const tncApplications = pgTable("tnc_applications", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const limousineQuotes = pgTable("limousine_quotes", {
+  id: varchar("id").primaryKey(),
+  companyName: text("company_name").notNull(),
+  contactPerson: text("contact_person").notNull(),
+  email: text("email").notNull(),
+  businessPhone: text("business_phone").notNull(),
+  mailingAddress: text("mailing_address"),
+  yearsInBusiness: text("years_in_business"),
+  numberOfEmployees: text("number_of_employees"),
+  autoLiabilityLimit: text("auto_liability_limit"),
+  comprehensiveDeductible: text("comprehensive_deductible"),
+  collisionDeductible: text("collision_deductible"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const applicationFiles = pgTable("application_files", {
   id: serial("id").primaryKey(),
   applicationType: text("application_type").notNull(),
@@ -243,6 +260,11 @@ export const insertProductLiabilityQuoteSchema = createInsertSchema(productLiabi
 });
 
 export const insertSecurityServicesQuoteSchema = createInsertSchema(securityServicesQuotes).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertLimousineQuoteSchema = createInsertSchema(limousineQuotes).omit({
   id: true,
   createdAt: true,
 });

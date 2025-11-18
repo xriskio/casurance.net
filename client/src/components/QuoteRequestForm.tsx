@@ -22,6 +22,7 @@ const insuranceTypes = [
   "General Liability",
   "Habitational (Apartments/Condos)",
   "Hotel/Motel/Hospitality",
+  "Limousine Transportation",
   "NEMT / Paratransit",
   "Ocean Cargo/Marine",
   "Product Liability",
@@ -75,6 +76,11 @@ const comprehensiveFormLinks: Record<string, { url: string; title: string; descr
     url: "/quote/hotel",
     title: "Use Hotel Insurance Application",
     description: "For Hotel, Motel, and Hospitality insurance, we have a specialized application that collects detailed information about your property, amenities, revenue streams, and operational risks.",
+  },
+  "Limousine Transportation": {
+    url: "/quote/limousine",
+    title: "Use Limousine Transportation Insurance Application",
+    description: "For Limousine and Chauffeured Transportation insurance, we have a comprehensive application based on Philadelphia Insurance Companies standards. Covers auto liability, general liability, hired/non-owned liability, and physical damage coverage for luxury sedans, Mercedes Sprinters, party buses, and stretch limousines.",
   },
   "Restaurant Insurance": {
     url: "/quote/restaurant",
