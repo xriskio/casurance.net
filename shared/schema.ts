@@ -367,6 +367,50 @@ export const commercialEarthquakeQuotes = pgTable("commercial_earthquake_quotes"
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const franchisedDealerQuotes = pgTable("franchised_dealer_quotes", {
+  id: varchar("id").primaryKey(),
+  applicantName: text("applicant_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  effectiveDate: text("effective_date"),
+  mailingAddress: text("mailing_address"),
+  city: text("city"),
+  state: text("state"),
+  zipCode: text("zip_code"),
+  yearsInBusiness: text("years_in_business"),
+  dealershipType: text("dealership_type"),
+  numberOfLocations: text("number_of_locations"),
+  newAutoSalesPercent: text("new_auto_sales_percent"),
+  usedAutoSalesPercent: text("used_auto_sales_percent"),
+  serviceRepairPercent: text("service_repair_percent"),
+  numberOfDealerPlates: text("number_of_dealer_plates"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const garageServiceQuotes = pgTable("garage_service_quotes", {
+  id: varchar("id").primaryKey(),
+  applicantName: text("applicant_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  effectiveDate: text("effective_date"),
+  mailingAddress: text("mailing_address"),
+  city: text("city"),
+  state: text("state"),
+  zipCode: text("zip_code"),
+  yearsInBusiness: text("years_in_business"),
+  businessType: text("business_type"),
+  numberOfLocations: text("number_of_locations"),
+  repairServicesPercent: text("repair_services_percent"),
+  partsAccessoriesPercent: text("parts_accessories_percent"),
+  numberOfEmployees: text("number_of_employees"),
+  annualGrossSales: text("annual_gross_sales"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const insertQuoteRequestSchema = createInsertSchema(quoteRequests).omit({
   id: true,
   createdAt: true,
@@ -479,6 +523,16 @@ export const insertCommercialEarthquakeQuoteSchema = createInsertSchema(commerci
   createdAt: true,
 });
 
+export const insertFranchisedDealerQuoteSchema = createInsertSchema(franchisedDealerQuotes).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertGarageServiceQuoteSchema = createInsertSchema(garageServiceQuotes).omit({
+  id: true,
+  createdAt: true,
+});
+
 export type InsertQuoteRequest = z.infer<typeof insertQuoteRequestSchema>;
 export type QuoteRequest = typeof quoteRequests.$inferSelect;
 export type InsertServiceRequest = z.infer<typeof insertServiceRequestSchema>;
@@ -523,3 +577,7 @@ export type InsertCommercialFloodQuote = z.infer<typeof insertCommercialFloodQuo
 export type CommercialFloodQuote = typeof commercialFloodQuotes.$inferSelect;
 export type InsertCommercialEarthquakeQuote = z.infer<typeof insertCommercialEarthquakeQuoteSchema>;
 export type CommercialEarthquakeQuote = typeof commercialEarthquakeQuotes.$inferSelect;
+export type InsertFranchisedDealerQuote = z.infer<typeof insertFranchisedDealerQuoteSchema>;
+export type FranchisedDealerQuote = typeof franchisedDealerQuotes.$inferSelect;
+export type InsertGarageServiceQuote = z.infer<typeof insertGarageServiceQuoteSchema>;
+export type GarageServiceQuote = typeof garageServiceQuotes.$inferSelect;
