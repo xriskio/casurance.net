@@ -29,6 +29,7 @@ import autoDealerGarageImg from "@assets/stock_images/auto_repair_shop_mec_c0bb8
 import garageServiceCentersImg from "@assets/stock_images/auto_service_center__1de1ecb8.jpg";
 import golfCountryClubImg from "@assets/stock_images/professional_golf_co_2f9b5f57.jpg";
 import publicTransportationImg from "@assets/stock_images/modern_public_transp_64aa03b0.jpg";
+import publicSelfStorageImg from "@assets/stock_images/modern_self_storage__b49ae433.jpg";
 
 export const industryImages: Record<string, string> = {
   "agribusiness-industry": agribusinessImg,
@@ -61,6 +62,7 @@ export const industryImages: Record<string, string> = {
   "garage-service-centers": garageServiceCentersImg,
   "golf-country-club": golfCountryClubImg,
   "public-transportation": publicTransportationImg,
+  "public-self-storage": publicSelfStorageImg,
 };
 
 export function getIndustryImage(slug: string): string | undefined {
