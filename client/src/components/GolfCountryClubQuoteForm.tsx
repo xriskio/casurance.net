@@ -8,10 +8,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ArrowRight, ArrowLeft, CheckCircle } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
 
 export default function GolfCountryClubQuoteForm() {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const { toast } = useToast();
   
   const [formData, setFormData] = useState({
     // General Club Information
@@ -157,6 +161,40 @@ export default function GolfCountryClubQuoteForm() {
     packageStore: false,
   });
 
+  const submitMutation = useMutation({
+    mutationFn: async () => {
+      return await apiRequest("POST", "/api/golf-country-club-quotes", {
+        clubName: formData.clubName,
+        contactName: formData.contactName,
+        email: formData.email,
+        phone: formData.phone,
+        city: formData.city,
+        state: formData.state,
+        zipCode: formData.zip,
+        clubType: formData.clubType,
+        numberOfHoles: formData.numberOfHoles,
+        acreage: formData.acreage,
+        annualRevenue: formData.annualRevenue,
+        generalLiabilityLimit: formData.generalLiabilityLimit,
+        payload: { ...formData, amenities },
+      });
+    },
+    onSuccess: () => {
+      toast({
+        title: "Quote Request Submitted",
+        description: "We've received your Golf & Country Club insurance quote request. Our team will review and contact you shortly.",
+      });
+      setSubmitted(true);
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Submission Failed",
+        description: error.message || "An error occurred. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
@@ -165,21 +203,18 @@ export default function GolfCountryClubQuoteForm() {
     setAmenities(prev => ({ ...prev, [amenity]: !prev[amenity as keyof typeof amenities] }));
   };
 
-  const handleSubmit = async () => {
-    try {
-      const response = await fetch("/api/golf-country-club-quotes", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, amenities }),
-        credentials: "include",
+  const handleSubmit = () => {
+    // Validate required fields
+    if (!formData.clubName || !formData.contactName || !formData.email || !formData.phone) {
+      toast({
+        title: "Required Fields Missing",
+        description: "Please fill in all required fields: Club Name, Contact Name, Email, and Phone.",
+        variant: "destructive",
       });
-
-      if (!response.ok) throw new Error("Submission failed");
-      setSubmitted(true);
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("There was an error submitting your application. Please try again.");
+      return;
     }
+
+    submitMutation.mutate();
   };
 
   const renderProgressBar = () => (
@@ -1764,8 +1799,9 @@ export default function GolfCountryClubQuoteForm() {
                 onClick={handleSubmit}
                 className="ml-auto"
                 data-testid="button-submit"
+                disabled={submitMutation.isPending}
               >
-                Submit Application
+                {submitMutation.isPending ? "Submitting..." : "Submit Application"}
               </Button>
             )}
           </div>
