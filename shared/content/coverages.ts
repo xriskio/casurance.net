@@ -3207,7 +3207,9 @@ export function getCoverageBySlug(slug: string): CoverageContent | undefined {
 }
 
 export function getCoveragesByCategory(category: string): CoverageContent[] {
-  return coverages.filter(c => c.category === category);
+  return coverages
+    .filter(c => c.category === category)
+    .sort((a, b) => a.title.localeCompare(b.title));
 }
 
 export const categories = [
