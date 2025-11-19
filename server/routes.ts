@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema, insertFilmProductionQuoteSchema, insertProductLiabilityQuoteSchema, insertSecurityServicesQuoteSchema, insertNemtApplicationSchema, insertAmbulanceApplicationSchema, insertTncApplicationSchema, insertLimousineQuoteSchema, insertPublicTransportationQuoteSchema, insertTaxiBlackCarQuoteSchema, insertQuickQuoteSchema, insertContactRequestSchema, insertBlogPostSchema } from "@shared/schema";
 import { registerAgentRoutes } from "./routes/agent";
-import { generateBlogPost, getCategories, getTopics } from "./lib/ai-blog-generator";
+import { generateBlogPost, getCategories, getTopics, generateDraftContent, improveContent, suggestTags } from "./lib/ai-blog-generator";
 import multer from "multer";
 import path from "path";
 import { randomUUID } from "crypto";
@@ -329,6 +329,66 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(post);
     } catch (error: any) {
       res.status(500).json({ message: error.message || "Error creating blog post" });
+    }
+  });
+
+  // AI Assist: Generate draft content (authenticated agents only)
+  app.post("/api/blog-posts/ai-assist/draft", async (req, res) => {
+    try {
+      if (!req.isAuthenticated || !req.isAuthenticated()) {
+        return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
+      }
+
+      const { title, category } = req.body;
+      
+      if (!title || !category) {
+        return res.status(400).json({ message: "Title and category are required" });
+      }
+
+      const draft = await generateDraftContent(title, category);
+      res.json(draft);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message || "Error generating draft content" });
+    }
+  });
+
+  // AI Assist: Improve content (authenticated agents only)
+  app.post("/api/blog-posts/ai-assist/improve", async (req, res) => {
+    try {
+      if (!req.isAuthenticated || !req.isAuthenticated()) {
+        return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
+      }
+
+      const { content, category } = req.body;
+      
+      if (!content || !category) {
+        return res.status(400).json({ message: "Content and category are required" });
+      }
+
+      const improved = await improveContent(content, category);
+      res.json(improved);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message || "Error improving content" });
+    }
+  });
+
+  // AI Assist: Suggest tags (authenticated agents only)
+  app.post("/api/blog-posts/ai-assist/tags", async (req, res) => {
+    try {
+      if (!req.isAuthenticated || !req.isAuthenticated()) {
+        return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
+      }
+
+      const { title, content, category } = req.body;
+      
+      if (!title && !content) {
+        return res.status(400).json({ message: "Title or content is required" });
+      }
+
+      const tags = await suggestTags(title || "", content || "", category || "");
+      res.json(tags);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message || "Error suggesting tags" });
     }
   });
 

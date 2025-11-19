@@ -153,3 +153,134 @@ export function getRandomTopic(): string {
 export function getCategories(): string[] {
   return categories;
 }
+
+// Generate draft content based on title and category
+export async function generateDraftContent(title: string, category: string): Promise<{ excerpt: string; content: string; tags: string[]; imageUrl?: string }> {
+  const prompt = `You are a commercial insurance expert. Generate a comprehensive blog post draft based on this title: "${title}"
+
+Category: ${category}
+
+Requirements:
+1. Write in a professional, authoritative tone for business decision-makers
+2. Include practical, actionable information
+3. Use proper insurance industry terminology
+4. Structure with clear sections using markdown headings (##, ###)
+5. 800-1200 words
+6. Be carrier-agnostic - no specific carrier names
+7. Create an engaging excerpt (150-200 characters)
+8. Suggest 3-5 relevant tags
+
+Return ONLY a valid JSON object with this structure:
+{
+  "excerpt": "Brief compelling excerpt",
+  "content": "Full blog post content in markdown format",
+  "tags": ["tag1", "tag2", "tag3"]
+}`;
+
+  try {
+    const [imageUrl, aiResponse] = await Promise.all([
+      getStockImage(title),
+      openai.chat.completions.create({
+        model: "gpt-5",
+        messages: [{ role: "user", content: prompt }],
+        response_format: { type: "json_object" },
+        max_completion_tokens: 8192,
+      })
+    ]);
+
+    const content = aiResponse.choices[0]?.message?.content;
+    if (!content) {
+      throw new Error("No content generated");
+    }
+
+    const result = JSON.parse(content);
+    result.imageUrl = imageUrl;
+    return result;
+  } catch (error) {
+    console.error("Error generating draft content:", error);
+    throw error;
+  }
+}
+
+// Improve existing content
+export async function improveContent(content: string, category: string): Promise<{ content: string }> {
+  const prompt = `You are a commercial insurance expert and professional editor. Improve the following blog post content to make it more engaging, professional, and valuable for business decision-makers.
+
+Category: ${category}
+
+Current content:
+${content}
+
+Requirements:
+1. Maintain the same general structure and key points
+2. Enhance clarity and readability
+3. Add relevant insurance terminology where appropriate
+4. Improve transitions between sections
+5. Make it more engaging while staying professional
+6. Ensure carrier-agnostic language
+7. Return the improved content in markdown format
+
+Return ONLY a valid JSON object with this structure:
+{
+  "content": "Improved blog post content in markdown format"
+}`;
+
+  try {
+    const aiResponse = await openai.chat.completions.create({
+      model: "gpt-5",
+      messages: [{ role: "user", content: prompt }],
+      response_format: { type: "json_object" },
+      max_completion_tokens: 8192,
+    });
+
+    const responseContent = aiResponse.choices[0]?.message?.content;
+    if (!responseContent) {
+      throw new Error("No content generated");
+    }
+
+    return JSON.parse(responseContent);
+  } catch (error) {
+    console.error("Error improving content:", error);
+    throw error;
+  }
+}
+
+// Suggest relevant tags
+export async function suggestTags(title: string, content: string, category: string): Promise<{ tags: string[] }> {
+  const prompt = `You are a commercial insurance SEO expert. Analyze the following blog post and suggest 3-5 highly relevant tags that will help with discoverability and categorization.
+
+Title: ${title}
+Category: ${category}
+Content preview: ${content.substring(0, 500)}...
+
+Requirements:
+1. Tags should be specific to commercial insurance topics
+2. Include both broad and specific terms
+3. Use lowercase
+4. Focus on industry-relevant keywords
+5. Consider SEO value
+
+Return ONLY a valid JSON object with this structure:
+{
+  "tags": ["tag1", "tag2", "tag3", "tag4", "tag5"]
+}`;
+
+  try {
+    const aiResponse = await openai.chat.completions.create({
+      model: "gpt-5",
+      messages: [{ role: "user", content: prompt }],
+      response_format: { type: "json_object" },
+      max_completion_tokens: 512,
+    });
+
+    const responseContent = aiResponse.choices[0]?.message?.content;
+    if (!responseContent) {
+      throw new Error("No tags generated");
+    }
+
+    return JSON.parse(responseContent);
+  } catch (error) {
+    console.error("Error suggesting tags:", error);
+    throw error;
+  }
+}
