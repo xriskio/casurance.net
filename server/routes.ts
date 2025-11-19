@@ -102,6 +102,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertOceanCargoQuoteSchema.parse(req.body);
       const referenceNumber = generateReferenceNumber('RFQ');
       const quote = await storage.createOceanCargoQuote({ ...validatedData, referenceNumber } as any);
+      
+      sendQuoteConfirmationEmail({
+        referenceNumber,
+        businessName: validatedData.applicantName,
+        contactName: validatedData.applicantName,
+        email: validatedData.email,
+        phone: validatedData.phone || '',
+        insuranceType: 'Ocean Cargo Insurance'
+      }).catch(err => console.error('Failed to send confirmation email:', err));
+      
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -114,6 +124,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertSelfStorageQuoteSchema.parse(req.body);
       const referenceNumber = generateReferenceNumber('RFQ');
       const quote = await storage.createSelfStorageQuote({ ...validatedData, referenceNumber } as any);
+      
+      sendQuoteConfirmationEmail({
+        referenceNumber,
+        businessName: validatedData.namedInsured,
+        contactName: validatedData.namedInsured,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Self Storage Insurance'
+      }).catch(err => console.error('Failed to send confirmation email:', err));
+      
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -126,6 +146,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertFilmProductionQuoteSchema.parse(req.body);
       const referenceNumber = generateReferenceNumber('RFQ');
       const quote = await storage.createFilmProductionQuote({ ...validatedData, referenceNumber } as any);
+      
+      sendQuoteConfirmationEmail({
+        referenceNumber,
+        businessName: validatedData.applicantName,
+        contactName: validatedData.applicantName,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Film Production Insurance'
+      }).catch(err => console.error('Failed to send confirmation email:', err));
+      
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -138,6 +168,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertProductLiabilityQuoteSchema.parse(req.body);
       const referenceNumber = generateReferenceNumber('RFQ');
       const quote = await storage.createProductLiabilityQuote({ ...validatedData, referenceNumber } as any);
+      
+      sendQuoteConfirmationEmail({
+        referenceNumber,
+        businessName: validatedData.namedInsured,
+        contactName: validatedData.namedInsured,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Product Liability Insurance'
+      }).catch(err => console.error('Failed to send confirmation email:', err));
+      
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -150,6 +190,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertSecurityServicesQuoteSchema.parse(req.body);
       const referenceNumber = generateReferenceNumber('RFQ');
       const quote = await storage.createSecurityServicesQuote({ ...validatedData, referenceNumber } as any);
+      
+      sendQuoteConfirmationEmail({
+        referenceNumber,
+        businessName: validatedData.namedInsured,
+        contactName: validatedData.namedInsured,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Security Services Insurance'
+      }).catch(err => console.error('Failed to send confirmation email:', err));
+      
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -170,6 +220,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const files = req.files as { [fieldname: string]: Express.Multer.File[] };
       const application = await storage.createNemtApplication({ ...validatedData, referenceNumber } as any, files);
       
+      sendQuoteConfirmationEmail({
+        referenceNumber,
+        businessName: validatedData.businessName,
+        contactName: validatedData.contactName,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'NEMT Insurance'
+      }).catch(err => console.error('Failed to send confirmation email:', err));
+      
       res.json(application);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -189,6 +248,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const files = req.files as { [fieldname: string]: Express.Multer.File[] };
       const application = await storage.createAmbulanceApplication({ ...validatedData, referenceNumber } as any, files);
+      
+      sendQuoteConfirmationEmail({
+        referenceNumber,
+        businessName: validatedData.businessName,
+        contactName: validatedData.contactName,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Ambulance Insurance'
+      }).catch(err => console.error('Failed to send confirmation email:', err));
       
       res.json(application);
     } catch (error: any) {
@@ -211,6 +279,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const files = req.files as { [fieldname: string]: Express.Multer.File[] };
       const application = await storage.createTncApplication({ ...validatedData, referenceNumber } as any, files);
       
+      sendQuoteConfirmationEmail({
+        referenceNumber,
+        businessName: validatedData.companyName,
+        contactName: validatedData.contactName,
+        email: validatedData.contactEmail,
+        phone: validatedData.contactPhone,
+        insuranceType: 'TNC/Rideshare Insurance'
+      }).catch(err => console.error('Failed to send confirmation email:', err));
+      
       res.json(application);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -223,6 +300,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertLimousineQuoteSchema.parse(req.body);
       const referenceNumber = generateReferenceNumber('RFQ');
       const quote = await storage.createLimousineQuote({ ...validatedData, referenceNumber } as any);
+      
+      sendQuoteConfirmationEmail({
+        referenceNumber,
+        businessName: validatedData.companyName,
+        contactName: validatedData.contactPerson,
+        email: validatedData.email,
+        phone: validatedData.businessPhone,
+        insuranceType: 'Limousine Insurance'
+      }).catch(err => console.error('Failed to send confirmation email:', err));
+      
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -235,6 +322,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertPublicTransportationQuoteSchema.parse(req.body);
       const referenceNumber = generateReferenceNumber('RFQ');
       const quote = await storage.createPublicTransportationQuote({ ...validatedData, referenceNumber } as any);
+      
+      sendQuoteConfirmationEmail({
+        referenceNumber,
+        businessName: validatedData.companyName,
+        contactName: validatedData.contactName || validatedData.companyName,
+        email: validatedData.contactEmail,
+        phone: validatedData.contactPhone,
+        insuranceType: 'Public Transportation Insurance'
+      }).catch(err => console.error('Failed to send confirmation email:', err));
+      
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -247,6 +344,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertTaxiBlackCarQuoteSchema.parse(req.body);
       const referenceNumber = generateReferenceNumber('RFQ');
       const quote = await storage.createTaxiBlackCarQuote({ ...validatedData, referenceNumber } as any);
+      
+      sendQuoteConfirmationEmail({
+        referenceNumber,
+        businessName: validatedData.companyName,
+        contactName: validatedData.contactPerson,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Taxi/Black Car Insurance'
+      }).catch(err => console.error('Failed to send confirmation email:', err));
+      
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -259,6 +366,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertQuickQuoteSchema.parse(req.body);
       const referenceNumber = generateReferenceNumber('RFQ');
       const quote = await storage.createQuickQuote({ ...validatedData, referenceNumber } as any);
+      
+      sendQuoteConfirmationEmail({
+        referenceNumber,
+        businessName: validatedData.businessName || validatedData.name,
+        contactName: validatedData.name,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Quick Quote'
+      }).catch(err => console.error('Failed to send confirmation email:', err));
+      
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -271,6 +388,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertContactRequestSchema.parse(req.body);
       const referenceNumber = generateReferenceNumber('SRQ');
       const request = await storage.createContactRequest({ ...validatedData, referenceNumber } as any);
+      
+      sendServiceRequestConfirmationEmail({
+        referenceNumber,
+        businessName: validatedData.businessName || validatedData.contactName,
+        contactName: validatedData.contactName,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        requestType: 'Contact Request',
+        description: validatedData.message || ''
+      }).catch(err => console.error('Failed to send confirmation email:', err));
+      
       res.json(request);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -283,6 +411,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertHighValueHomeQuoteSchema.parse(req.body);
       const referenceNumber = generateReferenceNumber('RFQ');
       const quote = await storage.createHighValueHomeQuote({ ...validatedData, referenceNumber } as any);
+      
+      sendQuoteConfirmationEmail({
+        referenceNumber,
+        businessName: validatedData.primaryNamedInsured,
+        contactName: validatedData.primaryNamedInsured,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'High Value Home Insurance'
+      }).catch(err => console.error('Failed to send confirmation email:', err));
+      
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -295,6 +433,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertCommercialFloodQuoteSchema.parse(req.body);
       const referenceNumber = generateReferenceNumber('RFQ');
       const quote = await storage.createCommercialFloodQuote({ ...validatedData, referenceNumber } as any);
+      
+      sendQuoteConfirmationEmail({
+        referenceNumber,
+        businessName: validatedData.businessName || validatedData.contactName,
+        contactName: validatedData.contactName,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Commercial Flood Insurance'
+      }).catch(err => console.error('Failed to send confirmation email:', err));
+      
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -307,6 +455,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertCommercialEarthquakeQuoteSchema.parse(req.body);
       const referenceNumber = generateReferenceNumber('RFQ');
       const quote = await storage.createCommercialEarthquakeQuote({ ...validatedData, referenceNumber } as any);
+      
+      sendQuoteConfirmationEmail({
+        referenceNumber,
+        businessName: validatedData.businessName || validatedData.contactName,
+        contactName: validatedData.contactName,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Commercial Earthquake Insurance'
+      }).catch(err => console.error('Failed to send confirmation email:', err));
+      
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -319,6 +477,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertFranchisedDealerQuoteSchema.parse(req.body);
       const referenceNumber = generateReferenceNumber('RFQ');
       const quote = await storage.createFranchisedDealerQuote({ ...validatedData, referenceNumber } as any);
+      
+      sendQuoteConfirmationEmail({
+        referenceNumber,
+        businessName: validatedData.applicantName,
+        contactName: validatedData.applicantName,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Franchised Dealer Insurance'
+      }).catch(err => console.error('Failed to send confirmation email:', err));
+      
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -331,6 +499,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertGarageServiceQuoteSchema.parse(req.body);
       const referenceNumber = generateReferenceNumber('RFQ');
       const quote = await storage.createGarageServiceQuote({ ...validatedData, referenceNumber } as any);
+      
+      sendQuoteConfirmationEmail({
+        referenceNumber,
+        businessName: validatedData.applicantName,
+        contactName: validatedData.applicantName,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Garage Service Insurance'
+      }).catch(err => console.error('Failed to send confirmation email:', err));
+      
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -343,6 +521,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertAutoDealerGarageQuoteSchema.parse(req.body);
       const referenceNumber = generateReferenceNumber('RFQ');
       const quote = await storage.createAutoDealerGarageQuote({ ...validatedData, referenceNumber } as any);
+      
+      sendQuoteConfirmationEmail({
+        referenceNumber,
+        businessName: validatedData.applicantName,
+        contactName: validatedData.applicantName,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Auto Dealer/Garage Insurance'
+      }).catch(err => console.error('Failed to send confirmation email:', err));
+      
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -355,6 +543,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertGolfCountryClubQuoteSchema.parse(req.body);
       const referenceNumber = generateReferenceNumber('RFQ');
       const quote = await storage.createGolfCountryClubQuote({ ...validatedData, referenceNumber } as any);
+      
+      sendQuoteConfirmationEmail({
+        referenceNumber,
+        businessName: validatedData.clubName,
+        contactName: validatedData.contactName,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Golf & Country Club Insurance'
+      }).catch(err => console.error('Failed to send confirmation email:', err));
+      
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
