@@ -1,9 +1,10 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema, insertFilmProductionQuoteSchema, insertProductLiabilityQuoteSchema, insertSecurityServicesQuoteSchema, insertNemtApplicationSchema, insertAmbulanceApplicationSchema, insertTncApplicationSchema, insertLimousineQuoteSchema, insertPublicTransportationQuoteSchema, insertTaxiBlackCarQuoteSchema, insertQuickQuoteSchema, insertContactRequestSchema, insertBlogPostSchema, insertHighValueHomeQuoteSchema, insertCommercialFloodQuoteSchema, insertCommercialEarthquakeQuoteSchema, insertFranchisedDealerQuoteSchema, insertGarageServiceQuoteSchema, insertAutoDealerGarageQuoteSchema, insertGolfCountryClubQuoteSchema } from "@shared/schema";
+import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema, insertFilmProductionQuoteSchema, insertProductLiabilityQuoteSchema, insertSecurityServicesQuoteSchema, insertNemtApplicationSchema, insertAmbulanceApplicationSchema, insertTncApplicationSchema, insertLimousineQuoteSchema, insertPublicTransportationQuoteSchema, insertTaxiBlackCarQuoteSchema, insertQuickQuoteSchema, insertContactRequestSchema, insertBlogPostSchema, insertPressReleaseSchema, insertHighValueHomeQuoteSchema, insertCommercialFloodQuoteSchema, insertCommercialEarthquakeQuoteSchema, insertFranchisedDealerQuoteSchema, insertGarageServiceQuoteSchema, insertAutoDealerGarageQuoteSchema, insertGolfCountryClubQuoteSchema } from "@shared/schema";
 import { registerAgentRoutes } from "./routes/agent";
 import { generateBlogPost, getCategories, getTopics, generateDraftContent, improveContent, suggestTags } from "./lib/ai-blog-generator";
+import { generatePressRelease, getCategories as getPressCategories, getTopics as getPressTopics, getLocations, generateDraftContent as generatePressDraft, improveContent as improvePressContent, suggestTags as suggestPressTags } from "./lib/ai-press-release-generator";
 import multer from "multer";
 import path from "path";
 import { randomUUID } from "crypto";
@@ -463,6 +464,168 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const tags = await suggestTags(title || "", content || "", category || "");
+      res.json(tags);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message || "Error suggesting tags" });
+    }
+  });
+
+  // Press Releases - List all
+  app.get("/api/press-releases", async (req, res) => {
+    try {
+      const category = req.query.category as string | undefined;
+      const search = req.query.search as string | undefined;
+      const releases = await storage.getPressReleases(category, search);
+      res.json(releases);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message || "Error fetching press releases" });
+    }
+  });
+
+  // Press Release - Get by slug
+  app.get("/api/press-releases/:slug", async (req, res) => {
+    try {
+      const release = await storage.getPressReleaseBySlug(req.params.slug);
+      if (!release) {
+        return res.status(404).json({ message: "Press release not found" });
+      }
+      res.json(release);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message || "Error fetching press release" });
+    }
+  });
+
+  // Generate AI press release (authenticated agents only)
+  app.post("/api/press-releases/generate", async (req, res) => {
+    try {
+      if (!req.isAuthenticated || !req.isAuthenticated()) {
+        return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
+      }
+
+      const { topic, category, location } = req.body;
+      const generatedContent = await generatePressRelease(topic, category, location);
+      
+      const release = await storage.createPressRelease({
+        ...generatedContent,
+        isAiGenerated: "true"
+      });
+      
+      res.json(release);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message || "Error generating press release" });
+    }
+  });
+
+  // Get press release categories
+  app.get("/api/press-categories", async (req, res) => {
+    try {
+      const categories = getPressCategories();
+      res.json(categories);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message || "Error fetching categories" });
+    }
+  });
+
+  // Get press release topics (for agent portal topic selection)
+  app.get("/api/press-topics", async (req, res) => {
+    try {
+      const topics = getPressTopics();
+      res.json(topics);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message || "Error fetching topics" });
+    }
+  });
+
+  // Get press release locations
+  app.get("/api/press-locations", async (req, res) => {
+    try {
+      const locations = getLocations();
+      res.json(locations);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message || "Error fetching locations" });
+    }
+  });
+
+  // Create manual press release (authenticated agents only)
+  app.post("/api/press-releases", async (req, res) => {
+    try {
+      if (!req.isAuthenticated || !req.isAuthenticated()) {
+        return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
+      }
+
+      const result = insertPressReleaseSchema.safeParse(req.body);
+      if (!result.success) {
+        return res.status(400).json({ 
+          message: "Invalid press release data", 
+          errors: result.error.errors 
+        });
+      }
+
+      const release = await storage.createPressRelease({
+        ...result.data,
+        isAiGenerated: "false"
+      });
+
+      res.json(release);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message || "Error creating press release" });
+    }
+  });
+
+  // AI Assist: Generate draft content (authenticated agents only)
+  app.post("/api/press-releases/ai-assist/draft", async (req, res) => {
+    try {
+      if (!req.isAuthenticated || !req.isAuthenticated()) {
+        return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
+      }
+
+      const { title, category, location } = req.body;
+      
+      if (!title || !category || !location) {
+        return res.status(400).json({ message: "Title, category, and location are required" });
+      }
+
+      const draft = await generatePressDraft(title, category, location);
+      res.json(draft);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message || "Error generating draft content" });
+    }
+  });
+
+  // AI Assist: Improve content (authenticated agents only)
+  app.post("/api/press-releases/ai-assist/improve", async (req, res) => {
+    try {
+      if (!req.isAuthenticated || !req.isAuthenticated()) {
+        return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
+      }
+
+      const { content, category } = req.body;
+      
+      if (!content || !category) {
+        return res.status(400).json({ message: "Content and category are required" });
+      }
+
+      const improved = await improvePressContent(content, category);
+      res.json(improved);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message || "Error improving content" });
+    }
+  });
+
+  // AI Assist: Suggest tags (authenticated agents only)
+  app.post("/api/press-releases/ai-assist/tags", async (req, res) => {
+    try {
+      if (!req.isAuthenticated || !req.isAuthenticated()) {
+        return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
+      }
+
+      const { title, content, category } = req.body;
+      
+      if (!title && !content) {
+        return res.status(400).json({ message: "Title or content is required" });
+      }
+
+      const tags = await suggestPressTags(title || "", content || "", category || "");
       res.json(tags);
     } catch (error: any) {
       res.status(500).json({ message: error.message || "Error suggesting tags" });

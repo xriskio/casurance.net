@@ -28,6 +28,9 @@ export default function Header() {
             <Link href="/blog" data-testid="link-blog">
               <span className="text-sm font-medium text-muted-foreground hover:text-foreground cursor-pointer">Blog</span>
             </Link>
+            <Link href="/press-releases" data-testid="link-press-releases">
+              <span className="text-sm font-medium text-muted-foreground hover:text-foreground cursor-pointer">Press Releases</span>
+            </Link>
             <Link href="/about" data-testid="link-about">
               <span className="text-sm font-medium text-muted-foreground hover:text-foreground cursor-pointer">About</span>
             </Link>

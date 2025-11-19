@@ -302,6 +302,25 @@ export const blogPosts = pgTable("blog_posts", {
   isAiGenerated: text("is_ai_generated").notNull().default("true"),
 });
 
+export const pressReleases = pgTable("press_releases", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  slug: text("slug").notNull().unique(),
+  subtitle: text("subtitle"),
+  excerpt: text("excerpt").notNull(),
+  content: text("content").notNull(),
+  category: text("category").notNull(),
+  location: text("location").notNull().default("Nationwide"),
+  contactName: text("contact_name").notNull().default("Casurance Media Relations"),
+  contactEmail: text("contact_email").notNull().default("media@casurance.com"),
+  contactPhone: text("contact_phone").notNull().default("1-888-254-0089"),
+  tags: text("tags").array().notNull().default([]),
+  imageUrl: text("image_url"),
+  publishedAt: timestamp("published_at").defaultNow(),
+  createdAt: timestamp("created_at").defaultNow(),
+  isAiGenerated: text("is_ai_generated").notNull().default("true"),
+});
+
 export const highValueHomeQuotes = pgTable("high_value_home_quotes", {
   id: varchar("id").primaryKey(),
   primaryNamedInsured: text("primary_named_insured").notNull(),
@@ -548,6 +567,12 @@ export const insertBlogPostSchema = createInsertSchema(blogPosts).omit({
   publishedAt: true,
 });
 
+export const insertPressReleaseSchema = createInsertSchema(pressReleases).omit({
+  id: true,
+  createdAt: true,
+  publishedAt: true,
+});
+
 export const insertHighValueHomeQuoteSchema = createInsertSchema(highValueHomeQuotes).omit({
   id: true,
   createdAt: true,
@@ -621,6 +646,8 @@ export type InsertApplicationFile = z.infer<typeof insertApplicationFileSchema>;
 export type ApplicationFile = typeof applicationFiles.$inferSelect;
 export type InsertBlogPost = z.infer<typeof insertBlogPostSchema>;
 export type BlogPost = typeof blogPosts.$inferSelect;
+export type InsertPressRelease = z.infer<typeof insertPressReleaseSchema>;
+export type PressRelease = typeof pressReleases.$inferSelect;
 export type InsertHighValueHomeQuote = z.infer<typeof insertHighValueHomeQuoteSchema>;
 export type HighValueHomeQuote = typeof highValueHomeQuotes.$inferSelect;
 export type InsertCommercialFloodQuote = z.infer<typeof insertCommercialFloodQuoteSchema>;

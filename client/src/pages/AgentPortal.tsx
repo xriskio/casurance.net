@@ -28,7 +28,7 @@ import {
 import { Search, LogOut, FileText, Sparkles, NewspaperIcon, PenLine } from "lucide-react";
 import { format } from "date-fns";
 import { useToast } from "@/hooks/use-toast";
-import type { BlogPost } from "@shared/schema";
+import type { BlogPost, PressRelease } from "@shared/schema";
 
 interface NormalizedSubmission {
   id: string;
@@ -343,6 +343,191 @@ export default function AgentPortal() {
     },
   });
 
+  const [selectedPressTopic, setSelectedPressTopic] = useState<string>("RANDOM");
+  const [selectedPressCategory, setSelectedPressCategory] = useState<string>("RANDOM");
+  const [selectedPressLocation, setSelectedPressLocation] = useState<string>("RANDOM");
+
+  const [manualPressForm, setManualPressForm] = useState({
+    title: "",
+    subtitle: "",
+    excerpt: "",
+    content: "",
+    category: "",
+    location: "Nationwide",
+    tags: "",
+    imageUrl: "",
+  });
+
+  const { data: pressReleases = [] } = useQuery<PressRelease[]>({
+    queryKey: ["/api/press-releases"],
+    enabled: isAuthenticated,
+  });
+
+  const { data: pressTopics = [] } = useQuery<string[]>({
+    queryKey: ["/api/press-topics"],
+    enabled: isAuthenticated,
+  });
+
+  const { data: pressCategories = [] } = useQuery<string[]>({
+    queryKey: ["/api/press-categories"],
+    enabled: isAuthenticated,
+  });
+
+  const { data: pressLocations = [] } = useQuery<string[]>({
+    queryKey: ["/api/press-locations"],
+    enabled: isAuthenticated,
+  });
+
+  const generatePressReleaseMutation = useMutation({
+    mutationFn: async () => {
+      return await apiRequest("POST", "/api/press-releases/generate", {
+        topic: selectedPressTopic === "RANDOM" ? undefined : selectedPressTopic,
+        category: selectedPressCategory === "RANDOM" ? undefined : selectedPressCategory,
+        location: selectedPressLocation === "RANDOM" ? undefined : selectedPressLocation,
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/press-releases"] });
+      setSelectedPressTopic("RANDOM");
+      setSelectedPressCategory("RANDOM");
+      setSelectedPressLocation("RANDOM");
+      toast({
+        title: "Success",
+        description: "New press release generated successfully!",
+      });
+    },
+    onError: () => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to generate press release. Please try again.",
+      });
+    },
+  });
+
+  const generatePressDraftMutation = useMutation({
+    mutationFn: async () => {
+      return await apiRequest("POST", "/api/press-releases/ai-assist/draft", {
+        title: manualPressForm.title,
+        category: manualPressForm.category,
+        location: manualPressForm.location,
+      });
+    },
+    onSuccess: (data: any) => {
+      setManualPressForm({
+        ...manualPressForm,
+        subtitle: data.subtitle || manualPressForm.subtitle,
+        excerpt: data.excerpt,
+        content: data.content,
+        tags: data.tags.join(", "),
+        imageUrl: data.imageUrl || manualPressForm.imageUrl,
+      });
+      toast({
+        title: "AI Draft Generated",
+        description: "Content has been generated. Review and edit as needed.",
+      });
+    },
+    onError: () => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to generate draft. Please try again.",
+      });
+    },
+  });
+
+  const improvePressContentMutation = useMutation({
+    mutationFn: async () => {
+      return await apiRequest("POST", "/api/press-releases/ai-assist/improve", {
+        content: manualPressForm.content,
+        category: manualPressForm.category,
+      });
+    },
+    onSuccess: (data: any) => {
+      setManualPressForm({
+        ...manualPressForm,
+        content: data.content,
+      });
+      toast({
+        title: "Content Improved",
+        description: "AI has enhanced your content. Review the changes.",
+      });
+    },
+    onError: () => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to improve content. Please try again.",
+      });
+    },
+  });
+
+  const suggestPressTagsMutation = useMutation({
+    mutationFn: async () => {
+      return await apiRequest("POST", "/api/press-releases/ai-assist/tags", {
+        title: manualPressForm.title,
+        content: manualPressForm.content,
+        category: manualPressForm.category,
+      });
+    },
+    onSuccess: (data: any) => {
+      setManualPressForm({
+        ...manualPressForm,
+        tags: data.tags.join(", "),
+      });
+      toast({
+        title: "Tags Suggested",
+        description: "AI has suggested relevant tags for your press release.",
+      });
+    },
+    onError: () => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to suggest tags. Please try again.",
+      });
+    },
+  });
+
+  const createManualPressReleaseMutation = useMutation({
+    mutationFn: async () => {
+      return await apiRequest("POST", "/api/press-releases", {
+        title: manualPressForm.title,
+        subtitle: manualPressForm.subtitle || undefined,
+        excerpt: manualPressForm.excerpt,
+        content: manualPressForm.content,
+        category: manualPressForm.category,
+        location: manualPressForm.location,
+        tags: manualPressForm.tags.split(",").map((t) => t.trim()).filter(Boolean),
+        imageUrl: manualPressForm.imageUrl || undefined,
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/press-releases"] });
+      setManualPressForm({
+        title: "",
+        subtitle: "",
+        excerpt: "",
+        content: "",
+        category: "",
+        location: "Nationwide",
+        tags: "",
+        imageUrl: "",
+      });
+      toast({
+        title: "Success",
+        description: "Press release created successfully!",
+      });
+    },
+    onError: () => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to create press release. Please try again.",
+      });
+    },
+  });
+
   if (authLoading || submissionsLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -643,6 +828,309 @@ export default function AgentPortal() {
                   {blogPosts.length > 0 
                     ? blogPosts[0]?.title 
                     : "No posts yet"}
+                </span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="mb-8">
+          <CardHeader>
+            <div className="flex items-center gap-2">
+              <FileText className="h-5 w-5 text-primary" />
+              <CardTitle>Press Release Management</CardTitle>
+            </div>
+            <CardDescription>
+              Create press releases using AI generation or write your own announcements with custom images.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Tabs defaultValue="ai" className="w-full">
+              <TabsList className="grid w-full grid-cols-2 mb-6">
+                <TabsTrigger value="ai" data-testid="tab-press-ai-generation">
+                  <Sparkles className="h-4 w-4 mr-2" />
+                  AI Generation
+                </TabsTrigger>
+                <TabsTrigger value="manual" data-testid="tab-press-manual-creation">
+                  <PenLine className="h-4 w-4 mr-2" />
+                  Manual Creation
+                </TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="ai" className="space-y-4">
+                <p className="text-sm text-muted-foreground">
+                  Generate AI-powered press releases with professional images. Releases appear immediately on the public press releases page. Generation takes 30-60 seconds.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="press-ai-topic">Topic (optional)</Label>
+                    <Select value={selectedPressTopic} onValueChange={setSelectedPressTopic}>
+                      <SelectTrigger id="press-ai-topic" data-testid="select-press-topic">
+                        <SelectValue placeholder="Random topic..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="RANDOM">Random topic</SelectItem>
+                        {pressTopics.map((topic) => (
+                          <SelectItem key={topic} value={topic}>
+                            {topic}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="press-ai-category">Category (optional)</Label>
+                    <Select value={selectedPressCategory} onValueChange={setSelectedPressCategory}>
+                      <SelectTrigger id="press-ai-category" data-testid="select-press-category">
+                        <SelectValue placeholder="Random category..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="RANDOM">Random category</SelectItem>
+                        {pressCategories.map((category) => (
+                          <SelectItem key={category} value={category}>
+                            {category}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="press-ai-location">Location (optional)</Label>
+                    <Select value={selectedPressLocation} onValueChange={setSelectedPressLocation}>
+                      <SelectTrigger id="press-ai-location" data-testid="select-press-location">
+                        <SelectValue placeholder="Random location..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="RANDOM">Random location</SelectItem>
+                        {pressLocations.map((location) => (
+                          <SelectItem key={location} value={location}>
+                            {location}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
+                <Button
+                  onClick={() => generatePressReleaseMutation.mutate()}
+                  disabled={generatePressReleaseMutation.isPending}
+                  className="w-full"
+                  data-testid="button-generate-press-release"
+                >
+                  <Sparkles className="h-4 w-4 mr-2" aria-hidden="true" />
+                  {generatePressReleaseMutation.isPending ? "Generating..." : "Generate New Press Release"}
+                </Button>
+              </TabsContent>
+
+              <TabsContent value="manual" className="space-y-4">
+                <div className="rounded-lg border border-primary/20 bg-primary/5 p-4 mb-4">
+                  <div className="flex items-start gap-3">
+                    <Sparkles className="h-5 w-5 text-primary mt-0.5" aria-hidden="true" />
+                    <div className="space-y-1">
+                      <p className="text-sm font-medium">AI Writing Assistance Available</p>
+                      <p className="text-xs text-muted-foreground">
+                        Use AI to generate drafts, improve content, and suggest tags as you write.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="press-manual-title">Title *</Label>
+                    <Input
+                      id="press-manual-title"
+                      placeholder="Enter press release title..."
+                      value={manualPressForm.title}
+                      onChange={(e) => setManualPressForm({ ...manualPressForm, title: e.target.value })}
+                      data-testid="input-press-title"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="press-manual-subtitle">Subtitle (optional)</Label>
+                    <Input
+                      id="press-manual-subtitle"
+                      placeholder="Enter subtitle..."
+                      value={manualPressForm.subtitle}
+                      onChange={(e) => setManualPressForm({ ...manualPressForm, subtitle: e.target.value })}
+                      data-testid="input-press-subtitle"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="press-manual-category">Category *</Label>
+                      <Select
+                        value={manualPressForm.category}
+                        onValueChange={(value) => setManualPressForm({ ...manualPressForm, category: value })}
+                      >
+                        <SelectTrigger id="press-manual-category" data-testid="select-press-manual-category">
+                          <SelectValue placeholder="Select category..." />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {pressCategories.map((category) => (
+                            <SelectItem key={category} value={category}>
+                              {category}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="press-manual-location">Location *</Label>
+                      <Select
+                        value={manualPressForm.location}
+                        onValueChange={(value) => setManualPressForm({ ...manualPressForm, location: value })}
+                      >
+                        <SelectTrigger id="press-manual-location" data-testid="select-press-manual-location">
+                          <SelectValue placeholder="Select location..." />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {pressLocations.map((location) => (
+                            <SelectItem key={location} value={location}>
+                              {location}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <Button
+                      onClick={() => generatePressDraftMutation.mutate()}
+                      disabled={
+                        generatePressDraftMutation.isPending ||
+                        !manualPressForm.title ||
+                        !manualPressForm.category ||
+                        !manualPressForm.location
+                      }
+                      variant="outline"
+                      data-testid="button-press-ai-draft"
+                    >
+                      <Sparkles className="h-3 w-3 mr-1" aria-hidden="true" />
+                      {generatePressDraftMutation.isPending ? "Generating..." : "AI Generate Draft"}
+                    </Button>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="press-manual-excerpt">Excerpt *</Label>
+                    <Textarea
+                      id="press-manual-excerpt"
+                      placeholder="Brief summary of the press release..."
+                      value={manualPressForm.excerpt}
+                      onChange={(e) => setManualPressForm({ ...manualPressForm, excerpt: e.target.value })}
+                      rows={2}
+                      data-testid="textarea-press-excerpt"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <Label htmlFor="press-manual-content">Content *</Label>
+                      <Button
+                        onClick={() => improvePressContentMutation.mutate()}
+                        disabled={
+                          improvePressContentMutation.isPending ||
+                          !manualPressForm.content ||
+                          !manualPressForm.category
+                        }
+                        variant="outline"
+                        size="sm"
+                        data-testid="button-press-ai-improve"
+                      >
+                        <Sparkles className="h-3 w-3 mr-1" aria-hidden="true" />
+                        {improvePressContentMutation.isPending ? "Improving..." : "AI Improve"}
+                      </Button>
+                    </div>
+                    <Textarea
+                      id="press-manual-content"
+                      placeholder="Full press release content (use Markdown formatting)..."
+                      value={manualPressForm.content}
+                      onChange={(e) => setManualPressForm({ ...manualPressForm, content: e.target.value })}
+                      rows={12}
+                      data-testid="textarea-press-content"
+                    />
+                    <p className="text-xs text-muted-foreground">
+                      Markdown supported: **bold**, *italic*, ## Headings, - bullet points
+                    </p>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <Label htmlFor="press-manual-tags">Tags *</Label>
+                      <Button
+                        onClick={() => suggestPressTagsMutation.mutate()}
+                        disabled={
+                          suggestPressTagsMutation.isPending ||
+                          (!manualPressForm.title && !manualPressForm.content)
+                        }
+                        variant="outline"
+                        size="sm"
+                        data-testid="button-press-ai-suggest-tags"
+                      >
+                        <Sparkles className="h-3 w-3 mr-1" aria-hidden="true" />
+                        {suggestPressTagsMutation.isPending ? "Suggesting..." : "AI Suggest"}
+                      </Button>
+                    </div>
+                    <Input
+                      id="press-manual-tags"
+                      placeholder="coverage expansion, new program, partnership..."
+                      value={manualPressForm.tags}
+                      onChange={(e) => setManualPressForm({ ...manualPressForm, tags: e.target.value })}
+                      data-testid="input-press-tags"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="press-manual-image">Featured Image URL (optional)</Label>
+                    <Input
+                      id="press-manual-image"
+                      placeholder="https://example.com/image.jpg"
+                      value={manualPressForm.imageUrl}
+                      onChange={(e) => setManualPressForm({ ...manualPressForm, imageUrl: e.target.value })}
+                      data-testid="input-press-image"
+                    />
+                    <p className="text-xs text-muted-foreground">
+                      Enter a direct image URL or leave blank
+                    </p>
+                  </div>
+
+                  <Button
+                    onClick={() => createManualPressReleaseMutation.mutate()}
+                    disabled={
+                      createManualPressReleaseMutation.isPending ||
+                      !manualPressForm.title ||
+                      !manualPressForm.excerpt ||
+                      !manualPressForm.content ||
+                      !manualPressForm.category ||
+                      !manualPressForm.location ||
+                      !manualPressForm.tags
+                    }
+                    className="w-full"
+                    data-testid="button-create-press-release"
+                  >
+                    <PenLine className="h-4 w-4 mr-2" aria-hidden="true" />
+                    {createManualPressReleaseMutation.isPending ? "Creating..." : "Create Press Release"}
+                  </Button>
+                </div>
+              </TabsContent>
+            </Tabs>
+
+            <div className="pt-6 mt-6 border-t space-y-2">
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-muted-foreground">Total press releases:</span>
+                <Badge variant="secondary">{pressReleases.length}</Badge>
+              </div>
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-muted-foreground">Latest release:</span>
+                <span className="text-foreground text-sm truncate max-w-md">
+                  {pressReleases.length > 0 
+                    ? pressReleases[0]?.title 
+                    : "No releases yet"}
                 </span>
               </div>
             </div>

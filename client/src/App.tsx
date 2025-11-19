@@ -53,6 +53,8 @@ import AboutPage from "@/pages/AboutPage";
 import ContactPage from "@/pages/ContactPage";
 import BlogPage from "@/pages/BlogPage";
 import BlogPostPage from "@/pages/BlogPostPage";
+import PressReleasesPage from "@/pages/PressReleasesPage";
+import PressReleasePage from "@/pages/PressReleasePage";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -90,6 +92,8 @@ function Router() {
       <Route path="/industry/:slug" component={IndustryPage} />
       <Route path="/blog" component={BlogPage} />
       <Route path="/blog/:slug" component={BlogPostPage} />
+      <Route path="/press-releases" component={PressReleasesPage} />
+      <Route path="/press-releases/:slug" component={PressReleasePage} />
       <Route path="/about" component={AboutPage} />
       <Route path="/contact" component={ContactPage} />
       <Route path="/agent/login" component={AgentLogin} />

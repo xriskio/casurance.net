@@ -1,4 +1,4 @@
-import { quoteRequests, serviceRequests, oceanCargoQuotes, selfStorageQuotes, filmProductionQuotes, productLiabilityQuotes, securityServicesQuotes, nemtApplications, ambulanceApplications, tncApplications, limousineQuotes, publicTransportationQuotes, taxiBlackCarQuotes, quickQuotes, contactRequests, applicationFiles, blogPosts, highValueHomeQuotes, commercialFloodQuotes, commercialEarthquakeQuotes, franchisedDealerQuotes, garageServiceQuotes, autoDealerGarageQuotes, golfCountryClubQuotes, type InsertQuoteRequest, type QuoteRequest, type InsertServiceRequest, type ServiceRequest, type InsertOceanCargoQuote, type OceanCargoQuote, type InsertSelfStorageQuote, type SelfStorageQuote, type InsertFilmProductionQuote, type FilmProductionQuote, type InsertProductLiabilityQuote, type ProductLiabilityQuote, type InsertSecurityServicesQuote, type SecurityServicesQuote, type InsertNemtApplication, type NemtApplication, type InsertAmbulanceApplication, type AmbulanceApplication, type InsertTncApplication, type TncApplication, type InsertLimousineQuote, type LimousineQuote, type InsertPublicTransportationQuote, type PublicTransportationQuote, type InsertTaxiBlackCarQuote, type TaxiBlackCarQuote, type InsertQuickQuote, type QuickQuote, type InsertContactRequest, type ContactRequest, type ApplicationFile, type InsertBlogPost, type BlogPost, type InsertHighValueHomeQuote, type HighValueHomeQuote, type InsertCommercialFloodQuote, type CommercialFloodQuote, type InsertCommercialEarthquakeQuote, type CommercialEarthquakeQuote, type InsertFranchisedDealerQuote, type FranchisedDealerQuote, type InsertGarageServiceQuote, type GarageServiceQuote, type InsertAutoDealerGarageQuote, type AutoDealerGarageQuote, type InsertGolfCountryClubQuote, type GolfCountryClubQuote } from "@shared/schema";
+import { quoteRequests, serviceRequests, oceanCargoQuotes, selfStorageQuotes, filmProductionQuotes, productLiabilityQuotes, securityServicesQuotes, nemtApplications, ambulanceApplications, tncApplications, limousineQuotes, publicTransportationQuotes, taxiBlackCarQuotes, quickQuotes, contactRequests, applicationFiles, blogPosts, pressReleases, highValueHomeQuotes, commercialFloodQuotes, commercialEarthquakeQuotes, franchisedDealerQuotes, garageServiceQuotes, autoDealerGarageQuotes, golfCountryClubQuotes, type InsertQuoteRequest, type QuoteRequest, type InsertServiceRequest, type ServiceRequest, type InsertOceanCargoQuote, type OceanCargoQuote, type InsertSelfStorageQuote, type SelfStorageQuote, type InsertFilmProductionQuote, type FilmProductionQuote, type InsertProductLiabilityQuote, type ProductLiabilityQuote, type InsertSecurityServicesQuote, type SecurityServicesQuote, type InsertNemtApplication, type NemtApplication, type InsertAmbulanceApplication, type AmbulanceApplication, type InsertTncApplication, type TncApplication, type InsertLimousineQuote, type LimousineQuote, type InsertPublicTransportationQuote, type PublicTransportationQuote, type InsertTaxiBlackCarQuote, type TaxiBlackCarQuote, type InsertQuickQuote, type QuickQuote, type InsertContactRequest, type ContactRequest, type ApplicationFile, type InsertBlogPost, type BlogPost, type InsertPressRelease, type PressRelease, type InsertHighValueHomeQuote, type HighValueHomeQuote, type InsertCommercialFloodQuote, type CommercialFloodQuote, type InsertCommercialEarthquakeQuote, type CommercialEarthquakeQuote, type InsertFranchisedDealerQuote, type FranchisedDealerQuote, type InsertGarageServiceQuote, type GarageServiceQuote, type InsertAutoDealerGarageQuote, type AutoDealerGarageQuote, type InsertGolfCountryClubQuote, type GolfCountryClubQuote } from "@shared/schema";
 import { db } from "./db";
 import { randomUUID } from "crypto";
 import { eq, desc, like, or } from "drizzle-orm";
@@ -23,6 +23,9 @@ export interface IStorage {
   createBlogPost(post: InsertBlogPost): Promise<BlogPost>;
   getBlogPosts(category?: string, search?: string): Promise<BlogPost[]>;
   getBlogPostBySlug(slug: string): Promise<BlogPost | undefined>;
+  createPressRelease(release: InsertPressRelease): Promise<PressRelease>;
+  getPressReleases(category?: string, search?: string): Promise<PressRelease[]>;
+  getPressReleaseBySlug(slug: string): Promise<PressRelease | undefined>;
   createHighValueHomeQuote(quote: InsertHighValueHomeQuote): Promise<HighValueHomeQuote>;
   createCommercialFloodQuote(quote: InsertCommercialFloodQuote): Promise<CommercialFloodQuote>;
   createCommercialEarthquakeQuote(quote: InsertCommercialEarthquakeQuote): Promise<CommercialEarthquakeQuote>;
@@ -267,6 +270,45 @@ export class DatabaseStorage implements IStorage {
       .where(eq(blogPosts.slug, slug))
       .limit(1);
     return post;
+  }
+
+  async createPressRelease(insertRelease: InsertPressRelease): Promise<PressRelease> {
+    const [release] = await db
+      .insert(pressReleases)
+      .values(insertRelease)
+      .returning();
+    return release;
+  }
+
+  async getPressReleases(category?: string, search?: string): Promise<PressRelease[]> {
+    let query = db.select().from(pressReleases).orderBy(desc(pressReleases.publishedAt));
+
+    if (category) {
+      query = query.where(eq(pressReleases.category, category)) as any;
+    }
+
+    const results = await query;
+
+    if (search && search.trim()) {
+      const searchLower = search.toLowerCase();
+      return results.filter(release =>
+        release.title.toLowerCase().includes(searchLower) ||
+        release.excerpt.toLowerCase().includes(searchLower) ||
+        release.content.toLowerCase().includes(searchLower) ||
+        release.tags.some(tag => tag.toLowerCase().includes(searchLower))
+      );
+    }
+
+    return results;
+  }
+
+  async getPressReleaseBySlug(slug: string): Promise<PressRelease | undefined> {
+    const [release] = await db
+      .select()
+      .from(pressReleases)
+      .where(eq(pressReleases.slug, slug))
+      .limit(1);
+    return release;
   }
 
   async createHighValueHomeQuote(insertQuote: InsertHighValueHomeQuote): Promise<HighValueHomeQuote> {
