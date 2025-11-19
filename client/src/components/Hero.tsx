@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Phone } from "lucide-react";
 import { Link } from "wouter";
-import NewsletterCard from "@/components/NewsletterCard";
 
 export default function Hero() {
   return (
@@ -9,8 +8,8 @@ export default function Hero() {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
       
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-24 lg:py-32">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-        <div className="lg:col-span-7">
+        <div className="max-w-4xl mx-auto text-center lg:text-left">
+        <div>
           <div className="inline-flex items-center gap-2 bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 rounded-full px-4 py-2 mb-6">
             <div className="h-2 w-2 bg-green-400 rounded-full animate-pulse"></div>
             <span className="text-sm font-medium text-primary-foreground">Trusted by 500+ California Businesses</span>
@@ -39,7 +38,7 @@ export default function Hero() {
             </a>
           </div>
 
-          <div className="mt-12 grid grid-cols-2 gap-8">
+          <div className="mt-12 grid grid-cols-2 gap-8 max-w-md mx-auto lg:mx-0">
             <div>
               <div className="text-3xl font-bold text-primary-foreground mb-1">15+</div>
               <div className="text-sm text-primary-foreground/80">Years Experience</div>
@@ -49,10 +48,6 @@ export default function Hero() {
               <div className="text-sm text-primary-foreground/80">Top Carriers</div>
             </div>
           </div>
-        </div>
-
-        <div className="lg:col-span-5">
-          <NewsletterCard />
         </div>
         </div>
       </div>

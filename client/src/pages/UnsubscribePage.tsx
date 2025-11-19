@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "wouter";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Mail, Loader2 } from "lucide-react";
@@ -8,13 +7,13 @@ import Footer from "@/components/Footer";
 import { apiRequest } from "@/lib/queryClient";
 
 export default function UnsubscribePage() {
-  const [location] = useLocation();
   const [status, setStatus] = useState<"loading" | "success" | "error">("loading");
   const [message, setMessage] = useState("");
   const [email, setEmail] = useState("");
 
   // Extract token from URL query params
-  const token = new URLSearchParams(window.location.search).get("token");
+  const searchParams = new URLSearchParams(window.location.search);
+  const token = searchParams.get("token");
 
   useEffect(() => {
     const unsubscribe = async () => {

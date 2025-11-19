@@ -1,10 +1,47 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Shield, Users, Target, Award } from "lucide-react";
+import { Shield, Users, Target, Award, Mail, Newspaper, FileText } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export default function AboutPage() {
+  const [email, setEmail] = useState("");
+  const { toast } = useToast();
+
+  const subscribeMutation = useMutation({
+    mutationFn: async (email: string) => {
+      const response = await apiRequest("POST", "/api/newsletter/subscribe", { email });
+      return await response.json();
+    },
+    onSuccess: () => {
+      toast({
+        title: "Successfully subscribed!",
+        description: "Thank you for subscribing to our newsletter.",
+      });
+      setEmail("");
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Subscription failed",
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email) {
+      subscribeMutation.mutate(email);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Header />
@@ -177,6 +214,93 @@ export default function AboutPage() {
               </div>
             </CardContent>
           </Card>
+
+          <Separator className="my-12" />
+
+          <div className="mb-12">
+            <h2 className="text-2xl font-semibold text-foreground mb-6 text-center">Resources & News</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+              <Card className="hover-elevate">
+                <CardContent className="p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
+                      <FileText className="h-6 w-6 text-primary" aria-hidden="true" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-foreground mb-2">Blog</h3>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        Expert insights, industry trends, and practical advice for commercial insurance.
+                      </p>
+                      <a
+                        href="/blog"
+                        className="text-sm font-medium text-primary hover:underline"
+                        data-testid="link-blog"
+                      >
+                        Read our blog →
+                      </a>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="hover-elevate">
+                <CardContent className="p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
+                      <Newspaper className="h-6 w-6 text-primary" aria-hidden="true" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-foreground mb-2">Press Releases</h3>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        Latest company news, coverage announcements, and service updates.
+                      </p>
+                      <a
+                        href="/press-releases"
+                        className="text-sm font-medium text-primary hover:underline"
+                        data-testid="link-press-releases"
+                      >
+                        View press releases →
+                      </a>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          <Separator className="my-12" />
+
+          <div className="max-w-2xl mx-auto text-center py-8">
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <Mail className="h-5 w-5 text-muted-foreground" aria-hidden="true" />
+              <h3 className="text-lg font-medium text-foreground">Stay Informed</h3>
+            </div>
+            <p className="text-sm text-muted-foreground mb-6">
+              Get commercial insurance news and industry updates delivered to your inbox.
+            </p>
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+              <Input
+                type="email"
+                placeholder="Enter your email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                disabled={subscribeMutation.isPending}
+                className="flex-1"
+                data-testid="input-newsletter-email"
+              />
+              <Button
+                type="submit"
+                disabled={subscribeMutation.isPending}
+                data-testid="button-newsletter-subscribe"
+              >
+                {subscribeMutation.isPending ? "Subscribing..." : "Subscribe"}
+              </Button>
+            </form>
+            <p className="text-xs text-muted-foreground mt-3">
+              No spam. Unsubscribe anytime.
+            </p>
+          </div>
         </div>
       </div>
       <Footer />
