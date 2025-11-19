@@ -11,6 +11,9 @@ import {
   productLiabilityQuotes,
   securityServicesQuotes,
   submissionStatusHistory,
+  highValueHomeQuotes,
+  commercialFloodQuotes,
+  commercialEarthquakeQuotes,
 } from "@shared/schema";
 import { desc, or, ilike, sql, and, gte, lte } from "drizzle-orm";
 
@@ -179,6 +182,51 @@ export function registerAgentRoutes(app: Express) {
           ...securityServices.map((s) => ({
             ...s,
             submissionType: "security-services",
+          }))
+        );
+      }
+
+      if (!type || type === "high-value-home") {
+        const highValueHome = await db
+          .select()
+          .from(highValueHomeQuotes)
+          .orderBy(desc(highValueHomeQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...highValueHome.map((h) => ({
+            ...h,
+            submissionType: "high-value-home",
+          }))
+        );
+      }
+
+      if (!type || type === "commercial-flood") {
+        const commercialFlood = await db
+          .select()
+          .from(commercialFloodQuotes)
+          .orderBy(desc(commercialFloodQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...commercialFlood.map((c) => ({
+            ...c,
+            submissionType: "commercial-flood",
+          }))
+        );
+      }
+
+      if (!type || type === "commercial-earthquake") {
+        const commercialEarthquake = await db
+          .select()
+          .from(commercialEarthquakeQuotes)
+          .orderBy(desc(commercialEarthquakeQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...commercialEarthquake.map((c) => ({
+            ...c,
+            submissionType: "commercial-earthquake",
           }))
         );
       }

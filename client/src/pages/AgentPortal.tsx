@@ -50,6 +50,9 @@ function normalizeSubmission(submission: any): NormalizedSubmission {
     "film-production": "Film Production Insurance",
     "product-liability": "Product Liability Insurance",
     "security-services": "Security Services Insurance",
+    "high-value-home": "High Value Homeowners",
+    "commercial-flood": "Commercial Flood Insurance",
+    "commercial-earthquake": "Commercial Earthquake Insurance",
   };
 
   const insuranceTypeMap: Record<string, string> = {
@@ -668,6 +671,9 @@ export default function AgentPortal() {
               <SelectItem value="film-production">Film Production</SelectItem>
               <SelectItem value="product-liability">Product Liability</SelectItem>
               <SelectItem value="security-services">Security Services</SelectItem>
+              <SelectItem value="high-value-home">High Value Home</SelectItem>
+              <SelectItem value="commercial-flood">Commercial Flood</SelectItem>
+              <SelectItem value="commercial-earthquake">Commercial Earthquake</SelectItem>
             </SelectContent>
           </Select>
         </div>
