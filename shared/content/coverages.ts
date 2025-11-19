@@ -3106,6 +3106,99 @@ export const industries: CoverageContent[] = [
       "Access to specialty transportation markets",
       "24/7 certificate of insurance services"
     ]
+  },
+
+  {
+    title: "Franchised Auto, Truck & RV Dealers",
+    slug: "franchised-dealers",
+    category: "Transportation",
+    summary: "Comprehensive insurance package for new and used vehicle franchised dealerships with best-in-class underwriting and claims management.",
+    description: "Franchised Auto, Truck, and RV Dealer insurance provides complete protection for new car, truck, and RV dealerships operating under manufacturer franchise agreements. Our program offers garage liability, garagekeepers coverage, general liability, property, crime, and specialized coverages tailored to the unique exposures dealerships face. Supported by expert underwriting, in-house claims handling, and value-added services including instant MVRs and simple billing options.",
+    whoNeeds: [
+      "New car and truck franchised dealerships",
+      "RV and recreational vehicle dealers",
+      "Multi-line dealerships (cars, trucks, RVs)",
+      "Luxury and specialty vehicle dealerships",
+      "Multi-location dealership groups"
+    ],
+    coverageIncludes: [
+      "Garage liability and garagekeepers legal liability",
+      "General liability for premises and operations",
+      "Commercial property and inland marine coverage",
+      "Commercial crime and employee dishonesty protection",
+      "Excess/umbrella liability for high-limit protection",
+      "Fraudulent impersonation coverage",
+      "Dealers open lot (physical damage for inventory)",
+      "Auto dealers errors & omissions coverage",
+      "Property enhancement endorsements",
+      "Cyber liability coverage options",
+      "Employment practices liability (EPL)",
+      "Workers' compensation insurance"
+    ],
+    benefits: [
+      "A-15 rated admitted carrier for qualified risks",
+      "Non-admitted solutions for complex exposures",
+      "Industry-specific underwriting expertise",
+      "In-house claims handling and management",
+      "Simple billing options (direct bill, agency bill, quarterly, 10-pay)",
+      "Instant MVRs for new hires with automated grading",
+      "Fully interactive short forms with integrated e-signature",
+      "Loss runs assistance and support",
+      "Workers' compensation with optional payroll services",
+      "Instant cyber liability quotes",
+      "World-class TPA for claims adjusting"
+    ],
+    seoTitle: "Franchised Auto, Truck & RV Dealership Insurance | Casurance",
+    seoDescription: "Comprehensive insurance for franchised auto, truck, and RV dealers. Garage liability, garagekeepers, property, crime, and specialized dealer coverages with expert underwriting and claims support."
+  },
+
+  {
+    title: "Garage & Service Centers",
+    slug: "garage-service-centers",
+    category: "Transportation",
+    summary: "Specialized insurance for automotive repair shops, body shops, and service centers with tailored coverage for garage operations.",
+    description: "Garage and Service Center insurance provides comprehensive protection for automotive repair facilities, body shops, oil change centers, transmission shops, and other automotive service businesses. Our program offers garage liability, garagekeepers coverage, general liability, property, and specialized coverages on both admitted and non-admitted bases, depending on risk profile. Backed by industry-specific underwriting expertise, robust policy administration, and world-class claims management.",
+    whoNeeds: [
+      "Automotive repair and maintenance shops",
+      "Auto body, paint, and collision repair centers",
+      "Automotive parts and accessories stores",
+      "Oil change and lubrication shops",
+      "Transmission and exhaust system repair",
+      "Automotive glass replacement shops",
+      "General truck repair facilities",
+      "Automotive electrical and mechanical repair",
+      "Motor vehicle towing operations (as minority business)",
+      "Tire shops and automotive service centers"
+    ],
+    coverageIncludes: [
+      "Garage liability and garagekeepers legal liability",
+      "General liability for premises and operations",
+      "Commercial property and inland marine coverage",
+      "Commercial crime and employee dishonesty protection",
+      "Excess/umbrella liability",
+      "Fraudulent impersonation coverage",
+      "Auto dealers errors & omissions",
+      "Property enhancement endorsements",
+      "Cyber liability options",
+      "Employment practices liability (EPL)",
+      "Workers' compensation insurance"
+    ],
+    benefits: [
+      "Admitted and non-admitted solutions available",
+      "Industry-specific underwriting and experience",
+      "Robust policy administration platform",
+      "World-class TPA for exceptional claims adjusting",
+      "Simple billing options (quarterly, 10-pay)",
+      "Instant MVRs for new hires with automated grading",
+      "Interactive short forms with e-signature capability",
+      "Workers' compensation with payroll service options",
+      "Instant cyber liability quotes",
+      "Employment practices liability quotes",
+      "Loss runs assistance and support",
+      "Back-office support for submissions, quotes, and binds"
+    ],
+    seoTitle: "Garage & Service Center Insurance | Auto Repair Shop Coverage",
+    seoDescription: "Comprehensive insurance for automotive repair shops, body shops, and service centers. Garage liability, garagekeepers, property, and specialized coverage for all types of automotive service businesses."
   }
 ];
 
