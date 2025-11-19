@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema, insertFilmProductionQuoteSchema, insertProductLiabilityQuoteSchema, insertSecurityServicesQuoteSchema, insertNemtApplicationSchema, insertAmbulanceApplicationSchema, insertTncApplicationSchema, insertLimousineQuoteSchema, insertPublicTransportationQuoteSchema, insertTaxiBlackCarQuoteSchema, insertQuickQuoteSchema, insertContactRequestSchema, insertBlogPostSchema } from "@shared/schema";
+import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema, insertFilmProductionQuoteSchema, insertProductLiabilityQuoteSchema, insertSecurityServicesQuoteSchema, insertNemtApplicationSchema, insertAmbulanceApplicationSchema, insertTncApplicationSchema, insertLimousineQuoteSchema, insertPublicTransportationQuoteSchema, insertTaxiBlackCarQuoteSchema, insertQuickQuoteSchema, insertContactRequestSchema, insertBlogPostSchema, insertHighValueHomeQuoteSchema, insertCommercialFloodQuoteSchema, insertCommercialEarthquakeQuoteSchema } from "@shared/schema";
 import { registerAgentRoutes } from "./routes/agent";
 import { generateBlogPost, getCategories, getTopics, generateDraftContent, improveContent, suggestTags } from "./lib/ai-blog-generator";
 import multer from "multer";
@@ -233,6 +233,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertContactRequestSchema.parse(req.body);
       const request = await storage.createContactRequest(validatedData);
       res.json(request);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // High Value Home Quotes
+  app.post("/api/high-value-home-quotes", async (req, res) => {
+    try {
+      const validatedData = insertHighValueHomeQuoteSchema.parse(req.body);
+      const quote = await storage.createHighValueHomeQuote(validatedData);
+      res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // Commercial Flood Quotes
+  app.post("/api/commercial-flood-quotes", async (req, res) => {
+    try {
+      const validatedData = insertCommercialFloodQuoteSchema.parse(req.body);
+      const quote = await storage.createCommercialFloodQuote(validatedData);
+      res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // Commercial Earthquake Quotes
+  app.post("/api/commercial-earthquake-quotes", async (req, res) => {
+    try {
+      const validatedData = insertCommercialEarthquakeQuoteSchema.parse(req.body);
+      const quote = await storage.createCommercialEarthquakeQuote(validatedData);
+      res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
     }
