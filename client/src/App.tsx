@@ -55,6 +55,7 @@ import BlogPage from "@/pages/BlogPage";
 import BlogPostPage from "@/pages/BlogPostPage";
 import PressReleasesPage from "@/pages/PressReleasesPage";
 import PressReleasePage from "@/pages/PressReleasePage";
+import UnsubscribePage from "@/pages/UnsubscribePage";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -94,6 +95,7 @@ function Router() {
       <Route path="/blog/:slug" component={BlogPostPage} />
       <Route path="/press-releases" component={PressReleasesPage} />
       <Route path="/press-releases/:slug" component={PressReleasePage} />
+      <Route path="/unsubscribe" component={UnsubscribePage} />
       <Route path="/about" component={AboutPage} />
       <Route path="/contact" component={ContactPage} />
       <Route path="/agent/login" component={AgentLogin} />
