@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Calendar, ArrowLeft, Sparkles } from "lucide-react";
+import { Calendar, ArrowLeft } from "lucide-react";
 import type { BlogPost } from "@shared/schema";
 import ReactMarkdown from "react-markdown";
 import Header from "@/components/Header";
@@ -93,12 +93,6 @@ export default function BlogPostPage() {
           <header className="mb-8">
             <div className="flex flex-wrap items-center gap-3 mb-4">
               <Badge variant="secondary">{post.category}</Badge>
-              {post.isAiGenerated === "true" && (
-                <Badge variant="outline" className="gap-1">
-                  <Sparkles className="h-3 w-3" aria-hidden="true" />
-                  AI Generated
-                </Badge>
-              )}
             </div>
 
             <h1 className="text-4xl font-bold text-foreground mb-4" data-testid="text-blog-post-title">

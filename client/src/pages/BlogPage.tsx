@@ -4,7 +4,7 @@ import { Link } from "wouter";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Search, Calendar, Sparkles } from "lucide-react";
+import { Search, Calendar } from "lucide-react";
 import type { BlogPost } from "@shared/schema";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -138,12 +138,6 @@ export default function BlogPage() {
                     <p className="text-muted-foreground line-clamp-3">{post.excerpt}</p>
                     <div className="flex flex-wrap gap-2">
                       <Badge variant="secondary">{post.category}</Badge>
-                      {post.isAiGenerated === "true" && (
-                        <Badge variant="outline" className="gap-1">
-                          <Sparkles className="h-3 w-3" aria-hidden="true" />
-                          AI Generated
-                        </Badge>
-                      )}
                     </div>
                     <div className="flex flex-wrap gap-1">
                       {post.tags.slice(0, 3).map((tag, idx) => (
