@@ -16,6 +16,7 @@ import {
   commercialEarthquakeQuotes,
   franchisedDealerQuotes,
   garageServiceQuotes,
+  autoDealerGarageQuotes,
 } from "@shared/schema";
 import { desc, or, ilike, sql, and, gte, lte } from "drizzle-orm";
 
@@ -259,6 +260,21 @@ export function registerAgentRoutes(app: Express) {
           ...garageService.map((g) => ({
             ...g,
             submissionType: "garage-service",
+          }))
+        );
+      }
+
+      if (!type || type === "auto-dealer-garage") {
+        const autoDealerGarage = await db
+          .select()
+          .from(autoDealerGarageQuotes)
+          .orderBy(desc(autoDealerGarageQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...autoDealerGarage.map((a) => ({
+            ...a,
+            submissionType: "auto-dealer-garage",
           }))
         );
       }
