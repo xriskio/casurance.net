@@ -25,7 +25,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Search, LogOut, FileText, Sparkles, NewspaperIcon, PenLine, Shield, Download } from "lucide-react";
+import { Search, LogOut, FileText, Sparkles, NewspaperIcon, PenLine, Shield, Download, Printer } from "lucide-react";
 import { format } from "date-fns";
 import { useToast } from "@/hooks/use-toast";
 import type { BlogPost, PressRelease } from "@shared/schema";
@@ -625,6 +625,10 @@ export default function AgentPortal() {
     });
   };
 
+  const handlePrint = () => {
+    window.print();
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b bg-card">
@@ -1221,15 +1225,26 @@ export default function AgentPortal() {
 
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-2xl font-semibold">Form Submissions</h2>
-          <Button
-            onClick={exportToCSV}
-            variant="outline"
-            disabled={normalizedSubmissions.length === 0}
-            data-testid="button-export-csv"
-          >
-            <Download className="w-4 h-4 mr-2" />
-            Export CSV
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              onClick={exportToCSV}
+              variant="outline"
+              disabled={normalizedSubmissions.length === 0}
+              data-testid="button-export-csv"
+            >
+              <Download className="w-4 h-4 mr-2" />
+              Export CSV
+            </Button>
+            <Button
+              onClick={handlePrint}
+              variant="outline"
+              disabled={normalizedSubmissions.length === 0}
+              data-testid="button-print-all"
+            >
+              <Printer className="w-4 h-4 mr-2" />
+              Print / PDF
+            </Button>
+          </div>
         </div>
         <div className="mb-6 flex flex-col sm:flex-row gap-4">
           <div className="relative flex-1">

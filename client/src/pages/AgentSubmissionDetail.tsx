@@ -6,7 +6,7 @@ import { apiRequest, queryClient } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Printer } from "lucide-react";
 import { format } from "date-fns";
 import { useToast } from "@/hooks/use-toast";
 
@@ -74,6 +74,10 @@ export default function AgentSubmissionDetail() {
       </div>
     );
   }
+
+  const handlePrint = () => {
+    window.print();
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -174,13 +178,21 @@ export default function AgentSubmissionDetail() {
             </CardContent>
           </Card>
 
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
             <Button
               onClick={() => markCompleteMutation.mutate()}
               disabled={markCompleteMutation.isPending || submission.status === "completed"}
               data-testid="button-mark-complete"
             >
               {markCompleteMutation.isPending ? "Updating..." : "Mark as Complete"}
+            </Button>
+            <Button
+              variant="outline"
+              onClick={handlePrint}
+              data-testid="button-print"
+            >
+              <Printer className="w-4 h-4 mr-2" />
+              Print / PDF
             </Button>
             <Button
               variant="outline"

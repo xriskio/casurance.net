@@ -384,3 +384,103 @@
     inset: -1px;
   }
 }
+
+/* Print / PDF Styles */
+@media print {
+  /* Hide navigation and specific UI buttons */
+  header,
+  nav,
+  .no-print,
+  [data-testid="button-logout"],
+  [data-testid="button-admin-panel"],
+  [data-testid="button-back"],
+  [data-testid="button-mark-complete"],
+  [data-testid="button-print"],
+  [data-testid="button-back-to-list"],
+  [data-testid="button-export-csv"],
+  [data-testid="button-print-all"],
+  [data-testid^="button-mark-read"],
+  [data-testid^="button-view-details"],
+  [data-testid^="button-generate"],
+  [data-testid^="button-ai"],
+  [data-testid^="button-create"],
+  [data-testid^="button-press"],
+  [data-testid^="tab-"],
+  input[type="search"],
+  [data-testid="input-search"],
+  [data-testid="select-type-filter"],
+  select {
+    display: none !important;
+  }
+
+  /* Reset backgrounds to white for print */
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Ensure text is readable */
+  * {
+    color: black !important;
+    background: transparent !important;
+  }
+
+  /* Keep table borders visible */
+  table,
+  th,
+  td {
+    border: 1px solid #000 !important;
+    background: white !important;
+  }
+
+  /* Preserve card borders */
+  [role="region"],
+  .card,
+  [class*="Card"] {
+    border: 1px solid #ddd !important;
+    background: white !important;
+    box-shadow: none !important;
+  }
+
+  /* Page breaks */
+  tr,
+  .card {
+    page-break-inside: avoid;
+  }
+
+  /* Ensure tables fit on page */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  /* Hide search and filter controls */
+  .mb-6.flex.flex-col.sm\\:flex-row.gap-4 {
+    display: none !important;
+  }
+
+  /* Print badges with borders */
+  .badge,
+  [class*="Badge"] {
+    border: 1px solid #333 !important;
+    padding: 2px 6px !important;
+    background: white !important;
+  }
+
+  /* Ensure content is visible */
+  main {
+    margin: 0 !important;
+    padding: 1rem !important;
+  }
+
+  /* Add page margins */
+  @page {
+    margin: 1cm;
+  }
+
+  /* Show reference numbers prominently */
+  [data-testid*="reference-number"] {
+    font-weight: bold !important;
+    color: #000 !important;
+  }
+}
