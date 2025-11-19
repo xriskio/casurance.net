@@ -14,6 +14,8 @@ import {
   highValueHomeQuotes,
   commercialFloodQuotes,
   commercialEarthquakeQuotes,
+  franchisedDealerQuotes,
+  garageServiceQuotes,
 } from "@shared/schema";
 import { desc, or, ilike, sql, and, gte, lte } from "drizzle-orm";
 
@@ -227,6 +229,36 @@ export function registerAgentRoutes(app: Express) {
           ...commercialEarthquake.map((c) => ({
             ...c,
             submissionType: "commercial-earthquake",
+          }))
+        );
+      }
+
+      if (!type || type === "franchised-dealer") {
+        const franchisedDealer = await db
+          .select()
+          .from(franchisedDealerQuotes)
+          .orderBy(desc(franchisedDealerQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...franchisedDealer.map((f) => ({
+            ...f,
+            submissionType: "franchised-dealer",
+          }))
+        );
+      }
+
+      if (!type || type === "garage-service") {
+        const garageService = await db
+          .select()
+          .from(garageServiceQuotes)
+          .orderBy(desc(garageServiceQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...garageService.map((g) => ({
+            ...g,
+            submissionType: "garage-service",
           }))
         );
       }
