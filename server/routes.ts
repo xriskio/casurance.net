@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema, insertFilmProductionQuoteSchema, insertProductLiabilityQuoteSchema, insertSecurityServicesQuoteSchema, insertNemtApplicationSchema, insertAmbulanceApplicationSchema, insertTncApplicationSchema, insertLimousineQuoteSchema, insertPublicTransportationQuoteSchema, insertTaxiBlackCarQuoteSchema, insertQuickQuoteSchema, insertContactRequestSchema, insertBlogPostSchema, insertPressReleaseSchema, insertHighValueHomeQuoteSchema, insertCommercialFloodQuoteSchema, insertCommercialEarthquakeQuoteSchema, insertFranchisedDealerQuoteSchema, insertGarageServiceQuoteSchema, insertAutoDealerGarageQuoteSchema, insertGolfCountryClubQuoteSchema } from "@shared/schema";
+import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema, insertFilmProductionQuoteSchema, insertProductLiabilityQuoteSchema, insertSecurityServicesQuoteSchema, insertNemtApplicationSchema, insertAmbulanceApplicationSchema, insertTncApplicationSchema, insertLimousineQuoteSchema, insertPublicTransportationQuoteSchema, insertTaxiBlackCarQuoteSchema, insertQuickQuoteSchema, insertContactRequestSchema, insertBlogPostSchema, insertPressReleaseSchema, insertNewsletterSubscriptionSchema, insertHighValueHomeQuoteSchema, insertCommercialFloodQuoteSchema, insertCommercialEarthquakeQuoteSchema, insertFranchisedDealerQuoteSchema, insertGarageServiceQuoteSchema, insertAutoDealerGarageQuoteSchema, insertGolfCountryClubQuoteSchema } from "@shared/schema";
 import { registerAgentRoutes } from "./routes/agent";
 import { generateBlogPost, getCategories, getTopics, generateDraftContent, improveContent, suggestTags } from "./lib/ai-blog-generator";
 import { generatePressRelease, getCategories as getPressCategories, getTopics as getPressTopics, getLocations, generateDraftContent as generatePressDraft, improveContent as improvePressContent, suggestTags as suggestPressTags } from "./lib/ai-press-release-generator";
@@ -629,6 +629,92 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(tags);
     } catch (error: any) {
       res.status(500).json({ message: error.message || "Error suggesting tags" });
+    }
+  });
+
+  // Newsletter subscription (public endpoint)
+  app.post("/api/newsletter/subscribe", async (req, res) => {
+    try {
+      const { email } = req.body;
+      
+      if (!email || typeof email !== 'string') {
+        return res.status(400).json({ message: "Valid email address is required" });
+      }
+
+      // Simple email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        return res.status(400).json({ message: "Invalid email address format" });
+      }
+
+      const unsubscribeToken = randomUUID();
+      
+      const subscription = await storage.createNewsletterSubscription({
+        email: email.toLowerCase().trim(),
+        status: "active",
+        unsubscribeToken
+      });
+      
+      res.json({ 
+        message: "Successfully subscribed to newsletter",
+        email: subscription.email
+      });
+    } catch (error: any) {
+      // Handle unique constraint violation (duplicate email)
+      if (error.code === '23505' || error.message?.includes('unique')) {
+        return res.status(409).json({ message: "This email is already subscribed to our newsletter" });
+      }
+      res.status(500).json({ message: error.message || "Error subscribing to newsletter" });
+    }
+  });
+
+  // Newsletter unsubscribe (public endpoint)
+  app.post("/api/newsletter/unsubscribe/:token", async (req, res) => {
+    try {
+      const { token } = req.params;
+      
+      if (!token) {
+        return res.status(400).json({ message: "Unsubscribe token is required" });
+      }
+
+      const subscription = await storage.unsubscribeNewsletter(token);
+      
+      if (!subscription) {
+        return res.status(404).json({ message: "Subscription not found or already unsubscribed" });
+      }
+      
+      res.json({ 
+        message: "Successfully unsubscribed from newsletter",
+        email: subscription.email
+      });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message || "Error unsubscribing from newsletter" });
+    }
+  });
+
+  // Get subscription status by token (public endpoint)
+  app.get("/api/newsletter/subscription/:token", async (req, res) => {
+    try {
+      const { token } = req.params;
+      
+      if (!token) {
+        return res.status(400).json({ message: "Token is required" });
+      }
+
+      const subscription = await storage.getNewsletterSubscriptionByToken(token);
+      
+      if (!subscription) {
+        return res.status(404).json({ message: "Subscription not found" });
+      }
+      
+      res.json({ 
+        email: subscription.email,
+        status: subscription.status,
+        subscribedAt: subscription.subscribedAt,
+        unsubscribedAt: subscription.unsubscribedAt
+      });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message || "Error fetching subscription" });
     }
   });
 
