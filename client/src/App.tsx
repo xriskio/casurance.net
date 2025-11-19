@@ -48,6 +48,7 @@ import CommercialEarthquakeQuote from "@/pages/CommercialEarthquakeQuote";
 import FranchisedDealerQuote from "@/pages/FranchisedDealerQuote";
 import GarageServiceQuote from "@/pages/GarageServiceQuote";
 import AutoDealerGarageQuote from "@/pages/AutoDealerGarageQuote";
+import GolfCountryClubQuote from "@/pages/GolfCountryClubQuote";
 import AboutPage from "@/pages/AboutPage";
 import ContactPage from "@/pages/ContactPage";
 import BlogPage from "@/pages/BlogPage";
@@ -106,6 +107,7 @@ function Router() {
       <Route path="/quote/franchised-dealers" component={FranchisedDealerQuote} />
       <Route path="/quote/garage-service-centers" component={GarageServiceQuote} />
       <Route path="/quote/auto-dealer-garage" component={AutoDealerGarageQuote} />
+      <Route path="/quote/golf-country-club" component={GolfCountryClubQuote} />
       <Route component={NotFound} />
     </Switch>
   );
