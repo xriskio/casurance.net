@@ -432,6 +432,25 @@ export const autoDealerGarageQuotes = pgTable("auto_dealer_garage_quotes", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const golfCountryClubQuotes = pgTable("golf_country_club_quotes", {
+  id: varchar("id").primaryKey(),
+  clubName: text("club_name").notNull(),
+  contactName: text("contact_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  city: text("city"),
+  state: text("state"),
+  zipCode: text("zip_code"),
+  clubType: text("club_type"),
+  numberOfHoles: text("number_of_holes"),
+  acreage: text("acreage"),
+  annualRevenue: text("annual_revenue"),
+  generalLiabilityLimit: text("general_liability_limit"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const insertQuoteRequestSchema = createInsertSchema(quoteRequests).omit({
   id: true,
   createdAt: true,
@@ -559,6 +578,11 @@ export const insertAutoDealerGarageQuoteSchema = createInsertSchema(autoDealerGa
   createdAt: true,
 });
 
+export const insertGolfCountryClubQuoteSchema = createInsertSchema(golfCountryClubQuotes).omit({
+  id: true,
+  createdAt: true,
+});
+
 export type InsertQuoteRequest = z.infer<typeof insertQuoteRequestSchema>;
 export type QuoteRequest = typeof quoteRequests.$inferSelect;
 export type InsertServiceRequest = z.infer<typeof insertServiceRequestSchema>;
@@ -609,3 +633,5 @@ export type InsertGarageServiceQuote = z.infer<typeof insertGarageServiceQuoteSc
 export type GarageServiceQuote = typeof garageServiceQuotes.$inferSelect;
 export type InsertAutoDealerGarageQuote = z.infer<typeof insertAutoDealerGarageQuoteSchema>;
 export type AutoDealerGarageQuote = typeof autoDealerGarageQuotes.$inferSelect;
+export type InsertGolfCountryClubQuote = z.infer<typeof insertGolfCountryClubQuoteSchema>;
+export type GolfCountryClubQuote = typeof golfCountryClubQuotes.$inferSelect;
