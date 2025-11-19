@@ -27,6 +27,8 @@ import limousineImg from "@assets/stock_images/luxury_limousine_fle_e1d5256a.jpg
 import franchisedDealersImg from "@assets/stock_images/modern_car_dealershi_eab35424.jpg";
 import autoDealerGarageImg from "@assets/stock_images/auto_repair_shop_mec_c0bb8e28.jpg";
 import garageServiceCentersImg from "@assets/stock_images/auto_service_center__1de1ecb8.jpg";
+import golfCountryClubImg from "@assets/stock_images/professional_golf_co_2f9b5f57.jpg";
+import publicTransportationImg from "@assets/stock_images/modern_public_transp_64aa03b0.jpg";
 
 export const industryImages: Record<string, string> = {
   "agribusiness-industry": agribusinessImg,
@@ -57,6 +59,8 @@ export const industryImages: Record<string, string> = {
   "franchised-dealers": franchisedDealersImg,
   "auto-dealer-garage": autoDealerGarageImg,
   "garage-service-centers": garageServiceCentersImg,
+  "golf-country-club": golfCountryClubImg,
+  "public-transportation": publicTransportationImg,
 };
 
 export function getIndustryImage(slug: string): string | undefined {
