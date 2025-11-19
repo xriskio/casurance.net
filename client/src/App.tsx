@@ -45,6 +45,8 @@ import TaxiQuote from "@/pages/TaxiQuote";
 import HighValueHomeQuote from "@/pages/HighValueHomeQuote";
 import CommercialFloodQuote from "@/pages/CommercialFloodQuote";
 import CommercialEarthquakeQuote from "@/pages/CommercialEarthquakeQuote";
+import FranchisedDealerQuote from "@/pages/FranchisedDealerQuote";
+import GarageServiceQuote from "@/pages/GarageServiceQuote";
 import AboutPage from "@/pages/AboutPage";
 import ContactPage from "@/pages/ContactPage";
 import BlogPage from "@/pages/BlogPage";
@@ -100,6 +102,8 @@ function Router() {
       <Route path="/quote/high-value-home" component={HighValueHomeQuote} />
       <Route path="/quote/commercial-flood" component={CommercialFloodQuote} />
       <Route path="/quote/commercial-earthquake" component={CommercialEarthquakeQuote} />
+      <Route path="/quote/franchised-dealers" component={FranchisedDealerQuote} />
+      <Route path="/quote/garage-service-centers" component={GarageServiceQuote} />
       <Route component={NotFound} />
     </Switch>
   );
