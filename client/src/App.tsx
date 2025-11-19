@@ -100,6 +100,7 @@ function Router() {
       <Route path="/contact" component={ContactPage} />
       <Route path="/agent/login" component={AgentLogin} />
       <Route path="/agent/portal" component={AgentPortal} />
+      <Route path="/agent-portal" component={AgentPortal} />
       <Route path="/agent/submission/:type/:id" component={AgentSubmissionDetail} />
       <Route path="/apply/nemt" component={NemtApplicationPage} />
       <Route path="/apply/ambulance" component={AmbulanceApplicationPage} />
