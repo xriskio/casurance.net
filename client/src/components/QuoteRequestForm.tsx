@@ -10,6 +10,7 @@ import { ArrowRight, ArrowLeft, CheckCircle, ChevronDown, ChevronUp } from "luci
 
 const insuranceTypes = [
   "Ambulance Services",
+  "Auto Dealers / Used Car Dealers / Garage / Body Shop",
   "Builders Risk",
   "Business Owners Policy (BOP)",
   "Commercial Auto",
@@ -183,6 +184,11 @@ const comprehensiveFormLinks: Record<string, { url: string; title: string; descr
     url: "/apply/tnc-rideshare",
     title: "Use TNC/Rideshare Application",
     description: "For Transportation Network Companies, rideshare platforms, and on-demand mobility services, we have a specialized application designed for sharing economy and gig-economy platforms with comprehensive coverage for platform operations, driver networks, and passenger transportation.",
+  },
+  "Auto Dealers / Used Car Dealers / Garage / Body Shop": {
+    url: "/quote/auto-dealer-garage",
+    title: "Use Auto Dealer & Garage Operations Application",
+    description: "For Auto Dealerships (franchised and used car dealers), Garages, Body Shops, and Automotive Service Centers, we have a comprehensive 8-step application based on K2 Insurance standards. Covers dealer operations (sales, floor plan, dealer plates, test drives), garage liability, garagekeepers legal liability, dealers physical damage, garage operations, service shop coverage, and all aspects of automotive retail and service businesses.",
   },
 };
 
