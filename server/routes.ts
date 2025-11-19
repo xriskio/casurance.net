@@ -247,7 +247,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/contact-requests", async (req, res) => {
     try {
       const validatedData = insertContactRequestSchema.parse(req.body);
-      const request = await storage.createContactRequest(validatedData);
+      const referenceNumber = generateReferenceNumber('SRQ');
+      const request = await storage.createContactRequest({ ...validatedData, referenceNumber } as any);
       res.json(request);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });

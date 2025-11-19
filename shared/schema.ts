@@ -275,6 +275,7 @@ export const quickQuotes = pgTable("quick_quotes", {
 
 export const contactRequests = pgTable("contact_requests", {
   id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
   businessName: text("business_name"),
   contactName: text("contact_name").notNull(),
   email: text("email").notNull(),
@@ -568,6 +569,7 @@ export const insertQuickQuoteSchema = createInsertSchema(quickQuotes).omit({
 
 export const insertContactRequestSchema = createInsertSchema(contactRequests).omit({
   id: true,
+  referenceNumber: true,
   createdAt: true,
 });
 
