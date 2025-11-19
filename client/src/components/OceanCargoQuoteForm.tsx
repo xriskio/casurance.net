@@ -137,6 +137,7 @@ type FormData = z.infer<typeof formSchema>;
 export default function OceanCargoQuoteForm() {
   const [currentStep, setCurrentStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const [referenceNumber, setReferenceNumber] = useState<string | null>(null);
   const { toast } = useToast();
 
   const form = useForm<FormData>({
@@ -172,12 +173,13 @@ export default function OceanCargoQuoteForm() {
         payload: data,
       });
     },
-    onSuccess: () => {
+    onSuccess: (response: any) => {
       queryClient.invalidateQueries({ queryKey: ["/api/ocean-cargo-quotes"] });
+      setReferenceNumber(response.referenceNumber);
       setSubmitted(true);
       toast({
         title: "Quote request submitted!",
-        description: "We'll review your information and contact you soon.",
+        description: `Reference number: ${response.referenceNumber}`,
       });
     },
     onError: (error: Error) => {
@@ -209,10 +211,18 @@ export default function OceanCargoQuoteForm() {
             <CheckCircle className="h-8 w-8 text-green-600" />
           </div>
           <h3 className="text-2xl font-bold mb-4">Ocean Cargo Quote Request Submitted!</h3>
+          {referenceNumber && (
+            <div className="mb-4 p-4 bg-muted rounded-md">
+              <p className="text-sm text-muted-foreground mb-1">Your Reference Number</p>
+              <p className="text-2xl font-mono font-bold text-primary" data-testid="text-reference-number">
+                {referenceNumber}
+              </p>
+            </div>
+          )}
           <p className="text-muted-foreground mb-6">
-            Thank you for your Ocean Cargo insurance quote request. Our underwriting team will review your information and contact you within 24-48 hours.
+            Thank you for your Ocean Cargo insurance quote request. Our underwriting team will review your information and contact you within 24-48 hours. Please save your reference number for tracking purposes.
           </p>
-          <Button onClick={() => { setSubmitted(false); setCurrentStep(1); form.reset(); }} data-testid="button-submit-another">
+          <Button onClick={() => { setSubmitted(false); setReferenceNumber(null); setCurrentStep(1); form.reset(); }} data-testid="button-submit-another">
             Submit Another Quote Request
           </Button>
         </CardContent>

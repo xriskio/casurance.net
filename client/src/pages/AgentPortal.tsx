@@ -38,6 +38,7 @@ interface NormalizedSubmission {
   location: string;
   date: string;
   status: "complete" | "incomplete";
+  referenceNumber?: string;
   rawData: any;
 }
 
@@ -113,6 +114,7 @@ function normalizeSubmission(submission: any): NormalizedSubmission {
     location,
     date,
     status,
+    referenceNumber: submission.referenceNumber,
     rawData: submission,
   };
 }
@@ -1185,6 +1187,7 @@ export default function AgentPortal() {
             <Table>
               <TableHeader>
                 <TableRow>
+                  <TableHead>Reference #</TableHead>
                   <TableHead>Form Name</TableHead>
                   <TableHead>Name</TableHead>
                   <TableHead>Location</TableHead>
@@ -1200,6 +1203,11 @@ export default function AgentPortal() {
                     key={submission.id}
                     data-testid={`row-submission-${index}`}
                   >
+                    <TableCell data-testid={`text-reference-number-${index}`}>
+                      <span className="font-mono text-sm font-semibold">
+                        {submission.referenceNumber || 'N/A'}
+                      </span>
+                    </TableCell>
                     <TableCell data-testid={`text-form-name-${index}`}>
                       {submission.formName}
                     </TableCell>
