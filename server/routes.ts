@@ -6,6 +6,7 @@ import { registerAgentRoutes } from "./routes/agent";
 import { generateBlogPost, getCategories, getTopics, generateDraftContent, improveContent, suggestTags } from "./lib/ai-blog-generator";
 import { generatePressRelease, getCategories as getPressCategories, getTopics as getPressTopics, getLocations, generateDraftContent as generatePressDraft, improveContent as improvePressContent, suggestTags as suggestPressTags } from "./lib/ai-press-release-generator";
 import { generateReferenceNumber } from "./utils/referenceNumber";
+import { sendQuoteConfirmationEmail, sendServiceRequestConfirmationEmail } from "./services/emailService";
 import multer from "multer";
 import path from "path";
 import { randomUUID } from "crypto";
@@ -56,6 +57,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertQuoteRequestSchema.parse(req.body);
       const referenceNumber = generateReferenceNumber('RFQ');
       const quote = await storage.createQuoteRequest({ ...validatedData, referenceNumber } as any);
+      
+      sendQuoteConfirmationEmail({
+        referenceNumber,
+        businessName: validatedData.businessName,
+        contactName: validatedData.contactName,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: validatedData.insuranceType
+      }).catch(err => console.error('Failed to send confirmation email:', err));
+      
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -68,6 +79,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertServiceRequestSchema.parse(req.body);
       const referenceNumber = generateReferenceNumber('SRQ');
       const service = await storage.createServiceRequest({ ...validatedData, referenceNumber } as any);
+      
+      sendServiceRequestConfirmationEmail({
+        referenceNumber,
+        businessName: validatedData.businessName,
+        contactName: validatedData.contactName,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        requestType: validatedData.requestType,
+        description: validatedData.description
+      }).catch(err => console.error('Failed to send confirmation email:', err));
+      
       res.json(service);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
