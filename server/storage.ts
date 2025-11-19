@@ -1,4 +1,4 @@
-import { quoteRequests, serviceRequests, oceanCargoQuotes, selfStorageQuotes, filmProductionQuotes, productLiabilityQuotes, securityServicesQuotes, nemtApplications, ambulanceApplications, tncApplications, limousineQuotes, publicTransportationQuotes, taxiBlackCarQuotes, quickQuotes, contactRequests, applicationFiles, blogPosts, highValueHomeQuotes, commercialFloodQuotes, commercialEarthquakeQuotes, franchisedDealerQuotes, garageServiceQuotes, type InsertQuoteRequest, type QuoteRequest, type InsertServiceRequest, type ServiceRequest, type InsertOceanCargoQuote, type OceanCargoQuote, type InsertSelfStorageQuote, type SelfStorageQuote, type InsertFilmProductionQuote, type FilmProductionQuote, type InsertProductLiabilityQuote, type ProductLiabilityQuote, type InsertSecurityServicesQuote, type SecurityServicesQuote, type InsertNemtApplication, type NemtApplication, type InsertAmbulanceApplication, type AmbulanceApplication, type InsertTncApplication, type TncApplication, type InsertLimousineQuote, type LimousineQuote, type InsertPublicTransportationQuote, type PublicTransportationQuote, type InsertTaxiBlackCarQuote, type TaxiBlackCarQuote, type InsertQuickQuote, type QuickQuote, type InsertContactRequest, type ContactRequest, type ApplicationFile, type InsertBlogPost, type BlogPost, type InsertHighValueHomeQuote, type HighValueHomeQuote, type InsertCommercialFloodQuote, type CommercialFloodQuote, type InsertCommercialEarthquakeQuote, type CommercialEarthquakeQuote, type InsertFranchisedDealerQuote, type FranchisedDealerQuote, type InsertGarageServiceQuote, type GarageServiceQuote } from "@shared/schema";
+import { quoteRequests, serviceRequests, oceanCargoQuotes, selfStorageQuotes, filmProductionQuotes, productLiabilityQuotes, securityServicesQuotes, nemtApplications, ambulanceApplications, tncApplications, limousineQuotes, publicTransportationQuotes, taxiBlackCarQuotes, quickQuotes, contactRequests, applicationFiles, blogPosts, highValueHomeQuotes, commercialFloodQuotes, commercialEarthquakeQuotes, franchisedDealerQuotes, garageServiceQuotes, autoDealerGarageQuotes, type InsertQuoteRequest, type QuoteRequest, type InsertServiceRequest, type ServiceRequest, type InsertOceanCargoQuote, type OceanCargoQuote, type InsertSelfStorageQuote, type SelfStorageQuote, type InsertFilmProductionQuote, type FilmProductionQuote, type InsertProductLiabilityQuote, type ProductLiabilityQuote, type InsertSecurityServicesQuote, type SecurityServicesQuote, type InsertNemtApplication, type NemtApplication, type InsertAmbulanceApplication, type AmbulanceApplication, type InsertTncApplication, type TncApplication, type InsertLimousineQuote, type LimousineQuote, type InsertPublicTransportationQuote, type PublicTransportationQuote, type InsertTaxiBlackCarQuote, type TaxiBlackCarQuote, type InsertQuickQuote, type QuickQuote, type InsertContactRequest, type ContactRequest, type ApplicationFile, type InsertBlogPost, type BlogPost, type InsertHighValueHomeQuote, type HighValueHomeQuote, type InsertCommercialFloodQuote, type CommercialFloodQuote, type InsertCommercialEarthquakeQuote, type CommercialEarthquakeQuote, type InsertFranchisedDealerQuote, type FranchisedDealerQuote, type InsertGarageServiceQuote, type GarageServiceQuote, type InsertAutoDealerGarageQuote, type AutoDealerGarageQuote } from "@shared/schema";
 import { db } from "./db";
 import { randomUUID } from "crypto";
 import { eq, desc, like, or } from "drizzle-orm";
@@ -28,6 +28,7 @@ export interface IStorage {
   createCommercialEarthquakeQuote(quote: InsertCommercialEarthquakeQuote): Promise<CommercialEarthquakeQuote>;
   createFranchisedDealerQuote(quote: InsertFranchisedDealerQuote): Promise<FranchisedDealerQuote>;
   createGarageServiceQuote(quote: InsertGarageServiceQuote): Promise<GarageServiceQuote>;
+  createAutoDealerGarageQuote(quote: InsertAutoDealerGarageQuote): Promise<AutoDealerGarageQuote>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -307,6 +308,15 @@ export class DatabaseStorage implements IStorage {
     const id = randomUUID();
     const [quote] = await db
       .insert(garageServiceQuotes)
+      .values({ ...insertQuote, id })
+      .returning();
+    return quote;
+  }
+
+  async createAutoDealerGarageQuote(insertQuote: InsertAutoDealerGarageQuote): Promise<AutoDealerGarageQuote> {
+    const id = randomUUID();
+    const [quote] = await db
+      .insert(autoDealerGarageQuotes)
       .values({ ...insertQuote, id })
       .returning();
     return quote;

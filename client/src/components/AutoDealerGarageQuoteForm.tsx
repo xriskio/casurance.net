@@ -344,7 +344,7 @@ export default function AutoDealerGarageQuoteForm({ onSuccess }: AutoDealerGarag
               <FormItem>
                 <FormLabel>Number of Locations</FormLabel>
                 <FormControl>
-                  <Input type="number" {...field} data-testid="input-number-of-locations" min="1" defaultValue="1" />
+                  <Input type="number" {...field} value={field.value || ""} data-testid="input-number-of-locations" min="1" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -377,7 +377,7 @@ export default function AutoDealerGarageQuoteForm({ onSuccess }: AutoDealerGarag
                   <FormItem>
                     <FormLabel>Dealership Type</FormLabel>
                     <FormControl>
-                      <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-col space-y-2" data-testid="radiogroup-dealership-type">
+                      <RadioGroup onValueChange={field.onChange} defaultValue={field.value || ""} className="flex flex-col space-y-2" data-testid="radiogroup-dealership-type">
                         <div className="flex items-center space-x-2">
                           <RadioGroupItem value="franchised" id="franchised" data-testid="radio-franchised" />
                           <label htmlFor="franchised" className="text-sm font-medium cursor-pointer">
@@ -404,7 +404,7 @@ export default function AutoDealerGarageQuoteForm({ onSuccess }: AutoDealerGarag
                   <FormItem>
                     <FormLabel>Number of Dealer Plates</FormLabel>
                     <FormControl>
-                      <Input type="number" {...field} data-testid="input-dealer-plates" min="0" />
+                      <Input type="number" {...field} value={field.value || ""} data-testid="input-dealer-plates" min="0" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

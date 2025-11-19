@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema, insertFilmProductionQuoteSchema, insertProductLiabilityQuoteSchema, insertSecurityServicesQuoteSchema, insertNemtApplicationSchema, insertAmbulanceApplicationSchema, insertTncApplicationSchema, insertLimousineQuoteSchema, insertPublicTransportationQuoteSchema, insertTaxiBlackCarQuoteSchema, insertQuickQuoteSchema, insertContactRequestSchema, insertBlogPostSchema, insertHighValueHomeQuoteSchema, insertCommercialFloodQuoteSchema, insertCommercialEarthquakeQuoteSchema, insertFranchisedDealerQuoteSchema, insertGarageServiceQuoteSchema } from "@shared/schema";
+import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema, insertFilmProductionQuoteSchema, insertProductLiabilityQuoteSchema, insertSecurityServicesQuoteSchema, insertNemtApplicationSchema, insertAmbulanceApplicationSchema, insertTncApplicationSchema, insertLimousineQuoteSchema, insertPublicTransportationQuoteSchema, insertTaxiBlackCarQuoteSchema, insertQuickQuoteSchema, insertContactRequestSchema, insertBlogPostSchema, insertHighValueHomeQuoteSchema, insertCommercialFloodQuoteSchema, insertCommercialEarthquakeQuoteSchema, insertFranchisedDealerQuoteSchema, insertGarageServiceQuoteSchema, insertAutoDealerGarageQuoteSchema } from "@shared/schema";
 import { registerAgentRoutes } from "./routes/agent";
 import { generateBlogPost, getCategories, getTopics, generateDraftContent, improveContent, suggestTags } from "./lib/ai-blog-generator";
 import multer from "multer";
@@ -287,6 +287,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const validatedData = insertGarageServiceQuoteSchema.parse(req.body);
       const quote = await storage.createGarageServiceQuote(validatedData);
+      res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // Auto Dealer/Garage Quotes (Comprehensive K2 Form)
+  app.post("/api/auto-dealer-garage-quotes", async (req, res) => {
+    try {
+      const validatedData = insertAutoDealerGarageQuoteSchema.parse(req.body);
+      const quote = await storage.createAutoDealerGarageQuote(validatedData);
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
