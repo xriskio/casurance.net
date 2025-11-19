@@ -966,14 +966,17 @@ export const coverages: CoverageContent[] = [
     title: "High Value Homeowners",
     slug: "high-value-homeowners",
     category: "Personal Lines",
-    summary: "Premium homeowners insurance for luxury homes and high-value properties.",
-    description: "High value homeowners insurance provides enhanced coverage for luxury homes, estates, and high-value properties that exceed the limits of standard homeowners policies. This coverage includes higher limits, broader protection, and specialized services for discerning homeowners.",
+    summary: "Premium homeowners insurance for luxury homes and high-value properties, including coverage in high-risk areas.",
+    description: "High value homeowners insurance provides enhanced coverage for luxury homes, estates, and high-value properties that exceed the limits of standard homeowners policies. This coverage includes higher limits, broader protection, and specialized services for discerning homeowners. We specialize in insuring properties in high-risk areas including brush zones, fire zones, and flood-prone areas.",
     whoNeeds: [
       "Owners of luxury homes and estates",
       "Properties valued over $1 million",
       "Homes with custom features and finishes",
       "Vacation homes and second residences",
-      "Historic or architecturally significant properties"
+      "Historic or architecturally significant properties",
+      "Properties in brush fire zones",
+      "Homes in designated fire hazard areas",
+      "Properties in flood zones"
     ],
     coverageIncludes: [
       "Replacement cost coverage for luxury homes",
@@ -981,14 +984,19 @@ export const coverages: CoverageContent[] = [
       "Fine art and collectibles coverage",
       "Jewelry and valuables insurance",
       "Additional living expenses",
-      "Liability protection with high limits"
+      "Liability protection with high limits",
+      "Coverage for homes in brush zones",
+      "Fire zone property protection",
+      "Flood area coverage options"
     ],
     benefits: [
       "Guaranteed replacement cost coverage",
       "No depreciation on personal property",
       "Specialized claims handling",
       "Concierge services and risk management",
-      "Coverage for unique and irreplaceable items"
+      "Coverage for unique and irreplaceable items",
+      "High-risk area expertise (brush, fire, flood zones)",
+      "Tailored solutions for challenging locations"
     ]
   },
 

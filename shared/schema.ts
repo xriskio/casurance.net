@@ -302,6 +302,29 @@ export const blogPosts = pgTable("blog_posts", {
   isAiGenerated: text("is_ai_generated").notNull().default("true"),
 });
 
+export const highValueHomeQuotes = pgTable("high_value_home_quotes", {
+  id: varchar("id").primaryKey(),
+  primaryNamedInsured: text("primary_named_insured").notNull(),
+  secondaryNamedInsured: text("secondary_named_insured"),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  effectiveDate: text("effective_date"),
+  dwellingAddress: text("dwelling_address"),
+  city: text("city"),
+  state: text("state"),
+  zipCode: text("zip_code"),
+  constructionType: text("construction_type"),
+  yearConstructed: text("year_constructed"),
+  squareFootage: text("square_footage"),
+  roofingType: text("roofing_type"),
+  protectionClass: text("protection_class"),
+  dwellingValue: text("dwelling_value"),
+  requestedValuation: text("requested_valuation"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const insertQuoteRequestSchema = createInsertSchema(quoteRequests).omit({
   id: true,
   createdAt: true,
@@ -399,6 +422,11 @@ export const insertBlogPostSchema = createInsertSchema(blogPosts).omit({
   publishedAt: true,
 });
 
+export const insertHighValueHomeQuoteSchema = createInsertSchema(highValueHomeQuotes).omit({
+  id: true,
+  createdAt: true,
+});
+
 export type InsertQuoteRequest = z.infer<typeof insertQuoteRequestSchema>;
 export type QuoteRequest = typeof quoteRequests.$inferSelect;
 export type InsertServiceRequest = z.infer<typeof insertServiceRequestSchema>;
@@ -437,3 +465,5 @@ export type InsertApplicationFile = z.infer<typeof insertApplicationFileSchema>;
 export type ApplicationFile = typeof applicationFiles.$inferSelect;
 export type InsertBlogPost = z.infer<typeof insertBlogPostSchema>;
 export type BlogPost = typeof blogPosts.$inferSelect;
+export type InsertHighValueHomeQuote = z.infer<typeof insertHighValueHomeQuoteSchema>;
+export type HighValueHomeQuote = typeof highValueHomeQuotes.$inferSelect;
