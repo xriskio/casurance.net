@@ -29,7 +29,7 @@ export default function WhyChooseUs() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Why Choose California Insurance Service
+            Why Choose CASURANCE INSURANCE AGENCY SERVICES
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Independent agency. Personalized service. Unmatched expertise.
