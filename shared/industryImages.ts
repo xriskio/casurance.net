@@ -24,6 +24,9 @@ import warehousingImg from "@assets/generated_images/Modern_warehouse_distributi
 import nemtParatransitImg from "@assets/generated_images/NEMT_wheelchair_accessible_van_19f1036f.png";
 import transportationImg from "@assets/generated_images/Professional_commercial_trucking_fleet_9adb2e6f.png";
 import limousineImg from "@assets/stock_images/luxury_limousine_fle_e1d5256a.jpg";
+import franchisedDealersImg from "@assets/stock_images/modern_car_dealershi_eab35424.jpg";
+import autoDealerGarageImg from "@assets/stock_images/auto_repair_shop_mec_c0bb8e28.jpg";
+import garageServiceCentersImg from "@assets/stock_images/auto_service_center__1de1ecb8.jpg";
 
 export const industryImages: Record<string, string> = {
   "agribusiness-industry": agribusinessImg,
@@ -51,6 +54,9 @@ export const industryImages: Record<string, string> = {
   "security-services": securityServicesImg,
   "warehousing-distribution": warehousingImg,
   "transportation": transportationImg,
+  "franchised-dealers": franchisedDealersImg,
+  "auto-dealer-garage": autoDealerGarageImg,
+  "garage-service-centers": garageServiceCentersImg,
 };
 
 export function getIndustryImage(slug: string): string | undefined {

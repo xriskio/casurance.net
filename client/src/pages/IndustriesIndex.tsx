@@ -22,8 +22,11 @@ export default function IndustriesIndex() {
     }
   };
 
-  // Featured industries to showcase (first 3)
-  const featuredIndustries = industries.slice(0, 3);
+  // Sort industries alphabetically by title
+  const sortedIndustries = [...industries].sort((a, b) => a.title.localeCompare(b.title));
+
+  // Featured industries to showcase (first 3 from sorted list)
+  const featuredIndustries = sortedIndustries.slice(0, 3);
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -51,7 +54,7 @@ export default function IndustriesIndex() {
                     <SelectValue placeholder="Choose your industry" />
                   </SelectTrigger>
                   <SelectContent>
-                    {industries.map((industry) => (
+                    {sortedIndustries.map((industry) => (
                       <SelectItem key={industry.slug} value={industry.slug}>
                         {industry.title}
                       </SelectItem>
@@ -76,7 +79,7 @@ export default function IndustriesIndex() {
             {/* Industry List - Left Column */}
             <div className="lg:col-span-4">
               <div className="space-y-1">
-                {industries.map((industry, index) => (
+                {sortedIndustries.map((industry, index) => (
                   <Link key={industry.slug} href={`/industry/${industry.slug}`}>
                     <div
                       className={`px-4 py-3 rounded-md hover-elevate cursor-pointer transition-colors ${

@@ -7,6 +7,7 @@ export interface CoverageContent {
   whoNeeds: string[];
   coverageIncludes: string[];
   benefits: string[];
+  image?: string;
   seoTitle?: string;
   seoDescription?: string;
 }
@@ -3148,6 +3149,7 @@ export const industries: CoverageContent[] = [
       "Instant cyber liability quotes",
       "World-class TPA for claims adjusting"
     ],
+    image: "attached_assets/stock_images/modern_car_dealershi_eab35424.jpg",
     seoTitle: "Franchised Auto, Truck & RV Dealership Insurance | Casurance",
     seoDescription: "Comprehensive insurance for franchised auto, truck, and RV dealers. Garage liability, garagekeepers, property, crime, and specialized dealer coverages with expert underwriting and claims support."
   },
@@ -3207,6 +3209,7 @@ export const industries: CoverageContent[] = [
       "Multi-location coverage available for dealer groups",
       "Seasonal adjustment options for fluctuating inventory values"
     ],
+    image: "attached_assets/stock_images/auto_repair_shop_mec_c0bb8e28.jpg",
     seoTitle: "Auto Dealer & Garage Insurance | Comprehensive Automotive Coverage",
     seoDescription: "Complete insurance for auto dealers, used car lots, body shops, repair facilities, and service centers. Garage liability, garagekeepers, physical damage, and specialized dealer coverage."
   },
@@ -3255,6 +3258,7 @@ export const industries: CoverageContent[] = [
       "Loss runs assistance and support",
       "Back-office support for submissions, quotes, and binds"
     ],
+    image: "attached_assets/stock_images/auto_service_center__1de1ecb8.jpg",
     seoTitle: "Garage & Service Center Insurance | Auto Repair Shop Coverage",
     seoDescription: "Comprehensive insurance for automotive repair shops, body shops, and service centers. Garage liability, garagekeepers, property, and specialized coverage for all types of automotive service businesses."
   }
