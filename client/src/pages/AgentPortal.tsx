@@ -25,6 +25,24 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { Search, LogOut, FileText, Sparkles, NewspaperIcon, PenLine, Shield, Download, Printer } from "lucide-react";
 import { format } from "date-fns";
 import { useToast } from "@/hooks/use-toast";
@@ -190,7 +208,7 @@ export default function AgentPortal() {
   });
 
   const { data: blogPosts = [] } = useQuery<BlogPost[]>({
-    queryKey: ["/api/blog-posts"],
+    queryKey: ["/api/agent/blog-posts"],
     enabled: isAuthenticated,
   });
 
@@ -361,8 +379,13 @@ export default function AgentPortal() {
     imageUrl: "",
   });
 
+  const [editingBlogPost, setEditingBlogPost] = useState<BlogPost | null>(null);
+  const [deletingBlogPost, setDeletingBlogPost] = useState<BlogPost | null>(null);
+  const [editingPressRelease, setEditingPressRelease] = useState<PressRelease | null>(null);
+  const [deletingPressRelease, setDeletingPressRelease] = useState<PressRelease | null>(null);
+
   const { data: pressReleases = [] } = useQuery<PressRelease[]>({
-    queryKey: ["/api/press-releases"],
+    queryKey: ["/api/agent/press-releases"],
     enabled: isAuthenticated,
   });
 
@@ -527,6 +550,94 @@ export default function AgentPortal() {
         variant: "destructive",
         title: "Error",
         description: "Failed to create press release. Please try again.",
+      });
+    },
+  });
+
+  const updateBlogPostMutation = useMutation({
+    mutationFn: async (data: { id: number; updates: Partial<BlogPost> }) => {
+      return await apiRequest("PATCH", `/api/agent/blog-posts/${data.id}`, data.updates);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/agent/blog-posts"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/blog-posts"] });
+      setEditingBlogPost(null);
+      toast({
+        title: "Success",
+        description: "Blog post updated successfully!",
+      });
+    },
+    onError: () => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to update blog post. Please try again.",
+      });
+    },
+  });
+
+  const deleteBlogPostMutation = useMutation({
+    mutationFn: async (id: number) => {
+      return await apiRequest("DELETE", `/api/agent/blog-posts/${id}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/agent/blog-posts"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/blog-posts"] });
+      setDeletingBlogPost(null);
+      toast({
+        title: "Success",
+        description: "Blog post deleted successfully!",
+      });
+    },
+    onError: () => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to delete blog post. Please try again.",
+      });
+    },
+  });
+
+  const updatePressReleaseMutation = useMutation({
+    mutationFn: async (data: { id: number; updates: Partial<PressRelease> }) => {
+      return await apiRequest("PATCH", `/api/agent/press-releases/${data.id}`, data.updates);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/agent/press-releases"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/press-releases"] });
+      setEditingPressRelease(null);
+      toast({
+        title: "Success",
+        description: "Press release updated successfully!",
+      });
+    },
+    onError: () => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to update press release. Please try again.",
+      });
+    },
+  });
+
+  const deletePressReleaseMutation = useMutation({
+    mutationFn: async (id: number) => {
+      return await apiRequest("DELETE", `/api/agent/press-releases/${id}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/agent/press-releases"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/press-releases"] });
+      setDeletingPressRelease(null);
+      toast({
+        title: "Success",
+        description: "Press release deleted successfully!",
+      });
+    },
+    onError: () => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to delete press release. Please try again.",
       });
     },
   });
@@ -958,6 +1069,7 @@ export default function AgentPortal() {
                                 <Button
                                   variant="ghost"
                                   size="sm"
+                                  onClick={() => setEditingBlogPost(post)}
                                   data-testid={`button-edit-blog-${index}`}
                                   className="text-primary hover:text-primary"
                                 >
@@ -966,6 +1078,7 @@ export default function AgentPortal() {
                                 <Button
                                   variant="ghost"
                                   size="sm"
+                                  onClick={() => setDeletingBlogPost(post)}
                                   data-testid={`button-delete-blog-${index}`}
                                   className="text-destructive hover:text-destructive"
                                 >
@@ -1343,6 +1456,7 @@ export default function AgentPortal() {
                                 <Button
                                   variant="ghost"
                                   size="sm"
+                                  onClick={() => setEditingPressRelease(release)}
                                   data-testid={`button-edit-press-${index}`}
                                   className="text-primary hover:text-primary"
                                 >
@@ -1351,6 +1465,7 @@ export default function AgentPortal() {
                                 <Button
                                   variant="ghost"
                                   size="sm"
+                                  onClick={() => setDeletingPressRelease(release)}
                                   data-testid={`button-delete-press-${index}`}
                                   className="text-destructive hover:text-destructive"
                                 >
@@ -1525,6 +1640,238 @@ export default function AgentPortal() {
           </div>
         )}
       </main>
+
+      {/* Edit Blog Post Dialog */}
+      <Dialog open={!!editingBlogPost} onOpenChange={(open) => !open && setEditingBlogPost(null)}>
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Edit Blog Post</DialogTitle>
+            <DialogDescription>
+              Update the blog post details below.
+            </DialogDescription>
+          </DialogHeader>
+          {editingBlogPost && (
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="edit-blog-title">Title</Label>
+                <Input
+                  id="edit-blog-title"
+                  value={editingBlogPost.title}
+                  onChange={(e) => setEditingBlogPost({ ...editingBlogPost, title: e.target.value })}
+                  data-testid="input-edit-blog-title"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="edit-blog-excerpt">Excerpt</Label>
+                <Textarea
+                  id="edit-blog-excerpt"
+                  value={editingBlogPost.excerpt}
+                  onChange={(e) => setEditingBlogPost({ ...editingBlogPost, excerpt: e.target.value })}
+                  rows={3}
+                  data-testid="input-edit-blog-excerpt"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="edit-blog-content">Content</Label>
+                <Textarea
+                  id="edit-blog-content"
+                  value={editingBlogPost.content}
+                  onChange={(e) => setEditingBlogPost({ ...editingBlogPost, content: e.target.value })}
+                  rows={10}
+                  data-testid="input-edit-blog-content"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="edit-blog-category">Category</Label>
+                <Input
+                  id="edit-blog-category"
+                  value={editingBlogPost.category}
+                  onChange={(e) => setEditingBlogPost({ ...editingBlogPost, category: e.target.value })}
+                  data-testid="input-edit-blog-category"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="edit-blog-tags">Tags (comma-separated)</Label>
+                <Input
+                  id="edit-blog-tags"
+                  value={editingBlogPost.tags.join(", ")}
+                  onChange={(e) => setEditingBlogPost({ ...editingBlogPost, tags: e.target.value.split(",").map(t => t.trim()) })}
+                  data-testid="input-edit-blog-tags"
+                />
+              </div>
+            </div>
+          )}
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setEditingBlogPost(null)} data-testid="button-cancel-edit-blog">
+              Cancel
+            </Button>
+            <Button
+              onClick={() => editingBlogPost && updateBlogPostMutation.mutate({
+                id: editingBlogPost.id,
+                updates: {
+                  title: editingBlogPost.title,
+                  excerpt: editingBlogPost.excerpt,
+                  content: editingBlogPost.content,
+                  category: editingBlogPost.category,
+                  tags: editingBlogPost.tags,
+                }
+              })}
+              disabled={updateBlogPostMutation.isPending}
+              data-testid="button-save-blog"
+            >
+              {updateBlogPostMutation.isPending ? "Saving..." : "Save Changes"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Delete Blog Post AlertDialog */}
+      <AlertDialog open={!!deletingBlogPost} onOpenChange={(open) => !open && setDeletingBlogPost(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete Blog Post</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to delete "{deletingBlogPost?.title}"? This action cannot be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel data-testid="button-cancel-delete-blog">Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => deletingBlogPost && deleteBlogPostMutation.mutate(deletingBlogPost.id)}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              data-testid="button-confirm-delete-blog"
+            >
+              {deleteBlogPostMutation.isPending ? "Deleting..." : "Delete"}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Edit Press Release Dialog */}
+      <Dialog open={!!editingPressRelease} onOpenChange={(open) => !open && setEditingPressRelease(null)}>
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Edit Press Release</DialogTitle>
+            <DialogDescription>
+              Update the press release details below.
+            </DialogDescription>
+          </DialogHeader>
+          {editingPressRelease && (
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="edit-press-title">Title</Label>
+                <Input
+                  id="edit-press-title"
+                  value={editingPressRelease.title}
+                  onChange={(e) => setEditingPressRelease({ ...editingPressRelease, title: e.target.value })}
+                  data-testid="input-edit-press-title"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="edit-press-subtitle">Subtitle (optional)</Label>
+                <Input
+                  id="edit-press-subtitle"
+                  value={editingPressRelease.subtitle || ""}
+                  onChange={(e) => setEditingPressRelease({ ...editingPressRelease, subtitle: e.target.value })}
+                  data-testid="input-edit-press-subtitle"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="edit-press-excerpt">Excerpt</Label>
+                <Textarea
+                  id="edit-press-excerpt"
+                  value={editingPressRelease.excerpt}
+                  onChange={(e) => setEditingPressRelease({ ...editingPressRelease, excerpt: e.target.value })}
+                  rows={3}
+                  data-testid="input-edit-press-excerpt"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="edit-press-content">Content</Label>
+                <Textarea
+                  id="edit-press-content"
+                  value={editingPressRelease.content}
+                  onChange={(e) => setEditingPressRelease({ ...editingPressRelease, content: e.target.value })}
+                  rows={10}
+                  data-testid="input-edit-press-content"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="edit-press-category">Category</Label>
+                <Input
+                  id="edit-press-category"
+                  value={editingPressRelease.category}
+                  onChange={(e) => setEditingPressRelease({ ...editingPressRelease, category: e.target.value })}
+                  data-testid="input-edit-press-category"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="edit-press-location">Location</Label>
+                <Input
+                  id="edit-press-location"
+                  value={editingPressRelease.location}
+                  onChange={(e) => setEditingPressRelease({ ...editingPressRelease, location: e.target.value })}
+                  data-testid="input-edit-press-location"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="edit-press-tags">Tags (comma-separated)</Label>
+                <Input
+                  id="edit-press-tags"
+                  value={editingPressRelease.tags.join(", ")}
+                  onChange={(e) => setEditingPressRelease({ ...editingPressRelease, tags: e.target.value.split(",").map(t => t.trim()) })}
+                  data-testid="input-edit-press-tags"
+                />
+              </div>
+            </div>
+          )}
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setEditingPressRelease(null)} data-testid="button-cancel-edit-press">
+              Cancel
+            </Button>
+            <Button
+              onClick={() => editingPressRelease && updatePressReleaseMutation.mutate({
+                id: editingPressRelease.id,
+                updates: {
+                  title: editingPressRelease.title,
+                  subtitle: editingPressRelease.subtitle,
+                  excerpt: editingPressRelease.excerpt,
+                  content: editingPressRelease.content,
+                  category: editingPressRelease.category,
+                  location: editingPressRelease.location,
+                  tags: editingPressRelease.tags,
+                }
+              })}
+              disabled={updatePressReleaseMutation.isPending}
+              data-testid="button-save-press"
+            >
+              {updatePressReleaseMutation.isPending ? "Saving..." : "Save Changes"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Delete Press Release AlertDialog */}
+      <AlertDialog open={!!deletingPressRelease} onOpenChange={(open) => !open && setDeletingPressRelease(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete Press Release</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to delete "{deletingPressRelease?.title}"? This action cannot be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel data-testid="button-cancel-delete-press">Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => deletingPressRelease && deletePressReleaseMutation.mutate(deletingPressRelease.id)}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              data-testid="button-confirm-delete-press"
+            >
+              {deletePressReleaseMutation.isPending ? "Deleting..." : "Delete"}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
