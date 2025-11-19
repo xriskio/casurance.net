@@ -42,6 +42,9 @@ import TncRideshareApplicationPage from "@/pages/TncRideshareApplicationPage";
 import LimousineQuote from "@/pages/LimousineQuote";
 import PublicTransportationQuote from "@/pages/PublicTransportationQuote";
 import TaxiQuote from "@/pages/TaxiQuote";
+import HighValueHomeQuote from "@/pages/HighValueHomeQuote";
+import CommercialFloodQuote from "@/pages/CommercialFloodQuote";
+import CommercialEarthquakeQuote from "@/pages/CommercialEarthquakeQuote";
 import AboutPage from "@/pages/AboutPage";
 import ContactPage from "@/pages/ContactPage";
 import BlogPage from "@/pages/BlogPage";
@@ -94,6 +97,9 @@ function Router() {
       <Route path="/quote/limousine" component={LimousineQuote} />
       <Route path="/quote/public-transportation" component={PublicTransportationQuote} />
       <Route path="/quote/taxi" component={TaxiQuote} />
+      <Route path="/quote/high-value-home" component={HighValueHomeQuote} />
+      <Route path="/quote/commercial-flood" component={CommercialFloodQuote} />
+      <Route path="/quote/commercial-earthquake" component={CommercialEarthquakeQuote} />
       <Route component={NotFound} />
     </Switch>
   );
