@@ -44,7 +44,7 @@ export default function AdminPanel() {
         email: data.email,
         fullName: data.fullName,
         role: data.role,
-        hashedPassword: data.password,
+        password: data.password,
       });
     },
     onSuccess: () => {

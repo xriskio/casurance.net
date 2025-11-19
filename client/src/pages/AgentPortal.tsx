@@ -25,7 +25,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Search, LogOut, FileText, Sparkles, NewspaperIcon, PenLine, Shield } from "lucide-react";
+import { Search, LogOut, FileText, Sparkles, NewspaperIcon, PenLine, Shield, Download } from "lucide-react";
 import { format } from "date-fns";
 import { useToast } from "@/hooks/use-toast";
 import type { BlogPost, PressRelease } from "@shared/schema";
@@ -556,6 +556,74 @@ export default function AgentPortal() {
       sub.location.toLowerCase().includes(searchLower)
     );
   });
+
+  const exportToCSV = () => {
+    if (normalizedSubmissions.length === 0) {
+      toast({
+        title: "No data to export",
+        description: "There are no submissions to export.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const metadataFields = ["id", "submissionType", "status", "createdAt", "referenceNumber"];
+    
+    const allKeys = new Set<string>();
+    normalizedSubmissions.forEach((sub: NormalizedSubmission) => {
+      Object.keys(sub.rawData).forEach((key) => {
+        if (!metadataFields.includes(key)) {
+          allKeys.add(key);
+        }
+      });
+    });
+
+    const headers = [...metadataFields, ...Array.from(allKeys)];
+    
+    const csvRows = [];
+    csvRows.push(headers.map((h) => `"${h}"`).join(","));
+
+    normalizedSubmissions.forEach((sub: NormalizedSubmission) => {
+      const row = headers.map((header) => {
+        let value;
+        
+        if (metadataFields.includes(header)) {
+          value = sub.rawData[header];
+        } else {
+          value = sub.rawData[header];
+        }
+        
+        if (value === null || value === undefined) {
+          return '""';
+        }
+        
+        if (typeof value === "object") {
+          value = JSON.stringify(value);
+        }
+        
+        const stringValue = String(value).replace(/"/g, '""');
+        return `"${stringValue}"`;
+      });
+      csvRows.push(row.join(","));
+    });
+
+    const csvContent = csvRows.join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    const url = URL.createObjectURL(blob);
+    
+    link.setAttribute("href", url);
+    link.setAttribute("download", `casurance_submissions_${format(new Date(), "yyyy-MM-dd_HH-mm")}.csv`);
+    link.style.visibility = "hidden";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    toast({
+      title: "Export successful",
+      description: `Downloaded ${normalizedSubmissions.length} submissions as CSV.`,
+    });
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -1151,7 +1219,18 @@ export default function AgentPortal() {
           </CardContent>
         </Card>
 
-        <h2 className="text-2xl font-semibold mb-4">Form Submissions</h2>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-2xl font-semibold">Form Submissions</h2>
+          <Button
+            onClick={exportToCSV}
+            variant="outline"
+            disabled={normalizedSubmissions.length === 0}
+            data-testid="button-export-csv"
+          >
+            <Download className="w-4 h-4 mr-2" />
+            Export CSV
+          </Button>
+        </div>
         <div className="mb-6 flex flex-col sm:flex-row gap-4">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />

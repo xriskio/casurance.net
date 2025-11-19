@@ -360,8 +360,9 @@ export function registerAgentRoutes(app: Express) {
 
   app.post("/api/admin/agents", requireAdmin, async (req, res) => {
     try {
-      const validatedData = insertAgentSchema.parse(req.body);
-      const hashedPwd = await hashPassword(validatedData.hashedPassword);
+      const { password, ...restData } = req.body;
+      const validatedData = insertAgentSchema.omit({ hashedPassword: true }).parse(restData);
+      const hashedPwd = await hashPassword(password);
       
       const [newAgent] = await db
         .insert(agents)
