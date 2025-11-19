@@ -321,6 +321,15 @@ export const pressReleases = pgTable("press_releases", {
   isAiGenerated: text("is_ai_generated").notNull().default("true"),
 });
 
+export const newsletterSubscriptions = pgTable("newsletter_subscriptions", {
+  id: serial("id").primaryKey(),
+  email: text("email").notNull().unique(),
+  status: text("status").notNull().default("active"),
+  unsubscribeToken: text("unsubscribe_token").notNull().unique(),
+  subscribedAt: timestamp("subscribed_at").defaultNow(),
+  unsubscribedAt: timestamp("unsubscribed_at"),
+});
+
 export const highValueHomeQuotes = pgTable("high_value_home_quotes", {
   id: varchar("id").primaryKey(),
   primaryNamedInsured: text("primary_named_insured").notNull(),
@@ -573,6 +582,11 @@ export const insertPressReleaseSchema = createInsertSchema(pressReleases).omit({
   publishedAt: true,
 });
 
+export const insertNewsletterSubscriptionSchema = createInsertSchema(newsletterSubscriptions).omit({
+  id: true,
+  subscribedAt: true,
+});
+
 export const insertHighValueHomeQuoteSchema = createInsertSchema(highValueHomeQuotes).omit({
   id: true,
   createdAt: true,
@@ -648,6 +662,8 @@ export type InsertBlogPost = z.infer<typeof insertBlogPostSchema>;
 export type BlogPost = typeof blogPosts.$inferSelect;
 export type InsertPressRelease = z.infer<typeof insertPressReleaseSchema>;
 export type PressRelease = typeof pressReleases.$inferSelect;
+export type InsertNewsletterSubscription = z.infer<typeof insertNewsletterSubscriptionSchema>;
+export type NewsletterSubscription = typeof newsletterSubscriptions.$inferSelect;
 export type InsertHighValueHomeQuote = z.infer<typeof insertHighValueHomeQuoteSchema>;
 export type HighValueHomeQuote = typeof highValueHomeQuotes.$inferSelect;
 export type InsertCommercialFloodQuote = z.infer<typeof insertCommercialFloodQuoteSchema>;
