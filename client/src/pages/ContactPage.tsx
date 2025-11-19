@@ -12,7 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import { Phone, Mail, Clock, CheckCircle2, MapPin } from "lucide-react";
+import { Phone, Mail, Clock, CheckCircle2 } from "lucide-react";
 import { insertContactRequestSchema } from "@shared/schema";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -320,11 +320,11 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Phone</h3>
                     <a
-                      href="tel:+18001234567"
+                      href="tel:18882540089"
                       className="text-muted-foreground hover:text-primary transition-colors"
                       data-testid="link-phone"
                     >
-                      (800) 123-4567
+                      1-888-254-0089
                     </a>
                   </div>
                 </div>
@@ -342,19 +342,6 @@ export default function ContactPage() {
                     >
                       info@casurance.com
                     </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
-                    <MapPin className="h-6 w-6 text-primary" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">Location</h3>
-                    <p className="text-muted-foreground text-sm">
-                      California<br />
-                      Serving Businesses Statewide
-                    </p>
                   </div>
                 </div>
 
