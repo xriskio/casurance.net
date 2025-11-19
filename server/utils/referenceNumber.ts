@@ -1,9 +1,8 @@
 export function generateReferenceNumber(prefix: 'RFQ' | 'SRQ'): string {
-  const timestamp = Date.now().toString();
-  const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
-  const sequence = timestamp.slice(-6);
+  const timestamp = Date.now() % 100000;
+  const paddedTimestamp = timestamp.toString().padStart(5, '0');
   
-  return `${prefix}-${sequence}${random}`;
+  return `${prefix}-${paddedTimestamp}`;
 }
 
 export function getReferencePrefix(submissionType: string): 'RFQ' | 'SRQ' {

@@ -5,6 +5,7 @@ import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQ
 import { registerAgentRoutes } from "./routes/agent";
 import { generateBlogPost, getCategories, getTopics, generateDraftContent, improveContent, suggestTags } from "./lib/ai-blog-generator";
 import { generatePressRelease, getCategories as getPressCategories, getTopics as getPressTopics, getLocations, generateDraftContent as generatePressDraft, improveContent as improvePressContent, suggestTags as suggestPressTags } from "./lib/ai-press-release-generator";
+import { generateReferenceNumber } from "./utils/referenceNumber";
 import multer from "multer";
 import path from "path";
 import { randomUUID } from "crypto";
@@ -53,7 +54,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/quote-requests", async (req, res) => {
     try {
       const validatedData = insertQuoteRequestSchema.parse(req.body);
-      const quote = await storage.createQuoteRequest(validatedData);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createQuoteRequest({ ...validatedData, referenceNumber } as any);
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -64,7 +66,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/service-requests", async (req, res) => {
     try {
       const validatedData = insertServiceRequestSchema.parse(req.body);
-      const service = await storage.createServiceRequest(validatedData);
+      const referenceNumber = generateReferenceNumber('SRQ');
+      const service = await storage.createServiceRequest({ ...validatedData, referenceNumber } as any);
       res.json(service);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -75,7 +78,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/ocean-cargo-quotes", async (req, res) => {
     try {
       const validatedData = insertOceanCargoQuoteSchema.parse(req.body);
-      const quote = await storage.createOceanCargoQuote(validatedData);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createOceanCargoQuote({ ...validatedData, referenceNumber } as any);
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -86,7 +90,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/self-storage-quotes", async (req, res) => {
     try {
       const validatedData = insertSelfStorageQuoteSchema.parse(req.body);
-      const quote = await storage.createSelfStorageQuote(validatedData);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createSelfStorageQuote({ ...validatedData, referenceNumber } as any);
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -97,7 +102,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/film-production-quotes", async (req, res) => {
     try {
       const validatedData = insertFilmProductionQuoteSchema.parse(req.body);
-      const quote = await storage.createFilmProductionQuote(validatedData);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createFilmProductionQuote({ ...validatedData, referenceNumber } as any);
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -108,7 +114,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/product-liability-quotes", async (req, res) => {
     try {
       const validatedData = insertProductLiabilityQuoteSchema.parse(req.body);
-      const quote = await storage.createProductLiabilityQuote(validatedData);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createProductLiabilityQuote({ ...validatedData, referenceNumber } as any);
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -119,7 +126,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/security-services-quotes", async (req, res) => {
     try {
       const validatedData = insertSecurityServicesQuoteSchema.parse(req.body);
-      const quote = await storage.createSecurityServicesQuote(validatedData);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createSecurityServicesQuote({ ...validatedData, referenceNumber } as any);
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -135,9 +143,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const applicationData = JSON.parse(req.body.applicationData);
       const validatedData = insertNemtApplicationSchema.parse(applicationData);
+      const referenceNumber = generateReferenceNumber('RFQ');
       
       const files = req.files as { [fieldname: string]: Express.Multer.File[] };
-      const application = await storage.createNemtApplication(validatedData, files);
+      const application = await storage.createNemtApplication({ ...validatedData, referenceNumber } as any, files);
       
       res.json(application);
     } catch (error: any) {
@@ -154,9 +163,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const applicationData = JSON.parse(req.body.applicationData);
       const validatedData = insertAmbulanceApplicationSchema.parse(applicationData);
+      const referenceNumber = generateReferenceNumber('RFQ');
       
       const files = req.files as { [fieldname: string]: Express.Multer.File[] };
-      const application = await storage.createAmbulanceApplication(validatedData, files);
+      const application = await storage.createAmbulanceApplication({ ...validatedData, referenceNumber } as any, files);
       
       res.json(application);
     } catch (error: any) {
@@ -174,9 +184,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const applicationData = JSON.parse(req.body.applicationData);
       const validatedData = insertTncApplicationSchema.parse(applicationData);
+      const referenceNumber = generateReferenceNumber('RFQ');
       
       const files = req.files as { [fieldname: string]: Express.Multer.File[] };
-      const application = await storage.createTncApplication(validatedData, files);
+      const application = await storage.createTncApplication({ ...validatedData, referenceNumber } as any, files);
       
       res.json(application);
     } catch (error: any) {
@@ -188,7 +199,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/limousine-quotes", async (req, res) => {
     try {
       const validatedData = insertLimousineQuoteSchema.parse(req.body);
-      const quote = await storage.createLimousineQuote(validatedData);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createLimousineQuote({ ...validatedData, referenceNumber } as any);
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -199,7 +211,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/public-transportation-quotes", async (req, res) => {
     try {
       const validatedData = insertPublicTransportationQuoteSchema.parse(req.body);
-      const quote = await storage.createPublicTransportationQuote(validatedData);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createPublicTransportationQuote({ ...validatedData, referenceNumber } as any);
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -210,7 +223,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/taxi-quote", async (req, res) => {
     try {
       const validatedData = insertTaxiBlackCarQuoteSchema.parse(req.body);
-      const quote = await storage.createTaxiBlackCarQuote(validatedData);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createTaxiBlackCarQuote({ ...validatedData, referenceNumber } as any);
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -221,7 +235,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/quick-quote", async (req, res) => {
     try {
       const validatedData = insertQuickQuoteSchema.parse(req.body);
-      const quote = await storage.createQuickQuote(validatedData);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createQuickQuote({ ...validatedData, referenceNumber } as any);
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -243,7 +258,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/high-value-home-quotes", async (req, res) => {
     try {
       const validatedData = insertHighValueHomeQuoteSchema.parse(req.body);
-      const quote = await storage.createHighValueHomeQuote(validatedData);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createHighValueHomeQuote({ ...validatedData, referenceNumber } as any);
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -254,7 +270,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/commercial-flood-quotes", async (req, res) => {
     try {
       const validatedData = insertCommercialFloodQuoteSchema.parse(req.body);
-      const quote = await storage.createCommercialFloodQuote(validatedData);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createCommercialFloodQuote({ ...validatedData, referenceNumber } as any);
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -265,7 +282,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/commercial-earthquake-quotes", async (req, res) => {
     try {
       const validatedData = insertCommercialEarthquakeQuoteSchema.parse(req.body);
-      const quote = await storage.createCommercialEarthquakeQuote(validatedData);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createCommercialEarthquakeQuote({ ...validatedData, referenceNumber } as any);
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -276,7 +294,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/franchised-dealer-quotes", async (req, res) => {
     try {
       const validatedData = insertFranchisedDealerQuoteSchema.parse(req.body);
-      const quote = await storage.createFranchisedDealerQuote(validatedData);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createFranchisedDealerQuote({ ...validatedData, referenceNumber } as any);
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -287,7 +306,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/garage-service-quotes", async (req, res) => {
     try {
       const validatedData = insertGarageServiceQuoteSchema.parse(req.body);
-      const quote = await storage.createGarageServiceQuote(validatedData);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createGarageServiceQuote({ ...validatedData, referenceNumber } as any);
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -298,7 +318,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/auto-dealer-garage-quotes", async (req, res) => {
     try {
       const validatedData = insertAutoDealerGarageQuoteSchema.parse(req.body);
-      const quote = await storage.createAutoDealerGarageQuote(validatedData);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createAutoDealerGarageQuote({ ...validatedData, referenceNumber } as any);
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -309,7 +330,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/golf-country-club-quotes", async (req, res) => {
     try {
       const validatedData = insertGolfCountryClubQuoteSchema.parse(req.body);
-      const quote = await storage.createGolfCountryClubQuote(validatedData);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createGolfCountryClubQuote({ ...validatedData, referenceNumber } as any);
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
