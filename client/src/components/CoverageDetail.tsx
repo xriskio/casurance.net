@@ -11,15 +11,33 @@ interface CoverageDetailProps {
 
 export default function CoverageDetail({ coverage }: CoverageDetailProps) {
   const getQuoteLink = () => {
+    // Industry-specific quote forms
     if (coverage.slug === 'nemt-paratransit') {
       return '/apply/nemt';
     }
-    if (coverage.slug === 'limousine-insurance') {
+    if (coverage.slug === 'limousine-insurance' || coverage.slug === 'limousine-transportation') {
       return '/quote/limousine';
     }
     if (coverage.slug === 'golf-country-club') {
       return '/quote/golf-country-club';
     }
+    if (coverage.slug === 'franchised-dealers') {
+      return '/quote/franchised-dealers';
+    }
+    if (coverage.slug === 'auto-dealer-garage') {
+      return '/quote/auto-dealer-garage';
+    }
+    if (coverage.slug === 'garage-service-centers') {
+      return '/quote/garage-service-centers';
+    }
+    if (coverage.slug === 'public-transportation') {
+      return '/quote/public-transportation';
+    }
+    if (coverage.slug === 'public-self-storage') {
+      return '/quote/self-storage';
+    }
+    
+    // Coverage-specific quote forms
     if (coverage.slug === 'cyber-liability') {
       return '/quote/cyber-liability';
     }
@@ -32,6 +50,67 @@ export default function CoverageDetail({ coverage }: CoverageDetailProps) {
     if (coverage.slug === 'construction-casualty') {
       return '/quote/construction-casualty';
     }
+    if (coverage.slug === 'commercial-auto-insurance') {
+      return '/quote/commercial-auto';
+    }
+    if (coverage.slug === 'general-liability') {
+      return '/quote/general-liability';
+    }
+    if (coverage.slug === 'workers-compensation') {
+      return '/quote/workers-compensation';
+    }
+    if (coverage.slug === 'trucking') {
+      return '/quote/trucking';
+    }
+    if (coverage.slug === 'ocean-cargo') {
+      return '/quote/ocean-cargo';
+    }
+    if (coverage.slug === 'film-production') {
+      return '/quote/film-production';
+    }
+    if (coverage.slug === 'product-liability') {
+      return '/quote/product-liability';
+    }
+    if (coverage.slug === 'security-services') {
+      return '/quote/security-services';
+    }
+    if (coverage.slug === 'hospitality' || coverage.slug === 'hotel-insurance') {
+      return '/quote/hotel';
+    }
+    if (coverage.slug === 'restaurant-insurance') {
+      return '/quote/restaurant';
+    }
+    if (coverage.slug === 'habitational-insurance') {
+      return '/quote/habitational';
+    }
+    if (coverage.slug === 'builders-risk') {
+      return '/quote/builders-risk';
+    }
+    if (coverage.slug === 'vacant-building') {
+      return '/quote/vacant-building';
+    }
+    if (coverage.slug === 'crane-riggers') {
+      return '/quote/crane-riggers';
+    }
+    if (coverage.slug === 'religious-organizations') {
+      return '/quote/religious-organization';
+    }
+    if (coverage.slug === 'commercial-property') {
+      return '/quote/commercial-property';
+    }
+    if (coverage.slug === 'high-value-home') {
+      return '/quote/high-value-home';
+    }
+    if (coverage.slug === 'commercial-flood') {
+      return '/quote/commercial-flood';
+    }
+    if (coverage.slug === 'commercial-earthquake') {
+      return '/quote/commercial-earthquake';
+    }
+    if (coverage.slug === 'taxi-black-car') {
+      return '/quote/taxi';
+    }
+    
     return '/quote';
   };
 
