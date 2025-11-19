@@ -1061,6 +1061,70 @@ export const coverages: CoverageContent[] = [
     ]
   },
 
+  {
+    title: "Commercial Flood",
+    slug: "commercial-flood",
+    category: "Property",
+    summary: "Essential flood insurance for commercial properties in flood zones and high-risk areas.",
+    description: "Commercial flood insurance provides critical protection for business properties located in flood zones, near water bodies, or in areas with flood risk. This specialized coverage protects buildings, contents, and business operations from devastating flood damage not covered by standard commercial property policies.",
+    whoNeeds: [
+      "Properties in FEMA flood zones (A, AE, V, VE)",
+      "Businesses near rivers, lakes, or coastlines",
+      "Properties with history of flooding",
+      "Commercial buildings in high-risk flood areas",
+      "Properties required by lenders to carry flood insurance",
+      "Warehouses and storage facilities in flood-prone areas"
+    ],
+    coverageIncludes: [
+      "Building structure and foundation",
+      "Electrical and plumbing systems",
+      "HVAC and water heaters",
+      "Business contents and inventory",
+      "Machinery and equipment",
+      "Cleanup and debris removal"
+    ],
+    benefits: [
+      "Protects against catastrophic flood losses",
+      "Available for all flood zones",
+      "Coverage up to $500,000 for building",
+      "Coverage up to $500,000 for contents",
+      "Meets lender requirements",
+      "30-day waiting period (exceptions apply)"
+    ]
+  },
+
+  {
+    title: "Commercial Earthquake",
+    slug: "commercial-earthquake",
+    category: "Property",
+    summary: "Specialized earthquake coverage for commercial properties in seismically active regions.",
+    description: "Commercial earthquake insurance provides essential protection for businesses located in earthquake-prone areas. This coverage protects buildings, equipment, inventory, and business income from earthquake damage, which is excluded from standard commercial property policies.",
+    whoNeeds: [
+      "Properties in California and West Coast regions",
+      "Businesses near fault lines",
+      "Properties in seismically active zones",
+      "Multi-story commercial buildings",
+      "Warehouses with heavy inventory",
+      "Manufacturing facilities with expensive equipment"
+    ],
+    coverageIncludes: [
+      "Building structural damage",
+      "Foundation and structural repairs",
+      "Business personal property",
+      "Equipment and machinery damage",
+      "Inventory losses",
+      "Business interruption from earthquake"
+    ],
+    benefits: [
+      "Covers earthquake and aftershock damage",
+      "Building and contents protection",
+      "Business income continuation coverage",
+      "Flexible deductible options",
+      "Covers code upgrade requirements",
+      "Essential for high-risk seismic areas"
+    ]
+  },
+
   // HABITATIONAL
   {
     title: "Affordable Housing",

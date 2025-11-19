@@ -325,6 +325,48 @@ export const highValueHomeQuotes = pgTable("high_value_home_quotes", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const commercialFloodQuotes = pgTable("commercial_flood_quotes", {
+  id: varchar("id").primaryKey(),
+  namedInsured: text("named_insured").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  effectiveDate: text("effective_date"),
+  propertyAddress: text("property_address"),
+  city: text("city"),
+  state: text("state"),
+  zipCode: text("zip_code"),
+  floodZone: text("flood_zone"),
+  buildingCoverage: text("building_coverage"),
+  contentsCoverage: text("contents_coverage"),
+  yearBuilt: text("year_built"),
+  numberOfStories: text("number_of_stories"),
+  constructionType: text("construction_type"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const commercialEarthquakeQuotes = pgTable("commercial_earthquake_quotes", {
+  id: varchar("id").primaryKey(),
+  namedInsured: text("named_insured").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  effectiveDate: text("effective_date"),
+  propertyAddress: text("property_address"),
+  city: text("city"),
+  state: text("state"),
+  zipCode: text("zip_code"),
+  buildingValue: text("building_value"),
+  contentsValue: text("contents_value"),
+  yearBuilt: text("year_built"),
+  numberOfStories: text("number_of_stories"),
+  constructionType: text("construction_type"),
+  desiredDeductible: text("desired_deductible"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const insertQuoteRequestSchema = createInsertSchema(quoteRequests).omit({
   id: true,
   createdAt: true,
@@ -427,6 +469,16 @@ export const insertHighValueHomeQuoteSchema = createInsertSchema(highValueHomeQu
   createdAt: true,
 });
 
+export const insertCommercialFloodQuoteSchema = createInsertSchema(commercialFloodQuotes).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertCommercialEarthquakeQuoteSchema = createInsertSchema(commercialEarthquakeQuotes).omit({
+  id: true,
+  createdAt: true,
+});
+
 export type InsertQuoteRequest = z.infer<typeof insertQuoteRequestSchema>;
 export type QuoteRequest = typeof quoteRequests.$inferSelect;
 export type InsertServiceRequest = z.infer<typeof insertServiceRequestSchema>;
@@ -467,3 +519,7 @@ export type InsertBlogPost = z.infer<typeof insertBlogPostSchema>;
 export type BlogPost = typeof blogPosts.$inferSelect;
 export type InsertHighValueHomeQuote = z.infer<typeof insertHighValueHomeQuoteSchema>;
 export type HighValueHomeQuote = typeof highValueHomeQuotes.$inferSelect;
+export type InsertCommercialFloodQuote = z.infer<typeof insertCommercialFloodQuoteSchema>;
+export type CommercialFloodQuote = typeof commercialFloodQuotes.$inferSelect;
+export type InsertCommercialEarthquakeQuote = z.infer<typeof insertCommercialEarthquakeQuoteSchema>;
+export type CommercialEarthquakeQuote = typeof commercialEarthquakeQuotes.$inferSelect;
