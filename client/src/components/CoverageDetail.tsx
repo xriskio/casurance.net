@@ -17,6 +17,9 @@ export default function CoverageDetail({ coverage }: CoverageDetailProps) {
     if (coverage.slug === 'limousine-insurance') {
       return '/quote/limousine';
     }
+    if (coverage.slug === 'golf-country-club') {
+      return '/quote/golf-country-club';
+    }
     if (coverage.slug === 'cyber-liability') {
       return '/quote/cyber-liability';
     }
