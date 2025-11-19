@@ -35,7 +35,8 @@ export default function CoverageDetail({ coverage }: CoverageDetailProps) {
     return '/quote';
   };
 
-  const industryImage = coverage.category === "Industries" ? getIndustryImage(coverage.slug) : undefined;
+  // Show industry image if one exists for this coverage (regardless of category)
+  const industryImage = getIndustryImage(coverage.slug);
 
   return (
     <div>
