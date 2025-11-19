@@ -676,7 +676,7 @@ export default function AgentPortal() {
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="ai" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 mb-6">
+              <TabsList className="grid w-full grid-cols-3 mb-6">
                 <TabsTrigger value="ai" data-testid="tab-ai-generation">
                   <Sparkles className="h-4 w-4 mr-2" />
                   AI Generation
@@ -684,6 +684,10 @@ export default function AgentPortal() {
                 <TabsTrigger value="manual" data-testid="tab-manual-creation">
                   <PenLine className="h-4 w-4 mr-2" />
                   Manual Creation
+                </TabsTrigger>
+                <TabsTrigger value="manage" data-testid="tab-manage-posts">
+                  <FileText className="h-4 w-4 mr-2" />
+                  Manage Posts
                 </TabsTrigger>
               </TabsList>
 
@@ -902,6 +906,80 @@ export default function AgentPortal() {
                   </Button>
                 </div>
               </TabsContent>
+
+              <TabsContent value="manage" className="space-y-4">
+                <p className="text-sm text-muted-foreground">
+                  View, edit, and delete existing blog posts.
+                </p>
+                {blogPosts.length === 0 ? (
+                  <div className="text-center py-12 border rounded-md bg-card">
+                    <FileText className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
+                    <p className="text-lg text-muted-foreground">No blog posts yet</p>
+                    <p className="text-sm text-muted-foreground">
+                      Create your first blog post using AI or manual creation
+                    </p>
+                  </div>
+                ) : (
+                  <div className="rounded-md border bg-card">
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Title</TableHead>
+                          <TableHead>Category</TableHead>
+                          <TableHead>Published</TableHead>
+                          <TableHead>AI Generated</TableHead>
+                          <TableHead className="text-right">Actions</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {blogPosts.map((post, index) => (
+                          <TableRow key={post.id} data-testid={`row-blog-post-${index}`}>
+                            <TableCell className="font-medium" data-testid={`text-blog-title-${index}`}>
+                              {post.title}
+                            </TableCell>
+                            <TableCell data-testid={`text-blog-category-${index}`}>
+                              <Badge variant="outline">{post.category}</Badge>
+                            </TableCell>
+                            <TableCell data-testid={`text-blog-published-${index}`}>
+                              {post.publishedAt ? format(new Date(post.publishedAt), "MMM d, yyyy") : "N/A"}
+                            </TableCell>
+                            <TableCell data-testid={`text-blog-ai-${index}`}>
+                              {post.isAiGenerated ? (
+                                <Badge variant="secondary">
+                                  <Sparkles className="w-3 h-3 mr-1" />
+                                  AI
+                                </Badge>
+                              ) : (
+                                <Badge variant="outline">Manual</Badge>
+                              )}
+                            </TableCell>
+                            <TableCell className="text-right">
+                              <div className="flex justify-end gap-2">
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  data-testid={`button-edit-blog-${index}`}
+                                  className="text-primary hover:text-primary"
+                                >
+                                  Edit
+                                </Button>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  data-testid={`button-delete-blog-${index}`}
+                                  className="text-destructive hover:text-destructive"
+                                >
+                                  Delete
+                                </Button>
+                              </div>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </div>
+                )}
+              </TabsContent>
             </Tabs>
 
             <div className="pt-6 mt-6 border-t space-y-2">
@@ -933,7 +1011,7 @@ export default function AgentPortal() {
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="ai" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 mb-6">
+              <TabsList className="grid w-full grid-cols-3 mb-6">
                 <TabsTrigger value="ai" data-testid="tab-press-ai-generation">
                   <Sparkles className="h-4 w-4 mr-2" />
                   AI Generation
@@ -941,6 +1019,10 @@ export default function AgentPortal() {
                 <TabsTrigger value="manual" data-testid="tab-press-manual-creation">
                   <PenLine className="h-4 w-4 mr-2" />
                   Manual Creation
+                </TabsTrigger>
+                <TabsTrigger value="manage" data-testid="tab-manage-press-releases">
+                  <FileText className="h-4 w-4 mr-2" />
+                  Manage Releases
                 </TabsTrigger>
               </TabsList>
 
@@ -1204,6 +1286,84 @@ export default function AgentPortal() {
                     {createManualPressReleaseMutation.isPending ? "Creating..." : "Create Press Release"}
                   </Button>
                 </div>
+              </TabsContent>
+
+              <TabsContent value="manage" className="space-y-4">
+                <p className="text-sm text-muted-foreground">
+                  View, edit, and delete existing press releases.
+                </p>
+                {pressReleases.length === 0 ? (
+                  <div className="text-center py-12 border rounded-md bg-card">
+                    <FileText className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
+                    <p className="text-lg text-muted-foreground">No press releases yet</p>
+                    <p className="text-sm text-muted-foreground">
+                      Create your first press release using AI or manual creation
+                    </p>
+                  </div>
+                ) : (
+                  <div className="rounded-md border bg-card">
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Title</TableHead>
+                          <TableHead>Category</TableHead>
+                          <TableHead>Location</TableHead>
+                          <TableHead>Published</TableHead>
+                          <TableHead>AI Generated</TableHead>
+                          <TableHead className="text-right">Actions</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {pressReleases.map((release, index) => (
+                          <TableRow key={release.id} data-testid={`row-press-release-${index}`}>
+                            <TableCell className="font-medium" data-testid={`text-press-title-${index}`}>
+                              {release.title}
+                            </TableCell>
+                            <TableCell data-testid={`text-press-category-${index}`}>
+                              <Badge variant="outline">{release.category}</Badge>
+                            </TableCell>
+                            <TableCell data-testid={`text-press-location-${index}`}>
+                              {release.location}
+                            </TableCell>
+                            <TableCell data-testid={`text-press-published-${index}`}>
+                              {release.publishedAt ? format(new Date(release.publishedAt), "MMM d, yyyy") : "N/A"}
+                            </TableCell>
+                            <TableCell data-testid={`text-press-ai-${index}`}>
+                              {release.isAiGenerated ? (
+                                <Badge variant="secondary">
+                                  <Sparkles className="w-3 h-3 mr-1" />
+                                  AI
+                                </Badge>
+                              ) : (
+                                <Badge variant="outline">Manual</Badge>
+                              )}
+                            </TableCell>
+                            <TableCell className="text-right">
+                              <div className="flex justify-end gap-2">
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  data-testid={`button-edit-press-${index}`}
+                                  className="text-primary hover:text-primary"
+                                >
+                                  Edit
+                                </Button>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  data-testid={`button-delete-press-${index}`}
+                                  className="text-destructive hover:text-destructive"
+                                >
+                                  Delete
+                                </Button>
+                              </div>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </div>
+                )}
               </TabsContent>
             </Tabs>
 

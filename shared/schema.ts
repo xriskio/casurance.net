@@ -613,11 +613,15 @@ export const insertBlogPostSchema = createInsertSchema(blogPosts).omit({
   publishedAt: true,
 });
 
+export const updateBlogPostSchema = insertBlogPostSchema.partial();
+
 export const insertPressReleaseSchema = createInsertSchema(pressReleases).omit({
   id: true,
   createdAt: true,
   publishedAt: true,
 });
+
+export const updatePressReleaseSchema = insertPressReleaseSchema.partial();
 
 export const insertNewsletterSubscriptionSchema = createInsertSchema(newsletterSubscriptions).omit({
   id: true,

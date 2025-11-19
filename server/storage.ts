@@ -23,9 +23,15 @@ export interface IStorage {
   createBlogPost(post: InsertBlogPost): Promise<BlogPost>;
   getBlogPosts(category?: string, search?: string): Promise<BlogPost[]>;
   getBlogPostBySlug(slug: string): Promise<BlogPost | undefined>;
+  getBlogPostById(id: number): Promise<BlogPost | undefined>;
+  updateBlogPost(id: number, post: Partial<InsertBlogPost>): Promise<BlogPost | undefined>;
+  deleteBlogPost(id: number): Promise<void>;
   createPressRelease(release: InsertPressRelease): Promise<PressRelease>;
   getPressReleases(category?: string, search?: string): Promise<PressRelease[]>;
   getPressReleaseBySlug(slug: string): Promise<PressRelease | undefined>;
+  getPressReleaseById(id: number): Promise<PressRelease | undefined>;
+  updatePressRelease(id: number, release: Partial<InsertPressRelease>): Promise<PressRelease | undefined>;
+  deletePressRelease(id: number): Promise<void>;
   createNewsletterSubscription(subscription: InsertNewsletterSubscription): Promise<NewsletterSubscription>;
   getNewsletterSubscriptionByToken(token: string): Promise<NewsletterSubscription | undefined>;
   unsubscribeNewsletter(token: string): Promise<NewsletterSubscription | undefined>;
@@ -275,6 +281,28 @@ export class DatabaseStorage implements IStorage {
     return post;
   }
 
+  async getBlogPostById(id: number): Promise<BlogPost | undefined> {
+    const [post] = await db
+      .select()
+      .from(blogPosts)
+      .where(eq(blogPosts.id, id))
+      .limit(1);
+    return post;
+  }
+
+  async updateBlogPost(id: number, updates: Partial<InsertBlogPost>): Promise<BlogPost | undefined> {
+    const [post] = await db
+      .update(blogPosts)
+      .set(updates)
+      .where(eq(blogPosts.id, id))
+      .returning();
+    return post;
+  }
+
+  async deleteBlogPost(id: number): Promise<void> {
+    await db.delete(blogPosts).where(eq(blogPosts.id, id));
+  }
+
   async createPressRelease(insertRelease: InsertPressRelease): Promise<PressRelease> {
     const [release] = await db
       .insert(pressReleases)
@@ -312,6 +340,28 @@ export class DatabaseStorage implements IStorage {
       .where(eq(pressReleases.slug, slug))
       .limit(1);
     return release;
+  }
+
+  async getPressReleaseById(id: number): Promise<PressRelease | undefined> {
+    const [release] = await db
+      .select()
+      .from(pressReleases)
+      .where(eq(pressReleases.id, id))
+      .limit(1);
+    return release;
+  }
+
+  async updatePressRelease(id: number, updates: Partial<InsertPressRelease>): Promise<PressRelease | undefined> {
+    const [release] = await db
+      .update(pressReleases)
+      .set(updates)
+      .where(eq(pressReleases.id, id))
+      .returning();
+    return release;
+  }
+
+  async deletePressRelease(id: number): Promise<void> {
+    await db.delete(pressReleases).where(eq(pressReleases.id, id));
   }
 
   async createNewsletterSubscription(insertSubscription: InsertNewsletterSubscription): Promise<NewsletterSubscription> {

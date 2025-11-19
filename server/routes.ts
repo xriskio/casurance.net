@@ -982,7 +982,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  registerAgentRoutes(app);
+  registerAgentRoutes(app, storage);
 
   const httpServer = createServer(app);
 

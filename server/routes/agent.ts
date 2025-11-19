@@ -2,6 +2,7 @@ import type { Express } from "express";
 import passport from "../auth/passport-config";
 import { requireAgent, requireAdmin } from "../auth/middleware";
 import { db } from "../db";
+import type { IStorage } from "../storage";
 import {
   quoteRequests,
   serviceRequests,
@@ -20,11 +21,13 @@ import {
   autoDealerGarageQuotes,
   agents,
   insertAgentSchema,
+  updateBlogPostSchema,
+  updatePressReleaseSchema,
 } from "@shared/schema";
 import { desc, or, ilike, sql, and, gte, lte, eq } from "drizzle-orm";
 import { hashPassword } from "../auth/utils";
 
-export function registerAgentRoutes(app: Express) {
+export function registerAgentRoutes(app: Express, storage: IStorage) {
   app.post("/api/auth/login", (req, res, next) => {
     passport.authenticate("local", (err: any, user: any, info: any) => {
       if (err) {
@@ -467,6 +470,114 @@ export function registerAgentRoutes(app: Express) {
     } catch (error) {
       console.error("Error deleting agent:", error);
       res.status(500).json({ error: "Failed to delete agent" });
+    }
+  });
+
+  app.get("/api/agent/blog-posts", requireAgent, async (req, res) => {
+    try {
+      const { category, search } = req.query;
+      const posts = await storage.getBlogPosts(
+        category as string | undefined,
+        search as string | undefined
+      );
+      res.json({ posts });
+    } catch (error) {
+      console.error("Error fetching blog posts:", error);
+      res.status(500).json({ error: "Failed to fetch blog posts" });
+    }
+  });
+
+  app.get("/api/agent/blog-posts/:id", requireAgent, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const post = await storage.getBlogPostById(parseInt(id));
+      if (!post) {
+        return res.status(404).json({ error: "Blog post not found" });
+      }
+      res.json({ post });
+    } catch (error) {
+      console.error("Error fetching blog post:", error);
+      res.status(500).json({ error: "Failed to fetch blog post" });
+    }
+  });
+
+  app.patch("/api/agent/blog-posts/:id", requireAgent, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const validatedData = updateBlogPostSchema.parse(req.body);
+      const updatedPost = await storage.updateBlogPost(parseInt(id), validatedData);
+      if (!updatedPost) {
+        return res.status(404).json({ error: "Blog post not found" });
+      }
+      res.json({ post: updatedPost });
+    } catch (error) {
+      console.error("Error updating blog post:", error);
+      res.status(500).json({ error: "Failed to update blog post" });
+    }
+  });
+
+  app.delete("/api/agent/blog-posts/:id", requireAgent, async (req, res) => {
+    try {
+      const { id } = req.params;
+      await storage.deleteBlogPost(parseInt(id));
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error deleting blog post:", error);
+      res.status(500).json({ error: "Failed to delete blog post" });
+    }
+  });
+
+  app.get("/api/agent/press-releases", requireAgent, async (req, res) => {
+    try {
+      const { category, search } = req.query;
+      const releases = await storage.getPressReleases(
+        category as string | undefined,
+        search as string | undefined
+      );
+      res.json({ releases });
+    } catch (error) {
+      console.error("Error fetching press releases:", error);
+      res.status(500).json({ error: "Failed to fetch press releases" });
+    }
+  });
+
+  app.get("/api/agent/press-releases/:id", requireAgent, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const release = await storage.getPressReleaseById(parseInt(id));
+      if (!release) {
+        return res.status(404).json({ error: "Press release not found" });
+      }
+      res.json({ release });
+    } catch (error) {
+      console.error("Error fetching press release:", error);
+      res.status(500).json({ error: "Failed to fetch press release" });
+    }
+  });
+
+  app.patch("/api/agent/press-releases/:id", requireAgent, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const validatedData = updatePressReleaseSchema.parse(req.body);
+      const updatedRelease = await storage.updatePressRelease(parseInt(id), validatedData);
+      if (!updatedRelease) {
+        return res.status(404).json({ error: "Press release not found" });
+      }
+      res.json({ release: updatedRelease });
+    } catch (error) {
+      console.error("Error updating press release:", error);
+      res.status(500).json({ error: "Failed to update press release" });
+    }
+  });
+
+  app.delete("/api/agent/press-releases/:id", requireAgent, async (req, res) => {
+    try {
+      const { id } = req.params;
+      await storage.deletePressRelease(parseInt(id));
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error deleting press release:", error);
+      res.status(500).json({ error: "Failed to delete press release" });
     }
   });
 }
