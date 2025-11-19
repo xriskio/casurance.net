@@ -220,6 +220,88 @@ export default function AgentPortal() {
     },
   });
 
+  const aiGenerateDraftMutation = useMutation({
+    mutationFn: async () => {
+      return await apiRequest("POST", "/api/blog-posts/ai-assist/draft", {
+        title: manualBlogForm.title,
+        category: manualBlogForm.category,
+      });
+    },
+    onSuccess: (data: any) => {
+      setManualBlogForm({
+        ...manualBlogForm,
+        excerpt: data.excerpt,
+        content: data.content,
+        tags: data.tags.join(", "),
+        imageUrl: data.imageUrl || manualBlogForm.imageUrl,
+      });
+      toast({
+        title: "AI Draft Generated",
+        description: "Content, excerpt, and tags have been generated based on your title!",
+      });
+    },
+    onError: () => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to generate AI draft. Please try again.",
+      });
+    },
+  });
+
+  const aiImproveContentMutation = useMutation({
+    mutationFn: async () => {
+      return await apiRequest("POST", "/api/blog-posts/ai-assist/improve", {
+        content: manualBlogForm.content,
+        category: manualBlogForm.category,
+      });
+    },
+    onSuccess: (data: any) => {
+      setManualBlogForm({
+        ...manualBlogForm,
+        content: data.content,
+      });
+      toast({
+        title: "Content Improved",
+        description: "Your content has been enhanced by AI!",
+      });
+    },
+    onError: () => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to improve content. Please try again.",
+      });
+    },
+  });
+
+  const aiSuggestTagsMutation = useMutation({
+    mutationFn: async () => {
+      return await apiRequest("POST", "/api/blog-posts/ai-assist/tags", {
+        title: manualBlogForm.title,
+        content: manualBlogForm.content,
+        category: manualBlogForm.category,
+      });
+    },
+    onSuccess: (data: any) => {
+      setManualBlogForm({
+        ...manualBlogForm,
+        tags: data.tags.join(", "),
+      });
+      toast({
+        title: "Tags Suggested",
+        description: "Relevant tags have been generated!",
+      });
+    },
+    onError: () => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to suggest tags. Please try again.",
+      });
+    },
+  });
+
   const createManualBlogPostMutation = useMutation({
     mutationFn: async () => {
       return await apiRequest("POST", "/api/blog-posts", {
@@ -378,9 +460,18 @@ export default function AgentPortal() {
               </TabsContent>
 
               <TabsContent value="manual" className="space-y-4">
-                <p className="text-sm text-muted-foreground">
-                  Write your own blog post content and add custom images. All fields are required except image URL.
-                </p>
+                <div className="rounded-lg border border-primary/20 bg-primary/5 p-4 mb-4">
+                  <div className="flex items-start gap-3">
+                    <Sparkles className="h-5 w-5 text-primary mt-0.5" aria-hidden="true" />
+                    <div className="space-y-1">
+                      <p className="text-sm font-medium">AI Writing Assistance Available</p>
+                      <p className="text-xs text-muted-foreground">
+                        Use AI to generate drafts, improve content, and suggest tags as you write.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="manual-title">Title *</Label>
@@ -390,30 +481,6 @@ export default function AgentPortal() {
                       value={manualBlogForm.title}
                       onChange={(e) => setManualBlogForm({ ...manualBlogForm, title: e.target.value })}
                       data-testid="input-blog-title"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="manual-excerpt">Excerpt *</Label>
-                    <Textarea
-                      id="manual-excerpt"
-                      placeholder="Write a brief summary (2-3 sentences)..."
-                      value={manualBlogForm.excerpt}
-                      onChange={(e) => setManualBlogForm({ ...manualBlogForm, excerpt: e.target.value })}
-                      rows={3}
-                      data-testid="textarea-blog-excerpt"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="manual-content">Content * (Markdown supported)</Label>
-                    <Textarea
-                      id="manual-content"
-                      placeholder="Write your blog post content in Markdown..."
-                      value={manualBlogForm.content}
-                      onChange={(e) => setManualBlogForm({ ...manualBlogForm, content: e.target.value })}
-                      rows={12}
-                      data-testid="textarea-blog-content"
                     />
                   </div>
 
@@ -438,15 +505,91 @@ export default function AgentPortal() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="manual-tags">Tags * (comma-separated)</Label>
-                      <Input
-                        id="manual-tags"
-                        placeholder="risk management, compliance, insurance..."
-                        value={manualBlogForm.tags}
-                        onChange={(e) => setManualBlogForm({ ...manualBlogForm, tags: e.target.value })}
-                        data-testid="input-blog-tags"
-                      />
+                      <Label className="invisible">Action</Label>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() => aiGenerateDraftMutation.mutate()}
+                        disabled={
+                          aiGenerateDraftMutation.isPending ||
+                          !manualBlogForm.title ||
+                          !manualBlogForm.category
+                        }
+                        className="w-full"
+                        data-testid="button-ai-generate-draft"
+                      >
+                        <Sparkles className="h-4 w-4 mr-2" aria-hidden="true" />
+                        {aiGenerateDraftMutation.isPending ? "Generating..." : "AI Generate Draft"}
+                      </Button>
                     </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="manual-excerpt">Excerpt *</Label>
+                    <Textarea
+                      id="manual-excerpt"
+                      placeholder="Write a brief summary (2-3 sentences)..."
+                      value={manualBlogForm.excerpt}
+                      onChange={(e) => setManualBlogForm({ ...manualBlogForm, excerpt: e.target.value })}
+                      rows={3}
+                      data-testid="textarea-blog-excerpt"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <Label htmlFor="manual-content">Content * (Markdown supported)</Label>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => aiImproveContentMutation.mutate()}
+                        disabled={
+                          aiImproveContentMutation.isPending ||
+                          !manualBlogForm.content ||
+                          !manualBlogForm.category
+                        }
+                        data-testid="button-ai-improve-content"
+                      >
+                        <Sparkles className="h-3 w-3 mr-1" aria-hidden="true" />
+                        {aiImproveContentMutation.isPending ? "Improving..." : "AI Improve"}
+                      </Button>
+                    </div>
+                    <Textarea
+                      id="manual-content"
+                      placeholder="Write your blog post content in Markdown..."
+                      value={manualBlogForm.content}
+                      onChange={(e) => setManualBlogForm({ ...manualBlogForm, content: e.target.value })}
+                      rows={12}
+                      data-testid="textarea-blog-content"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <Label htmlFor="manual-tags">Tags * (comma-separated)</Label>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => aiSuggestTagsMutation.mutate()}
+                        disabled={
+                          aiSuggestTagsMutation.isPending ||
+                          (!manualBlogForm.title && !manualBlogForm.content)
+                        }
+                        data-testid="button-ai-suggest-tags"
+                      >
+                        <Sparkles className="h-3 w-3 mr-1" aria-hidden="true" />
+                        {aiSuggestTagsMutation.isPending ? "Suggesting..." : "AI Suggest"}
+                      </Button>
+                    </div>
+                    <Input
+                      id="manual-tags"
+                      placeholder="risk management, compliance, insurance..."
+                      value={manualBlogForm.tags}
+                      onChange={(e) => setManualBlogForm({ ...manualBlogForm, tags: e.target.value })}
+                      data-testid="input-blog-tags"
+                    />
                   </div>
 
                   <div className="space-y-2">
