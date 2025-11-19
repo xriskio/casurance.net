@@ -5,6 +5,7 @@ import { db } from "../db";
 import {
   quoteRequests,
   serviceRequests,
+  contactRequests,
   oceanCargoQuotes,
   selfStorageQuotes,
   filmProductionQuotes,
@@ -278,6 +279,23 @@ export function registerAgentRoutes(app: Express) {
           ...autoDealerGarage.map((a) => ({
             ...a,
             submissionType: "auto-dealer-garage",
+          }))
+        );
+      }
+
+      if (!type || type === "contact") {
+        const contacts = await db
+          .select()
+          .from(contactRequests)
+          .orderBy(desc(contactRequests.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...contacts.map((c) => ({
+            ...c,
+            submissionType: "contact",
+            referenceNumber: `CONTACT-${c.id.substring(0, 8).toUpperCase()}`,
+            status: "pending",
           }))
         );
       }

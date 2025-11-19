@@ -46,6 +46,7 @@ function normalizeSubmission(submission: any): NormalizedSubmission {
   const formNameMap: Record<string, string> = {
     quote: "Contact (normal)",
     service: "Service Request",
+    contact: "Contact Request",
     "ocean-cargo": "Ocean Cargo Insurance",
     "self-storage": "Self Storage Insurance",
     "film-production": "Film Production Insurance",
