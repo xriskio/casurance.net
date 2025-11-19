@@ -411,6 +411,27 @@ export const garageServiceQuotes = pgTable("garage_service_quotes", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const autoDealerGarageQuotes = pgTable("auto_dealer_garage_quotes", {
+  id: varchar("id").primaryKey(),
+  applicantName: text("applicant_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  effectiveDate: text("effective_date"),
+  mailingAddress: text("mailing_address"),
+  city: text("city"),
+  state: text("state"),
+  zipCode: text("zip_code"),
+  businessType: text("business_type"),
+  yearsInBusiness: text("years_in_business"),
+  numberOfLocations: text("number_of_locations"),
+  operationType: text("operation_type"),
+  dealershipType: text("dealership_type"),
+  numberOfDealerPlates: text("number_of_dealer_plates"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const insertQuoteRequestSchema = createInsertSchema(quoteRequests).omit({
   id: true,
   createdAt: true,
@@ -533,6 +554,11 @@ export const insertGarageServiceQuoteSchema = createInsertSchema(garageServiceQu
   createdAt: true,
 });
 
+export const insertAutoDealerGarageQuoteSchema = createInsertSchema(autoDealerGarageQuotes).omit({
+  id: true,
+  createdAt: true,
+});
+
 export type InsertQuoteRequest = z.infer<typeof insertQuoteRequestSchema>;
 export type QuoteRequest = typeof quoteRequests.$inferSelect;
 export type InsertServiceRequest = z.infer<typeof insertServiceRequestSchema>;
@@ -581,3 +607,5 @@ export type InsertFranchisedDealerQuote = z.infer<typeof insertFranchisedDealerQ
 export type FranchisedDealerQuote = typeof franchisedDealerQuotes.$inferSelect;
 export type InsertGarageServiceQuote = z.infer<typeof insertGarageServiceQuoteSchema>;
 export type GarageServiceQuote = typeof garageServiceQuotes.$inferSelect;
+export type InsertAutoDealerGarageQuote = z.infer<typeof insertAutoDealerGarageQuoteSchema>;
+export type AutoDealerGarageQuote = typeof autoDealerGarageQuotes.$inferSelect;
