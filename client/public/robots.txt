@@ -1,0 +1,9 @@
+# robots.txt for Casurance Insurance Agency
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://casurance.com/sitemap.xml
+
+# Crawl-delay to be respectful to search engines
+Crawl-delay: 1
