@@ -634,7 +634,7 @@ export default function AgentPortal() {
       <header className="border-b bg-card">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-semibold">Submitted Forms for casurance.com</h1>
+            <h1 className="text-2xl font-semibold">Submitted Forms for www.casurance.net</h1>
             <p className="text-sm text-muted-foreground">
               Welcome, {agent?.fullName}
             </p>

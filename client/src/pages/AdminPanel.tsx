@@ -198,7 +198,7 @@ export default function AdminPanel() {
                         type="email"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="agent@casurance.com"
+                        placeholder="agent@casurance.net"
                         data-testid="input-create-email"
                       />
                     </div>

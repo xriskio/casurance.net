@@ -327,7 +327,7 @@ export const pressReleases = pgTable("press_releases", {
   category: text("category").notNull(),
   location: text("location").notNull().default("Nationwide"),
   contactName: text("contact_name").notNull().default("Casurance Media Relations"),
-  contactEmail: text("contact_email").notNull().default("media@casurance.com"),
+  contactEmail: text("contact_email").notNull().default("media@casurance.net"),
   contactPhone: text("contact_phone").notNull().default("1-888-254-0089"),
   tags: text("tags").array().notNull().default([]),
   imageUrl: text("image_url"),

@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://casurance.com/sitemap.xml
+Sitemap: https://www.casurance.net/sitemap.xml
 
 # Crawl-delay to be respectful to search engines
 Crawl-delay: 1

@@ -336,11 +336,11 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Email</h3>
                     <a
-                      href="mailto:info@casurance.com"
+                      href="mailto:info@casurance.net"
                       className="text-muted-foreground hover:text-primary transition-colors break-all"
                       data-testid="link-email"
                     >
-                      info@casurance.com
+                      info@casurance.net
                     </a>
                   </div>
                 </div>

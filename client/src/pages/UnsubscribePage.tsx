@@ -117,8 +117,8 @@ export default function UnsubscribePage() {
                   <h3 className="font-medium mb-2">Need Help?</h3>
                   <p className="text-sm text-muted-foreground">
                     If you continue to experience issues, please contact our support team at{" "}
-                    <a href="mailto:support@casurance.com" className="text-primary hover:underline">
-                      support@casurance.com
+                    <a href="mailto:support@casurance.net" className="text-primary hover:underline">
+                      support@casurance.net
                     </a>
                     {" "}or call us at{" "}
                     <a href="tel:18882540089" className="text-primary hover:underline">

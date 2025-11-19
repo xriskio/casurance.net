@@ -43,7 +43,7 @@ export default function Footer() {
               <li>714 W. Olympic Blvd, Suite 906</li>
               <li>Los Angeles, CA 90015</li>
               <li><a href="tel:18882540089" className="hover:text-foreground">1-888-254-0089</a></li>
-              <li><a href="mailto:info@casurance.com" className="hover:text-foreground">info@casurance.com</a></li>
+              <li><a href="mailto:info@casurance.net" className="hover:text-foreground">info@casurance.net</a></li>
             </ul>
           </div>
         </div>

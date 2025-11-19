@@ -69,7 +69,7 @@ export default function AgentLogin() {
               <Input
                 id="email"
                 type="email"
-                placeholder="agent@casurance.com"
+                placeholder="agent@casurance.net"
                 data-testid="input-email"
                 {...form.register("email")}
               />

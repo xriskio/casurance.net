@@ -200,7 +200,7 @@ export async function sendQuoteConfirmationEmail(data: QuoteRequestData): Promis
               <p><strong>Need immediate assistance?</strong></p>
               <p>
                 Call us at <a href="tel:1-888-254-0089">1-888-254-0089</a><br>
-                Email us at <a href="mailto:info@casurance.com">info@casurance.com</a>
+                Email us at <a href="mailto:info@casurance.net">info@casurance.net</a>
               </p>
             </div>
           </div>
@@ -373,7 +373,7 @@ export async function sendServiceRequestConfirmationEmail(data: ServiceRequestDa
               <p><strong>Need immediate assistance?</strong></p>
               <p>
                 Call us at <a href="tel:1-888-254-0089">1-888-254-0089</a><br>
-                Email us at <a href="mailto:info@casurance.com">info@casurance.com</a>
+                Email us at <a href="mailto:info@casurance.net">info@casurance.net</a>
               </p>
             </div>
           </div>
