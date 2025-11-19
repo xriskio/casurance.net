@@ -4,6 +4,7 @@ import { z } from "zod";
 
 export const quoteRequests = pgTable("quote_requests", {
   id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
   businessName: text("business_name").notNull(),
   contactName: text("contact_name").notNull(),
   email: text("email").notNull(),
@@ -19,6 +20,7 @@ export const quoteRequests = pgTable("quote_requests", {
 
 export const serviceRequests = pgTable("service_requests", {
   id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
   policyNumber: text("policy_number"),
   businessName: text("business_name").notNull(),
   contactName: text("contact_name").notNull(),
@@ -32,6 +34,7 @@ export const serviceRequests = pgTable("service_requests", {
 
 export const oceanCargoQuotes = pgTable("ocean_cargo_quotes", {
   id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
   applicantName: text("applicant_name").notNull(),
   email: text("email").notNull(),
   phone: text("phone"),
@@ -46,6 +49,7 @@ export const oceanCargoQuotes = pgTable("ocean_cargo_quotes", {
 
 export const selfStorageQuotes = pgTable("self_storage_quotes", {
   id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
   namedInsured: text("named_insured").notNull(),
   email: text("email").notNull(),
   phone: text("phone").notNull(),
@@ -60,6 +64,7 @@ export const selfStorageQuotes = pgTable("self_storage_quotes", {
 
 export const filmProductionQuotes = pgTable("film_production_quotes", {
   id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
   applicantName: text("applicant_name").notNull(),
   email: text("email").notNull(),
   phone: text("phone").notNull(),
@@ -74,6 +79,7 @@ export const filmProductionQuotes = pgTable("film_production_quotes", {
 
 export const productLiabilityQuotes = pgTable("product_liability_quotes", {
   id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
   namedInsured: text("named_insured").notNull(),
   email: text("email").notNull(),
   phone: text("phone").notNull(),
@@ -88,6 +94,7 @@ export const productLiabilityQuotes = pgTable("product_liability_quotes", {
 
 export const securityServicesQuotes = pgTable("security_services_quotes", {
   id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
   namedInsured: text("named_insured").notNull(),
   email: text("email").notNull(),
   phone: text("phone").notNull(),
@@ -129,6 +136,7 @@ export const submissionStatusHistory = pgTable("submission_status_history", {
 
 export const nemtApplications = pgTable("nemt_applications", {
   id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
   businessName: text("business_name").notNull(),
   contactName: text("contact_name").notNull(),
   email: text("email").notNull(),
@@ -156,6 +164,7 @@ export const nemtApplications = pgTable("nemt_applications", {
 
 export const ambulanceApplications = pgTable("ambulance_applications", {
   id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
   businessName: text("business_name").notNull(),
   contactName: text("contact_name").notNull(),
   email: text("email").notNull(),
@@ -183,6 +192,7 @@ export const ambulanceApplications = pgTable("ambulance_applications", {
 
 export const tncApplications = pgTable("tnc_applications", {
   id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
   companyName: text("company_name").notNull(),
   contactName: text("contact_name").notNull(),
   contactEmail: text("contact_email").notNull(),
@@ -202,6 +212,7 @@ export const tncApplications = pgTable("tnc_applications", {
 
 export const limousineQuotes = pgTable("limousine_quotes", {
   id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
   companyName: text("company_name").notNull(),
   contactPerson: text("contact_person").notNull(),
   email: text("email").notNull(),
@@ -219,6 +230,7 @@ export const limousineQuotes = pgTable("limousine_quotes", {
 
 export const publicTransportationQuotes = pgTable("public_transportation_quotes", {
   id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
   companyName: text("company_name").notNull(),
   contactEmail: text("contact_email").notNull(),
   contactPhone: text("contact_phone").notNull(),
@@ -233,6 +245,7 @@ export const publicTransportationQuotes = pgTable("public_transportation_quotes"
 
 export const taxiBlackCarQuotes = pgTable("taxi_black_car_quotes", {
   id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
   companyName: text("company_name").notNull(),
   contactPerson: text("contact_person").notNull(),
   email: text("email").notNull(),
@@ -250,6 +263,7 @@ export const taxiBlackCarQuotes = pgTable("taxi_black_car_quotes", {
 
 export const quickQuotes = pgTable("quick_quotes", {
   id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
   name: text("name").notNull(),
   email: text("email").notNull(),
   phone: text("phone").notNull(),
@@ -332,6 +346,7 @@ export const newsletterSubscriptions = pgTable("newsletter_subscriptions", {
 
 export const highValueHomeQuotes = pgTable("high_value_home_quotes", {
   id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
   primaryNamedInsured: text("primary_named_insured").notNull(),
   secondaryNamedInsured: text("secondary_named_insured"),
   email: text("email").notNull(),
@@ -355,6 +370,7 @@ export const highValueHomeQuotes = pgTable("high_value_home_quotes", {
 
 export const commercialFloodQuotes = pgTable("commercial_flood_quotes", {
   id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
   namedInsured: text("named_insured").notNull(),
   email: text("email").notNull(),
   phone: text("phone").notNull(),
@@ -376,6 +392,7 @@ export const commercialFloodQuotes = pgTable("commercial_flood_quotes", {
 
 export const commercialEarthquakeQuotes = pgTable("commercial_earthquake_quotes", {
   id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
   namedInsured: text("named_insured").notNull(),
   email: text("email").notNull(),
   phone: text("phone").notNull(),
@@ -397,6 +414,7 @@ export const commercialEarthquakeQuotes = pgTable("commercial_earthquake_quotes"
 
 export const franchisedDealerQuotes = pgTable("franchised_dealer_quotes", {
   id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
   applicantName: text("applicant_name").notNull(),
   email: text("email").notNull(),
   phone: text("phone").notNull(),
@@ -419,6 +437,7 @@ export const franchisedDealerQuotes = pgTable("franchised_dealer_quotes", {
 
 export const garageServiceQuotes = pgTable("garage_service_quotes", {
   id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
   applicantName: text("applicant_name").notNull(),
   email: text("email").notNull(),
   phone: text("phone").notNull(),
@@ -441,6 +460,7 @@ export const garageServiceQuotes = pgTable("garage_service_quotes", {
 
 export const autoDealerGarageQuotes = pgTable("auto_dealer_garage_quotes", {
   id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
   applicantName: text("applicant_name").notNull(),
   email: text("email").notNull(),
   phone: text("phone").notNull(),
@@ -462,6 +482,7 @@ export const autoDealerGarageQuotes = pgTable("auto_dealer_garage_quotes", {
 
 export const golfCountryClubQuotes = pgTable("golf_country_club_quotes", {
   id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
   clubName: text("club_name").notNull(),
   contactName: text("contact_name").notNull(),
   email: text("email").notNull(),
@@ -481,56 +502,67 @@ export const golfCountryClubQuotes = pgTable("golf_country_club_quotes", {
 
 export const insertQuoteRequestSchema = createInsertSchema(quoteRequests).omit({
   id: true,
+  referenceNumber: true,
   createdAt: true,
 });
 
 export const insertServiceRequestSchema = createInsertSchema(serviceRequests).omit({
   id: true,
+  referenceNumber: true,
   createdAt: true,
 });
 
 export const insertOceanCargoQuoteSchema = createInsertSchema(oceanCargoQuotes).omit({
   id: true,
+  referenceNumber: true,
   createdAt: true,
 });
 
 export const insertSelfStorageQuoteSchema = createInsertSchema(selfStorageQuotes).omit({
   id: true,
+  referenceNumber: true,
   createdAt: true,
 });
 
 export const insertFilmProductionQuoteSchema = createInsertSchema(filmProductionQuotes).omit({
   id: true,
+  referenceNumber: true,
   createdAt: true,
 });
 
 export const insertProductLiabilityQuoteSchema = createInsertSchema(productLiabilityQuotes).omit({
   id: true,
+  referenceNumber: true,
   createdAt: true,
 });
 
 export const insertSecurityServicesQuoteSchema = createInsertSchema(securityServicesQuotes).omit({
   id: true,
+  referenceNumber: true,
   createdAt: true,
 });
 
 export const insertLimousineQuoteSchema = createInsertSchema(limousineQuotes).omit({
   id: true,
+  referenceNumber: true,
   createdAt: true,
 });
 
 export const insertPublicTransportationQuoteSchema = createInsertSchema(publicTransportationQuotes).omit({
   id: true,
+  referenceNumber: true,
   createdAt: true,
 });
 
 export const insertTaxiBlackCarQuoteSchema = createInsertSchema(taxiBlackCarQuotes).omit({
   id: true,
+  referenceNumber: true,
   createdAt: true,
 });
 
 export const insertQuickQuoteSchema = createInsertSchema(quickQuotes).omit({
   id: true,
+  referenceNumber: true,
   createdAt: true,
 });
 
@@ -552,16 +584,19 @@ export const insertSubmissionStatusHistorySchema = createInsertSchema(submission
 
 export const insertNemtApplicationSchema = createInsertSchema(nemtApplications).omit({
   id: true,
+  referenceNumber: true,
   createdAt: true,
 });
 
 export const insertAmbulanceApplicationSchema = createInsertSchema(ambulanceApplications).omit({
   id: true,
+  referenceNumber: true,
   createdAt: true,
 });
 
 export const insertTncApplicationSchema = createInsertSchema(tncApplications).omit({
   id: true,
+  referenceNumber: true,
   createdAt: true,
 });
 
@@ -589,36 +624,43 @@ export const insertNewsletterSubscriptionSchema = createInsertSchema(newsletterS
 
 export const insertHighValueHomeQuoteSchema = createInsertSchema(highValueHomeQuotes).omit({
   id: true,
+  referenceNumber: true,
   createdAt: true,
 });
 
 export const insertCommercialFloodQuoteSchema = createInsertSchema(commercialFloodQuotes).omit({
   id: true,
+  referenceNumber: true,
   createdAt: true,
 });
 
 export const insertCommercialEarthquakeQuoteSchema = createInsertSchema(commercialEarthquakeQuotes).omit({
   id: true,
+  referenceNumber: true,
   createdAt: true,
 });
 
 export const insertFranchisedDealerQuoteSchema = createInsertSchema(franchisedDealerQuotes).omit({
   id: true,
+  referenceNumber: true,
   createdAt: true,
 });
 
 export const insertGarageServiceQuoteSchema = createInsertSchema(garageServiceQuotes).omit({
   id: true,
+  referenceNumber: true,
   createdAt: true,
 });
 
 export const insertAutoDealerGarageQuoteSchema = createInsertSchema(autoDealerGarageQuotes).omit({
   id: true,
+  referenceNumber: true,
   createdAt: true,
 });
 
 export const insertGolfCountryClubQuoteSchema = createInsertSchema(golfCountryClubQuotes).omit({
   id: true,
+  referenceNumber: true,
   createdAt: true,
 });
 
