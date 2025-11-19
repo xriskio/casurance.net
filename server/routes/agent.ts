@@ -1,6 +1,6 @@
 import type { Express } from "express";
 import passport from "../auth/passport-config";
-import { requireAgent } from "../auth/middleware";
+import { requireAgent, requireAdmin } from "../auth/middleware";
 import { db } from "../db";
 import {
   quoteRequests,
@@ -17,8 +17,11 @@ import {
   franchisedDealerQuotes,
   garageServiceQuotes,
   autoDealerGarageQuotes,
+  agents,
+  insertAgentSchema,
 } from "@shared/schema";
-import { desc, or, ilike, sql, and, gte, lte } from "drizzle-orm";
+import { desc, or, ilike, sql, and, gte, lte, eq } from "drizzle-orm";
+import { hashPassword } from "../auth/utils";
 
 export function registerAgentRoutes(app: Express) {
   app.post("/api/auth/login", (req, res, next) => {
@@ -331,6 +334,120 @@ export function registerAgentRoutes(app: Express) {
     } catch (error) {
       console.error("Error sending confirmation:", error);
       res.status(500).json({ error: "Failed to send confirmation" });
+    }
+  });
+
+  app.get("/api/admin/agents", requireAdmin, async (req, res) => {
+    try {
+      const allAgents = await db
+        .select({
+          id: agents.id,
+          email: agents.email,
+          fullName: agents.fullName,
+          role: agents.role,
+          createdAt: agents.createdAt,
+          lastLoginAt: agents.lastLoginAt,
+        })
+        .from(agents)
+        .orderBy(desc(agents.createdAt));
+
+      res.json({ agents: allAgents });
+    } catch (error) {
+      console.error("Error fetching agents:", error);
+      res.status(500).json({ error: "Failed to fetch agents" });
+    }
+  });
+
+  app.post("/api/admin/agents", requireAdmin, async (req, res) => {
+    try {
+      const validatedData = insertAgentSchema.parse(req.body);
+      const hashedPwd = await hashPassword(validatedData.hashedPassword);
+      
+      const [newAgent] = await db
+        .insert(agents)
+        .values({
+          ...validatedData,
+          hashedPassword: hashedPwd,
+          email: validatedData.email.toLowerCase(),
+        })
+        .returning({
+          id: agents.id,
+          email: agents.email,
+          fullName: agents.fullName,
+          role: agents.role,
+          createdAt: agents.createdAt,
+        });
+
+      res.json({ agent: newAgent });
+    } catch (error: any) {
+      console.error("Error creating agent:", error);
+      if (error.code === '23505') {
+        return res.status(400).json({ error: "An agent with this email already exists" });
+      }
+      res.status(400).json({ error: error.message || "Failed to create agent" });
+    }
+  });
+
+  app.patch("/api/admin/agents/:id", requireAdmin, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { email, fullName, role, password } = req.body;
+
+      const updateData: any = {};
+      if (email) updateData.email = email.toLowerCase();
+      if (fullName) updateData.fullName = fullName;
+      if (role) updateData.role = role;
+      if (password) updateData.hashedPassword = await hashPassword(password);
+
+      const [updatedAgent] = await db
+        .update(agents)
+        .set(updateData)
+        .where(eq(agents.id, parseInt(id)))
+        .returning({
+          id: agents.id,
+          email: agents.email,
+          fullName: agents.fullName,
+          role: agents.role,
+          createdAt: agents.createdAt,
+          lastLoginAt: agents.lastLoginAt,
+        });
+
+      if (!updatedAgent) {
+        return res.status(404).json({ error: "Agent not found" });
+      }
+
+      res.json({ agent: updatedAgent });
+    } catch (error: any) {
+      console.error("Error updating agent:", error);
+      if (error.code === '23505') {
+        return res.status(400).json({ error: "An agent with this email already exists" });
+      }
+      res.status(400).json({ error: error.message || "Failed to update agent" });
+    }
+  });
+
+  app.delete("/api/admin/agents/:id", requireAdmin, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const currentUser = req.user as any;
+
+      if (currentUser.id === parseInt(id)) {
+        return res.status(400).json({ error: "You cannot delete your own account" });
+      }
+
+      const [deletedAgent] = await db
+        .delete(agents)
+        .where(eq(agents.id, parseInt(id)))
+        .returning({ id: agents.id });
+
+      if (!deletedAgent) {
+        return res.status(404).json({ error: "Agent not found" });
+      }
+
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error deleting agent:", error);
+      res.status(500).json({ error: "Failed to delete agent" });
     }
   });
 }

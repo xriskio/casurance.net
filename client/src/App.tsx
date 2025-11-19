@@ -36,6 +36,7 @@ import MiddleMarket from "@/pages/MiddleMarket";
 import AgentLogin from "@/pages/AgentLogin";
 import AgentPortal from "@/pages/AgentPortal";
 import AgentSubmissionDetail from "@/pages/AgentSubmissionDetail";
+import AdminPanel from "@/pages/AdminPanel";
 import NemtApplicationPage from "@/pages/NemtApplicationPage";
 import AmbulanceApplicationPage from "@/pages/AmbulanceApplicationPage";
 import TncRideshareApplicationPage from "@/pages/TncRideshareApplicationPage";
@@ -102,6 +103,8 @@ function Router() {
       <Route path="/agent/portal" component={AgentPortal} />
       <Route path="/agent-portal" component={AgentPortal} />
       <Route path="/agent/submission/:type/:id" component={AgentSubmissionDetail} />
+      <Route path="/admin/panel" component={AdminPanel} />
+      <Route path="/admin-panel" component={AdminPanel} />
       <Route path="/apply/nemt" component={NemtApplicationPage} />
       <Route path="/apply/ambulance" component={AmbulanceApplicationPage} />
       <Route path="/apply/tnc-rideshare" component={TncRideshareApplicationPage} />

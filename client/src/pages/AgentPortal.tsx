@@ -25,7 +25,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Search, LogOut, FileText, Sparkles, NewspaperIcon, PenLine } from "lucide-react";
+import { Search, LogOut, FileText, Sparkles, NewspaperIcon, PenLine, Shield } from "lucide-react";
 import { format } from "date-fns";
 import { useToast } from "@/hooks/use-toast";
 import type { BlogPost, PressRelease } from "@shared/schema";
@@ -567,14 +567,26 @@ export default function AgentPortal() {
               Welcome, {agent?.fullName}
             </p>
           </div>
-          <Button
-            variant="outline"
-            onClick={logout}
-            data-testid="button-logout"
-          >
-            <LogOut className="w-4 h-4 mr-2" />
-            Sign Out
-          </Button>
+          <div className="flex items-center gap-2">
+            {agent?.role === "admin" && (
+              <Button
+                variant="outline"
+                onClick={() => setLocation("/admin-panel")}
+                data-testid="button-admin-panel"
+              >
+                <Shield className="w-4 h-4 mr-2" />
+                Admin Panel
+              </Button>
+            )}
+            <Button
+              variant="outline"
+              onClick={logout}
+              data-testid="button-logout"
+            >
+              <LogOut className="w-4 h-4 mr-2" />
+              Sign Out
+            </Button>
+          </div>
         </div>
       </header>
 
