@@ -107,6 +107,189 @@ export const securityServicesQuotes = pgTable("security_services_quotes", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const buildersRiskQuotes = pgTable("builders_risk_quotes", {
+  id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
+  namedInsured: text("named_insured").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  projectStartDate: text("project_start_date"),
+  projectCompletionDate: text("project_completion_date"),
+  projectLocationAddress: text("project_location_address"),
+  constructionType: text("construction_type"),
+  hardCost: text("hard_cost"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const vacantBuildingQuotes = pgTable("vacant_building_quotes", {
+  id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
+  namedInsured: text("named_insured").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  buildingAddress: text("building_address"),
+  buildingType: text("building_type"),
+  yearBuilt: text("year_built"),
+  squareFootage: text("square_footage"),
+  limitOfInsurance: text("limit_of_insurance"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const craneRiggersQuotes = pgTable("crane_riggers_quotes", {
+  id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
+  namedInsured: text("named_insured").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  effectiveDate: text("effective_date"),
+  limitOfInsurance: text("limit_of_insurance"),
+  numberOfCranes: text("number_of_cranes"),
+  yearsInBusiness: text("years_in_business"),
+  annualRevenue: text("annual_revenue"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const commercialAutoQuotes = pgTable("commercial_auto_quotes", {
+  id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
+  insuredName: text("insured_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  effectiveDate: text("effective_date"),
+  liabilityLimit: text("liability_limit"),
+  yearsInBusiness: text("years_in_business"),
+  numberOfVehicles: text("number_of_vehicles"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const generalLiabilityQuotes = pgTable("general_liability_quotes", {
+  id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
+  businessName: text("business_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  effectiveDate: text("effective_date"),
+  limitOfInsurance: text("limit_of_insurance"),
+  businessType: text("business_type"),
+  annualRevenue: text("annual_revenue"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const habitationalQuotes = pgTable("habitational_quotes", {
+  id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
+  namedInsured: text("named_insured").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  propertyAddress: text("property_address"),
+  numberOfUnits: text("number_of_units"),
+  buildingValue: text("building_value"),
+  effectiveDate: text("effective_date"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const hotelQuotes = pgTable("hotel_quotes", {
+  id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
+  namedInsured: text("named_insured").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  propertyAddress: text("property_address"),
+  numberOfRooms: text("number_of_rooms"),
+  annualRevenue: text("annual_revenue"),
+  effectiveDate: text("effective_date"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const restaurantQuotes = pgTable("restaurant_quotes", {
+  id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
+  restaurantName: text("restaurant_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  address: text("address"),
+  seatingCapacity: text("seating_capacity"),
+  annualSales: text("annual_sales"),
+  effectiveDate: text("effective_date"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const truckingQuotes = pgTable("trucking_quotes", {
+  id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
+  companyName: text("company_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  dotNumber: text("dot_number"),
+  numberOfTrucks: text("number_of_trucks"),
+  operatingRadius: text("operating_radius"),
+  effectiveDate: text("effective_date"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const workersCompQuotes = pgTable("workers_comp_quotes", {
+  id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
+  businessName: text("business_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  industry: text("industry"),
+  numberOfEmployees: text("number_of_employees"),
+  annualPayroll: text("annual_payroll"),
+  effectiveDate: text("effective_date"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const managementLiabilityQuotes = pgTable("management_liability_quotes", {
+  id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
+  companyName: text("company_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  annualRevenue: text("annual_revenue"),
+  numberOfEmployees: text("number_of_employees"),
+  limitOfInsurance: text("limit_of_insurance"),
+  effectiveDate: text("effective_date"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const commercialPackageQuotes = pgTable("commercial_package_quotes", {
+  id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
+  businessName: text("business_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  businessType: text("business_type"),
+  annualRevenue: text("annual_revenue"),
+  buildingValue: text("building_value"),
+  effectiveDate: text("effective_date"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const agents = pgTable("agents", {
   id: serial("id").primaryKey(),
   email: text("email").notNull().unique(),
@@ -585,6 +768,78 @@ export const insertSecurityServicesQuoteSchema = createInsertSchema(securityServ
   createdAt: true,
 });
 
+export const insertBuildersRiskQuoteSchema = createInsertSchema(buildersRiskQuotes).omit({
+  id: true,
+  referenceNumber: true,
+  createdAt: true,
+});
+
+export const insertVacantBuildingQuoteSchema = createInsertSchema(vacantBuildingQuotes).omit({
+  id: true,
+  referenceNumber: true,
+  createdAt: true,
+});
+
+export const insertCraneRiggersQuoteSchema = createInsertSchema(craneRiggersQuotes).omit({
+  id: true,
+  referenceNumber: true,
+  createdAt: true,
+});
+
+export const insertCommercialAutoQuoteSchema = createInsertSchema(commercialAutoQuotes).omit({
+  id: true,
+  referenceNumber: true,
+  createdAt: true,
+});
+
+export const insertGeneralLiabilityQuoteSchema = createInsertSchema(generalLiabilityQuotes).omit({
+  id: true,
+  referenceNumber: true,
+  createdAt: true,
+});
+
+export const insertHabitationalQuoteSchema = createInsertSchema(habitationalQuotes).omit({
+  id: true,
+  referenceNumber: true,
+  createdAt: true,
+});
+
+export const insertHotelQuoteSchema = createInsertSchema(hotelQuotes).omit({
+  id: true,
+  referenceNumber: true,
+  createdAt: true,
+});
+
+export const insertRestaurantQuoteSchema = createInsertSchema(restaurantQuotes).omit({
+  id: true,
+  referenceNumber: true,
+  createdAt: true,
+});
+
+export const insertTruckingQuoteSchema = createInsertSchema(truckingQuotes).omit({
+  id: true,
+  referenceNumber: true,
+  createdAt: true,
+});
+
+export const insertWorkersCompQuoteSchema = createInsertSchema(workersCompQuotes).omit({
+  id: true,
+  referenceNumber: true,
+  createdAt: true,
+});
+
+export const insertManagementLiabilityQuoteSchema = createInsertSchema(managementLiabilityQuotes).omit({
+  id: true,
+  referenceNumber: true,
+  createdAt: true,
+});
+
+export const insertCommercialPackageQuoteSchema = createInsertSchema(commercialPackageQuotes).omit({
+  id: true,
+  referenceNumber: true,
+  createdAt: true,
+});
+
 export const insertLimousineQuoteSchema = createInsertSchema(limousineQuotes).omit({
   id: true,
   referenceNumber: true,
@@ -752,6 +1007,30 @@ export type InsertProductLiabilityQuote = z.infer<typeof insertProductLiabilityQ
 export type ProductLiabilityQuote = typeof productLiabilityQuotes.$inferSelect;
 export type InsertSecurityServicesQuote = z.infer<typeof insertSecurityServicesQuoteSchema>;
 export type SecurityServicesQuote = typeof securityServicesQuotes.$inferSelect;
+export type InsertBuildersRiskQuote = z.infer<typeof insertBuildersRiskQuoteSchema>;
+export type BuildersRiskQuote = typeof buildersRiskQuotes.$inferSelect;
+export type InsertVacantBuildingQuote = z.infer<typeof insertVacantBuildingQuoteSchema>;
+export type VacantBuildingQuote = typeof vacantBuildingQuotes.$inferSelect;
+export type InsertCraneRiggersQuote = z.infer<typeof insertCraneRiggersQuoteSchema>;
+export type CraneRiggersQuote = typeof craneRiggersQuotes.$inferSelect;
+export type InsertCommercialAutoQuote = z.infer<typeof insertCommercialAutoQuoteSchema>;
+export type CommercialAutoQuote = typeof commercialAutoQuotes.$inferSelect;
+export type InsertGeneralLiabilityQuote = z.infer<typeof insertGeneralLiabilityQuoteSchema>;
+export type GeneralLiabilityQuote = typeof generalLiabilityQuotes.$inferSelect;
+export type InsertHabitationalQuote = z.infer<typeof insertHabitationalQuoteSchema>;
+export type HabitationalQuote = typeof habitationalQuotes.$inferSelect;
+export type InsertHotelQuote = z.infer<typeof insertHotelQuoteSchema>;
+export type HotelQuote = typeof hotelQuotes.$inferSelect;
+export type InsertRestaurantQuote = z.infer<typeof insertRestaurantQuoteSchema>;
+export type RestaurantQuote = typeof restaurantQuotes.$inferSelect;
+export type InsertTruckingQuote = z.infer<typeof insertTruckingQuoteSchema>;
+export type TruckingQuote = typeof truckingQuotes.$inferSelect;
+export type InsertWorkersCompQuote = z.infer<typeof insertWorkersCompQuoteSchema>;
+export type WorkersCompQuote = typeof workersCompQuotes.$inferSelect;
+export type InsertManagementLiabilityQuote = z.infer<typeof insertManagementLiabilityQuoteSchema>;
+export type ManagementLiabilityQuote = typeof managementLiabilityQuotes.$inferSelect;
+export type InsertCommercialPackageQuote = z.infer<typeof insertCommercialPackageQuoteSchema>;
+export type CommercialPackageQuote = typeof commercialPackageQuotes.$inferSelect;
 export type InsertAgent = z.infer<typeof insertAgentSchema>;
 export type Agent = typeof agents.$inferSelect;
 export type InsertSubmissionStatusHistory = z.infer<typeof insertSubmissionStatusHistorySchema>;
