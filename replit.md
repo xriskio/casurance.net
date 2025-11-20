@@ -26,6 +26,27 @@ The application utilizes PostgreSQL as its primary database, managed with Drizzl
 
 The agent portal provides authenticated access for Casurance agents to manage all quote and service submissions. It features a table-based submission list with search, filtering, and status management functionalities. Authentication is handled via Passport.js with a local strategy, bcrypt for password hashing, and PostgreSQL for session management. The portal allows agents to view submission details, update statuses, and interact with features like AI-powered content generation for blogs and press releases.
 
+### AI Content Generation & Brand Protection
+
+The application features AI-powered content generation for blog posts and press releases using OpenAI GPT-5. A comprehensive brand validation system ensures 100% brand consistency across all AI-generated content:
+
+**Centralized Brand Management** (`server/lib/brand.ts`):
+- All Casurance company information, contact details, and boilerplate text are centralized in a single source of truth
+- Brand constants include: company name, email addresses (@casurance.net), phone numbers (323-546-3030, 1-888-254-0089), service area, and media contact information
+- Helper functions provide formatted contact blocks and brand instructions for AI prompts
+
+**Automated Brand Validation** (`server/lib/brand-validator.ts`):
+- **Detection**: Identifies forbidden patterns (wrong company names, incorrect email domains, unapproved phone numbers)
+- **Validation**: Treats incorrect contact information as hard errors, not warnings
+- **Normalization**: Strips leading/trailing punctuation and quotes before validation to handle natural prose
+- **Sanitization**: Automatically replaces incorrect branding with correct Casurance information
+- **Enforcement**: All AI-generated content passes through validation → sanitization → re-validation before being persisted
+
+**Integration**:
+- Both blog generator and press release generator validate all text fields (content, excerpt, subtitle) before returning
+- The system either automatically fixes incorrect branding or throws clear errors if content cannot be corrected
+- No AI hallucinations can slip through to the database or public website
+
 ## External Dependencies
 
 *   **UI Libraries**: Radix UI, Lucide React (icons), Embla Carousel, CMDK, class-variance-authority.
