@@ -1,5 +1,6 @@
 import OpenAI from "openai";
 import { CasuranceBrand, getBrandInstructions } from "./brand";
+import { ensureBrandCompliance } from "./brand-validator";
 
 // This is using Replit's AI Integrations service, which provides OpenAI-compatible API access without requiring your own OpenAI API key.
 const openai = new OpenAI({
@@ -142,6 +143,11 @@ Return ONLY a valid JSON object with this exact structure:
     }
 
     const blogPost = JSON.parse(content) as BlogPostContent;
+    
+    // Validate and sanitize brand compliance
+    blogPost.content = ensureBrandCompliance(blogPost.content);
+    blogPost.excerpt = ensureBrandCompliance(blogPost.excerpt);
+    
     blogPost.imageUrl = imageUrl;
     return blogPost;
   } catch (error) {
@@ -209,6 +215,11 @@ Return ONLY a valid JSON object with this structure:
     }
 
     const result = JSON.parse(content);
+    
+    // Validate and sanitize brand compliance
+    result.content = ensureBrandCompliance(result.content);
+    result.excerpt = ensureBrandCompliance(result.excerpt);
+    
     result.imageUrl = imageUrl;
     return result;
   } catch (error) {
@@ -257,7 +268,12 @@ Return ONLY a valid JSON object with this structure:
       throw new Error("No content generated");
     }
 
-    return JSON.parse(responseContent);
+    const result = JSON.parse(responseContent);
+    
+    // Validate and sanitize brand compliance
+    result.content = ensureBrandCompliance(result.content);
+    
+    return result;
   } catch (error) {
     console.error("Error improving content:", error);
     throw error;

@@ -1,5 +1,6 @@
 import OpenAI from "openai";
 import { CasuranceBrand, getBrandInstructions, getMediaContactBlock } from "./brand";
+import { ensureBrandCompliance } from "./brand-validator";
 
 const openai = new OpenAI({
   baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
@@ -171,6 +172,14 @@ Return ONLY a valid JSON object with this exact structure:
     }
 
     const pressRelease = JSON.parse(content) as PressReleaseContent;
+    
+    // Validate and sanitize brand compliance
+    pressRelease.content = ensureBrandCompliance(pressRelease.content);
+    pressRelease.excerpt = ensureBrandCompliance(pressRelease.excerpt);
+    if (pressRelease.subtitle) {
+      pressRelease.subtitle = ensureBrandCompliance(pressRelease.subtitle);
+    }
+    
     pressRelease.imageUrl = imageUrl;
     return pressRelease;
   } catch (error) {
@@ -253,6 +262,14 @@ Return ONLY a valid JSON object with this structure:
     }
 
     const result = JSON.parse(content);
+    
+    // Validate and sanitize brand compliance
+    result.content = ensureBrandCompliance(result.content);
+    result.excerpt = ensureBrandCompliance(result.excerpt);
+    if (result.subtitle) {
+      result.subtitle = ensureBrandCompliance(result.subtitle);
+    }
+    
     result.imageUrl = imageUrl;
     return result;
   } catch (error) {
@@ -300,7 +317,12 @@ Return ONLY a valid JSON object with this structure:
       throw new Error("No content generated");
     }
 
-    return JSON.parse(responseContent);
+    const result = JSON.parse(responseContent);
+    
+    // Validate and sanitize brand compliance
+    result.content = ensureBrandCompliance(result.content);
+    
+    return result;
   } catch (error) {
     console.error("Error improving content:", error);
     throw error;
