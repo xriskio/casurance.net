@@ -378,7 +378,7 @@ export function registerCmsRoutes(app: Express) {
   });
 
   // Upload media (authenticated agents only)
-  app.post("/api/cms/media/upload", upload.single("file"), ensureAuthenticated, async (req, res) => {
+  app.post("/api/cms/media/upload", ensureAuthenticated, upload.single("file"), async (req, res) => {
     try {
       if (!req.file) {
         return res.status(400).json({ message: "No file uploaded" });
