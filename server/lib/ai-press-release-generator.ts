@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import { CasuranceBrand, getBrandInstructions, getMediaContactBlock } from "./brand";
 
 const openai = new OpenAI({
   baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
@@ -111,10 +112,18 @@ export async function generatePressRelease(topic?: string, category?: string, lo
   const selectedCategory = category || categories[Math.floor(Math.random() * categories.length)];
   const selectedLocation = location || locations[Math.floor(Math.random() * locations.length)];
 
-  const prompt = `You are a professional PR writer for a commercial insurance agency. Write a formal press release about: "${selectedTopic}"
+  const prompt = `You are a professional PR writer for ${CasuranceBrand.companyName}, a commercial insurance agency. Write a formal press release about: "${selectedTopic}"
 
 Category: ${selectedCategory}
 Location: ${selectedLocation}
+
+${getBrandInstructions()}
+
+COMPANY BOILERPLATE (Must use EXACTLY as provided in the "Boilerplate" section):
+${CasuranceBrand.boilerplate}
+
+MEDIA CONTACT (Must use EXACTLY as shown below):
+${getMediaContactBlock()}
 
 Requirements:
 1. Follow standard press release format (headline, dateline, body, boilerplate, contact info)
@@ -129,6 +138,9 @@ Requirements:
 10. Suggest 3-5 relevant tags
 11. Generate a URL-friendly slug
 12. Format the content in markdown (## for sections, **bold** for emphasis)
+13. ALWAYS end with "## Boilerplate" section using the exact boilerplate text provided above
+14. ALWAYS end with "## Media Contact" section using the exact contact info provided above
+15. DO NOT invent other company names, email addresses, or phone numbers
 
 Return ONLY a valid JSON object with this exact structure:
 {
@@ -188,10 +200,18 @@ export async function generateDraftContent(
   category: string,
   location: string
 ): Promise<{ subtitle?: string; excerpt: string; content: string; tags: string[]; imageUrl?: string }> {
-  const prompt = `You are a professional PR writer. Generate a formal press release based on this title: "${title}"
+  const prompt = `You are a professional PR writer for ${CasuranceBrand.companyName}. Generate a formal press release based on this title: "${title}"
 
 Category: ${category}
 Location: ${location}
+
+${getBrandInstructions()}
+
+COMPANY BOILERPLATE (Must use EXACTLY in the "Boilerplate" section):
+${CasuranceBrand.boilerplate}
+
+MEDIA CONTACT (Must use EXACTLY as shown below):
+${getMediaContactBlock()}
 
 Requirements:
 1. Follow standard press release format
@@ -204,6 +224,9 @@ Requirements:
 8. Create an engaging excerpt (150-200 characters)
 9. Suggest 3-5 relevant tags
 10. Use markdown formatting
+11. ALWAYS end with "## Boilerplate" section using the exact boilerplate text provided
+12. ALWAYS end with "## Media Contact" section using the exact contact info provided
+13. DO NOT invent company names, email addresses, or phone numbers
 
 Return ONLY a valid JSON object with this structure:
 {
@@ -239,9 +262,11 @@ Return ONLY a valid JSON object with this structure:
 }
 
 export async function improveContent(content: string, category: string): Promise<{ content: string }> {
-  const prompt = `You are a professional PR writer and editor. Improve the following press release content to make it more compelling, newsworthy, and professional.
+  const prompt = `You are a professional PR writer and editor for ${CasuranceBrand.companyName}. Improve the following press release content to make it more compelling, newsworthy, and professional.
 
 Category: ${category}
+
+${getBrandInstructions()}
 
 Current content:
 ${content}
@@ -253,6 +278,9 @@ Requirements:
 4. Add impact and urgency where appropriate
 5. Ensure carrier-agnostic language
 6. Keep markdown formatting
+7. Verify all contact information uses ONLY ${CasuranceBrand.companyName} details (${CasuranceBrand.phoneTollFree}, ${CasuranceBrand.phoneLocal}, emails @${CasuranceBrand.emailDomain})
+8. Remove any incorrect company names, phone numbers, or email addresses
+9. If there's a boilerplate section, ensure it accurately represents ${CasuranceBrand.companyName}
 
 Return ONLY a valid JSON object with this structure:
 {

@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import { CasuranceBrand, getBrandInstructions } from "./brand";
 
 // This is using Replit's AI Integrations service, which provides OpenAI-compatible API access without requiring your own OpenAI API key.
 const openai = new OpenAI({
@@ -90,9 +91,14 @@ export async function generateBlogPost(topic?: string, category?: string): Promi
   const selectedTopic = topic || commercialInsuranceTopics[Math.floor(Math.random() * commercialInsuranceTopics.length)];
   const selectedCategory = category || categories[Math.floor(Math.random() * categories.length)];
 
-  const prompt = `You are a commercial insurance expert writing for a professional insurance agency blog. Write a comprehensive, informative blog post about: "${selectedTopic}"
+  const prompt = `You are a commercial insurance expert writing for ${CasuranceBrand.companyName}, a professional commercial insurance agency. Write a comprehensive, informative blog post about: "${selectedTopic}"
 
 Category: ${selectedCategory}
+
+${getBrandInstructions()}
+
+About ${CasuranceBrand.companyName}:
+${CasuranceBrand.about}
 
 Requirements:
 1. Write in a professional, authoritative tone suitable for business decision-makers
@@ -104,6 +110,8 @@ Requirements:
 7. Include an engaging excerpt (150-200 characters)
 8. Suggest 3-5 relevant tags
 9. Generate a URL-friendly slug
+10. If mentioning contact information, use ONLY the ${CasuranceBrand.companyName} details provided above
+11. Do NOT invent company names, phone numbers, or email addresses
 
 Return ONLY a valid JSON object with this exact structure:
 {
@@ -156,9 +164,14 @@ export function getCategories(): string[] {
 
 // Generate draft content based on title and category
 export async function generateDraftContent(title: string, category: string): Promise<{ excerpt: string; content: string; tags: string[]; imageUrl?: string }> {
-  const prompt = `You are a commercial insurance expert. Generate a comprehensive blog post draft based on this title: "${title}"
+  const prompt = `You are a commercial insurance expert writing for ${CasuranceBrand.companyName}. Generate a comprehensive blog post draft based on this title: "${title}"
 
 Category: ${category}
+
+${getBrandInstructions()}
+
+About ${CasuranceBrand.companyName}:
+${CasuranceBrand.about}
 
 Requirements:
 1. Write in a professional, authoritative tone for business decision-makers
@@ -169,6 +182,8 @@ Requirements:
 6. Be carrier-agnostic - no specific carrier names
 7. Create an engaging excerpt (150-200 characters)
 8. Suggest 3-5 relevant tags
+9. If mentioning contact information, use ONLY the ${CasuranceBrand.companyName} details provided above
+10. Do NOT invent company names, phone numbers, or email addresses
 
 Return ONLY a valid JSON object with this structure:
 {
@@ -204,9 +219,11 @@ Return ONLY a valid JSON object with this structure:
 
 // Improve existing content
 export async function improveContent(content: string, category: string): Promise<{ content: string }> {
-  const prompt = `You are a commercial insurance expert and professional editor. Improve the following blog post content to make it more engaging, professional, and valuable for business decision-makers.
+  const prompt = `You are a commercial insurance expert and professional editor working for ${CasuranceBrand.companyName}. Improve the following blog post content to make it more engaging, professional, and valuable for business decision-makers.
 
 Category: ${category}
+
+${getBrandInstructions()}
 
 Current content:
 ${content}
@@ -218,7 +235,9 @@ Requirements:
 4. Improve transitions between sections
 5. Make it more engaging while staying professional
 6. Ensure carrier-agnostic language
-7. Return the improved content in markdown format
+7. If contact information is mentioned, verify it uses ONLY ${CasuranceBrand.companyName} details (${CasuranceBrand.phoneTollFree}, emails @${CasuranceBrand.emailDomain})
+8. Remove any incorrect company names, phone numbers, or email addresses
+9. Return the improved content in markdown format
 
 Return ONLY a valid JSON object with this structure:
 {
