@@ -2,13 +2,16 @@ import OpenAI from "openai";
 import { CasuranceBrand, getBrandInstructions, getMediaContactBlock } from "./brand";
 import { ensureBrandCompliance } from "./brand-validator";
 
-// Support both real OpenAI API key (production) and Replit AI Integrations (development)
+// Support both user's OpenAI API key and Replit-managed OpenAI access
 const openai = new OpenAI({
   baseURL: process.env.OPENAI_API_KEY 
     ? "https://api.openai.com/v1" 
     : process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
   apiKey: process.env.OPENAI_API_KEY || process.env.AI_INTEGRATIONS_OPENAI_API_KEY
 });
+
+// Use gpt-3.5-turbo (most basic model - should work with any OpenAI account)
+const AI_MODEL = "gpt-3.5-turbo";
 
 export interface PressReleaseContent {
   title: string;
@@ -162,7 +165,7 @@ Return ONLY a valid JSON object with this exact structure:
     const [imageUrl, aiResponse] = await Promise.all([
       getStockImage(selectedTopic),
       openai.chat.completions.create({
-        model: "gpt-5",
+        model: AI_MODEL,
         messages: [{ role: "user", content: prompt }],
         response_format: { type: "json_object" },
         max_completion_tokens: 4096,
@@ -252,7 +255,7 @@ Return ONLY a valid JSON object with this structure:
     const [imageUrl, aiResponse] = await Promise.all([
       getStockImage(title),
       openai.chat.completions.create({
-        model: "gpt-5",
+        model: AI_MODEL,
         messages: [{ role: "user", content: prompt }],
         response_format: { type: "json_object" },
         max_completion_tokens: 4096,
@@ -309,7 +312,7 @@ Return ONLY a valid JSON object with this structure:
 
   try {
     const aiResponse = await openai.chat.completions.create({
-      model: "gpt-5",
+      model: AI_MODEL,
       messages: [{ role: "user", content: prompt }],
       response_format: { type: "json_object" },
       max_completion_tokens: 4096,
@@ -353,7 +356,7 @@ Return ONLY a valid JSON object with this structure:
 
   try {
     const aiResponse = await openai.chat.completions.create({
-      model: "gpt-5",
+      model: AI_MODEL,
       messages: [{ role: "user", content: prompt }],
       response_format: { type: "json_object" },
       max_completion_tokens: 512,
