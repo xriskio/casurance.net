@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Phone, Menu } from "lucide-react";
+import { Phone, Menu, X } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Header() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <header className="sticky top-0 z-50 bg-background border-b" role="banner">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -49,11 +52,101 @@ export default function Header() {
                 Get a Quote
               </Button>
             </Link>
-            <Button variant="ghost" size="icon" className="md:hidden" data-testid="button-menu" aria-label="Open navigation menu">
-              <Menu className="h-5 w-5" aria-hidden="true" />
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="md:hidden" 
+              data-testid="button-menu" 
+              aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? (
+                <X className="h-5 w-5" aria-hidden="true" />
+              ) : (
+                <Menu className="h-5 w-5" aria-hidden="true" />
+              )}
             </Button>
           </div>
         </div>
+
+        {mobileMenuOpen && (
+          <nav className="md:hidden py-6 border-t" role="navigation" aria-label="Mobile navigation">
+            <div className="flex flex-col gap-4">
+              <Link href="/coverages">
+                <div 
+                  className="text-base font-medium text-muted-foreground hover:text-foreground cursor-pointer py-2" 
+                  data-testid="link-coverage-mobile"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Coverage
+                </div>
+              </Link>
+              <Link href="/industries">
+                <div 
+                  className="text-base font-medium text-muted-foreground hover:text-foreground cursor-pointer py-2" 
+                  data-testid="link-industries-mobile"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Industries
+                </div>
+              </Link>
+              <Link href="/about">
+                <div 
+                  className="text-base font-medium text-muted-foreground hover:text-foreground cursor-pointer py-2" 
+                  data-testid="link-about-mobile"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  About
+                </div>
+              </Link>
+              <Link href="/contact">
+                <div 
+                  className="text-base font-medium text-muted-foreground hover:text-foreground cursor-pointer py-2" 
+                  data-testid="link-contact-mobile"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Contact
+                </div>
+              </Link>
+              <Link href="/quote">
+                <div 
+                  className="text-base font-medium text-muted-foreground hover:text-foreground cursor-pointer py-2" 
+                  data-testid="link-quote-mobile"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Get a Quote
+                </div>
+              </Link>
+              <Link href="/service">
+                <div 
+                  className="text-base font-medium text-muted-foreground hover:text-foreground cursor-pointer py-2" 
+                  data-testid="link-service-mobile"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Service Request
+                </div>
+              </Link>
+              <a 
+                href="tel:18882540089" 
+                className="flex items-center gap-2 text-base font-medium text-foreground py-2" 
+                data-testid="link-phone-mobile" 
+                aria-label="Call us at 1-888-254-0089"
+              >
+                <Phone className="h-4 w-4" aria-hidden="true" />
+                <span>1-888-254-0089</span>
+              </a>
+              <Link href="/quote">
+                <Button 
+                  data-testid="button-get-quote-mobile" 
+                  className="w-full mt-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Get a Quote
+                </Button>
+              </Link>
+            </div>
+          </nav>
+        )}
       </div>
     </header>
   );
