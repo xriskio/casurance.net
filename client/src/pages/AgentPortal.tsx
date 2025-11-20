@@ -210,6 +210,7 @@ export default function AgentPortal() {
   const { data: blogPosts = [] } = useQuery<BlogPost[]>({
     queryKey: ["/api/agent/blog-posts"],
     enabled: isAuthenticated,
+    select: (data: any) => data?.posts || [],
   });
 
   const { data: blogTopics = [] } = useQuery<string[]>({
@@ -387,6 +388,7 @@ export default function AgentPortal() {
   const { data: pressReleases = [] } = useQuery<PressRelease[]>({
     queryKey: ["/api/agent/press-releases"],
     enabled: isAuthenticated,
+    select: (data: any) => data?.releases || [],
   });
 
   const { data: pressTopics = [] } = useQuery<string[]>({
