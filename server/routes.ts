@@ -5,6 +5,7 @@ import { requireAgent } from "./auth/middleware";
 import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema, insertFilmProductionQuoteSchema, insertProductLiabilityQuoteSchema, insertSecurityServicesQuoteSchema, insertNemtApplicationSchema, insertAmbulanceApplicationSchema, insertTncApplicationSchema, insertLimousineQuoteSchema, insertPublicTransportationQuoteSchema, insertTaxiBlackCarQuoteSchema, insertQuickQuoteSchema, insertContactRequestSchema, insertBlogPostSchema, insertPressReleaseSchema, insertNewsletterSubscriptionSchema, insertHighValueHomeQuoteSchema, insertCommercialFloodQuoteSchema, insertCommercialEarthquakeQuoteSchema, insertFranchisedDealerQuoteSchema, insertGarageServiceQuoteSchema, insertAutoDealerGarageQuoteSchema, insertGolfCountryClubQuoteSchema } from "@shared/schema";
 import { registerAgentRoutes } from "./routes/agent";
 import { registerCmsRoutes } from "./routes/cms";
+import sitemapRouter from "./routes/sitemap";
 import { generateBlogPost, getCategories, getTopics, generateDraftContent, improveContent, suggestTags } from "./lib/ai-blog-generator";
 import { generatePressRelease, getCategories as getPressCategories, getTopics as getPressTopics, getLocations, generateDraftContent as generatePressDraft, improveContent as improvePressContent, suggestTags as suggestPressTags } from "./lib/ai-press-release-generator";
 import { generateReferenceNumber } from "./utils/referenceNumber";
@@ -1037,6 +1038,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   registerAgentRoutes(app, storage);
   registerCmsRoutes(app);
+  
+  // Register sitemap routes
+  app.use(sitemapRouter);
+  
+  // Serve robots.txt from public directory
+  app.get("/robots.txt", (req, res) => {
+    res.sendFile(path.join(process.cwd(), "public", "robots.txt"));
+  });
 
   const httpServer = createServer(app);
 

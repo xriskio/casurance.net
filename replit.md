@@ -98,11 +98,20 @@ All Tier 0 pages (10 critical pages) now include comprehensive SEO optimization:
 - Structured data helps search engines understand content types
 - Optimized for AI chatbots (ChatGPT, Claude, Gemini, Google, Bing)
 
-**Still Needed for Production:**
-- sitemap.xml generation (build-time script)
-- robots.txt configuration
-- Tier 1 SEO (high-volume quote forms)
-- Tier 2 SEO (long-tail forms and industry pages)
+**Sitemap & Robots.txt:**
+- Dynamic sitemap.xml at `/sitemap.xml` (includes all public pages automatically)
+- Static robots.txt at `/robots.txt` (allows all public pages, blocks /agent/* portal, includes AI crawler directives)
+- Sitemap includes 140+ URLs with proper priority, changefreq, and lastmod tags
+- Coverage pages: All 58+ coverage types from shared/content/coverages.ts
+- Industry pages: All 23+ industries from shared/content/coverages.ts
+- Quote forms: All 34 quote/application routes with exact App.tsx paths
+- Dynamic content: Blog posts, press releases, and CMS pages from database
+- Automatically updates when new content is published
+- Aligned with robots.txt (excludes /unsubscribe and /agent/* from sitemap)
+
+**Still Recommended for Production:**
+- Tier 1 SEO (add meta tags to remaining high-volume quote forms)
+- Tier 2 SEO (add meta tags to long-tail forms and industry detail pages)
 
 ### AI Content Generation & Brand Protection
 
