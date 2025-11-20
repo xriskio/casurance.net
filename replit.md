@@ -26,6 +26,41 @@ The application utilizes PostgreSQL as its primary database, managed with Drizzl
 
 The agent portal provides authenticated access for Casurance agents to manage all quote and service submissions. It features a table-based submission list with search, filtering, and status management functionalities. Authentication is handled via Passport.js with a local strategy, bcrypt for password hashing, and PostgreSQL for session management. The portal allows agents to view submission details, update statuses, and interact with features like AI-powered content generation for blogs and press releases.
 
+### Content Management System (CMS)
+
+The application includes a full-featured CMS for managing dynamic pages, navigation menus, and media assets:
+
+**Database Schema** (`shared/schema.ts`):
+- `cmsPages`: Stores page content with slug-based routing, markdown support, featured images, and publish status
+- `cmsMenuItems`: Manages hierarchical navigation menus with parent-child relationships and ordering
+- `cmsMedia`: Tracks uploaded media files with metadata (alt text, captions, file information)
+
+**Backend API** (`server/routes/cms.ts`):
+- RESTful endpoints for CRUD operations on pages, menus, and media
+- All write operations (POST, PATCH, DELETE) protected with `ensureAuthenticated` middleware
+- AI-powered page generation endpoint with brand validation and unique slug collision handling
+- File upload functionality using Multer with authentication
+- Public read endpoints for displaying published content
+
+**Frontend Management** (`client/src/pages/CmsPages.tsx`):
+- Agent-only CMS interface for managing pages (create, edit, delete, publish)
+- AI-powered page generation with automatic brand compliance
+- Manual page creation with markdown editor
+- Search and filter capabilities for page management
+
+**Public Display** (`client/src/pages/CmsPageDisplay.tsx`):
+- Dynamic routing at `/page/:slug` for all CMS pages
+- SEO optimization with react-helmet-async for meta tags
+- Markdown rendering for rich content
+- Only displays published pages (isPublished: 'true')
+- Featured image support with responsive layouts
+
+**Security**:
+- All CMS write operations require agent authentication
+- File uploads validated and stored in `attached_assets/uploads`
+- Static file serving at `/uploads` endpoint
+- AI-generated content validated for brand consistency before persistence
+
 ### AI Content Generation & Brand Protection
 
 The application features AI-powered content generation for blog posts and press releases using OpenAI GPT-5. A comprehensive brand validation system ensures 100% brand consistency across all AI-generated content:

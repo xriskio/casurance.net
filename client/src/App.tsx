@@ -1,6 +1,7 @@
 import { Switch, Route } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
+import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/Home";
@@ -58,6 +59,7 @@ import BlogPostPage from "@/pages/BlogPostPage";
 import PressReleasesPage from "@/pages/PressReleasesPage";
 import PressReleasePage from "@/pages/PressReleasePage";
 import UnsubscribePage from "@/pages/UnsubscribePage";
+import CmsPageDisplay from "@/pages/CmsPageDisplay";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -120,6 +122,7 @@ function Router() {
       <Route path="/quote/garage-service-centers" component={GarageServiceQuote} />
       <Route path="/quote/auto-dealer-garage" component={AutoDealerGarageQuote} />
       <Route path="/quote/golf-country-club" component={GolfCountryClubQuote} />
+      <Route path="/page/:slug" component={CmsPageDisplay} />
       <Route component={NotFound} />
     </Switch>
   );
@@ -128,13 +131,15 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <a href="#main-content" className="skip-to-content">
-          Skip to main content
-        </a>
-        <Toaster />
-        <Router />
-      </TooltipProvider>
+      <HelmetProvider>
+        <TooltipProvider>
+          <a href="#main-content" className="skip-to-content">
+            Skip to main content
+          </a>
+          <Toaster />
+          <Router />
+        </TooltipProvider>
+      </HelmetProvider>
     </QueryClientProvider>
   );
 }
