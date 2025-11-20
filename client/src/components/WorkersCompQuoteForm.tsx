@@ -8,6 +8,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ArrowRight, ArrowLeft, CheckCircle, Plus, Trash2 } from "lucide-react";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 interface Employee {
   id: string;
@@ -34,6 +36,9 @@ interface PriorCarrier {
 export default function WorkersCompQuoteForm() {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [referenceNumber, setReferenceNumber] = useState("");
+  const { toast } = useToast();
   
   const [formData, setFormData] = useState({
     // Agency Information
@@ -44,15 +49,15 @@ export default function WorkersCompQuoteForm() {
     producerEmail: "",
     
     // Applicant Information
-    applicantName: "",
-    officePhone: "",
+    businessName: "",
+    phone: "",
     mobilePhone: "",
+    email: "",
     mailingAddress: "",
     yearsInBusiness: "",
     sic: "",
     naics: "",
     website: "",
-    email: "",
     
     // Business Structure
     businessStructure: "",
@@ -212,15 +217,31 @@ export default function WorkersCompQuoteForm() {
     setLocations(locations.map((loc, i) => i === index ? value : loc));
   };
 
-  const handleSubmit = () => {
-    console.log("Workers Compensation quote request submitted:", { 
-      formData, 
-      employees, 
-      priorCarriers, 
-      locations,
-      generalInfo 
-    });
-    setSubmitted(true);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    
+    try {
+      const response = await apiRequest("POST", "/api/workers-comp-quotes", {
+        ...formData,
+        payload: { ...formData, employees, priorCarriers, locations, generalInfo }
+      });
+      
+      setReferenceNumber(response.referenceNumber);
+      setSubmitted(true);
+      toast({
+        title: "Quote Request Submitted",
+        description: `Your reference number is ${response.referenceNumber}`,
+      });
+    } catch (error) {
+      toast({
+        title: "Submission Failed",
+        description: error instanceof Error ? error.message : "Please try again later",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (submitted) {
@@ -231,8 +252,14 @@ export default function WorkersCompQuoteForm() {
             <CheckCircle className="h-8 w-8 text-green-600" />
           </div>
           <h3 className="text-2xl font-bold text-foreground mb-4">Workers Compensation Application Submitted!</h3>
+          <p className="text-muted-foreground mb-4">
+            Thank you for your comprehensive submission.
+          </p>
+          <p className="text-lg font-semibold mb-2">
+            Reference Number: {referenceNumber}
+          </p>
           <p className="text-muted-foreground mb-6">
-            Thank you for your comprehensive submission. Our workers compensation specialists will review your employee classifications, payroll data, and risk factors to provide an accurate quote within 24-48 hours.
+            Our workers compensation specialists will review your employee classifications, payroll data, and risk factors to provide an accurate quote within 24-48 hours.
           </p>
           <Button onClick={() => { setSubmitted(false); setStep(1); }} data-testid="button-submit-another">
             Submit Another Application
@@ -266,11 +293,11 @@ export default function WorkersCompQuoteForm() {
             <h3 className="font-semibold text-lg">Business & Contact Information</h3>
             
             <div>
-              <Label htmlFor="applicantName">Applicant Business Name *</Label>
+              <Label htmlFor="businessName">Applicant Business Name *</Label>
               <Input
-                id="applicantName"
-                value={formData.applicantName}
-                onChange={(e) => setFormData({ ...formData, applicantName: e.target.value })}
+                id="businessName"
+                value={formData.businessName}
+                onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
                 placeholder="Legal business name"
                 data-testid="input-applicant-name"
               />
@@ -278,12 +305,12 @@ export default function WorkersCompQuoteForm() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="officePhone">Office Phone *</Label>
+                <Label htmlFor="phone">Office Phone *</Label>
                 <Input
-                  id="officePhone"
+                  id="phone"
                   type="tel"
-                  value={formData.officePhone}
-                  onChange={(e) => setFormData({ ...formData, officePhone: e.target.value })}
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   placeholder="(555) 123-4567"
                   data-testid="input-office-phone"
                 />

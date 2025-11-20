@@ -7,16 +7,21 @@ import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowRight, ArrowLeft, CheckCircle } from "lucide-react";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 export default function VacantBuildingQuoteForm() {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [referenceNumber, setReferenceNumber] = useState("");
+  const { toast } = useToast();
   
   const [formData, setFormData] = useState({
     // Basic Information
-    applicantName: "",
-    contactEmail: "",
-    contactPhone: "",
+    namedInsured: "",
+    email: "",
+    phone: "",
     companyName: "",
     
     // Property Information
@@ -137,8 +142,30 @@ export default function VacantBuildingQuoteForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Vacant Building form submitted:", formData, files);
-    setSubmitted(true);
+    setIsLoading(true);
+    
+    try {
+      const response = await apiRequest("POST", "/api/vacant-building-quotes", {
+        ...formData,
+        payload: { ...formData, files }
+      });
+      
+      setReferenceNumber(response.referenceNumber);
+      setSubmitted(true);
+      
+      toast({
+        title: "Quote Request Submitted!",
+        description: `Your reference number is ${response.referenceNumber}. We'll contact you shortly.`,
+      });
+    } catch (error: any) {
+      toast({
+        variant: "destructive",
+        title: "Submission Failed",
+        description: error.message || "Failed to submit quote request. Please try again.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const nextStep = () => setStep(Math.min(step + 1, 6));
@@ -150,8 +177,11 @@ export default function VacantBuildingQuoteForm() {
         <CardContent className="pt-6 text-center">
           <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
           <h2 className="text-2xl font-bold mb-2">Quote Request Submitted!</h2>
+          <p className="text-lg font-semibold text-primary mb-2">
+            Reference Number: {referenceNumber}
+          </p>
           <p className="text-muted-foreground">
-            Thank you for submitting your vacant building/land insurance quote request. Our team will review your information and contact you shortly.
+            Thank you for submitting your vacant building/land insurance quote request. Our team will review your information and contact you shortly. Please save your reference number for future correspondence.
           </p>
         </CardContent>
       </Card>
@@ -194,14 +224,14 @@ export default function VacantBuildingQuoteForm() {
           <CardContent className="space-y-4">
             <div className="grid md:grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="applicantName">Applicant Name *</Label>
+                <Label htmlFor="namedInsured">Named Insured *</Label>
                 <Input
-                  id="applicantName"
-                  name="applicantName"
-                  value={formData.applicantName}
+                  id="namedInsured"
+                  name="namedInsured"
+                  value={formData.namedInsured}
                   onChange={handleInputChange}
                   required
-                  data-testid="input-applicant-name"
+                  data-testid="input-named-insured"
                 />
               </div>
               <div>
@@ -215,24 +245,24 @@ export default function VacantBuildingQuoteForm() {
                 />
               </div>
               <div>
-                <Label htmlFor="contactEmail">Email *</Label>
+                <Label htmlFor="email">Email Address *</Label>
                 <Input
-                  id="contactEmail"
-                  name="contactEmail"
+                  id="email"
+                  name="email"
                   type="email"
-                  value={formData.contactEmail}
+                  value={formData.email}
                   onChange={handleInputChange}
                   required
                   data-testid="input-email"
                 />
               </div>
               <div>
-                <Label htmlFor="contactPhone">Phone *</Label>
+                <Label htmlFor="phone">Phone Number *</Label>
                 <Input
-                  id="contactPhone"
-                  name="contactPhone"
+                  id="phone"
+                  name="phone"
                   type="tel"
-                  value={formData.contactPhone}
+                  value={formData.phone}
                   onChange={handleInputChange}
                   required
                   data-testid="input-phone"

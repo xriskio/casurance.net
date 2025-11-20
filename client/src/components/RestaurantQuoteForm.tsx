@@ -8,14 +8,19 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ArrowRight, ArrowLeft, CheckCircle } from "lucide-react";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 export default function RestaurantQuoteForm() {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [referenceNumber, setReferenceNumber] = useState("");
+  const { toast } = useToast();
   
   const [formData, setFormData] = useState({
     // Basic Information
-    businessName: "",
+    restaurantName: "",
     dba: "",
     effectiveDate: "",
     
@@ -164,9 +169,31 @@ export default function RestaurantQuoteForm() {
     }));
   };
 
-  const handleSubmit = () => {
-    console.log("Restaurant quote request submitted:", { formData, features, exposures, cookingTypes, businessHistory });
-    setSubmitted(true);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    
+    try {
+      const response = await apiRequest("POST", "/api/restaurant-quotes", {
+        ...formData,
+        payload: { ...formData, features, exposures, cookingTypes, businessHistory }
+      });
+      
+      setReferenceNumber(response.referenceNumber);
+      setSubmitted(true);
+      toast({
+        title: "Quote Request Submitted",
+        description: `Your reference number is ${response.referenceNumber}`,
+      });
+    } catch (error) {
+      toast({
+        title: "Submission Failed",
+        description: error instanceof Error ? error.message : "Please try again later",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (submitted) {
@@ -177,8 +204,14 @@ export default function RestaurantQuoteForm() {
             <CheckCircle className="h-8 w-8 text-green-600" />
           </div>
           <h3 className="text-2xl font-bold text-foreground mb-4">Restaurant Insurance Quote Request Received!</h3>
+          <p className="text-muted-foreground mb-4">
+            Thank you for your comprehensive submission.
+          </p>
+          <p className="text-lg font-semibold mb-2">
+            Reference Number: {referenceNumber}
+          </p>
           <p className="text-muted-foreground mb-6">
-            Thank you for your comprehensive submission. Our restaurant insurance specialists will review your business concept, operations, and risk factors. You'll receive a tailored BOP quote within 24-48 hours.
+            Our restaurant insurance specialists will review your business concept, operations, and risk factors. You'll receive a tailored BOP quote within 24-48 hours.
           </p>
           <Button onClick={() => { setSubmitted(false); setStep(1); }} data-testid="button-submit-another">
             Submit Another Request
@@ -213,11 +246,11 @@ export default function RestaurantQuoteForm() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="businessName">Business Name *</Label>
+                <Label htmlFor="restaurantName">Business Name *</Label>
                 <Input
-                  id="businessName"
-                  value={formData.businessName}
-                  onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
+                  id="restaurantName"
+                  value={formData.restaurantName}
+                  onChange={(e) => setFormData({ ...formData, restaurantName: e.target.value })}
                   placeholder="Legal business name"
                   data-testid="input-business-name"
                 />

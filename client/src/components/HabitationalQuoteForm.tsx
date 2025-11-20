@@ -7,14 +7,21 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowRight, ArrowLeft, CheckCircle } from "lucide-react";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 export default function HabitationalQuoteForm() {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [referenceNumber, setReferenceNumber] = useState("");
+  const { toast } = useToast();
   
   const [formData, setFormData] = useState({
     // Account Information
-    insuredName: "",
+    namedInsured: "",
+    email: "",
+    phone: "",
     coName: "",
     effectiveDate: "",
     websiteAddress: "",
@@ -22,8 +29,6 @@ export default function HabitationalQuoteForm() {
     physicalAddress: "",
     contactPerson: "",
     contactPosition: "",
-    contactEmail: "",
-    contactPhone: "",
     faxNumber: "",
     billingContact: "",
     billingPhone: "",
@@ -127,9 +132,31 @@ export default function HabitationalQuoteForm() {
     renovation: false,
   });
 
-  const handleSubmit = () => {
-    console.log("Habitational quote request submitted:", { formData, checkboxes });
-    setSubmitted(true);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    
+    try {
+      const response = await apiRequest("POST", "/api/habitational-quotes", {
+        ...formData,
+        payload: { ...formData, checkboxes }
+      });
+      
+      setReferenceNumber(response.referenceNumber);
+      setSubmitted(true);
+      toast({
+        title: "Quote Request Submitted",
+        description: `Your reference number is ${response.referenceNumber}`,
+      });
+    } catch (error) {
+      toast({
+        title: "Submission Failed",
+        description: error instanceof Error ? error.message : "Please try again later",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (submitted) {
@@ -140,8 +167,14 @@ export default function HabitationalQuoteForm() {
             <CheckCircle className="h-8 w-8 text-green-600" />
           </div>
           <h3 className="text-2xl font-bold text-foreground mb-4">Habitational Quote Request Received!</h3>
+          <p className="text-muted-foreground mb-4">
+            Thank you for your detailed submission.
+          </p>
+          <p className="text-lg font-semibold mb-2">
+            Reference Number: {referenceNumber}
+          </p>
           <p className="text-muted-foreground mb-6">
-            Thank you for your detailed submission. Our habitational insurance specialists will review your property information and contact you within 24-48 hours with a competitive quote tailored to your apartment, condominium, or mixed-use property.
+            Our habitational insurance specialists will review your property information and contact you within 24-48 hours with a competitive quote tailored to your apartment, condominium, or mixed-use property.
           </p>
           <Button onClick={() => { setSubmitted(false); setStep(1); }} data-testid="button-submit-another">
             Submit Another Request
@@ -176,11 +209,11 @@ export default function HabitationalQuoteForm() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="insuredName">Name Insured *</Label>
+                <Label htmlFor="namedInsured">Name Insured *</Label>
                 <Input
-                  id="insuredName"
-                  value={formData.insuredName}
-                  onChange={(e) => setFormData({ ...formData, insuredName: e.target.value })}
+                  id="namedInsured"
+                  value={formData.namedInsured}
+                  onChange={(e) => setFormData({ ...formData, namedInsured: e.target.value })}
                   placeholder="Legal entity name"
                   data-testid="input-insured-name"
                 />
@@ -268,23 +301,23 @@ export default function HabitationalQuoteForm() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="contactEmail">Email Address *</Label>
+                <Label htmlFor="email">Email Address *</Label>
                 <Input
-                  id="contactEmail"
+                  id="email"
                   type="email"
-                  value={formData.contactEmail}
-                  onChange={(e) => setFormData({ ...formData, contactEmail: e.target.value })}
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="email@example.com"
                   data-testid="input-contact-email"
                 />
               </div>
               <div>
-                <Label htmlFor="contactPhone">Phone Number *</Label>
+                <Label htmlFor="phone">Phone Number *</Label>
                 <Input
-                  id="contactPhone"
+                  id="phone"
                   type="tel"
-                  value={formData.contactPhone}
-                  onChange={(e) => setFormData({ ...formData, contactPhone: e.target.value })}
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   placeholder="(555) 123-4567"
                   data-testid="input-contact-phone"
                 />

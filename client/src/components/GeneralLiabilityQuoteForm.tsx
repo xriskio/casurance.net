@@ -7,6 +7,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ArrowRight, ArrowLeft, CheckCircle, Plus, X } from "lucide-react";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 interface PriorInsurer {
   year: string;
@@ -25,10 +27,15 @@ interface PriorLoss {
 export default function GeneralLiabilityQuoteForm() {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [referenceNumber, setReferenceNumber] = useState("");
+  const { toast } = useToast();
   
   const [formData, setFormData] = useState({
     // Insured Information
-    insuredName: "",
+    businessName: "",
+    email: "",
+    phone: "",
     mailingAddress: "",
     locationOfRisk: "",
     typeOfRisk: "",
@@ -124,9 +131,31 @@ export default function GeneralLiabilityQuoteForm() {
     setPriorLosses(updated);
   };
 
-  const handleSubmit = () => {
-    console.log("General Liability quote request submitted:", { formData, priorInsurers, priorLosses });
-    setSubmitted(true);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    
+    try {
+      const response = await apiRequest("POST", "/api/general-liability-quotes", {
+        ...formData,
+        payload: { ...formData, priorInsurers, priorLosses }
+      });
+      
+      setReferenceNumber(response.referenceNumber);
+      setSubmitted(true);
+      toast({
+        title: "Quote Request Submitted",
+        description: `Your reference number is ${response.referenceNumber}`,
+      });
+    } catch (error) {
+      toast({
+        title: "Submission Failed",
+        description: error instanceof Error ? error.message : "Please try again later",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (submitted) {
@@ -137,8 +166,14 @@ export default function GeneralLiabilityQuoteForm() {
             <CheckCircle className="h-8 w-8 text-green-600" />
           </div>
           <h3 className="text-2xl font-bold text-foreground mb-4">General Liability Quote Request Received!</h3>
+          <p className="text-muted-foreground mb-4">
+            Thank you for your detailed submission.
+          </p>
+          <p className="text-lg font-semibold mb-2">
+            Reference Number: {referenceNumber}
+          </p>
           <p className="text-muted-foreground mb-6">
-            Thank you for your detailed submission. One of our general liability specialists will review your information and contact you within 24 hours with a competitive quote.
+            One of our general liability specialists will review your information and contact you within 24 hours with a competitive quote.
           </p>
           <Button onClick={() => { setSubmitted(false); setStep(1); }} data-testid="button-submit-another">
             Submit Another Request
@@ -172,17 +207,42 @@ export default function GeneralLiabilityQuoteForm() {
             <h3 className="font-semibold text-lg">Insured Information</h3>
             
             <div>
-              <Label htmlFor="insuredName">Insured Name (as it should appear on the policy) *</Label>
+              <Label htmlFor="businessName">Business Name (as it should appear on the policy) *</Label>
               <Input
-                id="insuredName"
-                value={formData.insuredName}
-                onChange={(e) => setFormData({ ...formData, insuredName: e.target.value })}
+                id="businessName"
+                value={formData.businessName}
+                onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
                 placeholder="Include any DBA, Trading As, Care of, Trustee, Executor, or Estate of names"
                 data-testid="input-insured-name"
               />
               <p className="text-xs text-muted-foreground mt-1">
                 Please include any Doing Business As, Trading As, Care of, Trustee, Executor, or Estate of names
               </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="email">Email Address *</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  placeholder="email@example.com"
+                  data-testid="input-email"
+                />
+              </div>
+              <div>
+                <Label htmlFor="phone">Contact Phone *</Label>
+                <Input
+                  id="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  placeholder="(555) 123-4567"
+                  data-testid="input-phone"
+                />
+              </div>
             </div>
 
             <div>
@@ -291,17 +351,6 @@ export default function GeneralLiabilityQuoteForm() {
               )}
             </div>
 
-            <div>
-              <Label htmlFor="applicantPhone">Contact Phone Number *</Label>
-              <Input
-                id="applicantPhone"
-                type="tel"
-                value={formData.applicantPhone}
-                onChange={(e) => setFormData({ ...formData, applicantPhone: e.target.value })}
-                placeholder="(555) 123-4567"
-                data-testid="input-applicant-phone"
-              />
-            </div>
           </div>
         )}
 

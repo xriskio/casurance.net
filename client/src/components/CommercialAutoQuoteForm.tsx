@@ -6,6 +6,8 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ArrowRight, ArrowLeft, CheckCircle, Plus, X } from "lucide-react";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 interface Vehicle {
   year: string;
@@ -28,14 +30,17 @@ interface Driver {
 export default function CommercialAutoQuoteForm() {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [referenceNumber, setReferenceNumber] = useState("");
+  const { toast } = useToast();
   
   const [formData, setFormData] = useState({
     // Insured Information
     insuredName: "",
+    email: "",
+    phone: "",
     dba: "",
     contactName: "",
-    contactEmail: "",
-    contactPhone: "",
     businessWebsite: "",
     yearsInBusiness: "",
     businessType: "",
@@ -108,9 +113,31 @@ export default function CommercialAutoQuoteForm() {
     }));
   };
 
-  const handleSubmit = () => {
-    console.log("Commercial Auto quote request submitted:", { formData, vehicles, drivers });
-    setSubmitted(true);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    
+    try {
+      const response = await apiRequest("POST", "/api/commercial-auto-quotes", {
+        ...formData,
+        payload: { ...formData, vehicles, drivers }
+      });
+      
+      setReferenceNumber(response.referenceNumber);
+      setSubmitted(true);
+      toast({
+        title: "Quote Request Submitted!",
+        description: `Your reference number is ${response.referenceNumber}. We'll contact you shortly.`,
+      });
+    } catch (error: any) {
+      toast({
+        variant: "destructive",
+        title: "Submission Failed",
+        description: error.message || "Failed to submit quote request. Please try again.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (submitted) {
@@ -121,8 +148,14 @@ export default function CommercialAutoQuoteForm() {
             <CheckCircle className="h-8 w-8 text-green-600" />
           </div>
           <h3 className="text-2xl font-bold text-foreground mb-4">Commercial Auto Quote Request Received!</h3>
+          <p className="text-muted-foreground mb-4">
+            Thank you for your detailed submission.
+          </p>
+          <p className="text-lg font-semibold mb-2">
+            Reference Number: {referenceNumber}
+          </p>
           <p className="text-muted-foreground mb-6">
-            Thank you for your detailed submission. One of our commercial auto specialists will review your information and contact you within 24 hours with a competitive quote.
+            One of our commercial auto specialists will review your information and contact you within 24 hours with a competitive quote.
           </p>
           <Button onClick={() => { setSubmitted(false); setStep(1); }} data-testid="button-submit-another">
             Submit Another Request
@@ -190,12 +223,12 @@ export default function CommercialAutoQuoteForm() {
                 />
               </div>
               <div>
-                <Label htmlFor="contactEmail">Contact Email *</Label>
+                <Label htmlFor="email">Contact Email *</Label>
                 <Input
-                  id="contactEmail"
+                  id="email"
                   type="email"
-                  value={formData.contactEmail}
-                  onChange={(e) => setFormData({ ...formData, contactEmail: e.target.value })}
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="email@example.com"
                   data-testid="input-contact-email"
                 />
@@ -204,12 +237,12 @@ export default function CommercialAutoQuoteForm() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="contactPhone">Contact Phone *</Label>
+                <Label htmlFor="phone">Contact Phone *</Label>
                 <Input
-                  id="contactPhone"
+                  id="phone"
                   type="tel"
-                  value={formData.contactPhone}
-                  onChange={(e) => setFormData({ ...formData, contactPhone: e.target.value })}
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   placeholder="(555) 123-4567"
                   data-testid="input-contact-phone"
                 />

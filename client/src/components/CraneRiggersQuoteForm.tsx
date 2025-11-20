@@ -8,14 +8,21 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowRight, ArrowLeft, CheckCircle } from "lucide-react";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 export default function CraneRiggersQuoteForm() {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [referenceNumber, setReferenceNumber] = useState("");
+  const { toast } = useToast();
   
   const [formData, setFormData] = useState({
     // General Information
     namedInsured: "",
+    email: "",
+    phone: "",
     brokerage: "",
     newVenture: "",
     renewal: "",
@@ -282,8 +289,29 @@ export default function CraneRiggersQuoteForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Crane Riggers form submitted:", formData, files);
-    setSubmitted(true);
+    setIsLoading(true);
+    
+    try {
+      const response = await apiRequest("POST", "/api/crane-riggers-quotes", {
+        ...formData,
+        payload: { ...formData, files }
+      });
+      
+      setReferenceNumber(response.referenceNumber);
+      setSubmitted(true);
+      toast({
+        title: "Quote Request Submitted",
+        description: `Your reference number is ${response.referenceNumber}`,
+      });
+    } catch (error) {
+      toast({
+        title: "Submission Failed",
+        description: error instanceof Error ? error.message : "Please try again later",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const nextStep = () => setStep(Math.min(step + 1, 6));
@@ -295,8 +323,14 @@ export default function CraneRiggersQuoteForm() {
         <CardContent className="pt-6 text-center">
           <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
           <h2 className="text-2xl font-bold mb-2">Quote Request Submitted!</h2>
+          <p className="text-muted-foreground mb-4">
+            Thank you for submitting your crane and riggers liability insurance quote request.
+          </p>
+          <p className="text-lg font-semibold mb-2">
+            Reference Number: {referenceNumber}
+          </p>
           <p className="text-muted-foreground">
-            Thank you for submitting your crane and riggers liability insurance quote request. Our team will review your information and contact you shortly.
+            Our team will review your information and contact you shortly.
           </p>
         </CardContent>
       </Card>
@@ -347,6 +381,30 @@ export default function CraneRiggersQuoteForm() {
                   onChange={handleInputChange}
                   required
                   data-testid="input-named-insured"
+                />
+              </div>
+              <div>
+                <Label htmlFor="email">Email *</Label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                  data-testid="input-email"
+                />
+              </div>
+              <div>
+                <Label htmlFor="phone">Phone *</Label>
+                <Input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  required
+                  data-testid="input-phone"
                 />
               </div>
               <div>

@@ -7,6 +7,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowRight, ArrowLeft, CheckCircle, Plus, X } from "lucide-react";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 interface Vehicle {
   year: string;
@@ -28,13 +30,16 @@ interface Driver {
 export default function TruckingQuoteForm() {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [referenceNumber, setReferenceNumber] = useState("");
+  const { toast } = useToast();
   
   const [formData, setFormData] = useState({
     // Agency & Applicant Information
     agencyName: "",
     agencyPhone: "",
     agencyEmail: "",
-    insuredName: "",
+    companyName: "",
     websiteAddress: "",
     mailingAddress: "",
     mailingCity: "",
@@ -203,9 +208,31 @@ export default function TruckingQuoteForm() {
     );
   };
 
-  const handleSubmit = () => {
-    console.log("Trucking quote request submitted:", { formData, checkboxes, vehicles, drivers, filingStates });
-    setSubmitted(true);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    
+    try {
+      const response = await apiRequest("POST", "/api/trucking-quotes", {
+        ...formData,
+        payload: { ...formData, checkboxes, vehicles, drivers, filingStates }
+      });
+      
+      setReferenceNumber(response.referenceNumber);
+      setSubmitted(true);
+      toast({
+        title: "Quote Request Submitted",
+        description: `Your reference number is ${response.referenceNumber}`,
+      });
+    } catch (error) {
+      toast({
+        title: "Submission Failed",
+        description: error instanceof Error ? error.message : "Please try again later",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (submitted) {
@@ -216,8 +243,14 @@ export default function TruckingQuoteForm() {
             <CheckCircle className="h-8 w-8 text-green-600" />
           </div>
           <h3 className="text-2xl font-bold text-foreground mb-4">Transportation Quote Request Received!</h3>
+          <p className="text-muted-foreground mb-4">
+            Thank you for your detailed submission.
+          </p>
+          <p className="text-lg font-semibold mb-2">
+            Reference Number: {referenceNumber}
+          </p>
           <p className="text-muted-foreground mb-6">
-            Thank you for your detailed submission. Our transportation insurance specialists will review your fleet information, driver history, and operational details. You'll receive a competitive quote within 24-48 hours.
+            Our transportation insurance specialists will review your fleet information, driver history, and operational details. You'll receive a competitive quote within 24-48 hours.
           </p>
           <Button onClick={() => { setSubmitted(false); setStep(1); }} data-testid="button-submit-another">
             Submit Another Request
@@ -293,11 +326,11 @@ export default function TruckingQuoteForm() {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="insuredName">Insured Name *</Label>
+                  <Label htmlFor="companyName">Insured Name *</Label>
                   <Input
-                    id="insuredName"
-                    value={formData.insuredName}
-                    onChange={(e) => setFormData({ ...formData, insuredName: e.target.value })}
+                    id="companyName"
+                    value={formData.companyName}
+                    onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
                     placeholder="Legal business name"
                     data-testid="input-insured-name"
                   />

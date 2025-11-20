@@ -8,19 +8,25 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowRight, ArrowLeft, CheckCircle } from "lucide-react";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 export default function BuildersRiskQuoteForm() {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [referenceNumber, setReferenceNumber] = useState("");
+  const { toast } = useToast();
   
   const [formData, setFormData] = useState({
     // General Information
     projectStartDate: "",
     projectCompletionDate: "",
     namedInsured: "",
+    email: "",
+    phone: "",
     websiteAddress: "",
     mailingAddress: "",
-    telephone: "",
     projectLocationAddress: "",
     projectDescription: "",
     protectionClass: "",
@@ -130,8 +136,30 @@ export default function BuildersRiskQuoteForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Builders Risk form submitted:", formData, files);
-    setSubmitted(true);
+    setIsLoading(true);
+    
+    try {
+      const response = await apiRequest("POST", "/api/builders-risk-quotes", {
+        ...formData,
+        payload: { ...formData, files }
+      });
+      
+      setReferenceNumber(response.referenceNumber);
+      setSubmitted(true);
+      
+      toast({
+        title: "Quote Request Submitted!",
+        description: `Your reference number is ${response.referenceNumber}. We'll contact you shortly.`,
+      });
+    } catch (error: any) {
+      toast({
+        variant: "destructive",
+        title: "Submission Failed",
+        description: error.message || "Failed to submit quote request. Please try again.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const nextStep = () => setStep(Math.min(step + 1, 6));
@@ -143,8 +171,11 @@ export default function BuildersRiskQuoteForm() {
         <CardContent className="pt-6 text-center">
           <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
           <h2 className="text-2xl font-bold mb-2">Quote Request Submitted!</h2>
+          <p className="text-lg font-semibold text-primary mb-2">
+            Reference Number: {referenceNumber}
+          </p>
           <p className="text-muted-foreground">
-            Thank you for submitting your builders risk insurance quote request. Our team will review your information and contact you shortly.
+            Thank you for submitting your builders risk insurance quote request. Our team will review your information and contact you shortly. Please save your reference number for future correspondence.
           </p>
         </CardContent>
       </Card>
@@ -244,15 +275,27 @@ export default function BuildersRiskQuoteForm() {
                 />
               </div>
               <div>
-                <Label htmlFor="telephone">Telephone *</Label>
+                <Label htmlFor="email">Email Address *</Label>
                 <Input
-                  id="telephone"
-                  name="telephone"
-                  type="tel"
-                  value={formData.telephone}
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
                   onChange={handleInputChange}
                   required
-                  data-testid="input-telephone"
+                  data-testid="input-email"
+                />
+              </div>
+              <div>
+                <Label htmlFor="phone">Phone Number *</Label>
+                <Input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  required
+                  data-testid="input-phone"
                 />
               </div>
               <div>

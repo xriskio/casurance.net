@@ -8,17 +8,22 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ArrowRight, ArrowLeft, CheckCircle } from "lucide-react";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 export default function HotelQuoteForm() {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [referenceNumber, setReferenceNumber] = useState("");
+  const { toast } = useToast();
   
   const [formData, setFormData] = useState({
     // General Information
     agencyName: "",
     agencyCode: "",
     legalEntity: "",
-    companyName: "",
+    namedInsured: "",
     physicalAddress: "",
     physicalCity: "",
     physicalState: "",
@@ -139,9 +144,31 @@ export default function HotelQuoteForm() {
     }));
   };
 
-  const handleSubmit = () => {
-    console.log("Hotel quote request submitted:", { formData, amenities, checkboxes });
-    setSubmitted(true);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    
+    try {
+      const response = await apiRequest("POST", "/api/hotel-quotes", {
+        ...formData,
+        payload: { ...formData, amenities, checkboxes }
+      });
+      
+      setReferenceNumber(response.referenceNumber);
+      setSubmitted(true);
+      toast({
+        title: "Quote Request Submitted",
+        description: `Your reference number is ${response.referenceNumber}`,
+      });
+    } catch (error) {
+      toast({
+        title: "Submission Failed",
+        description: error instanceof Error ? error.message : "Please try again later",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (submitted) {
@@ -152,8 +179,14 @@ export default function HotelQuoteForm() {
             <CheckCircle className="h-8 w-8 text-green-600" />
           </div>
           <h3 className="text-2xl font-bold text-foreground mb-4">Hotel Insurance Quote Request Received!</h3>
+          <p className="text-muted-foreground mb-4">
+            Thank you for your detailed submission.
+          </p>
+          <p className="text-lg font-semibold mb-2">
+            Reference Number: {referenceNumber}
+          </p>
           <p className="text-muted-foreground mb-6">
-            Thank you for your detailed submission. Our hotel insurance specialists will review your property information, amenities, and coverage needs. You'll receive a competitive quote within 24-48 hours.
+            Our hotel insurance specialists will review your property information, amenities, and coverage needs. You'll receive a competitive quote within 24-48 hours.
           </p>
           <Button onClick={() => { setSubmitted(false); setStep(1); }} data-testid="button-submit-another">
             Submit Another Request
@@ -230,11 +263,11 @@ export default function HotelQuoteForm() {
             </div>
 
             <div>
-              <Label htmlFor="companyName">Full Company Name / First Named Insured *</Label>
+              <Label htmlFor="namedInsured">Full Company Name / First Named Insured *</Label>
               <Input
-                id="companyName"
-                value={formData.companyName}
-                onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+                id="namedInsured"
+                value={formData.namedInsured}
+                onChange={(e) => setFormData({ ...formData, namedInsured: e.target.value })}
                 placeholder="Legal entity name"
                 data-testid="input-company-name"
               />

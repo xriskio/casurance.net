@@ -8,10 +8,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ArrowRight, ArrowLeft, CheckCircle } from "lucide-react";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 export default function CommercialPackageQuoteForm() {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [referenceNumber, setReferenceNumber] = useState("");
+  const { toast } = useToast();
   
   const [formData, setFormData] = useState({
     // Policy Information
@@ -23,7 +28,9 @@ export default function CommercialPackageQuoteForm() {
     adminFee: "",
     
     // Insured Information
-    businessLegalName: "",
+    businessName: "",
+    email: "",
+    phone: "",
     dba: "",
     mailingAddress: "",
     mailingAddressLine2: "",
@@ -111,9 +118,31 @@ export default function CommercialPackageQuoteForm() {
     claimsDetails: "",
   });
 
-  const handleSubmit = () => {
-    console.log("Commercial Package quote request submitted:", formData);
-    setSubmitted(true);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    
+    try {
+      const response = await apiRequest("POST", "/api/commercial-package-quotes", {
+        ...formData,
+        payload: { ...formData }
+      });
+      
+      setReferenceNumber(response.referenceNumber);
+      setSubmitted(true);
+      toast({
+        title: "Quote Request Submitted",
+        description: `Your reference number is ${response.referenceNumber}`,
+      });
+    } catch (error) {
+      toast({
+        title: "Submission Failed",
+        description: error instanceof Error ? error.message : "Please try again later",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (submitted) {
@@ -124,8 +153,14 @@ export default function CommercialPackageQuoteForm() {
             <CheckCircle className="h-8 w-8 text-green-600" />
           </div>
           <h3 className="text-2xl font-bold text-foreground mb-4">Commercial Package Application Submitted!</h3>
+          <p className="text-muted-foreground mb-4">
+            Thank you for your comprehensive submission.
+          </p>
+          <p className="text-lg font-semibold mb-2">
+            Reference Number: {referenceNumber}
+          </p>
           <p className="text-muted-foreground mb-6">
-            Thank you for your comprehensive submission. Our commercial package specialists will review your property and liability coverage needs to provide an accurate quote within 24-48 hours.
+            Our commercial package specialists will review your property and liability coverage needs to provide an accurate quote within 24-48 hours.
           </p>
           <Button onClick={() => { setSubmitted(false); setStep(1); }} data-testid="button-submit-another">
             Submit Another Application
@@ -237,11 +272,11 @@ export default function CommercialPackageQuoteForm() {
 
             <h4 className="font-medium mt-6">Insured Information</h4>
             <div>
-              <Label htmlFor="businessLegalName">Full Legal Name of the Business *</Label>
+              <Label htmlFor="businessName">Full Legal Name of the Business *</Label>
               <Input
-                id="businessLegalName"
-                value={formData.businessLegalName}
-                onChange={(e) => setFormData({ ...formData, businessLegalName: e.target.value })}
+                id="businessName"
+                value={formData.businessName}
+                onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
                 placeholder="Legal business name"
                 data-testid="input-business-name"
               />
