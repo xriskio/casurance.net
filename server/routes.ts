@@ -230,6 +230,306 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Builders Risk Quotes
+  app.post("/api/builders-risk-quotes", async (req, res) => {
+    try {
+      const validatedData = insertBuildersRiskQuoteSchema.parse(req.body);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createBuildersRiskQuote({ ...validatedData, referenceNumber } as any);
+      
+      const emailData = {
+        referenceNumber,
+        businessName: validatedData.namedInsured,
+        contactName: validatedData.namedInsured,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Builders Risk Insurance'
+      };
+      
+      sendQuoteConfirmationEmail(emailData).catch(err => console.error('Failed to send confirmation email:', err));
+      sendAgentQuoteNotification(emailData).catch(err => console.error('Failed to send agent notification:', err));
+      
+      res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // Vacant Building Quotes
+  app.post("/api/vacant-building-quotes", async (req, res) => {
+    try {
+      const validatedData = insertVacantBuildingQuoteSchema.parse(req.body);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createVacantBuildingQuote({ ...validatedData, referenceNumber } as any);
+      
+      const emailData = {
+        referenceNumber,
+        businessName: validatedData.namedInsured,
+        contactName: validatedData.namedInsured,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Vacant Building Insurance'
+      };
+      
+      sendQuoteConfirmationEmail(emailData).catch(err => console.error('Failed to send confirmation email:', err));
+      sendAgentQuoteNotification(emailData).catch(err => console.error('Failed to send agent notification:', err));
+      
+      res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // Crane & Riggers Quotes
+  app.post("/api/crane-riggers-quotes", async (req, res) => {
+    try {
+      const validatedData = insertCraneRiggersQuoteSchema.parse(req.body);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createCraneRiggersQuote({ ...validatedData, referenceNumber } as any);
+      
+      const emailData = {
+        referenceNumber,
+        businessName: validatedData.namedInsured,
+        contactName: validatedData.namedInsured,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Crane & Riggers Insurance'
+      };
+      
+      sendQuoteConfirmationEmail(emailData).catch(err => console.error('Failed to send confirmation email:', err));
+      sendAgentQuoteNotification(emailData).catch(err => console.error('Failed to send agent notification:', err));
+      
+      res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // Commercial Auto Quotes
+  app.post("/api/commercial-auto-quotes", async (req, res) => {
+    try {
+      const validatedData = insertCommercialAutoQuoteSchema.parse(req.body);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createCommercialAutoQuote({ ...validatedData, referenceNumber } as any);
+      
+      const emailData = {
+        referenceNumber,
+        businessName: validatedData.insuredName,
+        contactName: validatedData.insuredName,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Commercial Auto Insurance'
+      };
+      
+      sendQuoteConfirmationEmail(emailData).catch(err => console.error('Failed to send confirmation email:', err));
+      sendAgentQuoteNotification(emailData).catch(err => console.error('Failed to send agent notification:', err));
+      
+      res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // General Liability Quotes
+  app.post("/api/general-liability-quotes", async (req, res) => {
+    try {
+      const validatedData = insertGeneralLiabilityQuoteSchema.parse(req.body);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createGeneralLiabilityQuote({ ...validatedData, referenceNumber } as any);
+      
+      const emailData = {
+        referenceNumber,
+        businessName: validatedData.businessName,
+        contactName: validatedData.businessName,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'General Liability Insurance'
+      };
+      
+      sendQuoteConfirmationEmail(emailData).catch(err => console.error('Failed to send confirmation email:', err));
+      sendAgentQuoteNotification(emailData).catch(err => console.error('Failed to send agent notification:', err));
+      
+      res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // Habitational Quotes
+  app.post("/api/habitational-quotes", async (req, res) => {
+    try {
+      const validatedData = insertHabitationalQuoteSchema.parse(req.body);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createHabitationalQuote({ ...validatedData, referenceNumber } as any);
+      
+      const emailData = {
+        referenceNumber,
+        businessName: validatedData.namedInsured,
+        contactName: validatedData.namedInsured,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Habitational Insurance'
+      };
+      
+      sendQuoteConfirmationEmail(emailData).catch(err => console.error('Failed to send confirmation email:', err));
+      sendAgentQuoteNotification(emailData).catch(err => console.error('Failed to send agent notification:', err));
+      
+      res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // Hotel Quotes
+  app.post("/api/hotel-quotes", async (req, res) => {
+    try {
+      const validatedData = insertHotelQuoteSchema.parse(req.body);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createHotelQuote({ ...validatedData, referenceNumber } as any);
+      
+      const emailData = {
+        referenceNumber,
+        businessName: validatedData.namedInsured,
+        contactName: validatedData.namedInsured,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Hotel Insurance'
+      };
+      
+      sendQuoteConfirmationEmail(emailData).catch(err => console.error('Failed to send confirmation email:', err));
+      sendAgentQuoteNotification(emailData).catch(err => console.error('Failed to send agent notification:', err));
+      
+      res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // Restaurant Quotes
+  app.post("/api/restaurant-quotes", async (req, res) => {
+    try {
+      const validatedData = insertRestaurantQuoteSchema.parse(req.body);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createRestaurantQuote({ ...validatedData, referenceNumber } as any);
+      
+      const emailData = {
+        referenceNumber,
+        businessName: validatedData.restaurantName,
+        contactName: validatedData.restaurantName,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Restaurant Insurance'
+      };
+      
+      sendQuoteConfirmationEmail(emailData).catch(err => console.error('Failed to send confirmation email:', err));
+      sendAgentQuoteNotification(emailData).catch(err => console.error('Failed to send agent notification:', err));
+      
+      res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // Trucking Quotes
+  app.post("/api/trucking-quotes", async (req, res) => {
+    try {
+      const validatedData = insertTruckingQuoteSchema.parse(req.body);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createTruckingQuote({ ...validatedData, referenceNumber } as any);
+      
+      const emailData = {
+        referenceNumber,
+        businessName: validatedData.companyName,
+        contactName: validatedData.companyName,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Trucking Insurance'
+      };
+      
+      sendQuoteConfirmationEmail(emailData).catch(err => console.error('Failed to send confirmation email:', err));
+      sendAgentQuoteNotification(emailData).catch(err => console.error('Failed to send agent notification:', err));
+      
+      res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // Workers Comp Quotes
+  app.post("/api/workers-comp-quotes", async (req, res) => {
+    try {
+      const validatedData = insertWorkersCompQuoteSchema.parse(req.body);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createWorkersCompQuote({ ...validatedData, referenceNumber } as any);
+      
+      const emailData = {
+        referenceNumber,
+        businessName: validatedData.businessName,
+        contactName: validatedData.businessName,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Workers Compensation Insurance'
+      };
+      
+      sendQuoteConfirmationEmail(emailData).catch(err => console.error('Failed to send confirmation email:', err));
+      sendAgentQuoteNotification(emailData).catch(err => console.error('Failed to send agent notification:', err));
+      
+      res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // Management Liability Quotes
+  app.post("/api/management-liability-quotes", async (req, res) => {
+    try {
+      const validatedData = insertManagementLiabilityQuoteSchema.parse(req.body);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createManagementLiabilityQuote({ ...validatedData, referenceNumber } as any);
+      
+      const emailData = {
+        referenceNumber,
+        businessName: validatedData.companyName,
+        contactName: validatedData.companyName,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Management Liability Insurance'
+      };
+      
+      sendQuoteConfirmationEmail(emailData).catch(err => console.error('Failed to send confirmation email:', err));
+      sendAgentQuoteNotification(emailData).catch(err => console.error('Failed to send agent notification:', err));
+      
+      res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // Commercial Package Quotes
+  app.post("/api/commercial-package-quotes", async (req, res) => {
+    try {
+      const validatedData = insertCommercialPackageQuoteSchema.parse(req.body);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createCommercialPackageQuote({ ...validatedData, referenceNumber } as any);
+      
+      const emailData = {
+        referenceNumber,
+        businessName: validatedData.businessName,
+        contactName: validatedData.businessName,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Commercial Package Insurance'
+      };
+      
+      sendQuoteConfirmationEmail(emailData).catch(err => console.error('Failed to send confirmation email:', err));
+      sendAgentQuoteNotification(emailData).catch(err => console.error('Failed to send agent notification:', err));
+      
+      res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
   // NEMT Applications with file uploads
   app.post("/api/nemt-applications", upload.fields([
     { name: "vehicleList", maxCount: 1 },
