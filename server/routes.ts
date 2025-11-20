@@ -1,14 +1,7 @@
 import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-
-// Authentication middleware
-function ensureAuthenticated(req: Request, res: Response, next: NextFunction) {
-  if (req.isAuthenticated && req.isAuthenticated()) {
-    return next();
-  }
-  return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
-}
+import { requireAgent } from "./auth/middleware";
 import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema, insertFilmProductionQuoteSchema, insertProductLiabilityQuoteSchema, insertSecurityServicesQuoteSchema, insertNemtApplicationSchema, insertAmbulanceApplicationSchema, insertTncApplicationSchema, insertLimousineQuoteSchema, insertPublicTransportationQuoteSchema, insertTaxiBlackCarQuoteSchema, insertQuickQuoteSchema, insertContactRequestSchema, insertBlogPostSchema, insertPressReleaseSchema, insertNewsletterSubscriptionSchema, insertHighValueHomeQuoteSchema, insertCommercialFloodQuoteSchema, insertCommercialEarthquakeQuoteSchema, insertFranchisedDealerQuoteSchema, insertGarageServiceQuoteSchema, insertAutoDealerGarageQuoteSchema, insertGolfCountryClubQuoteSchema } from "@shared/schema";
 import { registerAgentRoutes } from "./routes/agent";
 import { registerCmsRoutes } from "./routes/cms";
@@ -660,7 +653,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Generate AI blog post (authenticated agents only)
-  app.post("/api/blog-posts/generate", ensureAuthenticated, async (req, res) => {
+  app.post("/api/blog-posts/generate", requireAgent, async (req, res) => {
     try {
       const { topic, category } = req.body;
       const generatedContent = await generateBlogPost(topic, category);
@@ -698,7 +691,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Create manual blog post (authenticated agents only)
-  app.post("/api/blog-posts", ensureAuthenticated, async (req, res) => {
+  app.post("/api/blog-posts", requireAgent, async (req, res) => {
     try {
       const result = insertBlogPostSchema.safeParse(req.body);
       if (!result.success) {
@@ -806,7 +799,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Generate AI press release (authenticated agents only)
-  app.post("/api/press-releases/generate", ensureAuthenticated, async (req, res) => {
+  app.post("/api/press-releases/generate", requireAgent, async (req, res) => {
     try {
       const { topic, category, location } = req.body;
       const generatedContent = await generatePressRelease(topic, category, location);
@@ -853,7 +846,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Create manual press release (authenticated agents only)
-  app.post("/api/press-releases", ensureAuthenticated, async (req, res) => {
+  app.post("/api/press-releases", requireAgent, async (req, res) => {
     try {
 
       const result = insertPressReleaseSchema.safeParse(req.body);
