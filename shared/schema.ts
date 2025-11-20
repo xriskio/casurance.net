@@ -501,6 +501,48 @@ export const golfCountryClubQuotes = pgTable("golf_country_club_quotes", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+// CMS Tables
+export const cmsPages = pgTable("cms_pages", {
+  id: varchar("id").primaryKey(),
+  slug: text("slug").notNull().unique(),
+  title: text("title").notNull(),
+  metaDescription: text("meta_description"),
+  content: text("content").notNull(),
+  isPublished: text("is_published").notNull().default("false"),
+  isAiGenerated: text("is_ai_generated").notNull().default("false"),
+  featuredImage: text("featured_image"),
+  author: text("author").notNull().default("Casurance Team"),
+  publishedAt: timestamp("published_at"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const cmsMenuItems = pgTable("cms_menu_items", {
+  id: varchar("id").primaryKey(),
+  label: text("label").notNull(),
+  url: text("url").notNull(),
+  menuLocation: text("menu_location").notNull().default("header"),
+  parentId: text("parent_id"),
+  orderIndex: integer("order_index").notNull().default(0),
+  isExternal: text("is_external").notNull().default("false"),
+  isActive: text("is_active").notNull().default("true"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const cmsMedia = pgTable("cms_media", {
+  id: varchar("id").primaryKey(),
+  fileName: text("file_name").notNull(),
+  originalName: text("original_name").notNull(),
+  mimeType: text("mime_type").notNull(),
+  fileSize: integer("file_size").notNull(),
+  filePath: text("file_path").notNull(),
+  altText: text("alt_text"),
+  caption: text("caption"),
+  uploadedBy: text("uploaded_by").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const insertQuoteRequestSchema = createInsertSchema(quoteRequests).omit({
   id: true,
   referenceNumber: true,
@@ -670,6 +712,28 @@ export const insertGolfCountryClubQuoteSchema = createInsertSchema(golfCountryCl
   createdAt: true,
 });
 
+export const insertCmsPageSchema = createInsertSchema(cmsPages).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+  publishedAt: true,
+});
+
+export const updateCmsPageSchema = insertCmsPageSchema.partial();
+
+export const insertCmsMenuItemSchema = createInsertSchema(cmsMenuItems).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const updateCmsMenuItemSchema = insertCmsMenuItemSchema.partial();
+
+export const insertCmsMediaSchema = createInsertSchema(cmsMedia).omit({
+  id: true,
+  createdAt: true,
+});
+
 export type InsertQuoteRequest = z.infer<typeof insertQuoteRequestSchema>;
 export type QuoteRequest = typeof quoteRequests.$inferSelect;
 export type InsertServiceRequest = z.infer<typeof insertServiceRequestSchema>;
@@ -726,3 +790,9 @@ export type InsertAutoDealerGarageQuote = z.infer<typeof insertAutoDealerGarageQ
 export type AutoDealerGarageQuote = typeof autoDealerGarageQuotes.$inferSelect;
 export type InsertGolfCountryClubQuote = z.infer<typeof insertGolfCountryClubQuoteSchema>;
 export type GolfCountryClubQuote = typeof golfCountryClubQuotes.$inferSelect;
+export type InsertCmsPage = z.infer<typeof insertCmsPageSchema>;
+export type CmsPage = typeof cmsPages.$inferSelect;
+export type InsertCmsMenuItem = z.infer<typeof insertCmsMenuItemSchema>;
+export type CmsMenuItem = typeof cmsMenuItems.$inferSelect;
+export type InsertCmsMedia = z.infer<typeof insertCmsMediaSchema>;
+export type CmsMedia = typeof cmsMedia.$inferSelect;
