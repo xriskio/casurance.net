@@ -137,7 +137,7 @@ Return ONLY a valid JSON object with this exact structure:
         model: AI_MODEL,
         messages: [{ role: "user", content: prompt }],
         response_format: { type: "json_object" },
-        max_completion_tokens: 8192,
+        max_completion_tokens: 4096,
       })
     ]);
 
@@ -209,7 +209,7 @@ Return ONLY a valid JSON object with this structure:
         model: AI_MODEL,
         messages: [{ role: "user", content: prompt }],
         response_format: { type: "json_object" },
-        max_completion_tokens: 8192,
+        max_completion_tokens: 4096,
       })
     ]);
 
