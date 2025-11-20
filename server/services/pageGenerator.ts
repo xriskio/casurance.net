@@ -2,9 +2,19 @@ import OpenAI from "openai";
 import { getBrandInstructions } from "../lib/brand";
 import { validateBrandCompliance, ensureBrandCompliance } from "../lib/brand-validator";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+let openaiClient: OpenAI | null = null;
+
+function getOpenAIClient(): OpenAI {
+  if (!process.env.OPENAI_API_KEY) {
+    throw new Error("OPENAI_API_KEY environment variable is required for AI page generation");
+  }
+  if (!openaiClient) {
+    openaiClient = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    });
+  }
+  return openaiClient;
+}
 
 export interface GeneratePageParams {
   topic: string;
@@ -59,6 +69,7 @@ Return the response as JSON with this structure:
 }`;
 
   try {
+    const openai = getOpenAIClient();
     const completion = await openai.chat.completions.create({
       model: "gpt-4o",
       messages: [

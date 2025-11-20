@@ -712,12 +712,16 @@ export const insertGolfCountryClubQuoteSchema = createInsertSchema(golfCountryCl
   createdAt: true,
 });
 
-export const insertCmsPageSchema = createInsertSchema(cmsPages).omit({
-  id: true,
-  createdAt: true,
-  updatedAt: true,
-  publishedAt: true,
-});
+export const insertCmsPageSchema = createInsertSchema(cmsPages)
+  .omit({
+    id: true,
+    createdAt: true,
+    updatedAt: true,
+    publishedAt: true,
+  })
+  .extend({
+    slug: z.string().optional(),
+  });
 
 export const updateCmsPageSchema = insertCmsPageSchema.partial();
 
@@ -791,8 +795,10 @@ export type AutoDealerGarageQuote = typeof autoDealerGarageQuotes.$inferSelect;
 export type InsertGolfCountryClubQuote = z.infer<typeof insertGolfCountryClubQuoteSchema>;
 export type GolfCountryClubQuote = typeof golfCountryClubQuotes.$inferSelect;
 export type InsertCmsPage = z.infer<typeof insertCmsPageSchema>;
+export type UpdateCmsPage = z.infer<typeof updateCmsPageSchema>;
 export type CmsPage = typeof cmsPages.$inferSelect;
 export type InsertCmsMenuItem = z.infer<typeof insertCmsMenuItemSchema>;
+export type UpdateCmsMenuItem = z.infer<typeof updateCmsMenuItemSchema>;
 export type CmsMenuItem = typeof cmsMenuItems.$inferSelect;
 export type InsertCmsMedia = z.infer<typeof insertCmsMediaSchema>;
 export type CmsMedia = typeof cmsMedia.$inferSelect;

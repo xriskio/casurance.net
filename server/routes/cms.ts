@@ -1,4 +1,4 @@
-import type { Express } from "express";
+import type { Express, Request, Response, NextFunction } from "express";
 import multer from "multer";
 import path from "path";
 import { randomUUID } from "crypto";
@@ -14,6 +14,14 @@ import {
 } from "../../shared/schema";
 import { eq, desc, asc } from "drizzle-orm";
 import { generatePage } from "../services/pageGenerator";
+
+// Authentication middleware for CMS routes
+function ensureAuthenticated(req: Request, res: Response, next: NextFunction) {
+  if (req.isAuthenticated && req.isAuthenticated()) {
+    return next();
+  }
+  return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
+}
 
 // Configure multer for image uploads
 const uploadDir = path.join(process.cwd(), "attached_assets", "uploads");
@@ -135,12 +143,8 @@ export function registerCmsRoutes(app: Express) {
   });
 
   // Create new page (authenticated agents only)
-  app.post("/api/cms/pages", async (req, res) => {
+  app.post("/api/cms/pages", ensureAuthenticated, async (req, res) => {
     try {
-      if (!req.isAuthenticated || !req.isAuthenticated()) {
-        return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
-      }
-
       const validatedData = insertCmsPageSchema.parse(req.body);
 
       // Generate slug if not provided
@@ -168,12 +172,8 @@ export function registerCmsRoutes(app: Express) {
   });
 
   // Update page (authenticated agents only)
-  app.patch("/api/cms/pages/:id", async (req, res) => {
+  app.patch("/api/cms/pages/:id", ensureAuthenticated, async (req, res) => {
     try {
-      if (!req.isAuthenticated || !req.isAuthenticated()) {
-        return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
-      }
-
       const validatedData = updateCmsPageSchema.parse(req.body);
 
       // If slug is being updated, slugify it
@@ -209,12 +209,8 @@ export function registerCmsRoutes(app: Express) {
   });
 
   // Delete page (authenticated agents only)
-  app.delete("/api/cms/pages/:id", async (req, res) => {
+  app.delete("/api/cms/pages/:id", ensureAuthenticated, async (req, res) => {
     try {
-      if (!req.isAuthenticated || !req.isAuthenticated()) {
-        return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
-      }
-
       const deletedPage = await db.delete(cmsPages).where(eq(cmsPages.id, req.params.id)).returning();
 
       if (deletedPage.length === 0) {
@@ -228,12 +224,8 @@ export function registerCmsRoutes(app: Express) {
   });
 
   // Generate page with AI (authenticated agents only)
-  app.post("/api/cms/pages/generate", async (req, res) => {
+  app.post("/api/cms/pages/generate", ensureAuthenticated, async (req, res) => {
     try {
-      if (!req.isAuthenticated || !req.isAuthenticated()) {
-        return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
-      }
-
       const { topic, targetAudience, keywords, includeCallToAction } = req.body;
 
       if (!topic) {
@@ -247,15 +239,26 @@ export function registerCmsRoutes(app: Express) {
         includeCallToAction,
       });
 
-      // Create the page in the database
+      // The generatePage function already returns sanitized/validated content
+      // Create the page in the database with the validated content
       const id = randomUUID();
       const now = new Date();
+
+      // Ensure unique slug by checking for existing pages
+      let slug = generatedPage.slug;
+      let counter = 1;
+      while (true) {
+        const existing = await db.select().from(cmsPages).where(eq(cmsPages.slug, slug)).limit(1);
+        if (existing.length === 0) break;
+        slug = `${generatedPage.slug}-${counter}`;
+        counter++;
+      }
 
       const newPage = await db
         .insert(cmsPages)
         .values({
           id,
-          slug: generatedPage.slug,
+          slug,
           title: generatedPage.title,
           metaDescription: generatedPage.metaDescription,
           content: generatedPage.content,
@@ -298,11 +301,8 @@ export function registerCmsRoutes(app: Express) {
   });
 
   // Create menu item (authenticated agents only)
-  app.post("/api/cms/menu-items", async (req, res) => {
+  app.post("/api/cms/menu-items", ensureAuthenticated, async (req, res) => {
     try {
-      if (!req.isAuthenticated || !req.isAuthenticated()) {
-        return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
-      }
 
       const validatedData = insertCmsMenuItemSchema.parse(req.body);
 
@@ -326,11 +326,8 @@ export function registerCmsRoutes(app: Express) {
   });
 
   // Update menu item (authenticated agents only)
-  app.patch("/api/cms/menu-items/:id", async (req, res) => {
+  app.patch("/api/cms/menu-items/:id", ensureAuthenticated, async (req, res) => {
     try {
-      if (!req.isAuthenticated || !req.isAuthenticated()) {
-        return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
-      }
 
       const validatedData = updateCmsMenuItemSchema.parse(req.body);
 
@@ -354,12 +351,8 @@ export function registerCmsRoutes(app: Express) {
   });
 
   // Delete menu item (authenticated agents only)
-  app.delete("/api/cms/menu-items/:id", async (req, res) => {
+  app.delete("/api/cms/menu-items/:id", ensureAuthenticated, async (req, res) => {
     try {
-      if (!req.isAuthenticated || !req.isAuthenticated()) {
-        return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
-      }
-
       const deletedMenuItem = await db.delete(cmsMenuItems).where(eq(cmsMenuItems.id, req.params.id)).returning();
 
       if (deletedMenuItem.length === 0) {
@@ -385,12 +378,8 @@ export function registerCmsRoutes(app: Express) {
   });
 
   // Upload media (authenticated agents only)
-  app.post("/api/cms/media/upload", upload.single("file"), async (req, res) => {
+  app.post("/api/cms/media/upload", upload.single("file"), ensureAuthenticated, async (req, res) => {
     try {
-      if (!req.isAuthenticated || !req.isAuthenticated()) {
-        return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
-      }
-
       if (!req.file) {
         return res.status(400).json({ message: "No file uploaded" });
       }
@@ -424,12 +413,8 @@ export function registerCmsRoutes(app: Express) {
   });
 
   // Update media metadata (authenticated agents only)
-  app.patch("/api/cms/media/:id", async (req, res) => {
+  app.patch("/api/cms/media/:id", ensureAuthenticated, async (req, res) => {
     try {
-      if (!req.isAuthenticated || !req.isAuthenticated()) {
-        return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
-      }
-
       const { altText, caption } = req.body;
 
       const updatedMedia = await db
@@ -452,11 +437,8 @@ export function registerCmsRoutes(app: Express) {
   });
 
   // Delete media (authenticated agents only)
-  app.delete("/api/cms/media/:id", async (req, res) => {
+  app.delete("/api/cms/media/:id", ensureAuthenticated, async (req, res) => {
     try {
-      if (!req.isAuthenticated || !req.isAuthenticated()) {
-        return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
-      }
 
       const media = await db.select().from(cmsMedia).where(eq(cmsMedia.id, req.params.id)).limit(1);
 
