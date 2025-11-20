@@ -53,6 +53,7 @@ const FORBIDDEN_PATTERNS = [
 
 /**
  * Patterns that must appear in generated content
+ * Note: companyName is optional for educational blog content (SEO best practice)
  */
 const REQUIRED_PATTERNS = {
   companyName: /Casurance/,
@@ -74,8 +75,18 @@ export function validateBrandCompliance(content: string): BrandValidationResult 
   }
 
   // Check for required patterns
+  // Note: Company name is optional in educational blog content (better SEO)
+  // Only enforce for press releases or content with contact info
   if (!REQUIRED_PATTERNS.companyName.test(content)) {
-    errors.push('Missing company name "Casurance"');
+    // Only treat as error if content has contact info (email/phone) without company name
+    const hasContactInfo = content.includes('@') || /(?:\+?1[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}/.test(content);
+    if (hasContactInfo) {
+      errors.push('Missing company name "Casurance" (required when contact info is present)');
+    }
+    // Otherwise just a warning for educational content
+    else {
+      warnings.push('Content does not mention "Casurance" (acceptable for educational blog posts)');
+    }
   }
 
   // Check if email domain is used correctly (if email is present)
