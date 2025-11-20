@@ -398,3 +398,303 @@ export async function sendServiceRequestConfirmationEmail(data: ServiceRequestDa
     console.error(`✗ Failed to send service request confirmation email to ${data.email}:`, error);
   }
 }
+
+export async function sendAgentQuoteNotification(data: QuoteRequestData): Promise<void> {
+  try {
+    const client = await getUncachableAgentMailClient();
+    const inboxId = await getOrCreateInbox();
+    
+    const formTitle = data.formName || data.insuranceType;
+    
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <style>
+            body {
+              font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+              line-height: 1.6;
+              color: #1e3a5f;
+              max-width: 600px;
+              margin: 0 auto;
+              padding: 20px;
+            }
+            .header {
+              background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+              color: white;
+              padding: 30px;
+              border-radius: 8px 8px 0 0;
+              text-align: center;
+            }
+            .header h1 {
+              margin: 0;
+              font-size: 24px;
+              font-weight: 600;
+            }
+            .content {
+              background: #ffffff;
+              padding: 30px;
+              border: 1px solid #e2e8f0;
+              border-top: none;
+            }
+            .alert-box {
+              background: #fef2f2;
+              border: 2px solid #dc2626;
+              border-radius: 8px;
+              padding: 20px;
+              margin: 20px 0;
+              text-align: center;
+            }
+            .reference-number {
+              font-size: 32px;
+              font-weight: 700;
+              color: #dc2626;
+              letter-spacing: 2px;
+              margin: 10px 0;
+            }
+            .detail-row {
+              padding: 10px 0;
+              border-bottom: 1px solid #e2e8f0;
+            }
+            .detail-label {
+              font-weight: 600;
+              color: #64748b;
+              display: inline-block;
+              min-width: 150px;
+            }
+            .action-button {
+              display: inline-block;
+              background: #dc2626;
+              color: white;
+              padding: 12px 24px;
+              text-decoration: none;
+              border-radius: 6px;
+              font-weight: 600;
+              margin: 20px 0;
+            }
+            .footer {
+              background: #f8fafc;
+              padding: 20px;
+              text-align: center;
+              font-size: 14px;
+              color: #64748b;
+              border-radius: 0 0 8px 8px;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <h1>🔔 New Quote Request</h1>
+            <p style="margin: 10px 0 0 0; opacity: 0.9;">Agent Notification</p>
+          </div>
+          
+          <div class="content">
+            <p><strong>A new quote request has been submitted and requires your attention.</strong></p>
+            
+            <div class="alert-box">
+              <p style="margin: 0; font-size: 14px; color: #64748b;">Reference Number</p>
+              <div class="reference-number">${data.referenceNumber}</div>
+              <p style="margin: 0; font-size: 12px; color: #64748b;">${formTitle}</p>
+            </div>
+            
+            <h3 style="color: #1e3a5f; margin-top: 30px;">Client Information</h3>
+            <div class="detail-row">
+              <span class="detail-label">Business Name:</span>
+              <span>${data.businessName}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Contact Person:</span>
+              <span>${data.contactName}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Email:</span>
+              <span><a href="mailto:${data.email}">${data.email}</a></span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Phone:</span>
+              <span><a href="tel:${data.phone}">${data.phone}</a></span>
+            </div>
+            <div class="detail-row" style="border-bottom: none;">
+              <span class="detail-label">Insurance Type:</span>
+              <span>${formTitle}</span>
+            </div>
+            
+            <div style="text-align: center; margin: 30px 0;">
+              <a href="https://www.casurance.net/agent/portal" class="action-button">View in Agent Portal</a>
+            </div>
+            
+            <p style="color: #64748b; font-size: 14px; margin-top: 30px;">
+              <strong>Action Required:</strong> Please review this quote request in the agent portal and contact the client within 24-48 business hours.
+            </p>
+          </div>
+          
+          <div class="footer">
+            <p style="margin: 10px 0;"><strong>Casurance Agent Portal</strong></p>
+            <p style="margin: 5px 0; font-size: 12px;">This is an automated notification. Do not reply to this email.</p>
+          </div>
+        </body>
+      </html>
+    `;
+
+    await client.inboxes.messages.send(inboxId, {
+      to: ['admin@casurance.net'],
+      subject: `🔔 New Quote Request #${data.referenceNumber} - ${formTitle}`,
+      html: htmlContent
+    });
+
+    console.log(`✓ Agent notification email sent for quote ${data.referenceNumber}`);
+  } catch (error) {
+    console.error(`✗ Failed to send agent notification email for quote ${data.referenceNumber}:`, error);
+  }
+}
+
+export async function sendAgentServiceNotification(data: ServiceRequestData): Promise<void> {
+  try {
+    const client = await getUncachableAgentMailClient();
+    const inboxId = await getOrCreateInbox();
+    
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <style>
+            body {
+              font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+              line-height: 1.6;
+              color: #1e3a5f;
+              max-width: 600px;
+              margin: 0 auto;
+              padding: 20px;
+            }
+            .header {
+              background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+              color: white;
+              padding: 30px;
+              border-radius: 8px 8px 0 0;
+              text-align: center;
+            }
+            .header h1 {
+              margin: 0;
+              font-size: 24px;
+              font-weight: 600;
+            }
+            .content {
+              background: #ffffff;
+              padding: 30px;
+              border: 1px solid #e2e8f0;
+              border-top: none;
+            }
+            .alert-box {
+              background: #fef2f2;
+              border: 2px solid #dc2626;
+              border-radius: 8px;
+              padding: 20px;
+              margin: 20px 0;
+              text-align: center;
+            }
+            .reference-number {
+              font-size: 32px;
+              font-weight: 700;
+              color: #dc2626;
+              letter-spacing: 2px;
+              margin: 10px 0;
+            }
+            .detail-row {
+              padding: 10px 0;
+              border-bottom: 1px solid #e2e8f0;
+            }
+            .detail-label {
+              font-weight: 600;
+              color: #64748b;
+              display: inline-block;
+              min-width: 150px;
+            }
+            .action-button {
+              display: inline-block;
+              background: #dc2626;
+              color: white;
+              padding: 12px 24px;
+              text-decoration: none;
+              border-radius: 6px;
+              font-weight: 600;
+              margin: 20px 0;
+            }
+            .footer {
+              background: #f8fafc;
+              padding: 20px;
+              text-align: center;
+              font-size: 14px;
+              color: #64748b;
+              border-radius: 0 0 8px 8px;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <h1>🔔 New Service Request</h1>
+            <p style="margin: 10px 0 0 0; opacity: 0.9;">Agent Notification</p>
+          </div>
+          
+          <div class="content">
+            <p><strong>A new service request has been submitted and requires your attention.</strong></p>
+            
+            <div class="alert-box">
+              <p style="margin: 0; font-size: 14px; color: #64748b;">Reference Number</p>
+              <div class="reference-number">${data.referenceNumber}</div>
+              <p style="margin: 0; font-size: 12px; color: #64748b;">${data.requestType}</p>
+            </div>
+            
+            <h3 style="color: #1e3a5f; margin-top: 30px;">Client Information</h3>
+            <div class="detail-row">
+              <span class="detail-label">Business Name:</span>
+              <span>${data.businessName}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Contact Person:</span>
+              <span>${data.contactName}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Email:</span>
+              <span><a href="mailto:${data.email}">${data.email}</a></span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Phone:</span>
+              <span><a href="tel:${data.phone}">${data.phone}</a></span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Request Type:</span>
+              <span>${data.requestType}</span>
+            </div>
+            <div class="detail-row" style="border-bottom: none;">
+              <span class="detail-label">Description:</span>
+              <span>${data.description}</span>
+            </div>
+            
+            <div style="text-align: center; margin: 30px 0;">
+              <a href="https://www.casurance.net/agent/portal" class="action-button">View in Agent Portal</a>
+            </div>
+            
+            <p style="color: #64748b; font-size: 14px; margin-top: 30px;">
+              <strong>Action Required:</strong> Please review this service request in the agent portal and contact the client within 24 business hours.
+            </p>
+          </div>
+          
+          <div class="footer">
+            <p style="margin: 10px 0;"><strong>Casurance Agent Portal</strong></p>
+            <p style="margin: 5px 0; font-size: 12px;">This is an automated notification. Do not reply to this email.</p>
+          </div>
+        </body>
+      </html>
+    `;
+
+    await client.inboxes.messages.send(inboxId, {
+      to: ['admin@casurance.net'],
+      subject: `🔔 New Service Request #${data.referenceNumber} - ${data.requestType}`,
+      html: htmlContent
+    });
+
+    console.log(`✓ Agent notification email sent for service request ${data.referenceNumber}`);
+  } catch (error) {
+    console.error(`✗ Failed to send agent notification email for service request ${data.referenceNumber}:`, error);
+  }
+}
