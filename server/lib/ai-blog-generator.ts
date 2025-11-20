@@ -2,10 +2,12 @@ import OpenAI from "openai";
 import { CasuranceBrand, getBrandInstructions } from "./brand";
 import { ensureBrandCompliance } from "./brand-validator";
 
-// This is using Replit's AI Integrations service, which provides OpenAI-compatible API access without requiring your own OpenAI API key.
+// Support both real OpenAI API key (production) and Replit AI Integrations (development)
 const openai = new OpenAI({
-  baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
-  apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY
+  baseURL: process.env.OPENAI_API_KEY 
+    ? "https://api.openai.com/v1" 
+    : process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
+  apiKey: process.env.OPENAI_API_KEY || process.env.AI_INTEGRATIONS_OPENAI_API_KEY
 });
 
 export interface BlogPostContent {
