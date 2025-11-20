@@ -14,6 +14,7 @@ export default function Home() {
         title="Commercial Insurance Across 15 States"
         description="Get competitive commercial insurance quotes for your business. Serving 15 states with expert coverage for general liability, commercial auto, workers comp, and 40+ specialized insurance products. Licensed independent agency since 2010."
         keywords="commercial insurance, business insurance, general liability, workers compensation, commercial auto insurance, professional liability, California commercial insurance, independent insurance agency"
+        canonical="/"
       />
       <div className="min-h-screen bg-background">
         <Header />

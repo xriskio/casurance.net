@@ -9,6 +9,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 
 export default function AboutPage() {
   const [email, setEmail] = useState("");
@@ -43,8 +44,15 @@ export default function AboutPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <Header />
+    <>
+      <SEOHead
+        title="About Casurance Insurance Agency"
+        description="Learn about Casurance, California's trusted independent commercial insurance agency since 2010. We serve businesses across 15 states with specialized coverage for transportation, hospitality, and specialty industries."
+        keywords="about Casurance, commercial insurance agency, California insurance, independent insurance broker, business insurance provider"
+        canonical="/about"
+      />
+      <div className="min-h-screen bg-background flex flex-col">
+        <Header />
       <div className="bg-gradient-to-br from-[#1e3a8a] via-[#1e40af] to-[#3b5998] py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -305,5 +313,6 @@ export default function AboutPage() {
       </div>
       <Footer />
     </div>
+    </>
   );
 }

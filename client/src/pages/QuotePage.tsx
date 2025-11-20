@@ -10,6 +10,7 @@ export default function QuotePage() {
         title="Get Free Commercial Insurance Quote"
         description="Request a free commercial insurance quote from licensed agents. Fast, competitive rates for general liability, workers comp, commercial auto, and 40+ insurance products. 24-hour response time guaranteed."
         keywords="commercial insurance quote, business insurance quote, free insurance quote, commercial auto quote, general liability quote, workers compensation quote"
+        canonical="/quote"
       />
       <div className="min-h-screen bg-background flex flex-col">
         <Header />

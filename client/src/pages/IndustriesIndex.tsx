@@ -35,6 +35,7 @@ export default function IndustriesIndex() {
         title="Industry-Specific Commercial Insurance Solutions"
         description="Specialized commercial insurance for 23+ industries including restaurants, construction, trucking, hotels, self-storage, NEMT transportation, golf courses, auto dealers, and more. Expert coverage tailored to your industry's unique risks."
         keywords="industry specific insurance, restaurant insurance, construction insurance, trucking insurance, hotel insurance, transportation insurance, self storage insurance, specialized commercial insurance"
+        canonical="/industries"
       />
       <div className="min-h-screen bg-background flex flex-col">
         <Header />

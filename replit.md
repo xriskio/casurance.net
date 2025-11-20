@@ -61,6 +61,49 @@ The application includes a full-featured CMS for managing dynamic pages, navigat
 - Static file serving at `/uploads` endpoint
 - AI-generated content validated for brand consistency before persistence
 
+### SEO Implementation
+
+All Tier 0 pages (10 critical pages) now include comprehensive SEO optimization:
+
+**SEOHead Component** (`client/src/components/SEOHead.tsx`):
+- Reusable component for consistent SEO across pages
+- Accepts title, description, keywords, and canonical URL as props
+- No window dependency (SSR-safe) - canonical URLs computed from props
+- Includes Open Graph tags for social media sharing
+- Twitter Card support
+- InsuranceAgency structured data (JSON-LD)
+- Robots meta tags for proper indexing
+
+**Tier 0 Pages with SEO:**
+1. Home (`/`) - InsuranceAgency schema, commercial insurance keywords
+2. Quote (`/quote`) - Service-focused meta tags
+3. Industries (`/industries`) - Industry-specific keywords (23+ industries)
+4. Blog listing (`/blog`) - Blog-focused keywords
+5. Blog detail (`/blog/:slug`) - Dynamic BlogPosting schema with article metadata
+6. Press listing (`/press-releases`) - Company news keywords
+7. Press detail (`/press-releases/:slug`) - Dynamic NewsArticle schema
+8. About (`/about`) - Company information keywords
+9. Contact (`/contact`) - Contact-focused keywords
+
+**Dynamic Pages:**
+- Blog posts: BlogPosting schema with headline, datePublished, author, articleSection, keywords
+- Press releases: NewsArticle schema with headline, datePublished, articleSection, publisher
+- All dynamic pages include canonical URLs, og:url, and article-specific metadata
+
+**SEO Features:**
+- Unique, descriptive title tags for every page
+- Compelling meta descriptions (150-160 characters)
+- Relevant keyword targeting for commercial insurance
+- Canonical URLs prevent duplicate content issues
+- Structured data helps search engines understand content types
+- Optimized for AI chatbots (ChatGPT, Claude, Gemini, Google, Bing)
+
+**Still Needed for Production:**
+- sitemap.xml generation (build-time script)
+- robots.txt configuration
+- Tier 1 SEO (high-volume quote forms)
+- Tier 2 SEO (long-tail forms and industry pages)
+
 ### AI Content Generation & Brand Protection
 
 The application features AI-powered content generation for blog posts and press releases using OpenAI GPT-5. A comprehensive brand validation system ensures 100% brand consistency across all AI-generated content:

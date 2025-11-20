@@ -45,6 +45,7 @@ export default function BlogPage() {
         title="Commercial Insurance News & Insights Blog"
         description="Expert commercial insurance guidance, risk management strategies, and industry updates. Stay informed with articles on general liability, workers comp, commercial auto, and business insurance best practices."
         keywords="commercial insurance blog, business insurance news, insurance industry updates, risk management articles, insurance tips, commercial coverage insights"
+        canonical="/blog"
       />
       <div className="min-h-screen bg-background flex flex-col">
         <Header />

@@ -4,7 +4,7 @@ interface SEOHeadProps {
   title: string;
   description: string;
   keywords?: string;
-  canonical?: string;
+  canonical: string;
   ogType?: string;
   ogImage?: string;
 }
@@ -19,7 +19,7 @@ export default function SEOHead({
 }: SEOHeadProps) {
   const fullTitle = `${title} | Casurance - Commercial Insurance Agency`;
   const siteUrl = "https://casurance.net";
-  const canonicalUrl = canonical || `${siteUrl}${typeof window !== 'undefined' ? window.location.pathname : ''}`;
+  const canonicalUrl = canonical.startsWith('http') ? canonical : `${siteUrl}${canonical}`;
 
   return (
     <Helmet>

@@ -9,6 +9,7 @@ import type { PressRelease } from "@shared/schema";
 import ReactMarkdown from "react-markdown";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Helmet } from "react-helmet-async";
 
 export default function PressReleasePage() {
   const [, params] = useRoute("/press-releases/:slug");
@@ -79,8 +80,34 @@ export default function PressReleasePage() {
   }
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <Header />
+    <>
+      <Helmet>
+        <title>{release.title} | Casurance Press Release</title>
+        <meta name="description" content={release.subtitle || release.title} />
+        <link rel="canonical" href={`https://casurance.net/press-releases/${release.slug}`} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={`https://casurance.net/press-releases/${release.slug}`} />
+        <meta property="og:title" content={release.title} />
+        <meta property="og:description" content={release.subtitle || release.title} />
+        <meta property="article:published_time" content={release.publishedAt?.toString() || ''} />
+        <meta property="article:section" content={release.category} />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "NewsArticle",
+            "headline": release.title,
+            "datePublished": release.publishedAt,
+            "articleSection": release.category,
+            "publisher": {
+              "@type": "Organization",
+              "name": "Casurance Insurance Agency",
+              "email": "press@casurance.net"
+            }
+          })}
+        </script>
+      </Helmet>
+      <div className="min-h-screen bg-background flex flex-col">
+        <Header />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-1">
         <Link href="/press-releases">
           <Button variant="ghost" className="mb-6" data-testid="button-back-to-press-releases">
@@ -204,5 +231,6 @@ export default function PressReleasePage() {
       </div>
       <Footer />
     </div>
+    </>
   );
 }

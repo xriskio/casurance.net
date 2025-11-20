@@ -16,6 +16,7 @@ import { Phone, Mail, Clock, CheckCircle2 } from "lucide-react";
 import { insertContactRequestSchema } from "@shared/schema";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 
 type FormData = z.infer<typeof insertContactRequestSchema>;
 
@@ -125,8 +126,15 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <Header />
+    <>
+      <SEOHead
+        title="Contact Casurance for Commercial Insurance"
+        description="Contact Casurance Insurance Agency for commercial insurance quotes and support. Call 323-546-3030 or toll-free 1-888-254-0089. Email info@casurance.net. Serving 15 states with expert business insurance solutions."
+        keywords="contact Casurance, commercial insurance contact, insurance quote request, business insurance inquiry, Casurance phone number"
+        canonical="/contact"
+      />
+      <div className="min-h-screen bg-background flex flex-col">
+        <Header />
       <div className="bg-gradient-to-br from-[#1e3a8a] via-[#1e40af] to-[#3b5998] py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -382,5 +390,6 @@ export default function ContactPage() {
       </div>
       <Footer />
     </div>
+    </>
   );
 }
