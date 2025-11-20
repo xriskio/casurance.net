@@ -642,6 +642,13 @@ export default function AgentPortal() {
     },
   });
 
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    if (!authLoading && !isAuthenticated) {
+      setLocation("/agent/login");
+    }
+  }, [authLoading, isAuthenticated, setLocation]);
+
   if (authLoading || submissionsLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
