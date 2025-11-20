@@ -359,7 +359,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const emailData = {
         referenceNumber,
         businessName: validatedData.companyName,
-        contactName: validatedData.contactName || validatedData.companyName,
+        contactName: validatedData.companyName,
         email: validatedData.contactEmail,
         phone: validatedData.contactPhone,
         insuranceType: 'Public Transportation Insurance'
@@ -408,7 +408,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const emailData = {
         referenceNumber,
-        businessName: validatedData.businessName || validatedData.name,
+        businessName: validatedData.name,
         contactName: validatedData.name,
         email: validatedData.email,
         phone: validatedData.phone,
@@ -484,8 +484,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const emailData = {
         referenceNumber,
-        businessName: validatedData.businessName || validatedData.contactName,
-        contactName: validatedData.contactName,
+        businessName: validatedData.namedInsured,
+        contactName: validatedData.namedInsured,
         email: validatedData.email,
         phone: validatedData.phone,
         insuranceType: 'Commercial Flood Insurance'
@@ -509,8 +509,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const emailData = {
         referenceNumber,
-        businessName: validatedData.businessName || validatedData.contactName,
-        contactName: validatedData.contactName,
+        businessName: validatedData.namedInsured,
+        contactName: validatedData.namedInsured,
         email: validatedData.email,
         phone: validatedData.phone,
         insuranceType: 'Commercial Earthquake Insurance'
