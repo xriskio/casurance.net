@@ -8,6 +8,7 @@ import { Search, Calendar } from "lucide-react";
 import type { BlogPost } from "@shared/schema";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 
 export default function BlogPage() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -39,8 +40,14 @@ export default function BlogPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <Header />
+    <>
+      <SEOHead
+        title="Commercial Insurance News & Insights Blog"
+        description="Expert commercial insurance guidance, risk management strategies, and industry updates. Stay informed with articles on general liability, workers comp, commercial auto, and business insurance best practices."
+        keywords="commercial insurance blog, business insurance news, insurance industry updates, risk management articles, insurance tips, commercial coverage insights"
+      />
+      <div className="min-h-screen bg-background flex flex-col">
+        <Header />
       <div className="bg-gradient-to-br from-[#1e3a8a] via-[#1e40af] to-[#3b5998] py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -155,5 +162,6 @@ export default function BlogPage() {
       </div>
       <Footer />
     </div>
+    </>
   );
 }

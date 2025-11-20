@@ -5,19 +5,27 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 import CallToAction from "@/components/CallToAction";
 import ContactInfo from "@/components/ContactInfo";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <main id="main-content">
-        <Hero />
-        <InsuranceProducts />
-        <WhyChooseUs />
-        <CallToAction />
-        <ContactInfo />
-      </main>
-      <Footer />
-    </div>
+    <>
+      <SEOHead
+        title="Commercial Insurance Across 15 States"
+        description="Get competitive commercial insurance quotes for your business. Serving 15 states with expert coverage for general liability, commercial auto, workers comp, and 40+ specialized insurance products. Licensed independent agency since 2010."
+        keywords="commercial insurance, business insurance, general liability, workers compensation, commercial auto insurance, professional liability, California commercial insurance, independent insurance agency"
+      />
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main id="main-content">
+          <Hero />
+          <InsuranceProducts />
+          <WhyChooseUs />
+          <CallToAction />
+          <ContactInfo />
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 }

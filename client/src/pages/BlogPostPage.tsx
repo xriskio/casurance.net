@@ -9,6 +9,7 @@ import type { BlogPost } from "@shared/schema";
 import ReactMarkdown from "react-markdown";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Helmet } from "react-helmet-async";
 
 export default function BlogPostPage() {
   const [, params] = useRoute("/blog/:slug");
@@ -79,8 +80,35 @@ export default function BlogPostPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <Header />
+    <>
+      <Helmet>
+        <title>{post.title} | Casurance Blog</title>
+        <meta name="description" content={post.excerpt || post.title} />
+        <meta name="keywords" content={post.tags?.join(', ') || 'commercial insurance'} />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={post.title} />
+        <meta property="og:description" content={post.excerpt || post.title} />
+        {post.imageUrl && <meta property="og:image" content={post.imageUrl} />}
+        <meta property="article:published_time" content={post.publishedAt?.toString() || ''} />
+        <meta property="article:author" content={post.author || 'Casurance Team'} />
+        <meta property="article:section" content={post.category} />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": post.title,
+            "datePublished": post.publishedAt,
+            "author": {
+              "@type": "Person",
+              "name": post.author || "Casurance Team"
+            },
+            "articleSection": post.category,
+            "keywords": post.tags?.join(', ')
+          })}
+        </script>
+      </Helmet>
+      <div className="min-h-screen bg-background flex flex-col">
+        <Header />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-1">
         <Link href="/blog">
           <Button variant="ghost" className="mb-6" data-testid="button-back-to-blog">
@@ -175,5 +203,6 @@ export default function BlogPostPage() {
       </div>
       <Footer />
     </div>
+    </>
   );
 }

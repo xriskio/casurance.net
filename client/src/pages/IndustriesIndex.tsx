@@ -7,6 +7,7 @@ import { getIndustryImage } from "@shared/industryImages";
 import { Link, useLocation } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { useState } from "react";
+import SEOHead from "@/components/SEOHead";
 
 export default function IndustriesIndex() {
   const [, setLocation] = useLocation();
@@ -29,8 +30,14 @@ export default function IndustriesIndex() {
   const featuredIndustries = sortedIndustries.slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <Header />
+    <>
+      <SEOHead
+        title="Industry-Specific Commercial Insurance Solutions"
+        description="Specialized commercial insurance for 23+ industries including restaurants, construction, trucking, hotels, self-storage, NEMT transportation, golf courses, auto dealers, and more. Expert coverage tailored to your industry's unique risks."
+        keywords="industry specific insurance, restaurant insurance, construction insurance, trucking insurance, hotel insurance, transportation insurance, self storage insurance, specialized commercial insurance"
+      />
+      <div className="min-h-screen bg-background flex flex-col">
+        <Header />
       
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-primary to-primary/90 text-primary-foreground py-16 lg:py-24">
@@ -152,5 +159,6 @@ export default function IndustriesIndex() {
 
       <Footer />
     </div>
+    </>
   );
 }

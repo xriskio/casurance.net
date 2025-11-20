@@ -1,11 +1,18 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import QuoteRequestForm from "@/components/QuoteRequestForm";
+import SEOHead from "@/components/SEOHead";
 
 export default function QuotePage() {
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <Header />
+    <>
+      <SEOHead
+        title="Get Free Commercial Insurance Quote"
+        description="Request a free commercial insurance quote from licensed agents. Fast, competitive rates for general liability, workers comp, commercial auto, and 40+ insurance products. 24-hour response time guaranteed."
+        keywords="commercial insurance quote, business insurance quote, free insurance quote, commercial auto quote, general liability quote, workers compensation quote"
+      />
+      <div className="min-h-screen bg-background flex flex-col">
+        <Header />
       <div className="bg-gradient-to-br from-[#1e3a8a] via-[#1e40af] to-[#3b5998] py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center">
@@ -25,5 +32,6 @@ export default function QuotePage() {
       </main>
       <Footer />
     </div>
+    </>
   );
 }
