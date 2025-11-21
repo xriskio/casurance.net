@@ -117,6 +117,7 @@ const STEPS = [
 export default function CyberLiabilityQuoteForm() {
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [referenceNumber, setReferenceNumber] = useState("");
   const { toast } = useToast();
 
   const form = useForm<FormData>({
@@ -178,23 +179,21 @@ export default function CyberLiabilityQuoteForm() {
 
   const submitMutation = useMutation({
     mutationFn: async (data: FormData) => {
-      return apiRequest("POST", "/api/quote-requests", {
-        ...data,
-        type: "cyber_liability",
-      });
+      return apiRequest("POST", "/api/cyber-liability-quotes", data);
     },
-    onSuccess: () => {
-      toast({
-        title: "Quote Request Submitted",
-        description: "We'll contact you within 24 hours with your cyber liability insurance quote.",
-      });
+    onSuccess: (response) => {
+      setReferenceNumber(response.referenceNumber);
       setIsSubmitted(true);
-      queryClient.invalidateQueries({ queryKey: ["/api/quote-requests"] });
+      toast({
+        title: "Quote Request Submitted!",
+        description: `Your reference number is ${response.referenceNumber}. We'll contact you shortly.`,
+      });
+      queryClient.invalidateQueries({ queryKey: ["/api/cyber-liability-quotes"] });
     },
-    onError: () => {
+    onError: (error: any) => {
       toast({
         title: "Submission Failed",
-        description: "Please try again or contact us directly.",
+        description: error.message || "Please try again or contact us directly.",
         variant: "destructive",
       });
     },
@@ -247,12 +246,12 @@ export default function CyberLiabilityQuoteForm() {
       <Card className="max-w-2xl mx-auto">
         <CardContent className="p-12 text-center">
           <CheckCircle className="w-16 h-16 text-green-600 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-foreground mb-2">Request Submitted Successfully</h2>
-          <p className="text-muted-foreground mb-6">
-            Thank you for requesting a cyber liability insurance quote. Our team will review your information and contact you within 24 hours.
+          <h2 className="text-2xl font-bold text-foreground mb-2">Quote Request Submitted!</h2>
+          <p className="text-lg font-semibold text-primary mb-2">
+            Reference Number: {referenceNumber}
           </p>
-          <p className="text-sm text-muted-foreground">
-            Reference Number: CYB-{Date.now().toString().slice(-8)}
+          <p className="text-muted-foreground mb-6">
+            Thank you for requesting a cyber liability insurance quote. Our team will review your information and contact you within 24 hours. Please save your reference number for future correspondence.
           </p>
         </CardContent>
       </Card>

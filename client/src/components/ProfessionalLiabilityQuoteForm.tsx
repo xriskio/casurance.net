@@ -164,6 +164,7 @@ function getFieldsForStep(step: number): (keyof FormData)[] {
 export default function ProfessionalLiabilityQuoteForm() {
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [referenceNumber, setReferenceNumber] = useState("");
   const { toast } = useToast();
 
   const form = useForm<FormData>({
@@ -269,23 +270,21 @@ export default function ProfessionalLiabilityQuoteForm() {
 
   const submitMutation = useMutation({
     mutationFn: async (data: FormData) => {
-      return apiRequest("POST", "/api/quote-requests", {
-        ...data,
-        type: "professional_liability",
-      });
+      return apiRequest("POST", "/api/professional-liability-quotes", data);
     },
-    onSuccess: () => {
-      toast({
-        title: "Quote Request Submitted",
-        description: "We'll contact you within 24 hours with your professional liability insurance quote.",
-      });
+    onSuccess: (response) => {
+      setReferenceNumber(response.referenceNumber);
       setIsSubmitted(true);
-      queryClient.invalidateQueries({ queryKey: ["/api/quote-requests"] });
+      toast({
+        title: "Quote Request Submitted!",
+        description: `Your reference number is ${response.referenceNumber}. We'll contact you shortly.`,
+      });
+      queryClient.invalidateQueries({ queryKey: ["/api/professional-liability-quotes"] });
     },
-    onError: () => {
+    onError: (error: any) => {
       toast({
         title: "Submission Failed",
-        description: "Please try again or contact us directly.",
+        description: error.message || "Please try again or contact us directly.",
         variant: "destructive",
       });
     },
@@ -322,14 +321,18 @@ export default function ProfessionalLiabilityQuoteForm() {
             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
               <CheckCircle className="h-8 w-8 text-green-600" data-testid="icon-success" />
             </div>
-            <h3 className="text-2xl font-bold text-foreground mb-4">Professional Liability Quote Request Received!</h3>
+            <h3 className="text-2xl font-bold text-foreground mb-2">Quote Request Submitted!</h3>
+            <p className="text-lg font-semibold text-primary mb-4">
+              Reference Number: {referenceNumber}
+            </p>
             <p className="text-muted-foreground mb-6">
-              Thank you for your professional liability insurance quote request. Our underwriting team will review your information and contact you within 24 hours with a competitive quote tailored to your professional services firm.
+              Thank you for your professional liability insurance quote request. Our underwriting team will review your information and contact you within 24 hours with a competitive quote tailored to your professional services firm. Please save your reference number for future correspondence.
             </p>
             <Button 
               onClick={() => {
                 setIsSubmitted(false);
                 setCurrentStep(0);
+                setReferenceNumber("");
                 form.reset();
               }}
               data-testid="button-submit-another"

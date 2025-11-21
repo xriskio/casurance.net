@@ -1,4 +1,4 @@
-import { quoteRequests, serviceRequests, oceanCargoQuotes, selfStorageQuotes, filmProductionQuotes, productLiabilityQuotes, securityServicesQuotes, buildersRiskQuotes, vacantBuildingQuotes, craneRiggersQuotes, commercialAutoQuotes, generalLiabilityQuotes, habitationalQuotes, hotelQuotes, restaurantQuotes, truckingQuotes, workersCompQuotes, managementLiabilityQuotes, commercialPackageQuotes, nemtApplications, ambulanceApplications, tncApplications, limousineQuotes, publicTransportationQuotes, taxiBlackCarQuotes, quickQuotes, contactRequests, applicationFiles, blogPosts, pressReleases, newsletterSubscriptions, highValueHomeQuotes, commercialFloodQuotes, commercialEarthquakeQuotes, franchisedDealerQuotes, garageServiceQuotes, autoDealerGarageQuotes, golfCountryClubQuotes, type InsertQuoteRequest, type QuoteRequest, type InsertServiceRequest, type ServiceRequest, type InsertOceanCargoQuote, type OceanCargoQuote, type InsertSelfStorageQuote, type SelfStorageQuote, type InsertFilmProductionQuote, type FilmProductionQuote, type InsertProductLiabilityQuote, type ProductLiabilityQuote, type InsertSecurityServicesQuote, type SecurityServicesQuote, type InsertBuildersRiskQuote, type BuildersRiskQuote, type InsertVacantBuildingQuote, type VacantBuildingQuote, type InsertCraneRiggersQuote, type CraneRiggersQuote, type InsertCommercialAutoQuote, type CommercialAutoQuote, type InsertGeneralLiabilityQuote, type GeneralLiabilityQuote, type InsertHabitationalQuote, type HabitationalQuote, type InsertHotelQuote, type HotelQuote, type InsertRestaurantQuote, type RestaurantQuote, type InsertTruckingQuote, type TruckingQuote, type InsertWorkersCompQuote, type WorkersCompQuote, type InsertManagementLiabilityQuote, type ManagementLiabilityQuote, type InsertCommercialPackageQuote, type CommercialPackageQuote, type InsertNemtApplication, type NemtApplication, type InsertAmbulanceApplication, type AmbulanceApplication, type InsertTncApplication, type TncApplication, type InsertLimousineQuote, type LimousineQuote, type InsertPublicTransportationQuote, type PublicTransportationQuote, type InsertTaxiBlackCarQuote, type TaxiBlackCarQuote, type InsertQuickQuote, type QuickQuote, type InsertContactRequest, type ContactRequest, type ApplicationFile, type InsertBlogPost, type BlogPost, type InsertPressRelease, type PressRelease, type InsertNewsletterSubscription, type NewsletterSubscription, type InsertHighValueHomeQuote, type HighValueHomeQuote, type InsertCommercialFloodQuote, type CommercialFloodQuote, type InsertCommercialEarthquakeQuote, type CommercialEarthquakeQuote, type InsertFranchisedDealerQuote, type FranchisedDealerQuote, type InsertGarageServiceQuote, type GarageServiceQuote, type InsertAutoDealerGarageQuote, type AutoDealerGarageQuote, type InsertGolfCountryClubQuote, type GolfCountryClubQuote } from "@shared/schema";
+import { quoteRequests, serviceRequests, oceanCargoQuotes, selfStorageQuotes, filmProductionQuotes, productLiabilityQuotes, securityServicesQuotes, buildersRiskQuotes, vacantBuildingQuotes, craneRiggersQuotes, commercialAutoQuotes, generalLiabilityQuotes, habitationalQuotes, hotelQuotes, restaurantQuotes, truckingQuotes, workersCompQuotes, managementLiabilityQuotes, commercialPackageQuotes, nemtApplications, ambulanceApplications, tncApplications, limousineQuotes, publicTransportationQuotes, taxiBlackCarQuotes, quickQuotes, contactRequests, applicationFiles, blogPosts, pressReleases, newsletterSubscriptions, highValueHomeQuotes, commercialFloodQuotes, commercialEarthquakeQuotes, franchisedDealerQuotes, garageServiceQuotes, autoDealerGarageQuotes, golfCountryClubQuotes, commercialPropertyQuotes, constructionCasualtyQuotes, cyberLiabilityQuotes, employmentPracticesQuotes, professionalLiabilityQuotes, religiousOrgQuotes, type InsertQuoteRequest, type QuoteRequest, type InsertServiceRequest, type ServiceRequest, type InsertOceanCargoQuote, type OceanCargoQuote, type InsertSelfStorageQuote, type SelfStorageQuote, type InsertFilmProductionQuote, type FilmProductionQuote, type InsertProductLiabilityQuote, type ProductLiabilityQuote, type InsertSecurityServicesQuote, type SecurityServicesQuote, type InsertBuildersRiskQuote, type BuildersRiskQuote, type InsertVacantBuildingQuote, type VacantBuildingQuote, type InsertCraneRiggersQuote, type CraneRiggersQuote, type InsertCommercialAutoQuote, type CommercialAutoQuote, type InsertGeneralLiabilityQuote, type GeneralLiabilityQuote, type InsertHabitationalQuote, type HabitationalQuote, type InsertHotelQuote, type HotelQuote, type InsertRestaurantQuote, type RestaurantQuote, type InsertTruckingQuote, type TruckingQuote, type InsertWorkersCompQuote, type WorkersCompQuote, type InsertManagementLiabilityQuote, type ManagementLiabilityQuote, type InsertCommercialPackageQuote, type CommercialPackageQuote, type InsertNemtApplication, type NemtApplication, type InsertAmbulanceApplication, type AmbulanceApplication, type InsertTncApplication, type TncApplication, type InsertLimousineQuote, type LimousineQuote, type InsertPublicTransportationQuote, type PublicTransportationQuote, type InsertTaxiBlackCarQuote, type TaxiBlackCarQuote, type InsertQuickQuote, type QuickQuote, type InsertContactRequest, type ContactRequest, type ApplicationFile, type InsertBlogPost, type BlogPost, type InsertPressRelease, type PressRelease, type InsertNewsletterSubscription, type NewsletterSubscription, type InsertHighValueHomeQuote, type HighValueHomeQuote, type InsertCommercialFloodQuote, type CommercialFloodQuote, type InsertCommercialEarthquakeQuote, type CommercialEarthquakeQuote, type InsertFranchisedDealerQuote, type FranchisedDealerQuote, type InsertGarageServiceQuote, type GarageServiceQuote, type InsertAutoDealerGarageQuote, type AutoDealerGarageQuote, type InsertGolfCountryClubQuote, type GolfCountryClubQuote, type InsertCommercialPropertyQuote, type CommercialPropertyQuote, type InsertConstructionCasualtyQuote, type ConstructionCasualtyQuote, type InsertCyberLiabilityQuote, type CyberLiabilityQuote, type InsertEmploymentPracticesQuote, type EmploymentPracticesQuote, type InsertProfessionalLiabilityQuote, type ProfessionalLiabilityQuote, type InsertReligiousOrgQuote, type ReligiousOrgQuote } from "@shared/schema";
 import { db } from "./db";
 import { randomUUID } from "crypto";
 import { eq, desc, like, or } from "drizzle-orm";
@@ -54,6 +54,12 @@ export interface IStorage {
   createGarageServiceQuote(quote: InsertGarageServiceQuote): Promise<GarageServiceQuote>;
   createAutoDealerGarageQuote(quote: InsertAutoDealerGarageQuote): Promise<AutoDealerGarageQuote>;
   createGolfCountryClubQuote(quote: InsertGolfCountryClubQuote): Promise<GolfCountryClubQuote>;
+  createCommercialPropertyQuote(quote: InsertCommercialPropertyQuote): Promise<CommercialPropertyQuote>;
+  createConstructionCasualtyQuote(quote: InsertConstructionCasualtyQuote): Promise<ConstructionCasualtyQuote>;
+  createCyberLiabilityQuote(quote: InsertCyberLiabilityQuote): Promise<CyberLiabilityQuote>;
+  createEmploymentPracticesQuote(quote: InsertEmploymentPracticesQuote): Promise<EmploymentPracticesQuote>;
+  createProfessionalLiabilityQuote(quote: InsertProfessionalLiabilityQuote): Promise<ProfessionalLiabilityQuote>;
+  createReligiousOrgQuote(quote: InsertReligiousOrgQuote): Promise<ReligiousOrgQuote>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -568,6 +574,60 @@ export class DatabaseStorage implements IStorage {
     const id = randomUUID();
     const [quote] = await db
       .insert(golfCountryClubQuotes)
+      .values({ ...insertQuote, id })
+      .returning();
+    return quote;
+  }
+
+  async createCommercialPropertyQuote(insertQuote: InsertCommercialPropertyQuote): Promise<CommercialPropertyQuote> {
+    const id = randomUUID();
+    const [quote] = await db
+      .insert(commercialPropertyQuotes)
+      .values({ ...insertQuote, id })
+      .returning();
+    return quote;
+  }
+
+  async createConstructionCasualtyQuote(insertQuote: InsertConstructionCasualtyQuote): Promise<ConstructionCasualtyQuote> {
+    const id = randomUUID();
+    const [quote] = await db
+      .insert(constructionCasualtyQuotes)
+      .values({ ...insertQuote, id })
+      .returning();
+    return quote;
+  }
+
+  async createCyberLiabilityQuote(insertQuote: InsertCyberLiabilityQuote): Promise<CyberLiabilityQuote> {
+    const id = randomUUID();
+    const [quote] = await db
+      .insert(cyberLiabilityQuotes)
+      .values({ ...insertQuote, id })
+      .returning();
+    return quote;
+  }
+
+  async createEmploymentPracticesQuote(insertQuote: InsertEmploymentPracticesQuote): Promise<EmploymentPracticesQuote> {
+    const id = randomUUID();
+    const [quote] = await db
+      .insert(employmentPracticesQuotes)
+      .values({ ...insertQuote, id })
+      .returning();
+    return quote;
+  }
+
+  async createProfessionalLiabilityQuote(insertQuote: InsertProfessionalLiabilityQuote): Promise<ProfessionalLiabilityQuote> {
+    const id = randomUUID();
+    const [quote] = await db
+      .insert(professionalLiabilityQuotes)
+      .values({ ...insertQuote, id })
+      .returning();
+    return quote;
+  }
+
+  async createReligiousOrgQuote(insertQuote: InsertReligiousOrgQuote): Promise<ReligiousOrgQuote> {
+    const id = randomUUID();
+    const [quote] = await db
+      .insert(religiousOrgQuotes)
       .values({ ...insertQuote, id })
       .returning();
     return quote;

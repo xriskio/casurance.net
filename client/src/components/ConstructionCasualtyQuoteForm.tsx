@@ -209,6 +209,7 @@ const STEPS = [
 
 export default function ConstructionCasualtyQuoteForm() {
   const [currentStep, setCurrentStep] = useState(1);
+  const [referenceNumber, setReferenceNumber] = useState("");
   const { toast } = useToast();
 
   const form = useForm<FormData>({
@@ -267,26 +268,20 @@ export default function ConstructionCasualtyQuoteForm() {
 
   const mutation = useMutation({
     mutationFn: async (data: FormData) => {
-      return apiRequest("POST", "/api/quote-requests", {
-        businessName: data.applicantName,
-        contactName: data.riskManagementContact,
-        email: data.email,
-        phone: data.phone,
-        insuranceType: "Construction Casualty",
-        additionalInfo: JSON.stringify(data),
-      });
+      return apiRequest("POST", "/api/construction-casualty-quotes", data);
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/quote-requests"] });
-      toast({
-        title: "Quote request submitted!",
-        description: "We'll review your information and contact you shortly with a customized quote.",
-      });
+    onSuccess: (response) => {
+      setReferenceNumber(response.referenceNumber);
       setCurrentStep(5);
+      toast({
+        title: "Quote Request Submitted!",
+        description: `Your reference number is ${response.referenceNumber}. We'll contact you shortly.`,
+      });
+      queryClient.invalidateQueries({ queryKey: ["/api/construction-casualty-quotes"] });
     },
     onError: (error: Error) => {
       toast({
-        title: "Submission failed",
+        title: "Submission Failed",
         description: error.message || "Please try again or contact us directly.",
         variant: "destructive",
       });
@@ -338,17 +333,20 @@ export default function ConstructionCasualtyQuoteForm() {
 
   if (currentStep === 5) {
     return (
-      <Card>
+      <Card className="max-w-2xl mx-auto">
         <CardContent className="pt-6 text-center py-12">
           <div className="mb-6 flex justify-center">
             <div className="rounded-full bg-green-100 p-3">
               <CheckCircle className="h-12 w-12 text-green-600" />
             </div>
           </div>
-          <h2 className="text-2xl font-bold mb-4" data-testid="text-success-title">Thank You!</h2>
+          <h2 className="text-2xl font-bold mb-4" data-testid="text-success-title">Quote Request Submitted!</h2>
+          <p className="text-lg font-semibold text-primary mb-2">
+            Reference Number: {referenceNumber}
+          </p>
           <p className="text-muted-foreground mb-6" data-testid="text-success-message">
             Your construction casualty insurance quote request has been submitted successfully. 
-            Our specialized contractors insurance team will review your information and contact you within 1-2 business days with a customized quote.
+            Our specialized contractors insurance team will review your information and contact you within 1-2 business days with a customized quote. Please save your reference number for future correspondence.
           </p>
           <Button
             onClick={() => window.location.href = "/"}

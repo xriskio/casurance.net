@@ -130,6 +130,7 @@ const STEPS = [
 export default function EmploymentPracticesQuoteForm() {
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [referenceNumber, setReferenceNumber] = useState("");
   const { toast } = useToast();
 
   const form = useForm<FormData>({
@@ -220,23 +221,21 @@ export default function EmploymentPracticesQuoteForm() {
 
   const submitMutation = useMutation({
     mutationFn: async (data: FormData) => {
-      return apiRequest("POST", "/api/quote-requests", {
-        ...data,
-        type: "employment_practices",
-      });
+      return apiRequest("POST", "/api/employment-practices-quotes", data);
     },
-    onSuccess: () => {
-      toast({
-        title: "Quote Request Submitted",
-        description: "We'll contact you within 24 hours with your Employment Practices Liability insurance quote.",
-      });
+    onSuccess: (response) => {
+      setReferenceNumber(response.referenceNumber);
       setIsSubmitted(true);
-      queryClient.invalidateQueries({ queryKey: ["/api/quote-requests"] });
+      toast({
+        title: "Quote Request Submitted!",
+        description: `Your reference number is ${response.referenceNumber}. We'll contact you shortly.`,
+      });
+      queryClient.invalidateQueries({ queryKey: ["/api/employment-practices-quotes"] });
     },
-    onError: () => {
+    onError: (error: any) => {
       toast({
         title: "Submission Failed",
-        description: "Please try again or contact us directly.",
+        description: error.message || "Please try again or contact us directly.",
         variant: "destructive",
       });
     },
@@ -288,12 +287,15 @@ export default function EmploymentPracticesQuoteForm() {
         <CardContent className="pt-6">
           <div className="text-center space-y-4">
             <div className="flex justify-center">
-              <CheckCircle className="w-16 h-16 text-primary" data-testid="icon-success" />
+              <CheckCircle className="w-16 h-16 text-green-600" data-testid="icon-success" />
             </div>
-            <h2 className="text-2xl font-semibold" data-testid="text-success-title">Quote Request Submitted Successfully!</h2>
+            <h2 className="text-2xl font-bold" data-testid="text-success-title">Quote Request Submitted!</h2>
+            <p className="text-lg font-semibold text-primary">
+              Reference Number: {referenceNumber}
+            </p>
             <p className="text-muted-foreground" data-testid="text-success-message">
               Thank you for your Employment Practices Liability insurance quote request. 
-              Our team will review your information and contact you within 24 business hours.
+              Our team will review your information and contact you within 24 business hours. Please save your reference number for future correspondence.
             </p>
           </div>
         </CardContent>

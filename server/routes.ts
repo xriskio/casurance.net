@@ -2,7 +2,7 @@ import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { requireAgent } from "./auth/middleware";
-import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema, insertFilmProductionQuoteSchema, insertProductLiabilityQuoteSchema, insertSecurityServicesQuoteSchema, insertBuildersRiskQuoteSchema, insertVacantBuildingQuoteSchema, insertCraneRiggersQuoteSchema, insertCommercialAutoQuoteSchema, insertGeneralLiabilityQuoteSchema, insertHabitationalQuoteSchema, insertHotelQuoteSchema, insertRestaurantQuoteSchema, insertTruckingQuoteSchema, insertWorkersCompQuoteSchema, insertManagementLiabilityQuoteSchema, insertCommercialPackageQuoteSchema, insertNemtApplicationSchema, insertAmbulanceApplicationSchema, insertTncApplicationSchema, insertLimousineQuoteSchema, insertPublicTransportationQuoteSchema, insertTaxiBlackCarQuoteSchema, insertQuickQuoteSchema, insertContactRequestSchema, insertBlogPostSchema, insertPressReleaseSchema, insertNewsletterSubscriptionSchema, insertHighValueHomeQuoteSchema, insertCommercialFloodQuoteSchema, insertCommercialEarthquakeQuoteSchema, insertFranchisedDealerQuoteSchema, insertGarageServiceQuoteSchema, insertAutoDealerGarageQuoteSchema, insertGolfCountryClubQuoteSchema } from "@shared/schema";
+import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema, insertFilmProductionQuoteSchema, insertProductLiabilityQuoteSchema, insertSecurityServicesQuoteSchema, insertBuildersRiskQuoteSchema, insertVacantBuildingQuoteSchema, insertCraneRiggersQuoteSchema, insertCommercialAutoQuoteSchema, insertGeneralLiabilityQuoteSchema, insertHabitationalQuoteSchema, insertHotelQuoteSchema, insertRestaurantQuoteSchema, insertTruckingQuoteSchema, insertWorkersCompQuoteSchema, insertManagementLiabilityQuoteSchema, insertCommercialPackageQuoteSchema, insertNemtApplicationSchema, insertAmbulanceApplicationSchema, insertTncApplicationSchema, insertLimousineQuoteSchema, insertPublicTransportationQuoteSchema, insertTaxiBlackCarQuoteSchema, insertQuickQuoteSchema, insertContactRequestSchema, insertBlogPostSchema, insertPressReleaseSchema, insertNewsletterSubscriptionSchema, insertHighValueHomeQuoteSchema, insertCommercialFloodQuoteSchema, insertCommercialEarthquakeQuoteSchema, insertFranchisedDealerQuoteSchema, insertGarageServiceQuoteSchema, insertAutoDealerGarageQuoteSchema, insertGolfCountryClubQuoteSchema, insertCommercialPropertyQuoteSchema, insertConstructionCasualtyQuoteSchema, insertCyberLiabilityQuoteSchema, insertEmploymentPracticesQuoteSchema, insertProfessionalLiabilityQuoteSchema, insertReligiousOrgQuoteSchema } from "@shared/schema";
 import { registerAgentRoutes } from "./routes/agent";
 import { registerCmsRoutes } from "./routes/cms";
 import sitemapRouter from "./routes/sitemap";
@@ -917,6 +917,156 @@ export async function registerRoutes(app: Express): Promise<Server> {
         email: validatedData.email,
         phone: validatedData.phone,
         insuranceType: 'Golf & Country Club Insurance'
+      };
+      
+      sendQuoteConfirmationEmail(emailData).catch(err => console.error('Failed to send confirmation email:', err));
+      sendAgentQuoteNotification(emailData).catch(err => console.error('Failed to send agent notification:', err));
+      
+      res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // Commercial Property Quotes
+  app.post("/api/commercial-property-quotes", async (req, res) => {
+    try {
+      const validatedData = insertCommercialPropertyQuoteSchema.parse(req.body);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createCommercialPropertyQuote({ ...validatedData, referenceNumber } as any);
+      
+      const emailData = {
+        referenceNumber,
+        businessName: validatedData.applicantName,
+        contactName: validatedData.applicantName,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Commercial Property Insurance'
+      };
+      
+      sendQuoteConfirmationEmail(emailData).catch(err => console.error('Failed to send confirmation email:', err));
+      sendAgentQuoteNotification(emailData).catch(err => console.error('Failed to send agent notification:', err));
+      
+      res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // Construction Casualty Quotes
+  app.post("/api/construction-casualty-quotes", async (req, res) => {
+    try {
+      const validatedData = insertConstructionCasualtyQuoteSchema.parse(req.body);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createConstructionCasualtyQuote({ ...validatedData, referenceNumber } as any);
+      
+      const emailData = {
+        referenceNumber,
+        businessName: validatedData.applicantName,
+        contactName: validatedData.applicantName,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Construction Casualty Insurance'
+      };
+      
+      sendQuoteConfirmationEmail(emailData).catch(err => console.error('Failed to send confirmation email:', err));
+      sendAgentQuoteNotification(emailData).catch(err => console.error('Failed to send agent notification:', err));
+      
+      res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // Cyber Liability Quotes
+  app.post("/api/cyber-liability-quotes", async (req, res) => {
+    try {
+      const validatedData = insertCyberLiabilityQuoteSchema.parse(req.body);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createCyberLiabilityQuote({ ...validatedData, referenceNumber } as any);
+      
+      const emailData = {
+        referenceNumber,
+        businessName: validatedData.companyName,
+        contactName: validatedData.companyName,
+        email: validatedData.email,
+        phone: validatedData.phone || '',
+        insuranceType: 'Cyber Liability Insurance'
+      };
+      
+      sendQuoteConfirmationEmail(emailData).catch(err => console.error('Failed to send confirmation email:', err));
+      sendAgentQuoteNotification(emailData).catch(err => console.error('Failed to send agent notification:', err));
+      
+      res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // Employment Practices Quotes
+  app.post("/api/employment-practices-quotes", async (req, res) => {
+    try {
+      const validatedData = insertEmploymentPracticesQuoteSchema.parse(req.body);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createEmploymentPracticesQuote({ ...validatedData, referenceNumber } as any);
+      
+      const emailData = {
+        referenceNumber,
+        businessName: validatedData.companyName,
+        contactName: validatedData.companyName,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Employment Practices Liability Insurance'
+      };
+      
+      sendQuoteConfirmationEmail(emailData).catch(err => console.error('Failed to send confirmation email:', err));
+      sendAgentQuoteNotification(emailData).catch(err => console.error('Failed to send agent notification:', err));
+      
+      res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // Professional Liability Quotes
+  app.post("/api/professional-liability-quotes", async (req, res) => {
+    try {
+      const validatedData = insertProfessionalLiabilityQuoteSchema.parse(req.body);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createProfessionalLiabilityQuote({ ...validatedData, referenceNumber } as any);
+      
+      const emailData = {
+        referenceNumber,
+        businessName: validatedData.firmName,
+        contactName: validatedData.firmName,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Professional Liability Insurance'
+      };
+      
+      sendQuoteConfirmationEmail(emailData).catch(err => console.error('Failed to send confirmation email:', err));
+      sendAgentQuoteNotification(emailData).catch(err => console.error('Failed to send agent notification:', err));
+      
+      res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // Religious Organization Quotes
+  app.post("/api/religious-org-quotes", async (req, res) => {
+    try {
+      const validatedData = insertReligiousOrgQuoteSchema.parse(req.body);
+      const referenceNumber = generateReferenceNumber('RFQ');
+      const quote = await storage.createReligiousOrgQuote({ ...validatedData, referenceNumber } as any);
+      
+      const emailData = {
+        referenceNumber,
+        businessName: validatedData.applicantName,
+        contactName: validatedData.applicantName,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: 'Religious Organization Insurance'
       };
       
       sendQuoteConfirmationEmail(emailData).catch(err => console.error('Failed to send confirmation email:', err));

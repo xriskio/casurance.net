@@ -684,6 +684,117 @@ export const golfCountryClubQuotes = pgTable("golf_country_club_quotes", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const commercialPropertyQuotes = pgTable("commercial_property_quotes", {
+  id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
+  applicantName: text("applicant_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  effectiveDate: text("effective_date"),
+  occupancyTypes: text("occupancy_types").array(),
+  smokeDetectorsCommon: text("smoke_detectors_common"),
+  smokeDetectorsUnits: text("smoke_detectors_units"),
+  hasSprinklerSystem: text("has_sprinkler_system"),
+  roofMaterial: text("roof_material"),
+  freezeProtectionMeasures: text("freeze_protection_measures").array(),
+  buildingValue: text("building_value"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const constructionCasualtyQuotes = pgTable("construction_casualty_quotes", {
+  id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
+  applicantName: text("applicant_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  contractorLicenseNumber: text("contractor_license_number"),
+  effectiveDate: text("effective_date"),
+  payrollNext12Months: text("payroll_next_12_months"),
+  subcontractorCostsNext12Months: text("subcontractor_costs_next_12_months"),
+  yearsInBusinessCurrentName: text("years_in_business_current_name"),
+  residentialPercent: text("residential_percent"),
+  commercialPercent: text("commercial_percent"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const cyberLiabilityQuotes = pgTable("cyber_liability_quotes", {
+  id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
+  companyName: text("company_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone"),
+  effectiveDate: text("effective_date"),
+  industry: text("industry"),
+  recordsVolume: text("records_volume"),
+  encryptedAtRest: text("encrypted_at_rest"),
+  mfaForRemoteAccess: text("mfa_for_remote_access"),
+  securityTrainingFrequency: text("security_training_frequency"),
+  requestedLimit: text("requested_limit"),
+  requestedRetention: text("requested_retention"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const employmentPracticesQuotes = pgTable("employment_practices_quotes", {
+  id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
+  companyName: text("company_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  effectiveDate: text("effective_date"),
+  totalFullTimeEmployees: text("total_full_time_employees"),
+  hasEmploymentHandbook: text("has_employment_handbook"),
+  hasAtWillProvision: text("has_at_will_provision"),
+  requestedLimit: text("requested_limit"),
+  requestedRetention: text("requested_retention"),
+  stateOfIncorporation: text("state_of_incorporation"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const professionalLiabilityQuotes = pgTable("professional_liability_quotes", {
+  id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
+  firmName: text("firm_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  effectiveDate: text("effective_date"),
+  principals: text("principals"),
+  professionals: text("professionals"),
+  pastFiscalYearRevenue: text("past_fiscal_year_revenue"),
+  hasWrittenContracts: text("has_written_contracts"),
+  requestedLimit: text("requested_limit"),
+  requestedRetention: text("requested_retention"),
+  natureOfBusiness: text("nature_of_business"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const religiousOrgQuotes = pgTable("religious_org_quotes", {
+  id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
+  applicantName: text("applicant_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  denomination: text("denomination"),
+  numberOfMembers: text("number_of_members"),
+  is501c3: text("is_501c3"),
+  hasYouthProgram: text("has_youth_program"),
+  effectiveDate: text("effective_date"),
+  requestedLimit: text("requested_limit"),
+  numberOfVolunteers: text("number_of_volunteers"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 // CMS Tables
 export const cmsPages = pgTable("cms_pages", {
   id: varchar("id").primaryKey(),
@@ -967,6 +1078,42 @@ export const insertGolfCountryClubQuoteSchema = createInsertSchema(golfCountryCl
   createdAt: true,
 });
 
+export const insertCommercialPropertyQuoteSchema = createInsertSchema(commercialPropertyQuotes).omit({
+  id: true,
+  referenceNumber: true,
+  createdAt: true,
+});
+
+export const insertConstructionCasualtyQuoteSchema = createInsertSchema(constructionCasualtyQuotes).omit({
+  id: true,
+  referenceNumber: true,
+  createdAt: true,
+});
+
+export const insertCyberLiabilityQuoteSchema = createInsertSchema(cyberLiabilityQuotes).omit({
+  id: true,
+  referenceNumber: true,
+  createdAt: true,
+});
+
+export const insertEmploymentPracticesQuoteSchema = createInsertSchema(employmentPracticesQuotes).omit({
+  id: true,
+  referenceNumber: true,
+  createdAt: true,
+});
+
+export const insertProfessionalLiabilityQuoteSchema = createInsertSchema(professionalLiabilityQuotes).omit({
+  id: true,
+  referenceNumber: true,
+  createdAt: true,
+});
+
+export const insertReligiousOrgQuoteSchema = createInsertSchema(religiousOrgQuotes).omit({
+  id: true,
+  referenceNumber: true,
+  createdAt: true,
+});
+
 export const insertCmsPageSchema = createInsertSchema(cmsPages)
   .omit({
     id: true,
@@ -1073,6 +1220,18 @@ export type InsertAutoDealerGarageQuote = z.infer<typeof insertAutoDealerGarageQ
 export type AutoDealerGarageQuote = typeof autoDealerGarageQuotes.$inferSelect;
 export type InsertGolfCountryClubQuote = z.infer<typeof insertGolfCountryClubQuoteSchema>;
 export type GolfCountryClubQuote = typeof golfCountryClubQuotes.$inferSelect;
+export type InsertCommercialPropertyQuote = z.infer<typeof insertCommercialPropertyQuoteSchema>;
+export type CommercialPropertyQuote = typeof commercialPropertyQuotes.$inferSelect;
+export type InsertConstructionCasualtyQuote = z.infer<typeof insertConstructionCasualtyQuoteSchema>;
+export type ConstructionCasualtyQuote = typeof constructionCasualtyQuotes.$inferSelect;
+export type InsertCyberLiabilityQuote = z.infer<typeof insertCyberLiabilityQuoteSchema>;
+export type CyberLiabilityQuote = typeof cyberLiabilityQuotes.$inferSelect;
+export type InsertEmploymentPracticesQuote = z.infer<typeof insertEmploymentPracticesQuoteSchema>;
+export type EmploymentPracticesQuote = typeof employmentPracticesQuotes.$inferSelect;
+export type InsertProfessionalLiabilityQuote = z.infer<typeof insertProfessionalLiabilityQuoteSchema>;
+export type ProfessionalLiabilityQuote = typeof professionalLiabilityQuotes.$inferSelect;
+export type InsertReligiousOrgQuote = z.infer<typeof insertReligiousOrgQuoteSchema>;
+export type ReligiousOrgQuote = typeof religiousOrgQuotes.$inferSelect;
 export type InsertCmsPage = z.infer<typeof insertCmsPageSchema>;
 export type UpdateCmsPage = z.infer<typeof updateCmsPageSchema>;
 export type CmsPage = typeof cmsPages.$inferSelect;
