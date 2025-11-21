@@ -19,6 +19,29 @@ import {
   franchisedDealerQuotes,
   garageServiceQuotes,
   autoDealerGarageQuotes,
+  buildersRiskQuotes,
+  vacantBuildingQuotes,
+  craneRiggersQuotes,
+  commercialAutoQuotes,
+  generalLiabilityQuotes,
+  habitationalQuotes,
+  hotelQuotes,
+  restaurantQuotes,
+  truckingQuotes,
+  workersCompQuotes,
+  managementLiabilityQuotes,
+  commercialPackageQuotes,
+  limousineQuotes,
+  publicTransportationQuotes,
+  taxiBlackCarQuotes,
+  quickQuotes,
+  golfCountryClubQuotes,
+  commercialPropertyQuotes,
+  constructionCasualtyQuotes,
+  cyberLiabilityQuotes,
+  employmentPracticesQuotes,
+  professionalLiabilityQuotes,
+  religiousOrgQuotes,
   agents,
   insertAgentSchema,
   updateBlogPostSchema,
@@ -282,6 +305,351 @@ export function registerAgentRoutes(app: Express, storage: IStorage) {
           ...autoDealerGarage.map((a) => ({
             ...a,
             submissionType: "auto-dealer-garage",
+          }))
+        );
+      }
+
+      if (!type || type === "builders-risk") {
+        const buildersRisk = await db
+          .select()
+          .from(buildersRiskQuotes)
+          .orderBy(desc(buildersRiskQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...buildersRisk.map((b) => ({
+            ...b,
+            submissionType: "builders-risk",
+          }))
+        );
+      }
+
+      if (!type || type === "vacant-building") {
+        const vacantBuilding = await db
+          .select()
+          .from(vacantBuildingQuotes)
+          .orderBy(desc(vacantBuildingQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...vacantBuilding.map((v) => ({
+            ...v,
+            submissionType: "vacant-building",
+          }))
+        );
+      }
+
+      if (!type || type === "crane-riggers") {
+        const craneRiggers = await db
+          .select()
+          .from(craneRiggersQuotes)
+          .orderBy(desc(craneRiggersQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...craneRiggers.map((c) => ({
+            ...c,
+            submissionType: "crane-riggers",
+          }))
+        );
+      }
+
+      if (!type || type === "commercial-auto") {
+        const commercialAuto = await db
+          .select()
+          .from(commercialAutoQuotes)
+          .orderBy(desc(commercialAutoQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...commercialAuto.map((c) => ({
+            ...c,
+            submissionType: "commercial-auto",
+          }))
+        );
+      }
+
+      if (!type || type === "general-liability") {
+        const generalLiability = await db
+          .select()
+          .from(generalLiabilityQuotes)
+          .orderBy(desc(generalLiabilityQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...generalLiability.map((g) => ({
+            ...g,
+            submissionType: "general-liability",
+          }))
+        );
+      }
+
+      if (!type || type === "habitational") {
+        const habitational = await db
+          .select()
+          .from(habitationalQuotes)
+          .orderBy(desc(habitationalQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...habitational.map((h) => ({
+            ...h,
+            submissionType: "habitational",
+          }))
+        );
+      }
+
+      if (!type || type === "hotel") {
+        const hotel = await db
+          .select()
+          .from(hotelQuotes)
+          .orderBy(desc(hotelQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...hotel.map((h) => ({
+            ...h,
+            submissionType: "hotel",
+          }))
+        );
+      }
+
+      if (!type || type === "restaurant") {
+        const restaurant = await db
+          .select()
+          .from(restaurantQuotes)
+          .orderBy(desc(restaurantQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...restaurant.map((r) => ({
+            ...r,
+            submissionType: "restaurant",
+          }))
+        );
+      }
+
+      if (!type || type === "trucking") {
+        const trucking = await db
+          .select()
+          .from(truckingQuotes)
+          .orderBy(desc(truckingQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...trucking.map((t) => ({
+            ...t,
+            submissionType: "trucking",
+          }))
+        );
+      }
+
+      if (!type || type === "workers-comp") {
+        const workerComp = await db
+          .select()
+          .from(workersCompQuotes)
+          .orderBy(desc(workersCompQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...workerComp.map((w) => ({
+            ...w,
+            submissionType: "workers-comp",
+          }))
+        );
+      }
+
+      if (!type || type === "management-liability") {
+        const managementLiability = await db
+          .select()
+          .from(managementLiabilityQuotes)
+          .orderBy(desc(managementLiabilityQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...managementLiability.map((m) => ({
+            ...m,
+            submissionType: "management-liability",
+          }))
+        );
+      }
+
+      if (!type || type === "commercial-package") {
+        const commercialPackage = await db
+          .select()
+          .from(commercialPackageQuotes)
+          .orderBy(desc(commercialPackageQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...commercialPackage.map((c) => ({
+            ...c,
+            submissionType: "commercial-package",
+          }))
+        );
+      }
+
+      if (!type || type === "limousine") {
+        const limousine = await db
+          .select()
+          .from(limousineQuotes)
+          .orderBy(desc(limousineQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...limousine.map((l) => ({
+            ...l,
+            submissionType: "limousine",
+          }))
+        );
+      }
+
+      if (!type || type === "public-transportation") {
+        const publicTransportation = await db
+          .select()
+          .from(publicTransportationQuotes)
+          .orderBy(desc(publicTransportationQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...publicTransportation.map((p) => ({
+            ...p,
+            submissionType: "public-transportation",
+          }))
+        );
+      }
+
+      if (!type || type === "taxi-black-car") {
+        const taxiBlackCar = await db
+          .select()
+          .from(taxiBlackCarQuotes)
+          .orderBy(desc(taxiBlackCarQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...taxiBlackCar.map((t) => ({
+            ...t,
+            submissionType: "taxi-black-car",
+          }))
+        );
+      }
+
+      if (!type || type === "quick") {
+        const quick = await db
+          .select()
+          .from(quickQuotes)
+          .orderBy(desc(quickQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...quick.map((q) => ({
+            ...q,
+            submissionType: "quick",
+          }))
+        );
+      }
+
+      if (!type || type === "golf-country-club") {
+        const golfCountryClub = await db
+          .select()
+          .from(golfCountryClubQuotes)
+          .orderBy(desc(golfCountryClubQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...golfCountryClub.map((g) => ({
+            ...g,
+            submissionType: "golf-country-club",
+          }))
+        );
+      }
+
+      if (!type || type === "commercial-property") {
+        const commercialProperty = await db
+          .select()
+          .from(commercialPropertyQuotes)
+          .orderBy(desc(commercialPropertyQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...commercialProperty.map((c) => ({
+            ...c,
+            submissionType: "commercial-property",
+          }))
+        );
+      }
+
+      if (!type || type === "construction-casualty") {
+        const constructionCasualty = await db
+          .select()
+          .from(constructionCasualtyQuotes)
+          .orderBy(desc(constructionCasualtyQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...constructionCasualty.map((c) => ({
+            ...c,
+            submissionType: "construction-casualty",
+          }))
+        );
+      }
+
+      if (!type || type === "cyber-liability") {
+        const cyberLiability = await db
+          .select()
+          .from(cyberLiabilityQuotes)
+          .orderBy(desc(cyberLiabilityQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...cyberLiability.map((c) => ({
+            ...c,
+            submissionType: "cyber-liability",
+          }))
+        );
+      }
+
+      if (!type || type === "employment-practices") {
+        const employmentPractices = await db
+          .select()
+          .from(employmentPracticesQuotes)
+          .orderBy(desc(employmentPracticesQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...employmentPractices.map((e) => ({
+            ...e,
+            submissionType: "employment-practices",
+          }))
+        );
+      }
+
+      if (!type || type === "professional-liability") {
+        const professionalLiability = await db
+          .select()
+          .from(professionalLiabilityQuotes)
+          .orderBy(desc(professionalLiabilityQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...professionalLiability.map((p) => ({
+            ...p,
+            submissionType: "professional-liability",
+          }))
+        );
+      }
+
+      if (!type || type === "religious-org") {
+        const religiousOrg = await db
+          .select()
+          .from(religiousOrgQuotes)
+          .orderBy(desc(religiousOrgQuotes.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...religiousOrg.map((r) => ({
+            ...r,
+            submissionType: "religious-org",
           }))
         );
       }
