@@ -247,7 +247,7 @@ export async function sendAgentQuoteNotification(data: QuoteRequestData): Promis
         </head>
         <body>
           <div class="header">
-            <h1>🚨 New Quote Request</h1>
+            <h1>URGENT: New Quote Request</h1>
             <p style="margin: 10px 0 0 0; font-size: 16px;">Action Required - Customer Waiting</p>
           </div>
           
@@ -304,7 +304,7 @@ export async function sendAgentQuoteNotification(data: QuoteRequestData): Promis
     await resend.emails.send({
       from: 'Casurance Notifications <noreply@casurance.net>',
       to: 'agent@casurance.net',
-      subject: `🚨 New Quote Request: ${formTitle} - ${data.referenceNumber}`,
+      subject: `URGENT: New Quote Request - ${formTitle} - ${data.referenceNumber}`,
       html: htmlContent,
     });
 
@@ -450,7 +450,7 @@ export async function sendAgentServiceNotification(data: ServiceRequestData): Pr
         </head>
         <body>
           <div class="header">
-            <h1>🔔 New Service Request</h1>
+            <h1>New Service Request</h1>
             <p style="margin: 10px 0 0 0;">Reference: ${data.referenceNumber}</p>
           </div>
           
@@ -480,7 +480,7 @@ export async function sendAgentServiceNotification(data: ServiceRequestData): Pr
     await resend.emails.send({
       from: 'Casurance Notifications <noreply@casurance.net>',
       to: 'agent@casurance.net',
-      subject: `🔔 New Service Request: ${data.requestType} - ${data.referenceNumber}`,
+      subject: `New Service Request: ${data.requestType} - ${data.referenceNumber}`,
       html: htmlContent,
     });
 

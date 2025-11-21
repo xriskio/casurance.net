@@ -195,6 +195,7 @@ const comprehensiveFormLinks: Record<string, { url: string; title: string; descr
 export default function QuoteRequestForm() {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const [referenceNumber, setReferenceNumber] = useState<string>("");
   const [showQuickQuote, setShowQuickQuote] = useState(false);
   const [formData, setFormData] = useState({
     insuranceType: "",
@@ -240,6 +241,8 @@ export default function QuoteRequestForm() {
         throw new Error('Failed to submit quote request');
       }
 
+      const result = await response.json();
+      setReferenceNumber(result.referenceNumber || '');
       setSubmitted(true);
     } catch (error) {
       console.error('Error submitting quote:', error);
@@ -257,10 +260,17 @@ export default function QuoteRequestForm() {
             <CheckCircle className="h-8 w-8 text-green-600" />
           </div>
           <h3 className="text-2xl font-bold text-foreground mb-4">Quote Request Received!</h3>
+          {referenceNumber && (
+            <div className="bg-blue-50 dark:bg-blue-950 border-2 border-primary rounded-lg p-4 mb-6">
+              <p className="text-sm text-muted-foreground mb-1">Your Reference Number</p>
+              <p className="text-3xl font-bold text-primary tracking-wider" data-testid="text-reference-number">{referenceNumber}</p>
+              <p className="text-xs text-muted-foreground mt-2">Please save this number for future reference</p>
+            </div>
+          )}
           <p className="text-muted-foreground mb-6">
             Thank you for your interest. One of our licensed agents will review your information and contact you within 24 hours with a competitive quote.
           </p>
-          <Button onClick={() => { setSubmitted(false); setStep(1); setShowQuickQuote(false); }} data-testid="button-submit-another">
+          <Button onClick={() => { setSubmitted(false); setReferenceNumber(''); setStep(1); setShowQuickQuote(false); }} data-testid="button-submit-another">
             Submit Another Request
           </Button>
         </CardContent>
