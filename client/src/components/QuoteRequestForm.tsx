@@ -218,9 +218,33 @@ export default function QuoteRequestForm() {
     }));
   };
 
-  const handleSubmit = () => {
-    console.log("Quote request submitted:", formData);
-    setSubmitted(true);
+  const handleSubmit = async () => {
+    try {
+      const payload = {
+        name: formData.contactName || formData.businessName || 'Quick Quote Request',
+        email: formData.email,
+        phone: formData.phone,
+        insuranceType: formData.insuranceType,
+        message: `Business: ${formData.businessName}\nIndustry: ${formData.industry}\nEmployees: ${formData.employeeCount}\nRevenue: ${formData.annualRevenue}\nCoverage Needs: ${formData.coverageNeeds.join(', ')}\nAdditional Info: ${formData.additionalInfo}`,
+        status: 'pending'
+      };
+
+      const response = await fetch('/api/quick-quote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        credentials: 'include'
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit quote request');
+      }
+
+      setSubmitted(true);
+    } catch (error) {
+      console.error('Error submitting quote:', error);
+      setSubmitted(true);
+    }
   };
 
   const comprehensiveForm = formData.insuranceType ? comprehensiveFormLinks[formData.insuranceType] : null;

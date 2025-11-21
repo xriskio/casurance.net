@@ -192,7 +192,17 @@ export default function CommercialPropertyQuoteForm() {
 
   const submitMutation = useMutation({
     mutationFn: async (data: FormData) => {
-      return apiRequest("POST", "/api/commercial-property-quotes", data);
+      const transformedData = {
+        ...data,
+        email: data.contactEmail,
+        phone: data.contactPhone,
+        hasSprinklerSystem: data.hasSprinklerSystem ? "yes" : "no",
+      };
+      const requestPayload = {
+        ...transformedData,
+        payload: transformedData,
+      };
+      return apiRequest("POST", "/api/commercial-property-quotes", requestPayload);
     },
     onSuccess: (response) => {
       setReferenceNumber(response.referenceNumber);
