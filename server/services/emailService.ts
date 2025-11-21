@@ -20,7 +20,14 @@ interface ServiceRequestData {
   description: string;
 }
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+function getResendClient(): Resend | null {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.warn('RESEND_API_KEY not set - emails will not be sent');
+    return null;
+  }
+  return new Resend(apiKey);
+}
 
 export async function sendQuoteConfirmationEmail(data: QuoteRequestData): Promise<void> {
   try {
@@ -170,6 +177,12 @@ export async function sendQuoteConfirmationEmail(data: QuoteRequestData): Promis
       </html>
     `;
 
+    const resend = getResendClient();
+    if (!resend) {
+      console.warn(`Skipping quote confirmation email to ${data.email} - RESEND_API_KEY not configured`);
+      return;
+    }
+
     await resend.emails.send({
       from: 'Casurance Insurance <noreply@casurance.net>',
       to: data.email,
@@ -180,7 +193,6 @@ export async function sendQuoteConfirmationEmail(data: QuoteRequestData): Promis
     console.log(`Quote confirmation email sent to ${data.email}`);
   } catch (error) {
     console.error('Failed to send quote confirmation email:', error);
-    throw error;
   }
 }
 
@@ -283,6 +295,12 @@ export async function sendAgentQuoteNotification(data: QuoteRequestData): Promis
       </html>
     `;
 
+    const resend = getResendClient();
+    if (!resend) {
+      console.warn(`Skipping agent notification for ${data.referenceNumber} - RESEND_API_KEY not configured`);
+      return;
+    }
+
     await resend.emails.send({
       from: 'Casurance Notifications <noreply@casurance.net>',
       to: 'agent@casurance.net',
@@ -293,7 +311,6 @@ export async function sendAgentQuoteNotification(data: QuoteRequestData): Promis
     console.log(`Agent notification sent for ${data.referenceNumber}`);
   } catch (error) {
     console.error('Failed to send agent notification:', error);
-    throw error;
   }
 }
 
@@ -378,6 +395,12 @@ export async function sendServiceRequestConfirmationEmail(data: ServiceRequestDa
       </html>
     `;
 
+    const resend = getResendClient();
+    if (!resend) {
+      console.warn(`Skipping service request confirmation to ${data.email} - RESEND_API_KEY not configured`);
+      return;
+    }
+
     await resend.emails.send({
       from: 'Casurance Insurance <noreply@casurance.net>',
       to: data.email,
@@ -388,7 +411,6 @@ export async function sendServiceRequestConfirmationEmail(data: ServiceRequestDa
     console.log(`Service request confirmation sent to ${data.email}`);
   } catch (error) {
     console.error('Failed to send service request confirmation:', error);
-    throw error;
   }
 }
 
@@ -449,6 +471,12 @@ export async function sendAgentServiceNotification(data: ServiceRequestData): Pr
       </html>
     `;
 
+    const resend = getResendClient();
+    if (!resend) {
+      console.warn(`Skipping agent service notification for ${data.referenceNumber} - RESEND_API_KEY not configured`);
+      return;
+    }
+
     await resend.emails.send({
       from: 'Casurance Notifications <noreply@casurance.net>',
       to: 'agent@casurance.net',
@@ -459,6 +487,5 @@ export async function sendAgentServiceNotification(data: ServiceRequestData): Pr
     console.log(`Agent notification sent for service request ${data.referenceNumber}`);
   } catch (error) {
     console.error('Failed to send agent service notification:', error);
-    throw error;
   }
 }
