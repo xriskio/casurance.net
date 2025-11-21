@@ -303,7 +303,7 @@ export async function sendAgentQuoteNotification(data: QuoteRequestData): Promis
 
     await resend.emails.send({
       from: 'Casurance Notifications <noreply@casurance.net>',
-      to: 'agent@casurance.net',
+      to: 'ops@casurance.net',
       subject: `URGENT: New Quote Request - ${formTitle} - ${data.referenceNumber}`,
       html: htmlContent,
     });
@@ -479,7 +479,7 @@ export async function sendAgentServiceNotification(data: ServiceRequestData): Pr
 
     await resend.emails.send({
       from: 'Casurance Notifications <noreply@casurance.net>',
-      to: 'agent@casurance.net',
+      to: 'ops@casurance.net',
       subject: `New Service Request: ${data.requestType} - ${data.referenceNumber}`,
       html: htmlContent,
     });
