@@ -5,12 +5,19 @@ import { validateBrandCompliance, ensureBrandCompliance } from "../lib/brand-val
 let openaiClient: OpenAI | null = null;
 
 function getOpenAIClient(): OpenAI {
-  if (!process.env.OPENAI_API_KEY) {
-    throw new Error("OPENAI_API_KEY environment variable is required for AI page generation");
+  // Support both user's OpenAI API key and Replit-managed OpenAI access
+  const apiKey = process.env.OPENAI_API_KEY || process.env.AI_INTEGRATIONS_OPENAI_API_KEY;
+  
+  if (!apiKey) {
+    throw new Error("OpenAI API key not configured. Please set OPENAI_API_KEY or use Replit AI Integrations.");
   }
+  
   if (!openaiClient) {
     openaiClient = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
+      baseURL: process.env.OPENAI_API_KEY 
+        ? "https://api.openai.com/v1" 
+        : process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
+      apiKey: apiKey,
     });
   }
   return openaiClient;
