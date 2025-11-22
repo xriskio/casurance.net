@@ -42,6 +42,8 @@ import {
   employmentPracticesQuotes,
   professionalLiabilityQuotes,
   religiousOrgQuotes,
+  nemtApplications,
+  ambulanceApplications,
   agents,
   insertAgentSchema,
   updateBlogPostSchema,
@@ -666,6 +668,38 @@ export function registerAgentRoutes(app: Express, storage: IStorage) {
             ...c,
             submissionType: "contact",
             referenceNumber: `CONTACT-${c.id.substring(0, 8).toUpperCase()}`,
+            status: "pending",
+          }))
+        );
+      }
+
+      if (!type || type === "nemt") {
+        const nemtApps = await db
+          .select()
+          .from(nemtApplications)
+          .orderBy(desc(nemtApplications.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...nemtApps.map((n) => ({
+            ...n,
+            submissionType: "nemt",
+            status: "pending",
+          }))
+        );
+      }
+
+      if (!type || type === "ambulance") {
+        const ambulanceApps = await db
+          .select()
+          .from(ambulanceApplications)
+          .orderBy(desc(ambulanceApplications.createdAt))
+          .limit(100);
+
+        submissions.push(
+          ...ambulanceApps.map((a) => ({
+            ...a,
+            submissionType: "ambulance",
             status: "pending",
           }))
         );

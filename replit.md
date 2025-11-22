@@ -12,26 +12,34 @@ Preferred communication style: Simple, everyday language.
 
 ### NEMT Application Form Enhancement (November 22, 2025)
 
-The NEMT (Non-Emergency Medical Transportation) application form has been enhanced with dynamic vehicle and driver entry functionality:
+The NEMT (Non-Emergency Medical Transportation) application form has been enhanced with dynamic vehicle and driver entry functionality matching the production requirements:
 
 **Dynamic Vehicle Entry** (Step 2):
-- Users can add up to 10 vehicles with detailed information (year, make, model, VIN, state, value, use, radius)
+- Users can add up to 10 vehicles with fields: Year, Make, Model, VIN, Seating Capacity, Value
 - Each vehicle is displayed in a responsive card layout with edit/remove actions
 - File upload option remains available for users with more than 10 vehicles
 
 **Dynamic Driver Entry** (Step 4):
-- Users can add up to 10 drivers with complete information (first name, last name, DOB, license number, license state, years licensed, NEMT experience)
+- Users can add up to 10 drivers with fields: Full Name, Date of Birth, License Number, License State, Years of Commercial Driving Experience, Date of Hire
 - Each driver is displayed in a responsive card layout with edit/remove actions
 - File upload option remains available for users with more than 10 drivers
+
+**Agent Portal Integration**:
+- NEMT and Ambulance applications now appear in agent portal submissions table
+- Added `nemtApplications` and `ambulanceApplications` to `/api/agent/submissions` endpoint
+- Submissions display with reference number, business name, date, and status
+- Full vehicle and driver data visible in submission details
 
 **Data Storage**:
 - Complete form data including vehicles and drivers arrays stored in JSON payload field
 - Form field mapping ensures compatibility with backend schema (applicantName → businessName, boolean coverages → "yes"/"no" strings)
-- Dual email confirmations sent to customer and ops@casurance.net via Resend
+- Dual email confirmations sent to customer and ops@casurance.net via Resend with improved logging
 
 **Files Modified**:
-- `client/src/components/NemtApplicationFormComprehensive.tsx`: Added vehicle/driver state management, UI components, and data mapping
-- `server/services/pageGenerator.ts`: Fixed to support both OPENAI_API_KEY and Replit AI Integrations (AI_INTEGRATIONS_OPENAI_API_KEY + AI_INTEGRATIONS_OPENAI_BASE_URL)
+- `client/src/components/NemtApplicationFormComprehensive.tsx`: Updated vehicle/driver fields to match production requirements, data mapping fixed
+- `server/routes/agent.ts`: Added NEMT and Ambulance applications to agent portal query
+- `server/services/emailService.ts`: Enhanced logging for email delivery tracking
+- `server/services/pageGenerator.ts`: Fixed to support both OPENAI_API_KEY and Replit AI Integrations
 
 ## System Architecture
 

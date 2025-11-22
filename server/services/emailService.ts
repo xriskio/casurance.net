@@ -31,6 +31,7 @@ function getResendClient(): Resend | null {
 
 export async function sendQuoteConfirmationEmail(data: QuoteRequestData): Promise<void> {
   try {
+    console.log(`[EMAIL] Attempting to send quote confirmation to ${data.email}`);
     const formTitle = data.formName || data.insuranceType;
     
     const htmlContent = `
@@ -179,25 +180,28 @@ export async function sendQuoteConfirmationEmail(data: QuoteRequestData): Promis
 
     const resend = getResendClient();
     if (!resend) {
-      console.warn(`Skipping quote confirmation email to ${data.email} - RESEND_API_KEY not configured`);
+      console.warn(`[EMAIL] Skipping quote confirmation email to ${data.email} - RESEND_API_KEY not configured`);
       return;
     }
 
-    await resend.emails.send({
+    console.log(`[EMAIL] Sending email via Resend to ${data.email}`);
+    const result = await resend.emails.send({
       from: 'Casurance Insurance <noreply@casurance.net>',
       to: data.email,
       subject: `Quote Request Received - ${data.referenceNumber}`,
       html: htmlContent,
     });
 
-    console.log(`Quote confirmation email sent to ${data.email}`);
+    console.log(`[EMAIL] ✅ Quote confirmation email sent successfully to ${data.email}`, result);
   } catch (error) {
-    console.error('Failed to send quote confirmation email:', error);
+    console.error('[EMAIL] ❌ Failed to send quote confirmation email:', error);
+    throw error; // Re-throw to see the error in the calling code
   }
 }
 
 export async function sendAgentQuoteNotification(data: QuoteRequestData): Promise<void> {
   try {
+    console.log(`[EMAIL] Attempting to send agent notification for ${data.referenceNumber}`);
     const formTitle = data.formName || data.insuranceType;
     
     const htmlContent = `
@@ -297,20 +301,22 @@ export async function sendAgentQuoteNotification(data: QuoteRequestData): Promis
 
     const resend = getResendClient();
     if (!resend) {
-      console.warn(`Skipping agent notification for ${data.referenceNumber} - RESEND_API_KEY not configured`);
+      console.warn(`[EMAIL] Skipping agent notification for ${data.referenceNumber} - RESEND_API_KEY not configured`);
       return;
     }
 
-    await resend.emails.send({
+    console.log(`[EMAIL] Sending agent notification to ops@casurance.net for ${data.referenceNumber}`);
+    const result = await resend.emails.send({
       from: 'Casurance Notifications <noreply@casurance.net>',
       to: 'ops@casurance.net',
       subject: `URGENT: New Quote Request - ${formTitle} - ${data.referenceNumber}`,
       html: htmlContent,
     });
 
-    console.log(`Agent notification sent for ${data.referenceNumber}`);
+    console.log(`[EMAIL] ✅ Agent notification sent successfully for ${data.referenceNumber}`, result);
   } catch (error) {
-    console.error('Failed to send agent notification:', error);
+    console.error('[EMAIL] ❌ Failed to send agent notification:', error);
+    throw error;
   }
 }
 
