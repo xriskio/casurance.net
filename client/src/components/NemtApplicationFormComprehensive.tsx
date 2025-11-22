@@ -30,20 +30,17 @@ export default function NemtApplicationFormComprehensive({ applicationType, onSu
     make: string;
     model: string;
     vin: string;
-    state: string;
+    seatingCapacity: string;
     value: string;
-    use: string;
-    radius: string;
   }
 
   interface Driver {
-    firstName: string;
-    lastName: string;
+    fullName: string;
     dateOfBirth: string;
     licenseNumber: string;
     licenseState: string;
-    yearsLicensed: string;
-    nemtExperience: string;
+    yearsCommercialExperience: string;
+    dateOfHire: string;
   }
 
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
@@ -262,10 +259,8 @@ export default function NemtApplicationFormComprehensive({ applicationType, onSu
         make: "",
         model: "",
         vin: "",
-        state: "",
+        seatingCapacity: "",
         value: "",
-        use: "",
-        radius: "",
       }]);
     }
   };
@@ -283,13 +278,12 @@ export default function NemtApplicationFormComprehensive({ applicationType, onSu
   const addDriver = () => {
     if (drivers.length < 10) {
       setDrivers([...drivers, {
-        firstName: "",
-        lastName: "",
+        fullName: "",
         dateOfBirth: "",
         licenseNumber: "",
         licenseState: "",
-        yearsLicensed: "",
-        nemtExperience: "",
+        yearsCommercialExperience: "",
+        dateOfHire: "",
       }]);
     }
   };
@@ -1124,7 +1118,7 @@ export default function NemtApplicationFormComprehensive({ applicationType, onSu
                           <X className="h-4 w-4" />
                         </Button>
                       </div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         <div>
                           <Label htmlFor={`vehicle-year-${index}`}>Year</Label>
                           <Input
@@ -1166,13 +1160,13 @@ export default function NemtApplicationFormComprehensive({ applicationType, onSu
                           />
                         </div>
                         <div>
-                          <Label htmlFor={`vehicle-state-${index}`}>State</Label>
+                          <Label htmlFor={`vehicle-seating-capacity-${index}`}>Seating Capacity</Label>
                           <Input
-                            id={`vehicle-state-${index}`}
-                            value={vehicle.state}
-                            onChange={(e) => updateVehicle(index, 'state', e.target.value)}
-                            placeholder="CA"
-                            data-testid={`input-vehicle-state-${index}`}
+                            id={`vehicle-seating-capacity-${index}`}
+                            value={vehicle.seatingCapacity}
+                            onChange={(e) => updateVehicle(index, 'seatingCapacity', e.target.value)}
+                            placeholder="8"
+                            data-testid={`input-vehicle-seating-capacity-${index}`}
                           />
                         </div>
                         <div>
@@ -1183,26 +1177,6 @@ export default function NemtApplicationFormComprehensive({ applicationType, onSu
                             onChange={(e) => updateVehicle(index, 'value', e.target.value)}
                             placeholder="$50,000"
                             data-testid={`input-vehicle-value-${index}`}
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor={`vehicle-use-${index}`}>Use</Label>
-                          <Input
-                            id={`vehicle-use-${index}`}
-                            value={vehicle.use}
-                            onChange={(e) => updateVehicle(index, 'use', e.target.value)}
-                            placeholder="Wheelchair Transport"
-                            data-testid={`input-vehicle-use-${index}`}
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor={`vehicle-radius-${index}`}>Radius (Miles)</Label>
-                          <Input
-                            id={`vehicle-radius-${index}`}
-                            value={vehicle.radius}
-                            onChange={(e) => updateVehicle(index, 'radius', e.target.value)}
-                            placeholder="50"
-                            data-testid={`input-vehicle-radius-${index}`}
                           />
                         </div>
                       </div>
@@ -1902,23 +1876,13 @@ export default function NemtApplicationFormComprehensive({ applicationType, onSu
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <Label htmlFor={`driver-first-name-${index}`}>First Name</Label>
+                          <Label htmlFor={`driver-full-name-${index}`}>Full Name</Label>
                           <Input
-                            id={`driver-first-name-${index}`}
-                            value={driver.firstName}
-                            onChange={(e) => updateDriver(index, 'firstName', e.target.value)}
-                            placeholder="John"
-                            data-testid={`input-driver-first-name-${index}`}
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor={`driver-last-name-${index}`}>Last Name</Label>
-                          <Input
-                            id={`driver-last-name-${index}`}
-                            value={driver.lastName}
-                            onChange={(e) => updateDriver(index, 'lastName', e.target.value)}
-                            placeholder="Doe"
-                            data-testid={`input-driver-last-name-${index}`}
+                            id={`driver-full-name-${index}`}
+                            value={driver.fullName}
+                            onChange={(e) => updateDriver(index, 'fullName', e.target.value)}
+                            placeholder="John Doe"
+                            data-testid={`input-driver-full-name-${index}`}
                           />
                         </div>
                         <div>
@@ -1928,6 +1892,7 @@ export default function NemtApplicationFormComprehensive({ applicationType, onSu
                             type="date"
                             value={driver.dateOfBirth}
                             onChange={(e) => updateDriver(index, 'dateOfBirth', e.target.value)}
+                            placeholder="mm/dd/yyyy"
                             data-testid={`input-driver-dob-${index}`}
                           />
                         </div>
@@ -1952,23 +1917,24 @@ export default function NemtApplicationFormComprehensive({ applicationType, onSu
                           />
                         </div>
                         <div>
-                          <Label htmlFor={`driver-years-licensed-${index}`}>Years Licensed</Label>
+                          <Label htmlFor={`driver-years-commercial-${index}`}>Years of Commercial Driving Experience</Label>
                           <Input
-                            id={`driver-years-licensed-${index}`}
-                            value={driver.yearsLicensed}
-                            onChange={(e) => updateDriver(index, 'yearsLicensed', e.target.value)}
+                            id={`driver-years-commercial-${index}`}
+                            value={driver.yearsCommercialExperience}
+                            onChange={(e) => updateDriver(index, 'yearsCommercialExperience', e.target.value)}
                             placeholder="5"
-                            data-testid={`input-driver-years-licensed-${index}`}
+                            data-testid={`input-driver-years-commercial-${index}`}
                           />
                         </div>
-                        <div className="md:col-span-2">
-                          <Label htmlFor={`driver-nemt-experience-${index}`}>NEMT & Paratransit Experience (Years)</Label>
+                        <div>
+                          <Label htmlFor={`driver-date-of-hire-${index}`}>Date of Hire</Label>
                           <Input
-                            id={`driver-nemt-experience-${index}`}
-                            value={driver.nemtExperience}
-                            onChange={(e) => updateDriver(index, 'nemtExperience', e.target.value)}
-                            placeholder="2 years in wheelchair transport"
-                            data-testid={`input-driver-nemt-experience-${index}`}
+                            id={`driver-date-of-hire-${index}`}
+                            type="date"
+                            value={driver.dateOfHire}
+                            onChange={(e) => updateDriver(index, 'dateOfHire', e.target.value)}
+                            placeholder="mm/dd/yyyy"
+                            data-testid={`input-driver-date-of-hire-${index}`}
                           />
                         </div>
                       </div>
