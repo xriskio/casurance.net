@@ -8,6 +8,31 @@ Casurance is a B2B commercial insurance agency web application designed to strea
 
 Preferred communication style: Simple, everyday language.
 
+## Recent Changes
+
+### NEMT Application Form Enhancement (November 22, 2025)
+
+The NEMT (Non-Emergency Medical Transportation) application form has been enhanced with dynamic vehicle and driver entry functionality:
+
+**Dynamic Vehicle Entry** (Step 2):
+- Users can add up to 10 vehicles with detailed information (year, make, model, VIN, state, value, use, radius)
+- Each vehicle is displayed in a responsive card layout with edit/remove actions
+- File upload option remains available for users with more than 10 vehicles
+
+**Dynamic Driver Entry** (Step 4):
+- Users can add up to 10 drivers with complete information (first name, last name, DOB, license number, license state, years licensed, NEMT experience)
+- Each driver is displayed in a responsive card layout with edit/remove actions
+- File upload option remains available for users with more than 10 drivers
+
+**Data Storage**:
+- Complete form data including vehicles and drivers arrays stored in JSON payload field
+- Form field mapping ensures compatibility with backend schema (applicantName → businessName, boolean coverages → "yes"/"no" strings)
+- Dual email confirmations sent to customer and ops@casurance.net via Resend
+
+**Files Modified**:
+- `client/src/components/NemtApplicationFormComprehensive.tsx`: Added vehicle/driver state management, UI components, and data mapping
+- `server/services/pageGenerator.ts`: Fixed to support both OPENAI_API_KEY and Replit AI Integrations (AI_INTEGRATIONS_OPENAI_API_KEY + AI_INTEGRATIONS_OPENAI_BASE_URL)
+
 ## System Architecture
 
 ### Frontend Architecture
