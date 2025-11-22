@@ -24,6 +24,31 @@ export default function NemtApplicationFormComprehensive({ applicationType, onSu
   const [driverFile, setDriverFile] = useState<File | null>(null);
   const [lossRunsFile, setLossRunsFile] = useState<File | null>(null);
 
+  // Vehicle and Driver arrays
+  interface Vehicle {
+    year: string;
+    make: string;
+    model: string;
+    vin: string;
+    state: string;
+    value: string;
+    use: string;
+    radius: string;
+  }
+
+  interface Driver {
+    firstName: string;
+    lastName: string;
+    dateOfBirth: string;
+    licenseNumber: string;
+    licenseState: string;
+    yearsLicensed: string;
+    nemtExperience: string;
+  }
+
+  const [vehicles, setVehicles] = useState<Vehicle[]>([]);
+  const [drivers, setDrivers] = useState<Driver[]>([]);
+
   const [formData, setFormData] = useState({
     // Step 1: Applicant Information
     applicantName: "",
@@ -229,10 +254,63 @@ export default function NemtApplicationFormComprehensive({ applicationType, onSu
     additionalComments: "",
   });
 
+  // Helper functions for vehicles and drivers
+  const addVehicle = () => {
+    if (vehicles.length < 10) {
+      setVehicles([...vehicles, {
+        year: "",
+        make: "",
+        model: "",
+        vin: "",
+        state: "",
+        value: "",
+        use: "",
+        radius: "",
+      }]);
+    }
+  };
+
+  const removeVehicle = (index: number) => {
+    setVehicles(vehicles.filter((_, i) => i !== index));
+  };
+
+  const updateVehicle = (index: number, field: keyof Vehicle, value: string) => {
+    const updated = [...vehicles];
+    updated[index][field] = value;
+    setVehicles(updated);
+  };
+
+  const addDriver = () => {
+    if (drivers.length < 10) {
+      setDrivers([...drivers, {
+        firstName: "",
+        lastName: "",
+        dateOfBirth: "",
+        licenseNumber: "",
+        licenseState: "",
+        yearsLicensed: "",
+        nemtExperience: "",
+      }]);
+    }
+  };
+
+  const removeDriver = (index: number) => {
+    setDrivers(drivers.filter((_, i) => i !== index));
+  };
+
+  const updateDriver = (index: number, field: keyof Driver, value: string) => {
+    const updated = [...drivers];
+    updated[index][field] = value;
+    setDrivers(updated);
+  };
+
   const mutation = useMutation({
     mutationFn: async (data: typeof formData) => {
-      const payload = {
+      // Create the complete payload with all form data including vehicles and drivers
+      const completePayload = {
         ...data,
+        vehicles,
+        drivers,
         files: {
           hasVehicleList: !!vehicleFile,
           hasDriverList: !!driverFile,
@@ -240,8 +318,33 @@ export default function NemtApplicationFormComprehensive({ applicationType, onSu
         },
       };
 
+      // Map form fields to schema fields and convert booleans to strings
+      const applicationData = {
+        businessName: data.applicantName,
+        contactName: data.applicantName, // Using applicant name as contact name
+        email: data.email,
+        phone: data.phone,
+        address: data.mailingAddress,
+        city: data.mailingCity,
+        state: data.mailingState,
+        zipCode: data.mailingZip,
+        yearsInBusiness: data.yearEstablished,
+        numberOfVehicles: data.totalDrivers, // Approximate from fleet data
+        numberOfDrivers: data.totalDrivers,
+        operatingRadius: data.operatingRadiusMiles,
+        autoLiabilityCoverage: data.autoLiabilityCoverageAmount,
+        autoPhysicalDamage: data.autoPhysicalDamage ? "yes" : "no",
+        hnoaCoverage: data.hnoaCoverage ? "yes" : "no",
+        workersCompensation: data.workersCompensation ? "yes" : "no",
+        generalLiability: data.generalLiability ? "yes" : "no",
+        professionalLiability: data.professionalLiability ? "yes" : "no",
+        umbrellaCoverage: data.umbrellaCoverage ? "yes" : "no",
+        excessAutoLiability: data.excessAutoLiability ? "yes" : "no",
+        payload: completePayload, // Store everything in payload
+      };
+
       const formDataToSend = new FormData();
-      formDataToSend.append("applicationData", JSON.stringify(payload));
+      formDataToSend.append("applicationData", JSON.stringify(applicationData));
 
       if (vehicleFile) formDataToSend.append("vehicleList", vehicleFile);
       if (driverFile) formDataToSend.append("driverList", driverFile);
@@ -985,6 +1088,141 @@ export default function NemtApplicationFormComprehensive({ applicationType, onSu
                 </div>
               </div>
             </div>
+
+            {/* Vehicle Details Section */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Vehicle Details (Optional - Up to 10 Vehicles)</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Enter individual vehicle information here. If you have more than 10 vehicles, you can upload a complete list in Step 6 instead.
+              </p>
+              
+              {vehicles.length === 0 ? (
+                <div className="text-center py-8 border-2 border-dashed rounded-lg">
+                  <p className="text-muted-foreground mb-4">No vehicles added yet</p>
+                  <Button 
+                    type="button" 
+                    variant="outline" 
+                    onClick={addVehicle}
+                    data-testid="button-add-first-vehicle"
+                  >
+                    Add First Vehicle
+                  </Button>
+                </div>
+              ) : (
+                <div className="space-y-6">
+                  {vehicles.map((vehicle, index) => (
+                    <div key={index} className="border rounded-lg p-4 bg-muted/30">
+                      <div className="flex justify-between items-center mb-4">
+                        <h4 className="font-medium">Vehicle #{index + 1}</h4>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => removeVehicle(index)}
+                          data-testid={`button-remove-vehicle-${index}`}
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div>
+                          <Label htmlFor={`vehicle-year-${index}`}>Year</Label>
+                          <Input
+                            id={`vehicle-year-${index}`}
+                            value={vehicle.year}
+                            onChange={(e) => updateVehicle(index, 'year', e.target.value)}
+                            placeholder="2024"
+                            data-testid={`input-vehicle-year-${index}`}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor={`vehicle-make-${index}`}>Make</Label>
+                          <Input
+                            id={`vehicle-make-${index}`}
+                            value={vehicle.make}
+                            onChange={(e) => updateVehicle(index, 'make', e.target.value)}
+                            placeholder="Ford"
+                            data-testid={`input-vehicle-make-${index}`}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor={`vehicle-model-${index}`}>Model</Label>
+                          <Input
+                            id={`vehicle-model-${index}`}
+                            value={vehicle.model}
+                            onChange={(e) => updateVehicle(index, 'model', e.target.value)}
+                            placeholder="Transit"
+                            data-testid={`input-vehicle-model-${index}`}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor={`vehicle-vin-${index}`}>VIN</Label>
+                          <Input
+                            id={`vehicle-vin-${index}`}
+                            value={vehicle.vin}
+                            onChange={(e) => updateVehicle(index, 'vin', e.target.value)}
+                            placeholder="1FTBW3XM5GKA12345"
+                            data-testid={`input-vehicle-vin-${index}`}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor={`vehicle-state-${index}`}>State</Label>
+                          <Input
+                            id={`vehicle-state-${index}`}
+                            value={vehicle.state}
+                            onChange={(e) => updateVehicle(index, 'state', e.target.value)}
+                            placeholder="CA"
+                            data-testid={`input-vehicle-state-${index}`}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor={`vehicle-value-${index}`}>Value</Label>
+                          <Input
+                            id={`vehicle-value-${index}`}
+                            value={vehicle.value}
+                            onChange={(e) => updateVehicle(index, 'value', e.target.value)}
+                            placeholder="$50,000"
+                            data-testid={`input-vehicle-value-${index}`}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor={`vehicle-use-${index}`}>Use</Label>
+                          <Input
+                            id={`vehicle-use-${index}`}
+                            value={vehicle.use}
+                            onChange={(e) => updateVehicle(index, 'use', e.target.value)}
+                            placeholder="Wheelchair Transport"
+                            data-testid={`input-vehicle-use-${index}`}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor={`vehicle-radius-${index}`}>Radius (Miles)</Label>
+                          <Input
+                            id={`vehicle-radius-${index}`}
+                            value={vehicle.radius}
+                            onChange={(e) => updateVehicle(index, 'radius', e.target.value)}
+                            placeholder="50"
+                            data-testid={`input-vehicle-radius-${index}`}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                  
+                  {vehicles.length < 10 && (
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={addVehicle}
+                      className="w-full"
+                      data-testid="button-add-vehicle"
+                    >
+                      Add Another Vehicle ({vehicles.length}/10)
+                    </Button>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
         )}
 
@@ -1625,6 +1863,131 @@ export default function NemtApplicationFormComprehensive({ applicationType, onSu
                   </Select>
                 </div>
               </div>
+            </div>
+
+            {/* Driver Details Section */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Driver Details (Optional - Up to 10 Drivers)</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Enter individual driver information here. If you have more than 10 drivers, you can upload a complete list in Step 6 instead.
+              </p>
+              
+              {drivers.length === 0 ? (
+                <div className="text-center py-8 border-2 border-dashed rounded-lg">
+                  <p className="text-muted-foreground mb-4">No drivers added yet</p>
+                  <Button 
+                    type="button" 
+                    variant="outline" 
+                    onClick={addDriver}
+                    data-testid="button-add-first-driver"
+                  >
+                    Add First Driver
+                  </Button>
+                </div>
+              ) : (
+                <div className="space-y-6">
+                  {drivers.map((driver, index) => (
+                    <div key={index} className="border rounded-lg p-4 bg-muted/30">
+                      <div className="flex justify-between items-center mb-4">
+                        <h4 className="font-medium">Driver #{index + 1}</h4>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => removeDriver(index)}
+                          data-testid={`button-remove-driver-${index}`}
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <Label htmlFor={`driver-first-name-${index}`}>First Name</Label>
+                          <Input
+                            id={`driver-first-name-${index}`}
+                            value={driver.firstName}
+                            onChange={(e) => updateDriver(index, 'firstName', e.target.value)}
+                            placeholder="John"
+                            data-testid={`input-driver-first-name-${index}`}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor={`driver-last-name-${index}`}>Last Name</Label>
+                          <Input
+                            id={`driver-last-name-${index}`}
+                            value={driver.lastName}
+                            onChange={(e) => updateDriver(index, 'lastName', e.target.value)}
+                            placeholder="Doe"
+                            data-testid={`input-driver-last-name-${index}`}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor={`driver-dob-${index}`}>Date of Birth</Label>
+                          <Input
+                            id={`driver-dob-${index}`}
+                            type="date"
+                            value={driver.dateOfBirth}
+                            onChange={(e) => updateDriver(index, 'dateOfBirth', e.target.value)}
+                            data-testid={`input-driver-dob-${index}`}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor={`driver-license-number-${index}`}>License Number</Label>
+                          <Input
+                            id={`driver-license-number-${index}`}
+                            value={driver.licenseNumber}
+                            onChange={(e) => updateDriver(index, 'licenseNumber', e.target.value)}
+                            placeholder="D1234567"
+                            data-testid={`input-driver-license-number-${index}`}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor={`driver-license-state-${index}`}>License State</Label>
+                          <Input
+                            id={`driver-license-state-${index}`}
+                            value={driver.licenseState}
+                            onChange={(e) => updateDriver(index, 'licenseState', e.target.value)}
+                            placeholder="CA"
+                            data-testid={`input-driver-license-state-${index}`}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor={`driver-years-licensed-${index}`}>Years Licensed</Label>
+                          <Input
+                            id={`driver-years-licensed-${index}`}
+                            value={driver.yearsLicensed}
+                            onChange={(e) => updateDriver(index, 'yearsLicensed', e.target.value)}
+                            placeholder="5"
+                            data-testid={`input-driver-years-licensed-${index}`}
+                          />
+                        </div>
+                        <div className="md:col-span-2">
+                          <Label htmlFor={`driver-nemt-experience-${index}`}>NEMT & Paratransit Experience (Years)</Label>
+                          <Input
+                            id={`driver-nemt-experience-${index}`}
+                            value={driver.nemtExperience}
+                            onChange={(e) => updateDriver(index, 'nemtExperience', e.target.value)}
+                            placeholder="2 years in wheelchair transport"
+                            data-testid={`input-driver-nemt-experience-${index}`}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                  
+                  {drivers.length < 10 && (
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={addDriver}
+                      className="w-full"
+                      data-testid="button-add-driver"
+                    >
+                      Add Another Driver ({drivers.length}/10)
+                    </Button>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         )}
