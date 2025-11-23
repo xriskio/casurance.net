@@ -298,7 +298,7 @@ export default function GarageServiceQuoteForm() {
                   <FormItem>
                     <FormLabel>Years in Business</FormLabel>
                     <FormControl>
-                      <Input placeholder="10" {...field} data-testid="input-years-in-business" />
+                      <Input placeholder="10" {...field} value={field.value ?? ""} data-testid="input-years-in-business" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -313,7 +313,7 @@ export default function GarageServiceQuoteForm() {
                 <FormItem>
                   <FormLabel>Number of Locations</FormLabel>
                   <FormControl>
-                    <Input placeholder="1" {...field} data-testid="input-number-of-locations" />
+                    <Input placeholder="1" {...field} value={field.value ?? ""} data-testid="input-number-of-locations" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -328,7 +328,7 @@ export default function GarageServiceQuoteForm() {
                   <FormItem>
                     <FormLabel>Repair Services %</FormLabel>
                     <FormControl>
-                      <Input placeholder="70%" {...field} data-testid="input-repair-services-percent" />
+                      <Input placeholder="70%" {...field} value={field.value ?? ""} data-testid="input-repair-services-percent" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -342,7 +342,7 @@ export default function GarageServiceQuoteForm() {
                   <FormItem>
                     <FormLabel>Parts & Accessories %</FormLabel>
                     <FormControl>
-                      <Input placeholder="30%" {...field} data-testid="input-parts-accessories-percent" />
+                      <Input placeholder="30%" {...field} value={field.value ?? ""} data-testid="input-parts-accessories-percent" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -358,7 +358,7 @@ export default function GarageServiceQuoteForm() {
                   <FormItem>
                     <FormLabel>Number of Employees</FormLabel>
                     <FormControl>
-                      <Input placeholder="5" {...field} data-testid="input-number-of-employees" />
+                      <Input placeholder="5" {...field} value={field.value ?? ""} data-testid="input-number-of-employees" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -372,7 +372,7 @@ export default function GarageServiceQuoteForm() {
                   <FormItem>
                     <FormLabel>Annual Gross Sales</FormLabel>
                     <FormControl>
-                      <Input placeholder="$500,000" {...field} data-testid="input-annual-gross-sales" />
+                      <Input placeholder="$500,000" {...field} value={field.value ?? ""} data-testid="input-annual-gross-sales" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

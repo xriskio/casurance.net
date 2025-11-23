@@ -294,7 +294,7 @@ export default function FranchisedDealerQuoteForm() {
                   <FormItem>
                     <FormLabel>Years in Business</FormLabel>
                     <FormControl>
-                      <Input placeholder="10" {...field} data-testid="input-years-in-business" />
+                      <Input placeholder="10" {...field} value={field.value ?? ""} data-testid="input-years-in-business" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -309,7 +309,7 @@ export default function FranchisedDealerQuoteForm() {
                 <FormItem>
                   <FormLabel>Number of Locations</FormLabel>
                   <FormControl>
-                    <Input placeholder="1" {...field} data-testid="input-number-of-locations" />
+                    <Input placeholder="1" {...field} value={field.value ?? ""} data-testid="input-number-of-locations" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -324,7 +324,7 @@ export default function FranchisedDealerQuoteForm() {
                   <FormItem>
                     <FormLabel>New Auto Sales %</FormLabel>
                     <FormControl>
-                      <Input placeholder="60%" {...field} data-testid="input-new-auto-sales-percent" />
+                      <Input placeholder="60%" {...field} value={field.value ?? ""} data-testid="input-new-auto-sales-percent" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -338,7 +338,7 @@ export default function FranchisedDealerQuoteForm() {
                   <FormItem>
                     <FormLabel>Used Auto Sales %</FormLabel>
                     <FormControl>
-                      <Input placeholder="25%" {...field} data-testid="input-used-auto-sales-percent" />
+                      <Input placeholder="25%" {...field} value={field.value ?? ""} data-testid="input-used-auto-sales-percent" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -352,7 +352,7 @@ export default function FranchisedDealerQuoteForm() {
                   <FormItem>
                     <FormLabel>Service/Repair %</FormLabel>
                     <FormControl>
-                      <Input placeholder="15%" {...field} data-testid="input-service-repair-percent" />
+                      <Input placeholder="15%" {...field} value={field.value ?? ""} data-testid="input-service-repair-percent" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -367,7 +367,7 @@ export default function FranchisedDealerQuoteForm() {
                 <FormItem>
                   <FormLabel>Number of Dealer Plates</FormLabel>
                   <FormControl>
-                    <Input placeholder="10" {...field} data-testid="input-number-of-dealer-plates" />
+                    <Input placeholder="10" {...field} value={field.value ?? ""} data-testid="input-number-of-dealer-plates" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
