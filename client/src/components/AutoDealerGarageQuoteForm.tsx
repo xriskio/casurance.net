@@ -41,6 +41,7 @@ export default function AutoDealerGarageQuoteForm({ onSuccess }: AutoDealerGarag
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+    shouldUnregister: false,
     defaultValues: {
       applicantName: "",
       email: "",
@@ -131,7 +132,7 @@ export default function AutoDealerGarageQuoteForm({ onSuccess }: AutoDealerGarag
   );
 
   const renderStep1 = () => (
-    <div className="space-y-6">
+    <div className="space-y-6" key="step-1">
       <CardHeader>
         <CardTitle>Applicant Information</CardTitle>
         <CardDescription>Please provide basic information about your business</CardDescription>
@@ -258,7 +259,7 @@ export default function AutoDealerGarageQuoteForm({ onSuccess }: AutoDealerGarag
   );
 
   const renderStep2 = () => (
-    <div className="space-y-6">
+    <div className="space-y-6" key="step-2">
       <CardHeader>
         <CardTitle>Business Location & Experience</CardTitle>
         <CardDescription>Tell us about your business location and history</CardDescription>
@@ -330,7 +331,12 @@ export default function AutoDealerGarageQuoteForm({ onSuccess }: AutoDealerGarag
               <FormItem>
                 <FormLabel>Number of Years in Business *</FormLabel>
                 <FormControl>
-                  <Input type="number" {...field} data-testid="input-years-in-business" min="0" />
+                  <Input 
+                    {...field}
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    data-testid="input-years-in-business" 
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -344,7 +350,12 @@ export default function AutoDealerGarageQuoteForm({ onSuccess }: AutoDealerGarag
               <FormItem>
                 <FormLabel>Number of Locations</FormLabel>
                 <FormControl>
-                  <Input type="number" {...field} value={field.value || ""} data-testid="input-number-of-locations" min="1" />
+                  <Input 
+                    {...field}
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    data-testid="input-number-of-locations" 
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -360,7 +371,7 @@ export default function AutoDealerGarageQuoteForm({ onSuccess }: AutoDealerGarag
   const renderStep3 = () => {
     const isDealer = operationType === "dealer" || operationType === "mixed";
     return (
-      <div className="space-y-6">
+      <div className="space-y-6" key="step-3">
         <CardHeader>
           <CardTitle>{isDealer ? "Dealer Operations" : "Service Operations"}</CardTitle>
           <CardDescription>
@@ -404,7 +415,12 @@ export default function AutoDealerGarageQuoteForm({ onSuccess }: AutoDealerGarag
                   <FormItem>
                     <FormLabel>Number of Dealer Plates</FormLabel>
                     <FormControl>
-                      <Input type="number" {...field} value={field.value || ""} data-testid="input-dealer-plates" min="0" />
+                      <Input 
+                        {...field}
+                        inputMode="numeric"
+                        pattern="[0-9]*"
+                        data-testid="input-dealer-plates" 
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -423,7 +439,7 @@ export default function AutoDealerGarageQuoteForm({ onSuccess }: AutoDealerGarag
   };
 
   const renderStep4 = () => (
-    <div className="space-y-6">
+    <div className="space-y-6" key="step-4">
       <CardHeader>
         <CardTitle>Vehicle Types Sold/Repaired</CardTitle>
         <CardDescription>Indicate percentage of the following type of autos sold or repaired</CardDescription>
@@ -487,7 +503,7 @@ export default function AutoDealerGarageQuoteForm({ onSuccess }: AutoDealerGarag
   );
 
   const renderStep5 = () => (
-    <div className="space-y-6">
+    <div className="space-y-6" key="step-5">
       <CardHeader>
         <CardTitle>Underwriting Information</CardTitle>
         <CardDescription>Answer the following questions about your operations</CardDescription>
@@ -607,7 +623,7 @@ export default function AutoDealerGarageQuoteForm({ onSuccess }: AutoDealerGarag
   );
 
   const renderStep6 = () => (
-    <div className="space-y-6">
+    <div className="space-y-6" key="step-6">
       <CardHeader>
         <CardTitle>Prior Insurance & Loss History</CardTitle>
         <CardDescription>Provide information about your insurance history</CardDescription>
@@ -679,7 +695,7 @@ export default function AutoDealerGarageQuoteForm({ onSuccess }: AutoDealerGarag
   const renderStep7 = () => {
     const isDealer = operationType === "dealer" || operationType === "mixed";
     return (
-      <div className="space-y-6">
+      <div className="space-y-6" key="step-7">
         <CardHeader>
           <CardTitle>{isDealer ? "Dealer-Specific Questions" : "Service-Specific Questions"}</CardTitle>
           <CardDescription>Additional details about your operations</CardDescription>
@@ -814,7 +830,7 @@ export default function AutoDealerGarageQuoteForm({ onSuccess }: AutoDealerGarag
   };
 
   const renderStep8 = () => (
-    <div className="space-y-6">
+    <div className="space-y-6" key="step-8">
       <CardHeader>
         <CardTitle>Coverage Requirements & Additional Information</CardTitle>
         <CardDescription>Final details and coverage preferences</CardDescription>

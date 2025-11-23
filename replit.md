@@ -10,6 +10,39 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+### React Hook Form Multi-Step Pattern Fix (November 23, 2025)
+
+Fixed critical field cross-wiring bug in multi-step forms where values from one step would incorrectly appear in fields from another step. This affected the Auto Dealer & Garage quote form where email addresses appeared in "Years in Business" and phone numbers appeared in "Number of Locations".
+
+**Root Cause** (identified via architect tool):
+- React was recycling DOM nodes between steps because step containers lacked unique keys
+- React Hook Form's default `shouldUnregister: true` unmounts fields when steps change
+- When Step 2 mounted, recycled DOM nodes were attached to new field names, causing value cross-wiring
+
+**Solution Applied**:
+1. Added `shouldUnregister: false` to `useForm()` configuration to keep field registrations persistent across step transitions
+2. Added unique `key` props to each step container (e.g., `key="step-1"`, `key="step-2"`) to force React to treat steps as distinct component trees
+
+**Pattern for All Multi-Step Forms**:
+```typescript
+// In useForm configuration
+const form = useForm({
+  resolver: zodResolver(formSchema),
+  shouldUnregister: false,  // Critical: keeps fields registered when unmounted
+  defaultValues: { /* ... */ }
+});
+
+// In each renderStep function
+const renderStep1 = () => (
+  <div className="space-y-6" key="step-1">  {/* Critical: unique key per step */}
+    {/* step content */}
+  </div>
+);
+```
+
+**Files Modified**:
+- `client/src/components/AutoDealerGarageQuoteForm.tsx`: Applied fix to all 8 steps with e2e test verification
+
 ### NEMT Application Form Enhancement (November 22, 2025)
 
 The NEMT (Non-Emergency Medical Transportation) application form has been enhanced with dynamic vehicle and driver entry functionality matching the production requirements:
