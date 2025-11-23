@@ -102,6 +102,7 @@ function Router() {
       <Route path="/unsubscribe" component={UnsubscribePage} />
       <Route path="/about" component={AboutPage} />
       <Route path="/contact" component={ContactPage} />
+      <Route path="/agent" component={AgentLogin} />
       <Route path="/agent/login" component={AgentLogin} />
       <Route path="/agent/portal" component={AgentPortal} />
       <Route path="/agent-portal" component={AgentPortal} />

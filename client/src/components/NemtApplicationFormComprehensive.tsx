@@ -18,6 +18,7 @@ interface Props {
 export default function NemtApplicationFormComprehensive({ applicationType, onSuccess }: Props) {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const [referenceNumber, setReferenceNumber] = useState<string>("");
   const { toast } = useToast();
 
   const [vehicleFile, setVehicleFile] = useState<File | null>(null);
@@ -358,11 +359,12 @@ export default function NemtApplicationFormComprehensive({ applicationType, onSu
 
       return response.json();
     },
-    onSuccess: () => {
+    onSuccess: (data: any) => {
+      setReferenceNumber(data.referenceNumber);
       setSubmitted(true);
       toast({
         title: "Application Submitted",
-        description: `Your ${applicationType === "nemt" ? "NEMT" : "Ambulance"} insurance application has been submitted successfully.`,
+        description: `Your ${applicationType === "nemt" ? "NEMT" : "Ambulance"} insurance application has been submitted successfully. Reference: ${data.referenceNumber}`,
       });
       onSuccess?.();
     },
@@ -389,6 +391,15 @@ export default function NemtApplicationFormComprehensive({ applicationType, onSu
             <CheckCircle className="h-8 w-8 text-green-600 dark:text-green-400" />
           </div>
           <h3 className="text-2xl font-bold text-foreground mb-4">Application Submitted Successfully!</h3>
+          
+          {referenceNumber && (
+            <div className="bg-primary/10 border-2 border-primary rounded-lg p-6 mb-6 max-w-md mx-auto">
+              <p className="text-sm text-muted-foreground mb-2">Your Reference Number</p>
+              <p className="text-3xl font-bold text-primary tracking-wider" data-testid="text-reference-number">{referenceNumber}</p>
+              <p className="text-xs text-muted-foreground mt-2">Please save this number for future correspondence</p>
+            </div>
+          )}
+          
           <p className="text-muted-foreground mb-6">
             Thank you for submitting your {applicationType === "nemt" ? "NEMT" : "Ambulance"} insurance application. One of our licensed agents will review your information and contact you within 24-48 hours.
           </p>

@@ -193,9 +193,15 @@ export async function sendQuoteConfirmationEmail(data: QuoteRequestData): Promis
     });
 
     console.log(`[EMAIL] ✅ Quote confirmation email sent successfully to ${data.email}`, result);
-  } catch (error) {
+  } catch (error: any) {
     console.error('[EMAIL] ❌ Failed to send quote confirmation email:', error);
-    throw error; // Re-throw to see the error in the calling code
+    
+    if (error?.statusCode === 403 && error?.message?.includes('validation_error')) {
+      console.error('[EMAIL] ⚠️  RESEND DOMAIN NOT VERIFIED: Please verify casurance.net domain in Resend dashboard at https://resend.com/domains');
+      console.error('[EMAIL] ⚠️  Instructions: Add DNS records (SPF, DKIM, DMARC) to verify domain ownership');
+    }
+    
+    // Don't re-throw - allow the submission to succeed even if email fails
   }
 }
 
@@ -314,9 +320,15 @@ export async function sendAgentQuoteNotification(data: QuoteRequestData): Promis
     });
 
     console.log(`[EMAIL] ✅ Agent notification sent successfully for ${data.referenceNumber}`, result);
-  } catch (error) {
+  } catch (error: any) {
     console.error('[EMAIL] ❌ Failed to send agent notification:', error);
-    throw error;
+    
+    if (error?.statusCode === 403 && error?.message?.includes('validation_error')) {
+      console.error('[EMAIL] ⚠️  RESEND DOMAIN NOT VERIFIED: Please verify casurance.net domain in Resend dashboard at https://resend.com/domains');
+      console.error('[EMAIL] ⚠️  Instructions: Add DNS records (SPF, DKIM, DMARC) to verify domain ownership');
+    }
+    
+    // Don't re-throw - allow the submission to succeed even if email fails
   }
 }
 
