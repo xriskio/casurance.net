@@ -667,8 +667,6 @@ export function registerAgentRoutes(app: Express, storage: IStorage) {
           ...contacts.map((c) => ({
             ...c,
             submissionType: "contact",
-            referenceNumber: `CONTACT-${c.id.substring(0, 8).toUpperCase()}`,
-            status: "pending",
           }))
         );
       }
