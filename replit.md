@@ -33,7 +33,7 @@ The NEMT (Non-Emergency Medical Transportation) application form has been enhanc
 **Data Storage**:
 - Complete form data including vehicles and drivers arrays stored in JSON payload field
 - Form field mapping ensures compatibility with backend schema (applicantName → businessName, boolean coverages → "yes"/"no" strings)
-- Dual email confirmations sent to customer and ops@casurance.net via Resend with improved logging
+- Dual email confirmations sent to customer and info@casurance.com via Resend with improved logging
 
 **Files Modified**:
 - `client/src/components/NemtApplicationFormComprehensive.tsx`: Updated vehicle/driver fields to match production requirements, data mapping fixed

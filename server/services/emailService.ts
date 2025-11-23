@@ -311,10 +311,10 @@ export async function sendAgentQuoteNotification(data: QuoteRequestData): Promis
       return;
     }
 
-    console.log(`[EMAIL] Sending agent notification to ops@casurance.net for ${data.referenceNumber}`);
+    console.log(`[EMAIL] Sending agent notification to info@casurance.com for ${data.referenceNumber}`);
     const result = await resend.emails.send({
       from: 'Casurance Notifications <noreply@casurance.net>',
-      to: 'ops@casurance.net',
+      to: 'info@casurance.com',
       subject: `URGENT: New Quote Request - ${formTitle} - ${data.referenceNumber}`,
       html: htmlContent,
     });
@@ -497,7 +497,7 @@ export async function sendAgentServiceNotification(data: ServiceRequestData): Pr
 
     await resend.emails.send({
       from: 'Casurance Notifications <noreply@casurance.net>',
-      to: 'ops@casurance.net',
+      to: 'info@casurance.com',
       subject: `New Service Request: ${data.requestType} - ${data.referenceNumber}`,
       html: htmlContent,
     });
