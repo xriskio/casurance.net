@@ -185,6 +185,7 @@ export default function PublicTransportationQuoteForm() {
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
+    shouldUnregister: false,
     defaultValues: {
       namedInsured: "",
       mailingAddress: "",
@@ -334,7 +335,7 @@ export default function PublicTransportationQuoteForm() {
               
               {/* Step 1: Business Information */}
               {currentStep === 0 && (
-                <div className="space-y-6">
+                <div className="space-y-6" key="step-0">
                   <FormField
                     control={form.control}
                     name="namedInsured"
@@ -592,7 +593,7 @@ export default function PublicTransportationQuoteForm() {
 
               {/* Step 2: Coverage Selection */}
               {currentStep === 1 && (
-                <div className="space-y-6">
+                <div className="space-y-6" key="step-1">
                   <div className="bg-muted p-4 rounded-lg">
                     <h3 className="font-medium mb-2">Coverage Selection</h3>
                     <p className="text-sm text-muted-foreground">
@@ -947,7 +948,7 @@ export default function PublicTransportationQuoteForm() {
               
               {/* Step 3: Operations Details */}
               {currentStep === 2 && (
-                <div className="space-y-6">
+                <div className="space-y-6" key="step-2">
                   <div className="bg-muted p-4 rounded-lg">
                     <h3 className="font-medium mb-2">Operations Details</h3>
                     <p className="text-sm text-muted-foreground">
@@ -1845,7 +1846,7 @@ export default function PublicTransportationQuoteForm() {
 
               {/* Step 4: Driver Information */}
               {currentStep === 3 && (
-                <div className="space-y-6">
+                <div className="space-y-6" key="step-3">
                   <div className="bg-muted p-4 rounded-lg">
                     <h3 className="font-medium mb-2">Driver Information</h3>
                     <p className="text-sm text-muted-foreground">
@@ -2064,7 +2065,7 @@ export default function PublicTransportationQuoteForm() {
 
               {/* Step 5: Prior Insurance & Loss History */}
               {currentStep === 4 && (
-                <div className="space-y-6">
+                <div className="space-y-6" key="step-4">
                   <div className="bg-muted p-4 rounded-lg">
                     <h3 className="font-medium mb-2">Prior Insurance & Loss History</h3>
                     <p className="text-sm text-muted-foreground">
@@ -2238,7 +2239,7 @@ export default function PublicTransportationQuoteForm() {
 
               {/* Step 6: Vehicle Schedule */}
               {currentStep === 5 && (
-                <div className="space-y-6">
+                <div className="space-y-6" key="step-5">
                   <div className="bg-muted p-4 rounded-lg">
                     <h3 className="font-medium mb-2">Vehicle Schedule</h3>
                     <p className="text-sm text-muted-foreground">
