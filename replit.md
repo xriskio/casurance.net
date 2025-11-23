@@ -154,7 +154,7 @@ The application features AI-powered content generation for blog posts and press 
 
 **Centralized Brand Management** (`server/lib/brand.ts`):
 - All Casurance company information, contact details, and boilerplate text are centralized in a single source of truth
-- Brand constants include: company name, email addresses (@casurance.net), phone numbers (323-546-3030, 1-888-254-0089), service area, and media contact information
+- Brand constants include: company name, email addresses (@casurance.com), phone numbers (323-546-3030, 1-888-254-0089), service area, and media contact information
 - Helper functions provide formatted contact blocks and brand instructions for AI prompts
 
 **Automated Brand Validation** (`server/lib/brand-validator.ts`):

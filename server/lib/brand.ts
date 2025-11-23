@@ -8,18 +8,18 @@ export const CasuranceBrand = {
   companyFullName: "Casurance Commercial Insurance Agency",
   
   // Contact Information
-  emailDomain: "casurance.net",
-  infoEmail: "info@casurance.net",
-  supportEmail: "support@casurance.net",
-  pressEmail: "press@casurance.net",
+  emailDomain: "casurance.com",
+  infoEmail: "info@casurance.com",
+  supportEmail: "support@casurance.com",
+  pressEmail: "press@casurance.com",
   
   // Phone Numbers
   phoneLocal: "323-546-3030",
   phoneTollFree: "1-888-254-0089",
   
   // Web Presence
-  website: "www.casurance.net",
-  websiteUrl: "https://www.casurance.net",
+  website: "www.casurance.com",
+  websiteUrl: "https://www.casurance.com",
   
   // Service Area
   serviceArea: "15 US states",

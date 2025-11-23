@@ -99,11 +99,11 @@ export function validateBrandCompliance(content: string): BrandValidationResult 
     // Normalize emails by stripping leading/trailing punctuation before checking domain
     const invalidEmails = emails.filter(email => {
       const normalized = normalizeEmail(email);
-      return !normalized.endsWith('@casurance.net');
+      return !normalized.endsWith('@casurance.com');
     });
     
     if (invalidEmails.length > 0) {
-      errors.push(`Found invalid email addresses: ${invalidEmails.join(', ')}. All emails must use @casurance.net domain.`);
+      errors.push(`Found invalid email addresses: ${invalidEmails.join(', ')}. All emails must use @casurance.com domain.`);
     }
   }
 
@@ -160,10 +160,10 @@ export function sanitizeBrandContent(content: string): string {
   sanitized = sanitized.replace(/Pacific\s+Pinnacle\s+Insurance\s+Services?/gi, 'Casurance');
   sanitized = sanitized.replace(/PacificPinnacle/gi, 'Casurance');
 
-  // Replace ALL non-casurance.net email addresses with appropriate Casurance emails
+  // Replace ALL non-casurance.com email addresses with appropriate Casurance emails
   // Use comprehensive email pattern to catch all possible usernames
   sanitized = sanitized.replace(
-    /([A-Za-z0-9._%+-]+)@(?!casurance\.net)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/gi,
+    /([A-Za-z0-9._%+-]+)@(?!casurance\.com)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/gi,
     (match, username) => {
       // Normalize username by removing dots, underscores, etc. for mapping
       const normalizedUsername = username.toLowerCase().replace(/[._%+-]/g, '');

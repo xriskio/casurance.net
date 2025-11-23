@@ -50,8 +50,8 @@ export default function ContactInfo() {
               </div>
               <h3 className="font-semibold text-foreground mb-2">Email</h3>
               <p className="text-sm text-muted-foreground">
-                info@casurance.net<br />
-                quotes@casurance.net
+                info@casurance.com<br />
+                quotes@casurance.com
               </p>
             </CardContent>
           </Card>

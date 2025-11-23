@@ -84,9 +84,9 @@ export default function PressReleasePage() {
       <Helmet>
         <title>{release.title} | Casurance Press Release</title>
         <meta name="description" content={release.subtitle || release.title} />
-        <link rel="canonical" href={`https://casurance.net/press-releases/${release.slug}`} />
+        <link rel="canonical" href={`https://casurance.com/press-releases/${release.slug}`} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://casurance.net/press-releases/${release.slug}`} />
+        <meta property="og:url" content={`https://casurance.com/press-releases/${release.slug}`} />
         <meta property="og:title" content={release.title} />
         <meta property="og:description" content={release.subtitle || release.title} />
         <meta property="article:published_time" content={release.publishedAt?.toString() || ''} />
@@ -101,7 +101,7 @@ export default function PressReleasePage() {
             "publisher": {
               "@type": "Organization",
               "name": "Casurance Insurance Agency",
-              "email": "press@casurance.net"
+              "email": "press@casurance.com"
             }
           })}
         </script>

@@ -6,7 +6,7 @@ import { coverages, industries } from "@shared/content/coverages";
 
 const router = Router();
 
-const SITE_URL = "https://casurance.net";
+const SITE_URL = "https://casurance.com";
 
 // Static routes that should be in the sitemap
 const staticRoutes = [

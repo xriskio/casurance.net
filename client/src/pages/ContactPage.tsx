@@ -129,7 +129,7 @@ export default function ContactPage() {
     <>
       <SEOHead
         title="Contact Casurance for Commercial Insurance"
-        description="Contact Casurance Insurance Agency for commercial insurance quotes and support. Call 323-546-3030 or toll-free 1-888-254-0089. Email info@casurance.net. Serving 15 states with expert business insurance solutions."
+        description="Contact Casurance Insurance Agency for commercial insurance quotes and support. Call 323-546-3030 or toll-free 1-888-254-0089. Email info@casurance.com. Serving 15 states with expert business insurance solutions."
         keywords="contact Casurance, commercial insurance contact, insurance quote request, business insurance inquiry, Casurance phone number"
         canonical="/contact"
       />
@@ -344,11 +344,11 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Email</h3>
                     <a
-                      href="mailto:info@casurance.net"
+                      href="mailto:info@casurance.com"
                       className="text-muted-foreground hover:text-primary transition-colors break-all"
                       data-testid="link-email"
                     >
-                      info@casurance.net
+                      info@casurance.com
                     </a>
                   </div>
                 </div>

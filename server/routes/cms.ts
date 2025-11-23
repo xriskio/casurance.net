@@ -401,7 +401,7 @@ export function registerCmsRoutes(app: Express) {
           filePath,
           altText: altText || null,
           caption: caption || null,
-          uploadedBy: user.email || "admin@casurance.net",
+          uploadedBy: user.email || "admin@casurance.com",
           createdAt: new Date(),
         })
         .returning();

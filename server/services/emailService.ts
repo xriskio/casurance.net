@@ -167,8 +167,8 @@ export async function sendQuoteConfirmationEmail(data: QuoteRequestData): Promis
               714 W. Olympic Blvd, Suite 906, Los Angeles, CA 90015<br>
               Phone: <a href="tel:323-546-3030" style="color: #2563eb; text-decoration: none;">323-546-3030</a> | 
               Toll Free: <a href="tel:1-888-254-0089" style="color: #2563eb; text-decoration: none;">1-888-254-0089</a><br>
-              Email: <a href="mailto:info@casurance.net" style="color: #2563eb; text-decoration: none;">info@casurance.net</a> | 
-              Website: <a href="https://www.casurance.net" style="color: #2563eb; text-decoration: none;">www.casurance.net</a>
+              Email: <a href="mailto:info@casurance.com" style="color: #2563eb; text-decoration: none;">info@casurance.com</a> | 
+              Website: <a href="https://www.casurance.com" style="color: #2563eb; text-decoration: none;">www.casurance.com</a>
             </div>
             <div style="margin-top: 15px; font-size: 12px;">
               License #6005562
@@ -186,7 +186,7 @@ export async function sendQuoteConfirmationEmail(data: QuoteRequestData): Promis
 
     console.log(`[EMAIL] Sending email via Resend to ${data.email}`);
     const result = await resend.emails.send({
-      from: 'Casurance Insurance <noreply@casurance.net>',
+      from: 'Casurance Insurance <noreply@casurance.com>',
       to: data.email,
       subject: `Quote Request Received - ${data.referenceNumber}`,
       html: htmlContent,
@@ -197,7 +197,7 @@ export async function sendQuoteConfirmationEmail(data: QuoteRequestData): Promis
     console.error('[EMAIL] ❌ Failed to send quote confirmation email:', error);
     
     if (error?.statusCode === 403 && error?.message?.includes('validation_error')) {
-      console.error('[EMAIL] ⚠️  RESEND DOMAIN NOT VERIFIED: Please verify casurance.net domain in Resend dashboard at https://resend.com/domains');
+      console.error('[EMAIL] ⚠️  RESEND DOMAIN NOT VERIFIED: Please verify casurance.com domain in Resend dashboard at https://resend.com/domains');
       console.error('[EMAIL] ⚠️  Instructions: Add DNS records (SPF, DKIM, DMARC) to verify domain ownership');
     }
     
@@ -313,7 +313,7 @@ export async function sendAgentQuoteNotification(data: QuoteRequestData): Promis
 
     console.log(`[EMAIL] Sending agent notification to info@casurance.com for ${data.referenceNumber}`);
     const result = await resend.emails.send({
-      from: 'Casurance Notifications <noreply@casurance.net>',
+      from: 'Casurance Notifications <noreply@casurance.com>',
       to: 'info@casurance.com',
       subject: `URGENT: New Quote Request - ${formTitle} - ${data.referenceNumber}`,
       html: htmlContent,
@@ -324,7 +324,7 @@ export async function sendAgentQuoteNotification(data: QuoteRequestData): Promis
     console.error('[EMAIL] ❌ Failed to send agent notification:', error);
     
     if (error?.statusCode === 403 && error?.message?.includes('validation_error')) {
-      console.error('[EMAIL] ⚠️  RESEND DOMAIN NOT VERIFIED: Please verify casurance.net domain in Resend dashboard at https://resend.com/domains');
+      console.error('[EMAIL] ⚠️  RESEND DOMAIN NOT VERIFIED: Please verify casurance.com domain in Resend dashboard at https://resend.com/domains');
       console.error('[EMAIL] ⚠️  Instructions: Add DNS records (SPF, DKIM, DMARC) to verify domain ownership');
     }
     
@@ -420,7 +420,7 @@ export async function sendServiceRequestConfirmationEmail(data: ServiceRequestDa
     }
 
     await resend.emails.send({
-      from: 'Casurance Insurance <noreply@casurance.net>',
+      from: 'Casurance Insurance <noreply@casurance.com>',
       to: data.email,
       subject: `Service Request Received - ${data.referenceNumber}`,
       html: htmlContent,
@@ -496,7 +496,7 @@ export async function sendAgentServiceNotification(data: ServiceRequestData): Pr
     }
 
     await resend.emails.send({
-      from: 'Casurance Notifications <noreply@casurance.net>',
+      from: 'Casurance Notifications <noreply@casurance.com>',
       to: 'info@casurance.com',
       subject: `New Service Request: ${data.requestType} - ${data.referenceNumber}`,
       html: htmlContent,

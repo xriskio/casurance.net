@@ -15,10 +15,10 @@ export default function SEOHead({
   keywords,
   canonical,
   ogType = "website",
-  ogImage = "https://casurance.net/og-image.jpg",
+  ogImage = "https://casurance.com/og-image.jpg",
 }: SEOHeadProps) {
   const fullTitle = `${title} | Casurance - Commercial Insurance Agency`;
-  const siteUrl = "https://casurance.net";
+  const siteUrl = "https://casurance.com";
   const canonicalUrl = canonical.startsWith('http') ? canonical : `${siteUrl}${canonical}`;
 
   return (
@@ -62,7 +62,7 @@ export default function SEOHead({
           "description": description,
           "url": siteUrl,
           "telephone": "+1-323-546-3030",
-          "email": "info@casurance.net",
+          "email": "info@casurance.com",
           "address": {
             "@type": "PostalAddress",
             "addressRegion": "CA",

@@ -85,9 +85,9 @@ export default function BlogPostPage() {
         <title>{post.title} | Casurance Blog</title>
         <meta name="description" content={post.excerpt || post.title} />
         <meta name="keywords" content={post.tags?.join(', ') || 'commercial insurance'} />
-        <link rel="canonical" href={`https://casurance.net/blog/${post.slug}`} />
+        <link rel="canonical" href={`https://casurance.com/blog/${post.slug}`} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://casurance.net/blog/${post.slug}`} />
+        <meta property="og:url" content={`https://casurance.com/blog/${post.slug}`} />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.excerpt || post.title} />
         {post.imageUrl && <meta property="og:image" content={post.imageUrl} />}

@@ -14,14 +14,14 @@ async function seedAgent() {
     const hashedPassword = await hashPassword("admin123");
 
     await db.insert(agents).values({
-      email: "admin@casurance.net",
+      email: "admin@casurance.com",
       hashedPassword,
       fullName: "Admin Agent",
       role: "admin",
     });
 
     console.log("✓ Seed agent created successfully");
-    console.log("  Email: admin@casurance.net");
+    console.log("  Email: admin@casurance.com");
     console.log("  Password: admin123");
     console.log("\n  IMPORTANT: Change this password after first login!");
     
