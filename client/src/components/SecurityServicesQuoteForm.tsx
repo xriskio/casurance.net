@@ -16,6 +16,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Shield, CheckCircle2, ArrowRight, ArrowLeft } from "lucide-react";
 import { useLocation } from "wouter";
+import { SERVICE_STATES } from "@shared/constants/states";
 
 const formSchema = z.object({
   namedInsured: z.string().min(1, "Company name is required"),
@@ -471,9 +472,20 @@ export default function SecurityServicesQuoteForm() {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>State *</FormLabel>
-                          <FormControl>
-                            <Input {...field} placeholder="CA" data-testid="input-state" />
-                          </FormControl>
+                          <Select onValueChange={field.onChange} value={field.value}>
+                            <FormControl>
+                              <SelectTrigger data-testid="select-state">
+                                <SelectValue placeholder="Select state" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              {SERVICE_STATES.map((state) => (
+                                <SelectItem key={state.value} value={state.value}>
+                                  {state.label}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
                           <FormMessage />
                         </FormItem>
                       )}

@@ -17,6 +17,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Check, ChevronLeft, ChevronRight, AlertCircle, Film } from "lucide-react";
 import { useLocation } from "wouter";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { SERVICE_STATES } from "@shared/constants/states";
 
 const filmProductionSchema = z.object({
   applicantName: z.string().min(1, "Applicant name is required"),
@@ -442,9 +443,20 @@ export default function FilmProductionQuoteForm() {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>State *</FormLabel>
-                            <FormControl>
-                              <Input {...field} placeholder="CA" data-testid="input-state" />
-                            </FormControl>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                              <FormControl>
+                                <SelectTrigger data-testid="select-state">
+                                  <SelectValue placeholder="Select state" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                {SERVICE_STATES.map((state) => (
+                                  <SelectItem key={state.value} value={state.value}>
+                                    {state.label}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
                             <FormMessage />
                           </FormItem>
                         )}

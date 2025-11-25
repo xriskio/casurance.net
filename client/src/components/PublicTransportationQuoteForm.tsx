@@ -14,6 +14,7 @@ import { ArrowLeft, ArrowRight, CheckCircle, Plus, Trash2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useMutation } from "@tanstack/react-query";
+import { SERVICE_STATES } from "@shared/constants/states";
 
 const vehicleSchema = z.object({
   year: z.string().min(1, "Year required"),
@@ -387,9 +388,20 @@ export default function PublicTransportationQuoteForm() {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>State *</FormLabel>
-                          <FormControl>
-                            <Input {...field} placeholder="CA" data-testid="input-state" />
-                          </FormControl>
+                          <Select onValueChange={field.onChange} value={field.value}>
+                            <FormControl>
+                              <SelectTrigger data-testid="select-state">
+                                <SelectValue placeholder="Select state" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              {SERVICE_STATES.map((state) => (
+                                <SelectItem key={state.value} value={state.value}>
+                                  {state.label}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
                           <FormMessage />
                         </FormItem>
                       )}
@@ -449,9 +461,20 @@ export default function PublicTransportationQuoteForm() {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>Garaging State</FormLabel>
-                            <FormControl>
-                              <Input {...field} placeholder="CA" data-testid="input-garaging-state" />
-                            </FormControl>
+                            <Select onValueChange={field.onChange} value={field.value}>
+                              <FormControl>
+                                <SelectTrigger data-testid="select-garaging-state">
+                                  <SelectValue placeholder="Select state" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                {SERVICE_STATES.map((state) => (
+                                  <SelectItem key={state.value} value={state.value}>
+                                    {state.label}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
                             <FormMessage />
                           </FormItem>
                         )}

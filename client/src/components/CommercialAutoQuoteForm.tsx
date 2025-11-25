@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ArrowRight, ArrowLeft, CheckCircle, Plus, X } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { SERVICE_STATES } from "@shared/constants/states";
 
 interface Vehicle {
   year: string;
@@ -320,14 +321,21 @@ export default function CommercialAutoQuoteForm() {
               </div>
               <div>
                 <Label htmlFor="state">State *</Label>
-                <Input
-                  id="state"
+                <Select
                   value={formData.state}
-                  onChange={(e) => setFormData({ ...formData, state: e.target.value })}
-                  placeholder="CA"
-                  maxLength={2}
-                  data-testid="input-state"
-                />
+                  onValueChange={(value) => setFormData({ ...formData, state: value })}
+                >
+                  <SelectTrigger data-testid="select-state">
+                    <SelectValue placeholder="Select state" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {SERVICE_STATES.map((state) => (
+                      <SelectItem key={state.value} value={state.value}>
+                        {state.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
               <div>
                 <Label htmlFor="zipCode">ZIP Code *</Label>
@@ -649,13 +657,21 @@ export default function CommercialAutoQuoteForm() {
                   </div>
                   <div>
                     <Label>License State *</Label>
-                    <Input
+                    <Select
                       value={driver.licenseState}
-                      onChange={(e) => updateDriver(index, 'licenseState', e.target.value)}
-                      placeholder="CA"
-                      maxLength={2}
-                      data-testid={`input-driver-state-${index}`}
-                    />
+                      onValueChange={(value) => updateDriver(index, 'licenseState', value)}
+                    >
+                      <SelectTrigger data-testid={`select-driver-state-${index}`}>
+                        <SelectValue placeholder="Select state" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {SERVICE_STATES.map((state) => (
+                          <SelectItem key={state.value} value={state.value}>
+                            {state.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </div>
                 </div>
 

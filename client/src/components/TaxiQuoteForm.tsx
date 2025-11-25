@@ -13,6 +13,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { useMutation } from "@tanstack/react-query";
 import { Separator } from "@/components/ui/separator";
 import QuickQuoteForm from "./QuickQuoteForm";
+import { SERVICE_STATES } from "@shared/constants/states";
 
 interface Vehicle {
   year: string;
@@ -532,13 +533,21 @@ export default function TaxiQuoteForm() {
 
                 <div>
                   <Label htmlFor="mailingState">State</Label>
-                  <Input
-                    id="mailingState"
+                  <Select
                     value={formData.mailingState}
-                    onChange={(e) => setFormData({ ...formData, mailingState: e.target.value })}
-                    placeholder="State"
-                    data-testid="input-mailing-state"
-                  />
+                    onValueChange={(value) => setFormData({ ...formData, mailingState: value })}
+                  >
+                    <SelectTrigger data-testid="select-mailing-state">
+                      <SelectValue placeholder="Select state" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {SERVICE_STATES.map((state) => (
+                        <SelectItem key={state.value} value={state.value}>
+                          {state.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 <div>

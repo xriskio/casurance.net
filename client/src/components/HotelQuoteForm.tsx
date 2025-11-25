@@ -10,6 +10,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ArrowRight, ArrowLeft, CheckCircle } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { SERVICE_STATES } from "@shared/constants/states";
 
 export default function HotelQuoteForm() {
   const [step, setStep] = useState(1);
@@ -289,13 +290,21 @@ export default function HotelQuoteForm() {
                   placeholder="City"
                   data-testid="input-physical-city"
                 />
-                <Input
+                <Select
                   value={formData.physicalState}
-                  onChange={(e) => setFormData({ ...formData, physicalState: e.target.value })}
-                  placeholder="State"
-                  maxLength={2}
-                  data-testid="input-physical-state"
-                />
+                  onValueChange={(value) => setFormData({ ...formData, physicalState: value })}
+                >
+                  <SelectTrigger data-testid="select-physical-state">
+                    <SelectValue placeholder="State" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {SERVICE_STATES.map((state) => (
+                      <SelectItem key={state.value} value={state.value}>
+                        {state.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
                 <Input
                   value={formData.physicalZip}
                   onChange={(e) => setFormData({ ...formData, physicalZip: e.target.value })}

@@ -6,9 +6,11 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ArrowRight, ArrowLeft, CheckCircle } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { SERVICE_STATES } from "@shared/constants/states";
 
 export default function VacantBuildingQuoteForm() {
   const [step, setStep] = useState(1);
@@ -298,14 +300,21 @@ export default function VacantBuildingQuoteForm() {
                   </div>
                   <div>
                     <Label htmlFor="propertyState">State *</Label>
-                    <Input
-                      id="propertyState"
-                      name="propertyState"
+                    <Select
                       value={formData.propertyState}
-                      onChange={handleInputChange}
-                      required
-                      data-testid="input-state"
-                    />
+                      onValueChange={(value) => setFormData({ ...formData, propertyState: value })}
+                    >
+                      <SelectTrigger data-testid="select-state">
+                        <SelectValue placeholder="Select state" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {SERVICE_STATES.map((state) => (
+                          <SelectItem key={state.value} value={state.value}>
+                            {state.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </div>
                   <div>
                     <Label htmlFor="propertyZip">ZIP Code *</Label>

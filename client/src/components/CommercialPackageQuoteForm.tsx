@@ -10,6 +10,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ArrowRight, ArrowLeft, CheckCircle } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { SERVICE_STATES } from "@shared/constants/states";
 
 export default function CommercialPackageQuoteForm() {
   const [step, setStep] = useState(1);
@@ -328,14 +329,21 @@ export default function CommercialPackageQuoteForm() {
               </div>
               <div>
                 <Label htmlFor="state">State *</Label>
-                <Input
-                  id="state"
+                <Select
                   value={formData.state}
-                  onChange={(e) => setFormData({ ...formData, state: e.target.value })}
-                  placeholder="CA"
-                  maxLength={2}
-                  data-testid="input-state"
-                />
+                  onValueChange={(value) => setFormData({ ...formData, state: value })}
+                >
+                  <SelectTrigger data-testid="select-state">
+                    <SelectValue placeholder="Select state" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {SERVICE_STATES.map((state) => (
+                      <SelectItem key={state.value} value={state.value}>
+                        {state.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
               <div>
                 <Label htmlFor="zipCode">ZIP Code *</Label>
@@ -594,14 +602,21 @@ export default function CommercialPackageQuoteForm() {
               </div>
               <div>
                 <Label htmlFor="locationState">State *</Label>
-                <Input
-                  id="locationState"
+                <Select
                   value={formData.locationState}
-                  onChange={(e) => setFormData({ ...formData, locationState: e.target.value })}
-                  placeholder="CA"
-                  maxLength={2}
-                  data-testid="input-location-state"
-                />
+                  onValueChange={(value) => setFormData({ ...formData, locationState: value })}
+                >
+                  <SelectTrigger data-testid="select-location-state">
+                    <SelectValue placeholder="Select state" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {SERVICE_STATES.map((state) => (
+                      <SelectItem key={state.value} value={state.value}>
+                        {state.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
               <div>
                 <Label htmlFor="locationZipCode">Risk ZIP Code *</Label>

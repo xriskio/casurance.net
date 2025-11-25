@@ -9,6 +9,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ArrowRight, ArrowLeft, CheckCircle } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { SERVICE_STATES } from "@shared/constants/states";
 
 export default function ManagementLiabilityQuoteForm() {
   const [step, setStep] = useState(1);
@@ -244,14 +245,21 @@ export default function ManagementLiabilityQuoteForm() {
               </div>
               <div>
                 <Label htmlFor="state">State *</Label>
-                <Input
-                  id="state"
-                  name="state"
+                <Select
                   value={formData.state}
-                  onChange={handleInputChange}
-                  required
-                  data-testid="input-state"
-                />
+                  onValueChange={(value) => handleSelectChange("state", value)}
+                >
+                  <SelectTrigger data-testid="select-state">
+                    <SelectValue placeholder="Select state" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {SERVICE_STATES.map((state) => (
+                      <SelectItem key={state.value} value={state.value}>
+                        {state.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
               <div>
                 <Label htmlFor="zipCode">ZIP Code *</Label>

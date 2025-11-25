@@ -364,13 +364,21 @@ export default function TruckingQuoteForm() {
                     placeholder="City"
                     data-testid="input-mailing-city"
                   />
-                  <Input
-                    value={formData.mailingState}
-                    onChange={(e) => setFormData({ ...formData, mailingState: e.target.value })}
-                    placeholder="State"
-                    maxLength={2}
-                    data-testid="input-mailing-state"
-                  />
+                  <Select 
+                    value={formData.mailingState} 
+                    onValueChange={(value) => setFormData({ ...formData, mailingState: value })}
+                  >
+                    <SelectTrigger data-testid="select-mailing-state">
+                      <SelectValue placeholder="State" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {SERVICE_STATES.map((state) => (
+                        <SelectItem key={state.value} value={state.value}>
+                          {state.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                   <Input
                     value={formData.mailingZip}
                     onChange={(e) => setFormData({ ...formData, mailingZip: e.target.value })}
@@ -421,13 +429,21 @@ export default function TruckingQuoteForm() {
                     placeholder="City"
                     data-testid="input-garaging-city"
                   />
-                  <Input
-                    value={formData.garagingState}
-                    onChange={(e) => setFormData({ ...formData, garagingState: e.target.value })}
-                    placeholder="State"
-                    maxLength={2}
-                    data-testid="input-garaging-state"
-                  />
+                  <Select 
+                    value={formData.garagingState} 
+                    onValueChange={(value) => setFormData({ ...formData, garagingState: value })}
+                  >
+                    <SelectTrigger data-testid="select-garaging-state">
+                      <SelectValue placeholder="State" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {SERVICE_STATES.map((state) => (
+                        <SelectItem key={state.value} value={state.value}>
+                          {state.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                   <Input
                     value={formData.garagingZip}
                     onChange={(e) => setFormData({ ...formData, garagingZip: e.target.value })}
