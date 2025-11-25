@@ -9,6 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowRight, ArrowLeft, CheckCircle, Plus, X } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { SERVICE_STATES } from "@shared/constants/states";
 
 interface Vehicle {
   year: string;
@@ -260,7 +261,6 @@ export default function TruckingQuoteForm() {
     );
   }
 
-  const states = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "GA", "HI", "ID", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WI", "WY"];
 
   return (
     <Card className="max-w-4xl mx-auto">
@@ -596,15 +596,15 @@ export default function TruckingQuoteForm() {
                     <Label htmlFor="federal" className="font-medium cursor-pointer">Federal</Label>
                   </div>
                 </div>
-                {states.map((state) => (
-                  <div key={state} className="flex items-center space-x-2">
+                {SERVICE_STATES.map((state) => (
+                  <div key={state.value} className="flex items-center space-x-2">
                     <Checkbox
-                      id={`state-${state}`}
-                      checked={filingStates.includes(state)}
-                      onCheckedChange={() => handleFilingStateToggle(state)}
-                      data-testid={`checkbox-filing-${state}`}
+                      id={`state-${state.value}`}
+                      checked={filingStates.includes(state.value)}
+                      onCheckedChange={() => handleFilingStateToggle(state.value)}
+                      data-testid={`checkbox-filing-${state.value}`}
                     />
-                    <Label htmlFor={`state-${state}`} className="font-normal cursor-pointer text-sm">{state}</Label>
+                    <Label htmlFor={`state-${state.value}`} className="font-normal cursor-pointer text-sm">{state.label}</Label>
                   </div>
                 ))}
               </div>

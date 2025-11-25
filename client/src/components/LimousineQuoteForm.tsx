@@ -13,6 +13,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { useMutation } from "@tanstack/react-query";
 import { Separator } from "@/components/ui/separator";
 import QuickQuoteForm from "./QuickQuoteForm";
+import { SERVICE_STATES } from "@shared/constants/states";
 
 interface Vehicle {
   year: string;
@@ -1552,26 +1553,11 @@ export default function LimousineQuoteForm() {
                           <SelectValue placeholder="Select State" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="CA">California</SelectItem>
-                          <SelectItem value="NY">New York</SelectItem>
-                          <SelectItem value="TX">Texas</SelectItem>
-                          <SelectItem value="FL">Florida</SelectItem>
-                          <SelectItem value="IL">Illinois</SelectItem>
-                          <SelectItem value="PA">Pennsylvania</SelectItem>
-                          <SelectItem value="OH">Ohio</SelectItem>
-                          <SelectItem value="GA">Georgia</SelectItem>
-                          <SelectItem value="NC">North Carolina</SelectItem>
-                          <SelectItem value="MI">Michigan</SelectItem>
-                          <SelectItem value="NJ">New Jersey</SelectItem>
-                          <SelectItem value="VA">Virginia</SelectItem>
-                          <SelectItem value="WA">Washington</SelectItem>
-                          <SelectItem value="AZ">Arizona</SelectItem>
-                          <SelectItem value="MA">Massachusetts</SelectItem>
-                          <SelectItem value="TN">Tennessee</SelectItem>
-                          <SelectItem value="IN">Indiana</SelectItem>
-                          <SelectItem value="MO">Missouri</SelectItem>
-                          <SelectItem value="MD">Maryland</SelectItem>
-                          <SelectItem value="WI">Wisconsin</SelectItem>
+                          {SERVICE_STATES.map((state) => (
+                            <SelectItem key={state.value} value={state.value}>
+                              {state.label}
+                            </SelectItem>
+                          ))}
                         </SelectContent>
                       </Select>
                     </div>

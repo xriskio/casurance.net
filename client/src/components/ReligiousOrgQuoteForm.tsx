@@ -14,6 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { CheckCircle, ChevronLeft, ChevronRight, Building, Shield, Users, Heart, Briefcase, FileText } from "lucide-react";
 import { apiRequest, queryClient } from "@/lib/queryClient";
+import { SERVICE_STATES } from "@shared/constants/states";
 
 const formSchema = z.object({
   // Step 1: General Information
@@ -393,10 +394,11 @@ export default function ReligiousOrgQuoteForm() {
                                 <SelectValue placeholder="Select state" />
                               </SelectTrigger>
                               <SelectContent>
-                                <SelectItem value="CA">California</SelectItem>
-                                <SelectItem value="TX">Texas</SelectItem>
-                                <SelectItem value="FL">Florida</SelectItem>
-                                <SelectItem value="NY">New York</SelectItem>
+                                {SERVICE_STATES.map((state) => (
+                                  <SelectItem key={state.value} value={state.value}>
+                                    {state.label}
+                                  </SelectItem>
+                                ))}
                               </SelectContent>
                             </Select>
                           </FormControl>

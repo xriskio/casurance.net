@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { insertHighValueHomeQuoteSchema } from "@shared/schema";
+import { SERVICE_STATES } from "@shared/constants/states";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, FormDescription } from "@/components/ui/form";
@@ -228,8 +229,10 @@ export default function HighValueHomeQuoteForm() {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {["California", "Nevada", "Arizona", "Oregon", "Ohio", "Illinois", "New York", "New Jersey", "Pennsylvania", "North Carolina", "Texas", "Florida", "Arkansas", "Missouri", "Colorado"].map((state) => (
-                          <SelectItem key={state} value={state}>{state}</SelectItem>
+                        {SERVICE_STATES.map((state) => (
+                          <SelectItem key={state.value} value={state.value}>
+                            {state.label}
+                          </SelectItem>
                         ))}
                       </SelectContent>
                     </Select>

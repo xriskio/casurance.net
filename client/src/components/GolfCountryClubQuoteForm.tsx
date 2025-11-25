@@ -11,6 +11,7 @@ import { ArrowRight, ArrowLeft, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
+import { SERVICE_STATES } from "@shared/constants/states";
 
 export default function GolfCountryClubQuoteForm() {
   const [step, setStep] = useState(1);
@@ -320,21 +321,11 @@ export default function GolfCountryClubQuoteForm() {
                       <SelectValue placeholder="Select state" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="CA">California</SelectItem>
-                      <SelectItem value="NV">Nevada</SelectItem>
-                      <SelectItem value="AZ">Arizona</SelectItem>
-                      <SelectItem value="OR">Oregon</SelectItem>
-                      <SelectItem value="OH">Ohio</SelectItem>
-                      <SelectItem value="IL">Illinois</SelectItem>
-                      <SelectItem value="NY">New York</SelectItem>
-                      <SelectItem value="NJ">New Jersey</SelectItem>
-                      <SelectItem value="PA">Pennsylvania</SelectItem>
-                      <SelectItem value="NC">North Carolina</SelectItem>
-                      <SelectItem value="TX">Texas</SelectItem>
-                      <SelectItem value="FL">Florida</SelectItem>
-                      <SelectItem value="AR">Arkansas</SelectItem>
-                      <SelectItem value="MO">Missouri</SelectItem>
-                      <SelectItem value="CO">Colorado</SelectItem>
+                      {SERVICE_STATES.map((state) => (
+                        <SelectItem key={state.value} value={state.value}>
+                          {state.label}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 </div>

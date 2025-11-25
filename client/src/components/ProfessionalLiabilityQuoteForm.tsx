@@ -14,6 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { CheckCircle, ChevronLeft, ChevronRight, Building2, Users, FileText, Shield, AlertTriangle, Upload } from "lucide-react";
 import { apiRequest, queryClient } from "@/lib/queryClient";
+import { SERVICE_STATES } from "@shared/constants/states";
 
 const fileSchema = typeof File !== 'undefined' ? z.instanceof(File) : z.any();
 
@@ -454,10 +455,11 @@ export default function ProfessionalLiabilityQuoteForm() {
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                              <SelectItem value="CA">California</SelectItem>
-                              <SelectItem value="NY">New York</SelectItem>
-                              <SelectItem value="TX">Texas</SelectItem>
-                              <SelectItem value="FL">Florida</SelectItem>
+                              {SERVICE_STATES.map((state) => (
+                                <SelectItem key={state.value} value={state.value}>
+                                  {state.label}
+                                </SelectItem>
+                              ))}
                               <SelectItem value="Other">Other</SelectItem>
                             </SelectContent>
                           </Select>
