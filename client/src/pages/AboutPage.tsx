@@ -47,7 +47,7 @@ export default function AboutPage() {
     <>
       <SEOHead
         title="About Casurance Insurance Agency"
-        description="Learn about Casurance, California's trusted independent commercial insurance agency since 2010. We serve businesses across 15 states with specialized coverage for transportation, hospitality, and specialty industries."
+        description="Learn about Casurance, California's trusted independent commercial insurance agency since 2010. We serve businesses nationwide with specialized coverage for transportation, hospitality, and specialty industries."
         keywords="about Casurance, commercial insurance agency, California insurance, independent insurance broker, business insurance provider"
         canonical="/about"
       />
@@ -60,7 +60,7 @@ export default function AboutPage() {
               About Casurance
             </h1>
             <p className="text-lg lg:text-xl text-white/90 max-w-3xl mx-auto">
-              Your trusted partner for commercial insurance solutions across 15 states
+              Your trusted partner for commercial insurance solutions nationwide
             </p>
           </div>
         </div>
@@ -77,7 +77,7 @@ export default function AboutPage() {
                 <div>
                   <h2 className="text-2xl font-semibold text-foreground mb-3">Our Mission</h2>
                   <p className="text-muted-foreground leading-relaxed">
-                    Casurance Insurance Agency Services is dedicated to providing businesses across California, Nevada, Arizona, Oregon, Ohio, Illinois, New York, New Jersey, Pennsylvania, North Carolina, Texas, Florida, Arkansas, Missouri, and Colorado with comprehensive commercial insurance solutions. We specialize in serving transportation, hospitality, and specialty industries with tailored coverage designed to protect your operations and support your growth.
+                    Casurance Insurance Agency Services is dedicated to providing businesses across all 50 US states with comprehensive commercial insurance solutions. We specialize in serving transportation, hospitality, and specialty industries with tailored coverage designed to protect your operations and support your growth.
                   </p>
                 </div>
               </div>

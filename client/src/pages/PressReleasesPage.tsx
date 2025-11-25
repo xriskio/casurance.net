@@ -43,7 +43,7 @@ export default function PressReleasesPage() {
     <>
       <SEOHead
         title="Press Releases & Company News"
-        description="Latest news and announcements from Casurance Insurance Agency. Read about new coverage options, service area expansions, industry partnerships, and company updates across 15 states."
+        description="Latest news and announcements from Casurance Insurance Agency. Read about new coverage options, service area expansions, industry partnerships, and company updates nationwide."
         keywords="insurance press releases, Casurance news, insurance company announcements, commercial insurance updates, business insurance news"
         canonical="/press-releases"
       />

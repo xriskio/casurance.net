@@ -2,7 +2,7 @@
 
 ## Overview
 
-Casurance is a B2B commercial insurance agency web application designed to streamline quote requests and service management across 15 US states. It provides a comprehensive platform for businesses to obtain various commercial insurance types (e.g., commercial auto, general liability, workers' compensation) and detailed coverage information. The application features a public-facing site for clients and an authenticated agent portal for managing submissions. Key capabilities include specialized quote forms, an AI-powered blog, press releases, and industry-specific pages (e.g., Self Storage, Golf & Country Club). The platform emphasizes trust, professionalism, and efficiency in the commercial insurance process.
+Casurance is a B2B commercial insurance agency web application designed to streamline quote requests and service management nationwide across all 50 US states. It provides a comprehensive platform for businesses to obtain various commercial insurance types (e.g., commercial auto, general liability, workers' compensation) and detailed coverage information. The application features a public-facing site for clients and an authenticated agent portal for managing submissions. Key capabilities include specialized quote forms, an AI-powered blog, press releases, and industry-specific pages (e.g., Self Storage, Golf & Country Club). The platform emphasizes trust, professionalism, and efficiency in the commercial insurance process.
 
 ## User Preferences
 

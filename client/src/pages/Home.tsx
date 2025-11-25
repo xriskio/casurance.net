@@ -11,8 +11,8 @@ export default function Home() {
   return (
     <>
       <SEOHead
-        title="Commercial Insurance Across 15 States"
-        description="Get competitive commercial insurance quotes for your business. Serving 15 states with expert coverage for general liability, commercial auto, workers comp, and 40+ specialized insurance products. Licensed independent agency since 2010."
+        title="Commercial Insurance Nationwide"
+        description="Get competitive commercial insurance quotes for your business. Serving all 50 states with expert coverage for general liability, commercial auto, workers comp, and 40+ specialized insurance products. Licensed independent agency since 2010."
         keywords="commercial insurance, business insurance, general liability, workers compensation, commercial auto insurance, professional liability, California commercial insurance, independent insurance agency"
         canonical="/"
       />

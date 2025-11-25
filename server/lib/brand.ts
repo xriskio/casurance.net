@@ -22,11 +22,18 @@ export const CasuranceBrand = {
   websiteUrl: "https://www.casurance.com",
   
   // Service Area
-  serviceArea: "15 US states",
+  serviceArea: "all 50 US states",
   states: [
-    "Alabama", "Arizona", "California", "Colorado", "Florida",
-    "Georgia", "Illinois", "Nevada", "New York", "North Carolina",
-    "Ohio", "Pennsylvania", "Tennessee", "Texas", "Washington"
+    "Alabama", "Alaska", "Arizona", "Arkansas", "California",
+    "Colorado", "Connecticut", "Delaware", "Florida", "Georgia",
+    "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa",
+    "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland",
+    "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri",
+    "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey",
+    "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio",
+    "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina",
+    "South Dakota", "Tennessee", "Texas", "Utah", "Vermont",
+    "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"
   ],
   
   // Business Profile
@@ -34,10 +41,10 @@ export const CasuranceBrand = {
   focus: "Commercial insurance solutions for businesses",
   
   // Boilerplate for Press Releases
-  boilerplate: `Casurance is a specialized commercial insurance agency serving businesses across 15 US states. With expertise in over 40 commercial insurance products across 23+ industries, Casurance provides tailored coverage solutions including commercial auto, general liability, workers' compensation, professional liability, and specialized industry-specific policies. The agency is committed to delivering carrier-agnostic advice, personalized service, and comprehensive risk management solutions to help businesses protect their operations and achieve sustainable growth.`,
+  boilerplate: `Casurance is a specialized commercial insurance agency serving businesses nationwide across all 50 US states. With expertise in over 40 commercial insurance products across 23+ industries, Casurance provides tailored coverage solutions including commercial auto, general liability, workers' compensation, professional liability, and specialized industry-specific policies. The agency is committed to delivering carrier-agnostic advice, personalized service, and comprehensive risk management solutions to help businesses protect their operations and achieve sustainable growth.`,
   
   // About for Blog Posts
-  about: `Casurance is a B2B commercial insurance agency specializing in comprehensive coverage solutions for businesses nationwide. Serving 15 states with expertise in 40+ commercial insurance products, Casurance helps companies find the right protection for their unique needs.`,
+  about: `Casurance is a B2B commercial insurance agency specializing in comprehensive coverage solutions for businesses nationwide. Serving all 50 states with expertise in 40+ commercial insurance products, Casurance helps companies find the right protection for their unique needs.`,
 } as const;
 
 /**
