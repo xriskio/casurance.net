@@ -1165,12 +1165,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // AI Assist: Generate draft content (authenticated agents only)
-  app.post("/api/blog-posts/ai-assist/draft", async (req, res) => {
+  app.post("/api/blog-posts/ai-assist/draft", requireAgent, async (req, res) => {
     try {
-      if (!req.isAuthenticated || !req.isAuthenticated()) {
-        return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
-      }
-
       const { title, category } = req.body;
       
       if (!title || !category) {
@@ -1185,12 +1181,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // AI Assist: Improve content (authenticated agents only)
-  app.post("/api/blog-posts/ai-assist/improve", async (req, res) => {
+  app.post("/api/blog-posts/ai-assist/improve", requireAgent, async (req, res) => {
     try {
-      if (!req.isAuthenticated || !req.isAuthenticated()) {
-        return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
-      }
-
       const { content, category } = req.body;
       
       if (!content || !category) {
@@ -1205,12 +1197,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // AI Assist: Suggest tags (authenticated agents only)
-  app.post("/api/blog-posts/ai-assist/tags", async (req, res) => {
+  app.post("/api/blog-posts/ai-assist/tags", requireAgent, async (req, res) => {
     try {
-      if (!req.isAuthenticated || !req.isAuthenticated()) {
-        return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
-      }
-
       const { title, content, category } = req.body;
       
       if (!title && !content) {
@@ -1320,12 +1308,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // AI Assist: Generate draft content (authenticated agents only)
-  app.post("/api/press-releases/ai-assist/draft", async (req, res) => {
+  app.post("/api/press-releases/ai-assist/draft", requireAgent, async (req, res) => {
     try {
-      if (!req.isAuthenticated || !req.isAuthenticated()) {
-        return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
-      }
-
       const { title, category, location } = req.body;
       
       if (!title || !category || !location) {
@@ -1340,12 +1324,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // AI Assist: Improve content (authenticated agents only)
-  app.post("/api/press-releases/ai-assist/improve", async (req, res) => {
+  app.post("/api/press-releases/ai-assist/improve", requireAgent, async (req, res) => {
     try {
-      if (!req.isAuthenticated || !req.isAuthenticated()) {
-        return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
-      }
-
       const { content, category } = req.body;
       
       if (!content || !category) {
@@ -1360,12 +1340,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // AI Assist: Suggest tags (authenticated agents only)
-  app.post("/api/press-releases/ai-assist/tags", async (req, res) => {
+  app.post("/api/press-releases/ai-assist/tags", requireAgent, async (req, res) => {
     try {
-      if (!req.isAuthenticated || !req.isAuthenticated()) {
-        return res.status(401).json({ message: "Unauthorized - Agent authentication required" });
-      }
-
       const { title, content, category } = req.body;
       
       if (!title && !content) {
