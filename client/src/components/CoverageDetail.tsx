@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Check, ArrowRight, Phone } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Check, ArrowRight, Phone, Shield, Car, Umbrella, Building2, Briefcase, FileCheck, AlertTriangle, CheckCircle2 } from "lucide-react";
 import { Link } from "wouter";
 import type { CoverageContent } from "@shared/content/coverages";
 import { getIndustryImage } from "@shared/industryImages";
@@ -236,6 +236,103 @@ export default function CoverageDetail({ coverage }: CoverageDetailProps) {
             </div>
           </CardContent>
         </Card>
+
+        {/* Coverage Services - Extended Content */}
+        {coverage.coverageServices && coverage.coverageServices.length > 0 && (
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Shield className="h-5 w-5 text-primary" />
+                Coverage and Services
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-3">
+                {coverage.coverageServices.map((service, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                    <span>{service}</span>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Product Basics - Extended Content */}
+        {coverage.productBasics && coverage.productBasics.length > 0 && (
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <FileCheck className="h-5 w-5 text-primary" />
+                Product Basics
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-3 text-sm">
+                {coverage.productBasics.map((item, index) => (
+                  <li key={index} className="flex items-start gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5 shrink-0" />
+                    <div>
+                      <span>{item.label}</span>
+                      {item.subItems && item.subItems.length > 0 && (
+                        <ul className="mt-1 ml-4 space-y-1 text-muted-foreground">
+                          {item.subItems.map((subItem, subIndex) => (
+                            <li key={subIndex}>- {subItem}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Risk Control Services - Extended Content */}
+        {coverage.riskControlServices && coverage.riskControlServices.length > 0 && (
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <AlertTriangle className="h-5 w-5 text-primary" />
+                Risk Control Services
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {coverage.riskControlServices.map((service, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                    <span>{service}</span>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Enhanced Coverages - Extended Content */}
+        {coverage.enhancedCoverages && coverage.enhancedCoverages.length > 0 && (
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Shield className="h-5 w-5 text-primary" />
+                Enhanced Coverages
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 text-sm">
+                {coverage.enhancedCoverages.map((item, index) => (
+                  <div key={index} className="flex items-start gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5 shrink-0" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* CTA Section */}
         <div className="mt-12 bg-primary rounded-lg p-8 text-center">

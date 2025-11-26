@@ -1,3 +1,8 @@
+export interface ProductBasic {
+  label: string;
+  subItems?: string[];
+}
+
 export interface CoverageContent {
   title: string;
   slug: string;
@@ -10,6 +15,11 @@ export interface CoverageContent {
   image?: string;
   seoTitle?: string;
   seoDescription?: string;
+  // Extended content for detailed industry pages
+  coverageServices?: string[];
+  productBasics?: ProductBasic[];
+  riskControlServices?: string[];
+  enhancedCoverages?: string[];
 }
 
 export const coverages: CoverageContent[] = [
@@ -2819,7 +2829,7 @@ export const industries: CoverageContent[] = [
     slug: "religious-organizations",
     category: "Industries",
     summary: "Specialized insurance for churches, temples, mosques, and religious institutions.",
-    description: "Religious organizations insurance provides tailored coverage for churches, synagogues, mosques, temples, and other houses of worship. This specialized program addresses the unique property, liability, and operational risks faced by religious institutions.",
+    description: "Coverage is tailored for the specific exposure characteristic of religious institutions. Casurance delivers an unbeatable combination of sound coverage, stable pricing, and exceptional service to both insureds and agents. It pays to work with people who fully understand nonprofits and religious organizations.",
     whoNeeds: [
       "Churches and houses of worship",
       "Religious schools and daycare centers",
@@ -2841,6 +2851,63 @@ export const industries: CoverageContent[] = [
       "Special event and activity coverage",
       "Volunteer coverage programs",
       "Understanding of religious institution needs"
+    ],
+    coverageServices: [
+      "Property and Liability",
+      "Auto",
+      "Inland Marine",
+      "Umbrella",
+      "Management Liability and Privacy Coverage"
+    ],
+    productBasics: [
+      { label: "Primary Liability Insurance" },
+      { label: "Standard limits are $1 million per occurrence for General Liability" },
+      { label: "$1 million per occurrence for Sex Abuse" },
+      { label: "$1 million per occurrence for Social Work/Professional" },
+      { label: "$3 million policy aggregate" },
+      { label: "Umbrella limits up to $10 million*" },
+      { label: "Fundraising Events Coverage included" },
+      { 
+        label: "Management Liability:",
+        subItems: [
+          "EPLI, D&O, Cyber, Fiduciary available packaged or separately",
+          "Up to $10 million limit available*",
+          "*Defense outside limit of liability"
+        ]
+      }
+    ],
+    riskControlServices: [
+      "Fleet assessment",
+      "Loss Control Engineering",
+      "Extensive Online Resources and Information",
+      "Driver Qualification Training and Monitoring",
+      "Parking and Pedestrian Safety",
+      "Employment Practices Hot Line"
+    ],
+    enhancedCoverages: [
+      "Broad additional insureds",
+      "Damage to Premises Rented to You",
+      "HNO Auto under GL",
+      "Limited Rental Lease Agreement",
+      "Equipment Breakdown",
+      "Water Coverage $30,000",
+      "Newly Acquired Property",
+      "Earthquake SL $30,000",
+      "Ordinance Law $1 million",
+      "Property Off Premises $500,000",
+      "Emergency Vacating Expense",
+      "Employee Indemnification Defense",
+      "Lease Cancellation Expense",
+      "Employee Benefits Coverage",
+      "Business Income $300,000",
+      "Employment Practices Liability",
+      "Green Consultant Expense",
+      "Employee Theft",
+      "AEDs $5,000",
+      "Money & Securities",
+      "Workplace Violence",
+      "Reward Reimbursement",
+      "Fine Arts $100,000 (includes stained glass)"
     ]
   },
 
