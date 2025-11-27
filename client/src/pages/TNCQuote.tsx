@@ -197,10 +197,29 @@ export default function TNCQuote() {
     setIsLoading(true);
     
     try {
-      const response = await apiRequest("POST", "/api/tnc-quotes", {
-        ...formData,
-        payload: { ...formData, vehicles, drivers }
-      });
+      // Format data for submission - convert arrays to comma-separated strings for text fields
+      const submissionData = {
+        companyName: formData.companyName,
+        email: formData.email,
+        phone: formData.phone,
+        businessSegment: formData.businessSegment,
+        fleetSize: formData.fleetSize,
+        activeDrivers: formData.activeDrivers,
+        effectiveDate: formData.effectiveDate,
+        liabilityLimit: formData.liabilityLimit,
+        operatingStates: formData.operatingStates.join(", "),
+        requestedCoverages: formData.requestedCoverages.join(", "),
+        status: "pending",
+        payload: { 
+          ...formData, 
+          vehicles, 
+          drivers,
+          operatingStates: formData.operatingStates,
+          requestedCoverages: formData.requestedCoverages
+        }
+      };
+      
+      const response = await apiRequest("POST", "/api/tnc-quotes", submissionData);
       
       setReferenceNumber(response.referenceNumber);
       setSubmitted(true);
