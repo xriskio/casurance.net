@@ -110,6 +110,9 @@ export default function CoverageDetail({ coverage }: CoverageDetailProps) {
     if (coverage.slug === 'taxi-black-car') {
       return '/quote/taxi';
     }
+    if (coverage.slug === 'tnc-shared-economy') {
+      return '/quote/tnc';
+    }
     
     return '/quote';
   };

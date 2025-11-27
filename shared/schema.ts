@@ -795,6 +795,24 @@ export const religiousOrgQuotes = pgTable("religious_org_quotes", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const tncQuotes = pgTable("tnc_quotes", {
+  id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
+  companyName: text("company_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  businessSegment: text("business_segment"),
+  fleetSize: text("fleet_size"),
+  activeDrivers: text("active_drivers"),
+  effectiveDate: text("effective_date"),
+  liabilityLimit: text("liability_limit"),
+  operatingStates: text("operating_states"),
+  requestedCoverages: text("requested_coverages"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 // CMS Tables
 export const cmsPages = pgTable("cms_pages", {
   id: varchar("id").primaryKey(),
@@ -1114,6 +1132,12 @@ export const insertReligiousOrgQuoteSchema = createInsertSchema(religiousOrgQuot
   createdAt: true,
 });
 
+export const insertTncQuoteSchema = createInsertSchema(tncQuotes).omit({
+  id: true,
+  referenceNumber: true,
+  createdAt: true,
+});
+
 export const insertCmsPageSchema = createInsertSchema(cmsPages)
   .omit({
     id: true,
@@ -1232,6 +1256,8 @@ export type InsertProfessionalLiabilityQuote = z.infer<typeof insertProfessional
 export type ProfessionalLiabilityQuote = typeof professionalLiabilityQuotes.$inferSelect;
 export type InsertReligiousOrgQuote = z.infer<typeof insertReligiousOrgQuoteSchema>;
 export type ReligiousOrgQuote = typeof religiousOrgQuotes.$inferSelect;
+export type InsertTncQuote = z.infer<typeof insertTncQuoteSchema>;
+export type TncQuote = typeof tncQuotes.$inferSelect;
 export type InsertCmsPage = z.infer<typeof insertCmsPageSchema>;
 export type UpdateCmsPage = z.infer<typeof updateCmsPageSchema>;
 export type CmsPage = typeof cmsPages.$inferSelect;

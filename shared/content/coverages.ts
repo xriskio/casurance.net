@@ -2911,6 +2911,103 @@ export const industries: CoverageContent[] = [
     ]
   },
 
+  // SHARED ECONOMY / TNC
+  {
+    title: "Transportation Network Companies (TNC)",
+    slug: "tnc-shared-economy",
+    category: "Industries",
+    summary: "Specialized insurance for TNC, rideshare, and shared economy transportation platforms.",
+    description: "Today's shared, or gig, economy represents a variety of distinctive businesses and platforms encountering unchartered insurance-related shortcomings — from limited insurance marketplace options to cost-restrictive policies and coverage gaps. While the shared economy continues to grow and evolve, so do the myriad risks. You need a partner with in-depth knowledge of your unique industry to ensure you receive affordable and tailored coverage to manage your risk effectively. Casurance's shared economy insurance specialists understand the sector, its challenges and exposures, and can help you find insurance solutions to protect your business and thrive.",
+    whoNeeds: [
+      "Transportation Network Companies (TNC)",
+      "Non-Emergency Medical Transit (NEMT) operators",
+      "Student Transport services",
+      "Delivery Network Companies (DNC)",
+      "Rideshare Rental Operators",
+      "Peer-to-Peer (P2P) Rental Operations",
+      "Vehicle Subscription Models",
+      "Autonomous Vehicle Services and Platforms",
+      "Shared Scooter or eBike Platforms",
+      "On-Demand Service Providers",
+      "Cannabis Delivery services",
+      "1099 Staffing Agencies and Aggregators"
+    ],
+    coverageIncludes: [
+      "Commercial Auto Insurance",
+      "General Liability Insurance",
+      "Occupational Accident Insurance",
+      "Workers' Compensation",
+      "Excess Liability & Umbrella Insurance",
+      "Cargo Legal Liability",
+      "Contingent Liability",
+      "Property Insurance",
+      "Garage Liability & Garage Keepers Legal Liability",
+      "Cyber Liability",
+      "Directors & Officers and Employment Practice Liability"
+    ],
+    benefits: [
+      "Specialized coverage for shared economy operations",
+      "Understanding of TNC and gig economy exposures",
+      "Tailored solutions for digital platforms",
+      "Risk management tools and expert insights",
+      "Long-standing carrier relationships for competitive rates"
+    ],
+    coverageServices: [
+      "Commercial General Liability",
+      "Commercial Auto and Physical Damage Coverage",
+      "Inland Marine",
+      "Property",
+      "Marketplace Cyber and Technology Platform Liability",
+      "Workers' Compensation (for select risks)"
+    ],
+    productBasics: [
+      { label: "Commercial Auto Insurance for TNC and rideshare platforms" },
+      { label: "General Liability limits tailored to your operations" },
+      { label: "Occupational Accident coverage for 1099 contractors" },
+      { label: "Workers' Compensation for employee drivers" },
+      { label: "Umbrella/Excess Liability up to $10 million" },
+      { 
+        label: "Management Liability Package:",
+        subItems: [
+          "Directors & Officers Liability",
+          "Employment Practices Liability",
+          "Cyber Liability protection",
+          "Fiduciary Liability coverage"
+        ]
+      }
+    ],
+    riskControlServices: [
+      "Fleet Safety Assessment and Monitoring",
+      "Driver Qualification and Training Programs",
+      "Technology Integration Risk Analysis",
+      "Platform Liability Evaluation",
+      "Compliance and Regulatory Guidance",
+      "Claims Management Support"
+    ],
+    enhancedCoverages: [
+      "Contingent Auto Liability",
+      "Non-Owned Auto Coverage",
+      "Hired Auto Liability",
+      "Cargo Legal Liability",
+      "Garage Liability",
+      "Garage Keepers Legal Liability",
+      "Technology Errors & Omissions",
+      "Platform Liability Coverage",
+      "Cyber Liability and Data Breach",
+      "Business Interruption",
+      "Equipment Breakdown",
+      "Crime Coverage",
+      "Umbrella/Excess Liability",
+      "Environmental Liability",
+      "Employment Practices Liability",
+      "Fiduciary Liability",
+      "D&O Liability",
+      "Professional Liability",
+      "Product Liability for vehicle modifications",
+      "Bailee Coverage for vehicle storage"
+    ]
+  },
+
   {
     title: "Retail",
     slug: "retail",
