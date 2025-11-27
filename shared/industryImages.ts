@@ -30,7 +30,7 @@ import garageServiceCentersImg from "@assets/stock_images/auto_service_center__1
 import golfCountryClubImg from "@assets/stock_images/professional_golf_co_2f9b5f57.jpg";
 import publicTransportationImg from "@assets/stock_images/modern_public_transp_64aa03b0.jpg";
 import publicSelfStorageImg from "@assets/stock_images/modern_self_storage__b49ae433.jpg";
-import tncSharedEconomyImg from "@assets/generated_images/tnc_rideshare_fleet_vehicles.png";
+import tncSharedEconomyImg from "@assets/generated_images/american_tnc_rideshare_fleet.png";
 
 export const industryImages: Record<string, string> = {
   "agribusiness-industry": agribusinessImg,
