@@ -1,62 +1,84 @@
 import { Link } from "wouter";
+import { Phone, Mail, MapPin } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-muted/30 border-t" role="contentinfo">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center">
-                <span className="text-primary-foreground font-bold">C</span>
-              </div>
-              <span className="font-semibold text-foreground">Casurance Agency</span>
+    <footer className="bg-[#0a1628] text-white" role="contentinfo">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+          <div className="lg:col-span-2">
+            <div className="mb-6">
+              <span className="text-2xl font-bold tracking-tight" style={{ letterSpacing: '-0.02em' }}>
+                CASURANCE
+              </span>
+              <p className="text-[10px] font-medium text-white/60 tracking-wider mt-1" style={{ letterSpacing: '0.1em' }}>
+                INSURANCE AGENCY SERVICES
+              </p>
             </div>
-            <p className="text-sm text-muted-foreground">
-              Casurance Inc d/b/a Casurance Agency Insurance Services. California's trusted independent commercial insurance agency since 2010.
+            <p className="text-sm text-white/70 mb-6 max-w-sm">
+              Casurance Inc d/b/a Casurance Agency Insurance Services. Nationwide commercial insurance specialists serving businesses across all 50 US states since 2010.
             </p>
+            <div className="space-y-3">
+              <a href="tel:18882540089" className="flex items-center gap-3 text-sm text-white/80 hover:text-white transition-colors">
+                <Phone className="h-4 w-4 text-primary" />
+                <span>1-888-254-0089</span>
+              </a>
+              <a href="mailto:info@casurance.com" className="flex items-center gap-3 text-sm text-white/80 hover:text-white transition-colors">
+                <Mail className="h-4 w-4 text-primary" />
+                <span>info@casurance.com</span>
+              </a>
+              <div className="flex items-start gap-3 text-sm text-white/80">
+                <MapPin className="h-4 w-4 text-primary mt-0.5" />
+                <div>
+                  <p>714 W. Olympic Blvd, Suite 906</p>
+                  <p>Los Angeles, CA 90015</p>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div>
-            <h3 className="font-semibold text-foreground mb-3">Coverage Types</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="/coverage/general-casualty" className="hover:text-foreground cursor-pointer">General Liability</Link></li>
-              <li><Link href="/coverage/commercial-auto" className="hover:text-foreground cursor-pointer">Commercial Auto</Link></li>
-              <li><Link href="/coverage/commercial-property" className="hover:text-foreground cursor-pointer">Commercial Property</Link></li>
-              <li><Link href="/coverages" className="hover:text-foreground cursor-pointer">View All Coverage</Link></li>
+            <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Coverage</h3>
+            <ul className="space-y-3 text-sm">
+              <li><Link href="/coverage/commercial-auto" className="text-white/70 hover:text-white transition-colors cursor-pointer">Commercial Auto</Link></li>
+              <li><Link href="/coverage/general-liability" className="text-white/70 hover:text-white transition-colors cursor-pointer">General Liability</Link></li>
+              <li><Link href="/coverage/workers-compensation" className="text-white/70 hover:text-white transition-colors cursor-pointer">Workers Compensation</Link></li>
+              <li><Link href="/coverage/commercial-property" className="text-white/70 hover:text-white transition-colors cursor-pointer">Commercial Property</Link></li>
+              <li><Link href="/coverages" className="text-primary hover:text-primary/80 transition-colors cursor-pointer font-medium">View All →</Link></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-semibold text-foreground mb-3">Quick Links</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="/quote" className="hover:text-foreground cursor-pointer">Request Quote</Link></li>
-              <li><Link href="/service" className="hover:text-foreground cursor-pointer">Service Request</Link></li>
-              <li><Link href="/industries" className="hover:text-foreground cursor-pointer">Industries</Link></li>
-              <li><Link href="/" className="hover:text-foreground cursor-pointer">Contact</Link></li>
+            <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Industries</h3>
+            <ul className="space-y-3 text-sm">
+              <li><Link href="/industry/transportation" className="text-white/70 hover:text-white transition-colors cursor-pointer">Transportation</Link></li>
+              <li><Link href="/industry/healthcare" className="text-white/70 hover:text-white transition-colors cursor-pointer">Healthcare</Link></li>
+              <li><Link href="/industry/construction" className="text-white/70 hover:text-white transition-colors cursor-pointer">Construction</Link></li>
+              <li><Link href="/industry/hospitality" className="text-white/70 hover:text-white transition-colors cursor-pointer">Hospitality</Link></li>
+              <li><Link href="/industries" className="text-primary hover:text-primary/80 transition-colors cursor-pointer font-medium">View All →</Link></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-semibold text-foreground mb-3">Contact</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>714 W. Olympic Blvd, Suite 906</li>
-              <li>Los Angeles, CA 90015</li>
-              <li><a href="tel:18882540089" className="hover:text-foreground">1-888-254-0089</a></li>
-              <li><a href="mailto:info@casurance.com" className="hover:text-foreground">info@casurance.com</a></li>
+            <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Quick Links</h3>
+            <ul className="space-y-3 text-sm">
+              <li><Link href="/quote" className="text-white/70 hover:text-white transition-colors cursor-pointer">Request a Quote</Link></li>
+              <li><Link href="/service" className="text-white/70 hover:text-white transition-colors cursor-pointer">Service Request</Link></li>
+              <li><Link href="/about" className="text-white/70 hover:text-white transition-colors cursor-pointer">About Us</Link></li>
+              <li><Link href="/contact" className="text-white/70 hover:text-white transition-colors cursor-pointer">Contact</Link></li>
+              <li><Link href="/agent/login" className="text-white/70 hover:text-white transition-colors cursor-pointer">Agent Portal</Link></li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t pt-8">
+        <div className="border-t border-white/10 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-muted-foreground">
-              © 2025 Casurance Inc. All rights reserved.
+            <p className="text-sm text-white/60">
+              © 2025 Casurance Inc. All rights reserved. License # 6005562
             </p>
-            <div className="flex gap-6 text-sm text-muted-foreground">
-              <Link href="/" className="hover:text-foreground cursor-pointer">Privacy Policy</Link>
-              <Link href="/" className="hover:text-foreground cursor-pointer">Terms of Service</Link>
-              <span>License # 6005562</span>
+            <div className="flex gap-6 text-sm text-white/60">
+              <Link href="/privacy" className="hover:text-white transition-colors cursor-pointer">Privacy Policy</Link>
+              <Link href="/terms" className="hover:text-white transition-colors cursor-pointer">Terms of Service</Link>
             </div>
           </div>
         </div>
