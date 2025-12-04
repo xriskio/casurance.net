@@ -3601,6 +3601,47 @@ export const industries: CoverageContent[] = [
     ],
     seoTitle: "Workers' Compensation Insurance | Employee Injury Protection",
     seoDescription: "Comprehensive workers' compensation coverage for businesses of all sizes. Protect your employees and your business from workplace injuries with medical benefits, wage replacement, and employer's liability protection."
+  },
+
+  // GENERAL LIABILITY
+  {
+    title: "General Liability",
+    slug: "general-liability",
+    category: "Casualty",
+    summary: "Essential protection for businesses against third-party claims of bodily injury, property damage, and advertising injury.",
+    description: "General Liability insurance, also known as Commercial General Liability (CGL), is the foundation of business insurance protection. This essential coverage protects your business from claims by third parties alleging bodily injury, property damage, personal injury, or advertising injury arising from your business operations, products, or services. Every business that interacts with customers, vendors, or the public needs this fundamental protection.",
+    whoNeeds: [
+      "Retail stores and service businesses",
+      "Restaurants, cafes, and food service operations",
+      "Professional service firms",
+      "Contractors and construction companies",
+      "Manufacturers and distributors",
+      "Office-based businesses",
+      "Any business with customers visiting premises",
+      "Companies providing services at client locations"
+    ],
+    coverageIncludes: [
+      "Third-party bodily injury liability",
+      "Property damage to others' property",
+      "Personal injury (libel, slander, defamation)",
+      "Advertising injury coverage",
+      "Products and completed operations liability",
+      "Medical payments for minor injuries",
+      "Legal defense costs",
+      "Premises liability coverage"
+    ],
+    benefits: [
+      "Protection against costly lawsuits and claims",
+      "Required by most commercial leases and contracts",
+      "Coverage for legal defense even if claims are groundless",
+      "Protects business assets and personal assets",
+      "Meets client and vendor insurance requirements",
+      "Affordable coverage for businesses of all sizes",
+      "Available as standalone or as part of BOP",
+      "Nationwide coverage across all 50 states"
+    ],
+    seoTitle: "General Liability Insurance | Business Liability Protection",
+    seoDescription: "Protect your business with comprehensive general liability insurance. Coverage for bodily injury, property damage, advertising injury, and legal defense. Essential protection for businesses of all sizes."
   }
 ];
 
