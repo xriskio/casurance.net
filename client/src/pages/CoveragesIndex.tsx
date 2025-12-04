@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { categories, getCoveragesByCategory } from "@shared/content/coverages";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
+import { getIndustryImage } from "@shared/industryImages";
 
 export default function CoveragesIndex() {
   return (
@@ -34,24 +35,42 @@ export default function CoveragesIndex() {
                   {category}
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {coverages.map((coverage) => (
-                    <Link key={coverage.slug} href={`/coverage/${coverage.slug}`}>
-                      <Card className="h-full hover-elevate cursor-pointer" data-testid={`card-coverage-${coverage.slug}`}>
-                        <CardContent className="p-6">
-                          <h3 className="font-semibold text-lg text-foreground mb-2">
-                            {coverage.title}
-                          </h3>
-                          <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
-                            {coverage.summary}
-                          </p>
-                          <div className="flex items-center text-primary text-sm font-medium">
-                            Learn More
-                            <ArrowRight className="ml-1 h-4 w-4" />
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </Link>
-                  ))}
+                  {coverages.map((coverage) => {
+                    const coverageImage = getIndustryImage(coverage.slug);
+                    return (
+                      <Link key={coverage.slug} href={`/coverage/${coverage.slug}`}>
+                        <Card className="h-full cursor-pointer group border hover:border-primary/30 hover:shadow-lg transition-all duration-300" data-testid={`card-coverage-${coverage.slug}`}>
+                          {coverageImage && (
+                            <div className="relative h-40 overflow-hidden rounded-t-lg">
+                              <img
+                                src={coverageImage}
+                                alt={coverage.title}
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                              <div className="absolute bottom-3 left-4 right-4">
+                                <span className="inline-block px-2 py-1 text-xs font-medium bg-white/90 text-[#0a1628] rounded">
+                                  {category}
+                                </span>
+                              </div>
+                            </div>
+                          )}
+                          <CardContent className={coverageImage ? "p-5" : "p-6"}>
+                            <h3 className="font-semibold text-lg text-foreground mb-2 group-hover:text-primary transition-colors">
+                              {coverage.title}
+                            </h3>
+                            <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                              {coverage.summary}
+                            </p>
+                            <div className="flex items-center text-primary text-sm font-medium group-hover:translate-x-1 transition-transform">
+                              Learn More
+                              <ArrowRight className="ml-1 h-4 w-4" />
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
             );
