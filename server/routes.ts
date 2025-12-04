@@ -10,6 +10,7 @@ import { generateBlogPost, getCategories, getTopics, generateDraftContent, impro
 import { generatePressRelease, getCategories as getPressCategories, getTopics as getPressTopics, getLocations, generateDraftContent as generatePressDraft, improveContent as improvePressContent, suggestTags as suggestPressTags } from "./lib/ai-press-release-generator";
 import { generateReferenceNumber } from "./utils/referenceNumber";
 import { sendQuoteConfirmationEmail, sendServiceRequestConfirmationEmail, sendAgentQuoteNotification, sendAgentServiceNotification } from "./services/emailService";
+import { getRedirectUrl } from "./redirects";
 import multer from "multer";
 import path from "path";
 import { randomUUID } from "crypto";
@@ -54,6 +55,21 @@ const upload = multer({
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // SEO Redirect Middleware - Handle old casurance.com URLs with 301 redirects
+  app.use((req, res, next) => {
+    const lowerPath = req.path.toLowerCase();
+    if (lowerPath.startsWith('/api/') || lowerPath.startsWith('/assets/')) {
+      return next();
+    }
+    
+    const redirectUrl = getRedirectUrl(req.path);
+    if (redirectUrl && redirectUrl !== lowerPath) {
+      const queryString = req.url.slice(req.path.length);
+      return res.redirect(301, redirectUrl + queryString);
+    }
+    next();
+  });
+
   // Quote Requests
   app.post("/api/quote-requests", async (req, res) => {
     try {
