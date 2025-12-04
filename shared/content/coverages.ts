@@ -3642,6 +3642,88 @@ export const industries: CoverageContent[] = [
     ],
     seoTitle: "General Liability Insurance | Business Liability Protection",
     seoDescription: "Protect your business with comprehensive general liability insurance. Coverage for bodily injury, property damage, advertising injury, and legal defense. Essential protection for businesses of all sizes."
+  },
+
+  // DIRECTORS & OFFICERS LIABILITY
+  {
+    title: "Directors & Officers Liability",
+    slug: "directors-officers",
+    category: "Professional Lines",
+    summary: "Protection for company leadership against claims arising from management decisions and corporate governance.",
+    description: "Directors & Officers (D&O) Liability insurance protects corporate directors, officers, and the company itself from claims alleging wrongful acts in their management capacity. This essential coverage shields personal assets and provides defense costs when stakeholders, employees, regulators, or other parties allege mismanagement, breach of fiduciary duty, or other wrongful acts. Every company with a board of directors or executive leadership team needs D&O protection.",
+    whoNeeds: [
+      "Publicly traded companies",
+      "Private corporations and LLCs",
+      "Nonprofit organizations and boards",
+      "Financial institutions and banks",
+      "Healthcare organizations",
+      "Educational institutions",
+      "Startups seeking venture capital",
+      "Companies planning mergers or acquisitions"
+    ],
+    coverageIncludes: [
+      "Side A: Personal liability for directors and officers",
+      "Side B: Company reimbursement coverage",
+      "Side C: Entity coverage for securities claims",
+      "Defense costs and legal fees",
+      "Settlement costs and judgments",
+      "Regulatory investigation coverage",
+      "Employment practices claims (when combined)",
+      "Fiduciary liability protection"
+    ],
+    benefits: [
+      "Protects personal assets of directors and officers",
+      "Attracts and retains qualified board members",
+      "Required by investors and lenders",
+      "Coverage for regulatory investigations",
+      "Defense costs paid outside policy limits",
+      "Worldwide coverage available",
+      "Tailored limits for public vs private companies",
+      "Prior acts coverage available"
+    ],
+    seoTitle: "Directors & Officers Liability Insurance | D&O Coverage",
+    seoDescription: "Protect your company's leadership with Directors & Officers liability insurance. Coverage for management decisions, fiduciary duties, and regulatory investigations. Essential protection for boards and executives."
+  },
+
+  // EMPLOYMENT PRACTICES LIABILITY
+  {
+    title: "Employment Practices Liability",
+    slug: "employment-practices",
+    category: "Professional Lines",
+    summary: "Coverage for claims by employees alleging discrimination, harassment, wrongful termination, and other employment-related issues.",
+    description: "Employment Practices Liability Insurance (EPLI) protects employers against claims made by employees alleging discrimination, sexual harassment, wrongful termination, breach of employment contract, and other employment-related issues. With workplace lawsuits on the rise, EPLI is essential coverage for businesses of all sizes to protect against the financial impact of employee claims and the costs of legal defense.",
+    whoNeeds: [
+      "Businesses of all sizes with employees",
+      "Companies with HR departments",
+      "Organizations in high-turnover industries",
+      "Businesses undergoing layoffs or restructuring",
+      "Companies with diverse workforces",
+      "Staffing and temp agencies",
+      "Healthcare and hospitality employers",
+      "Retail and service businesses"
+    ],
+    coverageIncludes: [
+      "Discrimination claims (age, race, gender, disability)",
+      "Sexual harassment allegations",
+      "Wrongful termination claims",
+      "Retaliation claims",
+      "Breach of employment contract",
+      "Failure to promote or hire",
+      "Wage and hour disputes",
+      "Third-party claims (customer harassment)"
+    ],
+    benefits: [
+      "Protection against costly employment lawsuits",
+      "Coverage for defense costs regardless of outcome",
+      "Risk management and HR resources included",
+      "Coverage for current and former employees",
+      "Third-party liability coverage available",
+      "Wage and hour coverage options",
+      "Prior acts coverage available",
+      "Available for businesses of all sizes"
+    ],
+    seoTitle: "Employment Practices Liability Insurance | EPLI Coverage",
+    seoDescription: "Protect your business from employee claims with Employment Practices Liability Insurance. Coverage for discrimination, harassment, wrongful termination, and more. Essential protection for all employers."
   }
 ];
 

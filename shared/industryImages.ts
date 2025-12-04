@@ -125,6 +125,8 @@ export const industryImages: Record<string, string> = {
 
   // Professional Lines
   "allied-health": healthCareImg,
+  "directors-officers": professionalLiabilityImg,
+  "employment-practices": employmentPracticesImg,
   "excess-professional": professionalLiabilityImg,
   "health-care": healthCareImg,
   "management-liability": professionalLiabilityImg,
