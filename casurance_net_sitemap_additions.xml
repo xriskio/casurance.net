@@ -1,0 +1,353 @@
+<!-- Add these entries to your casurance.net sitemap.xml -->
+<!-- Location Index Page -->
+<url>
+  <loc>https://casurance.com/locations</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<!-- CALIFORNIA LOCATION PAGES -->
+
+<!-- Anaheim, CA -->
+<url><loc>https://casurance.com/location/anaheim/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/anaheim/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/anaheim/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/anaheim/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/anaheim/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/anaheim/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/anaheim/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Dana Point, CA -->
+<url><loc>https://casurance.com/location/dana-point/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/dana-point/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/dana-point/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/dana-point/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/dana-point/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/dana-point/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/dana-point/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- El Segundo, CA -->
+<url><loc>https://casurance.com/location/el-segundo/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/el-segundo/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/el-segundo/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/el-segundo/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/el-segundo/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/el-segundo/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/el-segundo/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Fremont, CA -->
+<url><loc>https://casurance.com/location/fremont/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/fremont/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/fremont/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/fremont/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/fremont/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/fremont/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/fremont/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Huntington Beach, CA -->
+<url><loc>https://casurance.com/location/huntington-beach/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/huntington-beach/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/huntington-beach/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/huntington-beach/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/huntington-beach/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/huntington-beach/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/huntington-beach/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Laguna Beach, CA -->
+<url><loc>https://casurance.com/location/laguna-beach/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/laguna-beach/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/laguna-beach/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/laguna-beach/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/laguna-beach/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/laguna-beach/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/laguna-beach/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Los Angeles, CA -->
+<url><loc>https://casurance.com/location/los-angeles/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/los-angeles/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/los-angeles/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/los-angeles/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/los-angeles/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/los-angeles/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/los-angeles/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Long Beach, CA -->
+<url><loc>https://casurance.com/location/long-beach/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/long-beach/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/long-beach/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/long-beach/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/long-beach/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/long-beach/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/long-beach/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Manhattan Beach, CA -->
+<url><loc>https://casurance.com/location/manhattan-beach/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/manhattan-beach/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/manhattan-beach/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/manhattan-beach/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/manhattan-beach/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/manhattan-beach/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/manhattan-beach/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Mountain View, CA -->
+<url><loc>https://casurance.com/location/mountain-view/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/mountain-view/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/mountain-view/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/mountain-view/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/mountain-view/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/mountain-view/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/mountain-view/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Napa, CA -->
+<url><loc>https://casurance.com/location/napa/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/napa/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/napa/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/napa/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/napa/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/napa/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/napa/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Newport Beach, CA -->
+<url><loc>https://casurance.com/location/newport-beach/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/newport-beach/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/newport-beach/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/newport-beach/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/newport-beach/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/newport-beach/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/newport-beach/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Oakland, CA -->
+<url><loc>https://casurance.com/location/oakland/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/oakland/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/oakland/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/oakland/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/oakland/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/oakland/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/oakland/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Palo Alto, CA -->
+<url><loc>https://casurance.com/location/palo-alto/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/palo-alto/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/palo-alto/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/palo-alto/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/palo-alto/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/palo-alto/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/palo-alto/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Pasadena, CA -->
+<url><loc>https://casurance.com/location/pasadena/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/pasadena/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/pasadena/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/pasadena/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/pasadena/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/pasadena/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/pasadena/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Redondo Beach, CA -->
+<url><loc>https://casurance.com/location/redondo-beach/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/redondo-beach/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/redondo-beach/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/redondo-beach/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/redondo-beach/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/redondo-beach/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/redondo-beach/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Redwood City, CA -->
+<url><loc>https://casurance.com/location/redwood-city/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/redwood-city/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/redwood-city/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/redwood-city/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/redwood-city/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/redwood-city/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/redwood-city/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Sacramento, CA -->
+<url><loc>https://casurance.com/location/sacramento/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/sacramento/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/sacramento/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/sacramento/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/sacramento/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/sacramento/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/sacramento/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- San Diego, CA -->
+<url><loc>https://casurance.com/location/san-diego/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/san-diego/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/san-diego/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/san-diego/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/san-diego/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/san-diego/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/san-diego/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- San Francisco, CA -->
+<url><loc>https://casurance.com/location/san-francisco/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/san-francisco/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/san-francisco/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/san-francisco/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/san-francisco/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/san-francisco/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/san-francisco/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- San Jose, CA -->
+<url><loc>https://casurance.com/location/san-jose/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/san-jose/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/san-jose/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/san-jose/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/san-jose/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/san-jose/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/san-jose/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- San Mateo, CA -->
+<url><loc>https://casurance.com/location/san-mateo/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/san-mateo/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/san-mateo/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/san-mateo/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/san-mateo/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/san-mateo/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/san-mateo/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Santa Monica, CA -->
+<url><loc>https://casurance.com/location/santa-monica/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/santa-monica/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/santa-monica/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/santa-monica/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/santa-monica/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/santa-monica/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/santa-monica/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Santa Rosa, CA -->
+<url><loc>https://casurance.com/location/santa-rosa/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/santa-rosa/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/santa-rosa/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/santa-rosa/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/santa-rosa/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/santa-rosa/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/santa-rosa/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Torrance, CA -->
+<url><loc>https://casurance.com/location/torrance/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/torrance/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/torrance/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/torrance/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/torrance/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/torrance/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/torrance/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Woodland Hills, CA -->
+<url><loc>https://casurance.com/location/woodland-hills/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/woodland-hills/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/woodland-hills/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/woodland-hills/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/woodland-hills/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/woodland-hills/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/woodland-hills/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Irvine, CA -->
+<url><loc>https://casurance.com/location/irvine/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/irvine/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/irvine/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/irvine/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/irvine/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/irvine/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/irvine/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Burbank, CA -->
+<url><loc>https://casurance.com/location/burbank/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/burbank/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/burbank/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/burbank/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/burbank/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/burbank/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/burbank/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Glendale, CA -->
+<url><loc>https://casurance.com/location/glendale/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/glendale/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/glendale/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/glendale/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/glendale/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/glendale/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/glendale/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Costa Mesa, CA -->
+<url><loc>https://casurance.com/location/costa-mesa/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/costa-mesa/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/costa-mesa/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/costa-mesa/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/costa-mesa/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/costa-mesa/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/costa-mesa/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- NEVADA LOCATION PAGES -->
+
+<!-- Las Vegas, NV -->
+<url><loc>https://casurance.com/location/las-vegas/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/las-vegas/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/las-vegas/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/las-vegas/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/las-vegas/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/las-vegas/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/las-vegas/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Henderson, NV -->
+<url><loc>https://casurance.com/location/henderson/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/henderson/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/henderson/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/henderson/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/henderson/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/henderson/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/henderson/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Reno, NV -->
+<url><loc>https://casurance.com/location/reno/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/reno/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/reno/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/reno/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/reno/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/reno/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/reno/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- North Las Vegas, NV -->
+<url><loc>https://casurance.com/location/north-las-vegas/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/north-las-vegas/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/north-las-vegas/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/north-las-vegas/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/north-las-vegas/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/north-las-vegas/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/north-las-vegas/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Sparks, NV -->
+<url><loc>https://casurance.com/location/sparks/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/sparks/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/sparks/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/sparks/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/sparks/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/sparks/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/sparks/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Mesquite, NV -->
+<url><loc>https://casurance.com/location/mesquite/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/mesquite/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/mesquite/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/mesquite/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/mesquite/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/mesquite/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/mesquite/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Boulder City, NV -->
+<url><loc>https://casurance.com/location/boulder-city/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/boulder-city/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/boulder-city/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/boulder-city/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/boulder-city/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/boulder-city/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/boulder-city/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+<!-- Carson City, NV -->
+<url><loc>https://casurance.com/location/carson-city/general-liability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/carson-city/workers-compensation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/carson-city/restaurant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/carson-city/commercial-auto</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/carson-city/rideshare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/carson-city/trucking</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://casurance.com/location/carson-city/commercial-property</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
