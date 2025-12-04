@@ -3,6 +3,7 @@ import { db } from "../db";
 import { blogPosts, pressReleases, cmsPages } from "@shared/schema";
 import { eq, isNotNull } from "drizzle-orm";
 import { coverages, industries } from "@shared/content/coverages";
+import { allLocations, insuranceTypes } from "@shared/content/locations";
 
 const router = Router();
 
@@ -15,12 +16,12 @@ const staticRoutes = [
   { url: "/coverages", priority: "0.8", changefreq: "weekly" },
   { url: "/middle-market", priority: "0.8", changefreq: "weekly" },
   { url: "/industries", priority: "0.8", changefreq: "weekly" },
+  { url: "/locations", priority: "0.8", changefreq: "weekly" },
   { url: "/blog", priority: "0.8", changefreq: "daily" },
   { url: "/press-releases", priority: "0.7", changefreq: "weekly" },
   { url: "/about", priority: "0.7", changefreq: "monthly" },
   { url: "/contact", priority: "0.7", changefreq: "monthly" },
   { url: "/service", priority: "0.7", changefreq: "monthly" },
-  // Note: /unsubscribe is excluded because it's disallowed in robots.txt
 ];
 
 // Quote and application form routes (exact paths from App.tsx)
@@ -163,6 +164,18 @@ router.get("/sitemap.xml", async (req: Request, res: Response) => {
       xml += `    <priority>0.8</priority>\n`;
       xml += `    <lastmod>${formatDate(new Date())}</lastmod>\n`;
       xml += '  </url>\n';
+    }
+
+    // Add location pages (city + insurance type combinations)
+    for (const location of allLocations) {
+      for (const insurance of insuranceTypes) {
+        xml += '  <url>\n';
+        xml += `    <loc>${SITE_URL}/location/${escapeXml(location.slug)}/${escapeXml(insurance.slug)}</loc>\n`;
+        xml += `    <changefreq>monthly</changefreq>\n`;
+        xml += `    <priority>0.7</priority>\n`;
+        xml += `    <lastmod>${formatDate(new Date())}</lastmod>\n`;
+        xml += '  </url>\n';
+      }
     }
 
     xml += '</urlset>';
