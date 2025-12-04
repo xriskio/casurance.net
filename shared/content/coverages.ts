@@ -3560,6 +3560,47 @@ export const industries: CoverageContent[] = [
     image: "attached_assets/stock_images/modern_self_storage__b49ae433.jpg",
     seoTitle: "Public Self Storage Insurance | Comprehensive Facility Coverage",
     seoDescription: "Specialized admitted insurance program for self-storage facilities. Commercial package coverage including property, general liability, customer goods legal liability, and business income protection with enhanced endorsements."
+  },
+
+  // WORKERS' COMPENSATION
+  {
+    title: "Workers' Compensation",
+    slug: "workers-compensation",
+    category: "Casualty",
+    summary: "Essential coverage protecting employees and employers from workplace injuries and occupational diseases.",
+    description: "Workers' Compensation insurance provides essential protection for both employers and employees when workplace injuries or occupational illnesses occur. This mandatory coverage in most states pays for medical treatment, rehabilitation, and lost wages for injured workers while protecting employers from potentially devastating lawsuits. Our comprehensive workers' compensation programs serve businesses of all sizes across all 50 states, from small businesses with a few employees to large enterprises with complex multi-state operations.",
+    whoNeeds: [
+      "All employers with employees (required in most states)",
+      "Construction companies and contractors",
+      "Manufacturing and industrial operations",
+      "Healthcare facilities and medical practices",
+      "Restaurants and hospitality businesses",
+      "Retail stores and service businesses",
+      "Transportation and logistics companies",
+      "Professional service firms and offices"
+    ],
+    coverageIncludes: [
+      "Medical expenses for work-related injuries",
+      "Lost wage replacement benefits",
+      "Disability benefits (temporary and permanent)",
+      "Vocational rehabilitation services",
+      "Death benefits for surviving dependents",
+      "Employer's liability coverage",
+      "Legal defense costs for covered claims",
+      "Occupational disease coverage"
+    ],
+    benefits: [
+      "Compliance with state workers' compensation laws",
+      "Protection from employee lawsuits for workplace injuries",
+      "Medical care and rehabilitation for injured workers",
+      "Wage replacement during recovery periods",
+      "Risk management and safety consultation services",
+      "Experience modification rate management",
+      "Pay-as-you-go premium options available",
+      "Multi-state coverage for businesses operating nationally"
+    ],
+    seoTitle: "Workers' Compensation Insurance | Employee Injury Protection",
+    seoDescription: "Comprehensive workers' compensation coverage for businesses of all sizes. Protect your employees and your business from workplace injuries with medical benefits, wage replacement, and employer's liability protection."
   }
 ];
 
