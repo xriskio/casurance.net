@@ -64,7 +64,7 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li><Link href="/quote" className="text-white/70 hover:text-white transition-colors cursor-pointer">Request a Quote</Link></li>
               <li><Link href="/service" className="text-white/70 hover:text-white transition-colors cursor-pointer">Service Request</Link></li>
-              <li><a href="https://casurance.net/locations" className="text-white/70 hover:text-white transition-colors cursor-pointer" target="_blank" rel="noopener noreferrer">Locations</a></li>
+              <li><Link href="/locations" className="text-white/70 hover:text-white transition-colors cursor-pointer">Locations</Link></li>
               <li><Link href="/about" className="text-white/70 hover:text-white transition-colors cursor-pointer">About Us</Link></li>
               <li><Link href="/contact" className="text-white/70 hover:text-white transition-colors cursor-pointer">Contact</Link></li>
               <li><Link href="/agent/login" className="text-white/70 hover:text-white transition-colors cursor-pointer">Agent Portal</Link></li>

@@ -16,7 +16,7 @@ const staticRoutes = [
   { url: "/coverages", priority: "0.8", changefreq: "weekly" },
   { url: "/middle-market", priority: "0.8", changefreq: "weekly" },
   { url: "/industries", priority: "0.8", changefreq: "weekly" },
-  // Note: /locations redirects to casurance.net - not included in this sitemap
+  { url: "/locations", priority: "0.8", changefreq: "weekly" },
   { url: "/blog", priority: "0.8", changefreq: "daily" },
   { url: "/press-releases", priority: "0.7", changefreq: "weekly" },
   { url: "/about", priority: "0.7", changefreq: "monthly" },
@@ -166,7 +166,17 @@ router.get("/sitemap.xml", async (req: Request, res: Response) => {
       xml += '  </url>\n';
     }
 
-    // Note: Location pages are hosted on casurance.net and not included in this sitemap
+    // Add location pages (city + insurance type combinations)
+    for (const location of allLocations) {
+      for (const insurance of insuranceTypes) {
+        xml += '  <url>\n';
+        xml += `    <loc>${SITE_URL}/location/${escapeXml(location.slug)}/${escapeXml(insurance.slug)}</loc>\n`;
+        xml += `    <changefreq>monthly</changefreq>\n`;
+        xml += `    <priority>0.7</priority>\n`;
+        xml += `    <lastmod>${formatDate(new Date())}</lastmod>\n`;
+        xml += '  </url>\n';
+      }
+    }
 
     xml += '</urlset>';
 
