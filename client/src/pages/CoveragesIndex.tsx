@@ -3,8 +3,127 @@ import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { categories, getCoveragesByCategory } from "@shared/content/coverages";
 import { Link } from "wouter";
-import { ArrowRight } from "lucide-react";
-import { getIndustryImage } from "@shared/industryImages";
+import { 
+  ArrowRight, 
+  Car, 
+  Truck, 
+  Shield, 
+  Building2, 
+  HardHat, 
+  Umbrella, 
+  FileText, 
+  Users, 
+  Briefcase,
+  Home,
+  Ship,
+  Plane,
+  Heart,
+  Scale,
+  Lock,
+  Flame,
+  Droplets,
+  Mountain,
+  Warehouse,
+  Store,
+  UtensilsCrossed,
+  Hotel,
+  Film,
+  Wrench,
+  Hammer,
+  AlertTriangle,
+  ShieldCheck,
+  Building,
+  Factory,
+  Stethoscope,
+  GraduationCap,
+  Church,
+  Landmark,
+  Package,
+  Zap,
+  Globe,
+  Leaf,
+  CircleDollarSign,
+  HandshakeIcon,
+  ScrollText,
+  BadgeCheck,
+  LifeBuoy,
+  Compass,
+  Anchor,
+  TreePine,
+  Tractor,
+  Wine,
+  Bike,
+  Bus,
+  Ambulance,
+  type LucideIcon
+} from "lucide-react";
+
+const coverageIcons: Record<string, LucideIcon> = {
+  "commercial-auto": Car,
+  "trucking": Truck,
+  "general-liability": Shield,
+  "commercial-property": Building2,
+  "workers-compensation": HardHat,
+  "umbrella-excess": Umbrella,
+  "professional-liability": FileText,
+  "directors-officers": Users,
+  "employment-practices": Briefcase,
+  "cyber-liability": Lock,
+  "ocean-marine-cargo": Ship,
+  "inland-marine": Package,
+  "aviation": Plane,
+  "medical-malpractice": Stethoscope,
+  "product-liability": AlertTriangle,
+  "builders-risk": Hammer,
+  "contractors-equipment": Wrench,
+  "crime-fidelity": Scale,
+  "boiler-machinery": Factory,
+  "environmental": Leaf,
+  "fiduciary": CircleDollarSign,
+  "garage-liability": Car,
+  "liquor-liability": Wine,
+  "special-events": Compass,
+  "surety-bonds": HandshakeIcon,
+  "business-owners-policy": Briefcase,
+  "commercial-package": Package,
+  "self-storage": Warehouse,
+  "restaurant-bop": UtensilsCrossed,
+  "hotel-motel": Hotel,
+  "hospitality": Hotel,
+  "film-production": Film,
+  "real-estate": Building,
+  "manufacturing": Factory,
+  "technology": Zap,
+  "healthcare": Heart,
+  "education": GraduationCap,
+  "religious-organizations": Church,
+  "non-profit": Landmark,
+  "agricultural": Tractor,
+  "golf-country-club": TreePine,
+  "nemt": Ambulance,
+  "tnc-rideshare": Car,
+  "limousine": Car,
+  "taxi-black-car": Car,
+  "public-transportation": Bus,
+  "ambulance": Ambulance,
+  "flood-coverage": Droplets,
+  "earthquake": Mountain,
+  "fire-coverage": Flame,
+  "high-value-home": Home,
+  "management-liability": Users,
+  "construction-casualty": HardHat,
+  "franchised-dealer": Store,
+  "garage-service": Wrench,
+  "auto-dealer-garage": Car,
+  "vacant-building": Building,
+  "crane-riggers": Anchor,
+  "security-services": ShieldCheck,
+  "shared-economy": Globe,
+};
+
+function getCoverageIcon(slug: string): LucideIcon {
+  return coverageIcons[slug] || Shield;
+}
 
 export default function CoveragesIndex() {
   return (
@@ -36,33 +155,28 @@ export default function CoveragesIndex() {
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {coverages.map((coverage) => {
-                    const coverageImage = getIndustryImage(coverage.slug);
+                    const IconComponent = getCoverageIcon(coverage.slug);
                     return (
                       <Link key={coverage.slug} href={`/coverage/${coverage.slug}`}>
                         <Card className="h-full cursor-pointer group border hover:border-primary/30 hover:shadow-lg transition-all duration-300" data-testid={`card-coverage-${coverage.slug}`}>
-                          {coverageImage && (
-                            <div className="relative h-40 overflow-hidden rounded-t-lg">
-                              <img
-                                src={coverageImage}
-                                alt={coverage.title}
-                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                              />
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                              <div className="absolute bottom-3 left-4 right-4">
-                                <span className="inline-block px-2 py-1 text-xs font-medium bg-white/90 text-[#0a1628] rounded">
+                          <CardContent className="p-6">
+                            <div className="flex items-start gap-4">
+                              <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                                <IconComponent className="w-6 h-6 text-primary" />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <h3 className="font-semibold text-lg text-foreground mb-1 group-hover:text-primary transition-colors">
+                                  {coverage.title}
+                                </h3>
+                                <span className="inline-block px-2 py-0.5 text-xs font-medium bg-muted text-muted-foreground rounded mb-2">
                                   {category}
                                 </span>
+                                <p className="text-sm text-muted-foreground line-clamp-2">
+                                  {coverage.summary}
+                                </p>
                               </div>
                             </div>
-                          )}
-                          <CardContent className={coverageImage ? "p-5" : "p-6"}>
-                            <h3 className="font-semibold text-lg text-foreground mb-2 group-hover:text-primary transition-colors">
-                              {coverage.title}
-                            </h3>
-                            <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                              {coverage.summary}
-                            </p>
-                            <div className="flex items-center text-primary text-sm font-medium group-hover:translate-x-1 transition-transform">
+                            <div className="flex items-center text-primary text-sm font-medium mt-4 group-hover:translate-x-1 transition-transform">
                               Learn More
                               <ArrowRight className="ml-1 h-4 w-4" />
                             </div>
