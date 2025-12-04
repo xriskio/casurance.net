@@ -35,7 +35,6 @@ const aboutLinks = [
   { name: "About Us", href: "/about" },
   { name: "News & Blog", href: "/blog" },
   { name: "Press Releases", href: "/press" },
-  { name: "Agent Portal", href: "/agent/login" },
 ];
 
 interface DropdownProps {
