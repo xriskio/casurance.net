@@ -80,7 +80,7 @@ export default function PersonalLinesIndex() {
                   </a>
                 </Button>
                 <Button size="lg" variant="outline" className="bg-transparent border-white/30 text-white hover:bg-white/10" asChild>
-                  <Link href="/contact" data-testid="link-contact-personal">
+                  <Link href="/quote/personal-lines" data-testid="link-quote-personal">
                     Request a Quote
                   </Link>
                 </Button>
@@ -123,12 +123,19 @@ export default function PersonalLinesIndex() {
                         </li>
                       ))}
                     </ul>
-                    <Button variant="outline" className="w-full" asChild>
-                      <Link href={`/coverage/${product.slug}`} data-testid={`link-coverage-${product.slug}`}>
-                        Learn More
-                        <ArrowRight className="h-4 w-4 ml-2" />
-                      </Link>
-                    </Button>
+                    <div className="flex flex-col gap-2">
+                      <Button className="w-full" asChild>
+                        <Link href="/quote/personal-lines" data-testid={`link-quote-${product.slug}`}>
+                          Get a Quote
+                        </Link>
+                      </Button>
+                      <Button variant="outline" className="w-full" asChild>
+                        <Link href={`/coverage/${product.slug}`} data-testid={`link-coverage-${product.slug}`}>
+                          Learn More
+                          <ArrowRight className="h-4 w-4 ml-2" />
+                        </Link>
+                      </Button>
+                    </div>
                   </CardContent>
                 </Card>
               ))}
@@ -195,15 +202,15 @@ export default function PersonalLinesIndex() {
                 </p>
                 <div className="space-y-4">
                   <Button className="w-full" size="lg" asChild>
+                    <Link href="/quote/personal-lines" data-testid="button-quote-personal-lines">
+                      Request a Quote Online
+                    </Link>
+                  </Button>
+                  <Button variant="outline" className="w-full" size="lg" asChild>
                     <a href="tel:18882540089" data-testid="button-call-quote">
                       <Phone className="h-5 w-5 mr-2" />
                       Call 1-888-254-0089
                     </a>
-                  </Button>
-                  <Button variant="outline" className="w-full" size="lg" asChild>
-                    <Link href="/contact" data-testid="link-contact-quote">
-                      Contact Us Online
-                    </Link>
                   </Button>
                 </div>
                 <p className="text-xs text-muted-foreground text-center mt-4">

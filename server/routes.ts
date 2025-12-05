@@ -2,7 +2,7 @@ import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { requireAgent } from "./auth/middleware";
-import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema, insertFilmProductionQuoteSchema, insertProductLiabilityQuoteSchema, insertSecurityServicesQuoteSchema, insertBuildersRiskQuoteSchema, insertVacantBuildingQuoteSchema, insertCraneRiggersQuoteSchema, insertCommercialAutoQuoteSchema, insertGeneralLiabilityQuoteSchema, insertHabitationalQuoteSchema, insertHotelQuoteSchema, insertRestaurantQuoteSchema, insertTruckingQuoteSchema, insertWorkersCompQuoteSchema, insertManagementLiabilityQuoteSchema, insertCommercialPackageQuoteSchema, insertNemtApplicationSchema, insertAmbulanceApplicationSchema, insertTncApplicationSchema, insertLimousineQuoteSchema, insertPublicTransportationQuoteSchema, insertTaxiBlackCarQuoteSchema, insertQuickQuoteSchema, insertContactRequestSchema, insertBlogPostSchema, insertPressReleaseSchema, insertNewsletterSubscriptionSchema, insertHighValueHomeQuoteSchema, insertCommercialFloodQuoteSchema, insertCommercialEarthquakeQuoteSchema, insertFranchisedDealerQuoteSchema, insertGarageServiceQuoteSchema, insertAutoDealerGarageQuoteSchema, insertGolfCountryClubQuoteSchema, insertCommercialPropertyQuoteSchema, insertConstructionCasualtyQuoteSchema, insertCyberLiabilityQuoteSchema, insertEmploymentPracticesQuoteSchema, insertProfessionalLiabilityQuoteSchema, insertReligiousOrgQuoteSchema, insertTncQuoteSchema } from "@shared/schema";
+import { insertQuoteRequestSchema, insertServiceRequestSchema, insertOceanCargoQuoteSchema, insertSelfStorageQuoteSchema, insertFilmProductionQuoteSchema, insertProductLiabilityQuoteSchema, insertSecurityServicesQuoteSchema, insertBuildersRiskQuoteSchema, insertVacantBuildingQuoteSchema, insertCraneRiggersQuoteSchema, insertCommercialAutoQuoteSchema, insertGeneralLiabilityQuoteSchema, insertHabitationalQuoteSchema, insertHotelQuoteSchema, insertRestaurantQuoteSchema, insertTruckingQuoteSchema, insertWorkersCompQuoteSchema, insertManagementLiabilityQuoteSchema, insertCommercialPackageQuoteSchema, insertNemtApplicationSchema, insertAmbulanceApplicationSchema, insertTncApplicationSchema, insertLimousineQuoteSchema, insertPublicTransportationQuoteSchema, insertTaxiBlackCarQuoteSchema, insertQuickQuoteSchema, insertContactRequestSchema, insertBlogPostSchema, insertPressReleaseSchema, insertNewsletterSubscriptionSchema, insertHighValueHomeQuoteSchema, insertCommercialFloodQuoteSchema, insertCommercialEarthquakeQuoteSchema, insertFranchisedDealerQuoteSchema, insertGarageServiceQuoteSchema, insertAutoDealerGarageQuoteSchema, insertGolfCountryClubQuoteSchema, insertCommercialPropertyQuoteSchema, insertConstructionCasualtyQuoteSchema, insertCyberLiabilityQuoteSchema, insertEmploymentPracticesQuoteSchema, insertProfessionalLiabilityQuoteSchema, insertReligiousOrgQuoteSchema, insertTncQuoteSchema, insertPersonalLinesQuoteSchema } from "@shared/schema";
 import { registerAgentRoutes } from "./routes/agent";
 import { registerCmsRoutes } from "./routes/cms";
 import sitemapRouter from "./routes/sitemap";
@@ -1109,6 +1109,40 @@ export async function registerRoutes(app: Express): Promise<Server> {
         email: validatedData.email,
         phone: validatedData.phone,
         insuranceType: 'TNC / Shared Economy Insurance'
+      };
+      
+      sendQuoteConfirmationEmail(emailData).catch(err => console.error('Failed to send confirmation email:', err));
+      sendAgentQuoteNotification(emailData).catch(err => console.error('Failed to send agent notification:', err));
+      
+      res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
+  // Personal Lines Quotes
+  app.post("/api/personal-lines-quotes", async (req, res) => {
+    try {
+      const validatedData = insertPersonalLinesQuoteSchema.parse(req.body);
+      const referenceNumber = generateReferenceNumber('PLQ');
+      const quote = await storage.createPersonalLinesQuote({ ...validatedData, referenceNumber } as any);
+      
+      const coverageTypeLabels: Record<string, string> = {
+        'personal-auto': 'Personal Auto Insurance',
+        'homeowners': 'Homeowners Insurance',
+        'landlord-protector': 'Landlord/Rental Property Insurance',
+        'high-value-home': 'High Value Home Insurance',
+        'wildfire-brush-area': 'Wildfire & Brush Area Home Insurance',
+        'residential-earthquake': 'Residential Earthquake Insurance'
+      };
+      
+      const emailData = {
+        referenceNumber,
+        businessName: `${validatedData.firstName} ${validatedData.lastName}`,
+        contactName: `${validatedData.firstName} ${validatedData.lastName}`,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        insuranceType: coverageTypeLabels[validatedData.coverageType] || 'Personal Lines Insurance'
       };
       
       sendQuoteConfirmationEmail(emailData).catch(err => console.error('Failed to send confirmation email:', err));

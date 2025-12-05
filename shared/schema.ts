@@ -528,6 +528,34 @@ export const newsletterSubscriptions = pgTable("newsletter_subscriptions", {
   unsubscribedAt: timestamp("unsubscribed_at"),
 });
 
+export const personalLinesQuotes = pgTable("personal_lines_quotes", {
+  id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
+  coverageType: text("coverage_type").notNull(),
+  firstName: text("first_name").notNull(),
+  lastName: text("last_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  address: text("address"),
+  city: text("city"),
+  state: text("state"),
+  zipCode: text("zip_code"),
+  effectiveDate: text("effective_date"),
+  currentInsurer: text("current_insurer"),
+  propertyType: text("property_type"),
+  yearBuilt: text("year_built"),
+  squareFootage: text("square_footage"),
+  dwellingValue: text("dwelling_value"),
+  numberOfVehicles: text("number_of_vehicles"),
+  vehicleInfo: text("vehicle_info"),
+  driverInfo: text("driver_info"),
+  additionalCoverages: text("additional_coverages").array().default([]),
+  additionalInfo: text("additional_info"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const highValueHomeQuotes = pgTable("high_value_home_quotes", {
   id: varchar("id").primaryKey(),
   referenceNumber: text("reference_number").notNull().unique(),
@@ -1054,6 +1082,12 @@ export const insertNewsletterSubscriptionSchema = createInsertSchema(newsletterS
   subscribedAt: true,
 });
 
+export const insertPersonalLinesQuoteSchema = createInsertSchema(personalLinesQuotes).omit({
+  id: true,
+  referenceNumber: true,
+  createdAt: true,
+});
+
 export const insertHighValueHomeQuoteSchema = createInsertSchema(highValueHomeQuotes).omit({
   id: true,
   referenceNumber: true,
@@ -1230,6 +1264,8 @@ export type InsertPressRelease = z.infer<typeof insertPressReleaseSchema>;
 export type PressRelease = typeof pressReleases.$inferSelect;
 export type InsertNewsletterSubscription = z.infer<typeof insertNewsletterSubscriptionSchema>;
 export type NewsletterSubscription = typeof newsletterSubscriptions.$inferSelect;
+export type InsertPersonalLinesQuote = z.infer<typeof insertPersonalLinesQuoteSchema>;
+export type PersonalLinesQuote = typeof personalLinesQuotes.$inferSelect;
 export type InsertHighValueHomeQuote = z.infer<typeof insertHighValueHomeQuoteSchema>;
 export type HighValueHomeQuote = typeof highValueHomeQuotes.$inferSelect;
 export type InsertCommercialFloodQuote = z.infer<typeof insertCommercialFloodQuoteSchema>;

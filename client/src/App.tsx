@@ -75,6 +75,7 @@ import CmsPageDisplay from "@/pages/CmsPageDisplay";
 import LocationsIndex from "@/pages/LocationsIndex";
 import LocationPage from "@/pages/LocationPage";
 import PersonalLinesIndex from "@/pages/PersonalLinesIndex";
+import PersonalLinesQuote from "@/pages/PersonalLinesQuote";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -143,6 +144,7 @@ function Router() {
       <Route path="/locations" component={LocationsIndex} />
       <Route path="/location/:citySlug/:insuranceSlug" component={LocationPage} />
       <Route path="/personal-lines" component={PersonalLinesIndex} />
+      <Route path="/quote/personal-lines" component={PersonalLinesQuote} />
       <Route path="/page/:slug" component={CmsPageDisplay} />
       <Route component={NotFound} />
     </Switch>
