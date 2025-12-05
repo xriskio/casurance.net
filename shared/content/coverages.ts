@@ -1171,29 +1171,40 @@ export const coverages: CoverageContent[] = [
     title: "Apartments",
     slug: "apartments",
     category: "Habitational",
-    summary: "Comprehensive property and liability insurance for apartment buildings and multifamily residential properties.",
-    description: "Apartment insurance provides complete coverage for apartment buildings, multifamily complexes, and residential rental properties. This program addresses property damage, liability risks, loss of income, and the unique exposures of residential property ownership and management.",
+    summary: "Comprehensive property and liability insurance for apartment buildings and multifamily residential properties with limits up to $100M per location.",
+    description: "Our apartment insurance program provides complete coverage for apartment buildings, multifamily complexes, garden-style apartments, and residential rental properties. This specialized program addresses property damage, liability risks, loss of income, and the unique exposures of residential property ownership and management. Available for all ages of buildings (with updates) and all construction types, with limits up to $100 million per location and $6 million per building. The program includes property, general liability, and optional coverages like equipment breakdown, crime, and cyber liability.",
     whoNeeds: [
-      "Apartment building owners",
+      "Apartment building owners with 50%+ occupancy",
+      "Garden-style apartment complexes (2+ buildings, 3 or less stories)",
       "Multifamily property investors",
       "Property management companies",
-      "Student housing operators",
-      "Senior living apartment communities"
+      "Market rent apartments (garden-style and standard)",
+      "Student housing operators (up to 25% student occupancy)",
+      "Senior unassisted living facilities",
+      "Low income/non-market housing properties",
+      "Rent controlled housing properties"
     ],
     coverageIncludes: [
-      "Building and property coverage",
-      "General liability for premises",
-      "Loss of rents and rental income",
-      "Ordinance or law coverage",
-      "Fair housing liability protection",
-      "Property management errors and omissions"
+      "Property: Up to $100M per location, $6M per building (replacement cost 100% & 110%)",
+      "General Liability: Comprehensive premises coverage",
+      "Business Income ALS with 24 months period of indemnity",
+      "Water Damage (back-up of sewers/drains)",
+      "Ordinance & Law Coverage (A, B, C)",
+      "Equipment Breakdown (optional)",
+      "Crime: Employee dishonesty, depositors forgery, computer fraud",
+      "Hired & Non-Owned Auto liability",
+      "Fair housing and discrimination coverage",
+      "Loss of rents and rental income protection"
     ],
     benefits: [
-      "Comprehensive apartment property coverage",
-      "Loss of income protection",
-      "Fair housing claim defense",
-      "Multiple location discounts",
-      "Flexible replacement cost options"
+      "All ages of buildings accepted (with property updates)",
+      "All construction types accepted (Frame, Joisted Masonry, Noncombustible, Fire Resistive)",
+      "Limits up to $100M per location, $6M per building",
+      "No coinsurance requirements",
+      "Credits available for TIV <$4M per building, fully sprinklered, year built 2000+",
+      "In-house claims and legal teams for efficient resolution",
+      "Multiple location discounts available",
+      "Flexible payment plans with direct bill option"
     ]
   },
 
@@ -1201,29 +1212,38 @@ export const coverages: CoverageContent[] = [
     title: "Condominiums",
     slug: "condominiums",
     category: "Habitational",
-    summary: "Insurance for condominium associations, master policies, and individual unit owners.",
-    description: "Condominium insurance provides coverage for condominium associations (master policies), common areas, and individual unit owners. This specialized coverage addresses the unique property ownership structure and liability exposures of condominium communities.",
+    summary: "Specialized insurance for condominium associations with property limits up to $100M per location and three coverage options for unit owners.",
+    description: "Our condominium insurance program is designed for well-maintained properties with established management and responsible tenants. We offer three options for Unit-Owners Property Coverage: Bare Walls (no interior coverage), Partial Coverage for upgrades to interior units (betterments and improvements), and Full Coverage for interior upgrades. All ages of buildings accepted with updates, all construction types accepted, with limits up to $100 million per location and $6 million per building. The program includes property, general liability, and optional coverages designed specifically for condo associations.",
     whoNeeds: [
-      "Condominium associations and HOAs",
+      "Condominium associations and HOAs with 50%+ occupancy",
+      "Owner-occupied condominiums meeting underwriting standards",
       "Condominium developers and converters",
       "Property management companies for condos",
       "Commercial condo associations",
-      "Mixed-use condominium properties"
+      "Mixed-use condominium properties",
+      "Planned unit developments (PUDs)"
     ],
     coverageIncludes: [
-      "Master policy for common property",
-      "General liability for association",
-      "Directors and officers liability for board",
-      "Loss assessment coverage",
-      "Equipment and common area property",
-      "Fidelity bond for association funds"
+      "Property: Up to $100M per location, $6M per building",
+      "Three Unit-Owner Coverage Options: Bare Walls, Partial Betterments, Full Betterments",
+      "General Liability for association operations",
+      "Directors and Officers liability for board members",
+      "Business Income ALS with 24 months period of indemnity",
+      "Water Damage (back-up of sewers/drains)",
+      "Ordinance & Law Coverage (A, B, C)",
+      "Equipment Breakdown (optional)",
+      "Crime and fidelity coverage for association funds",
+      "Hired & Non-Owned Auto liability"
     ],
     benefits: [
-      "Comprehensive master policy coverage",
-      "Protection for association board members",
-      "Assessment coverage for unit owners",
-      "Understanding of condo bylaws and documents",
-      "Specialized condominium expertise"
+      "All ages of buildings accepted (with property updates)",
+      "All construction types accepted",
+      "Limits up to $100M per location, $6M per building",
+      "No coinsurance with Replacement Cost (100% & 110% available)",
+      "Credits for TIV <$4M per building, fully sprinklered, year built 2000+",
+      "Protection for association board members from D&O claims",
+      "In-house claims and legal teams",
+      "Strong partnerships with 30+ years of experience"
     ]
   },
 
@@ -1322,7 +1342,7 @@ export const coverages: CoverageContent[] = [
     slug: "habitational-program",
     category: "Habitational",
     summary: "Specialty package insurance for apartments, condos, townhouse associations, lessor's risk, offices, and assisted living residences with property limits up to $75 million.",
-    description: "The Habitational Program provides a comprehensive specialty package for apartments, condo and townhouse associations, lessor's risk, offices, and assisted living residences. This innovative risk management program combines property, inland marine, crime, equipment breakdown, and general liability coverages with optional umbrella insurance up to $25 million. Available through our underwriting affiliate Programs Plus, we take an underwriting risk position to deliver competitive rates for qualified habitational risks across all 50 states.",
+    description: "The Habitational Program provides a comprehensive specialty package for apartments, condo and townhouse associations, lessor's risk, offices, and assisted living residences. This innovative risk management program combines property, inland marine, crime, equipment breakdown, and general liability coverages with optional umbrella insurance up to $25 million. We target well-maintained properties with established management and responsible tenants. Eligible risks include properties less than 20 years old or renovated in past 10 years, with copper wiring, minimum 80% occupancy, and Protection Class 6 or better. Ineligible risks include owner-occupied properties, hotels/motels, buildings under renovation, high-rise (15+ stories), vacant buildings, mobile homes, short-term rentals, properties with less than 30% occupancy, and aluminum wiring without approved remedy.",
     whoNeeds: [
       "Apartment building owners with 80%+ occupancy",
       "Condo and townhouse associations",
@@ -1330,7 +1350,8 @@ export const coverages: CoverageContent[] = [
       "Office building owners",
       "Assisted living residence operators",
       "Properties less than 20 years old or renovated in past 10 years",
-      "Owner-occupied condominiums meeting underwriting standards"
+      "Owner-occupied condominiums meeting underwriting standards",
+      "Well-maintained properties with established management"
     ],
     coverageIncludes: [
       "Property: Replacement Cost Valuation with Agreed Amount (up to $75 million per location)",
@@ -1341,18 +1362,59 @@ export const coverages: CoverageContent[] = [
       "Personal & Advertising Injury: $1,000,000 limit",
       "Employee Benefits Liability: $1,000,000",
       "Hired/Non-Owned Auto: $1,000,000",
-      "Optional Umbrella: Up to $25 million capacity"
+      "Optional Umbrella: Up to $25 million capacity",
+      "XS Property: Up to $50M (min attachment $5M)"
     ],
     benefits: [
       "Package policy with multiple coverages in one",
       "Property limits up to $75 million per location",
       "Competitive rates for preferred accounts",
-      "Copper wiring and renovation requirements",
-      "Protection Class 6 or better accepted",
+      "No single building limit exceeds $20M",
+      "Property minimum premium $10,000",
+      "Updates required if systems are 30+ years old",
       "Non-coastal and Tier 1 ex-Wind available",
-      "Top quartile rent criteria qualification",
       "College student occupancy up to 25%",
-      "Rent subsidy accounts accepted (up to 15%)"
+      "Rent subsidy accounts accepted (up to 15%)",
+      "All 50 states coverage available"
+    ]
+  },
+
+  {
+    title: "Office Buildings",
+    slug: "office-buildings",
+    category: "Habitational",
+    summary: "Comprehensive property and liability insurance for office buildings, commercial offices, and professional workspaces with limits up to $100M per location.",
+    description: "Our office building insurance program provides specialized coverage for commercial office properties, from single-story professional buildings to high-rise office towers. The program addresses property damage, tenant liability, loss of rental income, and the unique exposures of commercial office ownership and management. Available for all ages of buildings (with updates) and all construction types, with limits up to $100 million per location. The program includes property, general liability, and optional coverages designed specifically for office building operations including medical offices.",
+    whoNeeds: [
+      "Office building owners with 50%+ occupancy",
+      "Commercial office property investors",
+      "Property management companies",
+      "Medical office building owners",
+      "Professional building operators",
+      "Multi-tenant office complexes",
+      "Mixed-use properties with office components"
+    ],
+    coverageIncludes: [
+      "Property: Up to $100M per location with replacement cost",
+      "General Liability for premises operations",
+      "Business Income ALS with 24 months period of indemnity",
+      "Water Damage (back-up of sewers/drains)",
+      "Ordinance & Law Coverage (A, B, C)",
+      "Equipment Breakdown (optional)",
+      "Crime: Employee dishonesty, depositors forgery, computer fraud",
+      "Hired & Non-Owned Auto liability",
+      "Tenant discrimination coverage",
+      "Loss of rents protection"
+    ],
+    benefits: [
+      "All ages of buildings accepted (with property updates)",
+      "All construction types accepted",
+      "Limits up to $100M per location",
+      "No coinsurance with Replacement Cost available",
+      "High-rise fire protection requirements supported",
+      "Medical office occupancy accepted",
+      "In-house claims and legal teams",
+      "Credits for sprinklered and newer buildings"
     ]
   },
 
