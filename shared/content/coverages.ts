@@ -3852,7 +3852,7 @@ export const industries: CoverageContent[] = [
       "Those requiring higher liability limits"
     ],
     coverageIncludes: [
-      "Guaranteed replacement cost dwelling coverage (up to $7.5M+ TIV)",
+      "Guaranteed replacement cost dwelling coverage (up to $30M TIV)",
       "Extended replacement cost options",
       "Other structures coverage (guest houses, pool houses)",
       "Worldwide personal property protection",

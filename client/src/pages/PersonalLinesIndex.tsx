@@ -33,7 +33,7 @@ const personalLinesProducts = [
     slug: "high-value-home",
     icon: Gem,
     description: "Premium protection for luxury homes and estates with guaranteed replacement cost and concierge claims service.",
-    features: ["Up to $7.5M+ Coverage", "Guaranteed Replacement", "Fine Arts & Jewelry", "Private Client Service"]
+    features: ["Up to $30M Coverage", "Guaranteed Replacement", "Fine Arts & Jewelry", "Private Client Service"]
   },
   {
     title: "Wildfire & Brush Area",
