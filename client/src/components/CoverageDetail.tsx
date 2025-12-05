@@ -80,7 +80,7 @@ export default function CoverageDetail({ coverage }: CoverageDetailProps) {
     if (coverage.slug === 'restaurant-insurance') {
       return '/quote/restaurant';
     }
-    if (coverage.slug === 'habitational-insurance') {
+    if (coverage.slug === 'habitational-insurance' || coverage.slug === 'habitational-program' || coverage.slug === 'apartments' || coverage.slug === 'condominiums') {
       return '/quote/habitational';
     }
     if (coverage.slug === 'builders-risk') {
