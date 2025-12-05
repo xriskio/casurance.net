@@ -2414,6 +2414,48 @@ export const industries: CoverageContent[] = [
   },
 
   {
+    title: "Apartments",
+    slug: "apartments-industry",
+    category: "Industries",
+    summary: "Comprehensive property and liability insurance for apartment buildings, rental properties, and multi-family housing communities.",
+    description: "Apartment insurance provides specialized coverage for owners and managers of apartment buildings, rental properties, and multi-family housing communities. Our habitational program addresses the unique property and liability exposures of residential rental operations, from garden-style communities to mid-rise apartment buildings. With coverage capacity up to $100 million per location and $6 million per building, we protect apartment owners against property damage, tenant liability claims, loss of rental income, and the operational risks of managing residential properties.",
+    whoNeeds: [
+      "Apartment building owners and investors",
+      "Multi-family property management companies",
+      "Garden-style apartment communities",
+      "Mid-rise apartment buildings (3-14 stories)",
+      "Mixed-use buildings with residential units",
+      "Student housing operators",
+      "Senior housing communities",
+      "Affordable housing providers"
+    ],
+    coverageIncludes: [
+      "Building property coverage up to $100M per location",
+      "General liability for premises operations",
+      "Loss of rental income and business interruption",
+      "Equipment breakdown coverage",
+      "Boiler and machinery coverage",
+      "Crime coverage including employee dishonesty",
+      "Umbrella and excess liability",
+      "Workers compensation for maintenance staff",
+      "Flood and earthquake coverage (where available)",
+      "Building ordinance and law coverage"
+    ],
+    benefits: [
+      "Specialized habitational underwriting expertise",
+      "Coverage for properties up to $6M per building",
+      "Protection for amenities including pools, fitness centers, and playgrounds",
+      "Flexible deductible options",
+      "Claims handling expertise for tenant-related matters",
+      "Risk management resources for property managers",
+      "Competitive rates for well-maintained properties",
+      "Understanding of rental property operations"
+    ],
+    seoTitle: "Apartment Insurance | Multi-Family Property Coverage | Casurance",
+    seoDescription: "Specialized apartment insurance for multi-family properties. Property and liability coverage for apartment buildings, rental communities, and residential housing up to $100M per location."
+  },
+
+  {
     title: "Cannabis",
     slug: "cannabis",
     category: "Industries",
@@ -2471,6 +2513,48 @@ export const industries: CoverageContent[] = [
       "Competitive rates for experienced contractors",
       "Risk management for construction projects"
     ]
+  },
+
+  {
+    title: "Condominiums",
+    slug: "condominiums-industry",
+    category: "Industries",
+    summary: "Specialized insurance for condominium associations, HOAs, and individually-owned condominium units.",
+    description: "Condominium insurance provides comprehensive coverage for condominium associations, homeowners associations (HOAs), and the unique exposures of shared ownership properties. Our program covers master policies for common areas, directors and officers liability for board members, and coordinates with individual unit owner policies. We understand the complex insurance requirements of condominium management, from high-rise luxury towers to garden-style communities, offering property coverage up to $100 million per location.",
+    whoNeeds: [
+      "Condominium associations and HOAs",
+      "High-rise condominium buildings",
+      "Garden-style condominium communities",
+      "Townhouse and attached housing associations",
+      "Mixed-use condominium developments",
+      "Condominium property management companies",
+      "Condominium conversion projects",
+      "New construction condominium developments"
+    ],
+    coverageIncludes: [
+      "Master property policy for buildings and common areas",
+      "General liability for common area operations",
+      "Directors and officers liability for board members",
+      "Fidelity/crime coverage for association funds",
+      "Equipment breakdown for shared systems",
+      "Loss assessment coverage",
+      "Umbrella and excess liability",
+      "Workers compensation for staff",
+      "Flood and earthquake coverage (where available)",
+      "Building ordinance and law coverage"
+    ],
+    benefits: [
+      "Understanding of condominium ownership structures",
+      "Coverage coordinating with unit owner HO-6 policies",
+      "Protection for board members and association officers",
+      "Claims expertise for shared property issues",
+      "Risk management for common area exposures",
+      "Competitive rates for well-maintained associations",
+      "Compliance with CC&R and bylaw requirements",
+      "Coverage for amenities including pools, clubhouses, and fitness centers"
+    ],
+    seoTitle: "Condominium Insurance | HOA & Condo Association Coverage | Casurance",
+    seoDescription: "Comprehensive condominium insurance for associations and HOAs. Master property policies, D&O liability, and common area coverage for high-rise and garden-style condominiums."
   },
 
   {
@@ -2565,6 +2649,53 @@ export const industries: CoverageContent[] = [
       "Cyber security and data breach protection",
       "Expert claims handling for financial matters"
     ]
+  },
+
+  {
+    title: "Habitational Program",
+    slug: "habitational-program",
+    category: "Industries",
+    summary: "Comprehensive property insurance program for apartments, condominiums, office buildings, and multi-family residential properties.",
+    description: "The Habitational Program provides specialized property and liability insurance for owners and managers of residential and commercial properties. This comprehensive program covers apartments, condominiums, office buildings, and mixed-use developments with capacity up to $100 million per location. We offer tailored solutions for garden-style communities, mid-rise buildings (3-14 stories), and high-rise properties, with specific underwriting guidelines ensuring proper coverage for fire protection systems, construction types, and occupancy requirements. Our program includes detailed eligibility criteria covering occupancy rates (80% minimum), building age requirements, electrical systems (copper wiring preferred), and fire protection classifications.",
+    whoNeeds: [
+      "Apartment building owners and investors",
+      "Condominium associations and HOAs",
+      "Office building owners and operators",
+      "Multi-family property management companies",
+      "Mixed-use property developers",
+      "Student housing operators",
+      "Senior housing communities",
+      "Affordable housing providers",
+      "Real estate investment trusts (REITs)"
+    ],
+    coverageIncludes: [
+      "Building property coverage up to $100M per location",
+      "General liability for premises operations",
+      "Loss of rental income and business interruption",
+      "Equipment breakdown and boiler coverage",
+      "Directors and officers liability",
+      "Fidelity/crime coverage",
+      "Umbrella and excess liability",
+      "Workers compensation for staff",
+      "Flood and earthquake coverage (where available)",
+      "Building ordinance and law coverage",
+      "Terrorism coverage (TRIA)"
+    ],
+    benefits: [
+      "Specialized habitational underwriting expertise",
+      "Capacity for properties up to $6M per building",
+      "Coverage for mid-rise (3-14 stories) and high-rise (15+ stories) buildings",
+      "Eligibility for buildings with 80%+ occupancy",
+      "Protection for properties under 20 years old or renovated in past 10 years",
+      "Fire-resistive construction coverage for high-rise buildings",
+      "Central station fire alarm requirements met",
+      "Sprinkler system coverage for high-rise requirements",
+      "Protection Class 6+ eligible properties",
+      "Risk management resources for property managers",
+      "Competitive rates for well-maintained properties"
+    ],
+    seoTitle: "Habitational Insurance Program | Apartments, Condos & Office Buildings | Casurance",
+    seoDescription: "Specialized habitational insurance for apartments, condominiums, and office buildings. Property and liability coverage up to $100M per location with expert underwriting for multi-family and commercial properties."
   },
 
   {
