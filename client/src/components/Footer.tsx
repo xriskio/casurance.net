@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#0a1628] text-white" role="contentinfo">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 mb-12">
           <div className="lg:col-span-2">
             <div className="mb-6">
               <span className="text-2xl font-bold tracking-tight" style={{ letterSpacing: '-0.02em' }}>
@@ -16,7 +16,7 @@ export default function Footer() {
               </p>
             </div>
             <p className="text-sm text-white/70 mb-6 max-w-sm">
-              Casurance Inc d/b/a Casurance Agency Insurance Services. Nationwide commercial insurance specialists serving businesses across all 50 US states since 2010.
+              Casurance Inc d/b/a Casurance Agency Insurance Services. Nationwide commercial and personal insurance specialists serving across all 50 US states since 2010.
             </p>
             <div className="space-y-3">
               <a href="tel:18882540089" className="flex items-center gap-3 text-sm text-white/80 hover:text-white transition-colors">
@@ -38,13 +38,24 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Coverage</h3>
+            <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Commercial</h3>
             <ul className="space-y-3 text-sm">
               <li><Link href="/coverage/commercial-auto" className="text-white/70 hover:text-white transition-colors cursor-pointer">Commercial Auto</Link></li>
               <li><Link href="/coverage/general-liability" className="text-white/70 hover:text-white transition-colors cursor-pointer">General Liability</Link></li>
               <li><Link href="/coverage/workers-compensation" className="text-white/70 hover:text-white transition-colors cursor-pointer">Workers Compensation</Link></li>
               <li><Link href="/coverage/commercial-property" className="text-white/70 hover:text-white transition-colors cursor-pointer">Commercial Property</Link></li>
               <li><Link href="/coverages" className="text-primary hover:text-primary/80 transition-colors cursor-pointer font-medium">View All →</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Personal Lines</h3>
+            <ul className="space-y-3 text-sm">
+              <li><Link href="/coverage/personal-auto" className="text-white/70 hover:text-white transition-colors cursor-pointer">Personal Auto</Link></li>
+              <li><Link href="/coverage/homeowners" className="text-white/70 hover:text-white transition-colors cursor-pointer">Homeowners</Link></li>
+              <li><Link href="/coverage/landlord-protector" className="text-white/70 hover:text-white transition-colors cursor-pointer">Landlord Protector</Link></li>
+              <li><Link href="/coverage/high-value-home" className="text-white/70 hover:text-white transition-colors cursor-pointer">High Value Home</Link></li>
+              <li><Link href="/personal-lines" className="text-primary hover:text-primary/80 transition-colors cursor-pointer font-medium">View All →</Link></li>
             </ul>
           </div>
 

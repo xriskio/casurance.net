@@ -31,6 +31,15 @@ const industryCategories = [
   { name: "Religious Organizations", slug: "religious-organizations" },
 ];
 
+const personalLinesCategories = [
+  { name: "Personal Auto", slug: "personal-auto" },
+  { name: "Homeowners", slug: "homeowners" },
+  { name: "Landlord Protector", slug: "landlord-protector" },
+  { name: "High Value Home", slug: "high-value-home" },
+  { name: "Wildfire & Brush Area", slug: "wildfire-brush-area" },
+  { name: "Residential Earthquake", slug: "residential-earthquake" },
+];
+
 const aboutLinks = [
   { name: "About Us", href: "/about" },
   { name: "News & Blog", href: "/blog" },
@@ -229,6 +238,29 @@ export default function Header() {
             </MegaMenuDropdown>
 
             <NavDropdown
+              label="Personal Lines"
+              isOpen={openDropdown === 'personal'}
+              onToggle={() => toggleDropdown('personal')}
+              onClose={closeDropdowns}
+              testId="dropdown-personal"
+            >
+              {personalLinesCategories.map((item) => (
+                <Link key={item.slug} href={`/coverage/${item.slug}`} onClick={handleLinkClick}>
+                  <span className="block px-4 py-2 text-sm text-gray-700 hover:text-primary hover:bg-gray-50 cursor-pointer">
+                    {item.name}
+                  </span>
+                </Link>
+              ))}
+              <div className="border-t border-gray-100 mt-2 pt-2">
+                <Link href="/personal-lines" onClick={handleLinkClick}>
+                  <span className="block px-4 py-2 text-sm font-medium text-primary hover:text-primary/80 cursor-pointer">
+                    View All Personal Lines →
+                  </span>
+                </Link>
+              </div>
+            </NavDropdown>
+
+            <NavDropdown
               label="About"
               isOpen={openDropdown === 'about'}
               onToggle={() => toggleDropdown('about')}
@@ -356,6 +388,38 @@ export default function Header() {
                         onClick={handleLinkClick}
                       >
                         View All Industries →
+                      </div>
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              <div className="py-2">
+                <button 
+                  onClick={() => toggleDropdown('mobile-personal')}
+                  className="flex items-center justify-between w-full text-base font-medium text-white/90 hover:text-white py-2"
+                >
+                  Personal Lines
+                  <ChevronDown className={`h-4 w-4 transition-transform ${openDropdown === 'mobile-personal' ? 'rotate-180' : ''}`} />
+                </button>
+                {openDropdown === 'mobile-personal' && (
+                  <div className="pl-4 py-2 space-y-1">
+                    {personalLinesCategories.map((item) => (
+                      <Link key={item.slug} href={`/coverage/${item.slug}`}>
+                        <div 
+                          className="text-sm text-white/70 hover:text-white py-1.5 cursor-pointer"
+                          onClick={handleLinkClick}
+                        >
+                          {item.name}
+                        </div>
+                      </Link>
+                    ))}
+                    <Link href="/personal-lines">
+                      <div 
+                        className="text-sm font-medium text-primary py-1.5 cursor-pointer"
+                        onClick={handleLinkClick}
+                      >
+                        View All Personal Lines →
                       </div>
                     </Link>
                   </div>

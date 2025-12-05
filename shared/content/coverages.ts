@@ -3724,6 +3724,229 @@ export const industries: CoverageContent[] = [
     ],
     seoTitle: "Employment Practices Liability Insurance | EPLI Coverage",
     seoDescription: "Protect your business from employee claims with Employment Practices Liability Insurance. Coverage for discrimination, harassment, wrongful termination, and more. Essential protection for all employers."
+  },
+
+  // PERSONAL LINES
+  {
+    title: "Personal Auto Insurance",
+    slug: "personal-auto",
+    category: "Personal Lines",
+    summary: "Comprehensive auto insurance coverage for your personal vehicles with competitive rates and flexible options.",
+    description: "Personal auto insurance provides essential protection for you, your passengers, and your vehicle. Our personal auto policies offer comprehensive coverage options including liability, collision, comprehensive, uninsured motorist, and medical payments coverage. We work with multiple carriers to find you the best rates and coverage for your specific needs.",
+    whoNeeds: [
+      "Individual vehicle owners",
+      "Families with multiple drivers",
+      "New drivers and young adults",
+      "Drivers with clean or imperfect driving records",
+      "Owners of classic or collector vehicles",
+      "Anyone leasing or financing a vehicle"
+    ],
+    coverageIncludes: [
+      "Liability coverage for bodily injury and property damage",
+      "Collision coverage for vehicle damage in accidents",
+      "Comprehensive coverage for theft, vandalism, and weather damage",
+      "Uninsured/underinsured motorist protection",
+      "Medical payments coverage",
+      "Roadside assistance and towing",
+      "Rental car reimbursement",
+      "Gap coverage for leased vehicles"
+    ],
+    benefits: [
+      "Competitive rates from multiple carriers",
+      "Bundle with homeowners for additional savings",
+      "Flexible deductible options",
+      "Good driver and safe vehicle discounts",
+      "24/7 claims service",
+      "Coverage for multiple vehicles",
+      "Coverage options for all driver types"
+    ],
+    seoTitle: "Personal Auto Insurance | Car Insurance Coverage",
+    seoDescription: "Get comprehensive personal auto insurance coverage at competitive rates. Liability, collision, comprehensive, and uninsured motorist protection. Free quotes for drivers of all types."
+  },
+  {
+    title: "Homeowners Insurance",
+    slug: "homeowners",
+    category: "Personal Lines",
+    summary: "Complete protection for your home, belongings, and liability with customizable coverage options.",
+    description: "Homeowners insurance protects your most valuable asset - your home. Our comprehensive homeowners policies cover your dwelling, personal belongings, liability, and additional living expenses if your home becomes uninhabitable. We offer HO-3 and HO-5 policy forms with flexible coverage limits and deductible options to match your needs and budget.",
+    whoNeeds: [
+      "Homeowners with mortgages (typically required by lenders)",
+      "Homeowners without mortgages who want protection",
+      "First-time home buyers",
+      "Owners of single-family homes, townhomes, or condos",
+      "Those with valuable personal property",
+      "Homeowners concerned about liability exposure"
+    ],
+    coverageIncludes: [
+      "Dwelling coverage for your home's structure",
+      "Other structures coverage (detached garages, fences, sheds)",
+      "Personal property protection for belongings",
+      "Loss of use/additional living expenses",
+      "Personal liability protection",
+      "Medical payments to others",
+      "Ordinance or law coverage",
+      "Water backup coverage options"
+    ],
+    benefits: [
+      "Replacement cost coverage available",
+      "Bundle with auto for multi-policy discounts",
+      "Flexible deductible options",
+      "Claims-free discounts",
+      "New home and security system discounts",
+      "Coverage for detached structures",
+      "Personal liability protection included",
+      "Optional scheduled personal property coverage"
+    ],
+    seoTitle: "Homeowners Insurance | Home Insurance Coverage",
+    seoDescription: "Protect your home and belongings with comprehensive homeowners insurance. Dwelling, personal property, liability, and loss of use coverage. Get a free quote today."
+  },
+  {
+    title: "Landlord Protector Insurance",
+    slug: "landlord-protector",
+    category: "Personal Lines",
+    summary: "Specialized coverage for rental property owners including dwelling, liability, and loss of rental income protection.",
+    description: "Landlord Protector Insurance (DP-3 policies) is specifically designed for property owners who rent out residential properties. This coverage protects your investment property, provides liability protection, and covers lost rental income when your property becomes uninhabitable due to a covered loss. Whether you own a single rental unit or multiple investment properties, we can help you find the right coverage.",
+    whoNeeds: [
+      "Owners of single-family rental properties",
+      "Owners of multi-family properties (2-4 units)",
+      "Real estate investors with rental portfolios",
+      "Property owners with short-term rentals",
+      "First-time landlords entering the rental market",
+      "Property owners converting primary residence to rental"
+    ],
+    coverageIncludes: [
+      "Dwelling coverage for the rental structure",
+      "Other structures (detached garages, fences)",
+      "Landlord's personal property (appliances, maintenance equipment)",
+      "Fair rental value/loss of rents",
+      "Landlord liability protection",
+      "Medical payments coverage",
+      "Ordinance or law coverage",
+      "Vandalism and malicious mischief coverage"
+    ],
+    benefits: [
+      "Replacement cost dwelling coverage",
+      "Coverage for lost rental income",
+      "Liability protection from tenant claims",
+      "Coverage for landlord-owned appliances",
+      "Multi-property discounts available",
+      "Flexible coverage limits",
+      "Competitive rates for investment properties",
+      "Coverage available for various property types"
+    ],
+    seoTitle: "Landlord Insurance | Rental Property Insurance Coverage",
+    seoDescription: "Protect your rental investment with landlord insurance. Coverage for dwelling, liability, and loss of rental income. Specialized DP-3 policies for property investors."
+  },
+  {
+    title: "High Value Home Insurance",
+    slug: "high-value-home",
+    category: "Personal Lines",
+    summary: "Premium protection for luxury homes and estates with higher limits, guaranteed replacement cost, and personalized service.",
+    description: "High Value Home Insurance is designed for luxury residences, estates, and homes with significant replacement values. These premium policies offer guaranteed replacement cost coverage, higher liability limits, and specialized coverage for fine arts, jewelry, wine collections, and other valuables. Our private client programs through top-rated carriers provide white-glove claims service and risk management support for discerning homeowners.",
+    whoNeeds: [
+      "Owners of homes valued at $1 million or more",
+      "Owners of custom-built or architecturally significant homes",
+      "Those with valuable art, jewelry, or wine collections",
+      "High-net-worth individuals and families",
+      "Owners of vacation homes and second residences",
+      "Those requiring higher liability limits"
+    ],
+    coverageIncludes: [
+      "Guaranteed replacement cost dwelling coverage (up to $7.5M+ TIV)",
+      "Extended replacement cost options",
+      "Other structures coverage (guest houses, pool houses)",
+      "Worldwide personal property protection",
+      "Scheduled coverage for valuables (jewelry, art, wine)",
+      "Enhanced liability limits (up to $1M or more)",
+      "Cash settlement options",
+      "Identity theft protection"
+    ],
+    benefits: [
+      "A+ rated excess & surplus lines carriers",
+      "HO-3 and HO-5 policy forms available",
+      "No depreciation on covered losses",
+      "Dedicated claims concierge service",
+      "Risk management consultation",
+      "Coverage for seasonal and vacation homes",
+      "Water damage options based on risk",
+      "Premium discounts for protective devices"
+    ],
+    seoTitle: "High Value Home Insurance | Luxury Home Coverage",
+    seoDescription: "Premium insurance for luxury homes and estates. Guaranteed replacement cost, fine arts coverage, and white-glove claims service. Private client programs for high-net-worth homeowners."
+  },
+  {
+    title: "Wildfire & Brush Area Home Insurance",
+    slug: "wildfire-brush-area",
+    category: "Personal Lines",
+    summary: "Specialized coverage for homes in high fire risk areas, brush zones, and wildfire-prone regions.",
+    description: "Wildfire & Brush Area Home Insurance provides essential coverage for homes located in high fire risk zones where standard homeowners policies may be difficult to obtain. Through our excess & surplus lines markets, we can provide coverage for properties with elevated wildfire exposure, including those in brush areas, WUI (Wildland-Urban Interface) zones, and areas with higher Fireline scores. We work with A-rated carriers to find solutions for hard-to-place risks.",
+    whoNeeds: [
+      "Homeowners in designated brush or fire hazard areas",
+      "Properties in the Wildland-Urban Interface (WUI)",
+      "Homes with elevated Fireline or FireLine scores",
+      "Properties declined by standard insurance carriers",
+      "Homeowners in California and other fire-prone states",
+      "Those who have received non-renewal notices"
+    ],
+    coverageIncludes: [
+      "Dwelling coverage for fire and other perils",
+      "Other structures protection",
+      "Personal property coverage",
+      "Loss of use/additional living expenses",
+      "Liability coverage",
+      "Medical payments to others",
+      "Debris removal coverage",
+      "Fire department service charges"
+    ],
+    benefits: [
+      "Coverage when standard markets decline",
+      "A & A+ rated E&S carriers",
+      "Coverage for high Fireline score properties",
+      "Options for properties with brush exposure",
+      "Flexible deductible options for premium savings",
+      "Coverage for fire-resistive construction",
+      "Available for primary, secondary, and rental dwellings",
+      "Experienced underwriting for complex risks"
+    ],
+    seoTitle: "Wildfire Insurance | Brush Area Home Insurance Coverage",
+    seoDescription: "Specialized insurance for homes in wildfire zones and brush areas. Coverage when standard carriers decline. E&S market solutions for high fire risk properties."
+  },
+  {
+    title: "Residential Earthquake Insurance",
+    slug: "residential-earthquake",
+    category: "Personal Lines",
+    summary: "Stand-alone earthquake coverage for homes, condos, and rental properties with flexible limits and deductible options.",
+    description: "Residential Earthquake Insurance provides stand-alone coverage for earthquake damage to your home, personal property, and additional living expenses. Standard homeowners policies do not cover earthquake damage, making this separate policy essential for homeowners in seismically active areas. Our programs offer flexible limits up to $15 million, deductibles as low as 2.5%, and optional coverages tailored to your needs and budget.",
+    whoNeeds: [
+      "Homeowners in earthquake-prone regions (California, Nevada, Pacific Northwest)",
+      "Condo and townhome owners in seismic zones",
+      "Owners of rental/investment properties",
+      "Mortgage lenders may require coverage in high-risk areas",
+      "Anyone within proximity to active fault lines",
+      "Owners of older homes built before modern seismic codes"
+    ],
+    coverageIncludes: [
+      "Dwelling coverage up to $15 million insured value",
+      "Masonry veneer and chimney coverage (no sub-limits)",
+      "Building ordinance or law coverage (up to 10%)",
+      "Other structures coverage (pools, retaining walls, fences)",
+      "Personal property coverage (crystal, jewelry, fine arts)",
+      "Loss of use/additional living expenses",
+      "Loss assessment coverage (up to $100,000)",
+      "7-day occurrence period for aftershocks"
+    ],
+    benefits: [
+      "Deductibles as low as 2.5% (up to 25% options)",
+      "Separate limits for each coverage type",
+      "Partial limits and shared loss options for premium savings",
+      "Retrofitting discount (15%) for older homes",
+      "A.M. Best A- (Excellent) rated admitted carrier",
+      "No down payment required to bind",
+      "Flexible payment plans including credit cards",
+      "Stand-alone program for HO3, rentals, and condos"
+    ],
+    seoTitle: "Earthquake Insurance | Residential Earthquake Coverage",
+    seoDescription: "Stand-alone earthquake insurance for homes, condos, and rentals. Coverage up to $15M with deductibles as low as 2.5%. Protect your home from earthquake damage."
   }
 ];
 
