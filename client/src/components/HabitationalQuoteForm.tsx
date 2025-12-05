@@ -115,6 +115,25 @@ export default function HabitationalQuoteForm() {
     subsidizedHousing: "",
     seniorHousing: "",
     
+    // Parking Information
+    parkingType: "",
+    numberOfParkingSpaces: "",
+    garageType: "",
+    
+    // Exposures
+    numberOfSpas: "",
+    hasPlayground: "",
+    hasFitnessCenter: "",
+    hasTennisCourts: "",
+    hasBasketballCourts: "",
+    hasGolfCourse: "",
+    
+    // High-Rise Requirements (7+ stories)
+    hasFireRisers: "",
+    hasFireDoors: "",
+    hasEmergencyLighting: "",
+    hasEgressWindows: "",
+    
     // Additional Information
     additionalComments: "",
   });
@@ -130,6 +149,10 @@ export default function HabitationalQuoteForm() {
     deferredMaintenance: false,
     graffiti: false,
     renovation: false,
+    hasSecurityCameras: false,
+    hasSecurityAlarm: false,
+    hasDoorman: false,
+    hasOnSiteManager: false,
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -1111,17 +1134,251 @@ export default function HabitationalQuoteForm() {
               </div>
             </div>
 
-            <div>
-              <Label htmlFor="numberOfPools">Number of Swimming Pools</Label>
-              <Input
-                id="numberOfPools"
-                type="number"
-                value={formData.numberOfPools}
-                onChange={(e) => setFormData({ ...formData, numberOfPools: e.target.value })}
-                placeholder="0"
-                data-testid="input-pools"
-              />
+            <h4 className="font-medium mt-6">Property Exposures</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="numberOfPools">Number of Swimming Pools</Label>
+                <Input
+                  id="numberOfPools"
+                  type="number"
+                  value={formData.numberOfPools}
+                  onChange={(e) => setFormData({ ...formData, numberOfPools: e.target.value })}
+                  placeholder="0"
+                  data-testid="input-pools"
+                />
+              </div>
+              <div>
+                <Label htmlFor="numberOfSpas">Number of Spas/Hot Tubs</Label>
+                <Input
+                  id="numberOfSpas"
+                  type="number"
+                  value={formData.numberOfSpas}
+                  onChange={(e) => setFormData({ ...formData, numberOfSpas: e.target.value })}
+                  placeholder="0"
+                  data-testid="input-spas"
+                />
+              </div>
             </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <Label htmlFor="hasPlayground">Playground</Label>
+                <Select
+                  value={formData.hasPlayground}
+                  onValueChange={(value) => setFormData({ ...formData, hasPlayground: value })}
+                >
+                  <SelectTrigger data-testid="select-playground">
+                    <SelectValue placeholder="Select option" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="yes">Yes</SelectItem>
+                    <SelectItem value="no">No</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label htmlFor="hasFitnessCenter">Fitness Center</Label>
+                <Select
+                  value={formData.hasFitnessCenter}
+                  onValueChange={(value) => setFormData({ ...formData, hasFitnessCenter: value })}
+                >
+                  <SelectTrigger data-testid="select-fitness">
+                    <SelectValue placeholder="Select option" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="yes">Yes</SelectItem>
+                    <SelectItem value="no">No</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label htmlFor="hasTennisCourts">Tennis/Basketball Courts</Label>
+                <Select
+                  value={formData.hasTennisCourts}
+                  onValueChange={(value) => setFormData({ ...formData, hasTennisCourts: value })}
+                >
+                  <SelectTrigger data-testid="select-courts">
+                    <SelectValue placeholder="Select option" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="yes">Yes</SelectItem>
+                    <SelectItem value="no">No</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
+            <h4 className="font-medium mt-6">Parking Information</h4>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <Label htmlFor="parkingType">Parking Type</Label>
+                <Select
+                  value={formData.parkingType}
+                  onValueChange={(value) => setFormData({ ...formData, parkingType: value })}
+                >
+                  <SelectTrigger data-testid="select-parking-type">
+                    <SelectValue placeholder="Select parking type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="open">Open Lot</SelectItem>
+                    <SelectItem value="covered">Covered</SelectItem>
+                    <SelectItem value="attached-garage">Attached Garage</SelectItem>
+                    <SelectItem value="detached-garage">Detached Garage</SelectItem>
+                    <SelectItem value="underground">Underground</SelectItem>
+                    <SelectItem value="street">Street Only</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label htmlFor="numberOfParkingSpaces">Number of Parking Spaces</Label>
+                <Input
+                  id="numberOfParkingSpaces"
+                  type="number"
+                  value={formData.numberOfParkingSpaces}
+                  onChange={(e) => setFormData({ ...formData, numberOfParkingSpaces: e.target.value })}
+                  placeholder="0"
+                  data-testid="input-parking-spaces"
+                />
+              </div>
+              <div>
+                <Label htmlFor="garageType">Garage Type (if applicable)</Label>
+                <Select
+                  value={formData.garageType}
+                  onValueChange={(value) => setFormData({ ...formData, garageType: value })}
+                >
+                  <SelectTrigger data-testid="select-garage-type">
+                    <SelectValue placeholder="Select garage type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="na">N/A</SelectItem>
+                    <SelectItem value="tuck-under">Tuck-Under</SelectItem>
+                    <SelectItem value="standalone">Standalone Structure</SelectItem>
+                    <SelectItem value="multi-level">Multi-Level</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
+            <h4 className="font-medium mt-6">Additional Security Features</h4>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="hasSecurityCameras"
+                  checked={checkboxes.hasSecurityCameras}
+                  onCheckedChange={(checked) => setCheckboxes({ ...checkboxes, hasSecurityCameras: checked as boolean })}
+                  data-testid="checkbox-security-cameras"
+                />
+                <Label htmlFor="hasSecurityCameras" className="font-normal cursor-pointer text-sm">
+                  Security Cameras
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="hasSecurityAlarm"
+                  checked={checkboxes.hasSecurityAlarm}
+                  onCheckedChange={(checked) => setCheckboxes({ ...checkboxes, hasSecurityAlarm: checked as boolean })}
+                  data-testid="checkbox-security-alarm"
+                />
+                <Label htmlFor="hasSecurityAlarm" className="font-normal cursor-pointer text-sm">
+                  Central Security Alarm
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="hasDoorman"
+                  checked={checkboxes.hasDoorman}
+                  onCheckedChange={(checked) => setCheckboxes({ ...checkboxes, hasDoorman: checked as boolean })}
+                  data-testid="checkbox-doorman"
+                />
+                <Label htmlFor="hasDoorman" className="font-normal cursor-pointer text-sm">
+                  Doorman/Concierge
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="hasOnSiteManager"
+                  checked={checkboxes.hasOnSiteManager}
+                  onCheckedChange={(checked) => setCheckboxes({ ...checkboxes, hasOnSiteManager: checked as boolean })}
+                  data-testid="checkbox-onsite-manager"
+                />
+                <Label htmlFor="hasOnSiteManager" className="font-normal cursor-pointer text-sm">
+                  On-Site Manager
+                </Label>
+              </div>
+            </div>
+
+            {formData.numberOfStories && parseInt(formData.numberOfStories) >= 7 && (
+              <>
+                <h4 className="font-medium mt-6 text-primary">High-Rise Requirements (7+ Stories)</h4>
+                <p className="text-sm text-muted-foreground mb-4">
+                  For buildings with 7 or more stories, please provide information about fire safety features.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="hasFireRisers">Fire Risers to All Floors</Label>
+                    <Select
+                      value={formData.hasFireRisers}
+                      onValueChange={(value) => setFormData({ ...formData, hasFireRisers: value })}
+                    >
+                      <SelectTrigger data-testid="select-fire-risers">
+                        <SelectValue placeholder="Select option" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="yes">Yes</SelectItem>
+                        <SelectItem value="no">No</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label htmlFor="hasFireDoors">Self-Closing Fire Doors</Label>
+                    <Select
+                      value={formData.hasFireDoors}
+                      onValueChange={(value) => setFormData({ ...formData, hasFireDoors: value })}
+                    >
+                      <SelectTrigger data-testid="select-fire-doors">
+                        <SelectValue placeholder="Select option" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="yes">Yes</SelectItem>
+                        <SelectItem value="no">No</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="hasEmergencyLighting">Emergency Lighting</Label>
+                    <Select
+                      value={formData.hasEmergencyLighting}
+                      onValueChange={(value) => setFormData({ ...formData, hasEmergencyLighting: value })}
+                    >
+                      <SelectTrigger data-testid="select-emergency-lighting">
+                        <SelectValue placeholder="Select option" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="yes">Yes</SelectItem>
+                        <SelectItem value="no">No</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label htmlFor="hasEgressWindows">Egress Windows in All Units</Label>
+                    <Select
+                      value={formData.hasEgressWindows}
+                      onValueChange={(value) => setFormData({ ...formData, hasEgressWindows: value })}
+                    >
+                      <SelectTrigger data-testid="select-egress-windows">
+                        <SelectValue placeholder="Select option" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="yes">Yes</SelectItem>
+                        <SelectItem value="no">No</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         )}
 

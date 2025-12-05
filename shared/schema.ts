@@ -200,6 +200,23 @@ export const habitationalQuotes = pgTable("habitational_quotes", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const officeQuotes = pgTable("office_quotes", {
+  id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
+  namedInsured: text("named_insured").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  propertyAddress: text("property_address"),
+  numberOfBuildings: text("number_of_buildings"),
+  totalSquareFeet: text("total_square_feet"),
+  numberOfStories: text("number_of_stories"),
+  buildingValue: text("building_value"),
+  effectiveDate: text("effective_date"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const hotelQuotes = pgTable("hotel_quotes", {
   id: varchar("id").primaryKey(),
   referenceNumber: text("reference_number").notNull().unique(),
@@ -961,6 +978,12 @@ export const insertHabitationalQuoteSchema = createInsertSchema(habitationalQuot
   createdAt: true,
 });
 
+export const insertOfficeQuoteSchema = createInsertSchema(officeQuotes).omit({
+  id: true,
+  referenceNumber: true,
+  createdAt: true,
+});
+
 export const insertHotelQuoteSchema = createInsertSchema(hotelQuotes).omit({
   id: true,
   referenceNumber: true,
@@ -1224,6 +1247,8 @@ export type InsertGeneralLiabilityQuote = z.infer<typeof insertGeneralLiabilityQ
 export type GeneralLiabilityQuote = typeof generalLiabilityQuotes.$inferSelect;
 export type InsertHabitationalQuote = z.infer<typeof insertHabitationalQuoteSchema>;
 export type HabitationalQuote = typeof habitationalQuotes.$inferSelect;
+export type InsertOfficeQuote = z.infer<typeof insertOfficeQuoteSchema>;
+export type OfficeQuote = typeof officeQuotes.$inferSelect;
 export type InsertHotelQuote = z.infer<typeof insertHotelQuoteSchema>;
 export type HotelQuote = typeof hotelQuotes.$inferSelect;
 export type InsertRestaurantQuote = z.infer<typeof insertRestaurantQuoteSchema>;
