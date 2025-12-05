@@ -83,6 +83,9 @@ export default function CoverageDetail({ coverage }: CoverageDetailProps) {
     if (coverage.slug === 'habitational-insurance' || coverage.slug === 'habitational-program' || coverage.slug === 'apartments' || coverage.slug === 'condominiums') {
       return '/quote/habitational';
     }
+    if (coverage.slug === 'office-buildings') {
+      return '/quote/office-building';
+    }
     if (coverage.slug === 'builders-risk') {
       return '/quote/builders-risk';
     }
