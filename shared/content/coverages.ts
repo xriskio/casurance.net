@@ -1317,6 +1317,45 @@ export const coverages: CoverageContent[] = [
     ]
   },
 
+  {
+    title: "Habitational Program",
+    slug: "habitational-program",
+    category: "Habitational",
+    summary: "Specialty package insurance for apartments, condos, townhouse associations, lessor's risk, offices, and assisted living residences with property limits up to $75 million.",
+    description: "The Habitational Program provides a comprehensive specialty package for apartments, condo and townhouse associations, lessor's risk, offices, and assisted living residences. This innovative risk management program combines property, inland marine, crime, equipment breakdown, and general liability coverages with optional umbrella insurance up to $25 million. Available through our underwriting affiliate Programs Plus, we take an underwriting risk position to deliver competitive rates for qualified habitational risks across all 50 states.",
+    whoNeeds: [
+      "Apartment building owners with 80%+ occupancy",
+      "Condo and townhouse associations",
+      "Lessor's risk property owners",
+      "Office building owners",
+      "Assisted living residence operators",
+      "Properties less than 20 years old or renovated in past 10 years",
+      "Owner-occupied condominiums meeting underwriting standards"
+    ],
+    coverageIncludes: [
+      "Property: Replacement Cost Valuation with Agreed Amount (up to $75 million per location)",
+      "Inland Marine: $25,000 EDP coverage",
+      "Crime: Employee dishonesty, depositors forgery, computer fraud",
+      "Equipment Breakdown coverage",
+      "General Liability: $1M/$2M occurrence/aggregate limits",
+      "Personal & Advertising Injury: $1,000,000 limit",
+      "Employee Benefits Liability: $1,000,000",
+      "Hired/Non-Owned Auto: $1,000,000",
+      "Optional Umbrella: Up to $25 million capacity"
+    ],
+    benefits: [
+      "Package policy with multiple coverages in one",
+      "Property limits up to $75 million per location",
+      "Competitive rates for preferred accounts",
+      "Copper wiring and renovation requirements",
+      "Protection Class 6 or better accepted",
+      "Non-coastal and Tier 1 ex-Wind available",
+      "Top quartile rent criteria qualification",
+      "College student occupancy up to 25%",
+      "Rent subsidy accounts accepted (up to 15%)"
+    ]
+  },
+
   // TRANSPORTATION
   {
     title: "Auto Daily Rental",

@@ -389,12 +389,16 @@ export default function HabitationalQuoteForm() {
                   <SelectValue placeholder="Select community type" />
                 </SelectTrigger>
                 <SelectContent>
+                  <SelectItem value="apartment">Apartment Building</SelectItem>
                   <SelectItem value="residential-condo">Residential Condominium</SelectItem>
+                  <SelectItem value="townhouse-association">Townhouse Association</SelectItem>
                   <SelectItem value="cooperative">Cooperative Apartment</SelectItem>
-                  <SelectItem value="timeshare">Timeshare</SelectItem>
-                  <SelectItem value="apartment">Apartment</SelectItem>
-                  <SelectItem value="townhouse">Townhouse</SelectItem>
+                  <SelectItem value="lessors-risk">Lessor's Risk</SelectItem>
+                  <SelectItem value="office-building">Office Building</SelectItem>
+                  <SelectItem value="assisted-living">Assisted Living Residence</SelectItem>
                   <SelectItem value="mixed-use">Mixed Use</SelectItem>
+                  <SelectItem value="timeshare">Timeshare</SelectItem>
+                  <SelectItem value="townhouse">Townhouse</SelectItem>
                   <SelectItem value="income-restricted">Income Restricted</SelectItem>
                   <SelectItem value="age-restricted">Age Restricted</SelectItem>
                   <SelectItem value="student-housing">Student Housing</SelectItem>
