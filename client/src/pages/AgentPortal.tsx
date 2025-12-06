@@ -43,7 +43,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { Search, LogOut, FileText, Sparkles, NewspaperIcon, PenLine, Shield, Download, Printer } from "lucide-react";
+import { Search, LogOut, FileText, Sparkles, NewspaperIcon, PenLine, Shield, Download, Printer, Globe, Send, RefreshCw, CheckCircle, AlertCircle } from "lucide-react";
 import { format } from "date-fns";
 import { useToast } from "@/hooks/use-toast";
 import type { BlogPost, PressRelease } from "@shared/schema";
@@ -137,6 +137,157 @@ function normalizeSubmission(submission: any): NormalizedSubmission {
     referenceNumber: submission.referenceNumber,
     rawData: submission,
   };
+}
+
+function SEOToolsSection() {
+  const { toast } = useToast();
+  const [singleUrl, setSingleUrl] = useState("");
+  
+  const { data: seoStatus, isLoading: statusLoading } = useQuery({
+    queryKey: ["/api/agent/seo/status"],
+  });
+
+  const submitAllMutation = useMutation({
+    mutationFn: async () => {
+      return await apiRequest("POST", "/api/agent/seo/submit-urls", {});
+    },
+    onSuccess: (data: any) => {
+      toast({
+        title: "URL Submission Started",
+        description: `Submitting ${data.totalUrls} URLs to search engines. Check server logs for results.`,
+      });
+    },
+    onError: () => {
+      toast({
+        variant: "destructive",
+        title: "Submission Failed",
+        description: "Failed to trigger URL submission. Please try again.",
+      });
+    },
+  });
+
+  const submitSingleMutation = useMutation({
+    mutationFn: async (url: string) => {
+      return await apiRequest("POST", "/api/agent/seo/submit-single-url", { url });
+    },
+    onSuccess: (data: any) => {
+      toast({
+        title: "URL Submitted",
+        description: `Submitted to IndexNow (${data.results.indexNow}), Yandex (${data.results.yandex}), Bing (${data.results.bing})`,
+      });
+      setSingleUrl("");
+    },
+    onError: () => {
+      toast({
+        variant: "destructive",
+        title: "Submission Failed",
+        description: "Failed to submit URL. Please try again.",
+      });
+    },
+  });
+
+  return (
+    <Card className="mb-8">
+      <CardHeader>
+        <div className="flex items-center gap-2">
+          <Globe className="h-5 w-5 text-primary" />
+          <CardTitle>SEO Tools - Search Engine Indexing</CardTitle>
+        </div>
+        <CardDescription>
+          Submit URLs to Bing, Yandex, and other search engines for faster indexing using IndexNow protocol.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="p-4 border rounded-lg bg-muted/30">
+              <h4 className="font-medium mb-2 flex items-center gap-2">
+                <Send className="h-4 w-4" />
+                Submit All Site URLs
+              </h4>
+              <p className="text-sm text-muted-foreground mb-4">
+                Submit all {(seoStatus as any)?.totalUrls || 305} indexed URLs to search engines including Bing, Yandex, Seznam, and Naver.
+              </p>
+              <Button
+                onClick={() => submitAllMutation.mutate()}
+                disabled={submitAllMutation.isPending}
+                data-testid="button-submit-all-urls"
+              >
+                {submitAllMutation.isPending ? (
+                  <>
+                    <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
+                    Submitting...
+                  </>
+                ) : (
+                  <>
+                    <Send className="h-4 w-4 mr-2" />
+                    Submit All URLs
+                  </>
+                )}
+              </Button>
+            </div>
+
+            <div className="p-4 border rounded-lg bg-muted/30">
+              <h4 className="font-medium mb-2 flex items-center gap-2">
+                <Globe className="h-4 w-4" />
+                Submit Single URL
+              </h4>
+              <p className="text-sm text-muted-foreground mb-3">
+                Submit a specific page URL for immediate indexing.
+              </p>
+              <div className="flex gap-2">
+                <Input
+                  placeholder="/blog/my-new-post"
+                  value={singleUrl}
+                  onChange={(e) => setSingleUrl(e.target.value)}
+                  data-testid="input-single-url"
+                />
+                <Button
+                  onClick={() => submitSingleMutation.mutate(singleUrl)}
+                  disabled={submitSingleMutation.isPending || !singleUrl}
+                  data-testid="button-submit-single-url"
+                >
+                  {submitSingleMutation.isPending ? (
+                    <RefreshCw className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Send className="h-4 w-4" />
+                  )}
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          <div className="pt-4 border-t">
+            <h4 className="font-medium mb-3">Integration Status</h4>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div className="flex items-center gap-2 text-sm">
+                <CheckCircle className="h-4 w-4 text-green-500" />
+                <span>Yandex (Active)</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                {(seoStatus as any)?.bingApiConfigured ? (
+                  <CheckCircle className="h-4 w-4 text-green-500" />
+                ) : (
+                  <AlertCircle className="h-4 w-4 text-yellow-500" />
+                )}
+                <span>Bing Webmaster</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <CheckCircle className="h-4 w-4 text-green-500" />
+                <span>IndexNow</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <Badge variant="secondary">{(seoStatus as any)?.totalUrls || 305} URLs</Badge>
+              </div>
+            </div>
+            <p className="text-xs text-muted-foreground mt-3">
+              IndexNow key verification required in production at: {(seoStatus as any)?.keyVerificationUrl || "https://www.casurance.net/78eb96aa6f124ceb81a5fbaf32694bd0.txt"}
+            </p>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
 }
 
 export default function AgentPortal() {
@@ -1516,6 +1667,8 @@ export default function AgentPortal() {
             </div>
           </CardContent>
         </Card>
+
+        <SEOToolsSection />
 
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-2xl font-semibold">Form Submissions</h2>

@@ -982,4 +982,96 @@ export function registerAgentRoutes(app: Express, storage: IStorage) {
       res.status(500).json({ error: "Failed to delete press release" });
     }
   });
+
+  // SEO Tools - URL Submission to Search Engines
+  app.post("/api/agent/seo/submit-urls", requireAgent, async (req, res) => {
+    try {
+      const { submitAllSitePages } = await import("../services/indexNowService");
+      
+      // Run submission in background
+      submitAllSitePages().catch(err => {
+        console.error("[SEO API] URL submission error:", err);
+      });
+      
+      res.json({ 
+        success: true, 
+        message: "URL submission started. Check server logs for results.",
+        totalUrls: 305
+      });
+    } catch (error) {
+      console.error("Error triggering URL submission:", error);
+      res.status(500).json({ error: "Failed to trigger URL submission" });
+    }
+  });
+
+  app.get("/api/agent/seo/status", requireAgent, async (req, res) => {
+    try {
+      const INDEXNOW_KEY = process.env.INDEXNOW_API_KEY || "78eb96aa6f124ceb81a5fbaf32694bd0";
+      const BING_API_KEY = process.env.BING_WEBMASTER_API_KEY || "";
+      
+      res.json({
+        indexNowKey: INDEXNOW_KEY,
+        bingApiConfigured: !!BING_API_KEY,
+        keyVerificationUrl: `https://www.casurance.net/${INDEXNOW_KEY}.txt`,
+        supportedEngines: ["Bing", "Yandex", "Seznam", "Naver"],
+        totalUrls: 305,
+        lastSubmission: null // Could be stored in DB for persistence
+      });
+    } catch (error) {
+      console.error("Error fetching SEO status:", error);
+      res.status(500).json({ error: "Failed to fetch SEO status" });
+    }
+  });
+
+  app.post("/api/agent/seo/submit-single-url", requireAgent, async (req, res) => {
+    try {
+      const { url } = req.body;
+      if (!url) {
+        return res.status(400).json({ error: "URL is required" });
+      }
+
+      const INDEXNOW_KEY = process.env.INDEXNOW_API_KEY || "78eb96aa6f124ceb81a5fbaf32694bd0";
+      const HOST = "www.casurance.net";
+      const SITE_URL = `https://${HOST}`;
+      const fullUrl = url.startsWith("http") ? url : `${SITE_URL}${url.startsWith("/") ? url : "/" + url}`;
+
+      const payload = {
+        host: HOST,
+        key: INDEXNOW_KEY,
+        keyLocation: `${SITE_URL}/${INDEXNOW_KEY}.txt`,
+        urlList: [fullUrl]
+      };
+
+      const [indexNowRes, yandexRes, bingRes] = await Promise.all([
+        fetch("https://api.indexnow.org/IndexNow", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        }),
+        fetch("https://yandex.com/indexnow", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        }),
+        fetch("https://www.bing.com/indexnow", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        })
+      ]);
+
+      res.json({
+        success: true,
+        url: fullUrl,
+        results: {
+          indexNow: indexNowRes.status,
+          yandex: yandexRes.status,
+          bing: bingRes.status
+        }
+      });
+    } catch (error) {
+      console.error("Error submitting single URL:", error);
+      res.status(500).json({ error: "Failed to submit URL" });
+    }
+  });
 }
