@@ -3,6 +3,37 @@ export interface ProductBasic {
   subItems?: string[];
 }
 
+export interface PropertyTypeSection {
+  id: string;
+  title: string;
+  description: string;
+  eligibility: string[];
+  coverageHighlights: string[];
+  icon?: string;
+}
+
+export interface ProgramLimits {
+  blanketLimit?: string;
+  maxTIVPerBuilding?: string;
+  minTIV?: string;
+  floodSublimit?: string;
+  earthquakeSublimit?: string;
+  terrorismSublimit?: string;
+  boilerMachinerySublimit?: string;
+  ordinanceOrLaw?: {
+    coverageA?: string;
+    coverageBC?: string;
+  };
+}
+
+export interface DeductibleInfo {
+  aop?: string;
+  windHail?: string;
+  windHailStates?: string[];
+  namedStorm?: string;
+  floodEarthquake?: string;
+}
+
 export interface CoverageContent {
   title: string;
   slug: string;
@@ -20,6 +51,14 @@ export interface CoverageContent {
   productBasics?: ProductBasic[];
   riskControlServices?: string[];
   enhancedCoverages?: string[];
+  // Habitational/Property program specific fields
+  propertyTypes?: PropertyTypeSection[];
+  programLimits?: ProgramLimits;
+  deductibles?: DeductibleInfo;
+  excludedAreas?: string[];
+  programHighlights?: string[];
+  eligibleStates?: string[];
+  ineligibleStates?: string[];
 }
 
 export const coverages: CoverageContent[] = [
@@ -1338,48 +1377,6 @@ export const coverages: CoverageContent[] = [
   },
 
   {
-    title: "Habitational Program",
-    slug: "habitational-program",
-    category: "Habitational",
-    summary: "Specialty package insurance for apartments, condos, townhouse associations, lessor's risk, offices, and assisted living residences with property limits up to $75 million.",
-    description: "The Habitational Program provides a comprehensive specialty package for apartments, condo and townhouse associations, lessor's risk, offices, and assisted living residences. This innovative risk management program combines property, inland marine, crime, equipment breakdown, and general liability coverages with optional umbrella insurance up to $25 million. We target well-maintained properties with established management and responsible tenants. Eligible risks include properties less than 20 years old or renovated in past 10 years, with copper wiring, minimum 80% occupancy, and Protection Class 6 or better. Ineligible risks include owner-occupied properties, hotels/motels, buildings under renovation, high-rise (15+ stories), vacant buildings, mobile homes, short-term rentals, properties with less than 30% occupancy, and aluminum wiring without approved remedy.",
-    whoNeeds: [
-      "Apartment building owners with 80%+ occupancy",
-      "Condo and townhouse associations",
-      "Lessor's risk property owners",
-      "Office building owners",
-      "Assisted living residence operators",
-      "Properties less than 20 years old or renovated in past 10 years",
-      "Owner-occupied condominiums meeting underwriting standards",
-      "Well-maintained properties with established management"
-    ],
-    coverageIncludes: [
-      "Property: Replacement Cost Valuation with Agreed Amount (up to $75 million per location)",
-      "Inland Marine: $25,000 EDP coverage",
-      "Crime: Employee dishonesty, depositors forgery, computer fraud",
-      "Equipment Breakdown coverage",
-      "General Liability: $1M/$2M occurrence/aggregate limits",
-      "Personal & Advertising Injury: $1,000,000 limit",
-      "Employee Benefits Liability: $1,000,000",
-      "Hired/Non-Owned Auto: $1,000,000",
-      "Optional Umbrella: Up to $25 million capacity",
-      "XS Property: Up to $50M (min attachment $5M)"
-    ],
-    benefits: [
-      "Package policy with multiple coverages in one",
-      "Property limits up to $75 million per location",
-      "Competitive rates for preferred accounts",
-      "No single building limit exceeds $20M",
-      "Property minimum premium $10,000",
-      "Updates required if systems are 30+ years old",
-      "Non-coastal and Tier 1 ex-Wind available",
-      "College student occupancy up to 25%",
-      "Rent subsidy accounts accepted (up to 15%)",
-      "All 50 states coverage available"
-    ]
-  },
-
-  {
     title: "Office Buildings",
     slug: "office-buildings",
     category: "Habitational",
@@ -2655,8 +2652,8 @@ export const industries: CoverageContent[] = [
     title: "Habitational Program",
     slug: "habitational-program",
     category: "Industries",
-    summary: "Comprehensive property insurance program for apartments, condominiums, office buildings, and multi-family residential properties.",
-    description: "The Habitational Program provides specialized property and liability insurance for owners and managers of residential and commercial properties. This comprehensive program covers apartments, condominiums, office buildings, and mixed-use developments with capacity up to $100 million per location. We offer tailored solutions for garden-style communities, mid-rise buildings (3-14 stories), and high-rise properties, with specific underwriting guidelines ensuring proper coverage for fire protection systems, construction types, and occupancy requirements. Our program includes detailed eligibility criteria covering occupancy rates (80% minimum), building age requirements, electrical systems (copper wiring preferred), and fire protection classifications.",
+    summary: "An exclusive 'All Risk' property insurance facility for multi-family risks. When the property doesn't fit in the standard market, we cover it.",
+    description: "The Habitational Program is an exclusive, niche property insurance program underwritten by a group of 'A' rated domestic and London-based carriers. Our program appetite includes all construction classes of well-managed habitational properties, as well as other conventional commercial property risks. We provide adequate capacity to consider larger per-location risks and property schedules. Properties built pre-2000, frame exterior, non-sprinklered, or other risks that may be hard to place—we specialize in finding coverage solutions. With a $1 Billion blanket limit, no co-insurance requirements, full replacement cost coverage, and broad risk appetite, our program delivers comprehensive protection for property owners and managers nationwide.",
     whoNeeds: [
       "Apartment building owners and investors",
       "Condominium associations and HOAs",
@@ -2666,36 +2663,236 @@ export const industries: CoverageContent[] = [
       "Student housing operators",
       "Senior housing communities",
       "Affordable housing providers",
-      "Real estate investment trusts (REITs)"
+      "Real estate investment trusts (REITs)",
+      "Commercial property investors",
+      "Strip mall owners and operators"
     ],
     coverageIncludes: [
-      "Building property coverage up to $100M per location",
-      "General liability for premises operations",
-      "Loss of rental income and business interruption",
-      "Equipment breakdown and boiler coverage",
-      "Directors and officers liability",
-      "Fidelity/crime coverage",
-      "Umbrella and excess liability",
-      "Workers compensation for staff",
-      "Flood and earthquake coverage (where available)",
-      "Building ordinance and law coverage",
-      "Terrorism coverage (TRIA)"
+      "$1 Billion blanket limit capacity",
+      "All Perils coverage (All Risk)",
+      "Full Replacement Cost valuation",
+      "No Co-insurance requirements",
+      "$100 Million Flood sublimit in non-critical flood zones",
+      "$100 Million Earthquake sublimit (excluding CA, AK, HI, PAC NW & New Madrid)",
+      "EQSL (Earthquake Sprinkler Leakage) in all states",
+      "Ordinance or Law: Coverage A $500 Million, Coverage B & C $15 Million each",
+      "$100 Million Terrorism sublimit (TRIA)",
+      "$100 Million Boiler & Machinery sublimit",
+      "Business income and loss of rents protection",
+      "Equipment breakdown coverage"
     ],
     benefits: [
-      "Specialized habitational underwriting expertise",
-      "Capacity for properties up to $6M per building",
-      "Coverage for mid-rise (3-14 stories) and high-rise (15+ stories) buildings",
-      "Eligibility for buildings with 80%+ occupancy",
-      "Protection for properties under 20 years old or renovated in past 10 years",
-      "Fire-resistive construction coverage for high-rise buildings",
-      "Central station fire alarm requirements met",
-      "Sprinkler system coverage for high-rise requirements",
-      "Protection Class 6+ eligible properties",
-      "Risk management resources for property managers",
-      "Competitive rates for well-maintained properties"
+      "Exclusive market access through specialized carrier partnerships",
+      "Expedited underwriting and quoting process",
+      "Broad risk appetite for hard-to-place properties",
+      "Coverage for older frame construction buildings",
+      "Non-sprinklered property coverage available",
+      "Pre-2000 construction eligible",
+      "All construction classes considered",
+      "Large per-location capacity up to $60MM TIV per building",
+      "Property schedule capability for multi-location portfolios",
+      "Competitive rates for well-managed properties",
+      "Expert claims handling for habitational exposures"
     ],
-    seoTitle: "Habitational Insurance Program | Apartments, Condos & Office Buildings | Casurance",
-    seoDescription: "Specialized habitational insurance for apartments, condominiums, and office buildings. Property and liability coverage up to $100M per location with expert underwriting for multi-family and commercial properties."
+    propertyTypes: [
+      {
+        id: "multifamily-apartments",
+        title: "Multifamily Apartments",
+        description: "Comprehensive coverage for garden-style and mid-rise apartment complexes, including older and newer well-managed frame multi-family properties.",
+        eligibility: [
+          "Garden-style apartment complexes",
+          "Mid-rise apartment buildings (3-14 stories)",
+          "Older and newer well-managed frame construction",
+          "Properties with retail on lower floors",
+          "Mixed-use residential developments",
+          "Minimum TIV $6 Million",
+          "Maximum TIV $60 Million per building"
+        ],
+        coverageHighlights: [
+          "Full replacement cost on buildings",
+          "Loss of rental income protection",
+          "Equipment breakdown coverage",
+          "Ordinance or law coverage",
+          "Terrorism coverage included"
+        ],
+        icon: "Building2"
+      },
+      {
+        id: "condo-hoa",
+        title: "Condo or HOA",
+        description: "Master policy coverage for condominium associations and homeowners associations, protecting common areas and shared structures.",
+        eligibility: [
+          "Condominium associations",
+          "Homeowners associations (HOAs)",
+          "Townhouse communities",
+          "High-rise condominium buildings",
+          "Garden-style condo complexes",
+          "Minimum TIV $6 Million",
+          "Maximum TIV $60 Million per building"
+        ],
+        coverageHighlights: [
+          "Master policy for buildings and common areas",
+          "Directors and Officers liability available",
+          "Fidelity/crime coverage for association funds",
+          "Full replacement cost valuation",
+          "No co-insurance penalties"
+        ],
+        icon: "Home"
+      },
+      {
+        id: "high-rise-buildings",
+        title: "High Rise Buildings",
+        description: "Specialized coverage for high-rise residential and commercial buildings with fire-resistive construction and enhanced fire protection systems.",
+        eligibility: [
+          "High-rise apartment buildings (15+ stories)",
+          "High-rise condominium towers",
+          "Fire-resistive construction required",
+          "Central station fire alarm systems",
+          "Sprinkler systems required",
+          "Standpipe systems for firefighting",
+          "Minimum TIV $6 Million",
+          "Maximum TIV $60 Million per building"
+        ],
+        coverageHighlights: [
+          "Coverage for fire-resistive Class A construction",
+          "$100 Million capacity per location",
+          "Full replacement cost",
+          "Terrorism coverage (TRIA)",
+          "Business interruption protection"
+        ],
+        icon: "Building"
+      },
+      {
+        id: "commercial-units",
+        title: "Commercial Units",
+        description: "Property coverage for commercial unit buildings and mixed-use developments with commercial tenants.",
+        eligibility: [
+          "Commercial unit buildings",
+          "Mixed-use with commercial tenants",
+          "Professional office condominiums",
+          "Medical office buildings",
+          "All construction classes considered",
+          "Minimum TIV $6 Million",
+          "Maximum TIV $60 Million per building"
+        ],
+        coverageHighlights: [
+          "Building and business personal property",
+          "Tenant improvements coverage",
+          "Loss of rents protection",
+          "Equipment breakdown",
+          "Ordinance or law coverage"
+        ],
+        icon: "Store"
+      },
+      {
+        id: "strip-malls",
+        title: "Strip Malls",
+        description: "Comprehensive property coverage for strip mall shopping centers and retail plazas with multiple tenant spaces.",
+        eligibility: [
+          "Strip mall shopping centers",
+          "Retail plaza developments",
+          "Neighborhood shopping centers",
+          "Community retail centers",
+          "Multi-tenant retail buildings",
+          "Minimum TIV $6 Million",
+          "Maximum TIV $60 Million per building"
+        ],
+        coverageHighlights: [
+          "Full replacement cost on buildings",
+          "Tenant buildout coverage",
+          "Loss of rental income",
+          "Sign and parking lot coverage",
+          "Business interruption protection"
+        ],
+        icon: "ShoppingBag"
+      },
+      {
+        id: "office-buildings",
+        title: "Office Buildings",
+        description: "Property insurance for office buildings including mid-rise and high-rise commercial office properties with specialized underwriting for fire protection requirements.",
+        eligibility: [
+          "Mid-rise office buildings (7-14 stories)",
+          "High-rise office buildings (15+ stories)",
+          "Professional office complexes",
+          "Medical office buildings",
+          "Fire-resistive construction for high-rise",
+          "Central station fire alarm required",
+          "Sprinklers required for high-rise",
+          "Minimum TIV $6 Million",
+          "Maximum TIV $60 Million per building"
+        ],
+        coverageHighlights: [
+          "Building property up to $100M per location",
+          "Business income and extra expense",
+          "Equipment breakdown coverage",
+          "Ordinance or law coverage",
+          "Terrorism coverage (TRIA)"
+        ],
+        icon: "Landmark"
+      }
+    ],
+    programLimits: {
+      blanketLimit: "$1 Billion",
+      maxTIVPerBuilding: "$60 Million",
+      minTIV: "$6 Million",
+      floodSublimit: "$100 Million (non-critical flood zones)",
+      earthquakeSublimit: "$100 Million (excluding CA, AK, HI, PAC NW & New Madrid)",
+      terrorismSublimit: "$100 Million",
+      boilerMachinerySublimit: "$100 Million",
+      ordinanceOrLaw: {
+        coverageA: "$500 Million",
+        coverageBC: "$15 Million each"
+      }
+    },
+    deductibles: {
+      aop: "$25,000 AOP including Wind/Hail in most states",
+      windHail: "2% / $100,000 minimum in select states",
+      windHailStates: ["NE", "MO", "KY", "MS", "AL", "KS", "AR"],
+      namedStorm: "$100,000 in all non-critical wind areas",
+      floodEarthquake: "$250,000"
+    },
+    excludedAreas: [
+      "Texas (TX)",
+      "Oklahoma (OK)",
+      "Colorado (CO)",
+      "Louisiana (LA)",
+      "Florida (FL)",
+      "New York (NY)",
+      "Hawaii (HI)",
+      "Tier 1 coastal zones",
+      "Within 10 miles of Atlantic/Gulf of Mexico",
+      "City of Indianapolis",
+      "City of Atlanta",
+      "City of Memphis",
+      "City of Detroit"
+    ],
+    programHighlights: [
+      "$1 Billion Blanket Limit",
+      "No Co-insurance",
+      "Full Replacement Cost",
+      "All Perils Coverage",
+      "Broad Risk Appetite",
+      "Exclusive Market Access",
+      "Expedited Underwriting and Quoting Process",
+      "$100 Million Flood Sublimit in Non-critical Flood Zones",
+      "$100 Million Earthquake Sublimit",
+      "EQSL in All States",
+      "Ordinance or Law Coverage A $500 Million",
+      "Ordinance or Law Coverage B & C $15 Million Each",
+      "$100 Million Terrorism Sublimit",
+      "$100 Million Boiler & Machinery Sublimit"
+    ],
+    eligibleStates: [
+      "AL", "AZ", "AR", "CA", "CT", "DE", "GA", "ID", "IL", "IN", "IA", "KS", "KY", 
+      "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", 
+      "NC", "ND", "OH", "OR", "PA", "RI", "SC", "SD", "TN", "UT", "VT", "VA", "WA", 
+      "WV", "WI", "WY"
+    ],
+    ineligibleStates: [
+      "TX", "OK", "CO", "LA", "FL", "NY", "HI", "AK"
+    ],
+    seoTitle: "Habitational Insurance Program | Apartments, Condos, Office Buildings & Commercial Property | Casurance",
+    seoDescription: "Exclusive 'All Risk' property insurance for multi-family risks. $1 Billion blanket limit, no co-insurance, full replacement cost. Coverage for apartments, condos, high-rise buildings, strip malls, and office buildings up to $60M per building."
   },
 
   {

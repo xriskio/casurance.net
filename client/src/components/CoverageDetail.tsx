@@ -1,9 +1,21 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check, ArrowRight, Phone, Shield, Car, Umbrella, Building2, Briefcase, FileCheck, AlertTriangle, CheckCircle2 } from "lucide-react";
+import { Check, ArrowRight, Phone, Shield, Car, Umbrella, Building2, Briefcase, FileCheck, AlertTriangle, CheckCircle2, Home, Store, ShoppingBag, Landmark, Building, MapPin, DollarSign, Ban, Zap } from "lucide-react";
 import { Link } from "wouter";
-import type { CoverageContent } from "@shared/content/coverages";
+import type { CoverageContent, PropertyTypeSection } from "@shared/content/coverages";
 import { getIndustryImage } from "@shared/industryImages";
+
+const getPropertyTypeIcon = (iconName?: string) => {
+  switch (iconName) {
+    case 'Building2': return Building2;
+    case 'Home': return Home;
+    case 'Building': return Building;
+    case 'Store': return Store;
+    case 'ShoppingBag': return ShoppingBag;
+    case 'Landmark': return Landmark;
+    default: return Building2;
+  }
+};
 
 interface CoverageDetailProps {
   coverage: CoverageContent;
@@ -334,6 +346,237 @@ export default function CoverageDetail({ coverage }: CoverageDetailProps) {
                     <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5 shrink-0" />
                     <span>{item}</span>
                   </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Property Types - Habitational Program Subsections */}
+        {coverage.propertyTypes && coverage.propertyTypes.length > 0 && (
+          <div className="mb-8">
+            <h2 className="text-2xl font-semibold text-foreground mb-6">Property Types We Cover</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+              {coverage.propertyTypes.map((propertyType) => {
+                const IconComponent = getPropertyTypeIcon(propertyType.icon);
+                return (
+                  <Card key={propertyType.id} className="hover-elevate cursor-pointer" data-testid={`card-property-type-${propertyType.id}`}>
+                    <CardHeader className="pb-2">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                          <IconComponent className="h-5 w-5 text-primary" />
+                        </div>
+                        <CardTitle className="text-lg">{propertyType.title}</CardTitle>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-muted-foreground mb-4">{propertyType.description}</p>
+                      <div className="space-y-2">
+                        <p className="text-xs font-medium text-foreground">Eligibility:</p>
+                        <ul className="text-xs text-muted-foreground space-y-1">
+                          {propertyType.eligibility.slice(0, 4).map((item, idx) => (
+                            <li key={idx} className="flex items-start gap-1">
+                              <Check className="h-3 w-3 text-primary mt-0.5 shrink-0" />
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Program Limits - Habitational Program */}
+        {coverage.programLimits && (
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <DollarSign className="h-5 w-5 text-primary" />
+                Program Limits & Capacity
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {coverage.programLimits.blanketLimit && (
+                  <div className="p-4 bg-primary/5 rounded-lg">
+                    <p className="text-sm text-muted-foreground">Blanket Limit</p>
+                    <p className="text-2xl font-bold text-primary">{coverage.programLimits.blanketLimit}</p>
+                  </div>
+                )}
+                {coverage.programLimits.maxTIVPerBuilding && (
+                  <div className="p-4 bg-primary/5 rounded-lg">
+                    <p className="text-sm text-muted-foreground">Max TIV Per Building</p>
+                    <p className="text-2xl font-bold text-primary">{coverage.programLimits.maxTIVPerBuilding}</p>
+                  </div>
+                )}
+                {coverage.programLimits.minTIV && (
+                  <div className="p-4 bg-muted/50 rounded-lg">
+                    <p className="text-sm text-muted-foreground">Minimum TIV</p>
+                    <p className="text-lg font-semibold text-foreground">{coverage.programLimits.minTIV}</p>
+                  </div>
+                )}
+                {coverage.programLimits.floodSublimit && (
+                  <div className="p-4 bg-muted/50 rounded-lg">
+                    <p className="text-sm text-muted-foreground">Flood Sublimit</p>
+                    <p className="text-lg font-semibold text-foreground">{coverage.programLimits.floodSublimit}</p>
+                  </div>
+                )}
+                {coverage.programLimits.earthquakeSublimit && (
+                  <div className="p-4 bg-muted/50 rounded-lg">
+                    <p className="text-sm text-muted-foreground">Earthquake Sublimit</p>
+                    <p className="text-lg font-semibold text-foreground">{coverage.programLimits.earthquakeSublimit}</p>
+                  </div>
+                )}
+                {coverage.programLimits.terrorismSublimit && (
+                  <div className="p-4 bg-muted/50 rounded-lg">
+                    <p className="text-sm text-muted-foreground">Terrorism Sublimit (TRIA)</p>
+                    <p className="text-lg font-semibold text-foreground">{coverage.programLimits.terrorismSublimit}</p>
+                  </div>
+                )}
+                {coverage.programLimits.boilerMachinerySublimit && (
+                  <div className="p-4 bg-muted/50 rounded-lg">
+                    <p className="text-sm text-muted-foreground">Boiler & Machinery Sublimit</p>
+                    <p className="text-lg font-semibold text-foreground">{coverage.programLimits.boilerMachinerySublimit}</p>
+                  </div>
+                )}
+                {coverage.programLimits.ordinanceOrLaw && (
+                  <div className="p-4 bg-muted/50 rounded-lg md:col-span-2">
+                    <p className="text-sm text-muted-foreground mb-2">Ordinance or Law</p>
+                    <div className="flex flex-wrap gap-4">
+                      {coverage.programLimits.ordinanceOrLaw.coverageA && (
+                        <div>
+                          <p className="text-xs text-muted-foreground">Coverage A</p>
+                          <p className="text-lg font-semibold text-foreground">{coverage.programLimits.ordinanceOrLaw.coverageA}</p>
+                        </div>
+                      )}
+                      {coverage.programLimits.ordinanceOrLaw.coverageBC && (
+                        <div>
+                          <p className="text-xs text-muted-foreground">Coverage B & C</p>
+                          <p className="text-lg font-semibold text-foreground">{coverage.programLimits.ordinanceOrLaw.coverageBC}</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Deductibles - Habitational Program */}
+        {coverage.deductibles && (
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <FileCheck className="h-5 w-5 text-primary" />
+                Deductible Information
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {coverage.deductibles.aop && (
+                  <div className="p-4 border rounded-lg">
+                    <p className="text-sm font-medium text-foreground mb-1">All Other Perils (AOP)</p>
+                    <p className="text-muted-foreground text-sm">{coverage.deductibles.aop}</p>
+                  </div>
+                )}
+                {coverage.deductibles.windHail && (
+                  <div className="p-4 border rounded-lg">
+                    <p className="text-sm font-medium text-foreground mb-1">Wind/Hail Deductible</p>
+                    <p className="text-muted-foreground text-sm">{coverage.deductibles.windHail}</p>
+                    {coverage.deductibles.windHailStates && coverage.deductibles.windHailStates.length > 0 && (
+                      <p className="text-xs text-muted-foreground mt-2">
+                        Applies in: {coverage.deductibles.windHailStates.join(', ')}
+                      </p>
+                    )}
+                  </div>
+                )}
+                {coverage.deductibles.namedStorm && (
+                  <div className="p-4 border rounded-lg">
+                    <p className="text-sm font-medium text-foreground mb-1">Named Storm Deductible</p>
+                    <p className="text-muted-foreground text-sm">{coverage.deductibles.namedStorm}</p>
+                  </div>
+                )}
+                {coverage.deductibles.floodEarthquake && (
+                  <div className="p-4 border rounded-lg">
+                    <p className="text-sm font-medium text-foreground mb-1">Flood & Earthquake</p>
+                    <p className="text-muted-foreground text-sm">{coverage.deductibles.floodEarthquake}</p>
+                  </div>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Program Highlights */}
+        {coverage.programHighlights && coverage.programHighlights.length > 0 && (
+          <Card className="mb-8 border-primary/20 bg-primary/5">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Zap className="h-5 w-5 text-primary" />
+                Program Highlights
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {coverage.programHighlights.map((highlight, index) => (
+                  <div key={index} className="flex items-start gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                    <span className="text-foreground font-medium">{highlight}</span>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Excluded Areas */}
+        {coverage.excludedAreas && coverage.excludedAreas.length > 0 && (
+          <Card className="mb-8 border-destructive/20">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-destructive">
+                <Ban className="h-5 w-5" />
+                Excluded Areas
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground mb-4">
+                The following areas are not eligible for this program. Please contact us for alternative solutions.
+              </p>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                {coverage.excludedAreas.map((area, index) => (
+                  <div key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <MapPin className="h-4 w-4 text-destructive/60 shrink-0" />
+                    <span>{area}</span>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Eligible States Map Indicator */}
+        {coverage.eligibleStates && coverage.eligibleStates.length > 0 && (
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <MapPin className="h-5 w-5 text-primary" />
+                Available Nationwide
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground mb-4">
+                This program is available in {coverage.eligibleStates.length} states across the United States.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {coverage.eligibleStates.map((state, index) => (
+                  <span key={index} className="px-2 py-1 bg-primary/10 text-primary text-xs font-medium rounded">
+                    {state}
+                  </span>
                 ))}
               </div>
             </CardContent>
