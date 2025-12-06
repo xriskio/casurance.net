@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { categories, getCoveragesByCategory } from "@shared/content/coverages";
 import { Link } from "wouter";
+import SEOHead from "@/components/SEOHead";
 import { 
   ArrowRight, 
   Car, 
@@ -128,6 +129,12 @@ function getCoverageIcon(slug: string): LucideIcon {
 export default function CoveragesIndex() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEOHead
+        title="Commercial Insurance Coverage Types"
+        description="Explore our comprehensive range of commercial insurance products including general liability, property, auto, workers compensation, cyber liability, and specialty coverages."
+        keywords="commercial insurance coverage, business insurance types, liability insurance, property insurance, workers comp, cyber insurance"
+        canonical="/coverages"
+      />
       <Header />
       <div className="bg-gradient-to-br from-[#1e3a8a] via-[#1e40af] to-[#3b5998] py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">

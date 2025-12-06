@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import CoverageDetail from "@/components/CoverageDetail";
 import { getCoverageBySlug } from "@shared/content/coverages";
 import NotFound from "./not-found";
+import SEOHead from "@/components/SEOHead";
 
 export default function CoveragePage() {
   const [, params] = useRoute("/coverage/:slug");
@@ -21,6 +22,12 @@ export default function CoveragePage() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEOHead
+        title={`${coverage.title} Insurance`}
+        description={coverage.summary || `Learn about ${coverage.title} insurance coverage options. Get comprehensive protection for your business with Casurance.`}
+        keywords={`${coverage.title.toLowerCase()} insurance, ${coverage.category?.toLowerCase() || 'commercial'} insurance, business insurance`}
+        canonical={`/coverage/${coverage.slug}`}
+      />
       <Header />
       <main className="flex-1">
         <CoverageDetail coverage={coverage} />

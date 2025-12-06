@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import CoverageDetail from "@/components/CoverageDetail";
 import { getCoverageBySlug } from "@shared/content/coverages";
 import NotFound from "./not-found";
+import SEOHead from "@/components/SEOHead";
 
 export default function IndustryPage() {
   const [, params] = useRoute("/industry/:slug");
@@ -21,6 +22,12 @@ export default function IndustryPage() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEOHead
+        title={`${industry.title} Insurance`}
+        description={industry.summary || `Learn about insurance solutions for the ${industry.title} industry. Get comprehensive coverage tailored to your business needs.`}
+        keywords={`${industry.title.toLowerCase()} insurance, industry insurance, business insurance, commercial insurance`}
+        canonical={`/industry/${industry.slug}`}
+      />
       <Header />
       <main className="flex-1">
         <CoverageDetail coverage={industry} />
