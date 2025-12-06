@@ -14,7 +14,6 @@ import {
 } from "../../shared/schema";
 import { eq, desc, asc } from "drizzle-orm";
 import { generatePage } from "../services/pageGenerator";
-import { notifyCmsPageCreated, notifyCmsPageUpdated } from "../services/indexNowService";
 
 // Authentication middleware for CMS routes
 function ensureAuthenticated(req: Request, res: Response, next: NextFunction) {

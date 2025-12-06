@@ -100,3 +100,8 @@ waitForPort = 5000
 
 [agent]
 integrations = ["javascript_database:1.0.0", "javascript_openai_ai_integrations:1.0.0", "agentmail:1.0.0"]
+
+[userenv]
+
+[userenv.shared]
+INDEXNOW_API_KEY = "78eb96aa6f124ceb81a5fbaf32694bd0"

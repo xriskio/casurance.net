@@ -10,7 +10,6 @@ import { generateBlogPost, getCategories, getTopics, generateDraftContent, impro
 import { generatePressRelease, getCategories as getPressCategories, getTopics as getPressTopics, getLocations, generateDraftContent as generatePressDraft, improveContent as improvePressContent, suggestTags as suggestPressTags } from "./lib/ai-press-release-generator";
 import { generateReferenceNumber } from "./utils/referenceNumber";
 import { sendQuoteConfirmationEmail, sendServiceRequestConfirmationEmail, sendAgentQuoteNotification, sendAgentServiceNotification } from "./services/emailService";
-import { notifyBlogPostCreated, notifyPressReleaseCreated } from "./services/indexNowService";
 import { getRedirectUrl } from "./redirects";
 import multer from "multer";
 import path from "path";
@@ -1288,10 +1287,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         author: "Casurance Team"
       });
       
-      if (post.slug && post.publishedAt) {
-        notifyBlogPostCreated(post.slug);
-      }
-      
       res.json(post);
     } catch (error: any) {
       res.status(500).json({ message: error.message || "Error generating blog post" });
@@ -1334,10 +1329,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         isAiGenerated: "false",
         author: "Casurance Team"
       });
-
-      if (post.slug && post.publishedAt) {
-        notifyBlogPostCreated(post.slug);
-      }
 
       res.json(post);
     } catch (error: any) {
@@ -1429,10 +1420,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         isAiGenerated: "true"
       });
       
-      if (release.slug && release.publishedAt) {
-        notifyPressReleaseCreated(release.slug);
-      }
-      
       res.json(release);
     } catch (error: any) {
       res.status(500).json({ message: error.message || "Error generating press release" });
@@ -1485,10 +1472,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         ...result.data,
         isAiGenerated: "false"
       });
-
-      if (release.slug && release.publishedAt) {
-        notifyPressReleaseCreated(release.slug);
-      }
 
       res.json(release);
     } catch (error: any) {

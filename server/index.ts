@@ -5,6 +5,7 @@ import { pool } from "./db";
 import passport from "./auth/passport-config";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { initializeIndexNow } from "./services/indexNowService";
 
 const app = express();
 app.use(express.json());
@@ -98,5 +99,7 @@ app.use((req, res, next) => {
     reusePort: true,
   }, () => {
     log(`serving on port ${port}`);
+    
+    initializeIndexNow();
   });
 })();
