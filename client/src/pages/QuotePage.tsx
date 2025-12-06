@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import QuoteRequestForm from "@/components/QuoteRequestForm";
 import SEOHead from "@/components/SEOHead";
+import TrustedCarriers from "@/components/TrustedCarriers";
 
 export default function QuotePage() {
   return (
@@ -31,6 +32,7 @@ export default function QuotePage() {
           <QuoteRequestForm />
         </div>
       </main>
+      <TrustedCarriers />
       <Footer />
     </div>
     </>
