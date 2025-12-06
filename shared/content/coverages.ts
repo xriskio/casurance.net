@@ -2896,6 +2896,199 @@ export const industries: CoverageContent[] = [
   },
 
   {
+    title: "Hotel & Motel Program",
+    slug: "hotel-motel-program",
+    category: "Industries",
+    summary: "An exclusive 'All Risk' property insurance facility for hotels and motels. When the property doesn't fit in the standard market, we can cover it.",
+    description: "The Hotel & Motel Program is an exclusive, niche property insurance program underwritten by a group of 'A' rated domestic and London-based carriers. Our program appetite includes all construction classes of well-managed hotels and motels, including exterior corridor and non-sprinklered locations. The program offers a rich coverage form, rivaling and at times exceeding the coverage options in standard markets. Franchise or non-franchise, properties built pre-2000, exterior corridors, non-sprinklered—we specialize in finding coverage solutions for hard-to-place hospitality risks. With a $500 Million blanket limit, no co-insurance requirements, and full replacement cost coverage, we provide comprehensive protection for hotel and motel owners nationwide.",
+    whoNeeds: [
+      "Hotel and motel owners and investors",
+      "Franchise hotel operators (Best Western, Motel 6, Quality Inn, etc.)",
+      "Non-franchise independent hotels",
+      "Exterior corridor hotels and motels",
+      "Roadside hotels and motels",
+      "2-3 star hotel properties",
+      "Resort property owners",
+      "Hospitality property management companies",
+      "Hotel REITs and investment groups"
+    ],
+    coverageIncludes: [
+      "$500 Million blanket limit capacity",
+      "All Perils coverage (All Risk)",
+      "Full Replacement Cost valuation",
+      "No Co-insurance requirements",
+      "$100 Million Flood sublimit (excluding high hazard flood zones)",
+      "$100 Million Earthquake sublimit (excluding CA, AK, HI & PAC NW)",
+      "EQSL (Earthquake Sprinkler Leakage) in all states",
+      "Ordinance or Law provision",
+      "$1 Million Sewer & Drain Backup",
+      "Optional Equipment Breakdown coverage",
+      "Optional Terrorism coverage",
+      "Optional Crime coverage",
+      "Business income and loss of rents protection"
+    ],
+    benefits: [
+      "Exclusive market access through specialized carrier partnerships",
+      "Expedited underwriting and quoting process",
+      "Adequate capacity for larger hotel schedules",
+      "Broad risk appetite for hard-to-place hotels",
+      "Coverage for exterior corridor properties",
+      "Non-sprinklered locations accepted",
+      "Pre-2000 construction eligible",
+      "Frame and JM construction accepted",
+      "Franchise and non-franchise locations welcome",
+      "2-3 star properties accepted",
+      "Roadside hotels and motels eligible",
+      "Competitive rates for well-managed properties"
+    ],
+    propertyTypes: [
+      {
+        id: "hotels",
+        title: "Hotels",
+        description: "Comprehensive coverage for full-service and limited-service hotels, from boutique properties to chain-affiliated locations.",
+        eligibility: [
+          "Full-service hotels",
+          "Limited-service hotels",
+          "Boutique and independent hotels",
+          "Chain-affiliated properties",
+          "Interior corridor hotels",
+          "Minimum TIV $4 Million",
+          "Maximum TIV $35 Million per location"
+        ],
+        coverageHighlights: [
+          "Full replacement cost on buildings",
+          "Business income protection",
+          "Equipment breakdown coverage",
+          "Ordinance or law coverage",
+          "Optional terrorism coverage"
+        ],
+        icon: "Building2"
+      },
+      {
+        id: "motels",
+        title: "Motels",
+        description: "Specialized coverage for motels including exterior corridor properties and roadside locations that may be hard to place in standard markets.",
+        eligibility: [
+          "Exterior corridor motels",
+          "Interior corridor motels",
+          "Roadside and highway motels",
+          "Budget and economy properties",
+          "Non-sprinklered locations accepted",
+          "Minimum TIV $4 Million",
+          "Maximum TIV $35 Million per location"
+        ],
+        coverageHighlights: [
+          "Full replacement cost valuation",
+          "No co-insurance penalties",
+          "Sewer & drain backup coverage",
+          "Business interruption protection",
+          "Crime coverage available"
+        ],
+        icon: "Home"
+      },
+      {
+        id: "resorts",
+        title: "Resorts",
+        description: "Coverage for resort properties including vacation destinations, seasonal properties, and hospitality complexes with multiple amenities.",
+        eligibility: [
+          "Vacation resort properties",
+          "Beach and mountain resorts",
+          "Seasonal hospitality properties",
+          "Resort complexes with amenities",
+          "Older and newer well-managed properties",
+          "Minimum TIV $4 Million",
+          "Maximum TIV $35 Million per location"
+        ],
+        coverageHighlights: [
+          "$500 Million blanket capacity",
+          "Full replacement cost",
+          "Equipment breakdown",
+          "Flood and earthquake sublimits",
+          "Business income coverage"
+        ],
+        icon: "Building"
+      },
+      {
+        id: "franchise-non-franchise",
+        title: "Franchise or Non-Franchise",
+        description: "Coverage for both franchise-affiliated hotel brands and independent non-franchise properties with equal access to our program.",
+        eligibility: [
+          "Best Western Hotels & Resorts",
+          "Motel 6 properties",
+          "Quality Inn locations",
+          "Choice Hotels affiliates",
+          "Independent non-franchise hotels",
+          "Minimum TIV $4 Million",
+          "Maximum TIV $35 Million per location"
+        ],
+        coverageHighlights: [
+          "Equal treatment for franchise and independent",
+          "Brand-compliant coverage options",
+          "Flexible policy structures",
+          "Multi-location schedule capability",
+          "Competitive rates for all property types"
+        ],
+        icon: "Landmark"
+      }
+    ],
+    programLimits: {
+      blanketLimit: "$500 Million",
+      maxTIVPerBuilding: "$35 Million",
+      minTIV: "$4 Million",
+      floodSublimit: "$100 Million (excluding high hazard flood zones)",
+      earthquakeSublimit: "$100 Million (excluding CA, AK, HI & PAC NW)",
+      terrorismSublimit: "Optional coverage available",
+      boilerMachinerySublimit: "Optional coverage available"
+    },
+    deductibles: {
+      aop: "$25,000 AOP including Wind/Hail in most states ($5K AOP buyback option available)",
+      windHail: "2% / $100,000 minimum in select states",
+      windHailStates: ["AL", "AR", "CO", "IA", "KS", "KY", "MS", "MO", "NE"],
+      namedStorm: "$100,000 Named Storm deductible",
+      floodEarthquake: "$250,000 Flood / $100,000 Earthquake"
+    },
+    excludedAreas: [
+      "Texas (TX)",
+      "Oklahoma (OK)",
+      "Louisiana (LA)",
+      "Florida (FL)",
+      "New York (NY)",
+      "Hawaii (HI)",
+      "Tier 1 coastal zones",
+      "Within 10 miles of Atlantic/Gulf of Mexico"
+    ],
+    programHighlights: [
+      "$500 Million Blanket Limit",
+      "No Co-insurance",
+      "Full Replacement Cost",
+      "All Perils Coverage",
+      "Broad Risk Appetite",
+      "Exclusive Market Access",
+      "Expedited Underwriting and Quoting Process",
+      "Adequate Capacity for Larger Schedules",
+      "$100 Million Flood Sublimit",
+      "$100 Million Earthquake Sublimit",
+      "EQSL in All States",
+      "Ordinance or Law Provision",
+      "$1 Million Sewer & Drain Backup",
+      "Optional Equipment Breakdown",
+      "Optional Terrorism Coverage",
+      "Optional Crime Coverage"
+    ],
+    eligibleStates: [
+      "AL", "AZ", "AR", "CA", "CT", "DE", "GA", "ID", "IL", "IN", "IA", "KS", "KY", 
+      "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", 
+      "NC", "ND", "OH", "OR", "PA", "RI", "SC", "SD", "TN", "UT", "VT", "VA", "WA", 
+      "WV", "WI", "WY"
+    ],
+    ineligibleStates: [
+      "TX", "OK", "LA", "FL", "NY", "HI"
+    ],
+    seoTitle: "Hotel & Motel Insurance Program | Hospitality Property Coverage | Casurance",
+    seoDescription: "Exclusive 'All Risk' property insurance for hotels and motels. $500 Million blanket limit, no co-insurance, full replacement cost. Coverage for franchise and non-franchise properties, exterior corridor, and roadside locations."
+  },
+
+  {
     title: "Healthcare",
     slug: "healthcare",
     category: "Industries",
