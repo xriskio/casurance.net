@@ -45,6 +45,7 @@ import FilmProductionQuote from "@/pages/FilmProductionQuote";
 import ProductLiabilitySelector from "@/pages/ProductLiabilitySelector";
 import ProductLiabilityQuote from "@/pages/ProductLiabilityQuote";
 import SecurityServicesQuote from "@/pages/SecurityServicesQuote";
+import ViolentAttackQuote from "@/pages/ViolentAttackQuote";
 import MiddleMarket from "@/pages/MiddleMarket";
 import AgentLogin from "@/pages/AgentLogin";
 import AgentPortal from "@/pages/AgentPortal";
@@ -107,6 +108,7 @@ function Router() {
       <Route path="/quote/product-liability" component={ProductLiabilitySelector} />
       <Route path="/quote/product-liability/:type" component={ProductLiabilityQuote} />
       <Route path="/quote/security-services" component={SecurityServicesQuote} />
+      <Route path="/quote/violent-attack" component={ViolentAttackQuote} />
       <Route path="/service" component={ServicePage} />
       <Route path="/coverages" component={CoveragesIndex} />
       <Route path="/middle-market" component={MiddleMarket} />

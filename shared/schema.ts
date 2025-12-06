@@ -107,6 +107,22 @@ export const securityServicesQuotes = pgTable("security_services_quotes", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const violentAttackQuotes = pgTable("violent_attack_quotes", {
+  id: varchar("id").primaryKey(),
+  referenceNumber: text("reference_number").notNull().unique(),
+  applicantName: text("applicant_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  propertyType: text("property_type").notNull(),
+  effectiveDate: text("effective_date"),
+  annualRevenue: text("annual_revenue"),
+  numberOfEmployees: text("number_of_employees"),
+  averageMonthlyVisitors: text("average_monthly_visitors"),
+  status: text("status").notNull().default("pending"),
+  payload: json("payload").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const buildersRiskQuotes = pgTable("builders_risk_quotes", {
   id: varchar("id").primaryKey(),
   referenceNumber: text("reference_number").notNull().unique(),
@@ -942,6 +958,12 @@ export const insertSecurityServicesQuoteSchema = createInsertSchema(securityServ
   createdAt: true,
 });
 
+export const insertViolentAttackQuoteSchema = createInsertSchema(violentAttackQuotes).omit({
+  id: true,
+  referenceNumber: true,
+  createdAt: true,
+});
+
 export const insertBuildersRiskQuoteSchema = createInsertSchema(buildersRiskQuotes).omit({
   id: true,
   referenceNumber: true,
@@ -1235,6 +1257,8 @@ export type InsertProductLiabilityQuote = z.infer<typeof insertProductLiabilityQ
 export type ProductLiabilityQuote = typeof productLiabilityQuotes.$inferSelect;
 export type InsertSecurityServicesQuote = z.infer<typeof insertSecurityServicesQuoteSchema>;
 export type SecurityServicesQuote = typeof securityServicesQuotes.$inferSelect;
+export type InsertViolentAttackQuote = z.infer<typeof insertViolentAttackQuoteSchema>;
+export type ViolentAttackQuote = typeof violentAttackQuotes.$inferSelect;
 export type InsertBuildersRiskQuote = z.infer<typeof insertBuildersRiskQuoteSchema>;
 export type BuildersRiskQuote = typeof buildersRiskQuotes.$inferSelect;
 export type InsertVacantBuildingQuote = z.infer<typeof insertVacantBuildingQuoteSchema>;
