@@ -311,10 +311,10 @@ export async function sendAgentQuoteNotification(data: QuoteRequestData): Promis
       return;
     }
 
-    console.log(`[EMAIL] Sending agent notification to info@casurance.com for ${data.referenceNumber}`);
+    console.log(`[EMAIL] Sending agent notification to info@casurance.net for ${data.referenceNumber}`);
     const result = await resend.emails.send({
       from: 'Casurance Notifications <noreply@casurance.com>',
-      to: 'info@casurance.com',
+      to: 'info@casurance.net',
       subject: `URGENT: New Quote Request - ${formTitle} - ${data.referenceNumber}`,
       html: htmlContent,
     });

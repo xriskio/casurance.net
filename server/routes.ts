@@ -777,11 +777,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const emailData = {
         referenceNumber,
-        businessName: validatedData.name,
-        contactName: validatedData.name,
+        businessName: validatedData.businessName,
+        contactName: validatedData.contactName,
         email: validatedData.email,
         phone: validatedData.phone,
-        insuranceType: 'Quick Quote'
+        insuranceType: validatedData.insuranceType || 'Quick Quote',
+        formName: 'Quick Quote Form'
       };
       
       sendQuoteConfirmationEmail(emailData).catch(err => console.error('Failed to send confirmation email:', err));

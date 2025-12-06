@@ -65,6 +65,7 @@ function normalizeSubmission(submission: any): NormalizedSubmission {
     quote: "Contact (normal)",
     service: "Service Request",
     contact: "Contact Request",
+    "quick-quote": "Quick Quote Form",
     "ocean-cargo": "Ocean Cargo Insurance",
     "self-storage": "Self Storage Insurance",
     "film-production": "Film Production Insurance",

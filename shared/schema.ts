@@ -480,9 +480,12 @@ export const taxiBlackCarQuotes = pgTable("taxi_black_car_quotes", {
 export const quickQuotes = pgTable("quick_quotes", {
   id: varchar("id").primaryKey(),
   referenceNumber: text("reference_number").notNull().unique(),
-  name: text("name").notNull(),
+  businessName: text("business_name").notNull(),
+  contactName: text("contact_name").notNull(),
   email: text("email").notNull(),
   phone: text("phone").notNull(),
+  state: text("state").notNull(),
+  vehicles: text("vehicles"),
   insuranceType: text("insurance_type").notNull(),
   message: text("message"),
   status: text("status").notNull().default("pending"),
