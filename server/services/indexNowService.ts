@@ -351,25 +351,78 @@ async function submitToBingWebmaster(urls: string[]): Promise<SubmissionResult> 
       `https://ssl.bing.com/webmaster/api.svc/json/SubmitUrlbatch?apikey=${BING_API_KEY}`,
       {
         method: "POST",
-        headers: { "Content-Type": "application/json; charset=utf-8" },
+        headers: { 
+          "Content-Type": "application/json; charset=utf-8",
+          "User-Agent": "Casurance-Bot/1.0"
+        },
         body: JSON.stringify(payload)
       }
     );
 
-    console.log(`[Bing Webmaster API] Status: ${response.status}`);
+    let responseBody = "";
+    try {
+      responseBody = await response.text();
+    } catch {}
+
+    if (response.status !== 200) {
+      console.log(`[Bing Webmaster API] Status: ${response.status}, Response: ${responseBody.substring(0, 200)}`);
+    }
 
     return {
       success: response.status === 200,
       statusCode: response.status,
       message: response.status === 200 
         ? `Successfully submitted ${fullUrls.length} URL(s) to Bing Webmaster` 
-        : `Bing Webmaster submission returned status ${response.status}`
+        : `Bing status ${response.status}: ${responseBody.substring(0, 100)}`
     };
   } catch (error) {
     console.error("[Bing Webmaster API] Error:", error);
     return {
       success: false,
       message: `Error submitting to Bing Webmaster: ${error instanceof Error ? error.message : "Unknown error"}`
+    };
+  }
+}
+
+async function submitToBingContentSubmissionAPI(urls: string[]): Promise<SubmissionResult> {
+  if (!BING_API_KEY) {
+    return { success: false, message: "Bing API key not configured" };
+  }
+
+  if (urls.length === 0) {
+    return { success: false, message: "No URLs provided" };
+  }
+
+  const fullUrls = urls.map(url => {
+    if (url.startsWith("http")) {
+      return url;
+    }
+    return `${SITE_URL}${url.startsWith("/") ? url : "/" + url}`;
+  });
+
+  try {
+    const response = await fetch(
+      `https://www.bing.com/indexnow?url=${encodeURIComponent(fullUrls[0])}&key=${INDEXNOW_KEY}`,
+      {
+        method: "GET",
+        headers: { 
+          "User-Agent": "Casurance-Bot/1.0"
+        }
+      }
+    );
+
+    return {
+      success: response.status === 200 || response.status === 202,
+      statusCode: response.status,
+      message: response.status === 200 || response.status === 202
+        ? `Successfully notified Bing via IndexNow` 
+        : `Bing IndexNow returned status ${response.status}`
+    };
+  } catch (error) {
+    console.error("[Bing IndexNow] Error:", error);
+    return {
+      success: false,
+      message: `Error notifying Bing: ${error instanceof Error ? error.message : "Unknown error"}`
     };
   }
 }
@@ -436,18 +489,21 @@ async function submitToIndexNow(urls: string[]): Promise<SubmissionResult> {
 export async function submitAllSitePages(): Promise<void> {
   console.log("[URL Submission] Starting automatic submission of all site pages...");
   console.log(`[URL Submission] IndexNow API key: ${INDEXNOW_KEY}`);
-  console.log(`[URL Submission] Bing Webmaster API key: ${BING_API_KEY ? "Configured" : "Not configured"}`);
   console.log(`[URL Submission] Total URLs to submit: ${ALL_SITE_URLS.length}`);
   
   const indexNowBatchSize = 100;
-  const bingBatchSize = 10;
   
-  console.log("[URL Submission] Submitting to IndexNow/Yandex...");
+  console.log("[URL Submission] Submitting to IndexNow (Bing, Yandex, and other participating search engines)...");
+  let indexNowSuccessCount = 0;
+  
   for (let i = 0; i < ALL_SITE_URLS.length; i += indexNowBatchSize) {
     const batch = ALL_SITE_URLS.slice(i, i + indexNowBatchSize);
     const batchNum = Math.floor(i / indexNowBatchSize) + 1;
     
     const result = await submitToIndexNow(batch);
+    if (result.success) {
+      indexNowSuccessCount += batch.length;
+    }
     console.log(`[IndexNow] Batch ${batchNum}: ${result.message}`);
     
     if (i + indexNowBatchSize < ALL_SITE_URLS.length) {
@@ -455,34 +511,78 @@ export async function submitAllSitePages(): Promise<void> {
     }
   }
   
+  console.log("[URL Submission] Submitting directly to Bing IndexNow endpoint...");
+  const bingIndexNowResult = await submitBatchToBingIndexNow(ALL_SITE_URLS.slice(0, 100));
+  console.log(`[Bing IndexNow] ${bingIndexNowResult.message}`);
+  
   if (BING_API_KEY) {
-    console.log("[URL Submission] Submitting to Bing Webmaster API (10 URLs per batch)...");
-    let successCount = 0;
-    let failCount = 0;
+    console.log("[URL Submission] Testing Bing Webmaster API with sample URLs...");
+    const testResult = await submitToBingWebmaster(ALL_SITE_URLS.slice(0, 5));
     
-    for (let i = 0; i < ALL_SITE_URLS.length; i += bingBatchSize) {
-      const batch = ALL_SITE_URLS.slice(i, i + bingBatchSize);
-      const batchNum = Math.floor(i / bingBatchSize) + 1;
+    if (testResult.success) {
+      console.log("[Bing Webmaster] API working! Submitting remaining URLs...");
+      let successCount = 5;
+      const bingBatchSize = 10;
       
-      const result = await submitToBingWebmaster(batch);
-      if (result.success) {
-        successCount += batch.length;
-      } else {
-        failCount += batch.length;
-        if (batchNum <= 3) {
-          console.log(`[Bing] Batch ${batchNum}: ${result.message}`);
+      for (let i = 5; i < ALL_SITE_URLS.length; i += bingBatchSize) {
+        const batch = ALL_SITE_URLS.slice(i, i + bingBatchSize);
+        const result = await submitToBingWebmaster(batch);
+        if (result.success) {
+          successCount += batch.length;
+        }
+        
+        if (i + bingBatchSize < ALL_SITE_URLS.length) {
+          await new Promise(resolve => setTimeout(resolve, 500));
         }
       }
-      
-      if (i + bingBatchSize < ALL_SITE_URLS.length) {
-        await new Promise(resolve => setTimeout(resolve, 500));
-      }
+      console.log(`[Bing Webmaster] Completed: ${successCount} URLs submitted successfully`);
+    } else {
+      console.log(`[Bing Webmaster] API not available (requires site verification in Bing Webmaster Tools). Using IndexNow for Bing indexing instead.`);
     }
-    
-    console.log(`[Bing] Completed: ${successCount} URLs submitted successfully, ${failCount} failed`);
   }
   
-  console.log(`[URL Submission] Completed submission of ${ALL_SITE_URLS.length} URLs to all search engines`);
+  console.log(`[URL Submission] Completed! ${indexNowSuccessCount} URLs submitted via IndexNow to Bing, Yandex, and other search engines`);
+}
+
+async function submitBatchToBingIndexNow(urls: string[]): Promise<SubmissionResult> {
+  const fullUrls = urls.map(url => {
+    if (url.startsWith("http")) {
+      return url;
+    }
+    return `${SITE_URL}${url.startsWith("/") ? url : "/" + url}`;
+  });
+
+  const payload = {
+    host: HOST,
+    key: INDEXNOW_KEY,
+    keyLocation: KEY_LOCATION,
+    urlList: fullUrls
+  };
+
+  try {
+    const response = await fetch("https://www.bing.com/indexnow", {
+      method: "POST",
+      headers: { 
+        "Content-Type": "application/json; charset=utf-8",
+        "User-Agent": "Casurance-Bot/1.0"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    return {
+      success: response.status === 200 || response.status === 202,
+      statusCode: response.status,
+      message: response.status === 200 || response.status === 202
+        ? `Successfully submitted ${fullUrls.length} URLs directly to Bing IndexNow` 
+        : `Bing IndexNow returned status ${response.status} (key verification required in production)`
+    };
+  } catch (error) {
+    console.error("[Bing IndexNow] Error:", error);
+    return {
+      success: false,
+      message: `Error submitting to Bing IndexNow: ${error instanceof Error ? error.message : "Unknown error"}`
+    };
+  }
 }
 
 export function initializeIndexNow(): void {
