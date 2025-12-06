@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import { Shield, Star } from "lucide-react";
 
-import chubbLogo from "@assets/CHUBB_Logo_Black_RBG_1765003273332.jpg";
-import cnaLogo from "@assets/CNA_FINANCIAL_CORPORATION_LOGO_1765003273331.jpg";
-import guardLogo from "@assets/simple-insurance-carriers__0008_berkshire-hathaway-guard-insur_1765003273331.png";
-import amtrustLogo from "@assets/simple-insurance-carriers__0012_AmTrust-insurance_1765003273332.png";
-import pieLogo from "@assets/Pie_Insurance_Logo_1765003273331.jpg";
-import biberkLogo from "@assets/biberk_logo_1765003273331.jpg";
+import chubbLogo from "@assets/CHUBB_Logo_Black_RBG_1765004579781.jpg";
+import cnaLogo from "@assets/CNA_FINANCIAL_CORPORATION_LOGO_1765004579780.jpg";
+import guardLogo from "@assets/simple-insurance-carriers__0008_berkshire-hathaway-guard-insur_1765004579780.png";
+import amtrustLogo from "@assets/simple-insurance-carriers__0012_AmTrust-insurance_1765004579781.png";
+import pieLogo from "@assets/Pie_Insurance_Logo_1765004579780.jpg";
+import biberkLogo from "@assets/biberk_logo_1765004579780.jpg";
 import greatAmericanLogo from "@assets/gaig_logo_web_full_color_1765003246023.png";
 import stateFundLogo from "@assets/9cK0r1ow_400x400_1765003246024.png";
-import atlasLogo from "@assets/atlas_1765003273330.png";
-import appliedLogo from "@assets/Applied_Underwriters_Logo_Logo_1765003273331.jpg";
-import accreditedLogo from "@assets/accredited_1765003273330.png";
+import atlasLogo from "@assets/atlas_1765004579779.png";
+import appliedLogo from "@assets/Applied_Underwriters_Logo_Logo_1765004579779.jpg";
+import accreditedLogo from "@assets/accredited_1765004579779.png";
 import foremostLogo from "@assets/Foremost-Insurance-Group-logo_1765003246023.png";
 import bristolWestLogo from "@assets/bristol-west-logo_1765003198315.jpg";
 import crumForsterLogo from "@assets/926_photo_3957_1765003198315.png";
