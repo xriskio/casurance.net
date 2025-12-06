@@ -237,22 +237,14 @@ export default function AdvertisingLandingPage() {
 
         <section className="py-6 bg-muted/50 border-y border-border">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div className="flex justify-center gap-16 text-center">
               <div data-testid="stat-carriers">
                 <div className="text-3xl font-bold text-primary mb-1">50+</div>
                 <div className="text-sm text-muted-foreground">Insurance Carriers</div>
               </div>
-              <div data-testid="stat-states">
-                <div className="text-3xl font-bold text-primary mb-1">50</div>
-                <div className="text-sm text-muted-foreground">States Licensed</div>
-              </div>
               <div data-testid="stat-experience">
                 <div className="text-3xl font-bold text-primary mb-1">15+</div>
                 <div className="text-sm text-muted-foreground">Years Experience</div>
-              </div>
-              <div data-testid="stat-rating">
-                <div className="text-3xl font-bold text-primary mb-1">4.9/5</div>
-                <div className="text-sm text-muted-foreground">Customer Rating</div>
               </div>
             </div>
           </div>
