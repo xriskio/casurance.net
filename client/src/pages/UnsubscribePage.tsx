@@ -5,6 +5,7 @@ import { CheckCircle2, Mail, Loader2 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { apiRequest } from "@/lib/queryClient";
+import SEOHead from "@/components/SEOHead";
 
 export default function UnsubscribePage() {
   const [status, setStatus] = useState<"loading" | "success" | "error">("loading");
@@ -40,6 +41,12 @@ export default function UnsubscribePage() {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Unsubscribe from Newsletter"
+        description="Manage your email preferences and unsubscribe from Casurance newsletter communications."
+        keywords="unsubscribe, email preferences, newsletter"
+        canonical="/unsubscribe"
+      />
       <Header />
       <main id="main-content" className="py-24">
         <div className="max-w-2xl mx-auto px-6 lg:px-8">

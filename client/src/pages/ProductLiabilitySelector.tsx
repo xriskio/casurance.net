@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { useLocation } from "wouter";
 import { Shield, Factory, Leaf, Cigarette, Target, Wrench, Package, UtensilsCrossed } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 
 const productTypes = [
   {
@@ -67,6 +68,12 @@ export default function ProductLiabilitySelector() {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Product Liability Insurance Quote"
+        description="Get product liability insurance quotes for manufacturers, distributors, and retailers. Coverage for general manufacturing, cannabis products, firearms, and specialty products."
+        keywords="product liability insurance, manufacturer insurance, product recall, product defect coverage"
+        canonical="/quote/product-liability"
+      />
       <div className="container max-w-6xl mx-auto px-4 py-12">
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2" data-testid="text-page-title">
