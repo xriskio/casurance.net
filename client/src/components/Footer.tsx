@@ -16,7 +16,7 @@ export default function Footer() {
               </p>
             </div>
             <p className="text-sm text-white/70 mb-6 max-w-sm">
-              Casurance Inc d/b/a Casurance Agency Insurance Services. Nationwide commercial and personal insurance specialists serving across all 50 US states since 2010.
+              Casurance Inc d/b/a Casurance Agency Insurance Services. Nationwide commercial and personal insurance specialists since 2010.
             </p>
             <div className="space-y-3">
               <a href="tel:18882540089" className="flex items-center gap-3 text-sm text-white/80 hover:text-white transition-colors">
