@@ -1,7 +1,21 @@
-import { Link } from "wouter";
+import { useState } from "react";
+import { Link, useLocation } from "wouter";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useToast } from "@/hooks/use-toast";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
+import { SERVICE_STATES } from "@shared/constants/states";
 import { 
   ArrowRight, 
   Phone, 
@@ -17,7 +31,13 @@ import {
   MessageSquare,
   Zap,
   Globe,
-  FileCheck
+  FileCheck,
+  Lock,
+  Mail,
+  Timer,
+  Building,
+  Store,
+  Home
 } from "lucide-react";
 
 const coverageTypes = [
@@ -105,7 +125,82 @@ const faqs = [
   }
 ];
 
+const weInsureProducts = [
+  { icon: Building, label: "Apartments" },
+  { icon: Home, label: "Habitational" },
+  { icon: Store, label: "Retail Stores" },
+  { icon: Shield, label: "General Liability" },
+  { icon: Building2, label: "Commercial Property" },
+  { icon: Truck, label: "Commercial Auto" },
+  { icon: Users, label: "Workers Comp" },
+  { icon: HardHat, label: "Contractors" },
+];
+
+const insuranceTypes = [
+  "General Liability",
+  "Commercial Property",
+  "Commercial Auto",
+  "Workers Compensation",
+  "Builders Risk",
+  "Professional Liability",
+  "Business Owners Policy (BOP)",
+  "Apartment/Habitational",
+  "Retail Store Insurance",
+  "Other"
+];
+
 export default function AdvertisingLandingPage() {
+  const [, navigate] = useLocation();
+  const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    businessName: "",
+    contactName: "",
+    phone: "",
+    email: "",
+    state: "",
+    insuranceType: ""
+  });
+
+  const submitMutation = useMutation({
+    mutationFn: async (data: typeof formData) => {
+      return apiRequest("POST", "/api/quick-quotes", {
+        business_name: data.businessName,
+        contact_name: data.contactName,
+        phone: data.phone,
+        email: data.email,
+        state: data.state,
+        insurance_type: data.insuranceType
+      });
+    },
+    onSuccess: () => {
+      toast({
+        title: "Quote Request Submitted!",
+        description: "Our team will contact you within 24 hours with your personalized quote.",
+      });
+      navigate("/quote/thank-you");
+    },
+    onError: () => {
+      toast({
+        title: "Submission Error",
+        description: "There was an error submitting your request. Please try again or call us.",
+        variant: "destructive",
+      });
+    }
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.businessName || !formData.contactName || !formData.phone || !formData.email || !formData.state || !formData.insuranceType) {
+      toast({
+        title: "Please fill all fields",
+        description: "All fields are required to submit a quote request.",
+        variant: "destructive",
+      });
+      return;
+    }
+    submitMutation.mutate(formData);
+  };
+
   return (
     <>
       <Helmet>
@@ -151,11 +246,6 @@ export default function AdvertisingLandingPage() {
             "areaServed": "US",
             "serviceType": ["Commercial Insurance", "Business Insurance", "General Liability Insurance", "Commercial Auto Insurance", "Workers Compensation Insurance"],
             "priceRange": "$$",
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "4.9",
-              "reviewCount": "500"
-            },
             "openingHours": "Mo-Fr 09:00-17:00",
             "sameAs": [
               "https://www.linkedin.com/company/casurance"
@@ -180,72 +270,228 @@ export default function AdvertisingLandingPage() {
       </Helmet>
 
       <main className="min-h-screen">
-        <section className="relative bg-gradient-to-br from-primary via-primary to-primary/90 overflow-hidden">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+        {/* Hero Section with Quote Form */}
+        <section className="relative bg-[#0a1628] overflow-hidden">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
           
-          <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
-            <div className="max-w-4xl">
-              <div className="inline-flex items-center gap-2 bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 rounded-full px-4 py-2 mb-6">
-                <div className="h-2 w-2 bg-green-400 rounded-full animate-pulse"></div>
-                <span className="text-sm font-medium text-primary-foreground" data-testid="text-trust-badge">Trusted by 500+ Businesses Nationwide</span>
+          <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+              {/* Left Column - Content */}
+              <div className="space-y-8">
+                <div>
+                  <span className="text-2xl font-bold text-white tracking-tight" style={{ letterSpacing: '-0.02em' }}>
+                    CASURANCE
+                  </span>
+                </div>
+
+                <div>
+                  <h1 className="text-4xl sm:text-5xl lg:text-5xl font-bold text-white mb-6 leading-tight" data-testid="text-hero-headline">
+                    Save Up To <span className="text-primary">20%</span> On Commercial Property Insurance
+                  </h1>
+                  
+                  <p className="text-lg text-white/80 mb-8 leading-relaxed" data-testid="text-hero-description">
+                    Get a free, no-obligation quote in under 2 minutes. We specialize in hard-to-place risks that other insurers won't touch.
+                  </p>
+                </div>
+
+                {/* Feature Badges */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm rounded-lg px-4 py-3 border border-white/10">
+                    <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center">
+                      <Zap className="h-4 w-4 text-primary" />
+                    </div>
+                    <span className="text-sm font-medium text-white">Same-Day Quotes</span>
+                  </div>
+                  <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm rounded-lg px-4 py-3 border border-white/10">
+                    <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center">
+                      <Award className="h-4 w-4 text-primary" />
+                    </div>
+                    <span className="text-sm font-medium text-white">A-Rated Carriers</span>
+                  </div>
+                  <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm rounded-lg px-4 py-3 border border-white/10">
+                    <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center">
+                      <Clock className="h-4 w-4 text-primary" />
+                    </div>
+                    <span className="text-sm font-medium text-white">15+ Years Experience</span>
+                  </div>
+                  <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm rounded-lg px-4 py-3 border border-white/10">
+                    <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center">
+                      <Globe className="h-4 w-4 text-primary" />
+                    </div>
+                    <span className="text-sm font-medium text-white">50+ Carriers</span>
+                  </div>
+                </div>
+
+                {/* We Insure Section */}
+                <div>
+                  <p className="text-sm font-medium text-white/60 mb-4 uppercase tracking-wider">We Insure:</p>
+                  <div className="flex flex-wrap gap-2">
+                    {weInsureProducts.map((product, index) => {
+                      const Icon = product.icon;
+                      return (
+                        <div 
+                          key={index}
+                          className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20 text-white text-sm"
+                        >
+                          <Icon className="h-4 w-4 text-primary" />
+                          {product.label}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Call CTA */}
+                <div className="pt-4">
+                  <a href="tel:18882540089" className="inline-flex items-center gap-2 text-white hover:text-primary transition-colors">
+                    <Phone className="h-5 w-5" />
+                    <span className="text-lg font-semibold">1-888-254-0089</span>
+                  </a>
+                </div>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 leading-tight" data-testid="text-hero-headline">
-                Get Commercial Insurance Quotes in Minutes
-              </h1>
-              
-              <p className="text-lg sm:text-xl text-primary-foreground/90 mb-8 leading-relaxed max-w-2xl" data-testid="text-hero-description">
-                Compare quotes from 50+ top-rated insurance carriers. General liability, commercial auto, workers comp, and more. Licensed in all 50 states.
-              </p>
+              {/* Right Column - Quote Form */}
+              <div className="lg:pl-8">
+                <Card className="bg-white shadow-2xl border-0">
+                  <CardContent className="p-8">
+                    <div className="text-center mb-6">
+                      <h2 className="text-2xl font-bold text-foreground mb-2" data-testid="text-form-title">
+                        Get Your Free Quote Now
+                      </h2>
+                      <p className="text-muted-foreground text-sm">
+                        No commitment required • Takes 2 minutes
+                      </p>
+                    </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Link href="/quote">
-                  <Button size="lg" variant="secondary" className="group text-lg px-8" data-testid="button-get-quote-hero">
-                    Get Your Free Quote
-                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </Link>
-                <a href="tel:18882540089">
-                  <Button size="lg" variant="outline" className="bg-primary-foreground/10 backdrop-blur-sm border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/20 text-lg px-8" data-testid="button-call-hero">
-                    <Phone className="mr-2 h-5 w-5" />
-                    1-888-254-0089
-                  </Button>
-                </a>
-              </div>
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                      <div>
+                        <Label htmlFor="businessName" className="text-foreground">Business Name *</Label>
+                        <Input
+                          id="businessName"
+                          placeholder="Your Company Name"
+                          value={formData.businessName}
+                          onChange={(e) => setFormData({...formData, businessName: e.target.value})}
+                          className="mt-1"
+                          data-testid="input-business-name"
+                        />
+                      </div>
 
-              <div className="flex flex-wrap gap-6 text-sm text-primary-foreground/80">
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-green-400" />
-                  <span>Free Quotes</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-green-400" />
-                  <span>No Obligation</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-green-400" />
-                  <span>Compare 50+ Carriers</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-green-400" />
-                  <span>All 50 States</span>
-                </div>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <Label htmlFor="contactName" className="text-foreground">Your Name *</Label>
+                          <Input
+                            id="contactName"
+                            placeholder="John Smith"
+                            value={formData.contactName}
+                            onChange={(e) => setFormData({...formData, contactName: e.target.value})}
+                            className="mt-1"
+                            data-testid="input-contact-name"
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="phone" className="text-foreground">Phone *</Label>
+                          <Input
+                            id="phone"
+                            type="tel"
+                            placeholder="(555) 123-4567"
+                            value={formData.phone}
+                            onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                            className="mt-1"
+                            data-testid="input-phone"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <Label htmlFor="email" className="text-foreground">Email Address *</Label>
+                        <Input
+                          id="email"
+                          type="email"
+                          placeholder="you@company.com"
+                          value={formData.email}
+                          onChange={(e) => setFormData({...formData, email: e.target.value})}
+                          className="mt-1"
+                          data-testid="input-email"
+                        />
+                      </div>
+
+                      <div>
+                        <Label htmlFor="state" className="text-foreground">State *</Label>
+                        <Select 
+                          value={formData.state} 
+                          onValueChange={(value) => setFormData({...formData, state: value})}
+                        >
+                          <SelectTrigger className="mt-1" data-testid="select-state">
+                            <SelectValue placeholder="Select State" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {SERVICE_STATES.map((state) => (
+                              <SelectItem key={state.value} value={state.value}>
+                                {state.label}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div>
+                        <Label htmlFor="insuranceType" className="text-foreground">Type of Insurance Needed *</Label>
+                        <Select 
+                          value={formData.insuranceType} 
+                          onValueChange={(value) => setFormData({...formData, insuranceType: value})}
+                        >
+                          <SelectTrigger className="mt-1" data-testid="select-insurance-type">
+                            <SelectValue placeholder="Select Insurance Type" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {insuranceTypes.map((type) => (
+                              <SelectItem key={type} value={type}>
+                                {type}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <Button 
+                        type="submit" 
+                        size="lg" 
+                        className="w-full bg-primary hover:bg-primary/90 text-white text-lg py-6 mt-2"
+                        disabled={submitMutation.isPending}
+                        data-testid="button-submit-quote"
+                      >
+                        {submitMutation.isPending ? "Submitting..." : "Get My Free Quote"}
+                        <ArrowRight className="ml-2 h-5 w-5" />
+                      </Button>
+                    </form>
+
+                    {/* Trust Indicators */}
+                    <div className="flex items-center justify-center gap-6 mt-6 pt-6 border-t border-border">
+                      <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                        <Lock className="h-3.5 w-3.5" />
+                        <span>Secure</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                        <Mail className="h-3.5 w-3.5" />
+                        <span>No Spam</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                        <Timer className="h-3.5 w-3.5" />
+                        <span>24hr Response</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </div>
-        </section>
 
-        <section className="py-6 bg-muted/50 border-y border-border">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="flex justify-center gap-16 text-center">
-              <div data-testid="stat-carriers">
-                <div className="text-3xl font-bold text-primary mb-1">50+</div>
-                <div className="text-sm text-muted-foreground">Insurance Carriers</div>
-              </div>
-              <div data-testid="stat-experience">
-                <div className="text-3xl font-bold text-primary mb-1">15+</div>
-                <div className="text-sm text-muted-foreground">Years Experience</div>
-              </div>
+          {/* Trusted By Banner */}
+          <div className="relative bg-[#0d1c33] py-6 border-t border-white/10">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8">
+              <p className="text-center text-sm font-medium text-white/80">
+                Trusted By Businesses Nationwide
+              </p>
             </div>
           </div>
         </section>
@@ -403,7 +649,7 @@ export default function AdvertisingLandingPage() {
               Get Your Commercial Insurance Quote Today
             </h2>
             <p className="text-lg text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
-              Join 500+ businesses that trust Casurance for their commercial insurance needs. Fast quotes, competitive rates, and expert service.
+              Join businesses that trust Casurance for their commercial insurance needs. Fast quotes, competitive rates, and expert service.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
