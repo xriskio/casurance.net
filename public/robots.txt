@@ -16,7 +16,7 @@ Disallow: /unsubscribe
 Crawl-delay: 1
 
 # Sitemap location
-Sitemap: https://casurance.com/sitemap.xml
+Sitemap: https://casurance.net/sitemap.xml
 
 # Special instructions for common bots
 User-agent: Googlebot

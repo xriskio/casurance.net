@@ -181,10 +181,10 @@ export default function WorkersCompLandingPage() {
         <meta name="title" content="Workers Compensation Insurance California & Nevada | Up to 40% Credits | Casurance" />
         <meta name="description" content="Get workers comp insurance in California and Nevada with up to 40% premium credits. Quotes from Chubb, CNA, Guard, AmTrust, PIE Insurance and more. Fast quotes, competitive rates." />
         <meta name="keywords" content="workers compensation insurance California, workers comp Nevada, workers comp credits, workers compensation quotes, business insurance California, workers comp premium discounts" />
-        <link rel="canonical" href="https://casurance.com/workers-comp-california-nevada" />
+        <link rel="canonical" href="https://casurance.net/workers-comp-california-nevada" />
 
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://casurance.com/workers-comp-california-nevada" />
+        <meta property="og:url" content="https://casurance.net/workers-comp-california-nevada" />
         <meta property="og:title" content="Workers Comp Insurance CA & NV | Up to 40% Premium Credits" />
         <meta property="og:description" content="Get workers compensation insurance with up to 40% premium credits from top-rated carriers. Free quotes for California and Nevada businesses." />
         <meta property="og:site_name" content="Casurance Insurance Agency" />
@@ -207,7 +207,7 @@ export default function WorkersCompLandingPage() {
               "@type": "InsuranceAgency",
               "name": "Casurance Insurance Agency",
               "telephone": "+1-888-254-0089",
-              "email": "info@casurance.com",
+              "email": "info@casurance.net",
               "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "Los Angeles",
@@ -679,8 +679,8 @@ export default function WorkersCompLandingPage() {
                 <span>1-888-254-0089</span>
               </a>
               <span className="hidden sm:block">|</span>
-              <a href="mailto:info@casurance.com" className="hover:text-white transition-colors">
-                info@casurance.com
+              <a href="mailto:info@casurance.net" className="hover:text-white transition-colors">
+                info@casurance.net
               </a>
               <span className="hidden sm:block">|</span>
               <div className="flex items-center gap-2">

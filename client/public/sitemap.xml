@@ -3,7 +3,7 @@
   
   <!-- Homepage -->
   <url>
-    <loc>https://www.casurance.com/</loc>
+    <loc>https://www.casurance.net/</loc>
     <lastmod>2025-11-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -11,129 +11,129 @@
   
   <!-- Main Pages -->
   <url>
-    <loc>https://www.casurance.com/about</loc>
+    <loc>https://www.casurance.net/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://www.casurance.com/contact</loc>
+    <loc>https://www.casurance.net/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://www.casurance.com/quote</loc>
+    <loc>https://www.casurance.net/quote</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
-    <loc>https://www.casurance.com/service-request</loc>
+    <loc>https://www.casurance.net/service-request</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <!-- Coverage Pages -->
   <url>
-    <loc>https://www.casurance.com/coverages</loc>
+    <loc>https://www.casurance.net/coverages</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <!-- Industries Pages -->
   <url>
-    <loc>https://www.casurance.com/industries</loc>
+    <loc>https://www.casurance.net/industries</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://www.casurance.com/industry/golf-country-club</loc>
+    <loc>https://www.casurance.net/industry/golf-country-club</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://www.casurance.com/industry/auto-dealer-garage</loc>
+    <loc>https://www.casurance.net/industry/auto-dealer-garage</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://www.casurance.com/industry/franchised-dealers</loc>
+    <loc>https://www.casurance.net/industry/franchised-dealers</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://www.casurance.com/industry/garage-service-centers</loc>
+    <loc>https://www.casurance.net/industry/garage-service-centers</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://www.casurance.com/industry/public-transportation</loc>
+    <loc>https://www.casurance.net/industry/public-transportation</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://www.casurance.com/industry/public-self-storage</loc>
+    <loc>https://www.casurance.net/industry/public-self-storage</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://www.casurance.com/industry/nemt-paratransit</loc>
+    <loc>https://www.casurance.net/industry/nemt-paratransit</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://www.casurance.com/industry/limousine-transportation</loc>
+    <loc>https://www.casurance.net/industry/limousine-transportation</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <!-- Blog -->
   <url>
-    <loc>https://www.casurance.com/blog</loc>
+    <loc>https://www.casurance.net/blog</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   
   <!-- Press Releases -->
   <url>
-    <loc>https://www.casurance.com/press-releases</loc>
+    <loc>https://www.casurance.net/press-releases</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <!-- Advertising Landing Pages -->
   <url>
-    <loc>https://www.casurance.com/get-quote</loc>
+    <loc>https://www.casurance.net/get-quote</loc>
     <lastmod>2025-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
-    <loc>https://www.casurance.com/workers-comp-california-nevada</loc>
+    <loc>https://www.casurance.net/workers-comp-california-nevada</loc>
     <lastmod>2025-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
-    <loc>https://www.casurance.com/lp/workers-comp</loc>
+    <loc>https://www.casurance.net/lp/workers-comp</loc>
     <lastmod>2025-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://www.casurance.com/lp/commercial-insurance</loc>
+    <loc>https://www.casurance.net/lp/commercial-insurance</loc>
     <lastmod>2025-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -141,14 +141,14 @@
   
   <!-- Personal Lines -->
   <url>
-    <loc>https://www.casurance.com/personal-lines</loc>
+    <loc>https://www.casurance.net/personal-lines</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <!-- Locations -->
   <url>
-    <loc>https://www.casurance.com/locations</loc>
+    <loc>https://www.casurance.net/locations</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
