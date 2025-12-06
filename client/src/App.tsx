@@ -78,6 +78,7 @@ import LocationsIndex from "@/pages/LocationsIndex";
 import LocationPage from "@/pages/LocationPage";
 import PersonalLinesIndex from "@/pages/PersonalLinesIndex";
 import PersonalLinesQuote from "@/pages/PersonalLinesQuote";
+import AdvertisingLandingPage from "@/pages/AdvertisingLandingPage";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -122,6 +123,10 @@ function Router() {
       <Route path="/unsubscribe" component={UnsubscribePage} />
       <Route path="/about" component={AboutPage} />
       <Route path="/contact" component={ContactPage} />
+      <Route path="/get-quote" component={AdvertisingLandingPage} />
+      <Route path="/lp" component={AdvertisingLandingPage} />
+      <Route path="/lp/insurance" component={AdvertisingLandingPage} />
+      <Route path="/lp/commercial-insurance" component={AdvertisingLandingPage} />
       <Route path="/agent" component={AgentLogin} />
       <Route path="/agent/login" component={AgentLogin} />
       <Route path="/agent/portal" component={AgentPortal} />
