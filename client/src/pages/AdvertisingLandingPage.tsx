@@ -12,7 +12,6 @@ import {
   Truck, 
   HardHat, 
   Users, 
-  Star,
   Award,
   BadgeCheck,
   MessageSquare,
@@ -80,27 +79,6 @@ const benefits = [
     icon: Globe,
     title: "Nationwide",
     description: "Licensed and operating across all 50 US states to serve your business anywhere."
-  }
-];
-
-const testimonials = [
-  {
-    quote: "Casurance found us better coverage at a lower price. The process was quick and professional.",
-    name: "Michael R.",
-    company: "Fleet Transport Inc.",
-    rating: 5
-  },
-  {
-    quote: "Outstanding service! They understood our unique needs and delivered exactly what we needed.",
-    name: "Sarah T.",
-    company: "Bay Area Construction",
-    rating: 5
-  },
-  {
-    quote: "Switching to Casurance saved our restaurant group over $15,000 annually on insurance.",
-    name: "David L.",
-    company: "Pacific Restaurant Group",
-    rating: 5
   }
 ];
 
@@ -374,45 +352,6 @@ export default function AdvertisingLandingPage() {
                   Call 1-888-254-0089
                 </Button>
               </a>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-16 lg:py-20 bg-background">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4" data-testid="text-testimonials-heading">
-                What Our Clients Say
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Join hundreds of satisfied businesses
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {testimonials.map((testimonial, index) => (
-                <Card key={index} className="h-full" data-testid={`testimonial-${index}`}>
-                  <CardContent className="p-6">
-                    <div className="flex gap-1 mb-4">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                      ))}
-                    </div>
-                    <blockquote className="text-foreground mb-4 italic">
-                      "{testimonial.quote}"
-                    </blockquote>
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                        <span className="text-primary font-semibold">{testimonial.name.charAt(0)}</span>
-                      </div>
-                      <div>
-                        <div className="font-semibold text-foreground">{testimonial.name}</div>
-                        <div className="text-sm text-muted-foreground">{testimonial.company}</div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
             </div>
           </div>
         </section>
