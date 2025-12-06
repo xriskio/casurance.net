@@ -82,6 +82,16 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Landing Pages Section */}
+        <div className="border-t border-white/10 pt-8 mb-8">
+          <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Advertising Landing Pages</h3>
+          <div className="flex flex-wrap gap-4 text-sm">
+            <Link href="/get-quote" className="text-white/70 hover:text-white transition-colors cursor-pointer">Commercial Insurance Quote</Link>
+            <span className="text-white/30">|</span>
+            <Link href="/workers-comp-california-nevada" className="text-white/70 hover:text-white transition-colors cursor-pointer">Workers' Comp CA & NV</Link>
+          </div>
+        </div>
+
         <div className="border-t border-white/10 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-white/60">

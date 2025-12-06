@@ -79,6 +79,7 @@ import LocationPage from "@/pages/LocationPage";
 import PersonalLinesIndex from "@/pages/PersonalLinesIndex";
 import PersonalLinesQuote from "@/pages/PersonalLinesQuote";
 import AdvertisingLandingPage from "@/pages/AdvertisingLandingPage";
+import WorkersCompLandingPage from "@/pages/WorkersCompLandingPage";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -127,6 +128,9 @@ function Router() {
       <Route path="/lp" component={AdvertisingLandingPage} />
       <Route path="/lp/insurance" component={AdvertisingLandingPage} />
       <Route path="/lp/commercial-insurance" component={AdvertisingLandingPage} />
+      <Route path="/workers-comp-california-nevada" component={WorkersCompLandingPage} />
+      <Route path="/lp/workers-comp" component={WorkersCompLandingPage} />
+      <Route path="/lp/workers-compensation" component={WorkersCompLandingPage} />
       <Route path="/agent" component={AgentLogin} />
       <Route path="/agent/login" component={AgentLogin} />
       <Route path="/agent/portal" component={AgentPortal} />
