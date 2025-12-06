@@ -450,8 +450,8 @@ export default function AdvertisingLandingPage() {
               <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">
                 Partnered with Top-Rated Carriers
               </p>
-              <div className="flex flex-wrap justify-center gap-8 items-center">
-                {["Travelers", "Hartford", "Progressive", "Chubb", "Liberty Mutual", "CNA", "Zurich"].map((carrier, index) => (
+              <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 items-center">
+                {["Chubb", "Guard", "Three Insurance", "Berkshire Hathaway", "Texas Insurance", "Knightbrook", "AmTrust", "CNA", "Foremost", "BristolWest", "Kemper", "National General", "Philadelphia Insurance", "PIE Insurance", "California Fair Plan", "Tokio Marine", "& Many More"].map((carrier, index) => (
                   <div key={index} className="text-muted-foreground/60 font-semibold text-sm" data-testid={`carrier-${index}`}>
                     {carrier}
                   </div>
