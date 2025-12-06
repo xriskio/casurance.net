@@ -91,7 +91,7 @@ export default function Hero() {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 pt-8 border-t border-white/10 max-w-2xl">
+          <div className="flex gap-12 pt-8 border-t border-white/10">
             <div className="group">
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center backdrop-blur-sm border border-white/10">
@@ -109,15 +109,6 @@ export default function Hero() {
                 <span className="text-3xl sm:text-4xl font-bold text-white">50+</span>
               </div>
               <p className="text-sm text-blue-200/60 pl-[52px]">Top Carriers</p>
-            </div>
-            <div className="group">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center backdrop-blur-sm border border-white/10">
-                  <CheckCircle className="h-5 w-5 text-cyan-400" />
-                </div>
-                <span className="text-3xl sm:text-4xl font-bold text-white">50</span>
-              </div>
-              <p className="text-sm text-blue-200/60 pl-[52px]">States Covered</p>
             </div>
           </div>
         </div>
