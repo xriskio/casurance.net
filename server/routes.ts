@@ -121,6 +121,51 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Quick Quote Requests (Landing Pages)
+  app.post("/api/quick-quotes", async (req, res) => {
+    try {
+      const { business_name, contact_name, phone, email, state, insurance_type } = req.body;
+      
+      if (!business_name || !contact_name || !phone || !email) {
+        return res.status(400).json({ message: "Missing required fields" });
+      }
+      
+      const referenceNumber = generateReferenceNumber('QQT');
+      
+      // Store as a regular quote request
+      const quoteData = {
+        businessName: business_name,
+        contactName: contact_name,
+        phone,
+        email,
+        state: state || '',
+        insuranceType: insurance_type || 'Quick Quote Request',
+        referenceNumber
+      };
+      
+      const quote = await storage.createQuoteRequest(quoteData as any);
+      
+      const emailData = {
+        referenceNumber,
+        businessName: business_name,
+        contactName: contact_name,
+        email,
+        phone,
+        insuranceType: insurance_type || 'Workers Compensation Quote',
+        formName: 'Quick Quote - Landing Page'
+      };
+      
+      // Send confirmation emails
+      sendQuoteConfirmationEmail(emailData).catch(err => console.error('Failed to send confirmation email:', err));
+      sendAgentQuoteNotification(emailData).catch(err => console.error('Failed to send agent notification:', err));
+      
+      res.json({ ...quote, referenceNumber });
+    } catch (error: any) {
+      console.error('Quick quote error:', error);
+      res.status(400).json({ message: error.message || "Invalid request data" });
+    }
+  });
+
   // Ocean Cargo Quotes
   app.post("/api/ocean-cargo-quotes", async (req, res) => {
     try {

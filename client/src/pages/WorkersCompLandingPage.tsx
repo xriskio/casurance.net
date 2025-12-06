@@ -38,7 +38,12 @@ import {
   DollarSign,
   Users,
   Star,
-  Sparkles
+  Sparkles,
+  Home,
+  ArrowLeft,
+  CheckCircle2,
+  Menu,
+  X
 } from "lucide-react";
 
 import chubbLogo from "@assets/CHUBB_Logo_Black_RBG_1764999352545.jpg";
@@ -113,10 +118,166 @@ const faqs = [
   },
 ];
 
+function LandingPageHeader() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
+  return (
+    <header className="bg-[#0a1628] border-b border-white/10 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <Link href="/">
+            <span className="text-xl font-bold text-white tracking-tight cursor-pointer" style={{ letterSpacing: '-0.02em' }}>
+              CASURANCE
+            </span>
+          </Link>
+          
+          <nav className="hidden md:flex items-center gap-6">
+            <Link href="/">
+              <span className="text-sm text-white/80 hover:text-white transition-colors cursor-pointer flex items-center gap-1">
+                <Home className="h-4 w-4" />
+                Home
+              </span>
+            </Link>
+            <Link href="/quote">
+              <span className="text-sm text-white/80 hover:text-white transition-colors cursor-pointer">
+                All Quote Forms
+              </span>
+            </Link>
+            <Link href="/coverages">
+              <span className="text-sm text-white/80 hover:text-white transition-colors cursor-pointer">
+                Coverages
+              </span>
+            </Link>
+            <Link href="/industries">
+              <span className="text-sm text-white/80 hover:text-white transition-colors cursor-pointer">
+                Industries
+              </span>
+            </Link>
+            <a href="tel:18882540089" className="flex items-center gap-2 bg-primary/20 hover:bg-primary/30 text-white px-4 py-2 rounded-lg transition-colors">
+              <Phone className="h-4 w-4" />
+              <span className="text-sm font-medium">1-888-254-0089</span>
+            </a>
+          </nav>
+          
+          <button 
+            className="md:hidden text-white p-2"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            data-testid="button-mobile-menu"
+          >
+            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
+        
+        {mobileMenuOpen && (
+          <div className="md:hidden py-4 border-t border-white/10">
+            <nav className="flex flex-col gap-3">
+              <Link href="/" onClick={() => setMobileMenuOpen(false)}>
+                <span className="text-white/80 hover:text-white py-2 flex items-center gap-2 cursor-pointer">
+                  <Home className="h-4 w-4" />
+                  Home
+                </span>
+              </Link>
+              <Link href="/quote" onClick={() => setMobileMenuOpen(false)}>
+                <span className="text-white/80 hover:text-white py-2 cursor-pointer">All Quote Forms</span>
+              </Link>
+              <Link href="/coverages" onClick={() => setMobileMenuOpen(false)}>
+                <span className="text-white/80 hover:text-white py-2 cursor-pointer">Coverages</span>
+              </Link>
+              <Link href="/industries" onClick={() => setMobileMenuOpen(false)}>
+                <span className="text-white/80 hover:text-white py-2 cursor-pointer">Industries</span>
+              </Link>
+              <a href="tel:18882540089" className="flex items-center gap-2 text-primary py-2">
+                <Phone className="h-4 w-4" />
+                <span>1-888-254-0089</span>
+              </a>
+            </nav>
+          </div>
+        )}
+      </div>
+    </header>
+  );
+}
+
+interface ConfirmationProps {
+  referenceNumber: string;
+  contactName: string;
+  email: string;
+}
+
+function QuoteConfirmation({ referenceNumber, contactName, email }: ConfirmationProps) {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-[#0a1628] via-[#0d1c33] to-[#0a1628]">
+      <LandingPageHeader />
+      
+      <div className="max-w-2xl mx-auto px-6 py-20">
+        <Card className="bg-white shadow-2xl">
+          <CardContent className="p-8 text-center">
+            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <CheckCircle2 className="h-10 w-10 text-green-600" />
+            </div>
+            
+            <h1 className="text-3xl font-bold text-foreground mb-2">Quote Request Received!</h1>
+            <p className="text-muted-foreground mb-8">
+              Thank you, {contactName}! We've received your workers' compensation quote request.
+            </p>
+            
+            <div className="bg-primary/5 border-2 border-primary rounded-xl p-6 mb-8">
+              <p className="text-sm text-muted-foreground uppercase tracking-wider mb-2">Your Reference Number</p>
+              <p className="text-3xl font-bold text-primary tracking-wider">{referenceNumber}</p>
+            </div>
+            
+            <div className="bg-muted/50 rounded-lg p-6 mb-8 text-left">
+              <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                <Mail className="h-5 w-5 text-primary" />
+                What Happens Next?
+              </h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                  <span>A confirmation email has been sent to <strong className="text-foreground">{email}</strong></span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                  <span>Our team is reviewing your request and gathering quotes from our carriers</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                  <span>Expect to hear from us within 24-48 business hours</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/">
+                <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Back to Main Site
+                </Button>
+              </Link>
+              <a href="tel:18882540089">
+                <Button size="lg" className="w-full sm:w-auto">
+                  <Phone className="mr-2 h-4 w-4" />
+                  Call Us Now
+                </Button>
+              </a>
+            </div>
+            
+            <p className="text-xs text-muted-foreground mt-8">
+              Questions? Call us at 1-888-254-0089 or email info@casurance.net
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+}
+
 export default function WorkersCompLandingPage() {
   const [, navigate] = useLocation();
   const { toast } = useToast();
   const [currentCarrierIndex, setCurrentCarrierIndex] = useState(0);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [confirmationData, setConfirmationData] = useState<ConfirmationProps | null>(null);
   const [formData, setFormData] = useState({
     businessName: "",
     contactName: "",
@@ -142,15 +303,17 @@ export default function WorkersCompLandingPage() {
         phone: data.phone,
         email: data.email,
         state: data.state,
-        insurance_type: `Workers Compensation - ${data.industry} - ${data.employees} employees`
+        insurance_type: `Workers Compensation - ${data.industry || 'General'} - ${data.employees || 'Not specified'} employees`
       });
     },
-    onSuccess: () => {
-      toast({
-        title: "Quote Request Submitted!",
-        description: "Our workers' comp specialists will contact you within 24 hours.",
+    onSuccess: (data: any) => {
+      setConfirmationData({
+        referenceNumber: data.referenceNumber || 'QQT-PENDING',
+        contactName: formData.contactName,
+        email: formData.email
       });
-      navigate("/quote/thank-you");
+      setShowConfirmation(true);
+      window.scrollTo(0, 0);
     },
     onError: () => {
       toast({
@@ -174,8 +337,13 @@ export default function WorkersCompLandingPage() {
     submitMutation.mutate(formData);
   };
 
+  if (showConfirmation && confirmationData) {
+    return <QuoteConfirmation {...confirmationData} />;
+  }
+
   return (
     <>
+      <LandingPageHeader />
       <Helmet>
         <title>Workers Compensation Insurance California & Nevada | Up to 40% Credits | Casurance</title>
         <meta name="title" content="Workers Compensation Insurance California & Nevada | Up to 40% Credits | Casurance" />
