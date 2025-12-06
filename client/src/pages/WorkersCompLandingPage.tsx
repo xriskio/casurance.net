@@ -124,11 +124,16 @@ function LandingPageHeader() {
   return (
     <header className="bg-[#0a1628] border-b border-white/10 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           <Link href="/">
-            <span className="text-xl font-bold text-white tracking-tight cursor-pointer" style={{ letterSpacing: '-0.02em' }}>
-              CASURANCE
-            </span>
+            <div className="cursor-pointer group">
+              <span className="text-2xl font-bold text-white tracking-wide block" style={{ letterSpacing: '0.15em' }}>
+                CASURANCE
+              </span>
+              <span className="text-[10px] text-white/70 tracking-[0.2em] uppercase group-hover:text-white/90 transition-colors">
+                Insurance Agency Services
+              </span>
+            </div>
           </Link>
           
           <nav className="hidden md:flex items-center gap-6">
@@ -172,9 +177,9 @@ function LandingPageHeader() {
           <div className="md:hidden py-4 border-t border-white/10">
             <nav className="flex flex-col gap-3">
               <Link href="/" onClick={() => setMobileMenuOpen(false)}>
-                <span className="text-white/80 hover:text-white py-2 flex items-center gap-2 cursor-pointer">
+                <span className="text-white hover:text-primary py-2 flex items-center gap-2 cursor-pointer font-medium">
                   <Home className="h-4 w-4" />
-                  Home
+                  Back to Main Site
                 </span>
               </Link>
               <Link href="/quote" onClick={() => setMobileMenuOpen(false)}>
