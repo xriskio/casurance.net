@@ -70,6 +70,14 @@ import hoaImg from "@assets/stock_images/american_homeowners__c8ed6149.jpg";
 import earthquakeImg from "@assets/stock_images/american_earthquake__5cb7432d.jpg";
 import storageTankImg from "@assets/stock_images/american_storage_tan_9a1e27e8.jpg";
 
+// New property program stock images
+import apartmentBuildingImg from "@assets/stock_images/modern_apartment_bui_e315080d.jpg";
+import condoBuildingImg from "@assets/stock_images/condominium_building_c2a1b633.jpg";
+import habitationalPropertyImg from "@assets/stock_images/habitational_propert_f6453c88.jpg";
+import hotelExteriorImg from "@assets/stock_images/luxury_hotel_exterio_82885144.jpg";
+import seniorCareImg from "@assets/stock_images/senior_care_facility_edffbb1e.jpg";
+import securityProtectionImg from "@assets/stock_images/business_security_pr_a67f4338.jpg";
+
 export const industryImages: Record<string, string> = {
   // Industries
   "agribusiness-industry": agribusinessImg,
@@ -104,6 +112,14 @@ export const industryImages: Record<string, string> = {
   "public-transportation": publicTransportationImg,
   "public-self-storage": publicSelfStorageImg,
   "tnc-shared-economy": tncSharedEconomyImg,
+
+  // Property Programs (Habitational, Hotel, Healthcare)
+  "apartments-industry": apartmentBuildingImg,
+  "condominiums-industry": condoBuildingImg,
+  "habitational-program": habitationalPropertyImg,
+  "hotel-motel-program": hotelExteriorImg,
+  "healthcare-facilities-program": seniorCareImg,
+  "violent-attack-coverage": securityProtectionImg,
 
   // Casualty Coverage Types
   "construction-casualty": constructionCasualtyImg,

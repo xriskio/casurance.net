@@ -985,6 +985,7 @@ export const coverages: CoverageContent[] = [
     title: "Violent Attack Coverage",
     slug: "violent-attack-coverage",
     category: "Specialty",
+    image: "/assets/stock_images/business_security_pr_a67f4338.jpg",
     summary: "Current policies leave gaping holes. We fill them with broad coverage and competitive rates for violent attack and active shooter incidents.",
     description: "Violent Attack events have clearly captured national attention, and unfortunately have become much more of a reality over the past few years. The randomness of these catastrophic events makes it almost impossible to predict the devastating consequences that these events may have on any targeted business or organization. With violent attacks and active shooting on the rise, catastrophe can hit any business or organization. And the resulting financial damage can be almost impossible to recover from without good coverage. Standard property, liability, and terrorism coverages routinely included in insurance programs may not respond to violent attack events, or they may not provide adequate coverage limits to meet the liability, property damage, business income losses, and reputation damage faced by companies after such an occurrence. We help you reduce the risk of attack with security and logistical safety management. Our crisis management helps you deal with the aftermath of a violent attack. With our rich protection, if something happens you have a proven way to bounce back swiftly.",
     whoNeeds: [
@@ -2576,6 +2577,7 @@ export const industries: CoverageContent[] = [
     title: "Apartments",
     slug: "apartments-industry",
     category: "Industries",
+    image: "/assets/stock_images/modern_apartment_bui_e315080d.jpg",
     summary: "Comprehensive property and liability insurance for apartment buildings, rental properties, and multi-family housing communities.",
     description: "Apartment insurance provides specialized coverage for owners and managers of apartment buildings, rental properties, and multi-family housing communities. Our habitational program addresses the unique property and liability exposures of residential rental operations, from garden-style communities to mid-rise apartment buildings. With coverage capacity up to $100 million per location and $6 million per building, we protect apartment owners against property damage, tenant liability claims, loss of rental income, and the operational risks of managing residential properties.",
     whoNeeds: [
@@ -2678,6 +2680,7 @@ export const industries: CoverageContent[] = [
     title: "Condominiums",
     slug: "condominiums-industry",
     category: "Industries",
+    image: "/assets/stock_images/condominium_building_c2a1b633.jpg",
     summary: "Specialized insurance for condominium associations, HOAs, and individually-owned condominium units.",
     description: "Condominium insurance provides comprehensive coverage for condominium associations, homeowners associations (HOAs), and the unique exposures of shared ownership properties. Our program covers master policies for common areas, directors and officers liability for board members, and coordinates with individual unit owner policies. We understand the complex insurance requirements of condominium management, from high-rise luxury towers to garden-style communities, offering property coverage up to $100 million per location.",
     whoNeeds: [
@@ -2814,6 +2817,7 @@ export const industries: CoverageContent[] = [
     title: "Habitational Program",
     slug: "habitational-program",
     category: "Industries",
+    image: "/assets/stock_images/habitational_propert_f6453c88.jpg",
     summary: "An exclusive 'All Risk' property insurance facility for multi-family risks. When the property doesn't fit in the standard market, we cover it.",
     description: "The Habitational Program is an exclusive, niche property insurance program underwritten by a group of 'A' rated domestic and London-based carriers. Our program appetite includes all construction classes of well-managed habitational properties, as well as other conventional commercial property risks. We provide adequate capacity to consider larger per-location risks and property schedules. Properties built pre-2000, frame exterior, non-sprinklered, or other risks that may be hard to place—we specialize in finding coverage solutions. With a $1 Billion blanket limit, no co-insurance requirements, full replacement cost coverage, and broad risk appetite, our program delivers comprehensive protection for property owners and managers nationwide.",
     whoNeeds: [
@@ -3061,6 +3065,7 @@ export const industries: CoverageContent[] = [
     title: "Hotel & Motel Program",
     slug: "hotel-motel-program",
     category: "Industries",
+    image: "/assets/stock_images/luxury_hotel_exterio_82885144.jpg",
     summary: "An exclusive 'All Risk' property insurance facility for hotels and motels. When the property doesn't fit in the standard market, we can cover it.",
     description: "The Hotel & Motel Program is an exclusive, niche property insurance program underwritten by a group of 'A' rated domestic and London-based carriers. Our program appetite includes all construction classes of well-managed hotels and motels, including exterior corridor and non-sprinklered locations. The program offers a rich coverage form, rivaling and at times exceeding the coverage options in standard markets. Franchise or non-franchise, properties built pre-2000, exterior corridors, non-sprinklered—we specialize in finding coverage solutions for hard-to-place hospitality risks. With a $500 Million blanket limit, no co-insurance requirements, and full replacement cost coverage, we provide comprehensive protection for hotel and motel owners nationwide.",
     whoNeeds: [
@@ -3254,6 +3259,7 @@ export const industries: CoverageContent[] = [
     title: "Healthcare Facilities Program",
     slug: "healthcare-facilities-program",
     category: "Industries",
+    image: "/assets/stock_images/senior_care_facility_edffbb1e.jpg",
     summary: "An exclusive 'All Risk' property insurance facility for healthcare facilities. Robust AOP coverage that excludes all weather-related perils, providing tailored solutions.",
     description: "The Healthcare Facilities Program is an exclusive, niche property insurance program underwritten by a group of 'A' rated domestic and London-based carriers. Our program appetite includes non-sprinklered, frame and JM healthcare facilities that may not be eligible for standard or package market options. The program offers a rich coverage form, rivaling and at times exceeding the coverage options in standard markets. Located in most Tier-1 Wind Zones, frame or JM exterior, non-sprinklered, or other risks that may be hard to place—we specialize in finding coverage solutions. With a $500 Million blanket limit, no co-insurance requirements, and full replacement cost coverage, we provide comprehensive protection for healthcare facility owners and operators nationwide.",
     whoNeeds: [
