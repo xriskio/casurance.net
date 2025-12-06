@@ -1,9 +1,16 @@
 import TncRideshareApplicationForm from "@/components/TncRideshareApplicationForm";
 import { Link } from "wouter";
+import SEOHead from "@/components/SEOHead";
 
 export default function TncRideshareApplicationPage() {
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="TNC & Rideshare Insurance Application"
+        description="Apply for TNC and rideshare insurance coverage for your transportation network company. Comprehensive coverage for Uber, Lyft, and on-demand mobility platforms."
+        keywords="TNC insurance, rideshare insurance, Uber insurance, Lyft insurance, mobility platform insurance"
+        canonical="/apply/tnc-rideshare"
+      />
       <div className="py-12 px-6">
         <div className="max-w-4xl mx-auto mb-8">
           <div className="text-sm text-muted-foreground mb-4">

@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Check, ArrowRight, Phone, AlertCircle } from "lucide-react";
 import { Link } from "wouter";
 import { getCoverageBySlug } from "@shared/content/coverages";
+import SEOHead from "@/components/SEOHead";
 
 export default function MiddleMarket() {
   const coverage = getCoverageBySlug("middle-market");
@@ -13,6 +14,12 @@ export default function MiddleMarket() {
 
   return (
     <div className="py-12 lg:py-16">
+      <SEOHead
+        title="Middle Market Commercial Insurance"
+        description="Comprehensive insurance solutions for middle market businesses with revenues between $5M-$1B. Customized property, casualty, and specialty coverage programs."
+        keywords="middle market insurance, commercial insurance, enterprise insurance, business insurance program"
+        canonical="/middle-market"
+      />
       <div className="max-w-4xl mx-auto px-6 lg:px-8">
         {/* Breadcrumb */}
         <div className="mb-8 text-sm text-muted-foreground">

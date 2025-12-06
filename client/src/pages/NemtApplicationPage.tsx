@@ -1,9 +1,16 @@
 import NemtApplicationFormComprehensive from "@/components/NemtApplicationFormComprehensive";
 import { Link } from "wouter";
+import SEOHead from "@/components/SEOHead";
 
 export default function NemtApplicationPage() {
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="NEMT & Paratransit Insurance Application"
+        description="Apply for comprehensive NEMT and paratransit insurance coverage. Protect your non-emergency medical transportation business with specialized coverage."
+        keywords="NEMT insurance, paratransit insurance, non-emergency medical transportation, medical transport insurance"
+        canonical="/apply/nemt"
+      />
       <div className="py-12 px-6">
         <div className="max-w-4xl mx-auto mb-8">
           <div className="text-sm text-muted-foreground mb-4">

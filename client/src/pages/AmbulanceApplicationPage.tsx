@@ -1,9 +1,16 @@
 import NemtApplicationFormComprehensive from "@/components/NemtApplicationFormComprehensive";
 import { Link } from "wouter";
+import SEOHead from "@/components/SEOHead";
 
 export default function AmbulanceApplicationPage() {
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Ambulance Insurance Application"
+        description="Apply for comprehensive ambulance service insurance coverage. Protect your emergency medical service operations with specialized commercial auto and liability coverage."
+        keywords="ambulance insurance, EMS insurance, emergency medical service insurance, ambulance liability"
+        canonical="/apply/ambulance"
+      />
       <div className="py-12 px-6">
         <div className="max-w-4xl mx-auto mb-8">
           <div className="text-sm text-muted-foreground mb-4">
