@@ -21,7 +21,6 @@ import {
   Shield, 
   Clock, 
   CheckCircle, 
-  Users, 
   Award,
   BadgeCheck,
   Zap,
@@ -34,35 +33,65 @@ import {
   Truck,
   Stethoscope,
   Store,
-  Factory
+  Factory,
+  TrendingDown,
+  DollarSign,
+  Users,
+  Star,
+  Sparkles
 } from "lucide-react";
 
+import chubbLogo from "@assets/CHUBB_Logo_Black_RBG_1764999352545.jpg";
+import cnaLogo from "@assets/CNA_FINANCIAL_CORPORATION_LOGO_1764999352544.jpg";
+import guardLogo from "@assets/simple-insurance-carriers__0008_berkshire-hathaway-guard-insur_1764999352544.png";
+import amtrustLogo from "@assets/simple-insurance-carriers__0012_AmTrust-insurance_1764999352544.png";
+import pieLogo from "@assets/Pie_Insurance_Logo_1764999352544.jpg";
+import biberkLogo from "@assets/biberk_logo_1764999352544.jpg";
+import greatAmericanLogo from "@assets/gaig_logo_web_full_color_1764999352542.png";
+import stateFundLogo from "@assets/9cK0r1ow_400x400_1764999352542.png";
+import atlasLogo from "@assets/atlas_1764999352543.png";
+import appliedLogo from "@assets/Applied_Underwriters_Logo_Logo_1764999352543.jpg";
+import accreditedLogo from "@assets/accredited_1764999352543.png";
+import nationalLogo from "@assets/logo_(1)_1764999352543.png";
+
 const carrierPartners = [
-  { name: "Chubb Insurance", description: "A+ Rated Global Leader" },
-  { name: "CNA Insurance", description: "Fortune 500 Carrier" },
-  { name: "Guard Insurance", description: "Small Business Specialists" },
-  { name: "AmTrust Insurance", description: "Workers Comp Experts" },
-  { name: "PIE Insurance", description: "Simple & Fast Workers Comp" },
-  { name: "Three Insurance", description: "Modern Coverage Solutions" },
-  { name: "biBerk", description: "Berkshire Hathaway Company" },
+  { name: "Chubb", logo: chubbLogo, rating: "A++", description: "World's Largest P&C Insurer" },
+  { name: "CNA Insurance", logo: cnaLogo, rating: "A", description: "Fortune 500 Leader" },
+  { name: "Guard Insurance", logo: guardLogo, rating: "A+", description: "Berkshire Hathaway Company" },
+  { name: "AmTrust", logo: amtrustLogo, rating: "A-", description: "Workers' Comp Specialists" },
+  { name: "PIE Insurance", logo: pieLogo, rating: "A-", description: "Simple & Fast WC" },
+  { name: "biBERK", logo: biberkLogo, rating: "A++", description: "Berkshire Hathaway Company" },
+  { name: "Great American", logo: greatAmericanLogo, rating: "A+", description: "Over 150 Years Strong" },
+  { name: "State Fund", logo: stateFundLogo, rating: "A", description: "California's Largest WC Carrier" },
+  { name: "Atlas General", logo: atlasLogo, rating: "A", description: "Specialty Insurance Solutions" },
+  { name: "Applied Underwriters", logo: appliedLogo, rating: "A", description: "Integrated Risk Solutions" },
+  { name: "Accredited", logo: accreditedLogo, rating: "A-", description: "Program Management Experts" },
+  { name: "National Liability", logo: nationalLogo, rating: "A++", description: "Berkshire Hathaway Company" },
 ];
 
 const creditBenefits = [
-  "Drug-Free Workplace Credit",
-  "Safety Program Credit",
-  "Experience Modification Credit",
-  "Pay-As-You-Go Options",
-  "Multi-Policy Discounts",
-  "Loss Control Services",
+  { icon: Shield, title: "Drug-Free Workplace", credit: "5-10%" },
+  { icon: Award, title: "Safety Program", credit: "5-15%" },
+  { icon: TrendingDown, title: "Experience Mod", credit: "Up to 25%" },
+  { icon: DollarSign, title: "Pay-As-You-Go", credit: "Flex Payment" },
+  { icon: Users, title: "Group Discounts", credit: "5-10%" },
+  { icon: CheckCircle, title: "Loss Control", credit: "5-10%" },
 ];
 
 const industriesServed = [
-  { icon: HardHat, name: "Construction", description: "General contractors, subcontractors, trades" },
+  { icon: HardHat, name: "Construction", description: "General contractors, subcontractors, trades", highlight: true },
   { icon: Truck, name: "Transportation", description: "Trucking, delivery, logistics" },
-  { icon: Store, name: "Retail", description: "Shops, restaurants, hospitality" },
-  { icon: Factory, name: "Manufacturing", description: "Factories, warehouses, production" },
+  { icon: Store, name: "Retail & Hospitality", description: "Shops, restaurants, hotels" },
+  { icon: Factory, name: "Manufacturing", description: "Factories, warehouses, production", highlight: true },
   { icon: Stethoscope, name: "Healthcare", description: "Medical offices, home health, clinics" },
   { icon: Building2, name: "Professional Services", description: "Offices, tech, consulting" },
+];
+
+const stats = [
+  { value: "40%", label: "Max Credits Available", icon: Percent },
+  { value: "12+", label: "A-Rated Carriers", icon: Shield },
+  { value: "24hr", label: "Quote Turnaround", icon: Clock },
+  { value: "$0", label: "Down Payment Options", icon: DollarSign },
 ];
 
 const faqs = [
@@ -196,97 +225,103 @@ export default function WorkersCompLandingPage() {
       </Helmet>
 
       <main className="min-h-screen">
-        {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-[#0a1628] via-[#0d1c33] to-[#0a1628] overflow-hidden">
+        {/* MEGA Hero Section */}
+        <section className="relative bg-gradient-to-br from-[#0a1628] via-[#0d1c33] to-[#0a1628] overflow-hidden" id="top">
+          {/* Animated Background Effects */}
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+          <div className="absolute top-0 left-0 w-full h-full">
+            <div className="absolute top-20 left-10 w-96 h-96 bg-green-500/20 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute top-40 right-20 w-80 h-80 bg-primary/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+            <div className="absolute bottom-20 left-1/3 w-72 h-72 bg-blue-500/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+          </div>
           
-          {/* Animated gradient orbs */}
-          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-          
-          <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-20">
+          <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-16">
+            {/* Top Banner */}
+            <div className="text-center mb-10">
+              <div className="inline-flex items-center gap-3 bg-gradient-to-r from-green-500/30 to-emerald-500/20 backdrop-blur-sm border border-green-400/40 rounded-full px-6 py-3 mb-6 animate-pulse">
+                <Sparkles className="h-5 w-5 text-green-300" />
+                <span className="text-lg font-bold text-green-300">LIMITED TIME: Up to 40% Premium Credits Available!</span>
+                <Sparkles className="h-5 w-5 text-green-300" />
+              </div>
+            </div>
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
               {/* Left Column */}
               <div className="space-y-8">
-                <div className="inline-flex items-center gap-2 bg-green-500/20 backdrop-blur-sm border border-green-500/30 rounded-full px-4 py-2">
-                  <Percent className="h-5 w-5 text-green-400" />
-                  <span className="text-sm font-semibold text-green-400">Up to 40% Premium Credits Available</span>
-                </div>
-
                 <div>
-                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight" data-testid="text-hero-headline">
-                    Workers' Comp Insurance for{" "}
+                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight" data-testid="text-hero-headline">
+                    Save <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-emerald-400 to-green-300 animate-pulse">Up to 40%</span> on{" "}
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
-                      California & Nevada
+                      Workers' Comp
                     </span>
                   </h1>
                   
-                  <p className="text-xl text-white/80 mb-8 leading-relaxed" data-testid="text-hero-description">
-                    Get up to <strong className="text-green-400">40% credits</strong> on your workers' compensation premium from our A-rated carrier partners. Fast quotes, competitive rates, pay-as-you-go options.
+                  <p className="text-xl text-white/80 mb-6 leading-relaxed" data-testid="text-hero-description">
+                    California & Nevada businesses: Get quotes from <strong className="text-white">12+ A-rated carriers</strong> and maximize your premium credits with our expert team.
                   </p>
                 </div>
 
-                {/* Feature Badges */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm rounded-lg px-4 py-3 border border-white/10">
-                    <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center">
-                      <Percent className="h-5 w-5 text-green-400" />
-                    </div>
-                    <span className="text-sm font-medium text-white">Up to 40% Credits</span>
-                  </div>
-                  <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm rounded-lg px-4 py-3 border border-white/10">
-                    <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
-                      <Zap className="h-5 w-5 text-primary" />
-                    </div>
-                    <span className="text-sm font-medium text-white">Same-Day Quotes</span>
-                  </div>
-                  <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm rounded-lg px-4 py-3 border border-white/10">
-                    <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
-                      <Award className="h-5 w-5 text-primary" />
-                    </div>
-                    <span className="text-sm font-medium text-white">A-Rated Carriers</span>
-                  </div>
-                  <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm rounded-lg px-4 py-3 border border-white/10">
-                    <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
-                      <Clock className="h-5 w-5 text-primary" />
-                    </div>
-                    <span className="text-sm font-medium text-white">Pay-As-You-Go</span>
-                  </div>
-                </div>
-
-                {/* Credit Types */}
-                <div>
-                  <p className="text-sm font-medium text-white/60 mb-4 uppercase tracking-wider">Available Premium Credits:</p>
-                  <div className="flex flex-wrap gap-2">
-                    {creditBenefits.map((credit, index) => (
+                {/* Stats Bar */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  {stats.map((stat, index) => {
+                    const Icon = stat.icon;
+                    return (
                       <div 
                         key={index}
-                        className="inline-flex items-center gap-2 bg-green-500/10 backdrop-blur-sm rounded-full px-4 py-2 border border-green-500/20 text-green-300 text-sm"
+                        className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 text-center"
                       >
-                        <CheckCircle className="h-4 w-4" />
-                        {credit}
+                        <Icon className="h-6 w-6 text-green-400 mx-auto mb-2" />
+                        <div className="text-2xl font-bold text-white">{stat.value}</div>
+                        <div className="text-xs text-white/60">{stat.label}</div>
                       </div>
-                    ))}
+                    );
+                  })}
+                </div>
+
+                {/* Credit Types Grid */}
+                <div>
+                  <p className="text-sm font-medium text-white/60 mb-4 uppercase tracking-wider">Available Premium Credits:</p>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    {creditBenefits.map((credit, index) => {
+                      const Icon = credit.icon;
+                      return (
+                        <div 
+                          key={index}
+                          className="flex items-center gap-3 bg-gradient-to-r from-green-500/10 to-transparent backdrop-blur-sm rounded-lg px-4 py-3 border border-green-500/20"
+                        >
+                          <Icon className="h-5 w-5 text-green-400 flex-shrink-0" />
+                          <div>
+                            <div className="text-sm font-medium text-white">{credit.title}</div>
+                            <div className="text-xs text-green-400">{credit.credit}</div>
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
 
                 {/* Call CTA */}
-                <div className="pt-4">
-                  <a href="tel:18882540089" className="inline-flex items-center gap-2 text-white hover:text-primary transition-colors">
-                    <Phone className="h-5 w-5" />
-                    <span className="text-lg font-semibold">1-888-254-0089</span>
+                <div className="flex flex-wrap gap-4 items-center pt-4">
+                  <a href="tel:18882540089" className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3 border border-white/20 hover:bg-white/20 transition-all">
+                    <Phone className="h-5 w-5 text-primary" />
+                    <span className="text-lg font-bold text-white">1-888-254-0089</span>
                   </a>
-                  <p className="text-white/60 text-sm mt-1">Speak with a workers' comp specialist</p>
+                  <span className="text-white/60 text-sm">Speak with a workers' comp specialist</span>
                 </div>
               </div>
 
               {/* Right Column - Quote Form */}
-              <div className="lg:pl-8">
-                <Card className="bg-white shadow-2xl border-0">
+              <div className="lg:pl-4">
+                <Card className="bg-white shadow-2xl border-0 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-green-500 via-emerald-500 to-green-400"></div>
                   <CardContent className="p-8">
                     <div className="text-center mb-6">
+                      <div className="inline-flex items-center gap-2 bg-green-100 text-green-800 rounded-full px-4 py-1 text-sm font-medium mb-3">
+                        <Zap className="h-4 w-4" />
+                        Free Instant Quote
+                      </div>
                       <h2 className="text-2xl font-bold text-foreground mb-2" data-testid="text-form-title">
-                        Get Your Free Quote
+                        Get Your Workers' Comp Quote
                       </h2>
                       <p className="text-muted-foreground text-sm">
                         California & Nevada • Takes 2 minutes
@@ -406,11 +441,11 @@ export default function WorkersCompLandingPage() {
                       <Button 
                         type="submit" 
                         size="lg" 
-                        className="w-full bg-green-600 hover:bg-green-700 text-white text-lg py-6 mt-2"
+                        className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white text-lg py-6 mt-2 shadow-lg shadow-green-500/25"
                         disabled={submitMutation.isPending}
                         data-testid="button-submit-quote"
                       >
-                        {submitMutation.isPending ? "Submitting..." : "Get My Workers' Comp Quote"}
+                        {submitMutation.isPending ? "Submitting..." : "Get My Free Quote Now"}
                         <ArrowRight className="ml-2 h-5 w-5" />
                       </Button>
                     </form>
@@ -419,7 +454,7 @@ export default function WorkersCompLandingPage() {
                     <div className="flex items-center justify-center gap-6 mt-6 pt-6 border-t border-border">
                       <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
                         <Lock className="h-3.5 w-3.5" />
-                        <span>Secure</span>
+                        <span>256-bit SSL</span>
                       </div>
                       <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
                         <Mail className="h-3.5 w-3.5" />
@@ -437,35 +472,49 @@ export default function WorkersCompLandingPage() {
           </div>
         </section>
 
-        {/* Rotating Carrier Partners */}
-        <section className="py-12 bg-muted/50 border-y border-border">
+        {/* MEGA Carrier Partners Section */}
+        <section className="py-16 bg-gradient-to-b from-muted/30 to-background border-y border-border">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-8">
-              <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-2">
-                Our Workers' Comp Carrier Partners
-              </p>
-              <p className="text-lg text-foreground">
-                A-Rated carriers offering up to <span className="text-green-600 font-bold">40% premium credits</span>
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 text-sm font-medium text-primary mb-4">
+                <Shield className="h-4 w-4" />
+                Exclusive Carrier Access
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+                12+ A-Rated Carrier Partners
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                We partner with the nation's top workers' compensation carriers to get you the best rates and up to <span className="text-green-600 font-bold">40% in premium credits</span>
               </p>
             </div>
 
-            {/* Rotating Featured Carrier */}
-            <div className="flex justify-center mb-8">
-              <div className="bg-white rounded-xl shadow-lg p-8 text-center min-w-[300px] transition-all duration-500">
-                <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Shield className="h-10 w-10 text-primary" />
+            {/* Featured Rotating Carrier */}
+            <div className="flex justify-center mb-12">
+              <div className="bg-white rounded-2xl shadow-xl p-8 text-center min-w-[400px] border border-border relative overflow-hidden">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-green-500 via-primary to-green-500"></div>
+                <div className="flex justify-center items-center h-24 mb-4">
+                  <img 
+                    src={carrierPartners[currentCarrierIndex].logo} 
+                    alt={carrierPartners[currentCarrierIndex].name}
+                    className="max-h-20 max-w-[280px] object-contain transition-all duration-500"
+                  />
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-2">
+                <h3 className="text-xl font-bold text-foreground mb-1">
                   {carrierPartners[currentCarrierIndex].name}
                 </h3>
-                <p className="text-muted-foreground">
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+                  <span className="text-sm font-semibold text-yellow-600">AM Best: {carrierPartners[currentCarrierIndex].rating}</span>
+                </div>
+                <p className="text-muted-foreground text-sm">
                   {carrierPartners[currentCarrierIndex].description}
                 </p>
-                <div className="mt-4 flex justify-center gap-1">
+                <div className="mt-4 flex justify-center gap-1.5">
                   {carrierPartners.map((_, idx) => (
-                    <div 
+                    <button 
                       key={idx} 
-                      className={`w-2 h-2 rounded-full transition-colors ${idx === currentCarrierIndex ? 'bg-primary' : 'bg-gray-300'}`}
+                      onClick={() => setCurrentCarrierIndex(idx)}
+                      className={`w-2.5 h-2.5 rounded-full transition-all ${idx === currentCarrierIndex ? 'bg-primary w-6' : 'bg-gray-300 hover:bg-gray-400'}`}
                     />
                   ))}
                 </div>
@@ -473,18 +522,60 @@ export default function WorkersCompLandingPage() {
             </div>
 
             {/* All Carriers Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
               {carrierPartners.map((carrier, index) => (
                 <div 
                   key={index}
-                  className={`bg-white rounded-lg p-4 text-center border transition-all duration-300 ${index === currentCarrierIndex ? 'border-primary shadow-md scale-105' : 'border-border'}`}
+                  onClick={() => setCurrentCarrierIndex(index)}
+                  className={`bg-white rounded-xl p-4 text-center border-2 transition-all duration-300 cursor-pointer hover:shadow-lg ${index === currentCarrierIndex ? 'border-primary shadow-lg scale-105' : 'border-border hover:border-primary/50'}`}
                 >
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <Shield className="h-6 w-6 text-primary" />
+                  <div className="h-12 flex items-center justify-center mb-2">
+                    <img 
+                      src={carrier.logo} 
+                      alt={carrier.name}
+                      className="max-h-10 max-w-full object-contain"
+                    />
                   </div>
-                  <p className="text-xs font-medium text-foreground">{carrier.name}</p>
+                  <p className="text-xs font-medium text-foreground truncate">{carrier.name}</p>
+                  <div className="flex items-center justify-center gap-1 mt-1">
+                    <Star className="h-3 w-3 text-yellow-500 fill-yellow-500" />
+                    <span className="text-xs text-muted-foreground">{carrier.rating}</span>
+                  </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Big 40% Savings Banner */}
+        <section className="py-20 bg-gradient-to-r from-green-600 via-emerald-600 to-green-600 relative overflow-hidden">
+          <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.1)_25%,rgba(255,255,255,0.1)_50%,transparent_50%,transparent_75%,rgba(255,255,255,0.1)_75%)] bg-[length:60px_60px]"></div>
+          
+          <div className="relative max-w-5xl mx-auto px-6 lg:px-8 text-center">
+            <div className="mb-8">
+              <span className="text-[120px] sm:text-[180px] lg:text-[220px] font-black text-white/20 leading-none block">40%</span>
+              <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white -mt-16 sm:-mt-24 lg:-mt-32 relative z-10">
+                Maximum Premium Credits
+              </div>
+            </div>
+            
+            <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+              Our expert team will analyze your business and identify ALL available credits to maximize your savings on workers' compensation insurance.
+            </p>
+
+            <div className="flex flex-wrap gap-4 justify-center">
+              <a href="#top">
+                <Button size="lg" variant="secondary" className="group text-lg px-10 py-6 shadow-xl">
+                  Get Your Free Quote
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </a>
+              <a href="tel:18882540089">
+                <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20 text-lg px-10 py-6">
+                  <Phone className="mr-2 h-5 w-5" />
+                  Call Now
+                </Button>
+              </a>
             </div>
           </div>
         </section>
@@ -505,59 +596,27 @@ export default function WorkersCompLandingPage() {
               {industriesServed.map((industry, index) => {
                 const Icon = industry.icon;
                 return (
-                  <Card key={index} className="hover-elevate" data-testid={`card-industry-${index}`}>
+                  <Card 
+                    key={index} 
+                    className={`hover-elevate ${industry.highlight ? 'border-green-500/50 bg-gradient-to-br from-green-50/50 to-transparent dark:from-green-950/20' : ''}`}
+                    data-testid={`card-industry-${index}`}
+                  >
                     <CardContent className="p-6">
-                      <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
-                        <Icon className="h-7 w-7 text-primary" />
+                      <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 ${industry.highlight ? 'bg-green-500/20' : 'bg-primary/10'}`}>
+                        <Icon className={`h-7 w-7 ${industry.highlight ? 'text-green-600' : 'text-primary'}`} />
                       </div>
                       <h3 className="font-semibold text-xl text-foreground mb-2">{industry.name}</h3>
                       <p className="text-muted-foreground">{industry.description}</p>
+                      {industry.highlight && (
+                        <div className="mt-3 inline-flex items-center gap-1 text-sm text-green-600 font-medium">
+                          <CheckCircle className="h-4 w-4" />
+                          High-risk specialty
+                        </div>
+                      )}
                     </CardContent>
                   </Card>
                 );
               })}
-            </div>
-          </div>
-        </section>
-
-        {/* Why 40% Credits */}
-        <section className="py-16 lg:py-20 bg-gradient-to-br from-green-600 to-green-700">
-          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-4 py-2 mb-6">
-              <Percent className="h-5 w-5 text-white" />
-              <span className="text-sm font-semibold text-white">Premium Savings</span>
-            </div>
-
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-              How to Qualify for Up to 40% Credits
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left max-w-3xl mx-auto mb-8">
-              {creditBenefits.map((credit, index) => (
-                <div key={index} className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-lg px-4 py-3">
-                  <CheckCircle className="h-5 w-5 text-white flex-shrink-0" />
-                  <span className="text-white font-medium">{credit}</span>
-                </div>
-              ))}
-            </div>
-
-            <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
-              Our experts will analyze your business and identify all available credits to maximize your savings. Many California and Nevada businesses qualify for multiple credits.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="#top">
-                <Button size="lg" variant="secondary" className="group text-lg px-8">
-                  Get Your Free Quote
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </a>
-              <a href="tel:18882540089">
-                <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20 text-lg px-8">
-                  <Phone className="mr-2 h-5 w-5" />
-                  1-888-254-0089
-                </Button>
-              </a>
             </div>
           </div>
         </section>
@@ -593,16 +652,21 @@ export default function WorkersCompLandingPage() {
         {/* Final CTA */}
         <section className="py-16 lg:py-20 bg-[#0a1628]">
           <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+            <div className="inline-flex items-center gap-2 bg-green-500/20 rounded-full px-4 py-2 text-sm font-medium text-green-400 mb-6">
+              <Zap className="h-4 w-4" />
+              Get Started Today
+            </div>
+            
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Get Your Workers' Comp Quote Today
+              Ready to Save on Workers' Comp?
             </h2>
             <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
-              Join California and Nevada businesses saving up to 40% on their workers' compensation premiums. Fast quotes from A-rated carriers.
+              Join California and Nevada businesses saving up to 40% on their workers' compensation premiums. Fast quotes from 12+ A-rated carriers.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Link href="/quote/workers-compensation">
-                <Button size="lg" className="bg-green-600 hover:bg-green-700 group text-lg px-10 py-6">
+                <Button size="lg" className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 group text-lg px-10 py-6 shadow-lg shadow-green-500/25">
                   Request Full Quote
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
