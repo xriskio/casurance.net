@@ -1,9 +1,56 @@
-# robots.txt for Casurance Insurance Agency
+# robots.txt for Casurance Commercial Insurance Agency
+# https://casurance.com
+
+# Allow all search engines to crawl public pages
 User-agent: *
 Allow: /
+
+# Disallow agent portal and admin areas
+Disallow: /agent/
+Disallow: /agent
+Disallow: /admin
+
+# Disallow unsubscribe page from indexing
+Disallow: /unsubscribe
+
+# Crawl delay to be respectful of server resources
+Crawl-delay: 1
 
 # Sitemap location
 Sitemap: https://www.casurance.com/sitemap.xml
 
-# Crawl-delay to be respectful to search engines
+# Special instructions for common bots
+User-agent: Googlebot
+Allow: /
+Disallow: /agent/
 Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Disallow: /agent/
+Crawl-delay: 1
+
+# AI Crawlers (ChatGPT, Claude, etc.)
+User-agent: GPTBot
+Allow: /
+Disallow: /agent/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /agent/
+
+User-agent: CCBot
+Allow: /
+Disallow: /agent/
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /agent/
+
+User-agent: Claude-Web
+Allow: /
+Disallow: /agent/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /agent/
