@@ -89,6 +89,9 @@ export default function CoverageDetail({ coverage }: CoverageDetailProps) {
     if (coverage.slug === 'hospitality' || coverage.slug === 'hotel-insurance' || coverage.slug === 'hotel-motel-program') {
       return '/quote/hotel';
     }
+    if (coverage.slug === 'healthcare-facilities-program') {
+      return '/quote/healthcare';
+    }
     if (coverage.slug === 'restaurant-insurance') {
       return '/quote/restaurant';
     }

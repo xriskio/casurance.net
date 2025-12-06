@@ -3089,6 +3089,200 @@ export const industries: CoverageContent[] = [
   },
 
   {
+    title: "Healthcare Facilities Program",
+    slug: "healthcare-facilities-program",
+    category: "Industries",
+    summary: "An exclusive 'All Risk' property insurance facility for healthcare facilities. Robust AOP coverage that excludes all weather-related perils, providing tailored solutions.",
+    description: "The Healthcare Facilities Program is an exclusive, niche property insurance program underwritten by a group of 'A' rated domestic and London-based carriers. Our program appetite includes non-sprinklered, frame and JM healthcare facilities that may not be eligible for standard or package market options. The program offers a rich coverage form, rivaling and at times exceeding the coverage options in standard markets. Located in most Tier-1 Wind Zones, frame or JM exterior, non-sprinklered, or other risks that may be hard to place—we specialize in finding coverage solutions. With a $500 Million blanket limit, no co-insurance requirements, and full replacement cost coverage, we provide comprehensive protection for healthcare facility owners and operators nationwide.",
+    whoNeeds: [
+      "Assisted living facility owners and operators",
+      "Skilled nursing home owners",
+      "Rehabilitation center operators",
+      "Memory care center owners",
+      "Senior living community developers",
+      "Healthcare property management companies",
+      "Long-term care facility investors",
+      "Healthcare REITs and investment groups",
+      "Non-sprinklered healthcare facilities",
+      "Older frame and JM construction healthcare properties"
+    ],
+    coverageIncludes: [
+      "$500 Million blanket limit capacity",
+      "All Perils coverage (All Risk)",
+      "Full Replacement Cost valuation",
+      "No Co-insurance requirements",
+      "$100 Million Flood sublimit (excluding high hazard flood zones)",
+      "$100 Million Earthquake sublimit (excluding CA, AK, HI & PAC NW)",
+      "EQSL (Earthquake Sprinkler Leakage) in all states",
+      "Ordinance or Law provision",
+      "$1 Million Sewer & Drain Backup",
+      "Optional Equipment Breakdown coverage",
+      "Optional Terrorism coverage",
+      "Optional Crime coverage",
+      "Business income and extra expense protection"
+    ],
+    benefits: [
+      "Exclusive market access through specialized carrier partnerships",
+      "Expedited underwriting and quoting process",
+      "Adequate capacity for larger healthcare schedules",
+      "Broad risk appetite for hard-to-place facilities",
+      "Coverage for non-sprinklered locations",
+      "Older frame and JM construction accepted",
+      "Tier-1 Wind Zone locations considered (ex-wind)",
+      "All weather-related perils excluded option available",
+      "Targeting well-managed healthcare facilities",
+      "Competitive rates for quality operations",
+      "Expert claims handling for healthcare exposures"
+    ],
+    propertyTypes: [
+      {
+        id: "assisted-living",
+        title: "Assisted Living Facilities",
+        description: "Comprehensive coverage for assisted living communities providing housing and personal care services for seniors who need help with daily activities.",
+        eligibility: [
+          "Independent living communities",
+          "Assisted living facilities",
+          "Continuing care retirement communities",
+          "Senior living complexes",
+          "Well-managed facilities with established operations",
+          "Minimum TIV $5 Million",
+          "Maximum TIV $35 Million per location"
+        ],
+        coverageHighlights: [
+          "Full replacement cost on buildings",
+          "Business income protection",
+          "Equipment breakdown coverage",
+          "Ordinance or law coverage",
+          "Optional terrorism coverage"
+        ],
+        icon: "Building2"
+      },
+      {
+        id: "skilled-nursing",
+        title: "Skilled Nursing Homes",
+        description: "Specialized coverage for skilled nursing facilities providing 24-hour medical care, rehabilitation services, and long-term care for residents.",
+        eligibility: [
+          "Skilled nursing facilities (SNFs)",
+          "Long-term care facilities",
+          "Convalescent homes",
+          "Subacute care facilities",
+          "Non-sprinklered locations accepted",
+          "Minimum TIV $5 Million",
+          "Maximum TIV $35 Million per location"
+        ],
+        coverageHighlights: [
+          "Full replacement cost valuation",
+          "No co-insurance penalties",
+          "Sewer & drain backup coverage",
+          "Business interruption protection",
+          "Crime coverage available"
+        ],
+        icon: "Home"
+      },
+      {
+        id: "rehab-centers",
+        title: "Rehabilitation Centers",
+        description: "Coverage for inpatient and outpatient rehabilitation facilities providing physical therapy, occupational therapy, and recovery services.",
+        eligibility: [
+          "Inpatient rehabilitation hospitals",
+          "Outpatient rehabilitation clinics",
+          "Physical therapy centers",
+          "Occupational therapy facilities",
+          "Sports medicine rehabilitation centers",
+          "Minimum TIV $5 Million",
+          "Maximum TIV $35 Million per location"
+        ],
+        coverageHighlights: [
+          "$500 Million blanket capacity",
+          "Full replacement cost",
+          "Equipment breakdown",
+          "Flood and earthquake sublimits",
+          "Business income coverage"
+        ],
+        icon: "Building"
+      },
+      {
+        id: "memory-care",
+        title: "Memory Care Centers",
+        description: "Specialized coverage for memory care facilities serving residents with Alzheimer's disease, dementia, and other cognitive conditions requiring specialized care environments.",
+        eligibility: [
+          "Memory care communities",
+          "Alzheimer's care facilities",
+          "Dementia care centers",
+          "Specialized cognitive care units",
+          "Secure residential facilities",
+          "Minimum TIV $5 Million",
+          "Maximum TIV $35 Million per location"
+        ],
+        coverageHighlights: [
+          "Coverage for specialized security features",
+          "Full replacement cost",
+          "Equipment breakdown protection",
+          "Business income and extra expense",
+          "Optional crime and terrorism coverage"
+        ],
+        icon: "Landmark"
+      }
+    ],
+    programLimits: {
+      blanketLimit: "$500 Million",
+      maxTIVPerBuilding: "$35 Million",
+      minTIV: "$5 Million",
+      floodSublimit: "$100 Million (excluding high hazard flood zones)",
+      earthquakeSublimit: "$100 Million (excluding CA, AK, HI & PAC NW)",
+      terrorismSublimit: "Optional coverage available",
+      boilerMachinerySublimit: "Optional coverage available"
+    },
+    deductibles: {
+      aop: "$25,000 AOP including Wind/Hail in most states ($5K AOP buyback option available)",
+      windHail: "2% / $100,000 minimum in select states",
+      windHailStates: ["AL", "AR", "CO", "IA", "KS", "KY", "MS", "MO", "NE"],
+      namedStorm: "$100,000 Named Storm deductible",
+      floodEarthquake: "$250,000 Flood / $100,000 Earthquake"
+    },
+    excludedAreas: [
+      "Texas (TX)",
+      "Oklahoma (OK)",
+      "Louisiana (LA)",
+      "Florida (FL)",
+      "New York (NY)",
+      "Hawaii (HI)",
+      "Tier 1 coastal zones",
+      "Within 10 miles of Atlantic/Gulf of Mexico"
+    ],
+    programHighlights: [
+      "$500 Million Blanket Limit",
+      "No Co-insurance",
+      "Full Replacement Cost",
+      "All Perils Coverage",
+      "Broad Risk Appetite",
+      "Exclusive Market Access",
+      "Expedited Underwriting and Quoting Process",
+      "Adequate Capacity for Larger Schedules",
+      "$100 Million Flood Sublimit",
+      "$100 Million Earthquake Sublimit",
+      "EQSL in All States",
+      "Ordinance or Law Provision",
+      "$1 Million Sewer & Drain Backup",
+      "Optional Equipment Breakdown",
+      "Optional Terrorism Coverage",
+      "Optional Crime Coverage",
+      "All Weather-Related Perils Excluded Option"
+    ],
+    eligibleStates: [
+      "AL", "AZ", "AR", "CA", "CT", "DE", "GA", "ID", "IL", "IN", "IA", "KS", "KY", 
+      "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", 
+      "NC", "ND", "OH", "OR", "PA", "RI", "SC", "SD", "TN", "UT", "VT", "VA", "WA", 
+      "WV", "WI", "WY"
+    ],
+    ineligibleStates: [
+      "TX", "OK", "LA", "FL", "NY", "HI"
+    ],
+    seoTitle: "Healthcare Facilities Insurance Program | Assisted Living & Nursing Home Coverage | Casurance",
+    seoDescription: "Exclusive 'All Risk' property insurance for healthcare facilities. $500 Million blanket limit, no co-insurance, full replacement cost. Coverage for assisted living, skilled nursing, rehab centers, and memory care facilities."
+  },
+
+  {
     title: "Healthcare",
     slug: "healthcare",
     category: "Industries",
