@@ -123,7 +123,7 @@ const faqs = [
   },
   {
     question: "What carriers do you work with?",
-    answer: "We partner with 50+ top-rated carriers including Travelers, Hartford, Progressive, Chubb, Liberty Mutual, and many more."
+    answer: "We partner with 50+ top-rated carriers including Chubb, Berkshire Hathaway, AmTrust, CNA, Philadelphia Insurance, Tokio Marine, and many more."
   }
 ];
 
