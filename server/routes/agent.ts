@@ -3,6 +3,7 @@ import passport from "../auth/passport-config";
 import { requireAgent, requireAdmin } from "../auth/middleware";
 import { db } from "../db";
 import type { IStorage } from "../storage";
+import { notifyBlogPostUpdated, notifyPressReleaseUpdated } from "../services/indexNowService";
 import {
   quoteRequests,
   serviceRequests,
@@ -909,6 +910,11 @@ export function registerAgentRoutes(app: Express, storage: IStorage) {
       if (!updatedPost) {
         return res.status(404).json({ error: "Blog post not found" });
       }
+      
+      if (updatedPost.slug && updatedPost.publishedAt) {
+        notifyBlogPostUpdated(updatedPost.slug);
+      }
+      
       res.json({ post: updatedPost });
     } catch (error) {
       console.error("Error updating blog post:", error);
@@ -963,6 +969,11 @@ export function registerAgentRoutes(app: Express, storage: IStorage) {
       if (!updatedRelease) {
         return res.status(404).json({ error: "Press release not found" });
       }
+      
+      if (updatedRelease.slug && updatedRelease.publishedAt) {
+        notifyPressReleaseUpdated(updatedRelease.slug);
+      }
+      
       res.json({ release: updatedRelease });
     } catch (error) {
       console.error("Error updating press release:", error);

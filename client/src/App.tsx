@@ -80,6 +80,7 @@ import PersonalLinesIndex from "@/pages/PersonalLinesIndex";
 import PersonalLinesQuote from "@/pages/PersonalLinesQuote";
 import AdvertisingLandingPage from "@/pages/AdvertisingLandingPage";
 import WorkersCompLandingPage from "@/pages/WorkersCompLandingPage";
+import QuoteThankYou from "@/pages/QuoteThankYou";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -87,6 +88,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/quote" component={QuotePage} />
+      <Route path="/quote/thank-you" component={QuoteThankYou} />
       <Route path="/quote/commercial-auto" component={CommercialAutoQuote} />
       <Route path="/quote/general-liability" component={GeneralLiabilityQuote} />
       <Route path="/quote/workers-compensation" component={WorkersCompQuote} />
