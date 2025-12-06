@@ -1,10 +1,17 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CommercialFloodQuoteForm from "@/components/CommercialFloodQuoteForm";
+import SEOHead from "@/components/SEOHead";
 
 export default function CommercialFloodQuote() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEOHead
+        title="Commercial Flood Insurance Quote"
+        description="Protect your business from flood damage with commercial flood insurance. Coverage for buildings, equipment, and business interruption."
+        keywords="commercial flood insurance, business flood insurance, flood coverage, NFIP commercial"
+        canonical="/quote/commercial-flood"
+      />
       <Header />
       <main className="flex-1 py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">

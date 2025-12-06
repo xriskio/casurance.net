@@ -1,10 +1,17 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TruckingQuoteForm from "@/components/TruckingQuoteForm";
+import SEOHead from "@/components/SEOHead";
 
 export default function TruckingQuote() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEOHead
+        title="Trucking Insurance Quote"
+        description="Get commercial trucking and transportation insurance. Protect your fleet with auto liability, physical damage, cargo, and motor truck cargo coverage."
+        keywords="trucking insurance, commercial truck insurance, fleet insurance, cargo insurance, motor carrier insurance, transportation insurance"
+        canonical="/quote/trucking"
+      />
       <Header />
       <main className="flex-1 py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">

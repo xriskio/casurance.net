@@ -1,10 +1,17 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CommercialPackageQuoteForm from "@/components/CommercialPackageQuoteForm";
+import SEOHead from "@/components/SEOHead";
 
 export default function CommercialPackageQuote() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEOHead
+        title="Commercial Package Insurance Quote"
+        description="Get a comprehensive commercial package policy combining property, liability, and business coverage in one convenient package."
+        keywords="commercial package policy, business insurance package, CPP insurance, bundled business insurance"
+        canonical="/quote/commercial-package"
+      />
       <Header />
       <main className="flex-1 py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">

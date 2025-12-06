@@ -2,10 +2,17 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import CraneRiggersQuoteForm from "@/components/CraneRiggersQuoteForm";
+import SEOHead from "@/components/SEOHead";
 
 export default function CraneRiggersQuote() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEOHead
+        title="Crane & Riggers Insurance Quote"
+        description="Get specialized crane and rigging insurance. Coverage for crane operators, rigging equipment, and heavy lifting operations."
+        keywords="crane insurance, riggers insurance, heavy equipment insurance, crane operator coverage"
+        canonical="/quote/crane-riggers"
+      />
       <Header />
       <main className="flex-1 py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">

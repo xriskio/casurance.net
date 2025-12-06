@@ -2,10 +2,17 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HabitationalQuoteForm from "@/components/HabitationalQuoteForm";
 import { Building2, Shield, FileCheck, Umbrella } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 
 export default function HabitationalQuote() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEOHead
+        title="Habitational Insurance Quote"
+        description="Get specialty habitational insurance for apartments, condos, townhouse associations, and assisted living. Property limits up to $75 million per location."
+        keywords="habitational insurance, apartment insurance, condo insurance, HOA insurance, assisted living insurance, lessor's risk"
+        canonical="/quote/habitational"
+      />
       <Header />
       <main className="flex-1 py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">

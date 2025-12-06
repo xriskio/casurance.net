@@ -1,10 +1,17 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AutoDealerGarageQuoteForm from "@/components/AutoDealerGarageQuoteForm";
+import SEOHead from "@/components/SEOHead";
 
 export default function AutoDealerGarageQuote() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEOHead
+        title="Auto Dealer & Garage Insurance Quote"
+        description="Get comprehensive insurance for auto dealers and garages. Coverage for inventory, garagekeepers liability, and dealer operations."
+        keywords="auto dealer insurance, garage insurance, dealer liability, auto lot insurance"
+        canonical="/quote/auto-dealer-garage"
+      />
       <Header />
       <div className="bg-gradient-to-br from-[#1e3a8a] via-[#1e40af] to-[#3b5998] py-12 lg:py-16">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">

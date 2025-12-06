@@ -1,10 +1,17 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GarageServiceQuoteForm from "@/components/GarageServiceQuoteForm";
+import SEOHead from "@/components/SEOHead";
 
 export default function GarageServiceQuote() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEOHead
+        title="Garage Service Center Insurance Quote"
+        description="Get insurance for auto repair shops and service centers. Coverage for garagekeepers liability, property, and operations."
+        keywords="garage insurance, auto repair shop insurance, garagekeepers liability, service center insurance"
+        canonical="/quote/garage-service-centers"
+      />
       <Header />
       <main className="flex-1 py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">

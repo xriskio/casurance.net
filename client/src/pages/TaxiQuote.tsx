@@ -1,10 +1,17 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TaxiQuoteForm from "@/components/TaxiQuoteForm";
+import SEOHead from "@/components/SEOHead";
 
 export default function TaxiQuote() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEOHead
+        title="Taxi & Black Car Insurance Quote"
+        description="Get commercial taxi and black car insurance. Coverage for taxi fleets, sedan services, and for-hire vehicle operations."
+        keywords="taxi insurance, black car insurance, for-hire vehicle insurance, taxi fleet insurance"
+        canonical="/quote/taxi"
+      />
       <Header />
       <main className="flex-1 py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">

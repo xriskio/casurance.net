@@ -1,10 +1,17 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HotelQuoteForm from "@/components/HotelQuoteForm";
+import SEOHead from "@/components/SEOHead";
 
 export default function HotelQuote() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEOHead
+        title="Hotel & Motel Insurance Quote"
+        description="Get comprehensive hotel and motel insurance. Protect your hospitality business with property, liability, and specialized coverage for lodging operations."
+        keywords="hotel insurance, motel insurance, hospitality insurance, inn insurance, bed and breakfast insurance, lodging insurance"
+        canonical="/quote/hotel"
+      />
       <Header />
       <main className="flex-1 py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">

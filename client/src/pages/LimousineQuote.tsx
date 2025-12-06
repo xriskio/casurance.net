@@ -1,10 +1,17 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LimousineQuoteForm from "@/components/LimousineQuoteForm";
+import SEOHead from "@/components/SEOHead";
 
 export default function LimousineQuote() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEOHead
+        title="Limousine Insurance Quote"
+        description="Get commercial limousine insurance for your livery business. Coverage for luxury vehicles, chauffeurs, and passenger liability."
+        keywords="limousine insurance, livery insurance, limo company insurance, chauffeur insurance"
+        canonical="/quote/limousine"
+      />
       <Header />
       <main className="flex-1 py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">

@@ -1,10 +1,17 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ProfessionalLiabilityQuoteForm from "@/components/ProfessionalLiabilityQuoteForm";
+import SEOHead from "@/components/SEOHead";
 
 export default function ProfessionalLiabilityQuote() {
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead
+        title="Professional Liability Insurance Quote"
+        description="Get errors and omissions (E&O) insurance for professionals. Protect against negligence claims, malpractice, and professional mistakes."
+        keywords="professional liability insurance, E&O insurance, errors and omissions, malpractice insurance"
+        canonical="/quote/professional-liability"
+      />
       <Header />
       <main className="flex-grow bg-background">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">

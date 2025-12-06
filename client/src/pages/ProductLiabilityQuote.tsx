@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ProductLiabilityQuoteForm from "@/components/ProductLiabilityQuoteForm";
+import SEOHead from "@/components/SEOHead";
 
 const productTypeRoutes: Record<string, string> = {
   "general": "general-manufacturing",
@@ -33,6 +34,12 @@ export default function ProductLiabilityQuote() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEOHead
+        title="Product Liability Insurance Quote"
+        description="Protect your business from product-related claims with comprehensive product liability insurance. Coverage for manufacturers, distributors, and retailers."
+        keywords="product liability insurance, manufacturer insurance, product recall insurance, product defect coverage"
+        canonical="/quote/product-liability"
+      />
       <Header />
       <main className="flex-1 py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">

@@ -1,10 +1,17 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FranchisedDealerQuoteForm from "@/components/FranchisedDealerQuoteForm";
+import SEOHead from "@/components/SEOHead";
 
 export default function FranchisedDealerQuote() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEOHead
+        title="Franchised Auto Dealer Insurance Quote"
+        description="Get comprehensive insurance for franchised auto dealerships. Coverage for inventory, liability, and dealer operations."
+        keywords="auto dealer insurance, car dealership insurance, franchised dealer insurance, dealer inventory coverage"
+        canonical="/quote/franchised-dealers"
+      />
       <Header />
       <main className="flex-1 py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">

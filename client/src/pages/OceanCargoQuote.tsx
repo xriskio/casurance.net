@@ -2,10 +2,17 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import OceanCargoQuoteForm from "@/components/OceanCargoQuoteForm";
+import SEOHead from "@/components/SEOHead";
 
 export default function OceanCargoQuote() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEOHead
+        title="Ocean Cargo Insurance Quote"
+        description="Protect your shipments with marine cargo insurance. Coverage for goods in transit by sea, air, or land. Comprehensive ocean cargo protection."
+        keywords="ocean cargo insurance, marine cargo, shipping insurance, freight insurance, cargo coverage"
+        canonical="/quote/ocean-cargo"
+      />
       <Header />
       <main className="flex-1 py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">

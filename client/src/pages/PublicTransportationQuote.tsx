@@ -2,10 +2,17 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import PublicTransportationQuoteForm from "@/components/PublicTransportationQuoteForm";
+import SEOHead from "@/components/SEOHead";
 
 export default function PublicTransportationQuote() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEOHead
+        title="Public Transportation Insurance Quote"
+        description="Get insurance for public transit operations including buses, shuttles, and paratransit. Comprehensive fleet and passenger coverage."
+        keywords="public transportation insurance, bus insurance, shuttle insurance, transit insurance, paratransit insurance"
+        canonical="/quote/public-transportation"
+      />
       <Header />
       <main className="flex-1 py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">

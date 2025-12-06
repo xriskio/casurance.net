@@ -1,10 +1,17 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CommercialEarthquakeQuoteForm from "@/components/CommercialEarthquakeQuoteForm";
+import SEOHead from "@/components/SEOHead";
 
 export default function CommercialEarthquakeQuote() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEOHead
+        title="Commercial Earthquake Insurance Quote"
+        description="Protect your business from earthquake damage. Comprehensive commercial earthquake coverage for buildings and business property."
+        keywords="commercial earthquake insurance, earthquake coverage, seismic insurance, building earthquake insurance"
+        canonical="/quote/commercial-earthquake"
+      />
       <Header />
       <main className="flex-1 py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">

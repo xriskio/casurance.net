@@ -2,10 +2,17 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import SelfStorageQuoteForm from "@/components/SelfStorageQuoteForm";
+import SEOHead from "@/components/SEOHead";
 
 export default function SelfStorageQuote() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEOHead
+        title="Self Storage Facility Insurance Quote"
+        description="Get insurance for self storage facilities. Protect your storage business with property, liability, and customer goods coverage."
+        keywords="self storage insurance, storage facility insurance, mini storage insurance, storage unit insurance"
+        canonical="/quote/self-storage"
+      />
       <Header />
       <main className="flex-1 py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">

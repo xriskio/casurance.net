@@ -1,10 +1,17 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GolfCountryClubQuoteForm from "@/components/GolfCountryClubQuoteForm";
+import SEOHead from "@/components/SEOHead";
 
 export default function GolfCountryClubQuote() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEOHead
+        title="Golf & Country Club Insurance Quote"
+        description="Get comprehensive insurance for golf courses and country clubs. Coverage for property, liability, golf carts, and club operations."
+        keywords="golf course insurance, country club insurance, golf cart insurance, club liability insurance"
+        canonical="/quote/golf-country-club"
+      />
       <Header />
       <main className="flex-1 py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
