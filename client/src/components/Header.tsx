@@ -17,18 +17,18 @@ const coverageCategories = [
 ];
 
 const industryCategories = [
-  { name: "Transportation", slug: "transportation" },
-  { name: "NEMT & Paratransit", slug: "nemt-paratransit" },
-  { name: "TNC & Shared Economy", slug: "tnc-shared-economy" },
-  { name: "Healthcare", slug: "healthcare" },
-  { name: "Construction", slug: "construction" },
-  { name: "Manufacturing", slug: "manufacturing" },
-  { name: "Real Estate", slug: "real-estate" },
-  { name: "Hospitality", slug: "hospitality" },
-  { name: "Retail", slug: "retail" },
-  { name: "Cannabis", slug: "cannabis" },
   { name: "Agribusiness", slug: "agribusiness-industry" },
+  { name: "Cannabis", slug: "cannabis" },
+  { name: "Construction", slug: "construction" },
+  { name: "Healthcare", slug: "healthcare" },
+  { name: "Hospitality", slug: "hospitality" },
+  { name: "Manufacturing", slug: "manufacturing" },
+  { name: "NEMT & Paratransit", slug: "nemt-paratransit" },
+  { name: "Real Estate", slug: "real-estate" },
   { name: "Religious Organizations", slug: "religious-organizations" },
+  { name: "Retail", slug: "retail" },
+  { name: "TNC & Shared Economy", slug: "tnc-shared-economy" },
+  { name: "Transportation", slug: "transportation" },
 ];
 
 const personalLinesCategories = [
@@ -208,7 +208,6 @@ export default function Header() {
             >
               <div className="grid grid-cols-2 gap-x-8 gap-y-1">
                 <div>
-                  <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Transportation</h3>
                   {industryCategories.slice(0, 6).map((item) => (
                     <Link key={item.slug} href={`/industry/${item.slug}`} onClick={handleLinkClick}>
                       <span className="block py-1.5 text-sm text-gray-700 hover:text-primary hover:bg-gray-50 rounded px-2 -mx-2 cursor-pointer">
@@ -218,7 +217,6 @@ export default function Header() {
                   ))}
                 </div>
                 <div>
-                  <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Commercial</h3>
                   {industryCategories.slice(6).map((item) => (
                     <Link key={item.slug} href={`/industry/${item.slug}`} onClick={handleLinkClick}>
                       <span className="block py-1.5 text-sm text-gray-700 hover:text-primary hover:bg-gray-50 rounded px-2 -mx-2 cursor-pointer">
