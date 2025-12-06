@@ -16,6 +16,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { SERVICE_STATES } from "@shared/constants/states";
+import TrustedCarriers from "@/components/TrustedCarriers";
 import { 
   ArrowRight, 
   Phone, 
@@ -621,22 +622,7 @@ export default function AdvertisingLandingPage() {
           </div>
         </section>
 
-        <section className="py-12 bg-muted/50">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-8">
-              <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">
-                Partnered with Top-Rated Carriers
-              </p>
-              <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 items-center">
-                {["Chubb", "Guard", "Three Insurance", "Berkshire Hathaway", "Texas Insurance", "Knightbrook", "AmTrust", "CNA", "Foremost", "BristolWest", "Kemper", "National General", "Philadelphia Insurance", "PIE Insurance", "California Fair Plan", "Tokio Marine", "& Many More"].map((carrier, index) => (
-                  <div key={index} className="text-muted-foreground/60 font-semibold text-sm" data-testid={`carrier-${index}`}>
-                    {carrier}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
+        <TrustedCarriers />
 
         <section className="py-16 lg:py-20 bg-primary">
           <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
