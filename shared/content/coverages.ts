@@ -982,6 +982,168 @@ export const coverages: CoverageContent[] = [
   },
 
   {
+    title: "Violent Attack Coverage",
+    slug: "violent-attack-coverage",
+    category: "Specialty",
+    summary: "Current policies leave gaping holes. We fill them with broad coverage and competitive rates for violent attack and active shooter incidents.",
+    description: "Violent Attack events have clearly captured national attention, and unfortunately have become much more of a reality over the past few years. The randomness of these catastrophic events makes it almost impossible to predict the devastating consequences that these events may have on any targeted business or organization. With violent attacks and active shooting on the rise, catastrophe can hit any business or organization. And the resulting financial damage can be almost impossible to recover from without good coverage. Standard property, liability, and terrorism coverages routinely included in insurance programs may not respond to violent attack events, or they may not provide adequate coverage limits to meet the liability, property damage, business income losses, and reputation damage faced by companies after such an occurrence. We help you reduce the risk of attack with security and logistical safety management. Our crisis management helps you deal with the aftermath of a violent attack. With our rich protection, if something happens you have a proven way to bounce back swiftly.",
+    whoNeeds: [
+      "Houses of Worship",
+      "Cinemas and Movie Theaters",
+      "Strip Malls and Shopping Venues",
+      "Restaurants, Bars and Eateries",
+      "Nursing Facilities and Long-Term Care",
+      "Hotels and Hospitality Venues",
+      "Medical Centers and Healthcare Facilities",
+      "Indoor Entertainment Centers",
+      "Schools and Educational Institutions",
+      "Concert Venues and Event Spaces",
+      "Any business that attracts gatherings of individuals"
+    ],
+    coverageIncludes: [
+      "$5 Million dedicated liability coverage limit",
+      "Broad definition of violent attack (any weapon, any motive, in or around premises)",
+      "Comprehensive victim compensation (bodily injury, death, disablement)",
+      "Rest and rehabilitation coverage for victims",
+      "Psychological counseling for affected individuals",
+      "Victim monetary loss compensation",
+      "Legal defense costs and settlements",
+      "$500,000 property coverage limit",
+      "All physical damages to premises included",
+      "Business interruption and income loss",
+      "Loss of Attraction coverage (directly from incident in vicinity)",
+      "Crisis management support from expert security consultants",
+      "Additional expenses (PR consultancy, legal advice, temporary security)",
+      "Post-event cleanup services"
+    ],
+    benefits: [
+      "Fills gaps left by standard property and liability policies",
+      "Pre-loss management training for building security",
+      "Crisis management services included",
+      "Logistical safety measures consulting",
+      "Competitive pricing options",
+      "Available in all 50 states",
+      "Comprehensive coverage for catastrophic events",
+      "Protects against reputation damage",
+      "Expert claims handling for violent attack incidents",
+      "Peace of mind for public-facing businesses"
+    ],
+    propertyTypes: [
+      {
+        id: "houses-of-worship",
+        title: "Houses of Worship",
+        description: "Coverage for churches, synagogues, mosques, temples, and all religious organizations that gather congregations.",
+        eligibility: [
+          "Churches and Christian denominations",
+          "Synagogues and Jewish congregations",
+          "Mosques and Islamic centers",
+          "Temples and Buddhist centers",
+          "All religious organizations with public gatherings"
+        ],
+        coverageHighlights: [
+          "$5 Million liability coverage",
+          "$500K property coverage",
+          "Victim compensation",
+          "Crisis management support",
+          "Post-event cleanup"
+        ],
+        icon: "Building2"
+      },
+      {
+        id: "entertainment-venues",
+        title: "Cinemas & Entertainment Centers",
+        description: "Protection for movie theaters, indoor entertainment centers, bowling alleys, arcades, and similar venues.",
+        eligibility: [
+          "Movie theaters and cinemas",
+          "Indoor entertainment centers",
+          "Bowling alleys and arcades",
+          "Family entertainment centers",
+          "Gaming and esports venues"
+        ],
+        coverageHighlights: [
+          "Broad violent attack definition",
+          "Business interruption coverage",
+          "Loss of attraction protection",
+          "PR consultancy expenses",
+          "Temporary security costs"
+        ],
+        icon: "Film"
+      },
+      {
+        id: "retail-dining",
+        title: "Strip Malls, Restaurants & Retail",
+        description: "Coverage for shopping venues, restaurants, bars, eateries, and retail establishments that attract crowds.",
+        eligibility: [
+          "Strip malls and shopping centers",
+          "Restaurants and dining establishments",
+          "Bars and nightclubs",
+          "Retail stores and shops",
+          "Food courts and eateries"
+        ],
+        coverageHighlights: [
+          "All physical damage included",
+          "Income loss protection",
+          "Victim monetary compensation",
+          "Legal defense coverage",
+          "Crisis management services"
+        ],
+        icon: "Store"
+      },
+      {
+        id: "healthcare-hospitality",
+        title: "Healthcare & Hospitality",
+        description: "Protection for nursing facilities, medical centers, hotels, and hospitality venues serving the public.",
+        eligibility: [
+          "Nursing homes and long-term care facilities",
+          "Medical centers and clinics",
+          "Hotels and motels",
+          "Assisted living facilities",
+          "Rehabilitation centers"
+        ],
+        coverageHighlights: [
+          "Comprehensive victim compensation",
+          "Psychological counseling coverage",
+          "Rest and rehabilitation benefits",
+          "Cleanup services included",
+          "Security consulting"
+        ],
+        icon: "Building"
+      }
+    ],
+    programLimits: {
+      blanketLimit: "$5 Million Liability / $500,000 Property",
+      maxTIVPerBuilding: "Contact for quote",
+      minTIV: "Contact for quote"
+    },
+    programHighlights: [
+      "$5 Million Dedicated Liability Limit",
+      "$500,000 Property Coverage Limit",
+      "Broad Definition of Violent Attack",
+      "Any Weapon, Any Motive Covered",
+      "Comprehensive Victim Compensation",
+      "Bodily Injury, Death & Disablement",
+      "Psychological Counseling Included",
+      "Legal Defense Costs & Settlements",
+      "Business Interruption & Income Loss",
+      "Loss of Attraction Coverage",
+      "Crisis Management Support",
+      "PR Consultancy & Legal Advice",
+      "Temporary Security Expenses",
+      "Post-Event Cleanup Services",
+      "Pre-Loss Security Training",
+      "Available in All 50 States"
+    ],
+    eligibleStates: [
+      "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", 
+      "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY",
+      "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", 
+      "WV", "WI", "WY", "DC"
+    ],
+    seoTitle: "Violent Attack Coverage | Active Shooter Insurance | Casurance",
+    seoDescription: "Violent attack and active shooter insurance for businesses. $5 Million liability, $500K property coverage. Protection for houses of worship, restaurants, hotels, entertainment venues, and any business attracting crowds. Available in all 50 states."
+  },
+
+  {
     title: "Storage Tank Environmental Policy (STEP)",
     slug: "storage-tank-environmental",
     category: "Environmental",

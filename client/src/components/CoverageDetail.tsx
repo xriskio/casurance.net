@@ -92,6 +92,9 @@ export default function CoverageDetail({ coverage }: CoverageDetailProps) {
     if (coverage.slug === 'healthcare-facilities-program') {
       return '/quote/healthcare';
     }
+    if (coverage.slug === 'violent-attack-coverage') {
+      return '/quote/violent-attack';
+    }
     if (coverage.slug === 'restaurant-insurance') {
       return '/quote/restaurant';
     }
