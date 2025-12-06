@@ -516,28 +516,20 @@ export async function submitAllSitePages(): Promise<void> {
   console.log(`[Bing IndexNow] ${bingIndexNowResult.message}`);
   
   if (BING_API_KEY) {
-    console.log("[URL Submission] Testing Bing Webmaster API with sample URLs...");
-    const testResult = await submitToBingWebmaster(ALL_SITE_URLS.slice(0, 5));
+    console.log("[URL Submission] Submitting priority URLs to Bing Webmaster API...");
+    const priorityUrls = ALL_SITE_URLS.slice(0, 10);
+    const bingResult = await submitToBingWebmaster(priorityUrls);
     
-    if (testResult.success) {
-      console.log("[Bing Webmaster] API working! Submitting remaining URLs...");
-      let successCount = 5;
-      const bingBatchSize = 10;
-      
-      for (let i = 5; i < ALL_SITE_URLS.length; i += bingBatchSize) {
-        const batch = ALL_SITE_URLS.slice(i, i + bingBatchSize);
-        const result = await submitToBingWebmaster(batch);
-        if (result.success) {
-          successCount += batch.length;
-        }
-        
-        if (i + bingBatchSize < ALL_SITE_URLS.length) {
-          await new Promise(resolve => setTimeout(resolve, 500));
-        }
-      }
-      console.log(`[Bing Webmaster] Completed: ${successCount} URLs submitted successfully`);
+    if (bingResult.success) {
+      console.log(`[Bing Webmaster] Successfully submitted ${priorityUrls.length} priority URLs`);
+    } else if (bingResult.message.includes("Quota")) {
+      const quotaMatch = bingResult.message.match(/Quota remaining.*?(\d+)/);
+      const remaining = quotaMatch ? quotaMatch[1] : "limited";
+      console.log(`[Bing Webmaster] Daily quota reached (${remaining} remaining). URLs will be submitted via IndexNow instead.`);
+    } else if (bingResult.message.includes("InvalidApiKey")) {
+      console.log(`[Bing Webmaster] API key not valid for this site. Please verify site at bing.com/webmasters and generate a new key.`);
     } else {
-      console.log(`[Bing Webmaster] API not available (requires site verification in Bing Webmaster Tools). Using IndexNow for Bing indexing instead.`);
+      console.log(`[Bing Webmaster] ${bingResult.message}`);
     }
   }
   
