@@ -27,6 +27,7 @@ import aonLogo from "@assets/Aon_Corporation_logo.svg_1765003246022.png";
 import arrowheadLogo from "@assets/arrowhead_1765003246022.jpg";
 import delosLogo from "@assets/Delos_Insurance_Logo_1765003246023.jpg";
 import kemperLogo from "@assets/Kemper_Logo_Color_Web_1765003246023.jpg";
+import vaveLogo from "@assets/Vave-logo_1765072180302.png";
 
 const carrierPartners = [
   { name: "Chubb", logo: chubbLogo, rating: "A++", description: "World's Largest P&C Insurer" },
@@ -55,6 +56,7 @@ const carrierPartners = [
   { name: "Arrowhead", logo: arrowheadLogo, rating: "A", description: "General Insurance Agency" },
   { name: "Delos Insurance", logo: delosLogo, rating: "A-", description: "Specialty Programs" },
   { name: "Kemper", logo: kemperLogo, rating: "A-", description: "Personal & Commercial Lines" },
+  { name: "Vave", logo: vaveLogo, rating: "A", description: "Digital Insurance Platform" },
 ];
 
 export default function TrustedCarriers() {
@@ -75,7 +77,7 @@ export default function TrustedCarriers() {
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4">
             <Shield className="h-4 w-4" />
-            <span>26+ A-Rated Carrier Partners</span>
+            <span>27+ A-Rated Carrier Partners</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Partnered with Industry-Leading Carriers

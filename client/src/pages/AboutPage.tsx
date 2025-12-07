@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Shield, Users, Target, Award, Mail, Newspaper, FileText } from "lucide-react";
+import { Shield, Users, Target, Award, Mail, Newspaper, FileText, Star } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -10,6 +10,64 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
+
+import chubbLogo from "@assets/CHUBB_Logo_Black_RBG_1765004579781.jpg";
+import cnaLogo from "@assets/CNA_FINANCIAL_CORPORATION_LOGO_1765004579780.jpg";
+import guardLogo from "@assets/simple-insurance-carriers__0008_berkshire-hathaway-guard-insur_1765004579780.png";
+import amtrustLogo from "@assets/simple-insurance-carriers__0012_AmTrust-insurance_1765004579781.png";
+import pieLogo from "@assets/Pie_Insurance_Logo_1765004579780.jpg";
+import biberkLogo from "@assets/biberk_logo_1765004579780.jpg";
+import greatAmericanLogo from "@assets/gaig_logo_web_full_color_1765003246023.png";
+import stateFundLogo from "@assets/9cK0r1ow_400x400_1765003246024.png";
+import atlasLogo from "@assets/atlas_1765004579779.png";
+import appliedLogo from "@assets/Applied_Underwriters_Logo_Logo_1765004579779.jpg";
+import accreditedLogo from "@assets/accredited_1765004579779.png";
+import foremostLogo from "@assets/Foremost-Insurance-Group-logo_1765003246023.png";
+import bristolWestLogo from "@assets/bristol-west-logo_1765003198315.jpg";
+import crumForsterLogo from "@assets/926_photo_3957_1765003198315.png";
+import nautilusLogo from "@assets/images_(3)_1765003198316.png";
+import navigatorsLogo from "@assets/images_(2)_1765003198316.png";
+import westchesterLogo from "@assets/Westchester-PNG_1765003198316.png";
+import bhhcLogo from "@assets/DbGzbhXE_400x400_1765003198316.jpg";
+import philadelphiaLogo from "@assets/Philadelphia_Insurance_Companies_Logo_1765003246021.jpg";
+import tokioMarineLogo from "@assets/Tokio_Marine.svg_1765003246021.png";
+import msigLogo from "@assets/MSIG_USA_Logo_1765003246022.jpg";
+import coverysLogo from "@assets/images_(1)_1765003246022.png";
+import aonLogo from "@assets/Aon_Corporation_logo.svg_1765003246022.png";
+import arrowheadLogo from "@assets/arrowhead_1765003246022.jpg";
+import delosLogo from "@assets/Delos_Insurance_Logo_1765003246023.jpg";
+import kemperLogo from "@assets/Kemper_Logo_Color_Web_1765003246023.jpg";
+import vaveLogo from "@assets/Vave-logo_1765072180302.png";
+
+const carrierPartners = [
+  { name: "Chubb", logo: chubbLogo, rating: "A++" },
+  { name: "CNA Insurance", logo: cnaLogo, rating: "A" },
+  { name: "Guard Insurance", logo: guardLogo, rating: "A+" },
+  { name: "AmTrust", logo: amtrustLogo, rating: "A-" },
+  { name: "PIE Insurance", logo: pieLogo, rating: "A-" },
+  { name: "biBERK", logo: biberkLogo, rating: "A++" },
+  { name: "Great American", logo: greatAmericanLogo, rating: "A+" },
+  { name: "State Fund", logo: stateFundLogo, rating: "A" },
+  { name: "Atlas General", logo: atlasLogo, rating: "A" },
+  { name: "Applied Underwriters", logo: appliedLogo, rating: "A" },
+  { name: "Accredited", logo: accreditedLogo, rating: "A-" },
+  { name: "Philadelphia Insurance", logo: philadelphiaLogo, rating: "A++" },
+  { name: "Tokio Marine", logo: tokioMarineLogo, rating: "A++" },
+  { name: "Foremost Insurance", logo: foremostLogo, rating: "A" },
+  { name: "Bristol West", logo: bristolWestLogo, rating: "A" },
+  { name: "Crum & Forster", logo: crumForsterLogo, rating: "A" },
+  { name: "Nautilus Insurance", logo: nautilusLogo, rating: "A+" },
+  { name: "Navigators", logo: navigatorsLogo, rating: "A+" },
+  { name: "Westchester", logo: westchesterLogo, rating: "A++" },
+  { name: "BHHC", logo: bhhcLogo, rating: "A++" },
+  { name: "MSIG North America", logo: msigLogo, rating: "A+" },
+  { name: "Coverys", logo: coverysLogo, rating: "A-" },
+  { name: "AON", logo: aonLogo, rating: "A" },
+  { name: "Arrowhead", logo: arrowheadLogo, rating: "A" },
+  { name: "Delos Insurance", logo: delosLogo, rating: "A-" },
+  { name: "Kemper", logo: kemperLogo, rating: "A-" },
+  { name: "Vave", logo: vaveLogo, rating: "A" },
+];
 
 export default function AboutPage() {
   const [email, setEmail] = useState("");
@@ -135,6 +193,46 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
+          </CardContent>
+        </Card>
+
+        <Card className="mb-12">
+          <CardContent className="p-8">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4">
+                <Shield className="h-4 w-4" />
+                <span>27+ A-Rated Carrier Partners</span>
+              </div>
+              <h2 className="text-2xl font-semibold text-foreground mb-3">Our Trusted Insurance Partners</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                We partner with industry-leading carriers to provide comprehensive coverage options and competitive rates
+              </p>
+            </div>
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-9 gap-4">
+              {carrierPartners.map((carrier, index) => (
+                <div 
+                  key={index}
+                  className="bg-muted/30 rounded-lg p-3 text-center border border-border hover:border-primary/50 hover:shadow-md transition-all duration-300 group"
+                  data-testid={`about-carrier-${index}`}
+                >
+                  <div className="h-10 flex items-center justify-center mb-2">
+                    <img 
+                      src={carrier.logo} 
+                      alt={carrier.name}
+                      className="max-h-8 max-w-full object-contain"
+                    />
+                  </div>
+                  <p className="text-[9px] font-medium text-muted-foreground truncate">{carrier.name}</p>
+                  <div className="flex items-center justify-center gap-1 mt-1">
+                    <Star className="h-2.5 w-2.5 text-yellow-500 fill-yellow-500" />
+                    <span className="text-[8px] text-yellow-600 font-medium">{carrier.rating}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="text-center text-xs text-muted-foreground mt-6">
+              All carriers are rated A- or better by AM Best
+            </p>
           </CardContent>
         </Card>
 
