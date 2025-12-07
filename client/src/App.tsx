@@ -81,6 +81,7 @@ import PersonalLinesQuote from "@/pages/PersonalLinesQuote";
 import AdvertisingLandingPage from "@/pages/AdvertisingLandingPage";
 import WorkersCompLandingPage from "@/pages/WorkersCompLandingPage";
 import QuoteThankYou from "@/pages/QuoteThankYou";
+import AccessibilityPage from "@/pages/AccessibilityPage";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -125,6 +126,7 @@ function Router() {
       <Route path="/press-releases/:slug" component={PressReleasePage} />
       <Route path="/unsubscribe" component={UnsubscribePage} />
       <Route path="/about" component={AboutPage} />
+      <Route path="/accessibility" component={AccessibilityPage} />
       <Route path="/contact" component={ContactPage} />
       <Route path="/get-quote" component={AdvertisingLandingPage} />
       <Route path="/lp" component={AdvertisingLandingPage} />

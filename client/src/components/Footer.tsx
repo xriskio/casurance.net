@@ -19,16 +19,16 @@ export default function Footer() {
               Casurance Inc d/b/a Casurance Agency Insurance Services. Nationwide commercial and personal insurance specialists since 2010.
             </p>
             <div className="space-y-3">
-              <a href="tel:18882540089" className="flex items-center gap-3 text-sm text-white/80 hover:text-white transition-colors">
-                <Phone className="h-4 w-4 text-primary" />
+              <a href="tel:18882540089" className="flex items-center gap-3 text-sm text-white/80 hover:text-white transition-colors" aria-label="Call Casurance at 1-888-254-0089">
+                <Phone className="h-4 w-4 text-primary" aria-hidden="true" />
                 <span>1-888-254-0089</span>
               </a>
-              <a href="mailto:info@casurance.com" className="flex items-center gap-3 text-sm text-white/80 hover:text-white transition-colors">
-                <Mail className="h-4 w-4 text-primary" />
+              <a href="mailto:info@casurance.com" className="flex items-center gap-3 text-sm text-white/80 hover:text-white transition-colors" aria-label="Email Casurance at info@casurance.com">
+                <Mail className="h-4 w-4 text-primary" aria-hidden="true" />
                 <span>info@casurance.com</span>
               </a>
-              <div className="flex items-start gap-3 text-sm text-white/80">
-                <MapPin className="h-4 w-4 text-primary mt-0.5" />
+              <div className="flex items-start gap-3 text-sm text-white/80" aria-label="Office address">
+                <MapPin className="h-4 w-4 text-primary mt-0.5" aria-hidden="true" />
                 <div>
                   <p>714 W. Olympic Blvd, Suite 906</p>
                   <p>Los Angeles, CA 90015</p>
@@ -97,10 +97,11 @@ export default function Footer() {
             <p className="text-sm text-white/60">
               © 2025 Casurance Inc. All rights reserved. License # 6005562
             </p>
-            <div className="flex gap-6 text-sm text-white/60">
+            <nav className="flex gap-6 text-sm text-white/60" aria-label="Legal and accessibility links">
               <Link href="/privacy" className="hover:text-white transition-colors cursor-pointer">Privacy Policy</Link>
               <Link href="/terms" className="hover:text-white transition-colors cursor-pointer">Terms of Service</Link>
-            </div>
+              <Link href="/accessibility" className="hover:text-white transition-colors cursor-pointer">Accessibility</Link>
+            </nav>
           </div>
         </div>
       </div>
