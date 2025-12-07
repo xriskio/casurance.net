@@ -3,8 +3,23 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowRight, CheckCircle } from "lucide-react";
+
+const coverageOptions = [
+  "General Liability",
+  "Commercial Auto",
+  "Workers Compensation",
+  "Commercial Property",
+  "Professional Liability / E&O",
+  "Cyber Liability",
+  "Umbrella / Excess Liability",
+  "Business Owners Policy (BOP)",
+  "Inland Marine / Equipment",
+  "Other",
+];
 
 const insuranceTypes = [
   "Ambulance Services",
