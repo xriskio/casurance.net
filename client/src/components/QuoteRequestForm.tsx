@@ -192,7 +192,11 @@ const comprehensiveFormLinks: Record<string, { url: string; title: string; descr
   },
 };
 
-export default function QuoteRequestForm() {
+interface QuoteRequestFormProps {
+  compact?: boolean;
+}
+
+export default function QuoteRequestForm({ compact = false }: QuoteRequestFormProps) {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
   const [referenceNumber, setReferenceNumber] = useState<string>("");
@@ -253,48 +257,41 @@ export default function QuoteRequestForm() {
   const comprehensiveForm = formData.insuranceType ? comprehensiveFormLinks[formData.insuranceType] : null;
 
   if (submitted) {
+    const SuccessContent = (
+      <div className={compact ? "text-center" : "p-12 text-center"}>
+        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+          <CheckCircle className="h-8 w-8 text-green-600" />
+        </div>
+        <h3 className={`font-bold text-foreground mb-4 ${compact ? 'text-xl' : 'text-2xl'}`}>Quote Request Received!</h3>
+        {referenceNumber && (
+          <div className="bg-blue-50 dark:bg-blue-950 border-2 border-primary rounded-lg p-4 mb-6">
+            <p className="text-sm text-muted-foreground mb-1">Your Reference Number</p>
+            <p className="text-2xl font-bold text-primary tracking-wider" data-testid="text-reference-number">{referenceNumber}</p>
+            <p className="text-xs text-muted-foreground mt-2">Save this for reference</p>
+          </div>
+        )}
+        <p className="text-muted-foreground mb-6 text-sm">
+          One of our licensed agents will contact you within 24 hours with a competitive quote.
+        </p>
+        <Button onClick={() => { setSubmitted(false); setReferenceNumber(''); setStep(1); setShowQuickQuote(false); }} data-testid="button-submit-another">
+          Submit Another Request
+        </Button>
+      </div>
+    );
+
+    if (compact) {
+      return SuccessContent;
+    }
+
     return (
       <Card className="max-w-2xl mx-auto">
-        <CardContent className="p-12 text-center">
-          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <CheckCircle className="h-8 w-8 text-green-600" />
-          </div>
-          <h3 className="text-2xl font-bold text-foreground mb-4">Quote Request Received!</h3>
-          {referenceNumber && (
-            <div className="bg-blue-50 dark:bg-blue-950 border-2 border-primary rounded-lg p-4 mb-6">
-              <p className="text-sm text-muted-foreground mb-1">Your Reference Number</p>
-              <p className="text-3xl font-bold text-primary tracking-wider" data-testid="text-reference-number">{referenceNumber}</p>
-              <p className="text-xs text-muted-foreground mt-2">Please save this number for future reference</p>
-            </div>
-          )}
-          <p className="text-muted-foreground mb-6">
-            Thank you for your interest. One of our licensed agents will review your information and contact you within 24 hours with a competitive quote.
-          </p>
-          <Button onClick={() => { setSubmitted(false); setReferenceNumber(''); setStep(1); setShowQuickQuote(false); }} data-testid="button-submit-another">
-            Submit Another Request
-          </Button>
-        </CardContent>
+        <CardContent>{SuccessContent}</CardContent>
       </Card>
     );
   }
 
-  return (
-    <Card className="max-w-2xl mx-auto">
-      <CardHeader>
-        <CardTitle>Request a Quote</CardTitle>
-        {showQuickQuote && (
-          <div className="flex gap-2 mt-4">
-            {[1, 2, 3, 4].map((s) => (
-              <div
-                key={s}
-                className={`h-2 flex-1 rounded-full ${s <= step ? 'bg-primary' : 'bg-muted'}`}
-                data-testid={`progress-step-${s}`}
-              />
-            ))}
-          </div>
-        )}
-      </CardHeader>
-      <CardContent className="space-y-6">
+  const FormContent = (
+    <div className="space-y-6">
         {/* Step 1: Insurance Type Selection */}
         <div className="space-y-4">
           <div>
@@ -516,6 +513,31 @@ export default function QuoteRequestForm() {
             </div>
           </>
         )}
+    </div>
+  );
+
+  if (compact) {
+    return FormContent;
+  }
+
+  return (
+    <Card className="max-w-2xl mx-auto">
+      <CardHeader>
+        <CardTitle>Request a Quote</CardTitle>
+        {showQuickQuote && (
+          <div className="flex gap-2 mt-4">
+            {[1, 2, 3, 4].map((s) => (
+              <div
+                key={s}
+                className={`h-2 flex-1 rounded-full ${s <= step ? 'bg-primary' : 'bg-muted'}`}
+                data-testid={`progress-step-${s}`}
+              />
+            ))}
+          </div>
+        )}
+      </CardHeader>
+      <CardContent>
+        {FormContent}
       </CardContent>
     </Card>
   );
