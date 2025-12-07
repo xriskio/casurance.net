@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import InsuranceProducts from "@/components/InsuranceProducts";
+import TrustedCarriers from "@/components/TrustedCarriers";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import CallToAction from "@/components/CallToAction";
 import ContactInfo from "@/components/ContactInfo";
@@ -21,6 +22,7 @@ export default function Home() {
         <main id="main-content">
           <Hero />
           <InsuranceProducts />
+          <TrustedCarriers />
           <WhyChooseUs />
           <CallToAction />
           <ContactInfo />
