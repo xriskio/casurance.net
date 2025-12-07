@@ -69,7 +69,7 @@ export default function AccessibilityPage() {
       />
       <div className="min-h-screen bg-background">
         <Header />
-        <main id="main-content">
+        <main id="main-content" tabIndex={-1}>
           <section className="py-16 bg-gradient-to-b from-[#0a1628] to-[#142237]">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
               <div className="max-w-3xl mx-auto text-center">

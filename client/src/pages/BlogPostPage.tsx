@@ -38,7 +38,7 @@ export default function BlogPostPage() {
     return (
       <div className="min-h-screen bg-background flex flex-col">
         <Header />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <main id="main-content" tabIndex={-1} className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="animate-pulse space-y-6">
             <div className="h-8 bg-muted rounded w-3/4"></div>
             <div className="h-4 bg-muted rounded w-1/4"></div>
@@ -48,7 +48,7 @@ export default function BlogPostPage() {
               <div className="h-4 bg-muted rounded w-5/6"></div>
             </div>
           </div>
-        </div>
+        </main>
         <Footer />
       </div>
     );
@@ -58,7 +58,7 @@ export default function BlogPostPage() {
     return (
       <div className="min-h-screen bg-background flex flex-col">
         <Header />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <main id="main-content" tabIndex={-1} className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <Card>
             <CardContent className="p-12 text-center">
               <h1 className="text-2xl font-bold text-foreground mb-4">Blog Post Not Found</h1>
@@ -73,7 +73,7 @@ export default function BlogPostPage() {
               </Link>
             </CardContent>
           </Card>
-        </div>
+        </main>
         <Footer />
       </div>
     );
@@ -111,7 +111,7 @@ export default function BlogPostPage() {
       </Helmet>
       <div className="min-h-screen bg-background flex flex-col">
         <Header />
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-1">
+        <main id="main-content" tabIndex={-1} className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-1">
         <Link href="/blog">
           <Button variant="ghost" className="mb-6" data-testid="button-back-to-blog">
             <ArrowLeft className="h-4 w-4 mr-2" aria-hidden="true" />
@@ -202,7 +202,7 @@ export default function BlogPostPage() {
             </div>
           </footer>
         </article>
-      </div>
+        </main>
       <Footer />
     </div>
     </>

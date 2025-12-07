@@ -163,6 +163,7 @@ export default function AdminPanel() {
 
   return (
     <div className="min-h-screen bg-background">
+      <main id="main-content" tabIndex={-1}>
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2">Admin Panel</h1>
@@ -420,6 +421,7 @@ export default function AdminPanel() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+      </main>
     </div>
   );
 }

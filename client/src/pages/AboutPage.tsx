@@ -111,6 +111,7 @@ export default function AboutPage() {
       />
       <div className="min-h-screen bg-background flex flex-col">
         <Header />
+        <main id="main-content" tabIndex={-1}>
       <div className="bg-gradient-to-br from-[#1e3a8a] via-[#1e40af] to-[#3b5998] py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -409,6 +410,7 @@ export default function AboutPage() {
           </div>
         </div>
       </div>
+        </main>
       <Footer />
     </div>
     </>

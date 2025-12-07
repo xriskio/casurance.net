@@ -77,7 +77,7 @@ export default function IndustriesIndex() {
       </section>
 
       {/* Solutions by Industry Section */}
-      <main id="main-content" className="flex-1 py-12 lg:py-16">
+      <main id="main-content" tabIndex={-1} className="flex-1 py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-12">
             Solutions by Industry

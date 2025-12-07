@@ -13,7 +13,7 @@ export default function CyberLiabilityQuote() {
         canonical="/quote/cyber-liability"
       />
       <Header />
-      <main id="main-content" className="flex-1 py-12 lg:py-16">
+      <main id="main-content" tabIndex={-1} className="flex-1 py-12 lg:py-16">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <div className="mb-8 text-center">
             <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">

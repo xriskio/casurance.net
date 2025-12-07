@@ -20,7 +20,7 @@ export default function Home() {
       />
       <div className="min-h-screen bg-background">
         <Header />
-        <main id="main-content">
+        <main id="main-content" tabIndex={-1}>
           <Hero />
           <InsuranceProducts />
           <TrustedCarriers />

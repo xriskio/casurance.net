@@ -97,7 +97,7 @@ export default function ContactPage() {
     return (
       <div className="min-h-screen bg-background flex flex-col">
         <Header />
-        <div className="flex-1 flex items-center justify-center px-4">
+        <main id="main-content" tabIndex={-1} className="flex-1 flex items-center justify-center px-4">
         <Card className="max-w-2xl w-full">
           <CardContent className="p-12 text-center">
             <div className="w-16 h-16 bg-green-100 dark:bg-green-900/20 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -119,7 +119,7 @@ export default function ContactPage() {
             </div>
           </CardContent>
         </Card>
-        </div>
+        </main>
         <Footer />
       </div>
     );
@@ -135,6 +135,7 @@ export default function ContactPage() {
       />
       <div className="min-h-screen bg-background flex flex-col">
         <Header />
+        <main id="main-content" tabIndex={-1}>
       <div className="bg-gradient-to-br from-[#1e3a8a] via-[#1e40af] to-[#3b5998] py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -388,6 +389,7 @@ export default function ContactPage() {
         </div>
         </div>
       </div>
+      </main>
       <Footer />
     </div>
     </>

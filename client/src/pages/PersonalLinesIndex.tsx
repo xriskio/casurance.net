@@ -61,7 +61,7 @@ export default function PersonalLinesIndex() {
         keywords="personal insurance, auto insurance, homeowners insurance, landlord insurance, high value home, wildfire insurance, earthquake insurance"
       />
       <Header />
-      <main id="main-content" className="min-h-screen">
+      <main id="main-content" tabIndex={-1} className="min-h-screen">
         <section className="bg-gradient-to-br from-[#0a1628] via-[#1a2d4a] to-[#0a1628] text-white py-20">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="max-w-3xl">

@@ -17,7 +17,7 @@ export default function QuoteThankYou() {
       <div className="min-h-screen bg-background flex flex-col">
         <Header />
         
-        <main id="main-content" className="flex-1 py-16 lg:py-24">
+        <main id="main-content" tabIndex={-1} className="flex-1 py-16 lg:py-24">
           <div className="max-w-3xl mx-auto px-6 lg:px-8">
             <Card className="shadow-xl border-0">
               <CardContent className="p-8 md:p-12 text-center">

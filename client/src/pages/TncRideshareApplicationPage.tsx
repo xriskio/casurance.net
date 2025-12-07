@@ -4,7 +4,7 @@ import SEOHead from "@/components/SEOHead";
 
 export default function TncRideshareApplicationPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <main id="main-content" tabIndex={-1} className="min-h-screen bg-background">
       <SEOHead
         title="TNC & Rideshare Insurance Application"
         description="Apply for TNC and rideshare insurance coverage for your transportation network company. Comprehensive coverage for Uber, Lyft, and on-demand mobility platforms."
@@ -31,6 +31,6 @@ export default function TncRideshareApplicationPage() {
         </div>
         <TncRideshareApplicationForm />
       </div>
-    </div>
+    </main>
   );
 }

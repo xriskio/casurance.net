@@ -275,7 +275,7 @@ export default function CmsPages() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <main id="main-content" tabIndex={-1} className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-4">
@@ -745,6 +745,6 @@ export default function CmsPages() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-    </div>
+    </main>
   );
 }

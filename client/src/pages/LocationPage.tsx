@@ -114,7 +114,7 @@ export default function LocationPage() {
       
       <Header />
       
-      <main id="main-content" className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1">
         <section className="bg-gradient-to-br from-[#1e3a8a] via-[#1e40af] to-[#3b5998] py-16 lg:py-20">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="flex items-center gap-2 mb-4">

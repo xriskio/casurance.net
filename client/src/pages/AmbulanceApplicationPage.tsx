@@ -4,7 +4,7 @@ import SEOHead from "@/components/SEOHead";
 
 export default function AmbulanceApplicationPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <main id="main-content" tabIndex={-1} className="min-h-screen bg-background">
       <SEOHead
         title="Ambulance Insurance Application"
         description="Apply for comprehensive ambulance service insurance coverage. Protect your emergency medical service operations with specialized commercial auto and liability coverage."
@@ -27,6 +27,6 @@ export default function AmbulanceApplicationPage() {
         </div>
         <NemtApplicationFormComprehensive applicationType="ambulance" />
       </div>
-    </div>
+    </main>
   );
 }

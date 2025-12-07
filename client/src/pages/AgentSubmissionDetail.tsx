@@ -92,7 +92,7 @@ export default function AgentSubmissionDetail() {
         </div>
       </header>
 
-      <main id="main-content" className="container mx-auto px-4 py-8 max-w-4xl">
+      <main id="main-content" tabIndex={-1} className="container mx-auto px-4 py-8 max-w-4xl">
         <div className="flex items-center justify-between mb-6">
           <div>
             <h1 className="text-3xl font-bold">Submission Details</h1>

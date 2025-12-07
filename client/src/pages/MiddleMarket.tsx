@@ -13,7 +13,7 @@ export default function MiddleMarket() {
   }
 
   return (
-    <div className="py-12 lg:py-16">
+    <main id="main-content" tabIndex={-1} className="py-12 lg:py-16">
       <SEOHead
         title="Middle Market Commercial Insurance"
         description="Comprehensive insurance solutions for middle market businesses with revenues between $5M-$1B. Customized property, casualty, and specialty coverage programs."
@@ -394,6 +394,6 @@ export default function MiddleMarket() {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

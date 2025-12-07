@@ -4,7 +4,7 @@ import SEOHead from "@/components/SEOHead";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gray-50">
+    <main id="main-content" tabIndex={-1} className="min-h-screen w-full flex items-center justify-center bg-gray-50">
       <SEOHead
         title="Page Not Found"
         description="The page you are looking for could not be found. Please check the URL or navigate back to our homepage."
@@ -23,6 +23,6 @@ export default function NotFound() {
           </p>
         </CardContent>
       </Card>
-    </div>
+    </main>
   );
 }

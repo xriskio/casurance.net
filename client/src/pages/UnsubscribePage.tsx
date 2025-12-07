@@ -48,7 +48,7 @@ export default function UnsubscribePage() {
         canonical="/unsubscribe"
       />
       <Header />
-      <main id="main-content" className="py-24">
+      <main id="main-content" tabIndex={-1} className="py-24">
         <div className="max-w-2xl mx-auto px-6 lg:px-8">
           {status === "loading" && (
             <Card>

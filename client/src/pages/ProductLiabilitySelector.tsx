@@ -67,7 +67,7 @@ export default function ProductLiabilitySelector() {
   const [, setLocation] = useLocation();
 
   return (
-    <div className="min-h-screen bg-background">
+    <main id="main-content" tabIndex={-1} className="min-h-screen bg-background">
       <SEOHead
         title="Product Liability Insurance Quote"
         description="Get product liability insurance quotes for manufacturers, distributors, and retailers. Coverage for general manufacturing, cannabis products, firearms, and specialty products."
@@ -140,6 +140,6 @@ export default function ProductLiabilitySelector() {
           </p>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
