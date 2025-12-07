@@ -51,13 +51,13 @@ export default function QuotePage() {
                 </div>
                 
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                  Save on<br />
-                  <span className="text-blue-300">Commercial</span><br />
+                  Save up to <span className="text-blue-300">20%</span><br />
+                  on Commercial<br />
                   Insurance
                 </h1>
                 
                 <p className="text-lg lg:text-xl text-white/80 mb-8 max-w-lg">
-                  Get a free, no-obligation quote in under 2 minutes. We work with 27+ A-rated carriers to find you the best coverage at competitive rates.
+                  Get a free, no-obligation quote in under 2 minutes. Flexible payment plans and low down payments available for qualified policies. We work with 27+ A-rated carriers.
                 </p>
 
                 <div className="grid grid-cols-2 gap-4 mb-10">
