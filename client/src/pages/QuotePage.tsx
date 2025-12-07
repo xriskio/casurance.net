@@ -3,8 +3,13 @@ import Footer from "@/components/Footer";
 import QuoteRequestForm from "@/components/QuoteRequestForm";
 import SEOHead from "@/components/SEOHead";
 import TrustedCarriers from "@/components/TrustedCarriers";
+import Breadcrumb from "@/components/Breadcrumb";
 import { Clock, Shield, Award, CheckCircle, Building2, Car, Users, Briefcase, Home, Zap, FileText, Umbrella } from "lucide-react";
 import { Link } from "wouter";
+
+const quoteBreadcrumbs = [
+  { name: "Get a Quote", url: "/quote" }
+];
 
 const coverageTypes = [
   { name: "Commercial Auto", href: "/coverages/commercial-auto", icon: Car },
@@ -28,6 +33,21 @@ const propertyPrograms = [
   { name: "Hotels & Motels", href: "/industries/hotels-motels" },
 ];
 
+const quoteFaqs = [
+  {
+    question: "How quickly can I get a commercial insurance quote?",
+    answer: "Most quote requests are processed within 24 hours. Simple policies like general liability can often be quoted same-day, while more complex commercial programs may take 2-3 business days."
+  },
+  {
+    question: "What information do I need to get a quote?",
+    answer: "To get started, we need your business name, contact information, and the type of coverage you're interested in. Our agents will follow up to gather any additional details needed for your specific insurance needs."
+  },
+  {
+    question: "Do you offer payment plans for commercial insurance?",
+    answer: "Yes, we offer flexible payment plans including monthly installments with low down payments for qualified policies. Payment options vary by carrier and policy type."
+  }
+];
+
 export default function QuotePage() {
   return (
     <>
@@ -36,12 +56,16 @@ export default function QuotePage() {
         description="Request a free commercial insurance quote from licensed agents. Fast, competitive rates for general liability, workers comp, commercial auto, and 40+ insurance products. 24-hour response time guaranteed."
         keywords="commercial insurance quote, business insurance quote, free insurance quote, commercial auto quote, general liability quote, workers compensation quote"
         canonical="/quote"
+        breadcrumbs={quoteBreadcrumbs}
+        faqs={quoteFaqs}
       />
       <div className="min-h-screen bg-background flex flex-col">
         <Header />
         
-        <div className="bg-gradient-to-br from-[#0f172a] via-[#1e3a8a] to-[#1e40af] py-12 lg:py-20">
+        <main id="main-content" tabIndex={-1}>
+          <div className="bg-gradient-to-br from-[#0f172a] via-[#1e3a8a] to-[#1e40af] py-12 lg:py-20">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <Breadcrumb items={quoteBreadcrumbs} className="mb-6 text-white/70" />
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
               
               <div className="text-white">
@@ -165,11 +189,9 @@ export default function QuotePage() {
               </div>
             </div>
           </div>
-        </div>
-
-        <main id="main-content" tabIndex={-1} className="flex-1">
+          </div>
+          <TrustedCarriers />
         </main>
-        <TrustedCarriers />
         <Footer />
       </div>
     </>

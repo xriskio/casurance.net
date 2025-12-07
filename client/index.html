@@ -7,33 +7,42 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-ZMFP47KVV3');
     </script>
     
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5" />
+    
+    <!-- DNS Prefetch & Preconnect for Performance (Core Web Vitals) -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
     <!-- Primary Meta Tags -->
-    <title>Casurance Agency - Commercial Insurance Services Nationwide | Get Quote</title>
-    <meta name="title" content="Casurance Agency - Commercial Insurance Services Nationwide | Get Quote" />
-    <meta name="description" content="Trusted commercial insurance agency serving 15 states. Specialized coverage for auto dealers, golf courses, transportation, warehousing, and 20+ industries. Get competitive quotes for General Liability, Workers Comp, Commercial Auto, Property, and more. Expert service since 2010." />
+    <title>Casurance - Commercial Insurance Agency | Business Insurance Quotes</title>
+    <meta name="title" content="Casurance - Commercial Insurance Agency | Business Insurance Quotes" />
+    <meta name="description" content="Casurance is a trusted commercial insurance agency providing specialized coverage for businesses. Get competitive quotes for General Liability, Workers Comp, Commercial Auto, Property, Cyber Liability, and more. Expert service for auto dealers, golf courses, transportation, and 20+ industries." />
     <meta name="keywords" content="commercial insurance, business insurance, general liability, workers compensation, commercial auto, property insurance, cyber liability, golf course insurance, auto dealer insurance, self storage insurance, transportation insurance, professional liability" />
-    <meta name="author" content="Casurance Insurance Agency Services" />
+    <meta name="author" content="Casurance Insurance Agency" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.casurance.com/" />
-    <meta property="og:title" content="Casurance Agency - Commercial Insurance Services Nationwide" />
-    <meta property="og:description" content="Trusted commercial insurance agency serving 15 states. Specialized coverage for 20+ industries including auto dealers, golf courses, transportation, and more." />
-    <meta property="og:image" content="https://www.casurance.com/og-image.jpg" />
+    <meta property="og:url" content="https://casurance.net/" />
+    <meta property="og:title" content="Casurance - Commercial Insurance Agency | Business Insurance Quotes" />
+    <meta property="og:description" content="Trusted commercial insurance agency providing specialized coverage for 20+ industries including auto dealers, golf courses, transportation, and more. Get your quote today." />
+    <meta property="og:image" content="https://casurance.net/og-image.jpg" />
+    <meta property="og:site_name" content="Casurance Commercial Insurance" />
+    <meta property="og:locale" content="en_US" />
     
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://www.casurance.com/" />
-    <meta property="twitter:title" content="Casurance Agency - Commercial Insurance Services Nationwide" />
-    <meta property="twitter:description" content="Trusted commercial insurance agency serving 15 states. Specialized coverage for 20+ industries." />
-    <meta property="twitter:image" content="https://www.casurance.com/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://casurance.net/" />
+    <meta name="twitter:title" content="Casurance - Commercial Insurance Agency | Business Insurance Quotes" />
+    <meta name="twitter:description" content="Trusted commercial insurance agency providing specialized coverage for 20+ industries." />
+    <meta name="twitter:image" content="https://casurance.net/og-image.jpg" />
+    <meta name="twitter:site" content="@casurance" />
     
     <!-- Geo Meta Tags -->
     <meta name="geo.region" content="US" />
@@ -41,46 +50,83 @@
     
     <!-- Robots & Canonical -->
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <link rel="canonical" href="https://www.casurance.com/" />
+    <link rel="canonical" href="https://casurance.net/" />
     
-    <!-- Schema.org Structured Data -->
+    <!-- Mobile & Theme -->
+    <meta name="theme-color" content="#0a1628" />
+    <meta name="format-detection" content="telephone=yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Casurance" />
+    
+    <!-- Schema.org Structured Data - InsuranceAgency -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "InsuranceAgency",
-      "name": "Casurance Insurance Agency Services",
-      "description": "Commercial insurance agency specializing in business insurance across 15 states",
-      "url": "https://www.casurance.com",
-      "telephone": "+1-888-254-0089",
+      "name": "Casurance Insurance Agency",
+      "description": "Commercial insurance agency specializing in business insurance with expert coverage solutions",
+      "url": "https://casurance.net",
+      "logo": "https://casurance.net/logo.png",
+      "telephone": "+1-323-546-3030",
+      "email": "info@casurance.net",
       "address": {
         "@type": "PostalAddress",
+        "addressRegion": "CA",
         "addressCountry": "US"
       },
-      "areaServed": [
-        {"@type": "State", "name": "California"},
-        {"@type": "State", "name": "Nevada"},
-        {"@type": "State", "name": "Arizona"},
-        {"@type": "State", "name": "Oregon"},
-        {"@type": "State", "name": "Ohio"},
-        {"@type": "State", "name": "Illinois"},
-        {"@type": "State", "name": "New York"},
-        {"@type": "State", "name": "New Jersey"},
-        {"@type": "State", "name": "Pennsylvania"},
-        {"@type": "State", "name": "North Carolina"},
-        {"@type": "State", "name": "Texas"},
-        {"@type": "State", "name": "Florida"},
-        {"@type": "State", "name": "Arkansas"},
-        {"@type": "State", "name": "Missouri"},
-        {"@type": "State", "name": "Colorado"}
-      ],
-      "sameAs": [],
+      "areaServed": {
+        "@type": "Country",
+        "name": "United States"
+      },
+      "serviceType": ["Commercial Insurance", "Business Insurance", "Liability Insurance", "Property Insurance"],
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "17:00"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-323-546-3030",
+        "contactType": "customer service",
+        "email": "info@casurance.net",
+        "availableLanguage": ["English", "Spanish"]
+      },
       "priceRange": "$$"
     }
     </script>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Schema.org - WebSite with SearchAction -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Casurance Commercial Insurance",
+      "url": "https://casurance.net",
+      "description": "Commercial insurance agency providing business insurance solutions",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Casurance Insurance Agency",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://casurance.net/logo.png"
+        }
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://casurance.net/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    
+    <!-- Fonts with display=swap for better LCP -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   </head>
   <body>
     <div id="root"></div>
