@@ -93,8 +93,8 @@ export default function QuotePage() {
                       <CheckCircle className="h-5 w-5 text-blue-300" />
                     </div>
                     <div>
-                      <p className="text-sm font-semibold text-white">Licensed Nationwide</p>
-                      <p className="text-xs text-white/60">All 50 states</p>
+                      <p className="text-sm font-semibold text-white">Licensed Agents</p>
+                      <p className="text-xs text-white/60">Expert guidance</p>
                     </div>
                   </div>
                 </div>
