@@ -1,5 +1,5 @@
 # robots.txt for Casurance Commercial Insurance Agency
-# https://casurance.com
+# https://casurance.net
 
 # Allow all search engines to crawl public pages
 User-agent: *

@@ -7,7 +7,7 @@ import { allLocations, insuranceTypes } from "@shared/content/locations";
 
 const router = Router();
 
-const SITE_URL = "https://casurance.com";
+const SITE_URL = "https://casurance.net";
 
 // Static routes that should be in the sitemap
 const staticRoutes = [
@@ -17,11 +17,13 @@ const staticRoutes = [
   { url: "/middle-market", priority: "0.8", changefreq: "weekly" },
   { url: "/industries", priority: "0.8", changefreq: "weekly" },
   { url: "/locations", priority: "0.8", changefreq: "weekly" },
+  { url: "/personal-lines", priority: "0.8", changefreq: "weekly" },
   { url: "/blog", priority: "0.8", changefreq: "daily" },
   { url: "/press-releases", priority: "0.7", changefreq: "weekly" },
   { url: "/about", priority: "0.7", changefreq: "monthly" },
   { url: "/contact", priority: "0.7", changefreq: "monthly" },
   { url: "/service", priority: "0.7", changefreq: "monthly" },
+  { url: "/accessibility", priority: "0.5", changefreq: "monthly" },
 ];
 
 // Quote and application form routes (exact paths from App.tsx)
