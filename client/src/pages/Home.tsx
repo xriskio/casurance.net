@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import InsuranceProducts from "@/components/InsuranceProducts";
 import TrustedCarriers from "@/components/TrustedCarriers";
+import SuccessStories from "@/components/SuccessStories";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import CallToAction from "@/components/CallToAction";
 import ContactInfo from "@/components/ContactInfo";
@@ -23,6 +24,7 @@ export default function Home() {
           <Hero />
           <InsuranceProducts />
           <TrustedCarriers />
+          <SuccessStories />
           <WhyChooseUs />
           <CallToAction />
           <ContactInfo />
