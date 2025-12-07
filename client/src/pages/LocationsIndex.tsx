@@ -78,7 +78,7 @@ export default function LocationsIndex() {
         </div>
       </div>
       
-      <main className="flex-1 py-12 lg:py-16">
+      <main id="main-content" className="flex-1 py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-foreground mb-2 pb-2 border-b">

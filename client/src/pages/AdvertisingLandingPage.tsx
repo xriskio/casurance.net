@@ -270,7 +270,7 @@ export default function AdvertisingLandingPage() {
         </script>
       </Helmet>
 
-      <main className="min-h-screen">
+      <main id="main-content" className="min-h-screen">
         {/* Hero Section with Quote Form */}
         <section className="relative bg-[#0a1628] overflow-hidden">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>

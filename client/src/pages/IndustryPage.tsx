@@ -29,7 +29,7 @@ export default function IndustryPage() {
         canonical={`/industry/${industry.slug}`}
       />
       <Header />
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         <CoverageDetail coverage={industry} />
       </main>
       <Footer />

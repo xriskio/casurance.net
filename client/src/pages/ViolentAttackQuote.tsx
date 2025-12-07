@@ -17,7 +17,7 @@ export default function ViolentAttackQuote() {
       </Helmet>
       <div className="min-h-screen flex flex-col">
         <Header />
-        <main className="flex-1 py-12 px-4 bg-muted/30">
+        <main id="main-content" className="flex-1 py-12 px-4 bg-muted/30">
           <div className="container mx-auto">
             <ViolentAttackQuoteForm />
           </div>

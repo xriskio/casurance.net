@@ -397,7 +397,7 @@ export default function WorkersCompLandingPage() {
         </script>
       </Helmet>
 
-      <main className="min-h-screen">
+      <main id="main-content" className="min-h-screen">
         {/* MEGA Hero Section */}
         <section className="relative bg-gradient-to-br from-[#0a1628] via-[#0d1c33] to-[#0a1628] overflow-hidden" id="top">
           {/* Animated Background Effects */}

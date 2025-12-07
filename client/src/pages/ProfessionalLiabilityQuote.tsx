@@ -13,7 +13,7 @@ export default function ProfessionalLiabilityQuote() {
         canonical="/quote/professional-liability"
       />
       <Header />
-      <main className="flex-grow bg-background">
+      <main id="main-content" className="flex-grow bg-background">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="py-8">
             <div className="text-center mb-8">

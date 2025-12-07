@@ -943,7 +943,7 @@ export default function AgentPortal() {
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8">
+      <main id="main-content" className="container mx-auto px-4 py-8">
         <Card className="mb-8">
           <CardHeader>
             <div className="flex items-center gap-2">

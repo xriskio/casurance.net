@@ -14,7 +14,7 @@ export default function PublicTransportationQuote() {
         canonical="/quote/public-transportation"
       />
       <Header />
-      <main className="flex-1 py-12 lg:py-16">
+      <main id="main-content" className="flex-1 py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto mb-8">
             <Card>
