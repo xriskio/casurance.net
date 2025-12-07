@@ -212,7 +212,18 @@ export default function QuoteRequestForm({ compact = false }: QuoteRequestFormPr
     email: "",
     phone: "",
     zipCode: "",
+    selectedCoverages: [] as string[],
+    comments: "",
   });
+
+  const handleCoverageToggle = (coverage: string) => {
+    setFormData(prev => ({
+      ...prev,
+      selectedCoverages: prev.selectedCoverages.includes(coverage)
+        ? prev.selectedCoverages.filter(c => c !== coverage)
+        : [...prev.selectedCoverages, coverage]
+    }));
+  };
 
   const isFormValid = () => {
     return (
@@ -232,6 +243,17 @@ export default function QuoteRequestForm({ compact = false }: QuoteRequestFormPr
     
     setIsSubmitting(true);
     try {
+      const coveragesText = formData.selectedCoverages.length > 0 
+        ? formData.selectedCoverages.join(', ') 
+        : 'Not specified';
+      
+      const messageDetails = [
+        `PRODUCT TYPE: ${formData.insuranceType}`,
+        `Coverage Interests: ${coveragesText}`,
+        `Zip Code: ${formData.zipCode}`,
+        formData.comments ? `Comments: ${formData.comments}` : ''
+      ].filter(Boolean).join('\n');
+
       const payload = {
         businessName: formData.businessName,
         contactName: `${formData.contactFirstName} ${formData.contactLastName}`,
@@ -239,7 +261,7 @@ export default function QuoteRequestForm({ compact = false }: QuoteRequestFormPr
         phone: formData.phone,
         state: formData.zipCode,
         insuranceType: formData.insuranceType,
-        message: `Zip Code: ${formData.zipCode}`,
+        message: messageDetails,
         status: 'pending'
       };
 
@@ -281,13 +303,18 @@ export default function QuoteRequestForm({ compact = false }: QuoteRequestFormPr
             <p className="text-xs text-muted-foreground mt-2">Save this for reference</p>
           </div>
         )}
+        <div className="bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 rounded-lg p-3 mb-4">
+          <p className="text-sm font-medium text-green-800 dark:text-green-200">
+            Product Type: <span className="font-bold">{formData.insuranceType}</span>
+          </p>
+        </div>
         <p className="text-muted-foreground mb-4 text-sm">
           A confirmation email has been sent to <strong>{formData.email}</strong>.
         </p>
         <p className="text-muted-foreground mb-6 text-sm">
           One of our licensed agents will contact you within 24 hours with a competitive quote.
         </p>
-        <Button onClick={() => { setSubmitted(false); setReferenceNumber(''); setFormData({ insuranceType: "", businessName: "", contactFirstName: "", contactLastName: "", email: "", phone: "", zipCode: "" }); }} data-testid="button-submit-another">
+        <Button onClick={() => { setSubmitted(false); setReferenceNumber(''); setFormData({ insuranceType: "", businessName: "", contactFirstName: "", contactLastName: "", email: "", phone: "", zipCode: "", selectedCoverages: [], comments: "" }); }} data-testid="button-submit-another">
           Submit Another Request
         </Button>
       </div>
@@ -437,6 +464,43 @@ export default function QuoteRequestForm({ compact = false }: QuoteRequestFormPr
               data-testid="input-zip-code"
             />
             <p className="text-xs text-muted-foreground mt-1">Enter the zip code where you need insurance</p>
+          </div>
+
+          {/* Coverage Types Selection */}
+          <div>
+            <Label className="mb-3 block">Coverage Types Interested In (select all that apply)</Label>
+            <div className="grid grid-cols-2 gap-2">
+              {coverageOptions.map((coverage) => (
+                <div key={coverage} className="flex items-center space-x-2">
+                  <Checkbox
+                    id={`coverage-${coverage.replace(/\s+/g, '-').toLowerCase()}`}
+                    checked={formData.selectedCoverages.includes(coverage)}
+                    onCheckedChange={() => handleCoverageToggle(coverage)}
+                    data-testid={`checkbox-${coverage.toLowerCase().replace(/[\s/]+/g, '-')}`}
+                  />
+                  <label
+                    htmlFor={`coverage-${coverage.replace(/\s+/g, '-').toLowerCase()}`}
+                    className="text-sm leading-none cursor-pointer"
+                  >
+                    {coverage}
+                  </label>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Comments Section */}
+          <div>
+            <Label htmlFor="comments">Additional Comments or Questions</Label>
+            <Textarea
+              id="comments"
+              value={formData.comments}
+              onChange={(e) => setFormData({ ...formData, comments: e.target.value })}
+              placeholder="Tell us more about your coverage needs, current policies, or any specific questions..."
+              rows={3}
+              className="mt-1"
+              data-testid="textarea-comments"
+            />
           </div>
 
           {/* Submit Button */}
