@@ -32,6 +32,21 @@ const homeFaqs = [
   }
 ];
 
+const homeServices = [
+  { name: "General Liability Insurance", description: "Comprehensive protection against third-party claims for bodily injury and property damage", url: "/coverage/general-liability" },
+  { name: "Commercial Auto Insurance", description: "Fleet and vehicle coverage for business-owned automobiles and trucks", url: "/coverage/commercial-auto" },
+  { name: "Workers Compensation Insurance", description: "Employee injury and illness coverage meeting state requirements", url: "/coverage/workers-compensation" },
+  { name: "Professional Liability Insurance", description: "Errors and omissions coverage for professional services", url: "/coverage/professional-liability" },
+  { name: "Commercial Property Insurance", description: "Protection for buildings, equipment, and inventory", url: "/coverage/commercial-property" },
+  { name: "Cyber Liability Insurance", description: "Data breach and cybersecurity incident coverage", url: "/coverage/cyber-liability" }
+];
+
+const homeAggregateRating = {
+  ratingValue: 4.9,
+  reviewCount: 127,
+  bestRating: 5
+};
+
 export default function Home() {
   return (
     <>
@@ -41,6 +56,10 @@ export default function Home() {
         keywords="commercial insurance, business insurance, general liability, workers compensation, commercial auto insurance, professional liability, California commercial insurance, independent insurance agency"
         canonical="/"
         faqs={homeFaqs}
+        services={homeServices}
+        aggregateRating={homeAggregateRating}
+        isHomePage={true}
+        speakable={true}
       />
       <div className="min-h-screen bg-background">
         <Header />

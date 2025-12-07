@@ -10,6 +10,34 @@ interface FAQItem {
   answer: string;
 }
 
+interface ReviewItem {
+  author: string;
+  rating: number;
+  reviewBody: string;
+  datePublished?: string;
+}
+
+interface ServiceItem {
+  name: string;
+  description: string;
+  url: string;
+  provider?: string;
+}
+
+interface HowToStep {
+  name: string;
+  text: string;
+  url?: string;
+  image?: string;
+}
+
+interface HowToData {
+  name: string;
+  description: string;
+  totalTime?: string;
+  steps: HowToStep[];
+}
+
 interface SEOHeadProps {
   title: string;
   description: string;
@@ -24,6 +52,12 @@ interface SEOHeadProps {
   articleAuthor?: string;
   articleSection?: string;
   noindex?: boolean;
+  reviews?: ReviewItem[];
+  aggregateRating?: { ratingValue: number; reviewCount: number; bestRating?: number };
+  services?: ServiceItem[];
+  howTo?: HowToData;
+  speakable?: boolean;
+  isHomePage?: boolean;
 }
 
 export default function SEOHead({
@@ -40,6 +74,12 @@ export default function SEOHead({
   articleAuthor,
   articleSection,
   noindex = false,
+  reviews,
+  aggregateRating,
+  services,
+  howTo,
+  speakable = false,
+  isHomePage = false,
 }: SEOHeadProps) {
   const fullTitle = `${title} | Casurance - Commercial Insurance Agency`;
   const siteUrl = "https://casurance.net";
@@ -134,6 +174,119 @@ export default function SEOHead({
     }
   };
 
+  const websiteSchema = isHomePage ? {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Casurance Commercial Insurance Agency",
+    "alternateName": ["Casurance", "Casurance Insurance"],
+    "url": siteUrl,
+    "description": "Leading commercial insurance agency providing comprehensive business coverage across all 50 US states. Specializing in commercial auto, general liability, workers compensation, and 40+ insurance products.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Casurance Insurance Agency",
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${siteUrl}/logo.png`
+      }
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": `${siteUrl}/search?q={search_term_string}`
+      },
+      "query-input": "required name=search_term_string"
+    },
+    "inLanguage": "en-US"
+  } : null;
+
+  const reviewSchema = reviews && reviews.length > 0 ? reviews.map(review => ({
+    "@context": "https://schema.org",
+    "@type": "Review",
+    "author": {
+      "@type": "Person",
+      "name": review.author
+    },
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": review.rating,
+      "bestRating": 5
+    },
+    "reviewBody": review.reviewBody,
+    ...(review.datePublished && { "datePublished": review.datePublished }),
+    "itemReviewed": {
+      "@type": "InsuranceAgency",
+      "name": "Casurance Insurance Agency"
+    }
+  })) : null;
+
+  const aggregateRatingSchema = aggregateRating ? {
+    "@context": "https://schema.org",
+    "@type": "InsuranceAgency",
+    "name": "Casurance Insurance Agency",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": aggregateRating.ratingValue,
+      "reviewCount": aggregateRating.reviewCount,
+      "bestRating": aggregateRating.bestRating || 5
+    }
+  } : null;
+
+  const serviceSchema = services && services.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Commercial Insurance",
+    "provider": {
+      "@type": "InsuranceAgency",
+      "name": "Casurance Insurance Agency",
+      "url": siteUrl
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "United States"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Commercial Insurance Products",
+      "itemListElement": services.map(service => ({
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": service.name,
+          "description": service.description,
+          "url": service.url.startsWith('http') ? service.url : `${siteUrl}${service.url}`
+        }
+      }))
+    }
+  } : null;
+
+  const howToSchema = howTo ? {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": howTo.name,
+    "description": howTo.description,
+    ...(howTo.totalTime && { "totalTime": howTo.totalTime }),
+    "step": howTo.steps.map((step, index) => ({
+      "@type": "HowToStep",
+      "position": index + 1,
+      "name": step.name,
+      "text": step.text,
+      ...(step.url && { "url": step.url.startsWith('http') ? step.url : `${siteUrl}${step.url}` }),
+      ...(step.image && { "image": step.image })
+    }))
+  } : null;
+
+  const speakableSchema = speakable ? {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": fullTitle,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": ["article", "h1", "h2", ".speakable", "[data-speakable]"]
+    },
+    "url": canonicalUrl
+  } : null;
+
   return (
     <Helmet>
       {/* Primary Meta Tags */}
@@ -200,6 +353,48 @@ export default function SEOHead({
       {faqSchema && (
         <script type="application/ld+json">
           {JSON.stringify(faqSchema)}
+        </script>
+      )}
+
+      {/* WebSite Schema with SearchAction - for homepage only */}
+      {websiteSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(websiteSchema)}
+        </script>
+      )}
+
+      {/* Review Schemas */}
+      {reviewSchema && reviewSchema.map((review, index) => (
+        <script key={`review-${index}`} type="application/ld+json">
+          {JSON.stringify(review)}
+        </script>
+      ))}
+
+      {/* Aggregate Rating Schema */}
+      {aggregateRatingSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(aggregateRatingSchema)}
+        </script>
+      )}
+
+      {/* Service Schema */}
+      {serviceSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(serviceSchema)}
+        </script>
+      )}
+
+      {/* HowTo Schema */}
+      {howToSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(howToSchema)}
+        </script>
+      )}
+
+      {/* Speakable Schema for Voice Search */}
+      {speakableSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(speakableSchema)}
         </script>
       )}
     </Helmet>
