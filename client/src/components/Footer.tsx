@@ -75,7 +75,6 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li><Link href="/quote" className="text-white/70 hover:text-white transition-colors cursor-pointer">Request a Quote</Link></li>
               <li><Link href="/service" className="text-white/70 hover:text-white transition-colors cursor-pointer">Service Request</Link></li>
-              <li><Link href="/locations" className="text-white/70 hover:text-white transition-colors cursor-pointer">Locations</Link></li>
               <li><Link href="/about" className="text-white/70 hover:text-white transition-colors cursor-pointer">About Us</Link></li>
               <li><Link href="/contact" className="text-white/70 hover:text-white transition-colors cursor-pointer">Contact</Link></li>
             </ul>
@@ -89,6 +88,8 @@ export default function Footer() {
             <Link href="/get-quote" className="text-white/70 hover:text-white transition-colors cursor-pointer">Commercial Insurance Quote</Link>
             <span className="text-white/30">|</span>
             <Link href="/workers-comp-california-nevada" className="text-white/70 hover:text-white transition-colors cursor-pointer">Workers' Comp CA & NV</Link>
+            <span className="text-white/30">|</span>
+            <Link href="/liquor-store-insurance" className="text-white/70 hover:text-white transition-colors cursor-pointer">Liquor Store Insurance</Link>
           </div>
         </div>
 

@@ -127,6 +127,9 @@ export const insuranceTypes: LocationInsuranceType[] = [
 
 export const californiaLocations: CityLocation[] = [
   { slug: "anaheim", name: "Anaheim", state: "California", stateAbbr: "CA", region: "Orange County", population: "350,000+", businessHighlights: ["Tourism", "Entertainment", "Hospitality"] },
+  { slug: "beverly-hills", name: "Beverly Hills", state: "California", stateAbbr: "CA", region: "Los Angeles County", population: "33,000+", businessHighlights: ["Luxury Retail", "Entertainment", "Hospitality"] },
+  { slug: "cupertino", name: "Cupertino", state: "California", stateAbbr: "CA", region: "Santa Clara County", population: "60,000+", businessHighlights: ["Technology", "Retail", "Professional Services"] },
+  { slug: "downtown-los-angeles", name: "Downtown Los Angeles", state: "California", stateAbbr: "CA", region: "Los Angeles County", population: "80,000+", businessHighlights: ["Finance", "Arts & Culture", "Fashion"] },
   { slug: "dana-point", name: "Dana Point", state: "California", stateAbbr: "CA", region: "Orange County", population: "34,000+", businessHighlights: ["Marine", "Tourism", "Retail"] },
   { slug: "el-segundo", name: "El Segundo", state: "California", stateAbbr: "CA", region: "Los Angeles County", population: "17,000+", businessHighlights: ["Aerospace", "Technology", "Media"] },
   { slug: "fremont", name: "Fremont", state: "California", stateAbbr: "CA", region: "Alameda County", population: "230,000+", businessHighlights: ["Technology", "Manufacturing", "Healthcare"] },
@@ -147,6 +150,7 @@ export const californiaLocations: CityLocation[] = [
   { slug: "san-diego", name: "San Diego", state: "California", stateAbbr: "CA", region: "San Diego County", population: "1,420,000+", businessHighlights: ["Biotech", "Defense", "Tourism"] },
   { slug: "san-francisco", name: "San Francisco", state: "California", stateAbbr: "CA", region: "San Francisco County", population: "874,000+", businessHighlights: ["Technology", "Finance", "Tourism"] },
   { slug: "san-jose", name: "San Jose", state: "California", stateAbbr: "CA", region: "Santa Clara County", population: "1,030,000+", businessHighlights: ["Technology", "Manufacturing", "Healthcare"] },
+  { slug: "santa-clara", name: "Santa Clara", state: "California", stateAbbr: "CA", region: "Santa Clara County", population: "127,000+", businessHighlights: ["Technology", "Manufacturing", "Entertainment"] },
   { slug: "san-mateo", name: "San Mateo", state: "California", stateAbbr: "CA", region: "San Mateo County", population: "105,000+", businessHighlights: ["Technology", "Biotech", "Finance"] },
   { slug: "santa-monica", name: "Santa Monica", state: "California", stateAbbr: "CA", region: "Los Angeles County", population: "93,000+", businessHighlights: ["Entertainment", "Technology", "Tourism"] },
   { slug: "santa-rosa", name: "Santa Rosa", state: "California", stateAbbr: "CA", region: "Sonoma County", population: "178,000+", businessHighlights: ["Wine", "Healthcare", "Manufacturing"] },
