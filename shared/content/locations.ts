@@ -317,6 +317,126 @@ export const insuranceTypes: LocationInsuranceType[] = [
     ],
     avgCost: "$1,500-$8,000 per year",
     quoteLink: "/quote"
+  },
+  {
+    slug: "real-estate",
+    name: "Real Estate Insurance",
+    description: "Real estate insurance provides comprehensive protection for property investors, landlords, and real estate professionals covering buildings, liability, and rental income.",
+    coveragePoints: [
+      "Building and structure coverage",
+      "Rental income protection",
+      "Landlord liability coverage",
+      "Property management E&O",
+      "Tenant discrimination defense",
+      "Fair housing violation coverage"
+    ],
+    avgCost: "$1,000-$5,000 per year",
+    quoteLink: "/quote"
+  },
+  {
+    slug: "apartments",
+    name: "Apartment Building Insurance",
+    description: "Apartment building insurance provides specialized coverage for multifamily residential properties including garden-style apartments, mid-rise, and high-rise buildings.",
+    coveragePoints: [
+      "Building and property coverage",
+      "Loss of rental income",
+      "General liability protection",
+      "Equipment breakdown coverage",
+      "Ordinance or law coverage",
+      "Water damage and backup coverage"
+    ],
+    avgCost: "$2,500-$15,000 per year",
+    quoteLink: "/habitational-program"
+  },
+  {
+    slug: "habitational",
+    name: "Habitational Insurance Program",
+    description: "Habitational insurance provides comprehensive property and liability coverage for residential rental properties including apartments, condos, and multifamily buildings.",
+    coveragePoints: [
+      "All-risk property coverage",
+      "Up to $100M per location limits",
+      "Full replacement cost valuation",
+      "No co-insurance requirement",
+      "Business income protection",
+      "Equipment breakdown included"
+    ],
+    avgCost: "$3,000-$25,000 per year",
+    quoteLink: "/habitational-program"
+  },
+  {
+    slug: "condominiums",
+    name: "Condominium Insurance",
+    description: "Condominium insurance protects condo associations and unit owners with coverage for common areas, liability, and individual unit improvements.",
+    coveragePoints: [
+      "Master policy coverage",
+      "Common area protection",
+      "Directors & Officers liability",
+      "Fidelity bond coverage",
+      "Unit owner improvements",
+      "Loss assessment coverage"
+    ],
+    avgCost: "$1,500-$10,000 per year",
+    quoteLink: "/quote"
+  },
+  {
+    slug: "high-value-home",
+    name: "High Value Home Insurance",
+    description: "High value home insurance provides enhanced coverage for luxury homes and estates up to $30M, including extended replacement cost and specialized personal property protection.",
+    coveragePoints: [
+      "Extended replacement cost coverage",
+      "Agreed value settlements",
+      "High-limit jewelry and art coverage",
+      "Cash settlement options",
+      "Identity theft protection",
+      "Personal liability up to $100M"
+    ],
+    avgCost: "$5,000-$50,000 per year",
+    quoteLink: "/high-value-home"
+  },
+  {
+    slug: "wildfire-brush-area",
+    name: "Wildfire & Brush Area Insurance",
+    description: "Wildfire and brush area insurance provides coverage for homes in high fire risk zones where standard policies may be unavailable or limited.",
+    coveragePoints: [
+      "Fire and wildfire coverage",
+      "Brush zone property protection",
+      "Evacuation expense coverage",
+      "Debris removal coverage",
+      "Extended dwelling protection",
+      "Personal property replacement"
+    ],
+    avgCost: "$3,000-$20,000 per year",
+    quoteLink: "/wildfire-brush-area"
+  },
+  {
+    slug: "self-storage",
+    name: "Self Storage Insurance",
+    description: "Self storage facility insurance provides comprehensive coverage for storage facility operators including property, liability, and customer goods protection.",
+    coveragePoints: [
+      "Building and property coverage",
+      "Customer goods legal liability",
+      "Sale and disposal coverage",
+      "Business income protection",
+      "General liability coverage",
+      "Equipment breakdown"
+    ],
+    avgCost: "$2,000-$15,000 per year",
+    quoteLink: "/public-self-storage"
+  },
+  {
+    slug: "high-rise-building",
+    name: "High-Rise Building Insurance",
+    description: "High-rise building insurance provides specialized coverage for commercial and residential high-rise structures with enhanced limits for complex urban properties.",
+    coveragePoints: [
+      "High-limit property coverage",
+      "Elevator and escalator liability",
+      "Ordinance or law coverage",
+      "Water damage protection",
+      "Building code upgrade coverage",
+      "Common area liability"
+    ],
+    avgCost: "$10,000-$100,000 per year",
+    quoteLink: "/habitational-program"
   }
 ];
 
