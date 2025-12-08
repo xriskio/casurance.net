@@ -34,6 +34,14 @@ The application includes a full-featured CMS for managing dynamic pages, navigat
 
 The application includes comprehensive SEO optimization for critical pages, utilizing an `SEOHead` component for consistent meta tags, Open Graph, Twitter Card, and JSON-LD structured data (e.g., InsuranceAgency, BlogPosting, NewsArticle schemas). Features include unique titles, meta descriptions, keyword targeting, canonical URLs, and optimization for AI chatbots. A dynamic sitemap.xml and static robots.txt are implemented to guide search engines and AI crawlers, including over 140 URLs for coverages, industries, quote forms, and dynamic content.
 
+### Analytics & Tracking
+
+The application uses Google Analytics 4 (GA4) with both client-side and server-side tracking:
+- **Client-side**: gtag.js implementation in index.html (Measurement ID: G-ZMFP47KVV3)
+- **Server-side**: GA4 Measurement Protocol (`server/lib/ga4-measurement-protocol.ts`) for accurate conversion tracking of form submissions (quote requests, service requests, contact forms)
+- **Events tracked**: `generate_lead` for quote submissions, `service_request` for service requests, `contact_form_submission` for contact forms
+- **IndexNow**: Automatic URL submission to Bing, Yandex, and other participating search engines
+
 ### AI Content Generation & Brand Protection
 
 The application features AI-powered content generation for blog posts and press releases using OpenAI GPT-5. A centralized brand management system (`server/lib/brand.ts`) and an automated brand validation system (`server/lib/brand-validator.ts`) ensure 100% brand consistency. This system detects, validates, normalizes, and sanitizes AI-generated content, replacing incorrect branding with correct Casurance information before persistence, preventing brand-inconsistent content from being published.

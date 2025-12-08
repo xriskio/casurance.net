@@ -11,6 +11,7 @@ import { generatePressRelease, getCategories as getPressCategories, getTopics as
 import { generateReferenceNumber } from "./utils/referenceNumber";
 import { sendQuoteConfirmationEmail, sendServiceRequestConfirmationEmail, sendAgentQuoteNotification, sendAgentServiceNotification } from "./services/emailService";
 import { getRedirectUrl } from "./redirects";
+import { trackQuoteSubmission, trackServiceRequest, trackContactSubmission, getClientIdFromCookie } from "./lib/ga4-measurement-protocol";
 import multer from "multer";
 import path from "path";
 import { randomUUID } from "crypto";
@@ -89,6 +90,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       sendQuoteConfirmationEmail(emailData).catch(err => console.error('Failed to send confirmation email:', err));
       sendAgentQuoteNotification(emailData).catch(err => console.error('Failed to send agent notification:', err));
       
+      // GA4 Measurement Protocol tracking
+      const clientId = getClientIdFromCookie(req.cookies?._ga);
+      trackQuoteSubmission(clientId, {
+        formType: 'quote_request',
+        insuranceType: validatedData.insuranceType,
+        businessType: validatedData.industry || undefined,
+        submissionId: typeof quote.id === 'number' ? quote.id : undefined
+      }).catch(err => console.error('[GA4] Failed to track quote submission:', err));
+      
       res.json(quote);
     } catch (error: any) {
       res.status(400).json({ message: error.message || "Invalid request data" });
@@ -114,6 +124,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       sendServiceRequestConfirmationEmail(emailData).catch(err => console.error('Failed to send confirmation email:', err));
       sendAgentServiceNotification(emailData).catch(err => console.error('Failed to send agent notification:', err));
+      
+      // GA4 Measurement Protocol tracking
+      const clientId = getClientIdFromCookie(req.cookies?._ga);
+      trackServiceRequest(clientId, {
+        serviceType: validatedData.requestType,
+        policyNumber: validatedData.policyNumber || undefined,
+        submissionId: typeof service.id === 'number' ? service.id : undefined
+      }).catch(err => console.error('[GA4] Failed to track service request:', err));
       
       res.json(service);
     } catch (error: any) {
@@ -858,6 +876,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       sendServiceRequestConfirmationEmail(emailData).catch(err => console.error('Failed to send confirmation email:', err));
       sendAgentServiceNotification(emailData).catch(err => console.error('Failed to send agent notification:', err));
+      
+      // GA4 Measurement Protocol tracking
+      const clientId = getClientIdFromCookie(req.cookies?._ga);
+      trackContactSubmission(clientId, {
+        contactType: 'contact_form',
+        submissionId: typeof request.id === 'number' ? request.id : undefined
+      }).catch(err => console.error('[GA4] Failed to track contact submission:', err));
       
       res.json(request);
     } catch (error: any) {
