@@ -66,6 +66,16 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  // Health check endpoint - respond immediately for deployment health checks
+  app.get("/health", (_req, res) => {
+    res.status(200).json({ status: "ok", timestamp: new Date().toISOString() });
+  });
+
+  // Also support common health check paths
+  app.get("/api/health", (_req, res) => {
+    res.status(200).json({ status: "ok", timestamp: new Date().toISOString() });
+  });
+
   const server = await registerRoutes(app);
 
   // Serve uploaded media files
@@ -100,6 +110,10 @@ app.use((req, res, next) => {
   }, () => {
     log(`serving on port ${port}`);
     
-    initializeIndexNow();
+    // Defer IndexNow initialization to avoid blocking startup
+    // This runs after server is ready to accept connections
+    setTimeout(() => {
+      initializeIndexNow();
+    }, 5000);
   });
 })();
