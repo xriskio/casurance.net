@@ -80,6 +80,7 @@ import PersonalLinesIndex from "@/pages/PersonalLinesIndex";
 import PersonalLinesQuote from "@/pages/PersonalLinesQuote";
 import AdvertisingLandingPage from "@/pages/AdvertisingLandingPage";
 import WorkersCompLandingPage from "@/pages/WorkersCompLandingPage";
+import LiquorStoreInsuranceLanding from "@/pages/LiquorStoreInsuranceLanding";
 import QuoteThankYou from "@/pages/QuoteThankYou";
 import AccessibilityPage from "@/pages/AccessibilityPage";
 import NotFound from "@/pages/not-found";
@@ -135,6 +136,9 @@ function Router() {
       <Route path="/workers-comp-california-nevada" component={WorkersCompLandingPage} />
       <Route path="/lp/workers-comp" component={WorkersCompLandingPage} />
       <Route path="/lp/workers-compensation" component={WorkersCompLandingPage} />
+      <Route path="/liquor-store-insurance" component={LiquorStoreInsuranceLanding} />
+      <Route path="/lp/liquor-store" component={LiquorStoreInsuranceLanding} />
+      <Route path="/lp/liquor-liability" component={LiquorStoreInsuranceLanding} />
       <Route path="/agent" component={AgentLogin} />
       <Route path="/agent/login" component={AgentLogin} />
       <Route path="/agent/portal" component={AgentPortal} />
