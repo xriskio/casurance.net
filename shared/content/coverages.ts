@@ -922,6 +922,67 @@ export const coverages: CoverageContent[] = [
   },
 
   {
+    title: "Liquor Liability",
+    slug: "liquor-liability",
+    category: "Specialty",
+    summary: "Essential coverage protecting businesses that sell or serve alcohol from Dram Shop liability claims.",
+    description: "Liquor Liability insurance protects businesses that sell, serve, or manufacture alcoholic beverages from claims arising when an intoxicated customer causes bodily injury or property damage to a third party. This coverage is essential in states with Dram Shop laws like California and Nevada, where businesses can be held liable for serving alcohol to visibly intoxicated individuals or minors who subsequently cause harm. Standard General Liability policies exclude liquor-related claims, making dedicated Liquor Liability coverage critical for any business with alcohol sales.",
+    seoTitle: "Liquor Liability Insurance | Dram Shop Coverage | Casurance",
+    seoDescription: "Comprehensive liquor liability insurance for liquor stores, bars, restaurants, and convenience stores. Protection from Dram Shop claims with up to $10M excess capacity. ISO coverage forms and per-location aggregate endorsements available.",
+    whoNeeds: [
+      "Liquor stores and package stores",
+      "Convenience stores with alcohol sales",
+      "Gas stations selling beer and wine",
+      "Grocery stores with liquor licenses",
+      "Bars, taverns, and nightclubs",
+      "Restaurants serving alcohol",
+      "Wineries, breweries, and distilleries",
+      "Hotels and hospitality venues",
+      "Event venues and caterers"
+    ],
+    coverageIncludes: [
+      "ISO Occurrence & Claims-Made coverage forms",
+      "ISO Liquor Liability coverage endorsement",
+      "Third-party bodily injury claims",
+      "Third-party property damage claims",
+      "Legal defense costs and settlements",
+      "Per location aggregate endorsement",
+      "Blanket additional insured options",
+      "Medical payments coverage",
+      "Personal and advertising injury"
+    ],
+    benefits: [
+      "$10M excess capacity available",
+      "Customized coverage for your operations",
+      "Hired & non-owned auto supported",
+      "Employee Benefits Liability available",
+      "Stop Gap Liability coverage",
+      "Meets landlord and lease requirements",
+      "Fast quotes and policy issuance",
+      "Expert claims handling for alcohol-related incidents",
+      "Competitive rates for qualified risks"
+    ],
+    programHighlights: [
+      "$10M Excess Capacity Available",
+      "ISO Occurrence & Claims-Made Forms",
+      "ISO Liquor Liability Coverage",
+      "Per Location Aggregate Endorsement",
+      "Blanket Additional Insured",
+      "Hired & Non-Owned Auto",
+      "Employee Benefits Liability",
+      "Stop Gap Liability",
+      "California & Nevada Specialists",
+      "Available Nationwide"
+    ],
+    eligibleStates: [
+      "CA", "NV", "AZ", "OR", "WA", "TX", "FL", "NY", "IL", "OH", "PA", "MI", "GA", "NC", "NJ",
+      "VA", "MA", "IN", "TN", "MO", "MD", "WI", "CO", "MN", "SC", "AL", "LA", "KY", "OK", "CT",
+      "UT", "NV", "AR", "MS", "KS", "NM", "NE", "ID", "WV", "HI", "NH", "ME", "MT", "RI", "DE",
+      "SD", "ND", "AK", "VT", "WY", "DC"
+    ]
+  },
+
+  {
     title: "Surety Bonds",
     slug: "surety-bonds",
     category: "Specialty",
@@ -2570,6 +2631,74 @@ export const industries: CoverageContent[] = [
       "Global coverage for international operations",
       "Industry-specific risk management",
       "Compliance with aerospace regulations"
+    ]
+  },
+
+  {
+    title: "Liquor Stores & Convenience Stores",
+    slug: "liquor-store",
+    category: "Industries",
+    seoTitle: "Liquor Store Insurance California & Nevada | Casurance",
+    seoDescription: "Comprehensive insurance for liquor stores, convenience stores, gas stations with alcohol sales. Liquor liability, property, workers comp, and business coverage. California and Nevada specialists.",
+    summary: "Specialized insurance program for liquor stores, convenience stores, and gas stations selling alcoholic beverages with comprehensive liability and property protection.",
+    description: "Liquor Store and Convenience Store insurance provides tailored coverage for retail operations selling alcoholic beverages. This specialized program addresses the unique risks of alcohol retail including Dram Shop liability, property protection for high-value inventory, employee safety, and business interruption. Our program features up to $10M excess capacity, ISO occurrence and claims-made forms, per-location aggregate endorsements, and comprehensive general liability with hired and non-owned auto coverage. We specialize in California and Nevada markets where Dram Shop laws create significant liability exposure for liquor retailers.",
+    whoNeeds: [
+      "Liquor stores and package stores",
+      "Convenience stores with liquor licenses",
+      "Gas stations selling beer, wine, and spirits",
+      "Wine shops and specialty beverage retailers",
+      "Grocery stores with alcohol departments",
+      "24-hour stores selling alcoholic beverages",
+      "C-stores with fuel and alcohol sales",
+      "Beer and wine retailers"
+    ],
+    coverageIncludes: [
+      "Liquor Liability (Dram Shop coverage) up to $1M/$2M",
+      "ISO Occurrence & Claims-Made coverage forms",
+      "ISO Liquor Liability endorsement",
+      "Commercial General Liability $1M/$2M",
+      "Building coverage (replacement cost valuation)",
+      "Business Personal Property (inventory and fixtures)",
+      "Business Income with Extra Expense",
+      "Equipment Breakdown coverage",
+      "Employee Dishonesty protection",
+      "Workers Compensation insurance",
+      "Commercial Auto for delivery vehicles",
+      "Per location aggregate endorsement",
+      "Blanket additional insured",
+      "Hired & non-owned auto",
+      "Employee Benefits Liability",
+      "Stop Gap Liability"
+    ],
+    benefits: [
+      "$10M excess capacity available through our excess casualty division",
+      "Customized coverage tailored to liquor retail operations",
+      "California and Nevada Dram Shop law specialists",
+      "Competitive rates for well-managed operations",
+      "Fast quotes and policy issuance",
+      "Claims expertise in alcohol-related incidents",
+      "Coverage for 24-hour operations",
+      "Protection for high-value inventory",
+      "Security system discount opportunities",
+      "Risk management resources for alcohol retailers"
+    ],
+    programHighlights: [
+      "$10M Excess Capacity Available",
+      "ISO Occurrence & Claims-Made Forms",
+      "ISO Liquor Liability Coverage",
+      "Per Location Aggregate Endorsement",
+      "Commercial General Liability $1M/$2M",
+      "Building & Business Personal Property",
+      "Business Income Coverage",
+      "Equipment Breakdown",
+      "Employee Dishonesty",
+      "Hired & Non-Owned Auto",
+      "Blanket Additional Insured",
+      "Stop Gap Liability",
+      "Workers Compensation Available"
+    ],
+    eligibleStates: [
+      "CA", "NV", "AZ", "OR", "WA", "TX", "FL", "NY", "IL", "OH", "PA", "MI", "GA", "NC", "NJ"
     ]
   },
 

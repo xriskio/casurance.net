@@ -31,6 +31,7 @@ import golfCountryClubImg from "@assets/stock_images/professional_golf_co_2f9b5f
 import publicTransportationImg from "@assets/stock_images/modern_public_transp_64aa03b0.jpg";
 import publicSelfStorageImg from "@assets/stock_images/modern_self_storage__b49ae433.jpg";
 import tncSharedEconomyImg from "@assets/generated_images/american_tnc_rideshare_fleet.png";
+import liquorStoreImg from "@assets/stock_images/liquor_store_interio_cee056af.jpg";
 
 // New coverage-specific stock images
 import workersCompImg from "@assets/stock_images/american_workers_com_d2b0034a.jpg";
@@ -82,6 +83,7 @@ export const industryImages: Record<string, string> = {
   // Industries
   "agribusiness-industry": agribusinessImg,
   "aerospace": aerospaceImg,
+  "liquor-store": liquorStoreImg,
   "cannabis": cannabisImg,
   "construction": constructionImg,
   "education": educationImg,

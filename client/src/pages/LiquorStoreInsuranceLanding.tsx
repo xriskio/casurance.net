@@ -43,8 +43,14 @@ import {
   ShieldCheck,
   Package,
   Percent,
-  Star
+  Star,
+  Umbrella
 } from "lucide-react";
+
+import liquorStoreImg1 from "@assets/stock_images/liquor_store_interio_cee056af.jpg";
+import liquorStoreImg2 from "@assets/stock_images/liquor_store_interio_d2557533.jpg";
+import convenienceStoreImg1 from "@assets/stock_images/convenience_store_ex_9295097d.jpg";
+import convenienceStoreImg2 from "@assets/stock_images/convenience_store_ex_38b053cb.jpg";
 
 const coverageTypes = [
   { 
@@ -857,6 +863,192 @@ Additional Info: ${data.additionalInfo}
                   </CardContent>
                 </Card>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Business Types We Insure - Image Gallery */}
+        <section className="py-16 lg:py-20">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+                Businesses We Insure
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                From liquor stores to convenience stores, gas stations, and package stores - we provide specialized coverage for your retail operation.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="group relative overflow-hidden rounded-xl">
+                <img 
+                  src={liquorStoreImg1} 
+                  alt="Liquor store interior with wine and spirits" 
+                  className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <h3 className="text-white font-semibold text-lg">Liquor Stores</h3>
+                  <p className="text-white/80 text-sm">Wine, spirits, and beer retailers</p>
+                </div>
+              </div>
+              
+              <div className="group relative overflow-hidden rounded-xl">
+                <img 
+                  src={liquorStoreImg2} 
+                  alt="Package store wine display" 
+                  className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <h3 className="text-white font-semibold text-lg">Package Stores</h3>
+                  <p className="text-white/80 text-sm">Off-premise alcohol retailers</p>
+                </div>
+              </div>
+              
+              <div className="group relative overflow-hidden rounded-xl">
+                <img 
+                  src={convenienceStoreImg1} 
+                  alt="Convenience store exterior" 
+                  className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <h3 className="text-white font-semibold text-lg">Convenience Stores</h3>
+                  <p className="text-white/80 text-sm">C-stores with liquor sales</p>
+                </div>
+              </div>
+              
+              <div className="group relative overflow-hidden rounded-xl">
+                <img 
+                  src={convenienceStoreImg2} 
+                  alt="Gas station convenience store" 
+                  className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <h3 className="text-white font-semibold text-lg">Gas Stations</h3>
+                  <p className="text-white/80 text-sm">Fuel stations with liquor licenses</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Policy Structure - Kinsale Program */}
+        <section className="py-16 lg:py-20 bg-muted/30">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+                Our Liquor Store Insurance Program
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                Access comprehensive coverage with up to $10M excess capacity and specialized endorsements for liquor retailers.
+              </p>
+            </div>
+            
+            <div className="grid lg:grid-cols-3 gap-8">
+              {/* Policy Structure */}
+              <Card className="border-primary/20">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <FileText className="h-5 w-5 text-primary" />
+                    Policy Structure
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                      <span className="text-muted-foreground">$10M excess capacity available</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                      <span className="text-muted-foreground">ISO Occurrence & Claims-Made forms</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                      <span className="text-muted-foreground">ISO Liquor Liability coverage</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                      <span className="text-muted-foreground">Per location aggregate endorsement</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                      <span className="text-muted-foreground">Customized coverage options</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+              
+              {/* General Liability Features */}
+              <Card className="border-primary/20">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Shield className="h-5 w-5 text-primary" />
+                    General Liability
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                      <span className="text-muted-foreground">Commercial General Liability</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                      <span className="text-muted-foreground">Blanket additional insured</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                      <span className="text-muted-foreground">Hired & non-owned auto</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                      <span className="text-muted-foreground">Employee Benefits Liability</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                      <span className="text-muted-foreground">Stop Gap Liability</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+              
+              {/* Additional Coverages */}
+              <Card className="border-primary/20">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Umbrella className="h-5 w-5 text-primary" />
+                    Additional Coverages
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                      <span className="text-muted-foreground">Business Personal Property</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                      <span className="text-muted-foreground">Building Coverage</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                      <span className="text-muted-foreground">Business Income & Extra Expense</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                      <span className="text-muted-foreground">Equipment Breakdown</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                      <span className="text-muted-foreground">Employee Dishonesty</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>
