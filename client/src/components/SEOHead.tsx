@@ -1,5 +1,38 @@
 import { Helmet } from "react-helmet-async";
 
+/**
+ * SEOHead Component - Google Search Structured Data Implementation
+ * 
+ * IMPORTANT: Google Structured Data Policy Compliance
+ * https://developers.google.com/search/docs/appearance/structured-data/sd-policies
+ * 
+ * Quality Guidelines:
+ * 1. CONTENT VISIBILITY: All structured data must match visible page content
+ *    - FAQs must be visible on the page (in an FAQ section or accordion)
+ *    - Reviews/ratings must be from actual users, displayed on the page
+ *    - Services must be described on the page
+ * 
+ * 2. NO FAKE DATA: Reviews and ratings must be from real users
+ *    - Don't use aggregateRating unless actual user reviews are displayed
+ *    - Fake reviews can result in Google manual action
+ * 
+ * 3. RELEVANCE: Structured data must describe the page content accurately
+ * 
+ * 4. SPECIFICITY: Use most specific schema types (InsuranceAgency, not LocalBusiness)
+ * 
+ * Supported Schema Types:
+ * - InsuranceAgency (LocalBusiness subtype) - always included
+ * - WebPage/Article - always included
+ * - BreadcrumbList - when breadcrumbs prop provided
+ * - FAQPage - when faqs prop provided (must be visible on page)
+ * - WebSite with SearchAction - when isHomePage=true
+ * - Service with OfferCatalog - when services prop provided
+ * - AggregateRating - ONLY when real reviews are displayed on page
+ * - Review - when individual reviews prop provided
+ * - HowTo - when howTo prop provided (step-by-step guides)
+ * - Speakable - when speakable=true (for voice search)
+ */
+
 interface BreadcrumbItem {
   name: string;
   url: string;

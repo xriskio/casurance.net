@@ -41,12 +41,6 @@ const homeServices = [
   { name: "Cyber Liability Insurance", description: "Data breach and cybersecurity incident coverage", url: "/coverage/cyber-liability" }
 ];
 
-const homeAggregateRating = {
-  ratingValue: 4.9,
-  reviewCount: 127,
-  bestRating: 5
-};
-
 export default function Home() {
   return (
     <>
@@ -57,7 +51,6 @@ export default function Home() {
         canonical="/"
         faqs={homeFaqs}
         services={homeServices}
-        aggregateRating={homeAggregateRating}
         isHomePage={true}
         speakable={true}
       />
