@@ -170,10 +170,10 @@ const liquorLiabilityLimits = [
 ];
 
 const stats = [
-  { value: "24hr", label: "Coverage Available", icon: Clock },
+  { value: "Multi", label: "Location Coverage", icon: Building2 },
   { value: "A+", label: "Rated Carriers", icon: Shield },
-  { value: "$500K+", label: "Liability Limits", icon: Scale },
-  { value: "Same Day", label: "Quote Turnaround", icon: CheckCircle },
+  { value: "$10M", label: "Liquor Liability", icon: Scale },
+  { value: "50 States", label: "Chain Store Coverage", icon: MapPin },
 ];
 
 const faqs = [
@@ -581,11 +581,11 @@ Additional Info: ${data.additionalInfo}
               
               <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 leading-tight">
                 Liquor Store Insurance
-                <span className="block text-primary">California & Nevada</span>
+                <span className="block text-white">California & Nevada</span>
               </h1>
               
               <p className="text-xl text-white/80 mb-8 leading-relaxed">
-                Protect your liquor store, convenience store, or gas station with comprehensive coverage including <strong>Liquor Liability</strong>, General Liability, Property Insurance, and Workers Compensation.
+                Protect your liquor store, convenience store, or gas station with comprehensive coverage including <strong>Liquor Liability</strong>, General Liability, Property Insurance, and Workers Compensation. <strong>We insure multiple locations and chain stores across multiple states.</strong>
               </p>
               
               <div className="grid grid-cols-2 gap-4 mb-8">
@@ -968,7 +968,7 @@ Additional Info: ${data.additionalInfo}
                     </li>
                     <li className="flex items-start gap-3">
                       <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                      <span className="text-muted-foreground">ISO Occurrence & Claims-Made forms</span>
+                      <span className="text-muted-foreground">Multiple locations & chain stores</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
@@ -976,7 +976,7 @@ Additional Info: ${data.additionalInfo}
                     </li>
                     <li className="flex items-start gap-3">
                       <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                      <span className="text-muted-foreground">Customized coverage options</span>
+                      <span className="text-muted-foreground">Coverage in all 50 states</span>
                     </li>
                   </ul>
                 </CardContent>
