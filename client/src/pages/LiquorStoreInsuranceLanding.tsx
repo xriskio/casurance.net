@@ -48,9 +48,9 @@ import {
 } from "lucide-react";
 
 import liquorStoreImg1 from "@assets/stock_images/liquor_store_interio_cee056af.jpg";
-import liquorStoreImg2 from "@assets/stock_images/liquor_store_interio_d2557533.jpg";
 import convenienceStoreImg1 from "@assets/stock_images/convenience_store_ex_9295097d.jpg";
-import convenienceStoreImg2 from "@assets/stock_images/convenience_store_ex_38b053cb.jpg";
+import gasStationImg from "@assets/stock_images/modern_gas_station_w_61ad46d8.jpg";
+import packageStoreImg from "@assets/stock_images/package_store_liquor_5111a83b.jpg";
 
 const coverageTypes = [
   { 
@@ -895,8 +895,8 @@ Additional Info: ${data.additionalInfo}
               
               <div className="group relative overflow-hidden rounded-xl">
                 <img 
-                  src={liquorStoreImg2} 
-                  alt="Package store wine display" 
+                  src={packageStoreImg} 
+                  alt="Package store liquor retail storefront" 
                   className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -921,8 +921,8 @@ Additional Info: ${data.additionalInfo}
               
               <div className="group relative overflow-hidden rounded-xl">
                 <img 
-                  src={convenienceStoreImg2} 
-                  alt="Gas station convenience store" 
+                  src={gasStationImg} 
+                  alt="Modern gas station with fuel pumps" 
                   className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
