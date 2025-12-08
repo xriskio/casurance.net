@@ -20,6 +20,18 @@ import { Helmet } from "react-helmet-async";
  * 
  * 4. SPECIFICITY: Use most specific schema types (InsuranceAgency, not LocalBusiness)
  * 
+ * Title Link Best Practices (https://developers.google.com/search/docs/appearance/title-link):
+ * - Keep titles descriptive and concise (avoid truncation)
+ * - Brand concisely: "Page Title | Casurance" format
+ * - Homepage uses full branding, other pages use short format
+ * - Avoid keyword stuffing and boilerplate text
+ * - Make main H1 heading distinctive and prominent
+ * 
+ * Canonical URL Best Practices:
+ * - Always use absolute URLs (https://casurance.net/...)
+ * - Prefer HTTPS over HTTP
+ * - Canonical URL in sitemap must match rel="canonical"
+ * 
  * Supported Schema Types:
  * - InsuranceAgency (LocalBusiness subtype) - always included
  * - WebPage/Article - always included
@@ -114,8 +126,11 @@ export default function SEOHead({
   speakable = false,
   isHomePage = false,
 }: SEOHeadProps) {
-  const fullTitle = `${title} | Casurance - Commercial Insurance Agency`;
   const siteUrl = "https://casurance.net";
+  const siteName = "Casurance";
+  const fullTitle = isHomePage 
+    ? `${siteName} - Commercial Insurance Agency | Business Insurance Quotes`
+    : `${title} | ${siteName}`;
   const canonicalUrl = canonical.startsWith('http') ? canonical : `${siteUrl}${canonical}`;
 
   const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
