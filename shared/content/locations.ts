@@ -49,21 +49,6 @@ export const insuranceTypes: LocationInsuranceType[] = [
     quoteLink: "/quote/workers-compensation"
   },
   {
-    slug: "restaurant",
-    name: "Restaurant Insurance",
-    description: "Restaurant insurance provides comprehensive protection for food service businesses including coverage for property, liability, liquor liability, and food spoilage.",
-    coveragePoints: [
-      "Property damage and business interruption",
-      "General liability coverage",
-      "Liquor liability protection",
-      "Food spoilage coverage",
-      "Equipment breakdown protection",
-      "Workers' compensation coverage"
-    ],
-    avgCost: "$3,000-$10,000 per year",
-    quoteLink: "/quote/restaurant"
-  },
-  {
     slug: "commercial-auto",
     name: "Commercial Auto Insurance",
     description: "Commercial auto insurance protects vehicles used for business purposes including liability, collision, and comprehensive coverage for company cars, trucks, and fleets.",
@@ -79,19 +64,124 @@ export const insuranceTypes: LocationInsuranceType[] = [
     quoteLink: "/quote/commercial-auto"
   },
   {
-    slug: "rideshare",
-    name: "Rideshare & TNC Insurance",
-    description: "Rideshare insurance bridges the gap between personal auto policies and TNC coverage, protecting drivers during periods when the app is on but no ride is in progress.",
+    slug: "commercial-property",
+    name: "Commercial Property Insurance",
+    description: "Commercial property insurance protects your business buildings, equipment, inventory, and furniture from covered perils including fire, theft, and natural disasters.",
     coveragePoints: [
-      "Period 1, 2, and 3 coverage gaps",
-      "Liability protection for rideshare drivers",
-      "Collision and comprehensive coverage",
-      "Uninsured motorist protection",
-      "Medical payments coverage",
-      "24/7 claims support"
+      "Building and structure coverage",
+      "Business personal property",
+      "Equipment and inventory protection",
+      "Business interruption coverage",
+      "Extra expense coverage",
+      "Tenant improvements coverage"
     ],
-    avgCost: "$100-$300 per month",
-    quoteLink: "/quote/tnc"
+    avgCost: "$1,000-$3,000 per year",
+    quoteLink: "/quote/commercial-property"
+  },
+  {
+    slug: "business-owners-policy",
+    name: "Business Owners Policy (BOP)",
+    description: "A Business Owners Policy bundles general liability and commercial property insurance into one convenient package, often at a lower cost than purchasing policies separately.",
+    coveragePoints: [
+      "General liability protection",
+      "Commercial property coverage",
+      "Business interruption insurance",
+      "Equipment breakdown coverage",
+      "Data breach protection options",
+      "Professional liability add-ons available"
+    ],
+    avgCost: "$500-$3,500 per year",
+    quoteLink: "/quote"
+  },
+  {
+    slug: "professional-liability",
+    name: "Professional Liability (E&O)",
+    description: "Professional liability insurance, also known as Errors & Omissions (E&O), protects businesses from claims of negligence, mistakes, or failure to perform professional services.",
+    coveragePoints: [
+      "Protection against negligence claims",
+      "Coverage for professional mistakes",
+      "Legal defense costs included",
+      "Contractual liability protection",
+      "Prior acts coverage available",
+      "Worldwide coverage options"
+    ],
+    avgCost: "$500-$5,000 per year",
+    quoteLink: "/quote"
+  },
+  {
+    slug: "cyber-liability",
+    name: "Cyber Liability Insurance",
+    description: "Cyber liability insurance protects your business from data breaches, cyber attacks, and technology-related risks including notification costs, forensics, and liability claims.",
+    coveragePoints: [
+      "Data breach response costs",
+      "Cyber extortion and ransomware",
+      "Business interruption from cyber events",
+      "Network security liability",
+      "Privacy liability protection",
+      "Regulatory defense and penalties"
+    ],
+    avgCost: "$1,000-$7,500 per year",
+    quoteLink: "/quote"
+  },
+  {
+    slug: "liquor-liability",
+    name: "Liquor Liability Insurance",
+    description: "Liquor liability insurance protects businesses that sell, serve, or manufacture alcohol from claims arising from intoxicated patrons causing injury or property damage.",
+    coveragePoints: [
+      "Third-party bodily injury claims",
+      "Property damage by intoxicated persons",
+      "Dram shop law protection",
+      "Legal defense costs",
+      "Assault and battery coverage",
+      "Host liquor liability"
+    ],
+    avgCost: "$1,500-$15,000 per year",
+    quoteLink: "/quote"
+  },
+  {
+    slug: "employment-practices-liability",
+    name: "Employment Practices Liability (EPLI)",
+    description: "Employment practices liability insurance protects employers from claims by employees alleging discrimination, wrongful termination, harassment, and other employment-related issues.",
+    coveragePoints: [
+      "Wrongful termination claims",
+      "Discrimination allegations",
+      "Sexual harassment claims",
+      "Retaliation lawsuits",
+      "Wage and hour disputes",
+      "Third-party liability coverage"
+    ],
+    avgCost: "$800-$5,000 per year",
+    quoteLink: "/quote"
+  },
+  {
+    slug: "umbrella-excess",
+    name: "Umbrella & Excess Liability",
+    description: "Umbrella and excess liability insurance provides additional liability limits above your primary policies, protecting your business from catastrophic claims that exceed base coverage.",
+    coveragePoints: [
+      "Additional limits over primary policies",
+      "Broader coverage than underlying policies",
+      "Protection for catastrophic claims",
+      "Covers general liability excess",
+      "Auto liability excess coverage",
+      "Employer's liability excess"
+    ],
+    avgCost: "$1,000-$10,000 per year",
+    quoteLink: "/quote"
+  },
+  {
+    slug: "restaurant",
+    name: "Restaurant Insurance",
+    description: "Restaurant insurance provides comprehensive protection for food service businesses including coverage for property, liability, liquor liability, and food spoilage.",
+    coveragePoints: [
+      "Property damage and business interruption",
+      "General liability coverage",
+      "Liquor liability protection",
+      "Food spoilage coverage",
+      "Equipment breakdown protection",
+      "Workers' compensation coverage"
+    ],
+    avgCost: "$3,000-$10,000 per year",
+    quoteLink: "/quote/restaurant"
   },
   {
     slug: "trucking",
@@ -109,19 +199,124 @@ export const insuranceTypes: LocationInsuranceType[] = [
     quoteLink: "/quote/trucking"
   },
   {
-    slug: "commercial-property",
-    name: "Commercial Property Insurance",
-    description: "Commercial property insurance protects your business buildings, equipment, inventory, and furniture from covered perils including fire, theft, and natural disasters.",
+    slug: "rideshare",
+    name: "Rideshare & TNC Insurance",
+    description: "Rideshare insurance bridges the gap between personal auto policies and TNC coverage, protecting drivers during periods when the app is on but no ride is in progress.",
     coveragePoints: [
-      "Building and structure coverage",
-      "Business personal property",
-      "Equipment and inventory protection",
-      "Business interruption coverage",
-      "Extra expense coverage",
-      "Tenant improvements coverage"
+      "Period 1, 2, and 3 coverage gaps",
+      "Liability protection for rideshare drivers",
+      "Collision and comprehensive coverage",
+      "Uninsured motorist protection",
+      "Medical payments coverage",
+      "24/7 claims support"
     ],
-    avgCost: "$1,000-$3,000 per year",
-    quoteLink: "/quote/commercial-property"
+    avgCost: "$100-$300 per month",
+    quoteLink: "/quote/tnc"
+  },
+  {
+    slug: "contractors",
+    name: "Contractors Insurance",
+    description: "Contractors insurance provides comprehensive coverage for construction professionals including general liability, tools and equipment, and completed operations protection.",
+    coveragePoints: [
+      "General liability for contractors",
+      "Tools and equipment coverage",
+      "Completed operations protection",
+      "Installation floater coverage",
+      "Builders risk insurance",
+      "Subcontractor default insurance"
+    ],
+    avgCost: "$1,500-$8,000 per year",
+    quoteLink: "/quote"
+  },
+  {
+    slug: "products-liability",
+    name: "Products Liability Insurance",
+    description: "Products liability insurance protects manufacturers, distributors, and retailers from claims arising from defective products that cause injury or property damage.",
+    coveragePoints: [
+      "Bodily injury from products",
+      "Property damage claims",
+      "Product recall expense",
+      "Manufacturing defect coverage",
+      "Design defect protection",
+      "Warning label liability"
+    ],
+    avgCost: "$1,000-$10,000 per year",
+    quoteLink: "/quote"
+  },
+  {
+    slug: "directors-officers",
+    name: "Directors & Officers (D&O) Insurance",
+    description: "Directors and Officers insurance protects company leaders from personal liability for decisions made while managing the company, including defense costs and settlements.",
+    coveragePoints: [
+      "Personal asset protection",
+      "Defense cost coverage",
+      "Securities claims protection",
+      "Regulatory investigation coverage",
+      "Employment claims coverage",
+      "Entity coverage options"
+    ],
+    avgCost: "$2,000-$15,000 per year",
+    quoteLink: "/quote"
+  },
+  {
+    slug: "inland-marine",
+    name: "Inland Marine Insurance",
+    description: "Inland marine insurance covers equipment, tools, and property in transit or stored at job sites that standard property policies may not cover.",
+    coveragePoints: [
+      "Equipment in transit coverage",
+      "Tools at job sites",
+      "Contractors equipment floater",
+      "Installation coverage",
+      "Electronic data processing",
+      "Valuable papers coverage"
+    ],
+    avgCost: "$500-$5,000 per year",
+    quoteLink: "/quote"
+  },
+  {
+    slug: "surety-bonds",
+    name: "Surety Bonds",
+    description: "Surety bonds guarantee that contractual obligations will be fulfilled, protecting project owners and ensuring contractors meet their commitments.",
+    coveragePoints: [
+      "Bid bonds for contractors",
+      "Performance bonds",
+      "Payment bonds",
+      "License and permit bonds",
+      "Fidelity bonds",
+      "Court bonds"
+    ],
+    avgCost: "1-15% of bond amount",
+    quoteLink: "/quote"
+  },
+  {
+    slug: "commercial-flood",
+    name: "Commercial Flood Insurance",
+    description: "Commercial flood insurance protects your business property and contents from flood damage, which is excluded from standard commercial property policies.",
+    coveragePoints: [
+      "Building flood coverage",
+      "Contents and inventory protection",
+      "Business interruption options",
+      "Excess flood coverage available",
+      "NFIP and private options",
+      "Basement coverage options"
+    ],
+    avgCost: "$1,000-$5,000 per year",
+    quoteLink: "/quote"
+  },
+  {
+    slug: "commercial-earthquake",
+    name: "Commercial Earthquake Insurance",
+    description: "Commercial earthquake insurance covers damage to your business property from earthquakes, which is excluded from standard commercial property policies.",
+    coveragePoints: [
+      "Building damage coverage",
+      "Business personal property",
+      "Business interruption",
+      "Extra expense coverage",
+      "Code upgrade coverage",
+      "Sprinkler leakage"
+    ],
+    avgCost: "$1,500-$8,000 per year",
+    quoteLink: "/quote"
   }
 ];
 
