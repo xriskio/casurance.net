@@ -943,7 +943,7 @@ Additional Info: ${data.additionalInfo}
                 Our Liquor Store Insurance Program
               </h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                Access comprehensive coverage with up to $10M excess capacity and specialized endorsements for liquor retailers.
+                Access comprehensive coverage with General Liability up to $1M and Liquor Liability up to $10M with approval, plus specialized endorsements for liquor retailers.
               </p>
             </div>
             
@@ -960,15 +960,15 @@ Additional Info: ${data.additionalInfo}
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
                       <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                      <span className="text-muted-foreground">$10M excess capacity available</span>
+                      <span className="text-muted-foreground">General Liability up to $1M</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                      <span className="text-muted-foreground">Liquor Liability up to $10M (with approval)</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
                       <span className="text-muted-foreground">ISO Occurrence & Claims-Made forms</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                      <span className="text-muted-foreground">ISO Liquor Liability coverage</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />

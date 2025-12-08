@@ -952,7 +952,8 @@ export const coverages: CoverageContent[] = [
       "Personal and advertising injury"
     ],
     benefits: [
-      "$10M excess capacity available",
+      "General Liability up to $1M",
+      "Liquor Liability up to $10M with approval",
       "Customized coverage for your operations",
       "Hired & non-owned auto supported",
       "Employee Benefits Liability available",
@@ -963,7 +964,8 @@ export const coverages: CoverageContent[] = [
       "Competitive rates for qualified risks"
     ],
     programHighlights: [
-      "$10M Excess Capacity Available",
+      "General Liability Up to $1M",
+      "Liquor Liability Up to $10M (with approval)",
       "ISO Occurrence & Claims-Made Forms",
       "ISO Liquor Liability Coverage",
       "Per Location Aggregate Endorsement",
@@ -971,8 +973,7 @@ export const coverages: CoverageContent[] = [
       "Hired & Non-Owned Auto",
       "Employee Benefits Liability",
       "Stop Gap Liability",
-      "California & Nevada Specialists",
-      "Available Nationwide"
+      "California & Nevada Specialists"
     ],
     eligibleStates: [
       "CA", "NV", "AZ", "OR", "WA", "TX", "FL", "NY", "IL", "OH", "PA", "MI", "GA", "NC", "NJ",
@@ -2671,7 +2672,8 @@ export const industries: CoverageContent[] = [
       "Stop Gap Liability"
     ],
     benefits: [
-      "$10M excess capacity available through our excess casualty division",
+      "General Liability up to $1M",
+      "Liquor Liability up to $10M with approval",
       "Customized coverage tailored to liquor retail operations",
       "California and Nevada Dram Shop law specialists",
       "Competitive rates for well-managed operations",
@@ -2683,11 +2685,11 @@ export const industries: CoverageContent[] = [
       "Risk management resources for alcohol retailers"
     ],
     programHighlights: [
-      "$10M Excess Capacity Available",
+      "General Liability Up to $1M",
+      "Liquor Liability Up to $10M (with approval)",
       "ISO Occurrence & Claims-Made Forms",
       "ISO Liquor Liability Coverage",
       "Per Location Aggregate Endorsement",
-      "Commercial General Liability $1M/$2M",
       "Building & Business Personal Property",
       "Business Income Coverage",
       "Equipment Breakdown",
