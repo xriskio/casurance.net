@@ -1,0 +1,52 @@
+
+Google for Developers
+https://developers.google.com › search › apis › quickstart
+The Indexing API allows site owners to directly notify Google when their job posting or livestreaming video pages are added or removed.
+AI Overview
+
+
+
++11
+Integrating the Google Indexing API allows for the rapid indexing or removal of specific web pages from Google Search results by notifying Google directly of content changes. This tool is primarily designed for pages with JobPosting or BroadcastEvent embedded in a VideoObject structured data. 
+The integration process involves several key steps:
+Prerequisites
+Google Account: A Google account linked to your website's Google Search Console.
+Website Verification: Your website must be verified as a property in Google Search Console.
+Structured Data: Your pages must include the required JobPosting or BroadcastEvent schema markup so Google can correctly interpret the content. 
+Step-by-Step Integration Guide
+Create a Google Cloud Project
+Navigate to the Google Cloud Console.
+Create a new project or select an existing one.
+Enable the Indexing API
+In the Cloud Console, go to APIs & Services > Library.
+Search for "Indexing API" and click Enable.
+Create a Service Account and API Key
+Go to APIs & Services > Credentials.
+Click Create Credentials and select Service account.
+Provide a name and description, then click Create and Continue.
+For the "Grant this service account access" step, select the "Owner" role from the dropdown menu (this is crucial to prevent permission errors).
+Continue and then click Done.
+Go to the Keys tab for your new service account, click Add Key, and choose Create new key.
+Select JSON as the key type and click Create. This will download a JSON file to your computer; keep it secure, as it contains your private key.
+Add Service Account as a Site Owner in Search Console
+Open the downloaded JSON file and copy the client_email address (which ends in .iam.gserviceaccount.com).
+Go to Google Search Console for your website property.
+Navigate to Settings > Users and permissions > Add user.
+Paste the client_email address and ensure the permission is set to Owner, then click Add. 
+Sending API Requests
+Once configured, you can send HTTP POST requests to the API endpoint to notify Google of updates or deletions. 
+Endpoint: https://indexing.googleapis.com/v3/urlNotifications:publish
+Update a URL:
+json
+{
+  "url": "http://example.com/jobs/42",
+  "type": "URL_UPDATED"
+}
+Remove a URL:
+json
+{
+  "url": "http://example.com/jobs/43",
+  "type": "URL_DELETED"
+}
+Check Notification Status: Send an HTTP GET request to indexing.googleapis.com to confirm the last time Google received a notification for a specific URL. 
+You can implement the integration using standard HTTP clients or leverage Google's provided client libraries for various programming languages (Java, Python, PHP, etc.) for better integration and security. Many content management systems and job board platforms also offer plugins or built-in tools to simplify this process (e.g., for WordPress or specific job board software). 
