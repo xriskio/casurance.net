@@ -27,17 +27,36 @@ import { Helmet } from "react-helmet-async";
  * - Avoid keyword stuffing and boilerplate text
  * - Make main H1 heading distinctive and prominent
  * 
+ * Site Name Best Practices (https://developers.google.com/search/docs/appearance/site-names):
+ * - WebSite structured data defined ONCE in index.html (not dynamically per-page)
+ * - Required: name, url (with trailing slash)
+ * - Recommended: alternateName for acronyms or alternate names
+ * - Use consistent site name across homepage (og:site_name should match)
+ * - Site name should be concise ("Casurance" not "Casurance Insurance Agency")
+ * 
+ * Snippet Best Practices (https://developers.google.com/search/docs/appearance/snippet):
+ * - Create unique, descriptive meta descriptions for each page
+ * - Avoid keyword stuffing - descriptions should be human-readable
+ * - Include relevant information: services, location, benefits
+ * - Meta descriptions can be up to ~155-160 characters before truncation
+ * - Use max-snippet meta tag to control snippet length if needed
+ * 
  * Canonical URL Best Practices:
  * - Always use absolute URLs (https://casurance.net/...)
  * - Prefer HTTPS over HTTP
  * - Canonical URL in sitemap must match rel="canonical"
+ * 
+ * Structured Data Carousels (Beta - EEA/Turkey/South Africa only):
+ * - Uses ItemList with LocalBusiness/Product/Event types
+ * - Requires summary page with 3+ items linking to detail pages
+ * - Not available in US as of Dec 2025
  * 
  * Supported Schema Types:
  * - InsuranceAgency (LocalBusiness subtype) - always included
  * - WebPage/Article - always included
  * - BreadcrumbList - when breadcrumbs prop provided
  * - FAQPage - when faqs prop provided (must be visible on page)
- * - WebSite with SearchAction - when isHomePage=true
+ * - WebSite with SearchAction - defined in index.html only (not here)
  * - Service with OfferCatalog - when services prop provided
  * - AggregateRating - ONLY when real reviews are displayed on page
  * - Review - when individual reviews prop provided
@@ -196,6 +215,8 @@ export default function SEOHead({
     }
   };
 
+  // WebPage schema without embedded WebSite (WebSite is defined once in index.html)
+  // Using @id reference instead of inline WebSite to avoid duplication
   const webPageSchema = {
     "@context": "https://schema.org",
     "@type": ogType === "article" ? "Article" : "WebPage",
@@ -214,39 +235,13 @@ export default function SEOHead({
     ...(articleModifiedTime && { "dateModified": articleModifiedTime }),
     ...(articleAuthor && { "author": { "@type": "Person", "name": articleAuthor } }),
     ...(articleSection && { "articleSection": articleSection }),
-    "inLanguage": "en-US",
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "Casurance Commercial Insurance",
-      "url": siteUrl
-    }
+    "inLanguage": "en-US"
   };
 
-  const websiteSchema = isHomePage ? {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Casurance Commercial Insurance Agency",
-    "alternateName": ["Casurance", "Casurance Insurance"],
-    "url": siteUrl,
-    "description": "Leading commercial insurance agency providing comprehensive business coverage across all 50 US states. Specializing in commercial auto, general liability, workers compensation, and 40+ insurance products.",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Casurance Insurance Agency",
-      "logo": {
-        "@type": "ImageObject",
-        "url": `${siteUrl}/logo.png`
-      }
-    },
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": `${siteUrl}/search?q={search_term_string}`
-      },
-      "query-input": "required name=search_term_string"
-    },
-    "inLanguage": "en-US"
-  } : null;
+  // Note: WebSite schema with site name and SearchAction is defined in index.html per Google guidelines
+  // https://developers.google.com/search/docs/appearance/site-names
+  // "avoid creating an additional WebSite structured data block on your home page if you can help it"
+  const websiteSchema = null;
 
   const reviewSchema = reviews && reviews.length > 0 ? reviews.map(review => ({
     "@context": "https://schema.org",
@@ -353,8 +348,7 @@ export default function SEOHead({
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImage} />
-      <meta property="og:site_name" content="Casurance Commercial Insurance" />
-      <meta property="og:locale" content="en_US" />
+      {/* og:site_name and og:locale are defined in index.html - don't duplicate */}
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -380,10 +374,7 @@ export default function SEOHead({
       <meta name="format-detection" content="telephone=yes" />
       <meta name="theme-color" content="#0a1628" />
 
-      {/* Business Schema */}
-      <script type="application/ld+json">
-        {JSON.stringify(businessSchema)}
-      </script>
+      {/* InsuranceAgency (Business) Schema is defined in index.html - don't duplicate */}
 
       {/* WebPage/Article Schema */}
       <script type="application/ld+json">
