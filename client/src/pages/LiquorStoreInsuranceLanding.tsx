@@ -121,6 +121,48 @@ const businessTypes = [
   "24-Hour Store",
 ];
 
+const legalEntityTypes = [
+  "Sole Proprietorship",
+  "Partnership",
+  "LLC",
+  "Corporation",
+  "S-Corporation",
+  "Other",
+];
+
+const buildingConstructionTypes = [
+  "Frame",
+  "Joisted Masonry",
+  "Non-Combustible",
+  "Masonry Non-Combustible",
+  "Modified Fire Resistive",
+  "Fire Resistive",
+];
+
+const roofTypes = [
+  "Built-Up",
+  "Composition Shingle",
+  "Metal",
+  "Tile",
+  "Membrane/Rubber",
+  "Wood Shake/Shingle",
+  "Other",
+];
+
+const deductibleOptions = [
+  "$500",
+  "$1,000",
+  "$2,500",
+  "$5,000",
+  "$10,000",
+];
+
+const liquorLiabilityLimits = [
+  "$300,000/$600,000",
+  "$500,000/$1,000,000",
+  "$1,000,000/$2,000,000",
+];
+
 const stats = [
   { value: "24hr", label: "Coverage Available", icon: Clock },
   { value: "A+", label: "Rated Carriers", icon: Shield },
