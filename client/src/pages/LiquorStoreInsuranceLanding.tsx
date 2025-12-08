@@ -1099,7 +1099,7 @@ Additional Info: ${data.additionalInfo}
                   <CardContent className="p-4 text-center">
                     <MapPin className="h-5 w-5 mx-auto mb-2 text-primary" />
                     <h3 className="font-semibold text-foreground">{city.name}</h3>
-                    <p className="text-xs text-muted-foreground">{city.state} • {city.population}</p>
+                    <p className="text-xs text-muted-foreground">{city.state}</p>
                   </CardContent>
                 </Card>
               ))}
