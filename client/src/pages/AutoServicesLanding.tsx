@@ -116,7 +116,7 @@ const businessTypes = [
 
 const stats = [
   { value: "$5M", label: "Max Building TIV", icon: Building2 },
-  { value: "47", label: "States Covered", icon: MapPin },
+  { value: "USA", label: "Nationwide", icon: MapPin },
   { value: "$1,500", label: "Min Premium", icon: DollarSign },
   { value: "$5M", label: "Excess Available", icon: Scale },
 ];
@@ -175,7 +175,7 @@ const faqs = [
   },
   {
     question: "What states is this coverage available in?",
-    answer: "Coverage is available in all U.S. states including Washington D.C., excluding Hawaii, Idaho, and Louisiana (47 states total)."
+    answer: "Coverage is available nationwide. Contact us to discuss coverage in your state."
   },
   {
     question: "What are the minimum premium and deductible requirements?",
@@ -498,7 +498,7 @@ Additional Info: ${data.additionalInfo}
       "Property Insurance",
       "Commercial Auto Insurance"
     ],
-    "description": "Full garage liability and garagekeepers coverage for auto repair shops, body shops, oil change centers, and automotive service businesses. Tech-enabled underwriting available in 47 states."
+    "description": "Full garage liability and garagekeepers coverage for auto repair shops, body shops, oil change centers, and automotive service businesses. Tech-enabled underwriting nationwide."
   };
 
   const faqSchema = {
@@ -528,12 +528,12 @@ Additional Info: ${data.additionalInfo}
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>Auto Services Insurance with Garagekeepers | Non-Dealer Garage Liability | Casurance</title>
-        <meta name="description" content="Full garage liability and garagekeepers coverage for auto repair shops, body shops, oil change centers, and automotive service businesses. Tech-enabled underwriting. Min premium $1,500. Available in 47 states." />
+        <meta name="description" content="Full garage liability and garagekeepers coverage for auto repair shops, body shops, oil change centers, and automotive service businesses. Tech-enabled underwriting. Min premium $1,500. Nationwide coverage." />
         <meta name="keywords" content="garage liability insurance, garagekeepers coverage, auto repair shop insurance, body shop insurance, oil change insurance, car wash insurance, non-dealer garage, automotive service insurance" />
         <link rel="canonical" href="https://casurance.net/auto-services-insurance" />
         
         <meta property="og:title" content="Auto Services Insurance with Garagekeepers | Non-Dealer Garage Liability | Casurance" />
-        <meta property="og:description" content="Full garage liability and garagekeepers coverage for auto repair shops, body shops, and automotive service businesses. Tech-enabled underwriting. Available in 47 states." />
+        <meta property="og:description" content="Full garage liability and garagekeepers coverage for auto repair shops, body shops, and automotive service businesses. Tech-enabled underwriting. Nationwide coverage." />
         <meta property="og:url" content="https://casurance.net/auto-services-insurance" />
         <meta property="og:type" content="website" />
         

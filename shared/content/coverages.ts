@@ -4585,7 +4585,7 @@ export const industries: CoverageContent[] = [
     slug: "auto-services",
     category: "Industries",
     summary: "Tech-enabled Non-Dealer Garage Liability coverage for repair shops, service centers, and automotive businesses with Garagekeepers protection - excluding dealership operations.",
-    description: "Auto Services insurance provides full Garage Liability for non-dealer service and repair operations with comprehensive Garagekeepers coverage. Our tech-enabled platform offers streamlined underwriting that removes the friction traditionally found in E&S, giving you reliable protection without delays. Coverage includes general liability, property coverage, and specialized protections for automotive service businesses nationwide. Available in all U.S. states including Washington D.C., excluding Hawaii, Idaho, and Louisiana.",
+    description: "Auto Services insurance provides full Garage Liability for non-dealer service and repair operations with comprehensive Garagekeepers coverage. Our tech-enabled platform offers streamlined underwriting that removes the friction traditionally found in E&S, giving you reliable protection without delays. Coverage includes general liability, property coverage, and specialized protections for automotive service businesses nationwide.",
     whoNeeds: [
       "Alarm installation and repair shops",
       "Automotive glass replacement and glass tinting",
@@ -4634,12 +4634,12 @@ export const industries: CoverageContent[] = [
       "Primary & Noncontributory available at $0 premium",
       "Waiver of Subrogation available at $0 premium",
       "Property extensions: Accounts Receivable, Back-up Sewage, Door Damage, Employee Dishonesty, Money & Securities, Outdoor Property",
-      "Available in 47 states (excludes Hawaii, Idaho, Louisiana)",
+      "Nationwide coverage available",
       "Quick binding and reliable protection without delays"
     ],
     image: "attached_assets/stock_images/modern_auto_repair_s_15972b56.jpg",
     seoTitle: "Auto Services Insurance with Garagekeepers | Non-Dealer Garage Liability",
-    seoDescription: "Full garage liability and garagekeepers coverage for auto repair shops, body shops, oil change centers, and automotive service businesses. Tech-enabled underwriting. Available in 47 states."
+    seoDescription: "Full garage liability and garagekeepers coverage for auto repair shops, body shops, oil change centers, and automotive service businesses. Tech-enabled underwriting. Nationwide coverage."
   },
   {
     title: "Golf & Country Club Insurance",
