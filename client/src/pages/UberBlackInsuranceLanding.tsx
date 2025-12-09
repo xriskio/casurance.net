@@ -341,153 +341,171 @@ export default function UberBlackInsuranceLanding() {
               </div>
 
               {/* Right Column - Quick Quote Form */}
-              <div id="quick-quote-form" className="bg-white rounded-2xl p-6 lg:p-8 shadow-2xl">
-                <div className="text-center mb-6">
-                  <h2 className="text-2xl font-bold text-gray-900" data-testid="text-quick-quote-title">Get Your Free Quote</h2>
-                  <p className="text-gray-600">Quick response within 24 hours</p>
+              <div id="quick-quote-form" className="bg-gradient-to-b from-blue-900 to-blue-950 rounded-2xl overflow-hidden shadow-2xl">
+                {/* Form Header */}
+                <div className="bg-blue-900 text-center py-6 px-4">
+                  <div className="flex items-center justify-center gap-2 text-yellow-400 mb-2">
+                    <Zap className="w-5 h-5" />
+                    <span className="text-sm font-semibold uppercase tracking-wider">Free Instant Quote</span>
+                  </div>
+                  <h2 className="text-2xl md:text-3xl font-bold text-white mb-2" data-testid="text-quick-quote-title">
+                    GET YOUR FREE QUOTE NOW
+                  </h2>
+                  <p className="text-blue-200 text-sm">No commitment required • Takes 2 minutes</p>
+                  <div className="mt-3 inline-block bg-green-500 text-white px-4 py-1.5 rounded-full text-sm font-semibold">
+                    Save up to 20% - Professional Drivers
+                  </div>
                 </div>
 
-                <form onSubmit={handleQuickQuote} className="space-y-4">
-                  <div>
-                    <Label htmlFor="businessName" className="text-gray-900 font-medium">Business Name</Label>
-                    <Input
-                      id="businessName"
-                      placeholder="Your company name"
-                      value={formData.businessName}
-                      onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
-                      className="mt-1 bg-gray-50 border-gray-200"
-                      data-testid="input-business-name"
-                    />
+                {/* Form Body */}
+                <div className="bg-white p-6 lg:p-8">
+                  <div className="flex items-center gap-2 mb-4 text-blue-900">
+                    <Clock className="w-5 h-5" />
+                    <span className="font-semibold">In a Hurry? Quick Quote Form</span>
                   </div>
+                  <p className="text-gray-500 text-sm mb-6">Complete the form below for a fast quote. All fields are required.</p>
 
-                  <div>
-                    <Label htmlFor="contactName" className="text-gray-900 font-medium">Your Name</Label>
-                    <Input
-                      id="contactName"
-                      placeholder="Full name"
-                      value={formData.contactName}
-                      onChange={(e) => setFormData({ ...formData, contactName: e.target.value })}
-                      className="mt-1 bg-gray-50 border-gray-200"
-                      data-testid="input-contact-name"
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-4">
+                  <form onSubmit={handleQuickQuote} className="space-y-4">
                     <div>
-                      <Label htmlFor="email" className="text-gray-900 font-medium">Email</Label>
+                      <Label htmlFor="businessName" className="text-gray-900 font-medium">Business Name *</Label>
+                      <Input
+                        id="businessName"
+                        placeholder="Your Company Name"
+                        value={formData.businessName}
+                        onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
+                        className="mt-1 bg-white border-gray-300"
+                        data-testid="input-business-name"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="firstName" className="text-gray-900 font-medium">Your Name *</Label>
+                        <Input
+                          id="firstName"
+                          placeholder="First"
+                          value={formData.contactName.split(' ')[0] || ''}
+                          onChange={(e) => {
+                            const lastName = formData.contactName.split(' ').slice(1).join(' ');
+                            setFormData({ ...formData, contactName: `${e.target.value} ${lastName}`.trim() });
+                          }}
+                          className="mt-1 bg-white border-gray-300"
+                          data-testid="input-first-name"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="lastName" className="text-gray-900 font-medium invisible">Last</Label>
+                        <Input
+                          id="lastName"
+                          placeholder="Last"
+                          value={formData.contactName.split(' ').slice(1).join(' ') || ''}
+                          onChange={(e) => {
+                            const firstName = formData.contactName.split(' ')[0] || '';
+                            setFormData({ ...formData, contactName: `${firstName} ${e.target.value}`.trim() });
+                          }}
+                          className="mt-1 bg-white border-gray-300"
+                          data-testid="input-last-name"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="email" className="text-gray-900 font-medium">Email Address *</Label>
                       <Input
                         id="email"
                         type="email"
-                        placeholder="email@example.com"
+                        placeholder="you@company.com"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="mt-1 bg-gray-50 border-gray-200"
+                        className="mt-1 bg-white border-gray-300"
                         data-testid="input-email"
                       />
                     </div>
+
                     <div>
-                      <Label htmlFor="phone" className="text-gray-900 font-medium">Phone</Label>
+                      <Label htmlFor="phone" className="text-gray-900 font-medium">Phone Number *</Label>
                       <Input
                         id="phone"
                         type="tel"
-                        placeholder="(555) 555-5555"
+                        placeholder="(555) 123-4567"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="mt-1 bg-gray-50 border-gray-200"
+                        className="mt-1 bg-white border-gray-300"
                         data-testid="input-phone"
                       />
                     </div>
-                  </div>
 
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="state" className="text-gray-900 font-medium">State</Label>
-                      <Select value={formData.state} onValueChange={(value) => setFormData({ ...formData, state: value })}>
-                        <SelectTrigger className="mt-1 bg-gray-50 border-gray-200" data-testid="select-state">
-                          <SelectValue placeholder="Select" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="CA">California</SelectItem>
-                          <SelectItem value="NV">Nevada</SelectItem>
-                          <SelectItem value="AZ">Arizona</SelectItem>
-                        </SelectContent>
-                      </Select>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="state" className="text-gray-900 font-medium">State *</Label>
+                        <Select value={formData.state} onValueChange={(value) => setFormData({ ...formData, state: value })}>
+                          <SelectTrigger className="mt-1 bg-white border-gray-300" data-testid="select-state">
+                            <SelectValue placeholder="Select State" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="CA">California</SelectItem>
+                            <SelectItem value="NV">Nevada</SelectItem>
+                            <SelectItem value="AZ">Arizona</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div>
+                        <Label htmlFor="vehicles" className="text-gray-900 font-medium">Vehicles *</Label>
+                        <Select value={formData.vehicles} onValueChange={(value) => setFormData({ ...formData, vehicles: value })}>
+                          <SelectTrigger className="mt-1 bg-white border-gray-300" data-testid="select-vehicles">
+                            <SelectValue placeholder="Select" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="1">1 Vehicle</SelectItem>
+                            <SelectItem value="2">2 Vehicles</SelectItem>
+                            <SelectItem value="3">3 Vehicles</SelectItem>
+                            <SelectItem value="4">4 Vehicles</SelectItem>
+                            <SelectItem value="5+">5+ Vehicles</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
                     </div>
-                    <div>
-                      <Label htmlFor="vehicles" className="text-gray-900 font-medium">Vehicles</Label>
-                      <Select value={formData.vehicles} onValueChange={(value) => setFormData({ ...formData, vehicles: value })}>
-                        <SelectTrigger className="mt-1 bg-gray-50 border-gray-200" data-testid="select-vehicles">
-                          <SelectValue placeholder="Select" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="1">1 Vehicle</SelectItem>
-                          <SelectItem value="2">2 Vehicles</SelectItem>
-                          <SelectItem value="3">3 Vehicles</SelectItem>
-                          <SelectItem value="4">4 Vehicles</SelectItem>
-                          <SelectItem value="5+">5+ Vehicles</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
 
-                  <div className="grid grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="tcpNumber" className="text-gray-900 font-medium">
-                        TCP Number <span className="text-gray-400 font-normal">(Optional)</span>
+                        TCP Number <span className="text-gray-400 font-normal">(if applicable)</span>
                       </Label>
                       <Input
                         id="tcpNumber"
                         placeholder="TCP-XXXXX"
                         value={formData.tcpNumber}
                         onChange={(e) => setFormData({ ...formData, tcpNumber: e.target.value })}
-                        className="mt-1 bg-gray-50 border-gray-200"
+                        className="mt-1 bg-white border-gray-300"
                         data-testid="input-tcp"
                       />
                     </div>
-                    <div>
-                      <Label htmlFor="dotNumber" className="text-gray-900 font-medium">
-                        DOT Number <span className="text-gray-400 font-normal">(Optional)</span>
-                      </Label>
-                      <Input
-                        id="dotNumber"
-                        placeholder="DOT-XXXXXXX"
-                        value={formData.dotNumber}
-                        onChange={(e) => setFormData({ ...formData, dotNumber: e.target.value })}
-                        className="mt-1 bg-gray-50 border-gray-200"
-                        data-testid="input-dot"
-                      />
-                    </div>
-                  </div>
 
-                  <Button 
-                    type="submit" 
-                    size="lg" 
-                    className="w-full text-lg py-6 bg-red-600 hover:bg-red-700 border-red-700 font-semibold"
-                    disabled={isSubmitting}
-                    data-testid="button-quick-quote-submit"
-                  >
-                    {isSubmitting ? "Submitting..." : "Get My Free Quote"}
-                  </Button>
+                    <Button 
+                      type="submit" 
+                      size="lg" 
+                      className="w-full text-lg py-6 bg-blue-600 hover:bg-blue-700 font-semibold"
+                      disabled={isSubmitting}
+                      data-testid="button-quick-quote-submit"
+                    >
+                      {isSubmitting ? "Submitting..." : "In a Hurry? Submit Now →"}
+                    </Button>
+                  </form>
 
-                  <p className="text-center text-gray-600">
-                    Or call us now: <a href="tel:888-254-0089" className="text-blue-600 font-semibold hover:underline" data-testid="link-call-form">888-254-0089</a>
-                  </p>
-                </form>
-
-                {/* Trust Badges */}
-                <div className="mt-6 pt-6 border-t border-gray-200">
-                  <div className="flex justify-around items-center text-center">
-                    <div className="flex flex-col items-center">
-                      <Clock className="w-6 h-6 text-gray-600 mb-1" />
-                      <span className="text-sm text-gray-700 font-medium">24hr Response</span>
-                    </div>
-                    <div className="flex flex-col items-center">
-                      <Shield className="w-6 h-6 text-gray-600 mb-1" />
-                      <span className="text-sm text-gray-700 font-medium">A-Rated Carriers</span>
-                    </div>
-                    <div className="flex flex-col items-center">
-                      <Award className="w-6 h-6 text-gray-600 mb-1" />
-                      <span className="text-sm text-gray-700 font-medium">3 States</span>
+                  {/* Trust Badges */}
+                  <div className="mt-6 pt-6 border-t border-gray-200">
+                    <div className="flex justify-around items-center text-center">
+                      <div className="flex items-center gap-1.5">
+                        <Shield className="w-4 h-4 text-gray-500" />
+                        <span className="text-xs text-gray-600">Secure</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <CheckCircle2 className="w-4 h-4 text-gray-500" />
+                        <span className="text-xs text-gray-600">No Spam</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Clock className="w-4 h-4 text-gray-500" />
+                        <span className="text-xs text-gray-600">24hr Response</span>
+                      </div>
                     </div>
                   </div>
                 </div>
