@@ -24,9 +24,9 @@ import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 
 import suburbanImage from "@assets/2017-Chevrolet-Suburban-COLOR-Black_1765266976772.png";
-import mercedesImage from "@assets/2018-Mercedes-S500-Hybrid-Review_1765267012520.png";
-import teslaXImage from "@assets/modelX_1765267012521.png";
-import teslaSImage from "@assets/Black-Model-S-P90D-Arachnid-Wheel-e1464681843999-1000x600-1_1765267012521.png";
+import mercedesImage from "@assets/2018-Mercedes-S500-Hybrid-Review_1765267556294.png";
+import teslaXImage from "@assets/modelX_1765267556294.png";
+import teslaSImage from "@assets/Black-Model-S-P90D-Arachnid-Wheel-e1464681843999-1000x600-1_1765267556294.png";
 import cadillacImage from "@assets/58bbbbe226940a1e3ced938e16d9665d_1765267313388.jpg";
 
 const availableStates = [
