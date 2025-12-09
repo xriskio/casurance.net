@@ -23,6 +23,8 @@ const ALL_SITE_URLS = [
   "/builders-risk-insurance",
   "/liquor-store-insurance",
   "/auto-services-insurance",
+  "/geico-commercial-auto",
+  "/geico-private-passenger",
   "/industry/auto-services",
   
   "/coverage/commercial-auto",

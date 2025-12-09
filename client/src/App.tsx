@@ -83,6 +83,8 @@ import WorkersCompLandingPage from "@/pages/WorkersCompLandingPage";
 import LiquorStoreInsuranceLanding from "@/pages/LiquorStoreInsuranceLanding";
 import BuildersRiskLanding from "@/pages/BuildersRiskLanding";
 import AutoServicesLanding from "@/pages/AutoServicesLanding";
+import GeicoCommercialAutoLanding from "@/pages/GeicoCommercialAutoLanding";
+import GeicoPrivatePassengerLanding from "@/pages/GeicoPrivatePassengerLanding";
 import QuoteThankYou from "@/pages/QuoteThankYou";
 import AccessibilityPage from "@/pages/AccessibilityPage";
 import NotFound from "@/pages/not-found";
@@ -148,6 +150,10 @@ function Router() {
       <Route path="/lp/auto-services" component={AutoServicesLanding} />
       <Route path="/lp/garage-liability" component={AutoServicesLanding} />
       <Route path="/lp/garagekeepers" component={AutoServicesLanding} />
+      <Route path="/geico-commercial-auto" component={GeicoCommercialAutoLanding} />
+      <Route path="/geico-private-passenger" component={GeicoPrivatePassengerLanding} />
+      <Route path="/lp/geico-commercial" component={GeicoCommercialAutoLanding} />
+      <Route path="/lp/geico-personal" component={GeicoPrivatePassengerLanding} />
       <Route path="/agent" component={AgentLogin} />
       <Route path="/agent/login" component={AgentLogin} />
       <Route path="/agent/portal" component={AgentPortal} />
