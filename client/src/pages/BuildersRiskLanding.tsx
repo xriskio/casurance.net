@@ -72,7 +72,7 @@ const coverageTypes = [
   { 
     icon: Scale, 
     title: "Excess Builders Risk", 
-    description: "Additional coverage up to $5M excess available for larger projects requiring higher limits.",
+    description: "For larger projects: up to $250M capacity with $100M per project, $50M wood frame, and $25M high hazard CAT perils. Lead or follow market capabilities.",
     highlight: true
   },
   { 
@@ -137,10 +137,10 @@ const policyTerms = [
 ];
 
 const stats = [
-  { value: "$5M", label: "Max TIV Per Location", icon: DollarSign },
+  { value: "$25M", label: "Primary TIV", icon: DollarSign },
   { value: "47", label: "States Covered", icon: MapPin },
-  { value: "$5M", label: "Excess Options", icon: Scale },
-  { value: "3-12mo", label: "Flexible Terms", icon: Calendar },
+  { value: "$250M", label: "Excess Capacity", icon: Scale },
+  { value: "3-36mo", label: "Flexible Terms", icon: Calendar },
 ];
 
 const faqs = [
@@ -499,7 +499,7 @@ Additional Info: ${data.additionalInfo}
       "Renovation Insurance",
       "General Liability Insurance"
     ],
-    "description": "Comprehensive builders risk insurance for ground-up construction and renovations. Coverage up to $5M TIV with excess options available. Hard-to-insure locations accepted."
+    "description": "Comprehensive builders risk insurance for ground-up construction and renovations. Primary coverage up to $25M TIV with excess capacity up to $250M for larger projects. Hard-to-insure locations accepted."
   };
 
   const faqSchema = {
@@ -528,13 +528,13 @@ Additional Info: ${data.additionalInfo}
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Builders Risk Insurance | Construction Coverage Up to $5M | Casurance</title>
-        <meta name="description" content="Get builders risk insurance for ground-up construction and renovations. Coverage up to $5M TIV, excess options to $5M, GL limits $1M/$2M. Hard-to-insure locations accepted. Free quotes." />
+        <title>Builders Risk Insurance | Construction Coverage Up to $250M | Casurance</title>
+        <meta name="description" content="Get builders risk insurance for ground-up construction and renovations. Primary coverage up to $25M TIV, excess capacity to $250M for larger projects. GL limits $1M/$2M. Hard-to-insure locations accepted." />
         <meta name="keywords" content="builders risk insurance, construction insurance, course of construction, building under construction, renovation insurance, contractor insurance, ground-up construction, hard to insure locations, wildfire construction insurance" />
         <link rel="canonical" href="https://casurance.net/builders-risk-insurance" />
         
-        <meta property="og:title" content="Builders Risk Insurance | Construction Coverage Up to $5M | Casurance" />
-        <meta property="og:description" content="Comprehensive builders risk insurance for ground-up construction and renovations. Coverage up to $5M TIV with excess options. Available for hard-to-insure locations." />
+        <meta property="og:title" content="Builders Risk Insurance | Construction Coverage Up to $250M | Casurance" />
+        <meta property="og:description" content="Comprehensive builders risk insurance for ground-up construction and renovations. Primary coverage up to $25M TIV with excess capacity to $250M for larger projects. Available for hard-to-insure locations." />
         <meta property="og:url" content="https://casurance.net/builders-risk-insurance" />
         <meta property="og:type" content="website" />
         
@@ -944,7 +944,7 @@ Additional Info: ${data.additionalInfo}
                 <Scale className="h-10 w-10 text-primary mb-4" />
                 <h3 className="font-semibold text-lg mb-2">GL Limits & Excess</h3>
                 <p className="text-muted-foreground text-sm">
-                  General liability limits up to <strong>$1M/$2M</strong> with excess builders risk options available up to <strong>$5 Million</strong>.
+                  General liability limits up to <strong>$1M/$2M</strong> with excess builders risk capacity up to <strong>$250 Million</strong> for larger projects.
                 </p>
               </CardContent>
             </Card>
