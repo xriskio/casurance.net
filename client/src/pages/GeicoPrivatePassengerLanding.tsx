@@ -40,16 +40,11 @@ import geicoLogoBlue from "@assets/heritage-blue-logo_1765255910834.png";
 import geicoLogoWhite from "@assets/white-logo_1765255910834.png";
 
 const ppaStates = [
-  { name: "Montana", abbr: "MT" },
-  { name: "Oregon", abbr: "OR" },
+  { name: "Florida", abbr: "FL" },
   { name: "Minnesota", abbr: "MN" },
-  { name: "Indiana", abbr: "IN" },
-  { name: "Kentucky", abbr: "KY" },
-  { name: "Pennsylvania", abbr: "PA" },
   { name: "Ohio", abbr: "OH" },
-  { name: "Virginia", abbr: "VA" },
-  { name: "West Virginia", abbr: "WV" },
-  { name: "Georgia", abbr: "GA" },
+  { name: "Oregon", abbr: "OR" },
+  { name: "Pennsylvania", abbr: "PA" },
 ];
 
 const coverageTypes = [
@@ -97,7 +92,7 @@ const vehicleTypes = [
 ];
 
 const stats = [
-  { value: "10+", label: "States Available", icon: MapPin },
+  { value: "5", label: "States Available", icon: MapPin },
   { value: "A++", label: "AM Best Rating", icon: Award },
   { value: "85+", label: "Years Experience", icon: Clock },
   { value: "24/7", label: "Claims Service", icon: Phone },
@@ -110,7 +105,7 @@ const faqs = [
   },
   {
     question: "Which states offer GEICO private passenger auto through Casurance?",
-    answer: "As a Local Agent with GEICO, Casurance offers private passenger auto coverage in select states including Montana, Oregon, Minnesota, Indiana, Kentucky, Pennsylvania, Ohio, Virginia, West Virginia, and Georgia. Contact us to confirm availability in your state."
+    answer: "As a Local Agent with GEICO, Casurance offers private passenger auto coverage in select states including Florida, Minnesota, Ohio, Oregon, and Pennsylvania. Contact us to confirm availability in your state."
   },
   {
     question: "What coverage options are available?",

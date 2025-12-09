@@ -260,7 +260,7 @@ export default function BerkshireHathawayCommercialAutoLanding() {
     "name": "Casurance - Berkshire Hathaway Homestate Companies Commercial Auto",
     "description": "Get Berkshire Hathaway Homestate Companies Commercial Auto insurance quotes for California, Nevada, and Ohio businesses. Trucking, contractors, and commercial vehicle coverage.",
     "url": "https://casurance.net/berkshire-hathaway-commercial-auto",
-    "telephone": "(833) 522-7872",
+    "telephone": "1-888-254-0089",
     "areaServed": availableStates.map(state => ({
       "@type": "State",
       "name": state.label
@@ -284,7 +284,7 @@ export default function BerkshireHathawayCommercialAutoLanding() {
         <title>Berkshire Hathaway Commercial Auto Insurance | CA, NV, OH | Casurance</title>
         <meta 
           name="description" 
-          content="Get Berkshire Hathaway Homestate Companies Commercial Auto insurance in California, Nevada, and Ohio. A++ rated trucking insurance with MCS-90 filings. Call (833) 522-7872." 
+          content="Get Berkshire Hathaway Homestate Companies Commercial Auto insurance in California, Nevada, and Ohio. A++ rated trucking insurance with MCS-90 filings. Call 1-888-254-0089." 
         />
         <meta name="keywords" content="Berkshire Hathaway commercial auto, BHHC trucking insurance, California commercial auto, Nevada commercial auto, Ohio commercial auto, MCS-90 filing, trucking insurance" />
         <link rel="canonical" href="https://casurance.net/berkshire-hathaway-commercial-auto" />
@@ -337,9 +337,9 @@ export default function BerkshireHathawayCommercialAutoLanding() {
                         Get a Free Quote <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
                     </a>
-                    <a href="tel:8335227872">
+                    <a href="tel:18882540089">
                       <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 w-full sm:w-auto" data-testid="button-call-hero">
-                        <Phone className="mr-2 h-4 w-4" /> (833) 522-7872
+                        <Phone className="mr-2 h-4 w-4" /> 1-888-254-0089
                       </Button>
                     </a>
                   </div>
@@ -869,9 +869,9 @@ export default function BerkshireHathawayCommercialAutoLanding() {
                     Get a Free Quote <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </a>
-                <a href="tel:8335227872">
+                <a href="tel:18882540089">
                   <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10" data-testid="button-cta-call">
-                    <Phone className="mr-2 h-4 w-4" /> (833) 522-7872
+                    <Phone className="mr-2 h-4 w-4" /> 1-888-254-0089
                   </Button>
                 </a>
               </div>

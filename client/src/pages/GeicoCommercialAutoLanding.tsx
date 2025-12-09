@@ -42,7 +42,8 @@ import {
 import geicoLogoBlue from "@assets/heritage-blue-logo_1765255910834.png";
 import geicoLogoWhite from "@assets/white-logo_1765255910834.png";
 
-const commercialAutoStates = [
+// Blue states = Commercial Auto only
+const commercialAutoOnlyStates = [
   { name: "Arizona", abbr: "AZ" },
   { name: "Arkansas", abbr: "AR" },
   { name: "Colorado", abbr: "CO" },
@@ -52,12 +53,37 @@ const commercialAutoStates = [
   { name: "Nevada", abbr: "NV" },
   { name: "New Jersey", abbr: "NJ" },
   { name: "New Mexico", abbr: "NM" },
-  { name: "Ohio", abbr: "OH" },
-  { name: "Oregon", abbr: "OR" },
-  { name: "Pennsylvania", abbr: "PA" },
+  { name: "Oklahoma", abbr: "OK" },
   { name: "South Carolina", abbr: "SC" },
   { name: "Texas", abbr: "TX" },
 ];
+
+// Purple states = Both Commercial Auto AND Private Passenger
+const bothProductsStates = [
+  { name: "Connecticut", abbr: "CT" },
+  { name: "Delaware", abbr: "DE" },
+  { name: "Georgia", abbr: "GA" },
+  { name: "Indiana", abbr: "IN" },
+  { name: "Iowa", abbr: "IA" },
+  { name: "Kentucky", abbr: "KY" },
+  { name: "Maryland", abbr: "MD" },
+  { name: "Massachusetts", abbr: "MA" },
+  { name: "Minnesota", abbr: "MN" },
+  { name: "Missouri", abbr: "MO" },
+  { name: "Montana", abbr: "MT" },
+  { name: "Nebraska", abbr: "NE" },
+  { name: "New Hampshire", abbr: "NH" },
+  { name: "Ohio", abbr: "OH" },
+  { name: "Pennsylvania", abbr: "PA" },
+  { name: "Rhode Island", abbr: "RI" },
+  { name: "Vermont", abbr: "VT" },
+  { name: "Virginia", abbr: "VA" },
+  { name: "West Virginia", abbr: "WV" },
+  { name: "Wisconsin", abbr: "WI" },
+];
+
+// All states where Commercial Auto is available
+const commercialAutoStates = [...commercialAutoOnlyStates, ...bothProductsStates].sort((a, b) => a.name.localeCompare(b.name));
 
 const vehicleTypes = [
   { 
@@ -174,7 +200,7 @@ const businessTypes = [
 ];
 
 const stats = [
-  { value: "14", label: "States Available", icon: MapPin },
+  { value: "32", label: "States Available", icon: MapPin },
   { value: "A++", label: "AM Best Rating", icon: Award },
   { value: "85+", label: "Years Experience", icon: Clock },
   { value: "24/7", label: "Claims Service", icon: Phone },
@@ -663,27 +689,60 @@ export default function GeicoCommercialAutoLanding() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold text-foreground mb-4" data-testid="text-states-title">
-                  Available in 14 States
+                  Available in 32 States
                 </h2>
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                   As a Local Agent with GEICO, Casurance provides commercial auto insurance across these states
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
-                {commercialAutoStates.map((state, index) => (
-                  <Card 
-                    key={state.abbr} 
-                    className="text-center hover-elevate"
-                    data-testid={`card-state-${state.abbr}`}
-                  >
-                    <CardContent className="p-4">
-                      <MapPin className="h-6 w-6 mx-auto mb-2 text-[#003366]" />
-                      <div className="font-bold text-lg">{state.abbr}</div>
-                      <div className="text-sm text-muted-foreground">{state.name}</div>
-                    </CardContent>
-                  </Card>
-                ))}
+              <div className="mb-8">
+                <div className="flex flex-wrap justify-center gap-6 text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-4 rounded bg-blue-600" />
+                    <span className="text-muted-foreground">Commercial Auto Only</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-4 rounded bg-purple-600" />
+                    <span className="text-muted-foreground">Commercial Auto & Private Passenger</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mb-8">
+                <h3 className="text-lg font-semibold mb-4 text-center text-blue-600">Commercial Auto Only States</h3>
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-3">
+                  {commercialAutoOnlyStates.map((state) => (
+                    <Card 
+                      key={state.abbr} 
+                      className="text-center hover-elevate border-blue-200 bg-blue-50 dark:bg-blue-950/30"
+                      data-testid={`card-state-${state.abbr}`}
+                    >
+                      <CardContent className="p-3">
+                        <div className="font-bold text-lg text-blue-600">{state.abbr}</div>
+                        <div className="text-xs text-muted-foreground">{state.name}</div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold mb-4 text-center text-purple-600">Both Commercial Auto & Private Passenger States</h3>
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-10 gap-3">
+                  {bothProductsStates.map((state) => (
+                    <Card 
+                      key={state.abbr} 
+                      className="text-center hover-elevate border-purple-200 bg-purple-50 dark:bg-purple-950/30"
+                      data-testid={`card-state-both-${state.abbr}`}
+                    >
+                      <CardContent className="p-3">
+                        <div className="font-bold text-lg text-purple-600">{state.abbr}</div>
+                        <div className="text-xs text-muted-foreground">{state.name}</div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
               </div>
             </div>
           </section>
