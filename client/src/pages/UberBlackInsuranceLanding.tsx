@@ -1,7 +1,13 @@
+import { useState } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
 import { 
   Phone, 
   Shield, 
@@ -181,6 +187,66 @@ const faqs = [
 ];
 
 export default function UberBlackInsuranceLanding() {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    businessName: "",
+    contactName: "",
+    email: "",
+    phone: "",
+    state: "",
+    vehicles: "",
+    tcpNumber: "",
+    dotNumber: ""
+  });
+
+  const handleQuickQuote = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.businessName || !formData.contactName || !formData.email || !formData.phone || !formData.state || !formData.vehicles) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      await apiRequest("POST", "/api/submissions", {
+        type: "commercial-auto-insurance",
+        status: "new",
+        data: {
+          ...formData,
+          source: "Uber Black Quick Quote Form",
+          coverageType: "Uber Black / Luxury Rideshare"
+        }
+      });
+      toast({
+        title: "Quote Request Submitted!",
+        description: "We'll get back to you within 24 hours with your personalized quote."
+      });
+      setFormData({
+        businessName: "",
+        contactName: "",
+        email: "",
+        phone: "",
+        state: "",
+        vehicles: "",
+        tcpNumber: "",
+        dotNumber: ""
+      });
+    } catch (error) {
+      toast({
+        title: "Submission Error",
+        description: "There was an error submitting your request. Please try again or call us.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <>
       <SEOHead
@@ -194,68 +260,224 @@ export default function UberBlackInsuranceLanding() {
       <Header />
       
       <main className="min-h-screen">
-        {/* Hero Section - Bold Black with Red Accents */}
-        <section className="relative bg-black text-white py-20 lg:py-28 overflow-hidden">
+        {/* Hero Section - Bold Black with Red Accents + Quick Quote Form */}
+        <section className="relative bg-black text-white py-16 lg:py-24 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
           <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_30%_50%,_#ef4444_0%,_transparent_50%)]"></div>
           <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_70%_80%,_#dc2626_0%,_transparent_40%)]"></div>
           
           <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-5xl mx-auto text-center">
-              <Badge className="mb-6 bg-red-600/20 text-red-400 border-red-500/50 text-sm px-4 py-1.5 font-semibold" data-testid="badge-special-programs">
-                Special Programs - Commercial Auto
-              </Badge>
-              
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                Uber Black Insurance for{" "}
-                <span className="text-red-500">Professional Drivers</span>
-              </h1>
-              
-              <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                Drive with confidence knowing your luxury vehicle and livelihood are protected. 
-                Commercial auto coverage specifically designed for Uber Black, Uber Black SUV, 
-                and premium rideshare operators.
-              </p>
-              
-              {/* State Availability */}
-              <div className="flex flex-wrap justify-center gap-3 mb-10">
-                {availableStates.map((state) => (
-                  <Badge 
-                    key={state.abbr}
-                    variant="outline" 
-                    className="text-lg px-5 py-2.5 bg-red-600/10 border-red-500/40 text-white font-medium"
-                    data-testid={`badge-state-${state.abbr}`}
+            <div className="grid lg:grid-cols-2 gap-12 items-start">
+              {/* Left Column - Content */}
+              <div className="text-center lg:text-left">
+                <Badge className="mb-6 bg-red-600/20 text-red-400 border-red-500/50 text-sm px-4 py-1.5 font-semibold" data-testid="badge-special-programs">
+                  Special Programs - Commercial Auto
+                </Badge>
+                
+                <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold mb-6 leading-tight">
+                  Uber Black Insurance for{" "}
+                  <span className="text-red-500">Professional Drivers</span>
+                </h1>
+                
+                <p className="text-xl text-gray-300 mb-8 max-w-xl">
+                  Drive with confidence knowing your luxury vehicle and livelihood are protected. 
+                  Commercial auto coverage specifically designed for Uber Black, Uber Black SUV, 
+                  and premium rideshare operators.
+                </p>
+                
+                {/* State Availability */}
+                <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-8">
+                  {availableStates.map((state) => (
+                    <Badge 
+                      key={state.abbr}
+                      variant="outline" 
+                      className="text-base px-4 py-2 bg-red-600/10 border-red-500/40 text-white font-medium"
+                      data-testid={`badge-state-${state.abbr}`}
+                    >
+                      <MapPin className="w-4 h-4 mr-2 text-red-400" />
+                      {state.name}
+                    </Badge>
+                  ))}
+                </div>
+                
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                  <Button 
+                    size="lg" 
+                    className="text-lg px-8 py-6 bg-red-600 hover:bg-red-700 border-red-700"
+                    asChild
+                    data-testid="button-get-quote-hero"
                   >
-                    <MapPin className="w-4 h-4 mr-2 text-red-400" />
-                    {state.name}
-                  </Badge>
-                ))}
+                    <Link href="/commercial-auto-insurance">
+                      <FileCheck className="mr-2 h-5 w-5" />
+                      Full Quote Form
+                    </Link>
+                  </Button>
+                  <Button 
+                    size="lg" 
+                    variant="outline" 
+                    className="text-lg px-8 py-6 border-white/40 text-white hover:bg-white/10 backdrop-blur-sm"
+                    asChild
+                    data-testid="button-call-hero"
+                  >
+                    <a href="tel:1-888-254-0089">
+                      <Phone className="mr-2 h-5 w-5" />
+                      Call 1-888-254-0089
+                    </a>
+                  </Button>
+                </div>
               </div>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  size="lg" 
-                  className="text-lg px-8 py-6 bg-red-600 hover:bg-red-700 border-red-700"
-                  asChild
-                  data-testid="button-get-quote-hero"
-                >
-                  <Link href="/commercial-auto-insurance">
-                    <FileCheck className="mr-2 h-5 w-5" />
-                    Get Your Free Quote
-                  </Link>
-                </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  className="text-lg px-8 py-6 border-white/40 text-white hover:bg-white/10 backdrop-blur-sm"
-                  asChild
-                  data-testid="button-call-hero"
-                >
-                  <a href="tel:1-888-254-0089">
-                    <Phone className="mr-2 h-5 w-5" />
-                    Call 1-888-254-0089
-                  </a>
-                </Button>
+
+              {/* Right Column - Quick Quote Form */}
+              <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-2xl">
+                <div className="text-center mb-6">
+                  <h2 className="text-2xl font-bold text-gray-900" data-testid="text-quick-quote-title">Get Your Free Quote</h2>
+                  <p className="text-gray-600">Quick response within 24 hours</p>
+                </div>
+
+                <form onSubmit={handleQuickQuote} className="space-y-4">
+                  <div>
+                    <Label htmlFor="businessName" className="text-gray-900 font-medium">Business Name</Label>
+                    <Input
+                      id="businessName"
+                      placeholder="Your company name"
+                      value={formData.businessName}
+                      onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
+                      className="mt-1 bg-gray-50 border-gray-200"
+                      data-testid="input-business-name"
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="contactName" className="text-gray-900 font-medium">Your Name</Label>
+                    <Input
+                      id="contactName"
+                      placeholder="Full name"
+                      value={formData.contactName}
+                      onChange={(e) => setFormData({ ...formData, contactName: e.target.value })}
+                      className="mt-1 bg-gray-50 border-gray-200"
+                      data-testid="input-contact-name"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="email" className="text-gray-900 font-medium">Email</Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder="email@example.com"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className="mt-1 bg-gray-50 border-gray-200"
+                        data-testid="input-email"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="phone" className="text-gray-900 font-medium">Phone</Label>
+                      <Input
+                        id="phone"
+                        type="tel"
+                        placeholder="(555) 555-5555"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        className="mt-1 bg-gray-50 border-gray-200"
+                        data-testid="input-phone"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="state" className="text-gray-900 font-medium">State</Label>
+                      <Select value={formData.state} onValueChange={(value) => setFormData({ ...formData, state: value })}>
+                        <SelectTrigger className="mt-1 bg-gray-50 border-gray-200" data-testid="select-state">
+                          <SelectValue placeholder="Select" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="CA">California</SelectItem>
+                          <SelectItem value="NV">Nevada</SelectItem>
+                          <SelectItem value="AZ">Arizona</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <Label htmlFor="vehicles" className="text-gray-900 font-medium">Vehicles</Label>
+                      <Select value={formData.vehicles} onValueChange={(value) => setFormData({ ...formData, vehicles: value })}>
+                        <SelectTrigger className="mt-1 bg-gray-50 border-gray-200" data-testid="select-vehicles">
+                          <SelectValue placeholder="Select" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="1">1 Vehicle</SelectItem>
+                          <SelectItem value="2">2 Vehicles</SelectItem>
+                          <SelectItem value="3">3 Vehicles</SelectItem>
+                          <SelectItem value="4">4 Vehicles</SelectItem>
+                          <SelectItem value="5+">5+ Vehicles</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="tcpNumber" className="text-gray-900 font-medium">
+                        TCP Number <span className="text-gray-400 font-normal">(Optional)</span>
+                      </Label>
+                      <Input
+                        id="tcpNumber"
+                        placeholder="TCP-XXXXX"
+                        value={formData.tcpNumber}
+                        onChange={(e) => setFormData({ ...formData, tcpNumber: e.target.value })}
+                        className="mt-1 bg-gray-50 border-gray-200"
+                        data-testid="input-tcp"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="dotNumber" className="text-gray-900 font-medium">
+                        DOT Number <span className="text-gray-400 font-normal">(Optional)</span>
+                      </Label>
+                      <Input
+                        id="dotNumber"
+                        placeholder="DOT-XXXXXXX"
+                        value={formData.dotNumber}
+                        onChange={(e) => setFormData({ ...formData, dotNumber: e.target.value })}
+                        className="mt-1 bg-gray-50 border-gray-200"
+                        data-testid="input-dot"
+                      />
+                    </div>
+                  </div>
+
+                  <Button 
+                    type="submit" 
+                    size="lg" 
+                    className="w-full text-lg py-6 bg-red-600 hover:bg-red-700 border-red-700 font-semibold"
+                    disabled={isSubmitting}
+                    data-testid="button-quick-quote-submit"
+                  >
+                    {isSubmitting ? "Submitting..." : "Get My Free Quote"}
+                  </Button>
+
+                  <p className="text-center text-gray-600">
+                    Or call us now: <a href="tel:888-254-0089" className="text-blue-600 font-semibold hover:underline" data-testid="link-call-form">888-254-0089</a>
+                  </p>
+                </form>
+
+                {/* Trust Badges */}
+                <div className="mt-6 pt-6 border-t border-gray-200">
+                  <div className="flex justify-around items-center text-center">
+                    <div className="flex flex-col items-center">
+                      <Clock className="w-6 h-6 text-gray-600 mb-1" />
+                      <span className="text-sm text-gray-700 font-medium">24hr Response</span>
+                    </div>
+                    <div className="flex flex-col items-center">
+                      <Shield className="w-6 h-6 text-gray-600 mb-1" />
+                      <span className="text-sm text-gray-700 font-medium">A-Rated Carriers</span>
+                    </div>
+                    <div className="flex flex-col items-center">
+                      <Award className="w-6 h-6 text-gray-600 mb-1" />
+                      <span className="text-sm text-gray-700 font-medium">3 States</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
