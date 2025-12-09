@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -30,9 +30,14 @@ import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 
 import suburbanImage from "@assets/2017-Chevrolet-Suburban-COLOR-Black_1765266976772.png";
-import mercedesImage from "@assets/2018-Mercedes-S500-Hybrid-Review_1765267556294.png";
 import teslaXImage from "@assets/modelX_1765267556294.png";
 import teslaSImage from "@assets/Black-Model-S-P90D-Arachnid-Wheel-e1464681843999-1000x600-1_1765267556294.png";
+
+const vehicleShowcase = [
+  { image: suburbanImage, alt: "Black Chevrolet Suburban", category: "Premium SUV", name: "Black Chevrolet Suburban" },
+  { image: teslaXImage, alt: "Black Tesla Model X", category: "Electric SUV", name: "Black Tesla Model X" },
+  { image: teslaSImage, alt: "Black Tesla Model S", category: "Electric Sedan", name: "Black Tesla Model S" },
+];
 
 const availableStates = [
   { abbr: "CA", name: "California", highlight: true },
@@ -189,6 +194,16 @@ const faqs = [
 export default function UberBlackInsuranceLanding() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [currentVehicle, setCurrentVehicle] = useState(0);
+
+  // Auto-rotate vehicles every 4 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentVehicle((prev) => (prev + 1) % vehicleShowcase.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
   const [formData, setFormData] = useState({
     businessName: "",
     contactName: "",
@@ -495,62 +510,70 @@ export default function UberBlackInsuranceLanding() {
               </p>
             </div>
             
-            {/* Vehicle Grid - 4 vehicles */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-              {/* Chevy Suburban */}
-              <div className="relative rounded-2xl overflow-hidden border-2 border-red-500/30 bg-black group">
-                <img 
-                  src={suburbanImage} 
-                  alt="Black Chevrolet Suburban"
-                  className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-500"
-                  data-testid="img-suburban"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-                  <p className="text-red-400 text-xs font-semibold uppercase tracking-wider mb-1">Premium SUV</p>
-                  <p className="text-white font-bold text-lg">Black Chevrolet Suburban</p>
-                </div>
+            {/* Rotating Vehicle Carousel */}
+            <div className="max-w-4xl mx-auto">
+              {/* Main Vehicle Display */}
+              <div className="relative rounded-2xl overflow-hidden border-2 border-red-500/30 bg-black">
+                {vehicleShowcase.map((vehicle, index) => (
+                  <div
+                    key={index}
+                    className={`transition-all duration-700 ${
+                      index === currentVehicle 
+                        ? "opacity-100 relative" 
+                        : "opacity-0 absolute inset-0"
+                    }`}
+                    data-testid={`vehicle-slide-${index}`}
+                  >
+                    <img 
+                      src={vehicle.image} 
+                      alt={vehicle.alt}
+                      className="w-full h-auto object-contain"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
+                      <p className="text-red-400 text-sm font-semibold uppercase tracking-wider mb-1">{vehicle.category}</p>
+                      <p className="text-white font-bold text-2xl">{vehicle.name}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
               
-              {/* Mercedes S-Class */}
-              <div className="relative rounded-2xl overflow-hidden border-2 border-red-500/30 bg-black group">
-                <img 
-                  src={mercedesImage} 
-                  alt="Black Mercedes S-Class"
-                  className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-500"
-                  data-testid="img-mercedes"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-                  <p className="text-red-400 text-xs font-semibold uppercase tracking-wider mb-1">Luxury Sedan</p>
-                  <p className="text-white font-bold text-lg">Black Mercedes S-Class</p>
-                </div>
+              {/* Carousel Indicators */}
+              <div className="flex justify-center gap-3 mt-6">
+                {vehicleShowcase.map((vehicle, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentVehicle(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentVehicle 
+                        ? "bg-red-500 w-8" 
+                        : "bg-gray-600 hover:bg-gray-500"
+                    }`}
+                    aria-label={`View ${vehicle.name}`}
+                    data-testid={`carousel-indicator-${index}`}
+                  />
+                ))}
               </div>
               
-              {/* Tesla Model X */}
-              <div className="relative rounded-2xl overflow-hidden border-2 border-red-500/30 bg-black group">
-                <img 
-                  src={teslaXImage} 
-                  alt="Black Tesla Model X"
-                  className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-500"
-                  data-testid="img-tesla-x"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-                  <p className="text-red-400 text-xs font-semibold uppercase tracking-wider mb-1">Electric SUV</p>
-                  <p className="text-white font-bold text-lg">Black Tesla Model X</p>
-                </div>
-              </div>
-              
-              {/* Tesla Model S */}
-              <div className="relative rounded-2xl overflow-hidden border-2 border-red-500/30 bg-black group">
-                <img 
-                  src={teslaSImage} 
-                  alt="Black Tesla Model S"
-                  className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-500"
-                  data-testid="img-tesla-s"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-                  <p className="text-red-400 text-xs font-semibold uppercase tracking-wider mb-1">Electric Sedan</p>
-                  <p className="text-white font-bold text-lg">Black Tesla Model S</p>
-                </div>
+              {/* Thumbnail Navigation */}
+              <div className="flex justify-center gap-4 mt-6">
+                {vehicleShowcase.map((vehicle, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentVehicle(index)}
+                    className={`relative rounded-lg overflow-hidden border-2 transition-all duration-300 w-24 h-16 ${
+                      index === currentVehicle 
+                        ? "border-red-500 ring-2 ring-red-500/50" 
+                        : "border-gray-700 hover:border-gray-500"
+                    }`}
+                    data-testid={`thumbnail-${index}`}
+                  >
+                    <img 
+                      src={vehicle.image} 
+                      alt={vehicle.alt}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
               </div>
             </div>
 
