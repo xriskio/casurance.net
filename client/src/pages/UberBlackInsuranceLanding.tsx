@@ -940,11 +940,9 @@ export default function UberBlackInsuranceLanding() {
                 </Button>
               </div>
               
-              {/* Contact Info */}
+              {/* License Info */}
               <div className="mt-10 pt-8 border-t border-white/20">
-                <p className="text-white/80 mb-2">Visit us at our Los Angeles office:</p>
-                <p className="font-semibold">714 W Olympic Blvd Suite 906, Los Angeles CA 90015</p>
-                <p className="text-white/80 mt-2">CA License #6005562</p>
+                <p className="text-white/80">CA License #6005562</p>
               </div>
             </div>
           </div>
