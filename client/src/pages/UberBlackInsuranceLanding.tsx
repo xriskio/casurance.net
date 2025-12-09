@@ -319,13 +319,11 @@ export default function UberBlackInsuranceLanding() {
                   <Button 
                     size="lg" 
                     className="text-lg px-8 py-6 bg-red-600 hover:bg-red-700 border-red-700"
-                    asChild
+                    onClick={() => document.getElementById('quick-quote-form')?.scrollIntoView({ behavior: 'smooth' })}
                     data-testid="button-get-quote-hero"
                   >
-                    <Link href="/commercial-auto-insurance">
-                      <FileCheck className="mr-2 h-5 w-5" />
-                      Full Quote Form
-                    </Link>
+                    <FileCheck className="mr-2 h-5 w-5" />
+                    Get a Quick Quote
                   </Button>
                   <Button 
                     size="lg" 
@@ -343,7 +341,7 @@ export default function UberBlackInsuranceLanding() {
               </div>
 
               {/* Right Column - Quick Quote Form */}
-              <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-2xl">
+              <div id="quick-quote-form" className="bg-white rounded-2xl p-6 lg:p-8 shadow-2xl">
                 <div className="text-center mb-6">
                   <h2 className="text-2xl font-bold text-gray-900" data-testid="text-quick-quote-title">Get Your Free Quote</h2>
                   <p className="text-gray-600">Quick response within 24 hours</p>
@@ -668,12 +666,10 @@ export default function UberBlackInsuranceLanding() {
                   <Button 
                     size="lg" 
                     className="w-full mt-6 text-lg py-6 bg-blue-600 hover:bg-blue-700"
-                    asChild
+                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                     data-testid="button-start-quote-coverage"
                   >
-                    <Link href="/commercial-auto-insurance">
-                      Start Your Quote
-                    </Link>
+                    Start Your Quote
                   </Button>
                 </CardContent>
               </Card>
@@ -906,13 +902,11 @@ export default function UberBlackInsuranceLanding() {
                 <Button 
                   size="lg" 
                   className="text-lg px-8 py-6 bg-white text-red-600 hover:bg-gray-100"
-                  asChild
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                   data-testid="button-start-quote-cta"
                 >
-                  <Link href="/commercial-auto-insurance">
-                    <FileCheck className="mr-2 h-5 w-5" />
-                    Start Your Quote
-                  </Link>
+                  <FileCheck className="mr-2 h-5 w-5" />
+                  Start Your Quote
                 </Button>
                 <Button 
                   size="lg" 
