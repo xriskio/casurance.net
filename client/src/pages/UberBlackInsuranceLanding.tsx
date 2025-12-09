@@ -16,16 +16,51 @@ import {
   Zap,
   FileText,
   HeadphonesIcon,
-  MapPin
+  MapPin,
+  ChevronRight
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 
+import escaladeImage from "@assets/stock_images/black_cadillac_escal_9847b71e.jpg";
+import suburbanImage from "@assets/stock_images/black_chevrolet_subu_d2bdcd62.jpg";
+import lincolnImage from "@assets/stock_images/black_lincoln_luxury_f484978a.jpg";
+import teslaXImage from "@assets/stock_images/black_tesla_model_x__4e4efc76.jpg";
+import teslaSImage from "@assets/stock_images/black_tesla_model_s__596c2bcd.jpg";
+
 const availableStates = [
   { abbr: "CA", name: "California", highlight: true },
   { abbr: "NV", name: "Nevada", highlight: true },
   { abbr: "AZ", name: "Arizona", highlight: true },
+];
+
+const luxuryVehicles = [
+  {
+    name: "Cadillac Escalade ESV",
+    type: "Premium SUV",
+    image: escaladeImage
+  },
+  {
+    name: "Chevrolet Suburban",
+    type: "Executive SUV",
+    image: suburbanImage
+  },
+  {
+    name: "Lincoln Aviator",
+    type: "Luxury Sedan",
+    image: lincolnImage
+  },
+  {
+    name: "Tesla Model X",
+    type: "Electric SUV",
+    image: teslaXImage
+  },
+  {
+    name: "Tesla Model S",
+    type: "Electric Sedan",
+    image: teslaSImage
+  }
 ];
 
 const vehicleTypes = [
@@ -187,19 +222,21 @@ export default function UberBlackInsuranceLanding() {
       <Header />
       
       <main className="min-h-screen">
-        {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white py-20 lg:py-28 overflow-hidden">
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptMCAwdi02aC02djZoNnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-50"></div>
+        {/* Hero Section - Bold Black with Red Accents */}
+        <section className="relative bg-black text-white py-20 lg:py-28 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_30%_50%,_#ef4444_0%,_transparent_50%)]"></div>
+          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_70%_80%,_#dc2626_0%,_transparent_40%)]"></div>
           
           <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
-              <Badge className="mb-6 bg-primary/20 text-primary border-primary/30 text-sm px-4 py-1">
+            <div className="max-w-5xl mx-auto text-center">
+              <Badge className="mb-6 bg-red-600/20 text-red-400 border-red-500/50 text-sm px-4 py-1.5 font-semibold" data-testid="badge-special-programs">
                 Special Programs - Commercial Auto
               </Badge>
               
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                 Uber Black Insurance for{" "}
-                <span className="text-primary">Professional Drivers</span>
+                <span className="text-red-500">Professional Drivers</span>
               </h1>
               
               <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
@@ -214,9 +251,10 @@ export default function UberBlackInsuranceLanding() {
                   <Badge 
                     key={state.abbr}
                     variant="outline" 
-                    className="text-lg px-4 py-2 bg-white/10 border-white/30 text-white"
+                    className="text-lg px-5 py-2.5 bg-red-600/10 border-red-500/40 text-white font-medium"
+                    data-testid={`badge-state-${state.abbr}`}
                   >
-                    <MapPin className="w-4 h-4 mr-2" />
+                    <MapPin className="w-4 h-4 mr-2 text-red-400" />
                     {state.name}
                   </Badge>
                 ))}
@@ -225,8 +263,9 @@ export default function UberBlackInsuranceLanding() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
                   size="lg" 
-                  className="text-lg px-8 py-6 bg-primary hover:bg-primary/90"
+                  className="text-lg px-8 py-6 bg-red-600 hover:bg-red-700 border-red-700"
                   asChild
+                  data-testid="button-get-quote-hero"
                 >
                   <Link href="/commercial-auto-insurance">
                     <FileCheck className="mr-2 h-5 w-5" />
@@ -236,8 +275,9 @@ export default function UberBlackInsuranceLanding() {
                 <Button 
                   size="lg" 
                   variant="outline" 
-                  className="text-lg px-8 py-6 border-white/30 text-white hover:bg-white/10"
+                  className="text-lg px-8 py-6 border-white/40 text-white hover:bg-white/10 backdrop-blur-sm"
                   asChild
+                  data-testid="button-call-hero"
                 >
                   <a href="tel:1-888-254-0089">
                     <Phone className="mr-2 h-5 w-5" />
@@ -245,6 +285,78 @@ export default function UberBlackInsuranceLanding() {
                   </a>
                 </Button>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Vehicle Showcase Section - NEW */}
+        <section className="py-16 lg:py-24 bg-gradient-to-b from-gray-900 to-black">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+                Protect Your <span className="text-red-500">Luxury Vehicle</span> with Uber Black Insurance
+              </h2>
+              <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+                We cover multiple luxury vehicle types, including:
+              </p>
+            </div>
+            
+            {/* Vehicle Image Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6 max-w-7xl mx-auto">
+              {luxuryVehicles.map((vehicle, index) => (
+                <div 
+                  key={index} 
+                  className="group relative overflow-hidden rounded-xl bg-gray-800/50 border border-gray-700/50 hover:border-red-500/50 transition-all duration-300"
+                  data-testid={`card-vehicle-${index}`}
+                >
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img 
+                      src={vehicle.image} 
+                      alt={vehicle.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <p className="text-red-400 text-xs font-semibold uppercase tracking-wider mb-1">{vehicle.type}</p>
+                    <p className="text-white font-bold text-sm lg:text-base">{vehicle.name}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Additional Vehicle Types */}
+            <div className="mt-12 flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+              {["Mercedes S-Class", "BMW 7 Series", "Audi A8", "Genesis G90", "Lucid Air", "Range Rover"].map((vehicle, i) => (
+                <Badge 
+                  key={i}
+                  variant="outline"
+                  className="text-sm px-4 py-2 bg-gray-800/50 border-gray-600 text-gray-300"
+                >
+                  {vehicle}
+                </Badge>
+              ))}
+              <Badge 
+                variant="outline"
+                className="text-sm px-4 py-2 bg-red-600/20 border-red-500/40 text-red-400 font-semibold"
+              >
+                + Many More
+              </Badge>
+            </div>
+            
+            {/* CTA Below Vehicles */}
+            <div className="mt-12 text-center">
+              <Button 
+                size="lg" 
+                className="text-lg px-10 py-6 bg-red-600 hover:bg-red-700"
+                asChild
+                data-testid="button-get-quote-vehicles"
+              >
+                <Link href="/commercial-auto-insurance">
+                  Get Insurance for Your Vehicle
+                  <ChevronRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
             </div>
           </div>
         </section>
@@ -261,7 +373,7 @@ export default function UberBlackInsuranceLanding() {
                 <p>
                   Uber Black insurance is specialized commercial auto coverage designed for professional 
                   drivers using luxury vehicles on the Uber Black platform. Unlike standard rideshare services, 
-                  <strong className="text-foreground"> your personal auto policy does not qualify you to drive for Uber Black</strong>—you 
+                  <strong className="text-red-600"> your personal auto policy does not qualify you to drive for Uber Black</strong>—you 
                   must carry commercial auto insurance to meet platform and state requirements.
                 </p>
                 
@@ -281,10 +393,10 @@ export default function UberBlackInsuranceLanding() {
               </div>
               
               {/* Requirements Card */}
-              <Card className="mt-10">
+              <Card className="mt-10 border-red-500/20">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <CheckCircle2 className="h-6 w-6 text-primary" />
+                    <CheckCircle2 className="h-6 w-6 text-red-500" />
                     Uber Black Requirements
                   </CardTitle>
                 </CardHeader>
@@ -292,7 +404,7 @@ export default function UberBlackInsuranceLanding() {
                   <ul className="grid md:grid-cols-2 gap-4">
                     {requirements.map((req, index) => (
                       <li key={index} className="flex items-start gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                        <CheckCircle2 className="h-5 w-5 text-red-500 mt-0.5 flex-shrink-0" />
                         <span className="text-muted-foreground">{req}</span>
                       </li>
                     ))}
@@ -308,7 +420,7 @@ export default function UberBlackInsuranceLanding() {
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Comprehensive Coverage for Luxury Rideshare
+                Comprehensive Coverage for <span className="text-red-600">Luxury Rideshare</span>
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                 Our Uber Black insurance policies include everything you need to operate professionally and safely.
@@ -317,11 +429,11 @@ export default function UberBlackInsuranceLanding() {
             
             <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
               {coverages.map((coverage, index) => (
-                <Card key={index} className="hover-elevate">
+                <Card key={index} className="hover-elevate border-l-4 border-l-red-500">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                        <coverage.icon className="h-6 w-6 text-primary" />
+                      <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center">
+                        <coverage.icon className="h-6 w-6 text-red-500" />
                       </div>
                       {coverage.title}
                     </CardTitle>
@@ -335,7 +447,7 @@ export default function UberBlackInsuranceLanding() {
             
             {/* Additional Coverage List */}
             <div className="mt-12 max-w-4xl mx-auto">
-              <Card>
+              <Card className="border-red-500/20">
                 <CardHeader>
                   <CardTitle className="text-center">Additional Coverage Options</CardTitle>
                 </CardHeader>
@@ -350,7 +462,7 @@ export default function UberBlackInsuranceLanding() {
                       "Towing & Labor Coverage"
                     ].map((item, index) => (
                       <div key={index} className="flex items-center gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0" />
+                        <CheckCircle2 className="h-4 w-4 text-red-500 flex-shrink-0" />
                         <span className="text-sm">{item}</span>
                       </div>
                     ))}
@@ -366,7 +478,7 @@ export default function UberBlackInsuranceLanding() {
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Luxury Vehicles We Insure
+                All <span className="text-red-600">Luxury Vehicles</span> We Insure
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                 We specialize in insuring premium vehicles that meet Uber Black and Uber Black SUV 
@@ -376,9 +488,9 @@ export default function UberBlackInsuranceLanding() {
             
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
               {vehicleTypes.map((vehicle, index) => (
-                <Card key={index} className="text-center hover-elevate">
+                <Card key={index} className="text-center hover-elevate group">
                   <CardHeader className="pb-2">
-                    <div className="w-14 h-14 mx-auto rounded-full bg-gray-900 flex items-center justify-center mb-3">
+                    <div className="w-14 h-14 mx-auto rounded-full bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
                       <vehicle.icon className="h-7 w-7 text-white" />
                     </div>
                     <CardTitle className="text-lg">{vehicle.title}</CardTitle>
@@ -393,11 +505,11 @@ export default function UberBlackInsuranceLanding() {
         </section>
 
         {/* Why Choose Casurance */}
-        <section className="py-16 lg:py-24 bg-gray-900 text-white">
+        <section className="py-16 lg:py-24 bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Why Choose Casurance for Uber Black Coverage?
+                Why Choose <span className="text-red-500">Casurance</span> for Uber Black Coverage?
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                 With decades of experience insuring limousines, black cars, and transportation network companies, 
@@ -409,8 +521,8 @@ export default function UberBlackInsuranceLanding() {
               {whyChooseUs.map((item, index) => (
                 <Card key={index} className="bg-white/5 border-white/10 text-white hover-elevate">
                   <CardHeader className="pb-2">
-                    <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mb-3">
-                      <item.icon className="h-6 w-6 text-primary" />
+                    <div className="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center mb-3">
+                      <item.icon className="h-6 w-6 text-red-400" />
                     </div>
                     <CardTitle className="text-lg text-white">{item.title}</CardTitle>
                   </CardHeader>
@@ -428,7 +540,7 @@ export default function UberBlackInsuranceLanding() {
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Coverage Available in California, Nevada & Arizona
+                Coverage Available in <span className="text-red-600">California, Nevada & Arizona</span>
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                 Casurance provides Uber Black and luxury rideshare insurance across these western states. 
@@ -438,25 +550,25 @@ export default function UberBlackInsuranceLanding() {
             
             <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               {availableStates.map((state) => (
-                <Card key={state.abbr} className="text-center hover-elevate border-primary/20">
+                <Card key={state.abbr} className="text-center hover-elevate border-red-500/20">
                   <CardHeader>
-                    <div className="w-20 h-20 mx-auto rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                      <span className="text-3xl font-bold text-primary">{state.abbr}</span>
+                    <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center mb-4">
+                      <span className="text-3xl font-bold text-white">{state.abbr}</span>
                     </div>
                     <CardTitle className="text-2xl">{state.name}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <ul className="text-sm text-muted-foreground space-y-2">
                       <li className="flex items-center justify-center gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-green-600" />
+                        <CheckCircle2 className="h-4 w-4 text-red-500" />
                         Uber Black Coverage
                       </li>
                       <li className="flex items-center justify-center gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-green-600" />
+                        <CheckCircle2 className="h-4 w-4 text-red-500" />
                         Uber Black SUV Coverage
                       </li>
                       <li className="flex items-center justify-center gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-green-600" />
+                        <CheckCircle2 className="h-4 w-4 text-red-500" />
                         {state.abbr === "CA" ? "CPUC/TCP Filings" : "State Compliance"}
                       </li>
                     </ul>
@@ -478,7 +590,7 @@ export default function UberBlackInsuranceLanding() {
             
             <div className="max-w-4xl mx-auto space-y-6">
               {faqs.map((faq, index) => (
-                <Card key={index}>
+                <Card key={index} className="border-l-4 border-l-red-500">
                   <CardHeader>
                     <CardTitle className="text-lg">{faq.question}</CardTitle>
                   </CardHeader>
@@ -492,7 +604,7 @@ export default function UberBlackInsuranceLanding() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 lg:py-24 bg-primary text-white">
+        <section className="py-16 lg:py-24 bg-gradient-to-r from-red-600 to-red-700 text-white">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
@@ -507,9 +619,9 @@ export default function UberBlackInsuranceLanding() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
                   size="lg" 
-                  variant="secondary"
-                  className="text-lg px-8 py-6"
+                  className="text-lg px-8 py-6 bg-white text-red-600 hover:bg-gray-100"
                   asChild
+                  data-testid="button-start-quote-cta"
                 >
                   <Link href="/commercial-auto-insurance">
                     <FileCheck className="mr-2 h-5 w-5" />
@@ -521,6 +633,7 @@ export default function UberBlackInsuranceLanding() {
                   variant="outline" 
                   className="text-lg px-8 py-6 border-white text-white hover:bg-white/10"
                   asChild
+                  data-testid="button-call-cta"
                 >
                   <a href="tel:1-888-254-0089">
                     <Phone className="mr-2 h-5 w-5" />
@@ -529,10 +642,12 @@ export default function UberBlackInsuranceLanding() {
                 </Button>
               </div>
               
-              <p className="mt-8 text-sm opacity-75">
-                Casurance Insurance Agency | CA License #6005562<br />
-                714 W Olympic Blvd Suite 906, Los Angeles, CA 90015
-              </p>
+              {/* Contact Info */}
+              <div className="mt-10 pt-8 border-t border-white/20">
+                <p className="text-white/80 mb-2">Visit us at our Los Angeles office:</p>
+                <p className="font-semibold">714 W Olympic Blvd Suite 906, Los Angeles CA 90015</p>
+                <p className="text-white/80 mt-2">CA License #6005562</p>
+              </div>
             </div>
           </div>
         </section>
