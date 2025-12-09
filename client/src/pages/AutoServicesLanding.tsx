@@ -314,8 +314,8 @@ function LandingPageFooter() {
                 info@casurance.com
               </a>
               <p className="text-white/60">
-                500 N Brand Blvd, Ste 710<br />
-                Glendale, CA 91203
+                714 W. Olympic Blvd, Suite 906<br />
+                Los Angeles, CA 90015
               </p>
             </div>
           </div>

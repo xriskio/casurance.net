@@ -333,7 +333,7 @@ export default function GeicoCommercialAutoLanding() {
     "name": "Casurance - Local Agent with GEICO",
     "description": "Casurance is a Local Agent with GEICO offering commercial auto insurance in 14 states. Get competitive quotes for business vehicles, trucks, vans, and commercial fleets.",
     "url": "https://casurance.net/geico-commercial-auto",
-    "telephone": "+1-833-522-7872",
+    "telephone": "+1-888-254-0089",
     "areaServed": commercialAutoStates.map(s => ({
       "@type": "State",
       "name": s.name
@@ -412,12 +412,12 @@ export default function GeicoCommercialAutoLanding() {
                   </span>
                 </Link>
                 <a 
-                  href="tel:+18335227872" 
+                  href="tel:+118882540089" 
                   className="flex items-center gap-2 text-sm font-medium text-primary"
                   data-testid="link-phone"
                 >
                   <Phone className="h-4 w-4" />
-                  (833) 522-7872
+                  1-888-254-0089
                 </a>
               </nav>
 
@@ -450,12 +450,12 @@ export default function GeicoCommercialAutoLanding() {
                   <span className="block py-2 text-foreground" data-testid="link-quote-mobile">Get a Quote</span>
                 </Link>
                 <a 
-                  href="tel:+18335227872" 
+                  href="tel:+118882540089" 
                   className="flex items-center gap-2 py-2 text-primary font-medium"
                   data-testid="link-phone-mobile"
                 >
                   <Phone className="h-4 w-4" />
-                  (833) 522-7872
+                  1-888-254-0089
                 </a>
               </div>
             </div>
@@ -995,14 +995,14 @@ export default function GeicoCommercialAutoLanding() {
                 As your Local Agent with GEICO, Casurance is here to help you find the right coverage for your business vehicles at competitive rates.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="tel:+18335227872">
+                <a href="tel:+118882540089">
                   <Button 
                     size="lg" 
                     className="bg-white text-[#003366] hover:bg-white/90 w-full sm:w-auto"
                     data-testid="button-call-cta"
                   >
                     <Phone className="mr-2 h-5 w-5" />
-                    Call (833) 522-7872
+                    Call 1-888-254-0089
                   </Button>
                 </a>
                 <a href="#main-content">
@@ -1059,9 +1059,9 @@ export default function GeicoCommercialAutoLanding() {
                 <h3 className="font-semibold mb-4">Contact</h3>
                 <ul className="space-y-2 text-sm">
                   <li>
-                    <a href="tel:+18335227872" className="flex items-center gap-2 text-muted-foreground hover:text-foreground">
+                    <a href="tel:+118882540089" className="flex items-center gap-2 text-muted-foreground hover:text-foreground">
                       <Phone className="h-4 w-4" />
-                      (833) 522-7872
+                      1-888-254-0089
                     </a>
                   </li>
                   <li>
