@@ -644,6 +644,42 @@ export default function UberBlackInsuranceLanding() {
                 </p>
               </div>
               
+              {/* Coverage Includes Card */}
+              <Card className="mt-10 border-blue-500/20 bg-slate-50 dark:bg-slate-900/50">
+                <CardHeader>
+                  <CardTitle className="text-xl font-bold text-blue-900 dark:text-blue-100">
+                    Coverage Includes
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  {[
+                    "Commercial Auto Liability up to $1.5M CSL",
+                    "Uninsured/Underinsured Motorist Coverage",
+                    "Personal Injury Protection (PIP)",
+                    "Comprehensive & Collision Coverage",
+                    "Hired & Non-Owned Auto Coverage",
+                    "Gap Coverage for Leased Vehicles",
+                    "Zero Deductible Glass Coverage",
+                    "24/7 Claims Support"
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-center gap-3">
+                      <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                      <span className="text-gray-700 dark:text-gray-300">{item}</span>
+                    </div>
+                  ))}
+                  <Button 
+                    size="lg" 
+                    className="w-full mt-6 text-lg py-6 bg-blue-600 hover:bg-blue-700"
+                    asChild
+                    data-testid="button-start-quote-coverage"
+                  >
+                    <Link href="/commercial-auto-insurance">
+                      Start Your Quote
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+
               {/* Requirements Card */}
               <Card className="mt-10 border-red-500/20">
                 <CardHeader>
