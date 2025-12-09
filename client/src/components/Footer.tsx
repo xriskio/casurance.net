@@ -90,6 +90,18 @@ export default function Footer() {
             <Link href="/workers-comp-california-nevada" className="text-white/70 hover:text-white transition-colors cursor-pointer">Workers' Comp CA & NV</Link>
             <span className="text-white/30">|</span>
             <Link href="/liquor-store-insurance" className="text-white/70 hover:text-white transition-colors cursor-pointer">Liquor Store Insurance</Link>
+            <span className="text-white/30">|</span>
+            <Link href="/builders-risk-insurance" className="text-white/70 hover:text-white transition-colors cursor-pointer">Builders Risk Insurance</Link>
+            <span className="text-white/30">|</span>
+            <Link href="/auto-services-insurance" className="text-white/70 hover:text-white transition-colors cursor-pointer">Auto Services Insurance</Link>
+            <span className="text-white/30">|</span>
+            <Link href="/geico-commercial-auto" className="text-white/70 hover:text-white transition-colors cursor-pointer">GEICO Commercial Auto</Link>
+            <span className="text-white/30">|</span>
+            <Link href="/geico-private-passenger" className="text-white/70 hover:text-white transition-colors cursor-pointer">GEICO Private Passenger</Link>
+            <span className="text-white/30">|</span>
+            <Link href="/bristol-west-commercial-auto" className="text-white/70 hover:text-white transition-colors cursor-pointer">Bristol West Commercial</Link>
+            <span className="text-white/30">|</span>
+            <Link href="/berkshire-hathaway-commercial-auto" className="text-white/70 hover:text-white transition-colors cursor-pointer">Berkshire Hathaway BHHC</Link>
           </div>
         </div>
 

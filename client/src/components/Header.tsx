@@ -119,7 +119,7 @@ function MegaMenuDropdown({ label, isOpen, onToggle, onClose, children, testId }
         <ChevronDown className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
       {isOpen && (
-        <div className="absolute top-full left-0 mt-1 bg-white rounded-md shadow-xl border border-gray-200 py-4 px-6 z-50 min-w-[500px]">
+        <div className="absolute top-full left-0 mt-1 bg-white rounded-md shadow-xl border border-gray-200 py-4 px-6 z-50 min-w-[680px]">
           {children}
         </div>
       )}
@@ -168,7 +168,7 @@ export default function Header() {
               onClose={closeDropdowns}
               testId="dropdown-coverage"
             >
-              <div className="grid grid-cols-2 gap-x-8 gap-y-1">
+              <div className="grid grid-cols-3 gap-x-8 gap-y-1">
                 <div>
                   <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Coverage Types</h3>
                   {coverageCategories.slice(0, 5).map((item) => (
@@ -188,6 +188,29 @@ export default function Header() {
                       </span>
                     </Link>
                   ))}
+                </div>
+                <div>
+                  <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Carrier Partners</h3>
+                  <Link href="/geico-commercial-auto" onClick={handleLinkClick}>
+                    <span className="block py-1.5 text-sm text-gray-700 hover:text-primary hover:bg-gray-50 rounded px-2 -mx-2 cursor-pointer">
+                      GEICO Commercial Auto
+                    </span>
+                  </Link>
+                  <Link href="/geico-private-passenger" onClick={handleLinkClick}>
+                    <span className="block py-1.5 text-sm text-gray-700 hover:text-primary hover:bg-gray-50 rounded px-2 -mx-2 cursor-pointer">
+                      GEICO Private Passenger
+                    </span>
+                  </Link>
+                  <Link href="/bristol-west-commercial-auto" onClick={handleLinkClick}>
+                    <span className="block py-1.5 text-sm text-gray-700 hover:text-primary hover:bg-gray-50 rounded px-2 -mx-2 cursor-pointer">
+                      Bristol West Commercial
+                    </span>
+                  </Link>
+                  <Link href="/berkshire-hathaway-commercial-auto" onClick={handleLinkClick}>
+                    <span className="block py-1.5 text-sm text-gray-700 hover:text-primary hover:bg-gray-50 rounded px-2 -mx-2 cursor-pointer">
+                      Berkshire Hathaway BHHC
+                    </span>
+                  </Link>
                 </div>
               </div>
               <div className="mt-4 pt-4 border-t border-gray-100">
@@ -348,6 +371,21 @@ export default function Header() {
                         </div>
                       </Link>
                     ))}
+                    <div className="pt-2 mt-2 border-t border-white/10">
+                      <div className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-2">Carrier Partners</div>
+                      <Link href="/geico-commercial-auto">
+                        <div className="text-sm text-white/70 hover:text-white py-1.5 cursor-pointer" onClick={handleLinkClick}>GEICO Commercial Auto</div>
+                      </Link>
+                      <Link href="/geico-private-passenger">
+                        <div className="text-sm text-white/70 hover:text-white py-1.5 cursor-pointer" onClick={handleLinkClick}>GEICO Private Passenger</div>
+                      </Link>
+                      <Link href="/bristol-west-commercial-auto">
+                        <div className="text-sm text-white/70 hover:text-white py-1.5 cursor-pointer" onClick={handleLinkClick}>Bristol West Commercial</div>
+                      </Link>
+                      <Link href="/berkshire-hathaway-commercial-auto">
+                        <div className="text-sm text-white/70 hover:text-white py-1.5 cursor-pointer" onClick={handleLinkClick}>Berkshire Hathaway BHHC</div>
+                      </Link>
+                    </div>
                     <Link href="/coverages">
                       <div 
                         className="text-sm font-medium text-primary py-1.5 cursor-pointer"
