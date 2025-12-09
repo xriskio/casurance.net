@@ -106,6 +106,8 @@ export default function Footer() {
             <Link href="/berkshire-hathaway-commercial-auto" className="text-white/70 hover:text-white transition-colors cursor-pointer">Berkshire Hathaway BHHC</Link>
             <span className="text-white/30">|</span>
             <Link href="/uber-black-insurance" className="text-white/70 hover:text-white transition-colors cursor-pointer">Uber Black Insurance</Link>
+            <span className="text-white/30">|</span>
+            <Link href="/restaurant-bar-insurance" className="text-white/70 hover:text-white transition-colors cursor-pointer">Restaurant & Bar Insurance</Link>
           </div>
         </div>
 

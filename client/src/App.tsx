@@ -89,6 +89,7 @@ import BristolWestCommercialAutoLanding from "@/pages/BristolWestCommercialAutoL
 import BristolWestPrivatePassengerLanding from "@/pages/BristolWestPrivatePassengerLanding";
 import BerkshireHathawayCommercialAutoLanding from "@/pages/BerkshireHathawayCommercialAutoLanding";
 import UberBlackInsuranceLanding from "@/pages/UberBlackInsuranceLanding";
+import RestaurantBarInsuranceLanding from "@/pages/RestaurantBarInsuranceLanding";
 import QuoteThankYou from "@/pages/QuoteThankYou";
 import AccessibilityPage from "@/pages/AccessibilityPage";
 import NotFound from "@/pages/not-found";
@@ -165,6 +166,9 @@ function Router() {
       <Route path="/lp/bhhc" component={BerkshireHathawayCommercialAutoLanding} />
       <Route path="/uber-black-insurance" component={UberBlackInsuranceLanding} />
       <Route path="/lp/uber-black" component={UberBlackInsuranceLanding} />
+      <Route path="/restaurant-bar-insurance" component={RestaurantBarInsuranceLanding} />
+      <Route path="/lp/restaurant-insurance" component={RestaurantBarInsuranceLanding} />
+      <Route path="/lp/bar-insurance" component={RestaurantBarInsuranceLanding} />
       <Route path="/agent" component={AgentLogin} />
       <Route path="/agent/login" component={AgentLogin} />
       <Route path="/agent/portal" component={AgentPortal} />
