@@ -553,11 +553,14 @@ export const californiaLocations: CityLocation[] = [
   { slug: "dana-point", name: "Dana Point", state: "California", stateAbbr: "CA", region: "Orange County", population: "34,000+", businessHighlights: ["Marine", "Tourism", "Retail"] },
   { slug: "el-segundo", name: "El Segundo", state: "California", stateAbbr: "CA", region: "Los Angeles County", population: "17,000+", businessHighlights: ["Aerospace", "Technology", "Media"] },
   { slug: "fremont", name: "Fremont", state: "California", stateAbbr: "CA", region: "Alameda County", population: "230,000+", businessHighlights: ["Technology", "Manufacturing", "Healthcare"] },
+  { slug: "garden-grove", name: "Garden Grove", state: "California", stateAbbr: "CA", region: "Orange County", population: "172,000+", businessHighlights: ["Manufacturing", "Retail", "Healthcare"] },
+  { slug: "hayward", name: "Hayward", state: "California", stateAbbr: "CA", region: "Alameda County", population: "162,000+", businessHighlights: ["Manufacturing", "Healthcare", "Food Processing"] },
   { slug: "huntington-beach", name: "Huntington Beach", state: "California", stateAbbr: "CA", region: "Orange County", population: "200,000+", businessHighlights: ["Oil & Gas", "Tourism", "Retail"] },
   { slug: "laguna-beach", name: "Laguna Beach", state: "California", stateAbbr: "CA", region: "Orange County", population: "23,000+", businessHighlights: ["Art", "Tourism", "Hospitality"] },
   { slug: "los-angeles", name: "Los Angeles", state: "California", stateAbbr: "CA", region: "Los Angeles County", population: "3,900,000+", businessHighlights: ["Entertainment", "Technology", "Manufacturing"] },
   { slug: "long-beach", name: "Long Beach", state: "California", stateAbbr: "CA", region: "Los Angeles County", population: "466,000+", businessHighlights: ["Shipping", "Aerospace", "Tourism"] },
   { slug: "manhattan-beach", name: "Manhattan Beach", state: "California", stateAbbr: "CA", region: "Los Angeles County", population: "35,000+", businessHighlights: ["Retail", "Professional Services", "Hospitality"] },
+  { slug: "milpitas", name: "Milpitas", state: "California", stateAbbr: "CA", region: "Santa Clara County", population: "80,000+", businessHighlights: ["Technology", "Manufacturing", "Distribution"] },
   { slug: "mountain-view", name: "Mountain View", state: "California", stateAbbr: "CA", region: "Santa Clara County", population: "82,000+", businessHighlights: ["Technology", "Healthcare", "Professional Services"] },
   { slug: "napa", name: "Napa", state: "California", stateAbbr: "CA", region: "Napa County", population: "79,000+", businessHighlights: ["Wine", "Tourism", "Hospitality"] },
   { slug: "newport-beach", name: "Newport Beach", state: "California", stateAbbr: "CA", region: "Orange County", population: "85,000+", businessHighlights: ["Finance", "Real Estate", "Marine"] },
@@ -572,6 +575,7 @@ export const californiaLocations: CityLocation[] = [
   { slug: "san-jose", name: "San Jose", state: "California", stateAbbr: "CA", region: "Santa Clara County", population: "1,030,000+", businessHighlights: ["Technology", "Manufacturing", "Healthcare"] },
   { slug: "santa-clara", name: "Santa Clara", state: "California", stateAbbr: "CA", region: "Santa Clara County", population: "127,000+", businessHighlights: ["Technology", "Manufacturing", "Entertainment"] },
   { slug: "san-mateo", name: "San Mateo", state: "California", stateAbbr: "CA", region: "San Mateo County", population: "105,000+", businessHighlights: ["Technology", "Biotech", "Finance"] },
+  { slug: "south-san-francisco", name: "South San Francisco", state: "California", stateAbbr: "CA", region: "San Mateo County", population: "66,000+", businessHighlights: ["Biotech", "Pharmaceutical", "Technology"] },
   { slug: "santa-monica", name: "Santa Monica", state: "California", stateAbbr: "CA", region: "Los Angeles County", population: "93,000+", businessHighlights: ["Entertainment", "Technology", "Tourism"] },
   { slug: "santa-rosa", name: "Santa Rosa", state: "California", stateAbbr: "CA", region: "Sonoma County", population: "178,000+", businessHighlights: ["Wine", "Healthcare", "Manufacturing"] },
   { slug: "torrance", name: "Torrance", state: "California", stateAbbr: "CA", region: "Los Angeles County", population: "145,000+", businessHighlights: ["Aerospace", "Retail", "Manufacturing"] },
@@ -579,7 +583,9 @@ export const californiaLocations: CityLocation[] = [
   { slug: "irvine", name: "Irvine", state: "California", stateAbbr: "CA", region: "Orange County", population: "307,000+", businessHighlights: ["Technology", "Biotech", "Education"] },
   { slug: "burbank", name: "Burbank", state: "California", stateAbbr: "CA", region: "Los Angeles County", population: "107,000+", businessHighlights: ["Entertainment", "Media", "Aviation"] },
   { slug: "glendale", name: "Glendale", state: "California", stateAbbr: "CA", region: "Los Angeles County", population: "196,000+", businessHighlights: ["Healthcare", "Retail", "Finance"] },
-  { slug: "costa-mesa", name: "Costa Mesa", state: "California", stateAbbr: "CA", region: "Orange County", population: "112,000+", businessHighlights: ["Retail", "Arts", "Professional Services"] }
+  { slug: "costa-mesa", name: "Costa Mesa", state: "California", stateAbbr: "CA", region: "Orange County", population: "112,000+", businessHighlights: ["Retail", "Arts", "Professional Services"] },
+  { slug: "los-angeles-county", name: "Los Angeles County", state: "California", stateAbbr: "CA", region: "Los Angeles County", population: "10,000,000+", businessHighlights: ["Entertainment", "Technology", "Manufacturing", "Aerospace"] },
+  { slug: "orange-county", name: "Orange County", state: "California", stateAbbr: "CA", region: "Orange County", population: "3,200,000+", businessHighlights: ["Technology", "Tourism", "Healthcare", "Finance"] }
 ];
 
 export const nevadaLocations: CityLocation[] = [
