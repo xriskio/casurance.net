@@ -82,6 +82,7 @@ import AdvertisingLandingPage from "@/pages/AdvertisingLandingPage";
 import WorkersCompLandingPage from "@/pages/WorkersCompLandingPage";
 import LiquorStoreInsuranceLanding from "@/pages/LiquorStoreInsuranceLanding";
 import BuildersRiskLanding from "@/pages/BuildersRiskLanding";
+import AutoServicesLanding from "@/pages/AutoServicesLanding";
 import QuoteThankYou from "@/pages/QuoteThankYou";
 import AccessibilityPage from "@/pages/AccessibilityPage";
 import NotFound from "@/pages/not-found";
@@ -143,6 +144,10 @@ function Router() {
       <Route path="/builders-risk-insurance" component={BuildersRiskLanding} />
       <Route path="/lp/builders-risk" component={BuildersRiskLanding} />
       <Route path="/lp/construction-insurance" component={BuildersRiskLanding} />
+      <Route path="/auto-services-insurance" component={AutoServicesLanding} />
+      <Route path="/lp/auto-services" component={AutoServicesLanding} />
+      <Route path="/lp/garage-liability" component={AutoServicesLanding} />
+      <Route path="/lp/garagekeepers" component={AutoServicesLanding} />
       <Route path="/agent" component={AgentLogin} />
       <Route path="/agent/login" component={AgentLogin} />
       <Route path="/agent/portal" component={AgentPortal} />

@@ -22,6 +22,8 @@ const ALL_SITE_URLS = [
   "/middle-market",
   "/builders-risk-insurance",
   "/liquor-store-insurance",
+  "/auto-services-insurance",
+  "/industry/auto-services",
   
   "/coverage/commercial-auto",
   "/coverage/general-liability",
