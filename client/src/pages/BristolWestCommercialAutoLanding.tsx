@@ -110,7 +110,7 @@ const faqs = [
   },
   {
     question: "How do I get a quote for Bristol West Commercial Auto?",
-    answer: "Simply fill out the quick quote form on this page or call Casurance at 1-888-254-0089. As an authorized Bristol West agent, we can provide quotes and bind coverage quickly. You can also visit IAProducers.com for producer services."
+    answer: "Simply fill out the quick quote form on this page or call Casurance at 1-888-254-0089. As an authorized Bristol West agent, we can provide quotes and bind coverage quickly."
   },
   {
     question: "What vehicle types can be insured with Bristol West?",
