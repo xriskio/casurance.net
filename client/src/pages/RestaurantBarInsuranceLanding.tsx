@@ -164,9 +164,42 @@ export default function RestaurantBarInsuranceLanding() {
     { icon: Utensils, name: "Fine Dining", description: "White tablecloth establishments" },
     { icon: ChefHat, name: "Casual Dining", description: "Family-style restaurants" },
     { icon: Coffee, name: "Cafes & Coffee Shops", description: "Quick-service beverage establishments" },
-    { icon: Store, name: "Fast Food", description: "Quick-service restaurants" },
-    { icon: Wine, name: "Bars & Taverns", description: "Nightlife and beverage-focused venues" },
-    { icon: Truck, name: "Food Trucks", description: "Mobile food service operations" }
+    { icon: Store, name: "Fast Casual", description: "Quick-service restaurants" },
+    { icon: Wine, name: "Bars & Lounges", description: "Nightlife and beverage-focused venues" },
+    { icon: Truck, name: "Food Trucks", description: "Mobile food service operations" },
+    { icon: Users, name: "Caterers", description: "Off-premises catering services" },
+    { icon: Wine, name: "Nightclubs", description: "Entertainment venues with food & beverage" }
+  ];
+
+  const packageDesignedFor = [
+    "Fine Dining",
+    "Family/Casual with Full Table Service",
+    "Fast Casual",
+    "Wine Bars",
+    "Off-premises Caterers",
+    "Ghost Restaurants"
+  ];
+
+  const weWelcome = [
+    "Incidental Bakery, Market, Retail or Entertainment Exposure",
+    "New Ventures Eligible with Prior Experience",
+    "Sushi & Raw Bars",
+    "Hibachi-style Cooking Exposure"
+  ];
+
+  const policyFeatures = [
+    "Commercial General Liability",
+    "Liquor Liability (available in most states)",
+    "Impairment Liability (select states)",
+    "ISO Occurrence & Claims-Made coverage forms",
+    "ISO Liquor Liability coverage",
+    "Customized coverage options",
+    "Per location aggregate endorsement",
+    "Hired & non-owned auto",
+    "Blanket additional insured",
+    "Employee Benefits Liability",
+    "Stop Gap Liability",
+    "$10M excess capacity available"
   ];
 
   return (
@@ -475,7 +508,7 @@ export default function RestaurantBarInsuranceLanding() {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {businessTypes.map((type, index) => (
                 <div 
                   key={index}
@@ -488,6 +521,72 @@ export default function RestaurantBarInsuranceLanding() {
                   <p className="text-sm text-gray-500">{type.description}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Restaurant Package Section */}
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="grid lg:grid-cols-3 gap-8">
+              {/* Package Designed For */}
+              <div className="bg-gradient-to-br from-blue-900 to-blue-800 rounded-2xl p-8 text-white">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                    <ChefHat className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-bold">Restaurant Package Designed For</h3>
+                </div>
+                <ul className="space-y-3">
+                  {packageDesignedFor.map((item, index) => (
+                    <li key={index} className="flex items-center gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-amber-400 flex-shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Policy Structure */}
+              <div className="bg-gray-50 rounded-2xl p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                    <FileText className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900">Policy Structure</h3>
+                </div>
+                <ul className="space-y-3">
+                  {policyFeatures.map((item, index) => (
+                    <li key={index} className="flex items-center gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0" />
+                      <span className="text-gray-700">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* We Welcome */}
+              <div className="bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl p-8 text-white">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                    <Star className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-bold">We Welcome</h3>
+                </div>
+                <ul className="space-y-3">
+                  {weWelcome.map((item, index) => (
+                    <li key={index} className="flex items-center gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-white flex-shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-6 pt-6 border-t border-white/30">
+                  <p className="text-sm text-white/90">
+                    No minimum premium. We tailor terms and pricing to every account.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
