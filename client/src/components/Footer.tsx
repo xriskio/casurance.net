@@ -83,7 +83,7 @@ export default function Footer() {
 
         {/* Landing Pages Section */}
         <div className="border-t border-white/10 pt-8 mb-8">
-          <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Advertising Landing Pages</h3>
+          <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Special Programs</h3>
           <div className="flex flex-wrap gap-4 text-sm">
             <Link href="/get-quote" className="text-white/70 hover:text-white transition-colors cursor-pointer">Commercial Insurance Quote</Link>
             <span className="text-white/30">|</span>
