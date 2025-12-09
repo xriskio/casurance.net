@@ -183,7 +183,7 @@ const faqs = [
   },
   {
     question: "Does BHHC offer fleet coverage?",
-    answer: "Yes, BHHC's Fleet Underwriting Division can write virtually any type of auto risk with 11+ power units. They have no radius or unit count restrictions and offer telematics discounts for fleet risks. Submit fleet applications to auto@bhhomestate.com."
+    answer: "Yes, BHHC's Fleet Underwriting Division can write virtually any type of auto risk with 11+ power units. They have no radius or unit count restrictions and offer telematics discounts for fleet risks. BHHC writes commercial auto in over 35 states."
   },
   {
     question: "What is BHHC's financial strength rating?",
