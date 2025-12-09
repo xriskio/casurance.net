@@ -276,29 +276,29 @@ export default function UberBlackInsuranceLanding() {
               <div className="relative rounded-2xl overflow-hidden border-2 border-red-500/30 bg-white">
                 <img 
                   src={suburbanImage} 
-                  alt="Chevrolet Suburban - Premium SUV for Uber Black"
+                  alt="Black Chevrolet Suburban - Premium SUV for Uber Black"
                   className="w-full h-auto object-contain"
                   data-testid="img-suburban"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
                   <p className="text-red-400 text-sm font-semibold uppercase tracking-wider mb-1">Premium SUV</p>
-                  <p className="text-white font-bold text-2xl">Chevrolet Suburban</p>
+                  <p className="text-white font-bold text-2xl">Black Chevrolet Suburban</p>
                 </div>
               </div>
             </div>
             
-            {/* Luxury Sedans Row */}
+            {/* Tesla Vehicles */}
             <div className="max-w-5xl mx-auto">
               <div className="relative rounded-2xl overflow-hidden border-2 border-red-500/30 bg-gray-900">
                 <img 
                   src={sedansImage} 
-                  alt="Tesla Model S, Mercedes S-Class, Tesla Model X - Luxury Sedans for Uber Black"
+                  alt="Black Tesla Model S and Tesla Model X - Electric Luxury for Uber Black"
                   className="w-full h-auto object-contain"
-                  data-testid="img-sedans"
+                  data-testid="img-teslas"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-                  <p className="text-red-400 text-sm font-semibold uppercase tracking-wider mb-1">Luxury Sedans & Electric Vehicles</p>
-                  <p className="text-white font-bold text-xl">Tesla Model S | Mercedes S-Class | Tesla Model X</p>
+                  <p className="text-red-400 text-sm font-semibold uppercase tracking-wider mb-1">Electric Luxury Vehicles</p>
+                  <p className="text-white font-bold text-xl">Black Tesla Model S | Black Tesla Model X</p>
                 </div>
               </div>
             </div>
