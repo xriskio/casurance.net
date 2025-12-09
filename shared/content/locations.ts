@@ -497,6 +497,51 @@ export const insuranceTypes: LocationInsuranceType[] = [
     ],
     avgCost: "$3,000-$15,000 per vehicle per year",
     quoteLink: "/berkshire-hathaway-commercial-auto"
+  },
+  {
+    slug: "technology-companies",
+    name: "Technology Companies Insurance",
+    description: "Comprehensive insurance solutions for technology companies including software developers, hardware manufacturers, IT services, and cloud providers. As an Authorized Chubb Agent, we offer specialized coverage designed for the unique risks facing the tech industry.",
+    coveragePoints: [
+      "Technology Errors & Omissions (E&O)",
+      "Cyber & Privacy Liability",
+      "Directors & Officers (D&O) Liability",
+      "Commercial Property & Equipment Breakdown",
+      "Business Interruption Coverage",
+      "Intellectual Property Protection"
+    ],
+    avgCost: "$3,000-$25,000 per year",
+    quoteLink: "/technology-insurance"
+  },
+  {
+    slug: "manufacturing",
+    name: "Manufacturing Insurance",
+    description: "Tailored insurance programs for manufacturers of all types including advanced manufacturing, traditional manufacturing, and industrial operations. As an Authorized Chubb Agent, we provide comprehensive coverage for machinery, fabricated metal, auto parts, and more.",
+    coveragePoints: [
+      "Commercial Property & Equipment Breakdown",
+      "Product Liability Coverage",
+      "General Liability Protection",
+      "Workers' Compensation",
+      "Environmental Liability",
+      "Business Interruption & Supply Chain"
+    ],
+    avgCost: "$5,000-$50,000 per year",
+    quoteLink: "/manufacturing-insurance"
+  },
+  {
+    slug: "restaurant-bar",
+    name: "Restaurant & Bar Insurance",
+    description: "Specialized insurance coverage for restaurants, bars, food trucks, caterers, and all food service establishments. Comprehensive protection including general liability, liquor liability, property, and workers' compensation.",
+    coveragePoints: [
+      "General Liability Protection",
+      "Liquor Liability Coverage",
+      "Commercial Property Insurance",
+      "Workers' Compensation",
+      "Equipment Breakdown",
+      "Business Interruption Coverage"
+    ],
+    avgCost: "$3,000-$15,000 per year",
+    quoteLink: "/restaurant-bar-insurance"
   }
 ];
 

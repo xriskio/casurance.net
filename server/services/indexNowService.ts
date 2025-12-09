@@ -30,6 +30,8 @@ const ALL_SITE_URLS = [
   "/berkshire-hathaway-commercial-auto",
   "/uber-black-insurance",
   "/restaurant-bar-insurance",
+  "/technology-insurance",
+  "/manufacturing-insurance",
   "/industry/auto-services",
   
   "/coverage/commercial-auto",
