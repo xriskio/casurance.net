@@ -23,11 +23,10 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 
-import escaladeImage from "@assets/stock_images/black_cadillac_escal_9847b71e.jpg";
-import suburbanImage from "@assets/stock_images/black_chevrolet_subu_d2bdcd62.jpg";
-import lincolnImage from "@assets/stock_images/black_lincoln_luxury_f484978a.jpg";
-import teslaXImage from "@assets/stock_images/black_tesla_model_x__4e4efc76.jpg";
-import teslaSImage from "@assets/stock_images/black_tesla_model_s__596c2bcd.jpg";
+import suburbanImage from "@assets/stock_images/black_chevrolet_subu_26bd5a0c.jpg";
+import teslaSImage from "@assets/stock_images/black_tesla_model_s__978a9bf7.jpg";
+import mercedesImage from "@assets/stock_images/black_mercedes_s-cla_395e9ae8.jpg";
+import teslaXImage from "@assets/stock_images/black_tesla_model_x__2c1c6dd2.jpg";
 
 const availableStates = [
   { abbr: "CA", name: "California", highlight: true },
@@ -37,29 +36,24 @@ const availableStates = [
 
 const luxuryVehicles = [
   {
-    name: "Cadillac Escalade ESV",
-    type: "Premium SUV",
-    image: escaladeImage
-  },
-  {
     name: "Chevrolet Suburban",
-    type: "Executive SUV",
+    type: "Premium SUV",
     image: suburbanImage
-  },
-  {
-    name: "Lincoln Aviator",
-    type: "Luxury Sedan",
-    image: lincolnImage
-  },
-  {
-    name: "Tesla Model X",
-    type: "Electric SUV",
-    image: teslaXImage
   },
   {
     name: "Tesla Model S",
     type: "Electric Sedan",
     image: teslaSImage
+  },
+  {
+    name: "Mercedes S-Class",
+    type: "Luxury Sedan",
+    image: mercedesImage
+  },
+  {
+    name: "Tesla Model X",
+    type: "Electric SUV",
+    image: teslaXImage
   }
 ];
 
@@ -302,7 +296,7 @@ export default function UberBlackInsuranceLanding() {
             </div>
             
             {/* Vehicle Image Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6 max-w-7xl mx-auto">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-6xl mx-auto">
               {luxuryVehicles.map((vehicle, index) => (
                 <div 
                   key={index} 
