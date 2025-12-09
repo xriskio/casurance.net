@@ -42,8 +42,8 @@ import {
   AlertTriangle
 } from "lucide-react";
 
-import autoShopImg from "@assets/stock_images/modern_auto_repair_s_15972b56.jpg";
-import autoShopImg2 from "@assets/stock_images/modern_auto_repair_s_8327e52a.jpg";
+import autoShopImg from "@assets/stock_images/modern_auto_repair_s_125d54d6.jpg";
+import autoShopImg2 from "@assets/stock_images/modern_auto_repair_s_125d54d6.jpg";
 
 const targetClasses = [
   { name: "Alarm Installation & Repairs", highlight: true },
