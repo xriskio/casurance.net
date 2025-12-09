@@ -167,7 +167,7 @@ const fleetInfo = {
 const faqs = [
   {
     question: "What states does Berkshire Hathaway Homestate Companies write commercial auto in?",
-    answer: "BHHC writes commercial auto in over 35 states including California, Nevada, and Ohio. They are actively writing in states across the country from Alaska to Florida, with some restrictions in certain states for agents domiciled in that state or non-admitted auto."
+    answer: "BHHC writes commercial auto in over 35 states including California, Nevada, and Ohio."
   },
   {
     question: "What trucking classes does BHHC cover?",
