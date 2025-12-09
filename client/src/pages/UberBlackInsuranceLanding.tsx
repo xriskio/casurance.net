@@ -23,8 +23,10 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 
-import suburbanImage from "@assets/image_1765266650427.png";
-import sedansImage from "@assets/image_1765266710257.png";
+import suburbanImage from "@assets/2017-Chevrolet-Suburban-COLOR-Black_1765266976772.png";
+import mercedesImage from "@assets/2018-Mercedes-S500-Hybrid-Review_1765267012520.png";
+import teslaXImage from "@assets/modelX_1765267012521.png";
+import teslaSImage from "@assets/Black-Model-S-P90D-Arachnid-Wheel-e1464681843999-1000x600-1_1765267012521.png";
 
 const availableStates = [
   { abbr: "CA", name: "California", highlight: true },
@@ -271,34 +273,61 @@ export default function UberBlackInsuranceLanding() {
               </p>
             </div>
             
-            {/* Featured SUV - Chevy Suburban */}
-            <div className="max-w-4xl mx-auto mb-10">
-              <div className="relative rounded-2xl overflow-hidden border-2 border-red-500/30 bg-white">
+            {/* Vehicle Grid - 4 vehicles */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+              {/* Chevy Suburban */}
+              <div className="relative rounded-2xl overflow-hidden border-2 border-red-500/30 bg-black group">
                 <img 
                   src={suburbanImage} 
-                  alt="Black Chevrolet Suburban - Premium SUV for Uber Black"
-                  className="w-full h-auto object-contain"
+                  alt="Black Chevrolet Suburban"
+                  className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-500"
                   data-testid="img-suburban"
                 />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-                  <p className="text-red-400 text-sm font-semibold uppercase tracking-wider mb-1">Premium SUV</p>
-                  <p className="text-white font-bold text-2xl">Black Chevrolet Suburban</p>
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <p className="text-red-400 text-xs font-semibold uppercase tracking-wider mb-1">Premium SUV</p>
+                  <p className="text-white font-bold text-lg">Black Chevrolet Suburban</p>
                 </div>
               </div>
-            </div>
-            
-            {/* Tesla Vehicles */}
-            <div className="max-w-5xl mx-auto">
-              <div className="relative rounded-2xl overflow-hidden border-2 border-red-500/30 bg-gray-900">
+              
+              {/* Mercedes S-Class */}
+              <div className="relative rounded-2xl overflow-hidden border-2 border-red-500/30 bg-black group">
                 <img 
-                  src={sedansImage} 
-                  alt="Black Tesla Model S and Tesla Model X - Electric Luxury for Uber Black"
-                  className="w-full h-auto object-contain"
-                  data-testid="img-teslas"
+                  src={mercedesImage} 
+                  alt="Black Mercedes S-Class"
+                  className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-500"
+                  data-testid="img-mercedes"
                 />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-                  <p className="text-red-400 text-sm font-semibold uppercase tracking-wider mb-1">Electric Luxury Vehicles</p>
-                  <p className="text-white font-bold text-xl">Black Tesla Model S | Black Tesla Model X</p>
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <p className="text-red-400 text-xs font-semibold uppercase tracking-wider mb-1">Luxury Sedan</p>
+                  <p className="text-white font-bold text-lg">Black Mercedes S-Class</p>
+                </div>
+              </div>
+              
+              {/* Tesla Model X */}
+              <div className="relative rounded-2xl overflow-hidden border-2 border-red-500/30 bg-black group">
+                <img 
+                  src={teslaXImage} 
+                  alt="Black Tesla Model X"
+                  className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-500"
+                  data-testid="img-tesla-x"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <p className="text-red-400 text-xs font-semibold uppercase tracking-wider mb-1">Electric SUV</p>
+                  <p className="text-white font-bold text-lg">Black Tesla Model X</p>
+                </div>
+              </div>
+              
+              {/* Tesla Model S */}
+              <div className="relative rounded-2xl overflow-hidden border-2 border-red-500/30 bg-black group">
+                <img 
+                  src={teslaSImage} 
+                  alt="Black Tesla Model S"
+                  className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-500"
+                  data-testid="img-tesla-s"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <p className="text-red-400 text-xs font-semibold uppercase tracking-wider mb-1">Electric Sedan</p>
+                  <p className="text-white font-bold text-lg">Black Tesla Model S</p>
                 </div>
               </div>
             </div>
