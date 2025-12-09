@@ -1400,6 +1400,45 @@ export const coverages: CoverageContent[] = [
     ]
   },
 
+  {
+    title: "Builders Risk",
+    slug: "builders-risk",
+    category: "Property",
+    summary: "Comprehensive builders risk insurance for ground-up construction and renovations with higher limits and coverage for hard-to-insure locations.",
+    description: "Builders risk insurance protects construction projects during the building phase, covering materials, equipment, and structures from damage or loss. Our expanded primary builders risk solutions offer customized coverage for ground-up construction and renovations with higher limits and the ability to consider larger projects. Coverage is available for hard-to-insure locations prone to wildfires, severe weather, and other extreme exposures with flexible 3, 6, 8, 10, or 12-month policies.",
+    whoNeeds: [
+      "General contractors and construction companies",
+      "Property developers and real estate investors",
+      "Homebuilders and residential contractors",
+      "Renovation and remodeling contractors",
+      "Commercial property owners during construction",
+      "Building owners renovating existing structures"
+    ],
+    coverageIncludes: [
+      "Ground-up construction: Up to $3.5M TIV for frame, $5M TIV for superior construction",
+      "Renovation coverage: Up to $4M limits for Joisted Masonry or Masonry Non-Combustible",
+      "Primary layers up to $2.5M for projects of $10M or less",
+      "General liability limits up to $1M/$2M",
+      "Excess builders risk options up to $5M",
+      "Protection for materials, equipment, and structures during construction",
+      "Coverage for theft, vandalism, and weather damage",
+      "Existing building or structural coverage for renovations"
+    ],
+    benefits: [
+      "Higher capacity for ground-up construction and renovations",
+      "Coverage available in hard-to-insure locations (wildfires, severe weather)",
+      "Flexible policy terms: 3, 6, 8, 10, or 12-month policies",
+      "Prior starts considered for projects already underway",
+      "Option to cover building materials only",
+      "Delay in completion coverage available",
+      "Business income and soft costs coverage",
+      "Contractors equipment bundle options",
+      "Available in all states excluding Hawaii, Idaho, and Louisiana"
+    ],
+    seoTitle: "Builders Risk Insurance | Construction Coverage | Casurance",
+    seoDescription: "Get builders risk insurance for ground-up construction and renovations. Coverage up to $5M TIV with excess options. Available for hard-to-insure locations. Free quotes."
+  },
+
   // HABITATIONAL
   {
     title: "Affordable Housing",

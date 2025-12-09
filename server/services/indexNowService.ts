@@ -20,6 +20,8 @@ const ALL_SITE_URLS = [
   "/personal-lines",
   "/locations",
   "/middle-market",
+  "/builders-risk-insurance",
+  "/liquor-store-insurance",
   
   "/coverage/commercial-auto",
   "/coverage/general-liability",
