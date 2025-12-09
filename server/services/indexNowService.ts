@@ -25,6 +25,9 @@ const ALL_SITE_URLS = [
   "/auto-services-insurance",
   "/geico-commercial-auto",
   "/geico-private-passenger",
+  "/bristol-west-commercial-auto",
+  "/bristol-west-private-passenger",
+  "/berkshire-hathaway-commercial-auto",
   "/industry/auto-services",
   
   "/coverage/commercial-auto",
@@ -851,10 +854,42 @@ async function submitBatchToBingIndexNow(urls: string[]): Promise<SubmissionResu
   }
 }
 
+export async function pingGoogleSitemap(): Promise<{ success: boolean; message: string }> {
+  const sitemapUrl = encodeURIComponent(`${SITE_URL}/sitemap.xml`);
+  const googlePingUrl = `https://www.google.com/ping?sitemap=${sitemapUrl}`;
+  
+  try {
+    console.log("[Google] Pinging sitemap...");
+    const response = await fetch(googlePingUrl, {
+      method: "GET",
+      headers: { "User-Agent": "Casurance-Bot/1.0" }
+    });
+    
+    if (response.ok) {
+      console.log("[Google] Sitemap ping successful");
+      return { success: true, message: "Successfully pinged Google with sitemap" };
+    } else {
+      console.log(`[Google] Sitemap ping returned status ${response.status}`);
+      return { success: false, message: `Google ping returned status ${response.status}` };
+    }
+  } catch (error) {
+    console.error("[Google] Error pinging sitemap:", error);
+    return { 
+      success: false, 
+      message: `Error pinging Google: ${error instanceof Error ? error.message : "Unknown error"}` 
+    };
+  }
+}
+
 export function initializeIndexNow(): void {
   setTimeout(() => {
     submitAllSitePages().catch(err => {
       console.error("[URL Submission] Failed to submit site pages:", err);
+    });
+    
+    // Also ping Google
+    pingGoogleSitemap().catch(err => {
+      console.error("[Google] Failed to ping sitemap:", err);
     });
   }, 10000);
 }
