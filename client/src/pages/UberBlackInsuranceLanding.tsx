@@ -27,7 +27,6 @@ import suburbanImage from "@assets/2017-Chevrolet-Suburban-COLOR-Black_176526697
 import mercedesImage from "@assets/2018-Mercedes-S500-Hybrid-Review_1765267556294.png";
 import teslaXImage from "@assets/modelX_1765267556294.png";
 import teslaSImage from "@assets/Black-Model-S-P90D-Arachnid-Wheel-e1464681843999-1000x600-1_1765267556294.png";
-import cadillacImage from "@assets/58bbbbe226940a1e3ced938e16d9665d_1765267313388.jpg";
 
 const availableStates = [
   { abbr: "CA", name: "California", highlight: true },
@@ -274,8 +273,8 @@ export default function UberBlackInsuranceLanding() {
               </p>
             </div>
             
-            {/* Vehicle Grid - 5 vehicles */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {/* Vehicle Grid - 4 vehicles */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
               {/* Chevy Suburban */}
               <div className="relative rounded-2xl overflow-hidden border-2 border-red-500/30 bg-black group">
                 <img 
@@ -329,20 +328,6 @@ export default function UberBlackInsuranceLanding() {
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
                   <p className="text-red-400 text-xs font-semibold uppercase tracking-wider mb-1">Electric Sedan</p>
                   <p className="text-white font-bold text-lg">Black Tesla Model S</p>
-                </div>
-              </div>
-              
-              {/* Cadillac XT6 */}
-              <div className="relative rounded-2xl overflow-hidden border-2 border-red-500/30 bg-white group">
-                <img 
-                  src={cadillacImage} 
-                  alt="Black Cadillac XT6"
-                  className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-500"
-                  data-testid="img-cadillac"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-                  <p className="text-red-400 text-xs font-semibold uppercase tracking-wider mb-1">Luxury SUV</p>
-                  <p className="text-white font-bold text-lg">Black Cadillac XT6</p>
                 </div>
               </div>
             </div>
