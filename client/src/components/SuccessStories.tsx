@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Megaphone, Building2, Home, ChevronRight, TrendingUp, Shield, Award } from "lucide-react";
+import { Megaphone, Building2, Home, ChevronRight, Shield, Award } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const commercialSuccesses = [
@@ -49,8 +49,6 @@ function formatCurrency(amount: number): string {
 
 export default function SuccessStories() {
   const [activeTab, setActiveTab] = useState("commercial");
-  
-  const totalCommercialPremium = commercialSuccesses.reduce((sum, item) => sum + item.premium, 0);
 
   return (
     <section className="py-20 bg-gradient-to-b from-muted/30 to-background">
@@ -68,14 +66,7 @@ export default function SuccessStories() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-          <div className="bg-card rounded-xl p-6 border border-border text-center">
-            <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full mb-3">
-              <TrendingUp className="h-6 w-6 text-primary" />
-            </div>
-            <div className="text-3xl font-bold text-foreground mb-1">{formatCurrency(totalCommercialPremium)}+</div>
-            <p className="text-sm text-muted-foreground">In Written Commercial Premium</p>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10 max-w-2xl mx-auto">
           <div className="bg-card rounded-xl p-6 border border-border text-center">
             <div className="inline-flex items-center justify-center w-12 h-12 bg-green-500/10 rounded-full mb-3">
               <Shield className="h-6 w-6 text-green-600 dark:text-green-400" />
@@ -118,13 +109,7 @@ export default function SuccessStories() {
                     </h4>
                     <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
                   </div>
-                  <p className="text-xs text-muted-foreground mb-3">{item.coverage}</p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-lg font-bold text-green-600 dark:text-green-400">
-                      {formatCurrency(item.premium)}
-                    </span>
-                    <span className="text-[10px] text-muted-foreground uppercase tracking-wide">Written Premium</span>
-                  </div>
+                  <p className="text-sm text-primary font-medium">{item.coverage}</p>
                 </div>
               ))}
             </div>
@@ -172,7 +157,7 @@ export default function SuccessStories() {
 
         <div className="text-center mt-10">
           <p className="text-sm text-muted-foreground italic">
-            *Premium amounts shown are actual written policies. Results may vary based on coverage needs and risk factors.
+            *Examples shown are actual placed policies. Results may vary based on coverage needs and risk factors.
           </p>
         </div>
       </div>
