@@ -277,7 +277,7 @@ function LandingPageFooter() {
               CASURANCE
             </span>
             <p className="text-white/60 text-sm">
-              California License #0L41392
+              California License #6005562
             </p>
             <p className="text-white/60 text-sm mt-2">
               Specialized commercial insurance solutions for businesses nationwide.

@@ -336,7 +336,7 @@ function LandingPageFooter() {
                 1-323-546-3030
               </li>
               <li>info@casurance.net</li>
-              <li>License #0M99352</li>
+              <li>License #6005562</li>
             </ul>
           </div>
         </div>
