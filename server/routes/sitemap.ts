@@ -33,6 +33,8 @@ const staticRoutes = [
   { url: "/bristol-west-commercial-auto", priority: "0.9", changefreq: "weekly" },
   { url: "/bristol-west-private-passenger", priority: "0.9", changefreq: "weekly" },
   { url: "/berkshire-hathaway-commercial-auto", priority: "0.9", changefreq: "weekly" },
+  { url: "/uber-black-insurance", priority: "0.9", changefreq: "weekly" },
+  { url: "/restaurant-bar-insurance", priority: "0.9", changefreq: "weekly" },
 ];
 
 // Quote and application form routes (exact paths from App.tsx)

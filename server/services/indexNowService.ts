@@ -29,6 +29,7 @@ const ALL_SITE_URLS = [
   "/bristol-west-private-passenger",
   "/berkshire-hathaway-commercial-auto",
   "/uber-black-insurance",
+  "/restaurant-bar-insurance",
   "/industry/auto-services",
   
   "/coverage/commercial-auto",
