@@ -28,6 +28,7 @@ const ALL_SITE_URLS = [
   "/bristol-west-commercial-auto",
   "/bristol-west-private-passenger",
   "/berkshire-hathaway-commercial-auto",
+  "/uber-black-insurance",
   "/industry/auto-services",
   
   "/coverage/commercial-auto",
