@@ -7,7 +7,8 @@ import { Helmet } from "react-helmet-async";
 import { 
   Truck, Shield, CheckCircle, Phone, Building2, ArrowRight, 
   CheckCircle2, MapPin, FileText, Users, Award, Star,
-  HardHat, Utensils, TreePine, Wrench, Package, Leaf
+  HardHat, Utensils, TreePine, Wrench, Package, Leaf, Bus,
+  Car, Ambulance, Home, Compass
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -81,6 +82,45 @@ const additionalClasses = [
   { value: "social-service-agencies", label: "Social Service Agencies", icon: Users },
   { value: "traveling-medical", label: "Traveling Medical Transportation", icon: Users },
   { value: "trucking-contingent", label: "Trucking Contingent Liability (Bobtail/Deadhead)", icon: Truck },
+];
+
+const publicAutoClasses = [
+  { value: "church-buses", label: "Church Buses", icon: Bus, description: "Religious organization transportation" },
+  { value: "day-care-centers", label: "Day Care Centers", icon: Users, description: "Childcare facility vehicles" },
+  { value: "limousines", label: "Limousines", icon: Car, description: "Luxury passenger transportation" },
+  { value: "social-service-nonprofits", label: "Social Service/Non-Profits", icon: Users, description: "Community organization vehicles" },
+  { value: "group-home-autos", label: "Group Home Autos", icon: Home, description: "Residential care facility transport" },
+  { value: "wilderness-expeditions", label: "Wilderness Expeditions", icon: Compass, description: "Adventure and outdoor tour vehicles" },
+];
+
+const publicAutoFeatures = [
+  { name: "Liability Limits (up to $5,000,000)", description: "High liability limits for passenger transportation" },
+  { name: "Drive Other Car", description: "Coverage when driving non-owned vehicles" },
+  { name: "Hired Car and Non-owned", description: "Protection for rented or borrowed vehicles" },
+  { name: "Waiver of Subrogation", description: "Contractual requirement coverage" },
+  { name: "Additional Insured", description: "Add certificate holders as additional insureds" },
+  { name: "State and Federal Filings", description: "Including MCS-90 for for-hire carriers" },
+  { name: "Audio-visual Equipment Coverage", description: "Protection for entertainment systems in vehicles" },
+];
+
+const allOtherClasses = [
+  { value: "emergency-ambulances", label: "Emergency Ambulances", icon: Ambulance },
+  { value: "funeral-director-autos", label: "Funeral Director Autos", icon: Car },
+  { value: "nemt", label: "Non-Emergency Medical Transportation", icon: Users },
+  { value: "rental-operations", label: "Rental Operations", icon: Car },
+  { value: "salesperson-autos", label: "Salesperson's Autos", icon: Building2 },
+];
+
+const coverageTypes = [
+  "Auto Liability",
+  "Physical Damage",
+  "Medical Payments",
+  "Uninsured/Underinsured Motorist",
+  "On-hook/In-tow",
+  "Cargo",
+  "Hired / Non-Owned",
+  "Garage Liability",
+  "Garagekeepers Liability",
 ];
 
 const productFeatures = [
@@ -424,7 +464,7 @@ export default function BerkshireHathawayCommercialAutoLanding() {
                                   </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
-                                  {[...truckingClasses, ...additionalClasses].map((type) => (
+                                  {[...truckingClasses, ...publicAutoClasses, ...allOtherClasses, ...additionalClasses].map((type) => (
                                     <SelectItem key={type.value} value={type.value}>
                                       {type.label}
                                     </SelectItem>
@@ -523,6 +563,104 @@ export default function BerkshireHathawayCommercialAutoLanding() {
                   );
                 })}
               </div>
+            </div>
+          </section>
+
+          {/* Public Auto Section */}
+          <section className="py-16 bg-muted/30">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-12">
+                <div className="inline-flex items-center gap-2 bg-[#003366]/10 text-[#003366] px-4 py-2 rounded-full text-sm font-medium mb-4">
+                  <Bus className="h-4 w-4" />
+                  <span>Public Auto Coverage</span>
+                </div>
+                <h2 className="text-3xl font-bold text-foreground mb-4" data-testid="text-public-auto-title">
+                  Auto Coverage for Those Who Transport Others
+                </h2>
+                <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                  If your business is transporting people from one point to another, BHHC can lend a hand. Whether you need coverage for a daycare auto, limousine or a wilderness expedition, we've got you covered. We are the go-to market for your Public Auto needs.
+                </p>
+              </div>
+
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                {publicAutoClasses.map((cls, index) => {
+                  const IconComponent = cls.icon;
+                  return (
+                    <Card key={index} className="hover-elevate" data-testid={`public-auto-class-${index}`}>
+                      <CardContent className="p-6">
+                        <IconComponent className="h-10 w-10 text-[#003366] mb-4" />
+                        <h3 className="font-semibold mb-2">{cls.label}</h3>
+                        <p className="text-sm text-muted-foreground">{cls.description}</p>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
+
+              <Card className="bg-[#003366] text-white border-0">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold mb-6 text-center">Public Auto Product Features</h3>
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {publicAutoFeatures.map((feature, index) => (
+                      <div key={index} className="flex items-start gap-3" data-testid={`public-auto-feature-${index}`}>
+                        <CheckCircle2 className="h-5 w-5 text-green-400 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <span className="font-medium text-sm">{feature.name}</span>
+                          <p className="text-white/60 text-xs">{feature.description}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </section>
+
+          {/* All Other Commercial Auto Section */}
+          <section className="py-16 bg-background">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold text-foreground mb-4" data-testid="text-all-other-title">
+                  All-Around Auto Protection
+                </h2>
+                <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                  If you are looking to cover a business class outside of Trucks and Public Auto, BHHC can handle your "All Other" accounts. Whether your business is adding a personal-type auto to its commercial policy, renting vehicles to the public, or performing medical transportation, our expansive product offering allows us to take a look at almost any commercial auto account.
+                </p>
+              </div>
+
+              <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-12">
+                {allOtherClasses.map((cls, index) => {
+                  const IconComponent = cls.icon;
+                  return (
+                    <Card key={index} className="hover-elevate" data-testid={`all-other-class-${index}`}>
+                      <CardContent className="flex items-center gap-3 p-4">
+                        <IconComponent className="h-6 w-6 text-[#003366] flex-shrink-0" />
+                        <span className="text-sm font-medium">{cls.label}</span>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-center">Types of Coverage Available</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid sm:grid-cols-3 md:grid-cols-5 gap-3">
+                    {coverageTypes.map((coverage, index) => (
+                      <div 
+                        key={index} 
+                        className="flex items-center gap-2 bg-muted/50 rounded-lg p-3"
+                        data-testid={`coverage-type-${index}`}
+                      >
+                        <Shield className="h-4 w-4 text-[#003366] flex-shrink-0" />
+                        <span className="text-sm">{coverage}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </section>
 
