@@ -62,61 +62,114 @@ const commercialAutoStates = [
 const vehicleTypes = [
   { 
     icon: Car, 
-    title: "Passenger Vehicles", 
-    description: "Sedans, SUVs, and vans used for business purposes including sales, deliveries, and client visits.",
-    examples: ["Company Cars", "Fleet Vehicles", "Sales Vehicles"]
+    title: "Coupes, Sedans & SUVs", 
+    description: "Business passenger vehicles used for sales, client visits, and daily operations.",
+    examples: ["Company Cars", "Sales Vehicles", "Executive Transport"]
   },
   { 
     icon: Truck, 
-    title: "Light & Medium Trucks", 
-    description: "Pickup trucks, box trucks, and cargo vans for commercial operations and deliveries.",
-    examples: ["Pickup Trucks", "Box Trucks", "Cargo Vans"]
+    title: "Pickups & Light Trucks", 
+    description: "Pickup trucks and light-duty commercial vehicles for contractors and service businesses.",
+    examples: ["Pickup Trucks", "Cargo Vans", "Full-Size Vans"]
+  },
+  { 
+    icon: Truck, 
+    title: "Box & Straight Trucks", 
+    description: "Medium-duty trucks for delivery, moving, and distribution operations.",
+    examples: ["Box Trucks", "Straight Trucks", "Panel Trucks"]
+  },
+  { 
+    icon: Truck, 
+    title: "Flat Bed & Dump Trucks", 
+    description: "Heavy-duty trucks for construction, hauling, and material transport.",
+    examples: ["Flat Bed Trucks", "Dump Trucks", "Stake Trucks"]
+  },
+  { 
+    icon: Truck, 
+    title: "Tractor Trailers", 
+    description: "Semi-trucks and tractor-trailers for long-haul and regional trucking operations.",
+    examples: ["Semi Trucks", "Tractor Trailers", "Day Cabs"]
   },
   { 
     icon: Wrench, 
-    title: "Service Vehicles", 
-    description: "Specialized vehicles for contractors, technicians, and service professionals.",
-    examples: ["Service Trucks", "Utility Vehicles", "Work Vans"]
+    title: "Equipped & Specialty Vehicles", 
+    description: "Vehicles with permanently attached equipment, commercial trailers, and specialty builds.",
+    examples: ["Service Vehicles", "Food Trucks", "Mobile Workshops"]
   },
-  { 
-    icon: Package, 
-    title: "Delivery Vehicles", 
-    description: "Vehicles dedicated to product delivery and distribution operations.",
-    examples: ["Delivery Vans", "Route Trucks", "Courier Vehicles"]
-  },
-  { 
-    icon: Building2, 
-    title: "Business Fleet", 
-    description: "Multiple vehicles operated as part of a commercial fleet operation.",
-    examples: ["Corporate Fleets", "Small Business Fleets", "Rental Fleets"]
-  },
-  { 
-    icon: Warehouse, 
-    title: "Specialty Commercial", 
-    description: "Unique commercial vehicles requiring specialized coverage solutions.",
-    examples: ["Food Trucks", "Mobile Services", "Specialty Haulers"]
-  },
+];
+
+const whenToChooseCommercial = [
+  "Self-employed individuals using vehicles for work",
+  "Members of a partnership or corporation officers",
+  "Delivery of food products or goods for a fee",
+  "Transportation Network Company (TNC) for delivery",
+  "Transport of people (daycare, rideshare) for a fee",
+  "Employees driving for work-related purposes",
+  "Vehicles requiring certificates of insurance or filings",
+  "Vehicles with trailers or permanently attached equipment",
+  "Vehicles with commercial license plates",
+  "Vehicles over 10,000 lbs GVW",
+];
+
+const commercialVsPPA = [
+  { feature: "Vehicle Types", commercial: "Coupes, sedans, SUVs, pickups, box trucks, flat bed trucks, tractor trailers, dump trucks, straight trucks, full-size vans", ppa: "Coupes, sedans, SUVs, pickups up to 10,000 lbs" },
+  { feature: "Permanently Attached Equipment", commercial: "Yes", ppa: "N/A" },
+  { feature: "Commercial Trailers", commercial: "Yes", ppa: "No" },
+  { feature: "Commercially Registered", commercial: "Yes", ppa: "No" },
+  { feature: "Transport Goods for Fee", commercial: "Yes", ppa: "No" },
+  { feature: "Equipment Weight", commercial: "Unlimited", ppa: "Restrictions Apply" },
+  { feature: "Employees Driving for Work", commercial: "Yes", ppa: "No" },
+  { feature: "Additional Insured", commercial: "Yes", ppa: "No" },
+  { feature: "Waiver of Subrogation", commercial: "Yes", ppa: "No" },
+  { feature: "Hired Auto / Non-Owned Auto", commercial: "Yes", ppa: "No" },
+  { feature: "Cargo Coverage", commercial: "Yes", ppa: "No" },
 ];
 
 const coverageOptions = [
-  "Liability Coverage",
-  "Collision Coverage",
-  "Comprehensive Coverage",
-  "Medical Payments",
-  "Uninsured/Underinsured Motorist",
-  "Hired & Non-Owned Auto",
+  { name: "Liability Coverage", description: "Protects against bodily injury and property damage claims from accidents" },
+  { name: "Collision Coverage", description: "Covers damage to your vehicle from collisions, regardless of fault" },
+  { name: "Comprehensive Coverage", description: "Protects against theft, vandalism, weather, and non-collision damage" },
+  { name: "Medical Payments", description: "Covers medical expenses for you and passengers after an accident" },
+  { name: "Uninsured/Underinsured Motorist", description: "Protects you when other drivers lack adequate coverage" },
+  { name: "Hired Auto", description: "Covers leased, rented, or borrowed vehicles used in your business" },
+  { name: "Non-Owned Auto", description: "Covers employee-owned vehicles used for business purposes" },
+  { name: "Additional Insured", description: "Add third parties to your policy as required by contracts" },
+  { name: "Waiver of Subrogation", description: "Waive rights to recover from named parties as required by contracts" },
+  { name: "Cargo Coverage", description: "Protects goods and cargo being transported in your vehicles" },
+];
+
+const truckingCoverages = [
+  { name: "Motor Truck Cargo", description: "Covers freight or commodities you're hauling for others" },
+  { name: "Trailer Interchange", description: "Covers trailers in your possession under interchange agreements" },
+  { name: "Physical Damage - Stated Amount", description: "Coverage based on the stated value you set for your vehicle" },
+  { name: "Physical Damage - ACV", description: "Coverage based on actual cash value at time of loss" },
+];
+
+const filingTypes = [
+  { name: "BMC-91X", description: "Motor carrier or freight forwarder for-hire operating authority filing" },
+  { name: "Form E", description: "Uniform motor carrier proof of financial responsibility" },
+  { name: "CA-91X", description: "California-specific filing for for-hire carriers" },
+  { name: "Certificates of Insurance", description: "Proof of coverage for contracts, permits, and business requirements" },
 ];
 
 const businessTypes = [
-  "Contractor/Construction",
-  "Delivery/Courier Service",
-  "Food Service/Catering",
-  "HVAC/Plumbing/Electrical",
+  "Artisan Contractors",
+  "Building Contractors",
+  "Delivery Services",
+  "Electricians",
+  "Food/Beverage Distributors",
+  "HVAC Contractors",
   "Landscaping/Lawn Care",
-  "Real Estate/Property Management",
+  "Movers",
+  "Painters",
+  "Plumbers",
+  "Real Estate",
   "Retail/Wholesale",
-  "Sales/Marketing",
-  "Transportation/Logistics",
+  "Roofers",
+  "Sales & Service",
+  "Trucking - Local",
+  "Trucking - Intermediate",
+  "Trucking - Long Haul",
   "Other Service Business",
 ];
 
@@ -129,28 +182,36 @@ const stats = [
 
 const faqs = [
   {
-    question: "What is commercial auto insurance?",
-    answer: "Commercial auto insurance protects vehicles used primarily for business purposes. It covers liability for accidents, physical damage to your vehicles, medical payments, and protection against uninsured drivers. Unlike personal auto policies, commercial coverage is designed for the unique risks businesses face on the road."
+    question: "When should I choose commercial auto over personal auto insurance?",
+    answer: "You need commercial auto if: you're self-employed or a partnership/corporation officer, you deliver food or transport goods/people for a fee, employees drive for work purposes, your vehicles require certificates of insurance or filings, vehicles have trailers or permanently attached equipment, have commercial license plates, or weigh over 10,000 lbs GVW."
+  },
+  {
+    question: "What types of vehicles does GEICO commercial auto cover?",
+    answer: "GEICO commercial auto covers coupes, sedans, SUVs, pickups, box trucks, flat bed trucks, tractor trailers, dump trucks, straight trucks, full-size vans, and vehicles with permanently attached equipment. Coverage is available for single vehicles or entire business fleets."
   },
   {
     question: "Which states offer GEICO commercial auto through Casurance?",
     answer: "As a Local Agent with GEICO, Casurance offers commercial auto coverage in 14 states: Arizona, Arkansas, Colorado, Florida, Illinois, Kansas, Nevada, New Jersey, New Mexico, Ohio, Oregon, Pennsylvania, South Carolina, and Texas."
   },
   {
-    question: "What types of vehicles can be covered?",
-    answer: "GEICO commercial auto covers a wide range of business vehicles including passenger cars, pickup trucks, vans, box trucks, service vehicles, delivery vehicles, and specialty commercial vehicles. Coverage is available for single vehicles or entire business fleets."
+    question: "What coverage options are available?",
+    answer: "Coverage options include liability, collision, comprehensive, medical payments, uninsured/underinsured motorist, hired auto, non-owned auto, additional insured, waiver of subrogation, and cargo coverage. Trucking operations can add motor truck cargo and trailer interchange coverage."
   },
   {
-    question: "What coverage options are available?",
-    answer: "Coverage options include liability, collision, comprehensive, medical payments, uninsured/underinsured motorist, and hired & non-owned auto coverage. Your policy can be customized based on your specific business needs and vehicle usage."
+    question: "Can you provide filings for operating authority?",
+    answer: "Yes, as a Local Agent with GEICO, we can provide various filings including BMC-91X for motor carriers and freight forwarders, Form E for proof of financial responsibility, CA-91X for California carriers, and certificates of insurance for contracts and permits."
+  },
+  {
+    question: "What's the difference between stated amount and actual cash value (ACV)?",
+    answer: "Stated amount should reflect the current retail value of your vehicle including custom parts and equipment. Actual cash value (ACV) is the replacement cost at time of loss minus depreciation. Review your stated amount at each renewal to ensure adequate coverage."
+  },
+  {
+    question: "How are newly acquired vehicles handled?",
+    answer: "Newly acquired vehicles are covered if all your vehicles are listed on our policy, or if the new vehicle replaces one previously covered. You must notify us within 30 days of acquiring a new vehicle to maintain coverage."
   },
   {
     question: "How do I file a claim?",
-    answer: "GEICO offers 24/7 claims service. You can file a claim online, through the GEICO mobile app, or by calling the claims hotline. As your local agent, Casurance is also available to assist you throughout the claims process."
-  },
-  {
-    question: "What discounts are available?",
-    answer: "Available discounts may include multi-vehicle, safe driver, defensive driving course completion, anti-theft devices, and bundling with other commercial policies. Contact Casurance to discuss which discounts apply to your business."
+    answer: "GEICO offers 24/7 claims service with in-house adjusters. File a claim online at geico.com/claims, through the GEICO mobile app, or by calling 866-509-9444. As your local agent, Casurance is also available to assist you throughout the claims process."
   },
 ];
 
@@ -668,6 +729,57 @@ export default function GeicoCommercialAutoLanding() {
             </div>
           </section>
 
+          <section className="py-16 bg-muted/30" id="when-to-choose">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold text-foreground mb-4" data-testid="text-when-to-choose-title">
+                  When to Choose Commercial Auto
+                </h2>
+                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                  Do you have the right policy to protect your business?
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6 mb-12">
+                {whenToChooseCommercial.map((item, index) => (
+                  <div 
+                    key={index} 
+                    className="flex items-center gap-3 bg-background rounded-lg p-4 shadow-sm"
+                    data-testid={`when-to-choose-${index}`}
+                  >
+                    <CheckCircle2 className="h-5 w-5 text-[#003366] flex-shrink-0" />
+                    <span className="text-foreground">{item}</span>
+                  </div>
+                ))}
+              </div>
+
+              <Card className="overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="overflow-x-auto">
+                    <table className="w-full" data-testid="table-comparison">
+                      <thead className="bg-[#003366] text-white">
+                        <tr>
+                          <th className="px-4 py-3 text-left font-semibold">Feature</th>
+                          <th className="px-4 py-3 text-center font-semibold">Commercial Auto</th>
+                          <th className="px-4 py-3 text-center font-semibold">Private Passenger</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y">
+                        {commercialVsPPA.map((row, index) => (
+                          <tr key={index} className={index % 2 === 0 ? "bg-muted/30" : ""}>
+                            <td className="px-4 py-3 font-medium">{row.feature}</td>
+                            <td className="px-4 py-3 text-center text-sm">{row.commercial}</td>
+                            <td className="px-4 py-3 text-center text-sm text-muted-foreground">{row.ppa}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </section>
+
           <section className="py-16 bg-[#003366] text-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12">
@@ -679,17 +791,56 @@ export default function GeicoCommercialAutoLanding() {
                 </p>
               </div>
 
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid sm:grid-cols-2 gap-6 mb-12">
                 {coverageOptions.map((option, index) => (
                   <div 
                     key={index} 
-                    className="flex items-center gap-3 bg-white/10 backdrop-blur rounded-lg p-4"
+                    className="bg-white/10 backdrop-blur rounded-lg p-4"
                     data-testid={`coverage-option-${index}`}
                   >
-                    <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
-                    <span className="font-medium">{option}</span>
+                    <div className="flex items-center gap-3 mb-2">
+                      <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
+                      <span className="font-semibold">{option.name}</span>
+                    </div>
+                    <p className="text-white/70 text-sm ml-8">{option.description}</p>
                   </div>
                 ))}
+              </div>
+
+              <div className="border-t border-white/20 pt-12">
+                <h3 className="text-2xl font-bold mb-6 text-center">Trucking & Motor Carrier Coverages</h3>
+                <div className="grid sm:grid-cols-2 gap-6 mb-8">
+                  {truckingCoverages.map((coverage, index) => (
+                    <div 
+                      key={index} 
+                      className="bg-white/10 backdrop-blur rounded-lg p-4"
+                      data-testid={`trucking-coverage-${index}`}
+                    >
+                      <div className="flex items-center gap-3 mb-2">
+                        <Truck className="h-5 w-5 text-green-400 flex-shrink-0" />
+                        <span className="font-semibold">{coverage.name}</span>
+                      </div>
+                      <p className="text-white/70 text-sm ml-8">{coverage.description}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <h3 className="text-2xl font-bold mb-6 text-center">Filings & Certificates</h3>
+                <div className="grid sm:grid-cols-2 gap-6">
+                  {filingTypes.map((filing, index) => (
+                    <div 
+                      key={index} 
+                      className="bg-white/10 backdrop-blur rounded-lg p-4"
+                      data-testid={`filing-type-${index}`}
+                    >
+                      <div className="flex items-center gap-3 mb-2">
+                        <Shield className="h-5 w-5 text-green-400 flex-shrink-0" />
+                        <span className="font-semibold">{filing.name}</span>
+                      </div>
+                      <p className="text-white/70 text-sm ml-8">{filing.description}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               <div className="mt-12 text-center">
