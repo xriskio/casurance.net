@@ -546,8 +546,16 @@ Additional Info: ${data.additionalInfo}
       <LandingPageHeader />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#0a1628] via-[#1e3a5f] to-[#0a1628] py-16 lg:py-24">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <section className="relative py-16 lg:py-24 overflow-hidden">
+        {/* Background Image with Dark Overlay */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${constructionImg1})` }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0a1628]/95 via-[#1e3a5f]/90 to-[#0a1628]/95"></div>
+        </div>
+        
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Left: Content */}
             <div>

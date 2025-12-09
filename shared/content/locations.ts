@@ -229,6 +229,21 @@ export const insuranceTypes: LocationInsuranceType[] = [
     quoteLink: "/quote"
   },
   {
+    slug: "builders-risk",
+    name: "Builders Risk Insurance",
+    description: "Builders risk insurance protects buildings under construction from property damage including fire, theft, vandalism, and weather damage. Coverage applies to new ground-up construction and renovation projects.",
+    coveragePoints: [
+      "Coverage for buildings under construction",
+      "Protection during renovation projects",
+      "Materials and supplies coverage",
+      "Soft costs and delay in completion",
+      "Equipment and temporary structures",
+      "Hard-to-insure location coverage"
+    ],
+    avgCost: "$2,000-$15,000 per project",
+    quoteLink: "/quote/builders-risk"
+  },
+  {
     slug: "products-liability",
     name: "Products Liability Insurance",
     description: "Products liability insurance protects manufacturers, distributors, and retailers from claims arising from defective products that cause injury or property damage.",

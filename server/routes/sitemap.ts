@@ -26,6 +26,8 @@ const staticRoutes = [
   { url: "/accessibility", priority: "0.5", changefreq: "monthly" },
   { url: "/liquor-store-insurance", priority: "0.9", changefreq: "weekly" },
   { url: "/workers-comp-california-nevada", priority: "0.9", changefreq: "weekly" },
+  { url: "/builders-risk-insurance", priority: "0.9", changefreq: "weekly" },
+  { url: "/auto-services-insurance", priority: "0.9", changefreq: "weekly" },
 ];
 
 // Quote and application form routes (exact paths from App.tsx)
