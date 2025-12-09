@@ -101,6 +101,8 @@ export default function Footer() {
             <span className="text-white/30">|</span>
             <Link href="/bristol-west-commercial-auto" className="text-white/70 hover:text-white transition-colors cursor-pointer">Bristol West Commercial</Link>
             <span className="text-white/30">|</span>
+            <Link href="/bristol-west-private-passenger" className="text-white/70 hover:text-white transition-colors cursor-pointer">Bristol West Personal</Link>
+            <span className="text-white/30">|</span>
             <Link href="/berkshire-hathaway-commercial-auto" className="text-white/70 hover:text-white transition-colors cursor-pointer">Berkshire Hathaway BHHC</Link>
           </div>
         </div>

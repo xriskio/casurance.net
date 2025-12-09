@@ -31,6 +31,7 @@ const staticRoutes = [
   { url: "/geico-commercial-auto", priority: "0.9", changefreq: "weekly" },
   { url: "/geico-private-passenger", priority: "0.9", changefreq: "weekly" },
   { url: "/bristol-west-commercial-auto", priority: "0.9", changefreq: "weekly" },
+  { url: "/bristol-west-private-passenger", priority: "0.9", changefreq: "weekly" },
   { url: "/berkshire-hathaway-commercial-auto", priority: "0.9", changefreq: "weekly" },
 ];
 
