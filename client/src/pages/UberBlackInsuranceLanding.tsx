@@ -601,13 +601,11 @@ export default function UberBlackInsuranceLanding() {
               <Button 
                 size="lg" 
                 className="text-lg px-10 py-6 bg-red-600 hover:bg-red-700"
-                asChild
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                 data-testid="button-get-quote-vehicles"
               >
-                <Link href="/commercial-auto-insurance">
-                  Get Insurance for Your Vehicle
-                  <ChevronRight className="ml-2 h-5 w-5" />
-                </Link>
+                Get Insurance for Uber Black Vehicle
+                <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
           </div>
