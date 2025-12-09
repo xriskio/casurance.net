@@ -7,7 +7,12 @@ import { Link } from "wouter";
 import { ArrowRight, MapPin, Building2, Shield } from "lucide-react";
 import { 
   californiaLocations, 
-  nevadaLocations, 
+  nevadaLocations,
+  ohioLocations,
+  arizonaLocations,
+  texasLocations,
+  coloradoLocations,
+  oregonLocations,
   insuranceTypes,
   type CityLocation 
 } from "@shared/content/locations";
@@ -51,10 +56,10 @@ export default function LocationsIndex() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Helmet>
-        <title>Commercial Insurance by Location | California & Nevada | Casurance</title>
-        <meta name="description" content="Find commercial insurance coverage for your business location. Casurance serves businesses across California and Nevada with general liability, workers' comp, restaurant insurance, and more." />
+        <title>Commercial Insurance by Location | CA, NV, OH, AZ, TX, CO, OR | Casurance</title>
+        <meta name="description" content="Find commercial insurance coverage for your business location. Casurance serves businesses across California, Nevada, Ohio, Arizona, Texas, Colorado, and Oregon with general liability, workers' comp, and more." />
         <meta property="og:title" content="Commercial Insurance by Location | Casurance" />
-        <meta property="og:description" content="Find commercial insurance coverage for your business location across California and Nevada." />
+        <meta property="og:description" content="Find commercial insurance coverage for your business location across California, Nevada, Ohio, Arizona, Texas, Colorado, and Oregon." />
         <link rel="canonical" href="https://casurance.com/locations" />
       </Helmet>
       
@@ -72,7 +77,7 @@ export default function LocationsIndex() {
             </h1>
             <p className="text-lg lg:text-xl text-white/90 max-w-3xl mx-auto">
               Find commercial insurance tailored to your business location. 
-              We provide coverage across California, Nevada, and all 50 states.
+              We provide coverage across California, Nevada, Ohio, Arizona, Texas, Colorado, Oregon, and all 50 states.
             </p>
           </div>
         </div>
@@ -103,6 +108,76 @@ export default function LocationsIndex() {
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
               {nevadaLocations.map((city) => (
+                <CityCard key={city.slug} city={city} />
+              ))}
+            </div>
+          </section>
+
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-foreground mb-2 pb-2 border-b">
+              Ohio Locations
+            </h2>
+            <p className="text-muted-foreground mb-6">
+              Comprehensive commercial insurance for the Buckeye State's diverse business community.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {ohioLocations.map((city) => (
+                <CityCard key={city.slug} city={city} />
+              ))}
+            </div>
+          </section>
+
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-foreground mb-2 pb-2 border-b">
+              Arizona Locations
+            </h2>
+            <p className="text-muted-foreground mb-6">
+              Insurance solutions for the Grand Canyon State's growing business landscape.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {arizonaLocations.map((city) => (
+                <CityCard key={city.slug} city={city} />
+              ))}
+            </div>
+          </section>
+
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-foreground mb-2 pb-2 border-b">
+              Texas Locations
+            </h2>
+            <p className="text-muted-foreground mb-6">
+              Commercial insurance coverage for the Lone Star State's dynamic business environment.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {texasLocations.map((city) => (
+                <CityCard key={city.slug} city={city} />
+              ))}
+            </div>
+          </section>
+
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-foreground mb-2 pb-2 border-b">
+              Colorado Locations
+            </h2>
+            <p className="text-muted-foreground mb-6">
+              Protecting businesses across the Centennial State with comprehensive coverage options.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {coloradoLocations.map((city) => (
+                <CityCard key={city.slug} city={city} />
+              ))}
+            </div>
+          </section>
+
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-foreground mb-2 pb-2 border-b">
+              Oregon Locations
+            </h2>
+            <p className="text-muted-foreground mb-6">
+              Commercial insurance solutions for the Beaver State's innovative business community.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {oregonLocations.map((city) => (
                 <CityCard key={city.slug} city={city} />
               ))}
             </div>
