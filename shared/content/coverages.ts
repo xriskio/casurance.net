@@ -5208,6 +5208,326 @@ export const industries: CoverageContent[] = [
     ],
     seoTitle: "Uber Black Insurance | Commercial Auto for Luxury Rideshare",
     seoDescription: "Specialized commercial auto insurance for Uber Black and Uber Black SUV drivers in California, Nevada, and Arizona. TCP gap coverage, same-day certificates, and next-day CPUC filings. Call 1-888-254-0089."
+  },
+
+  // TECHNOLOGY INDUSTRIES - CHUBB SPECIAL PROGRAMS
+  {
+    title: "Software Developers Insurance",
+    slug: "software-developers",
+    category: "Industries",
+    summary: "Comprehensive insurance for software developers creating packaged and custom software solutions, featuring Chubb DigiTech ERM coverage.",
+    description: "Software Developers Insurance provides specialized coverage for companies creating packaged software, custom applications, and digital products. As an Authorized Chubb Agent, Casurance offers access to Chubb's DigiTech ERM program—the industry's leading technology insurance solution. This comprehensive program addresses the unique exposures of software development including intellectual property infringement, code errors, data breaches, and professional liability claims. Whether you're a startup building your first application or an established software company with enterprise clients, our technology specialists understand your risks and provide tailored coverage solutions.",
+    whoNeeds: [
+      "Packaged software publishers and distributors",
+      "Custom software development companies",
+      "Mobile app developers and studios",
+      "Game development companies",
+      "Enterprise software developers",
+      "Open-source software companies with commercial offerings",
+      "Embedded software developers",
+      "API and integration platform developers"
+    ],
+    coverageIncludes: [
+      "Chubb DigiTech ERM (Enterprise Risk Management)",
+      "Technology Errors & Omissions (E&O)",
+      "Cyber Liability and Data Breach Response",
+      "Intellectual Property Infringement Defense",
+      "Media Liability for software content",
+      "Network Security and Privacy Liability",
+      "Directors & Officers Liability",
+      "Employment Practices Liability",
+      "Commercial Property for office and equipment",
+      "Business Interruption coverage"
+    ],
+    benefits: [
+      "Access to Chubb's A++ rated DigiTech ERM program",
+      "Comprehensive E&O coverage for code errors and omissions",
+      "First and third-party cyber liability protection",
+      "Intellectual property defense costs coverage",
+      "Worldwide coverage for international operations",
+      "Tailored limits for startups to enterprise companies",
+      "Combined policy options to reduce coverage gaps",
+      "Risk management resources and loss prevention support",
+      "Claims expertise in technology disputes",
+      "Fast quotes from technology underwriting specialists"
+    ],
+    programHighlights: [
+      "Chubb DigiTech ERM - Industry Leading Tech Coverage",
+      "Technology E&O up to $10M",
+      "Cyber Liability up to $15M",
+      "D&O and EPL Package Options",
+      "Intellectual Property Defense",
+      "Media Liability Coverage",
+      "First-Party Data Breach Response",
+      "Business Interruption from Cyber Events"
+    ],
+    seoTitle: "Software Developers Insurance | Chubb DigiTech ERM | Casurance",
+    seoDescription: "Specialized insurance for software developers featuring Chubb DigiTech ERM. E&O, Cyber, D&O coverage for packaged and custom software companies. Authorized Chubb Agent."
+  },
+  {
+    title: "Hardware Manufacturers Insurance",
+    slug: "hardware-manufacturers",
+    category: "Industries",
+    summary: "Specialized insurance for electronics and component manufacturers with Chubb Manufacturing and Technology programs.",
+    description: "Hardware Manufacturers Insurance provides comprehensive coverage for companies designing, manufacturing, and distributing electronic hardware, components, and devices. Casurance combines Chubb's Manufacturing program (Benchmarq) with technology-specific coverages to protect hardware companies from product liability, supply chain risks, and technology exposures. From semiconductor manufacturers to consumer electronics companies, we provide tailored insurance solutions that address the complex risks of hardware production and distribution.",
+    whoNeeds: [
+      "Electronics manufacturers and OEMs",
+      "Semiconductor and chip manufacturers",
+      "Computer and peripheral manufacturers",
+      "Consumer electronics companies",
+      "Industrial electronics producers",
+      "Component and parts manufacturers",
+      "IoT device manufacturers",
+      "Contract electronics manufacturers (CEMs)"
+    ],
+    coverageIncludes: [
+      "Chubb Benchmarq Manufacturing Package",
+      "Products Liability for electronic components",
+      "Product Recall coverage",
+      "Technology E&O for embedded software",
+      "Commercial Property (buildings, equipment, inventory)",
+      "Equipment Breakdown coverage",
+      "Supply Chain and Business Interruption",
+      "Cyber Liability for connected devices",
+      "International/Ocean Cargo coverage",
+      "Workers' Compensation"
+    ],
+    benefits: [
+      "Access to Chubb Benchmarq manufacturing expertise",
+      "Comprehensive products liability for hardware defects",
+      "Product recall expense coverage",
+      "Supply chain interruption protection",
+      "Coverage for embedded software and firmware",
+      "Equipment breakdown for manufacturing equipment",
+      "International shipping and cargo protection",
+      "IoT and connected device cyber coverage",
+      "Loss control and risk engineering services",
+      "Claims expertise in product liability matters"
+    ],
+    programHighlights: [
+      "Chubb Benchmarq Manufacturing Program",
+      "Products Liability up to $25M",
+      "Product Recall Coverage",
+      "Equipment Breakdown Protection",
+      "Supply Chain Interruption",
+      "Technology E&O for Firmware",
+      "Cyber Liability for IoT Devices",
+      "International Cargo Coverage"
+    ],
+    seoTitle: "Hardware Manufacturers Insurance | Chubb Benchmarq | Casurance",
+    seoDescription: "Specialized insurance for electronics and hardware manufacturers. Chubb Benchmarq program with products liability, product recall, and technology coverage. Authorized Chubb Agent."
+  },
+  {
+    title: "Cloud & SaaS Providers Insurance",
+    slug: "cloud-saas-providers",
+    category: "Industries",
+    summary: "Comprehensive coverage for cloud computing and SaaS companies featuring Chubb DigiTech ERM for hosted services and platforms.",
+    description: "Cloud & SaaS Providers Insurance delivers specialized coverage for companies offering hosted services, cloud computing infrastructure, and software-as-a-service platforms. Through Chubb's DigiTech ERM program, we provide comprehensive protection against service interruptions, data breaches, and professional liability claims unique to cloud-based business models. Whether you're providing IaaS, PaaS, or SaaS solutions, our technology specialists understand the shared responsibility models and contractual obligations that define your exposures.",
+    whoNeeds: [
+      "Software-as-a-Service (SaaS) providers",
+      "Infrastructure-as-a-Service (IaaS) providers",
+      "Platform-as-a-Service (PaaS) providers",
+      "Managed cloud service providers",
+      "Cloud security and compliance platforms",
+      "Data analytics and AI/ML platforms",
+      "Enterprise cloud application providers",
+      "Cloud storage and backup services"
+    ],
+    coverageIncludes: [
+      "Chubb DigiTech ERM for cloud services",
+      "Technology E&O for service delivery failures",
+      "Cyber Liability and Privacy Breach Response",
+      "Network Security Liability",
+      "Service Level Agreement (SLA) breach coverage",
+      "Cloud service interruption coverage",
+      "Data loss and restoration costs",
+      "Directors & Officers Liability",
+      "Media Liability for platform content",
+      "Regulatory Defense and Penalties"
+    ],
+    benefits: [
+      "Coverage designed for subscription business models",
+      "Protection for SLA breaches and service failures",
+      "First-party coverage for your cloud infrastructure",
+      "Third-party liability for customer data incidents",
+      "Business interruption from cloud outages",
+      "Coverage for multi-tenant environments",
+      "Vendor and subcontractor coverage extensions",
+      "Global coverage for international SaaS operations",
+      "Expertise in cloud and SaaS contractual requirements",
+      "Risk management for cloud security and compliance"
+    ],
+    programHighlights: [
+      "Chubb DigiTech ERM - Cloud Specialized",
+      "Technology E&O for Service Failures",
+      "Cyber Liability up to $15M",
+      "SLA Breach Coverage",
+      "Cloud Infrastructure Protection",
+      "Data Loss and Restoration",
+      "Multi-Tenant Liability Coverage",
+      "Regulatory Defense Coverage"
+    ],
+    seoTitle: "Cloud & SaaS Insurance | Chubb DigiTech | Casurance",
+    seoDescription: "Insurance for cloud computing and SaaS companies. Chubb DigiTech ERM coverage for hosted services, platforms, and subscription businesses. Authorized Chubb Agent."
+  },
+  {
+    title: "IT Services & Consulting Insurance",
+    slug: "it-services-consulting",
+    category: "Industries",
+    summary: "Professional liability and technology coverage for IT consulting firms, tech support, and system integration services through Chubb programs.",
+    description: "IT Services & Consulting Insurance provides essential coverage for companies delivering technology consulting, support services, and integration solutions. Our program combines Chubb's professional liability expertise with technology-specific coverages to protect IT service providers from claims arising from advice, implementations, and managed services. From independent consultants to enterprise IT firms, we tailor coverage to match your service offerings and client contractual requirements.",
+    whoNeeds: [
+      "IT consulting and advisory firms",
+      "Technical support and help desk services",
+      "Network administration and support",
+      "Cybersecurity consulting firms",
+      "Cloud migration and implementation specialists",
+      "IT project management consultants",
+      "Managed IT service providers (MSPs)",
+      "IT training and education providers"
+    ],
+    coverageIncludes: [
+      "Technology Professional Liability (E&O)",
+      "Chubb DigiTech ERM coverage",
+      "Cyber Liability for consultant access",
+      "Network Security Liability",
+      "General Liability for on-site services",
+      "Hired & Non-Owned Auto for client visits",
+      "Directors & Officers Liability",
+      "Employment Practices Liability",
+      "Fidelity/Crime coverage",
+      "Workers' Compensation"
+    ],
+    benefits: [
+      "Comprehensive E&O for consulting recommendations",
+      "Coverage for failed implementations and projects",
+      "Protection when accessing client systems",
+      "Cyber coverage for data handled during engagements",
+      "Contractual liability for client agreements",
+      "Coverage for subcontracted work",
+      "24/7 network security incident response",
+      "Defense costs for regulatory investigations",
+      "Risk management resources for IT providers",
+      "Expertise in technology consulting exposures"
+    ],
+    programHighlights: [
+      "Technology E&O - Implementation Coverage",
+      "Chubb DigiTech ERM Available",
+      "Cyber Liability for System Access",
+      "Failed Project Coverage",
+      "Contractual Liability Protection",
+      "Subcontractor Coverage",
+      "Regulatory Investigation Defense",
+      "On-Site Service Liability"
+    ],
+    seoTitle: "IT Consulting Insurance | Tech Professional Liability | Casurance",
+    seoDescription: "Insurance for IT consulting and tech support firms. Technology E&O, cyber liability, and professional coverage for IT service providers. Authorized Chubb Agent."
+  },
+  {
+    title: "Telecom Providers Insurance",
+    slug: "telecom-providers",
+    category: "Industries",
+    summary: "Specialized coverage for telecommunications companies, network operators, and communications service providers with Chubb technology programs.",
+    description: "Telecom Providers Insurance delivers comprehensive coverage for companies operating telecommunications networks, providing communication services, and building network infrastructure. Our program addresses the unique exposures of telecom operations including network failures, service interruptions, tower and infrastructure liability, and regulatory compliance. Whether you're a regional carrier, MVNO, or infrastructure provider, we combine Chubb's technology expertise with telecom-specific coverages to protect your operations.",
+    whoNeeds: [
+      "Telecommunications carriers and operators",
+      "Mobile Virtual Network Operators (MVNOs)",
+      "Internet Service Providers (ISPs)",
+      "Voice over IP (VoIP) providers",
+      "Network infrastructure companies",
+      "Cell tower owners and operators",
+      "Fiber optic network providers",
+      "Unified communications providers"
+    ],
+    coverageIncludes: [
+      "Chubb DigiTech ERM for telecom",
+      "Technology E&O for service delivery",
+      "Network failure and outage liability",
+      "Cyber Liability for subscriber data",
+      "Commercial Property (towers, equipment, facilities)",
+      "Business Interruption coverage",
+      "Equipment Breakdown protection",
+      "General Liability for premises and operations",
+      "Umbrella/Excess Liability",
+      "Workers' Compensation"
+    ],
+    benefits: [
+      "Coverage for network failures and service outages",
+      "Protection for telecommunications infrastructure",
+      "Subscriber data breach and privacy coverage",
+      "Business interruption from network disruptions",
+      "Equipment breakdown for telecom equipment",
+      "Cell tower and infrastructure liability",
+      "Coverage for government and enterprise contracts",
+      "Regulatory compliance and defense coverage",
+      "Risk engineering for telecom operations",
+      "Claims expertise in telecom service disputes"
+    ],
+    programHighlights: [
+      "Chubb DigiTech ERM - Telecom Specialized",
+      "Network Failure Coverage",
+      "Service Outage Liability",
+      "Infrastructure Property Protection",
+      "Subscriber Data Breach Coverage",
+      "Equipment Breakdown for Telecom",
+      "Tower Liability Coverage",
+      "Regulatory Compliance Protection"
+    ],
+    seoTitle: "Telecom Insurance | Network Provider Coverage | Casurance",
+    seoDescription: "Insurance for telecommunications companies and network providers. Chubb DigiTech coverage for carriers, ISPs, and infrastructure operators. Authorized Chubb Agent."
+  },
+  {
+    title: "System Integrators Insurance",
+    slug: "system-integrators",
+    category: "Industries",
+    summary: "Comprehensive coverage for system integration companies combining hardware, software, and services with Chubb technology programs.",
+    description: "System Integrators Insurance provides specialized coverage for companies that design, implement, and maintain complex technology systems by combining hardware, software, networking, and services. Our program addresses the multifaceted exposures of integration work including project failures, system performance issues, data migration problems, and the liability that comes from touching multiple client systems. Through Chubb's DigiTech ERM and Benchmarq programs, we protect integrators working on enterprise, government, and industrial projects.",
+    whoNeeds: [
+      "Enterprise system integrators",
+      "ERP implementation specialists",
+      "Industrial automation integrators",
+      "Security system integrators",
+      "Audio/visual integration companies",
+      "Building automation and controls integrators",
+      "Healthcare IT integrators",
+      "Government and defense contractors"
+    ],
+    coverageIncludes: [
+      "Chubb DigiTech ERM for integration services",
+      "Technology E&O for system failures",
+      "Project-specific professional liability",
+      "Installation floater for equipment in transit",
+      "Cyber Liability for data migration",
+      "General Liability for on-site work",
+      "Commercial Property (warehouse, equipment)",
+      "Contractors Equipment coverage",
+      "Commercial Auto for service vehicles",
+      "Workers' Compensation"
+    ],
+    benefits: [
+      "Coverage for complex multi-vendor implementations",
+      "Protection for ERP and enterprise project failures",
+      "Data migration and conversion error coverage",
+      "Installation and commissioning liability",
+      "Coverage for hardware and software integration",
+      "Project-based and annual policy options",
+      "Government contract compliance support",
+      "Coverage for subcontracted integration work",
+      "Loss control for implementation best practices",
+      "Claims expertise in integration disputes"
+    ],
+    programHighlights: [
+      "Chubb DigiTech ERM - Integration Specialist",
+      "Complex Project E&O Coverage",
+      "Data Migration Error Protection",
+      "Installation Floater Coverage",
+      "Multi-Vendor Implementation",
+      "ERP Project Liability",
+      "Government Contract Compliant",
+      "Subcontractor Integration Coverage"
+    ],
+    seoTitle: "System Integrators Insurance | Technology Integration | Casurance",
+    seoDescription: "Insurance for system integrators and implementation specialists. Chubb DigiTech coverage for enterprise, industrial, and government integration projects. Authorized Chubb Agent."
   }
 ];
 
