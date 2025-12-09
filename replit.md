@@ -42,6 +42,14 @@ The application uses Google Analytics 4 (GA4) with both client-side and server-s
 - **Events tracked**: `generate_lead` for quote submissions, `service_request` for service requests, `contact_form_submission` for contact forms
 - **IndexNow**: Automatic URL submission to Bing, Yandex, and other participating search engines
 
+### GEICO Partnership Pages
+
+Casurance operates as a "Local Agent with GEICO" offering two product lines:
+- **Commercial Auto** (`/geico-commercial-auto`): Available in 14 states - Arizona, Arkansas, Colorado, Florida, Illinois, Kansas, Nevada, New Jersey, New Mexico, Ohio, Oregon, Pennsylvania, South Carolina, Texas. Covers business vehicles, fleet operations, service vehicles, and delivery vehicles.
+- **Private Passenger Auto** (`/geico-private-passenger`): Available in select states including Montana, Oregon, Minnesota, Indiana, Kentucky, Pennsylvania, Ohio, Virginia, West Virginia, Georgia. Covers personal vehicles with full coverage options.
+
+Branding requirements: Heritage Blue GEICO logo on light backgrounds, White GEICO logo on dark backgrounds. SEO terminology must use "Local Agent with GEICO" per GEICO guidelines.
+
 ### AI Content Generation & Brand Protection
 
 The application features AI-powered content generation for blog posts and press releases using OpenAI GPT-5. A centralized brand management system (`server/lib/brand.ts`) and an automated brand validation system (`server/lib/brand-validator.ts`) ensure 100% brand consistency. This system detects, validates, normalizes, and sanitizes AI-generated content, replacing incorrect branding with correct Casurance information before persistence, preventing brand-inconsistent content from being published.

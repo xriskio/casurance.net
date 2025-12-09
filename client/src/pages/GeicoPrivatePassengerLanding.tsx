@@ -162,18 +162,14 @@ export default function GeicoPrivatePassengerLanding() {
   const submitMutation = useMutation({
     mutationFn: async (data: typeof formData) => {
       return apiRequest("POST", "/api/quick-quotes", {
-        type: "geico-private-passenger",
-        contactName: `${data.firstName} ${data.lastName}`,
+        business_name: `${data.firstName} ${data.lastName}`,
+        contact_name: `${data.firstName} ${data.lastName}`,
         email: data.email,
         phone: data.phone,
         state: data.state,
-        vehicleType: data.vehicleType,
-        vehicleYear: data.vehicleYear,
-        vehicleMake: data.vehicleMake,
-        vehicleModel: data.vehicleModel,
-        currentInsurer: data.currentInsurer,
+        insurance_type: "GEICO Private Passenger Auto",
+        vehicle_info: `${data.vehicleYear} ${data.vehicleMake} ${data.vehicleModel}`.trim(),
         notes: data.notes,
-        source: "geico-private-passenger-landing",
       });
     },
     onSuccess: () => {

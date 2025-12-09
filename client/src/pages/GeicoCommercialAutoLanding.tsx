@@ -185,18 +185,15 @@ export default function GeicoCommercialAutoLanding() {
   const submitMutation = useMutation({
     mutationFn: async (data: typeof formData) => {
       return apiRequest("POST", "/api/quick-quotes", {
-        type: "geico-commercial-auto",
-        businessName: data.businessName,
-        contactName: data.contactName,
+        business_name: data.businessName,
+        contact_name: data.contactName || data.businessName,
         email: data.email,
         phone: data.phone,
         state: data.state,
-        businessType: data.businessType,
-        vehicleCount: data.vehicleCount,
-        vehicleTypes: data.vehicleTypes,
-        currentCoverage: data.currentCoverage,
+        insurance_type: "GEICO Commercial Auto",
+        business_type: data.businessType,
+        vehicle_count: data.vehicleCount,
         notes: data.notes,
-        source: "geico-commercial-auto-landing",
       });
     },
     onSuccess: () => {
