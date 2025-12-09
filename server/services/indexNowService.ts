@@ -353,6 +353,9 @@ const ALL_SITE_URLS = [
   "/location/san-francisco/self-storage",
   "/location/san-francisco/real-estate",
   "/location/san-francisco/high-rise-building",
+  "/location/san-francisco/bristol-west-commercial",
+  "/location/san-francisco/bristol-west-personal",
+  "/location/san-francisco/berkshire-hathaway-commercial",
   
   "/location/san-jose/general-liability",
   "/location/san-jose/workers-compensation",
@@ -404,6 +407,9 @@ const ALL_SITE_URLS = [
   "/location/los-angeles/wildfire-brush-area",
   "/location/los-angeles/self-storage",
   "/location/los-angeles/real-estate",
+  "/location/los-angeles/bristol-west-commercial",
+  "/location/los-angeles/bristol-west-personal",
+  "/location/los-angeles/berkshire-hathaway-commercial",
   
   "/location/beverly-hills/general-liability",
   "/location/beverly-hills/commercial-property",
@@ -560,6 +566,8 @@ const ALL_SITE_URLS = [
   "/location/las-vegas/high-value-home",
   "/location/las-vegas/self-storage",
   "/location/las-vegas/real-estate",
+  "/location/las-vegas/bristol-west-personal",
+  "/location/las-vegas/berkshire-hathaway-commercial",
   
   "/location/henderson/general-liability",
   "/location/henderson/workers-compensation",
@@ -594,6 +602,164 @@ const ALL_SITE_URLS = [
   "/location/boulder-city/general-liability",
   "/location/boulder-city/commercial-property",
   "/location/boulder-city/real-estate",
+  
+  // Ohio cities with carrier partner coverages
+  "/location/columbus/general-liability",
+  "/location/columbus/workers-compensation",
+  "/location/columbus/commercial-auto",
+  "/location/columbus/commercial-property",
+  "/location/columbus/bristol-west-personal",
+  "/location/columbus/berkshire-hathaway-commercial",
+  
+  "/location/cleveland/general-liability",
+  "/location/cleveland/workers-compensation",
+  "/location/cleveland/commercial-property",
+  "/location/cleveland/bristol-west-personal",
+  "/location/cleveland/berkshire-hathaway-commercial",
+  
+  "/location/cincinnati/general-liability",
+  "/location/cincinnati/workers-compensation",
+  "/location/cincinnati/commercial-property",
+  "/location/cincinnati/bristol-west-personal",
+  "/location/cincinnati/berkshire-hathaway-commercial",
+  
+  "/location/toledo/general-liability",
+  "/location/toledo/commercial-property",
+  "/location/toledo/bristol-west-personal",
+  
+  "/location/akron/general-liability",
+  "/location/akron/commercial-property",
+  "/location/akron/bristol-west-personal",
+  
+  "/location/dayton/general-liability",
+  "/location/dayton/commercial-property",
+  "/location/dayton/bristol-west-personal",
+  
+  // Arizona cities with carrier partner coverages
+  "/location/phoenix/general-liability",
+  "/location/phoenix/workers-compensation",
+  "/location/phoenix/commercial-auto",
+  "/location/phoenix/commercial-property",
+  "/location/phoenix/berkshire-hathaway-commercial",
+  
+  "/location/tucson/general-liability",
+  "/location/tucson/workers-compensation",
+  "/location/tucson/commercial-property",
+  "/location/tucson/berkshire-hathaway-commercial",
+  
+  "/location/mesa/general-liability",
+  "/location/mesa/commercial-property",
+  "/location/mesa/berkshire-hathaway-commercial",
+  
+  "/location/scottsdale/general-liability",
+  "/location/scottsdale/commercial-property",
+  "/location/scottsdale/high-value-home",
+  "/location/scottsdale/berkshire-hathaway-commercial",
+  
+  "/location/chandler/general-liability",
+  "/location/chandler/commercial-property",
+  "/location/chandler/berkshire-hathaway-commercial",
+  
+  "/location/gilbert/general-liability",
+  "/location/gilbert/commercial-property",
+  "/location/gilbert/berkshire-hathaway-commercial",
+  
+  "/location/tempe/general-liability",
+  "/location/tempe/commercial-property",
+  "/location/tempe/berkshire-hathaway-commercial",
+  
+  // Texas cities with carrier partner coverages
+  "/location/houston/general-liability",
+  "/location/houston/workers-compensation",
+  "/location/houston/commercial-auto",
+  "/location/houston/commercial-property",
+  "/location/houston/berkshire-hathaway-commercial",
+  
+  "/location/dallas/general-liability",
+  "/location/dallas/workers-compensation",
+  "/location/dallas/commercial-auto",
+  "/location/dallas/commercial-property",
+  "/location/dallas/berkshire-hathaway-commercial",
+  
+  "/location/san-antonio/general-liability",
+  "/location/san-antonio/workers-compensation",
+  "/location/san-antonio/commercial-property",
+  "/location/san-antonio/berkshire-hathaway-commercial",
+  
+  "/location/austin/general-liability",
+  "/location/austin/workers-compensation",
+  "/location/austin/commercial-property",
+  "/location/austin/berkshire-hathaway-commercial",
+  
+  "/location/fort-worth/general-liability",
+  "/location/fort-worth/commercial-property",
+  "/location/fort-worth/berkshire-hathaway-commercial",
+  
+  "/location/el-paso/general-liability",
+  "/location/el-paso/commercial-property",
+  "/location/el-paso/berkshire-hathaway-commercial",
+  
+  "/location/plano/general-liability",
+  "/location/plano/commercial-property",
+  "/location/plano/berkshire-hathaway-commercial",
+  
+  // Colorado cities with carrier partner coverages
+  "/location/denver/general-liability",
+  "/location/denver/workers-compensation",
+  "/location/denver/commercial-auto",
+  "/location/denver/commercial-property",
+  "/location/denver/berkshire-hathaway-commercial",
+  
+  "/location/colorado-springs/general-liability",
+  "/location/colorado-springs/workers-compensation",
+  "/location/colorado-springs/commercial-property",
+  "/location/colorado-springs/berkshire-hathaway-commercial",
+  
+  "/location/aurora/general-liability",
+  "/location/aurora/commercial-property",
+  "/location/aurora/berkshire-hathaway-commercial",
+  
+  "/location/fort-collins/general-liability",
+  "/location/fort-collins/commercial-property",
+  "/location/fort-collins/berkshire-hathaway-commercial",
+  
+  "/location/boulder/general-liability",
+  "/location/boulder/commercial-property",
+  "/location/boulder/high-value-home",
+  "/location/boulder/berkshire-hathaway-commercial",
+  
+  "/location/lakewood/general-liability",
+  "/location/lakewood/commercial-property",
+  "/location/lakewood/berkshire-hathaway-commercial",
+  
+  // Oregon cities with carrier partner coverages
+  "/location/portland/general-liability",
+  "/location/portland/workers-compensation",
+  "/location/portland/commercial-auto",
+  "/location/portland/commercial-property",
+  "/location/portland/berkshire-hathaway-commercial",
+  
+  "/location/salem/general-liability",
+  "/location/salem/workers-compensation",
+  "/location/salem/commercial-property",
+  "/location/salem/berkshire-hathaway-commercial",
+  
+  "/location/eugene/general-liability",
+  "/location/eugene/commercial-property",
+  "/location/eugene/berkshire-hathaway-commercial",
+  
+  "/location/hillsboro/general-liability",
+  "/location/hillsboro/commercial-property",
+  "/location/hillsboro/berkshire-hathaway-commercial",
+  
+  "/location/beaverton/general-liability",
+  "/location/beaverton/commercial-property",
+  "/location/beaverton/berkshire-hathaway-commercial",
+  
+  "/location/bend/general-liability",
+  "/location/bend/commercial-property",
+  "/location/bend/high-value-home",
+  "/location/bend/berkshire-hathaway-commercial",
 ];
 
 interface SubmissionResult {
