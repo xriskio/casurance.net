@@ -4,7 +4,7 @@ import QuoteRequestForm from "@/components/QuoteRequestForm";
 import SEOHead from "@/components/SEOHead";
 import TrustedCarriers from "@/components/TrustedCarriers";
 import Breadcrumb from "@/components/Breadcrumb";
-import { Clock, Shield, Award, CheckCircle, Building2, Car, Users, Briefcase, Home, Zap, FileText, Umbrella } from "lucide-react";
+import { Clock, Shield, Award, CheckCircle, Building2, Car, Users, Briefcase, Home, Zap, FileText, Umbrella, Code, Cpu, Cloud, Monitor, Radio, Layers, UtensilsCrossed, Factory, BadgeCheck } from "lucide-react";
 import { Link } from "wouter";
 
 const quoteBreadcrumbs = [
@@ -31,6 +31,24 @@ const propertyPrograms = [
   { name: "Affordable Housing", href: "/industries/affordable-housing" },
   { name: "Self Storage", href: "/industries/self-storage" },
   { name: "Hotels & Motels", href: "/industries/hotels-motels" },
+];
+
+// Chubb Special Programs & Specialty Industries
+const specialtyIndustries = [
+  { name: "Technology Companies", href: "/technology-insurance", icon: Zap },
+  { name: "Manufacturing", href: "/manufacturing-insurance", icon: Factory },
+  { name: "Restaurant & Bar", href: "/restaurant-bar-insurance", icon: UtensilsCrossed },
+  { name: "Chubb Special Programs", href: "/chubb-special-programs", icon: BadgeCheck },
+];
+
+// Technology Industry Sub-Sectors (Chubb DigiTech ERM)
+const technologyIndustries = [
+  { name: "Software Developers", href: "/industry/software-developers", icon: Code },
+  { name: "Hardware Manufacturers", href: "/industry/hardware-manufacturers", icon: Cpu },
+  { name: "Cloud & SaaS Providers", href: "/industry/cloud-saas-providers", icon: Cloud },
+  { name: "IT Services & Consulting", href: "/industry/it-services-consulting", icon: Monitor },
+  { name: "Telecom Providers", href: "/industry/telecom-providers", icon: Radio },
+  { name: "System Integrators", href: "/industry/system-integrators", icon: Layers },
 ];
 
 const quoteFaqs = [
@@ -152,6 +170,43 @@ export default function QuotePage() {
                       >
                         <Home className="h-3 w-3" />
                         {program.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="border-t border-white/20 pt-6 mt-6">
+                  <p className="text-sm font-semibold text-white/90 mb-4 uppercase tracking-wide flex items-center gap-2">
+                    <BadgeCheck className="h-4 w-4 text-blue-400" />
+                    Chubb Special Programs:
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {specialtyIndustries.map((industry, index) => (
+                      <Link 
+                        key={index} 
+                        href={industry.href}
+                        className="inline-flex items-center gap-1.5 bg-blue-500/20 hover:bg-blue-500/30 border border-blue-400/30 rounded-full px-3 py-1.5 text-xs text-blue-200 hover:text-white transition-all"
+                        data-testid={`link-specialty-${index}`}
+                      >
+                        <industry.icon className="h-3 w-3" />
+                        {industry.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="border-t border-white/20 pt-6 mt-6">
+                  <p className="text-sm font-semibold text-white/90 mb-4 uppercase tracking-wide">Technology Industries:</p>
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+                    {technologyIndustries.map((industry, index) => (
+                      <Link 
+                        key={index} 
+                        href={industry.href}
+                        className="text-sm text-white/70 hover:text-white transition-colors flex items-center gap-2 group"
+                        data-testid={`link-tech-${index}`}
+                      >
+                        <industry.icon className="h-3.5 w-3.5 text-blue-400 group-hover:text-blue-300" />
+                        {industry.name}
                       </Link>
                     ))}
                   </div>
