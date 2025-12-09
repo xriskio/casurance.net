@@ -452,6 +452,51 @@ export const insuranceTypes: LocationInsuranceType[] = [
     ],
     avgCost: "$10,000-$100,000 per year",
     quoteLink: "/habitational-program"
+  },
+  {
+    slug: "bristol-west-commercial",
+    name: "Bristol West Commercial Auto",
+    description: "Bristol West Commercial Auto insurance through Casurance provides comprehensive coverage for California business vehicles, backed by Farmers Insurance and underwritten by Coast National Insurance Company.",
+    coveragePoints: [
+      "Liability coverage for business vehicles",
+      "Collision and comprehensive protection",
+      "Hired auto and non-owned coverage",
+      "Medical payments coverage",
+      "State and federal filings available",
+      "Multi-product and EFT discounts"
+    ],
+    avgCost: "$1,500-$5,000 per vehicle per year",
+    quoteLink: "/bristol-west-commercial-auto"
+  },
+  {
+    slug: "bristol-west-personal",
+    name: "Bristol West Private Passenger Auto",
+    description: "Bristol West Private Passenger Auto insurance offers affordable coverage for personal vehicles with same-day SR-22 filings, rideshare coverage options, and acceptance for drivers with no prior insurance or DUI history.",
+    coveragePoints: [
+      "Liability and full coverage options",
+      "Same-day SR-22/FR-44 filings",
+      "Rideshare coverage for Uber/Lyft",
+      "No prior insurance accepted",
+      "DUI/DWI coverage available",
+      "Rental reimbursement coverage"
+    ],
+    avgCost: "$1,200-$4,000 per year",
+    quoteLink: "/bristol-west-private-passenger"
+  },
+  {
+    slug: "berkshire-hathaway-commercial",
+    name: "Berkshire Hathaway Commercial Auto",
+    description: "Berkshire Hathaway Homestate Companies (BHHC) Commercial Auto insurance provides A++ rated coverage for trucking, contractors, and specialty commercial vehicles across 35+ states.",
+    coveragePoints: [
+      "A++ (Superior) AM Best rating",
+      "Coverage for trucking and contractors",
+      "Fleet coverage for 11+ units",
+      "MCS-90 and federal filings",
+      "Trailer interchange coverage",
+      "Telematics discounts available"
+    ],
+    avgCost: "$3,000-$15,000 per vehicle per year",
+    quoteLink: "/berkshire-hathaway-commercial-auto"
   }
 ];
 
@@ -503,7 +548,72 @@ export const nevadaLocations: CityLocation[] = [
   { slug: "carson-city", name: "Carson City", state: "Nevada", stateAbbr: "NV", region: "Carson City", population: "58,000+", businessHighlights: ["Government", "Tourism", "Healthcare"] }
 ];
 
-export const allLocations = [...californiaLocations, ...nevadaLocations];
+export const ohioLocations: CityLocation[] = [
+  { slug: "columbus", name: "Columbus", state: "Ohio", stateAbbr: "OH", region: "Franklin County", population: "905,000+", businessHighlights: ["Insurance", "Healthcare", "Technology"] },
+  { slug: "cleveland", name: "Cleveland", state: "Ohio", stateAbbr: "OH", region: "Cuyahoga County", population: "372,000+", businessHighlights: ["Healthcare", "Manufacturing", "Finance"] },
+  { slug: "cincinnati", name: "Cincinnati", state: "Ohio", stateAbbr: "OH", region: "Hamilton County", population: "309,000+", businessHighlights: ["Consumer Goods", "Finance", "Healthcare"] },
+  { slug: "toledo", name: "Toledo", state: "Ohio", stateAbbr: "OH", region: "Lucas County", population: "270,000+", businessHighlights: ["Manufacturing", "Healthcare", "Logistics"] },
+  { slug: "akron", name: "Akron", state: "Ohio", stateAbbr: "OH", region: "Summit County", population: "190,000+", businessHighlights: ["Polymer Industry", "Healthcare", "Manufacturing"] },
+  { slug: "dayton", name: "Dayton", state: "Ohio", stateAbbr: "OH", region: "Montgomery County", population: "137,000+", businessHighlights: ["Aerospace", "Defense", "Healthcare"] },
+  { slug: "parma", name: "Parma", state: "Ohio", stateAbbr: "OH", region: "Cuyahoga County", population: "81,000+", businessHighlights: ["Retail", "Healthcare", "Manufacturing"] },
+  { slug: "canton", name: "Canton", state: "Ohio", stateAbbr: "OH", region: "Stark County", population: "70,000+", businessHighlights: ["Manufacturing", "Healthcare", "Retail"] },
+  { slug: "youngstown", name: "Youngstown", state: "Ohio", stateAbbr: "OH", region: "Mahoning County", population: "60,000+", businessHighlights: ["Manufacturing", "Healthcare", "Education"] },
+  { slug: "lorain", name: "Lorain", state: "Ohio", stateAbbr: "OH", region: "Lorain County", population: "65,000+", businessHighlights: ["Steel", "Manufacturing", "Maritime"] }
+];
+
+export const arizonaLocations: CityLocation[] = [
+  { slug: "phoenix", name: "Phoenix", state: "Arizona", stateAbbr: "AZ", region: "Maricopa County", population: "1,660,000+", businessHighlights: ["Technology", "Healthcare", "Financial Services"] },
+  { slug: "tucson", name: "Tucson", state: "Arizona", stateAbbr: "AZ", region: "Pima County", population: "545,000+", businessHighlights: ["Aerospace", "Defense", "Education"] },
+  { slug: "mesa", name: "Mesa", state: "Arizona", stateAbbr: "AZ", region: "Maricopa County", population: "508,000+", businessHighlights: ["Aerospace", "Healthcare", "Technology"] },
+  { slug: "chandler", name: "Chandler", state: "Arizona", stateAbbr: "AZ", region: "Maricopa County", population: "275,000+", businessHighlights: ["Technology", "Semiconductors", "Data Centers"] },
+  { slug: "scottsdale", name: "Scottsdale", state: "Arizona", stateAbbr: "AZ", region: "Maricopa County", population: "260,000+", businessHighlights: ["Tourism", "Healthcare", "Technology"] },
+  { slug: "glendale", name: "Glendale", state: "Arizona", stateAbbr: "AZ", region: "Maricopa County", population: "250,000+", businessHighlights: ["Sports", "Retail", "Entertainment"] },
+  { slug: "gilbert", name: "Gilbert", state: "Arizona", stateAbbr: "AZ", region: "Maricopa County", population: "275,000+", businessHighlights: ["Technology", "Healthcare", "Retail"] },
+  { slug: "tempe", name: "Tempe", state: "Arizona", stateAbbr: "AZ", region: "Maricopa County", population: "185,000+", businessHighlights: ["Education", "Technology", "Aerospace"] },
+  { slug: "peoria", name: "Peoria", state: "Arizona", stateAbbr: "AZ", region: "Maricopa County", population: "190,000+", businessHighlights: ["Healthcare", "Retail", "Sports"] },
+  { slug: "surprise", name: "Surprise", state: "Arizona", stateAbbr: "AZ", region: "Maricopa County", population: "155,000+", businessHighlights: ["Healthcare", "Retail", "Manufacturing"] }
+];
+
+export const texasLocations: CityLocation[] = [
+  { slug: "houston", name: "Houston", state: "Texas", stateAbbr: "TX", region: "Harris County", population: "2,300,000+", businessHighlights: ["Energy", "Healthcare", "Aerospace"] },
+  { slug: "san-antonio", name: "San Antonio", state: "Texas", stateAbbr: "TX", region: "Bexar County", population: "1,500,000+", businessHighlights: ["Military", "Healthcare", "Tourism"] },
+  { slug: "dallas", name: "Dallas", state: "Texas", stateAbbr: "TX", region: "Dallas County", population: "1,340,000+", businessHighlights: ["Technology", "Finance", "Telecommunications"] },
+  { slug: "austin", name: "Austin", state: "Texas", stateAbbr: "TX", region: "Travis County", population: "1,000,000+", businessHighlights: ["Technology", "Government", "Entertainment"] },
+  { slug: "fort-worth", name: "Fort Worth", state: "Texas", stateAbbr: "TX", region: "Tarrant County", population: "935,000+", businessHighlights: ["Aerospace", "Defense", "Logistics"] },
+  { slug: "el-paso", name: "El Paso", state: "Texas", stateAbbr: "TX", region: "El Paso County", population: "680,000+", businessHighlights: ["Manufacturing", "Military", "Trade"] },
+  { slug: "arlington", name: "Arlington", state: "Texas", stateAbbr: "TX", region: "Tarrant County", population: "395,000+", businessHighlights: ["Entertainment", "Manufacturing", "Retail"] },
+  { slug: "corpus-christi", name: "Corpus Christi", state: "Texas", stateAbbr: "TX", region: "Nueces County", population: "320,000+", businessHighlights: ["Energy", "Port Operations", "Tourism"] },
+  { slug: "plano", name: "Plano", state: "Texas", stateAbbr: "TX", region: "Collin County", population: "290,000+", businessHighlights: ["Technology", "Finance", "Corporate HQs"] },
+  { slug: "laredo", name: "Laredo", state: "Texas", stateAbbr: "TX", region: "Webb County", population: "260,000+", businessHighlights: ["Trade", "Logistics", "Manufacturing"] }
+];
+
+export const coloradoLocations: CityLocation[] = [
+  { slug: "denver", name: "Denver", state: "Colorado", stateAbbr: "CO", region: "Denver County", population: "715,000+", businessHighlights: ["Technology", "Aerospace", "Healthcare"] },
+  { slug: "colorado-springs", name: "Colorado Springs", state: "Colorado", stateAbbr: "CO", region: "El Paso County", population: "485,000+", businessHighlights: ["Military", "Technology", "Tourism"] },
+  { slug: "aurora", name: "Aurora", state: "Colorado", stateAbbr: "CO", region: "Arapahoe County", population: "390,000+", businessHighlights: ["Healthcare", "Aerospace", "Manufacturing"] },
+  { slug: "fort-collins", name: "Fort Collins", state: "Colorado", stateAbbr: "CO", region: "Larimer County", population: "170,000+", businessHighlights: ["Technology", "Education", "Brewing"] },
+  { slug: "lakewood", name: "Lakewood", state: "Colorado", stateAbbr: "CO", region: "Jefferson County", population: "155,000+", businessHighlights: ["Government", "Healthcare", "Retail"] },
+  { slug: "thornton", name: "Thornton", state: "Colorado", stateAbbr: "CO", region: "Adams County", population: "145,000+", businessHighlights: ["Healthcare", "Retail", "Distribution"] },
+  { slug: "arvada", name: "Arvada", state: "Colorado", stateAbbr: "CO", region: "Jefferson County", population: "125,000+", businessHighlights: ["Manufacturing", "Healthcare", "Retail"] },
+  { slug: "westminster", name: "Westminster", state: "Colorado", stateAbbr: "CO", region: "Adams County", population: "115,000+", businessHighlights: ["Technology", "Healthcare", "Retail"] },
+  { slug: "boulder", name: "Boulder", state: "Colorado", stateAbbr: "CO", region: "Boulder County", population: "105,000+", businessHighlights: ["Technology", "Education", "Research"] },
+  { slug: "greeley", name: "Greeley", state: "Colorado", stateAbbr: "CO", region: "Weld County", population: "110,000+", businessHighlights: ["Agriculture", "Energy", "Education"] }
+];
+
+export const oregonLocations: CityLocation[] = [
+  { slug: "portland", name: "Portland", state: "Oregon", stateAbbr: "OR", region: "Multnomah County", population: "650,000+", businessHighlights: ["Technology", "Manufacturing", "Retail"] },
+  { slug: "salem", name: "Salem", state: "Oregon", stateAbbr: "OR", region: "Marion County", population: "175,000+", businessHighlights: ["Government", "Agriculture", "Healthcare"] },
+  { slug: "eugene", name: "Eugene", state: "Oregon", stateAbbr: "OR", region: "Lane County", population: "175,000+", businessHighlights: ["Education", "Technology", "Healthcare"] },
+  { slug: "gresham", name: "Gresham", state: "Oregon", stateAbbr: "OR", region: "Multnomah County", population: "115,000+", businessHighlights: ["Manufacturing", "Healthcare", "Retail"] },
+  { slug: "hillsboro", name: "Hillsboro", state: "Oregon", stateAbbr: "OR", region: "Washington County", population: "110,000+", businessHighlights: ["Technology", "Semiconductors", "Manufacturing"] },
+  { slug: "beaverton", name: "Beaverton", state: "Oregon", stateAbbr: "OR", region: "Washington County", population: "100,000+", businessHighlights: ["Technology", "Sportswear", "Retail"] },
+  { slug: "bend", name: "Bend", state: "Oregon", stateAbbr: "OR", region: "Deschutes County", population: "100,000+", businessHighlights: ["Tourism", "Technology", "Brewing"] },
+  { slug: "medford", name: "Medford", state: "Oregon", stateAbbr: "OR", region: "Jackson County", population: "85,000+", businessHighlights: ["Healthcare", "Agriculture", "Retail"] },
+  { slug: "springfield", name: "Springfield", state: "Oregon", stateAbbr: "OR", region: "Lane County", population: "62,000+", businessHighlights: ["Manufacturing", "Retail", "Healthcare"] },
+  { slug: "corvallis", name: "Corvallis", state: "Oregon", stateAbbr: "OR", region: "Benton County", population: "60,000+", businessHighlights: ["Education", "Technology", "Research"] }
+];
+
+export const allLocations = [...californiaLocations, ...nevadaLocations, ...ohioLocations, ...arizonaLocations, ...texasLocations, ...coloradoLocations, ...oregonLocations];
 
 export function getLocationBySlug(slug: string): CityLocation | undefined {
   return allLocations.find(loc => loc.slug === slug);
