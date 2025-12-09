@@ -34,7 +34,7 @@ import {
 } from "lucide-react";
 
 import restaurantImage from "@assets/stock_images/modern_restaurant_in_af57fd7e.jpg";
-import restaurantImage2 from "@assets/stock_images/modern_restaurant_in_f4a67562.jpg";
+import restaurantImage2 from "@assets/stock_images/fine_dining_restaura_f0b03829.jpg";
 import barImage from "@assets/stock_images/bar_tavern_nightlife_4a7ab196.jpg";
 import barImage2 from "@assets/stock_images/bar_tavern_nightlife_b63f37f0.jpg";
 
