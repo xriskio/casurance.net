@@ -23,10 +23,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 
-import suburbanImage from "@assets/stock_images/black_chevrolet_subu_26bd5a0c.jpg";
-import teslaSImage from "@assets/stock_images/black_tesla_model_s__978a9bf7.jpg";
-import mercedesImage from "@assets/stock_images/black_mercedes_s-cla_395e9ae8.jpg";
-import teslaXImage from "@assets/stock_images/black_tesla_model_x__2c1c6dd2.jpg";
+import suburbanImage from "@assets/image_1765266650427.png";
+import sedansImage from "@assets/image_1765266710257.png";
 
 const availableStates = [
   { abbr: "CA", name: "California", highlight: true },
@@ -34,28 +32,6 @@ const availableStates = [
   { abbr: "AZ", name: "Arizona", highlight: true },
 ];
 
-const luxuryVehicles = [
-  {
-    name: "Chevrolet Suburban",
-    type: "Premium SUV",
-    image: suburbanImage
-  },
-  {
-    name: "Tesla Model S",
-    type: "Electric Sedan",
-    image: teslaSImage
-  },
-  {
-    name: "Mercedes S-Class",
-    type: "Luxury Sedan",
-    image: mercedesImage
-  },
-  {
-    name: "Tesla Model X",
-    type: "Electric SUV",
-    image: teslaXImage
-  }
-];
 
 const vehicleTypes = [
   {
@@ -283,7 +259,7 @@ export default function UberBlackInsuranceLanding() {
           </div>
         </section>
 
-        {/* Vehicle Showcase Section - NEW */}
+        {/* Vehicle Showcase Section */}
         <section className="py-16 lg:py-24 bg-gradient-to-b from-gray-900 to-black">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
@@ -295,33 +271,41 @@ export default function UberBlackInsuranceLanding() {
               </p>
             </div>
             
-            {/* Vehicle Image Grid */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-6xl mx-auto">
-              {luxuryVehicles.map((vehicle, index) => (
-                <div 
-                  key={index} 
-                  className="group relative overflow-hidden rounded-xl bg-gray-800/50 border border-gray-700/50 hover:border-red-500/50 transition-all duration-300"
-                  data-testid={`card-vehicle-${index}`}
-                >
-                  <div className="aspect-[4/3] overflow-hidden">
-                    <img 
-                      src={vehicle.image} 
-                      alt={vehicle.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <p className="text-red-400 text-xs font-semibold uppercase tracking-wider mb-1">{vehicle.type}</p>
-                    <p className="text-white font-bold text-sm lg:text-base">{vehicle.name}</p>
-                  </div>
+            {/* Featured SUV - Chevy Suburban */}
+            <div className="max-w-4xl mx-auto mb-10">
+              <div className="relative rounded-2xl overflow-hidden border-2 border-red-500/30 bg-white">
+                <img 
+                  src={suburbanImage} 
+                  alt="Chevrolet Suburban - Premium SUV for Uber Black"
+                  className="w-full h-auto object-contain"
+                  data-testid="img-suburban"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                  <p className="text-red-400 text-sm font-semibold uppercase tracking-wider mb-1">Premium SUV</p>
+                  <p className="text-white font-bold text-2xl">Chevrolet Suburban</p>
                 </div>
-              ))}
+              </div>
+            </div>
+            
+            {/* Luxury Sedans Row */}
+            <div className="max-w-5xl mx-auto">
+              <div className="relative rounded-2xl overflow-hidden border-2 border-red-500/30 bg-gray-900">
+                <img 
+                  src={sedansImage} 
+                  alt="Tesla Model S, Mercedes S-Class, Tesla Model X - Luxury Sedans for Uber Black"
+                  className="w-full h-auto object-contain"
+                  data-testid="img-sedans"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                  <p className="text-red-400 text-sm font-semibold uppercase tracking-wider mb-1">Luxury Sedans & Electric Vehicles</p>
+                  <p className="text-white font-bold text-xl">Tesla Model S | Mercedes S-Class | Tesla Model X</p>
+                </div>
+              </div>
             </div>
 
             {/* Additional Vehicle Types */}
             <div className="mt-12 flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
-              {["Mercedes S-Class", "BMW 7 Series", "Audi A8", "Genesis G90", "Lucid Air", "Range Rover"].map((vehicle, i) => (
+              {["Cadillac Escalade", "Lincoln Navigator", "BMW 7 Series", "Audi A8", "Genesis G90", "Lucid Air"].map((vehicle, i) => (
                 <Badge 
                   key={i}
                   variant="outline"
