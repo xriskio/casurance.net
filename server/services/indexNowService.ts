@@ -54,6 +54,7 @@ const ALL_SITE_URLS = [
   "/coverage/commercial-earthquake",
   "/coverage/violent-attack",
   "/coverage/religious-organization",
+  "/coverage/uber-black-insurance",
   
   "/industry/golf-country-club",
   "/industry/auto-dealer-garage",

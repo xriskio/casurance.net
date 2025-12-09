@@ -5162,6 +5162,52 @@ export const industries: CoverageContent[] = [
     ],
     seoTitle: "Earthquake Insurance | Residential Earthquake Coverage",
     seoDescription: "Stand-alone earthquake insurance for homes, condos, and rentals. Coverage up to $15M with deductibles as low as 2.5%. Protect your home from earthquake damage."
+  },
+  
+  // UBER BLACK / LUXURY RIDESHARE
+  {
+    title: "Uber Black & Luxury Rideshare Insurance",
+    slug: "uber-black-insurance",
+    category: "Transportation",
+    summary: "Specialized commercial auto coverage for Uber Black, Uber Black SUV, and premium rideshare operators.",
+    description: "Uber Black insurance is specialized commercial auto coverage designed for professional drivers using luxury vehicles on the Uber Black platform. Unlike standard rideshare services, personal auto policies do not qualify for Uber Black—commercial auto insurance is required to meet platform and state regulations. Our comprehensive policies provide TCP gap coverage from app-on to ride complete, protecting you against third-party claims, vehicle damage, and liability. We serve drivers in California, Nevada, and Arizona with policies that meet all Uber requirements and state regulations for professional livery operations.",
+    whoNeeds: [
+      "Uber Black and Uber Black SUV drivers",
+      "Luxury sedan operators (Lincoln, Cadillac, Mercedes, BMW)",
+      "Premium SUV rideshare drivers (Escalade, Navigator, GLS)",
+      "Executive transportation and black car services",
+      "Airport black car and chauffeur services",
+      "Electric luxury vehicle operators (Tesla Model S/X, Lucid)",
+      "Stretch limousine operators on rideshare platforms",
+      "TCP-licensed transportation providers"
+    ],
+    coverageIncludes: [
+      "Commercial auto liability up to $1.5M combined single limit",
+      "Comprehensive and collision coverage for luxury vehicles",
+      "Uninsured/underinsured motorist protection",
+      "Hired and non-owned auto coverage",
+      "Personal injury protection (PIP)",
+      "Gap coverage for leased vehicles",
+      "Medical payments coverage",
+      "Zero deductible glass coverage options"
+    ],
+    benefits: [
+      "TCP gap coverage from app-on to ride complete",
+      "Next day CPUC filings for California operators",
+      "Same day certificates of insurance and auto ID cards",
+      "Competitive rates for luxury rideshare operators",
+      "Fleet discounts for multiple vehicle operators",
+      "A-rated insurance carriers for financial security",
+      "24/7 claims support and assistance",
+      "Fast quote turnaround within 24 hours"
+    ],
+    eligibleStates: [
+      "California",
+      "Nevada", 
+      "Arizona"
+    ],
+    seoTitle: "Uber Black Insurance | Commercial Auto for Luxury Rideshare",
+    seoDescription: "Specialized commercial auto insurance for Uber Black and Uber Black SUV drivers in California, Nevada, and Arizona. TCP gap coverage, same-day certificates, and next-day CPUC filings. Call 1-888-254-0089."
   }
 ];
 
