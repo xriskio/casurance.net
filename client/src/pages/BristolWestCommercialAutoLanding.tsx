@@ -39,7 +39,7 @@ import {
 } from "@/components/ui/accordion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import bristolWestLogo from "@assets/image_1765257110219.png";
+import bristolWestLogo from "@assets/BristolWest_1765259973928.png";
 
 const quickQuoteSchema = z.object({
   businessName: z.string().min(2, "Business name is required"),
