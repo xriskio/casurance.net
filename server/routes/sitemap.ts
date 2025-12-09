@@ -30,6 +30,8 @@ const staticRoutes = [
   { url: "/auto-services-insurance", priority: "0.9", changefreq: "weekly" },
   { url: "/geico-commercial-auto", priority: "0.9", changefreq: "weekly" },
   { url: "/geico-private-passenger", priority: "0.9", changefreq: "weekly" },
+  { url: "/bristol-west-commercial-auto", priority: "0.9", changefreq: "weekly" },
+  { url: "/berkshire-hathaway-commercial-auto", priority: "0.9", changefreq: "weekly" },
 ];
 
 // Quote and application form routes (exact paths from App.tsx)

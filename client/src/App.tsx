@@ -85,6 +85,8 @@ import BuildersRiskLanding from "@/pages/BuildersRiskLanding";
 import AutoServicesLanding from "@/pages/AutoServicesLanding";
 import GeicoCommercialAutoLanding from "@/pages/GeicoCommercialAutoLanding";
 import GeicoPrivatePassengerLanding from "@/pages/GeicoPrivatePassengerLanding";
+import BristolWestCommercialAutoLanding from "@/pages/BristolWestCommercialAutoLanding";
+import BerkshireHathawayCommercialAutoLanding from "@/pages/BerkshireHathawayCommercialAutoLanding";
 import QuoteThankYou from "@/pages/QuoteThankYou";
 import AccessibilityPage from "@/pages/AccessibilityPage";
 import NotFound from "@/pages/not-found";
@@ -154,6 +156,10 @@ function Router() {
       <Route path="/geico-private-passenger" component={GeicoPrivatePassengerLanding} />
       <Route path="/lp/geico-commercial" component={GeicoCommercialAutoLanding} />
       <Route path="/lp/geico-personal" component={GeicoPrivatePassengerLanding} />
+      <Route path="/bristol-west-commercial-auto" component={BristolWestCommercialAutoLanding} />
+      <Route path="/berkshire-hathaway-commercial-auto" component={BerkshireHathawayCommercialAutoLanding} />
+      <Route path="/lp/bristol-west" component={BristolWestCommercialAutoLanding} />
+      <Route path="/lp/bhhc" component={BerkshireHathawayCommercialAutoLanding} />
       <Route path="/agent" component={AgentLogin} />
       <Route path="/agent/login" component={AgentLogin} />
       <Route path="/agent/portal" component={AgentPortal} />
