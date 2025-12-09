@@ -32,6 +32,7 @@ const ALL_SITE_URLS = [
   "/restaurant-bar-insurance",
   "/technology-insurance",
   "/manufacturing-insurance",
+  "/chubb-special-programs",
   "/industry/auto-services",
   
   "/coverage/commercial-auto",
