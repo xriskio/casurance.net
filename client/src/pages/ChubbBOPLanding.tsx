@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import chubbLogo from "@assets/Chubb-Logo_1765399296913.jpg";
+import chubbLogo from "@assets/Chubb-Logo_1765401471955.png";
 import {
   Select,
   SelectContent,
