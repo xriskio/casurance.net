@@ -73,6 +73,7 @@ const quoteRoutes = [
   "/quote/limousine",
   "/quote/taxi",  // CORRECTED: just "taxi" not "taxi-black-car"
   "/quote/public-transportation",
+  "/quote/fair-plan",  // California FAIR Plan quote form
   "/apply/nemt",  // CORRECTED: /apply/ not /quote/
   "/apply/ambulance",  // CORRECTED: /apply/ not /quote/
   "/apply/tnc-rideshare",  // CORRECTED: /apply/ not /quote/ and "tnc-rideshare"

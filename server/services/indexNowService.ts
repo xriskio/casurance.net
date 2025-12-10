@@ -59,6 +59,7 @@ const ALL_SITE_URLS = [
   "/coverage/violent-attack",
   "/coverage/religious-organization",
   "/coverage/uber-black-insurance",
+  "/coverage/california-fair-plan",
   
   "/industry/golf-country-club",
   "/industry/auto-dealer-garage",
@@ -105,6 +106,7 @@ const ALL_SITE_URLS = [
   "/quote/garage-service-centers",
   "/quote/auto-dealer-garage",
   "/quote/violent-attack",
+  "/quote/fair-plan",
   
   "/apply/nemt",
   "/apply/ambulance",
