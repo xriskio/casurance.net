@@ -50,6 +50,16 @@ Casurance operates as a "Local Agent with GEICO" offering two product lines:
 
 Branding requirements: Heritage Blue GEICO logo on light backgrounds, White GEICO logo on dark backgrounds. SEO terminology must use "Local Agent with GEICO" per GEICO guidelines.
 
+### Chubb Partner Microsite
+
+Casurance is an "Authorized Chubb Agent" with a dedicated partner microsite at `/partners/chubb` featuring four Chubb commercial insurance products:
+- **Business Owner's Policy (BOP)** (`/partners/chubb-bop`): Comprehensive property and liability protection for nearly 400 eligible business classes. Features Chubb Express Quote for faster quotes. Eligible industries include Financial Services, Healthcare, Technology, Life Sciences, Manufacturing, Retail, and more.
+- **Workers' Compensation** (`/partners/chubb-workers-comp`): Employee protection with medical coverage, wage replacement, rehabilitation services, and Chubb's claims expertise.
+- **Commercial Umbrella** (`/partners/chubb-umbrella`): Excess liability protection up to $25M+ with drop-down coverage and defense costs.
+- **Cyber Liability** (`/partners/chubb-cyber`): Data breach response, ransomware/cyber extortion coverage, business interruption, and 24/7 incident response.
+
+Each product page includes SEO meta tags, FAQ schema markup, dedicated quote forms, and cross-links to other Chubb products.
+
 ### AI Content Generation & Brand Protection
 
 The application features AI-powered content generation for blog posts and press releases using OpenAI GPT-5. A centralized brand management system (`server/lib/brand.ts`) and an automated brand validation system (`server/lib/brand-validator.ts`) ensure 100% brand consistency. This system detects, validates, normalizes, and sanitizes AI-generated content, replacing incorrect branding with correct Casurance information before persistence, preventing brand-inconsistent content from being published.
