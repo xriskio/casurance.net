@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import chubbLogo from "@assets/Chubb-Logo_1765399296913.jpg";
 import { 
   Shield, 
   Building2, 
@@ -163,9 +164,11 @@ export default function ChubbPartnersLanding() {
             
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center max-w-4xl mx-auto">
-                <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur rounded-full px-4 py-2 mb-6">
-                  <Award className="h-5 w-5 text-yellow-400" />
-                  <span className="text-sm font-medium">Authorized Chubb Agent</span>
+                <div className="flex flex-col items-center gap-2 mb-6">
+                  <div className="bg-white rounded-lg px-4 py-3">
+                    <img src={chubbLogo} alt="Chubb Logo" className="h-10 w-auto" data-testid="img-chubb-logo" />
+                  </div>
+                  <span className="text-sm font-semibold text-white/90 uppercase tracking-wider">Authorized Agent</span>
                 </div>
                 
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6" data-testid="text-hero-title">

@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import chubbLogo from "@assets/Chubb-Logo_1765399296913.jpg";
 import {
   Select,
   SelectContent,
@@ -251,9 +252,9 @@ export default function ChubbWorkersCompLanding() {
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid lg:grid-cols-2 gap-12 items-start">
                 <div>
-                  <div className="flex items-center gap-2 bg-white/10 backdrop-blur rounded-full px-4 py-2 mb-6 w-fit">
-                    <Award className="h-5 w-5 text-yellow-400" />
-                    <span className="text-sm font-medium">Authorized Chubb Agent</span>
+                  <div className="flex flex-col items-center gap-1 bg-white rounded-lg px-4 py-2 mb-6 w-fit">
+                    <img src={chubbLogo} alt="Chubb Logo" className="h-8 w-auto" data-testid="img-chubb-logo" />
+                    <span className="text-xs font-semibold text-gray-700 uppercase tracking-wider">Authorized Agent</span>
                   </div>
                   
                   <h1 className="text-4xl md:text-5xl font-bold mb-6" data-testid="text-hero-title">
