@@ -5177,6 +5177,136 @@ export const industries: CoverageContent[] = [
     seoDescription: "Specialized insurance for homes in wildfire zones and brush areas. Coverage when standard carriers decline. E&S market solutions for high fire risk properties."
   },
   {
+    title: "California FAIR Plan Insurance",
+    slug: "california-fair-plan",
+    category: "Personal Lines",
+    summary: "Last resort fire insurance for California homes and commercial properties when traditional coverage is unavailable.",
+    description: "The California FAIR Plan (Fair Access to Insurance Requirements) provides basic fire insurance for California properties that cannot obtain coverage through the traditional insurance market. If you've been declined by standard carriers due to wildfire risk, brush zone exposure, or high Fireline scores, the FAIR Plan offers a temporary solution for both residential and commercial properties. As an authorized FAIR Plan broker, Casurance can help you navigate the application process and find the right coverage for your situation. The FAIR Plan is not a government program—it is a shared market among all California property insurers designed to ensure access to basic fire insurance for hard-to-place risks.",
+    whoNeeds: [
+      "Homeowners declined by standard insurance carriers",
+      "Properties in designated high fire hazard severity zones",
+      "Owners of homes in brush areas or WUI zones",
+      "Commercial property owners unable to find traditional coverage",
+      "Those who have received non-renewal notices due to wildfire risk",
+      "Condo and rental property owners in fire-prone areas",
+      "Owners of habitational buildings (5+ units) in high-risk areas",
+      "Business owners in wildfire-exposed locations"
+    ],
+    coverageIncludes: [
+      "Fire damage coverage (named peril)",
+      "Lightning damage protection",
+      "Internal explosion coverage",
+      "Optional vandalism and malicious mischief coverage",
+      "Debris removal (limited coverage)",
+      "Coverage for dwelling and other structures (residential)",
+      "Building coverage for commercial properties",
+      "Business personal property coverage (commercial)"
+    ],
+    benefits: [
+      "Coverage when all other options are exhausted",
+      "Available for both residential and commercial properties",
+      "Licensed broker assistance through the process",
+      "Discounts for wildfire-resilient properties",
+      "No coverage gaps while transitioning to traditional market",
+      "State-mandated program ensuring access to basic fire insurance",
+      "Clearinghouse program helps policyholders find admitted coverage",
+      "Temporary solution while improving property fire resistance"
+    ],
+    propertyTypes: [
+      {
+        id: "dwelling-residential",
+        title: "Dwelling (Residential)",
+        description: "Owner or tenant-occupied dwellings with up to 4 family units, personal property for renters, and condo owners.",
+        icon: "Home",
+        eligibility: ["Owner-occupied homes", "Tenant-occupied rentals", "Condominiums", "Up to 4 family units"],
+        coverageHighlights: ["Fire damage", "Lightning", "Internal explosion", "Optional vandalism coverage"]
+      },
+      {
+        id: "habitational-buildings",
+        title: "Habitational Buildings",
+        description: "Buildings with 5 or more habitational units including apartment buildings, hotels, and motels.",
+        icon: "Building2",
+        eligibility: ["Apartment buildings (5+ units)", "Hotels and motels", "Multi-family housing", "Mixed-use habitational"],
+        coverageHighlights: ["Building coverage", "Business personal property", "Fire and lightning protection", "Optional endorsements"]
+      },
+      {
+        id: "retail-mercantiles",
+        title: "Retail Mercantiles",
+        description: "Shops such as boutiques, salons, dry cleaners, and convenience stores.",
+        icon: "Store",
+        eligibility: ["Boutiques and shops", "Salons and spas", "Dry cleaners", "Convenience stores"],
+        coverageHighlights: ["Building coverage", "Inventory protection", "Fire perils coverage", "Business interruption options"]
+      },
+      {
+        id: "manufacturing-facilities",
+        title: "Manufacturing Facilities",
+        description: "Companies that manufacture most types of products.",
+        icon: "Building",
+        eligibility: ["Manufacturing plants", "Production facilities", "Industrial operations", "Most product types"],
+        coverageHighlights: ["Building and equipment", "Fire and explosion coverage", "Machinery protection", "Stock and inventory"]
+      },
+      {
+        id: "office-buildings",
+        title: "Office Buildings",
+        description: "Offices for professionals such as doctors, lawyers, and consultants.",
+        icon: "Landmark",
+        eligibility: ["Professional offices", "Medical practices", "Law firms", "Consulting businesses"],
+        coverageHighlights: ["Office building coverage", "Tenant improvements", "Business equipment", "Fire protection"]
+      },
+      {
+        id: "buildings-under-construction",
+        title: "Buildings Under Construction",
+        description: "Residential and commercial buildings under construction from the ground up.",
+        icon: "Building2",
+        eligibility: ["New residential construction", "Commercial builds", "Ground-up projects", "Major renovations"],
+        coverageHighlights: ["Course of construction coverage", "Building materials", "Fire during construction", "Contractor protection"]
+      },
+      {
+        id: "farms-and-wineries",
+        title: "Farms and Wineries",
+        description: "Basic property insurance for commercial farms, wineries, and ranches (not including crops and livestock).",
+        icon: "Building",
+        eligibility: ["Commercial farms", "Wineries and vineyards", "Ranches", "Agricultural buildings"],
+        coverageHighlights: ["Farm structures", "Winery buildings", "Equipment storage", "Fire and lightning (excludes crops/livestock)"]
+      }
+    ],
+    productBasics: [
+      { label: "Named peril policy covering fire, lightning, and internal explosion" },
+      { label: "Optional vandalism and malicious mischief endorsement available" },
+      { label: "Residential policies for dwellings up to 4 units" },
+      { label: "Commercial policies for businesses and multi-unit buildings" },
+      { label: "Temporary coverage designed to transition back to traditional market" },
+      { 
+        label: "Important limitations to understand:",
+        subItems: [
+          "Does NOT include liability coverage",
+          "Does NOT include theft coverage",
+          "Does NOT include comprehensive homeowners protection",
+          "Supplement with Difference in Conditions (DIC) policy recommended"
+        ]
+      }
+    ],
+    riskControlServices: [
+      "Wildfire mitigation guidance and resources",
+      "Defensible space recommendations",
+      "Fire-resistant construction consultation",
+      "Property hardening strategies",
+      "Brush clearance compliance assistance",
+      "Transition planning to traditional insurance market"
+    ],
+    enhancedCoverages: [
+      "Difference in Conditions (DIC) policy to fill coverage gaps",
+      "Umbrella liability for personal liability protection",
+      "Excess flood coverage if in flood zone",
+      "Valuable articles floater for jewelry and collectibles",
+      "Inland marine for scheduled equipment",
+      "Business interruption through separate commercial policy"
+    ],
+    eligibleStates: ["California"],
+    seoTitle: "California FAIR Plan Insurance | Wildfire & Brush Area Coverage",
+    seoDescription: "California FAIR Plan provides basic fire insurance when traditional coverage is unavailable. Coverage for homes and commercial properties in high-risk wildfire and brush areas. Licensed FAIR Plan broker."
+  },
+  {
     title: "Residential Earthquake Insurance",
     slug: "residential-earthquake",
     category: "Personal Lines",
