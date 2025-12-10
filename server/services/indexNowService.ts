@@ -33,6 +33,11 @@ const ALL_SITE_URLS = [
   "/technology-insurance",
   "/manufacturing-insurance",
   "/chubb-special-programs",
+  "/partners/chubb",
+  "/partners/chubb-bop",
+  "/partners/chubb-workers-comp",
+  "/partners/chubb-umbrella",
+  "/partners/chubb-cyber",
   "/industry/auto-services",
   
   "/coverage/commercial-auto",
