@@ -4166,6 +4166,21 @@ export const industries: CoverageContent[] = [
       "Professional Liability",
       "Product Liability for vehicle modifications",
       "Bailee Coverage for vehicle storage"
+    ],
+    sisterCompanies: [
+      {
+        name: "InsureLimos",
+        url: "https://insurelimos.net",
+        description: "Dedicated insurance solutions for luxury rideshare and livery services. Our sister agency specializes in Uber Black, Lyft Lux, executive transportation, limousines, and premium black car services with deep expertise in TNC platform requirements.",
+        specialties: [
+          "Uber Black and Lyft Lux coverage",
+          "Limousine and sedan services",
+          "Executive transportation",
+          "Black car and livery insurance",
+          "TNC platform compliance",
+          "High-end rideshare protection"
+        ]
+      }
     ]
   },
 
