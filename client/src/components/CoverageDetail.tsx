@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check, ArrowRight, Phone, Shield, Car, Umbrella, Building2, Briefcase, FileCheck, AlertTriangle, CheckCircle2, Home, Store, ShoppingBag, Landmark, Building, MapPin, DollarSign, Ban, Zap } from "lucide-react";
+import { Check, ArrowRight, Phone, Shield, Car, Umbrella, Building2, Briefcase, FileCheck, AlertTriangle, CheckCircle2, Home, Store, ShoppingBag, Landmark, Building, MapPin, DollarSign, Ban, Zap, ExternalLink, Truck, Bus } from "lucide-react";
 import { Link } from "wouter";
 import type { CoverageContent, PropertyTypeSection } from "@shared/content/coverages";
 import { getIndustryImage } from "@shared/industryImages";
@@ -587,6 +587,63 @@ export default function CoverageDetail({ coverage }: CoverageDetailProps) {
               </div>
             </CardContent>
           </Card>
+        )}
+
+        {/* Sister Companies Section */}
+        {coverage.sisterCompanies && coverage.sisterCompanies.length > 0 && (
+          <div className="mb-8">
+            <h2 className="text-2xl font-semibold text-foreground mb-6">Casurance Family of Companies</h2>
+            <p className="text-muted-foreground mb-6">
+              For specialized transportation coverage, our sister agencies provide dedicated expertise in specific niches. All Casurance agencies share the same commitment to exceptional service and comprehensive coverage.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {coverage.sisterCompanies.map((company, index) => (
+                <Card key={index} className="border-2 border-primary/20 hover-elevate" data-testid={`card-sister-company-${company.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                  <CardHeader className="pb-2">
+                    <div className="flex items-center justify-between gap-2 flex-wrap">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                          {company.name === 'Truxsurance' ? (
+                            <Truck className="h-6 w-6 text-primary" />
+                          ) : (
+                            <Bus className="h-6 w-6 text-primary" />
+                          )}
+                        </div>
+                        <CardTitle className="text-xl">{company.name}</CardTitle>
+                      </div>
+                      <a 
+                        href={company.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        data-testid={`link-sister-company-${company.name.toLowerCase().replace(/\s+/g, '-')}`}
+                      >
+                        <Button variant="outline" size="sm" className="gap-2">
+                          Visit Site
+                          <ExternalLink className="h-4 w-4" />
+                        </Button>
+                      </a>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground mb-4">{company.description}</p>
+                    <div className="space-y-2">
+                      <p className="text-sm font-medium text-foreground">Specialties:</p>
+                      <div className="flex flex-wrap gap-2">
+                        {company.specialties.map((specialty, idx) => (
+                          <span 
+                            key={idx} 
+                            className="px-2 py-1 bg-primary/10 text-primary text-xs font-medium rounded"
+                          >
+                            {specialty}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
         )}
 
         {/* CTA Section */}

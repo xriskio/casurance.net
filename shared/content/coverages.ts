@@ -59,6 +59,13 @@ export interface CoverageContent {
   programHighlights?: string[];
   eligibleStates?: string[];
   ineligibleStates?: string[];
+  // Sister company links for specialized services
+  sisterCompanies?: {
+    name: string;
+    url: string;
+    description: string;
+    specialties: string[];
+  }[];
 }
 
 export const coverages: CoverageContent[] = [
@@ -4424,6 +4431,34 @@ export const industries: CoverageContent[] = [
       "Competitive rates for well-managed operations",
       "Access to specialty transportation markets",
       "24/7 certificate of insurance services"
+    ],
+    sisterCompanies: [
+      {
+        name: "Truxsurance",
+        url: "https://truxsurance.com",
+        description: "Specialized long-haul trucking insurance for owner-operators and fleets. Our sister agency focuses exclusively on over-the-road trucking with deep expertise in DOT compliance, cargo coverage, and motor carrier liability.",
+        specialties: [
+          "Long-haul trucking insurance",
+          "Owner-operator coverage",
+          "Fleet trucking programs",
+          "DOT and FMCSA compliance",
+          "Motor truck cargo insurance",
+          "Refrigerated trucking (reefer)"
+        ]
+      },
+      {
+        name: "InsureLimos",
+        url: "https://insurelimos.net",
+        description: "Dedicated insurance solutions for public transportation and livery services. Our sister agency specializes in passenger transportation risks including limousines, black car services, buses, and motor coaches.",
+        specialties: [
+          "Limousine insurance",
+          "Uber Black and luxury rideshare",
+          "Charter bus and motor coach coverage",
+          "Party bus insurance",
+          "Airport shuttle and black car services",
+          "Passenger transportation liability"
+        ]
+      }
     ]
   },
 
