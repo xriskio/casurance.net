@@ -255,9 +255,9 @@ export default function ChubbCyberLanding() {
               <div className="grid lg:grid-cols-2 gap-12 items-start">
                 <div>
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="flex flex-col items-center gap-1 bg-white rounded-lg px-4 py-2">
-                      <img src={chubbLogo} alt="Chubb Logo" className="h-8 w-auto" data-testid="img-chubb-logo" />
-                      <span className="text-xs font-semibold text-gray-700 uppercase tracking-wider">Authorized Agent</span>
+                    <div className="flex flex-col items-center gap-2 bg-white rounded-lg px-5 py-3">
+                      <img src={chubbLogo} alt="Chubb Logo" className="h-12 w-auto" data-testid="img-chubb-logo" />
+                      <span className="text-sm font-semibold text-gray-700 uppercase tracking-wider">Authorized Agent</span>
                     </div>
                     <div className="flex items-center gap-2 bg-red-500/30 backdrop-blur rounded-full px-4 py-2">
                       <Clock className="h-5 w-5 text-red-200" />
