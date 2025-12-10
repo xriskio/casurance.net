@@ -5277,6 +5277,23 @@ export const industries: CoverageContent[] = [
       { label: "Commercial policies for businesses and multi-unit buildings" },
       { label: "Temporary coverage designed to transition back to traditional market" },
       { 
+        label: "Residential Coverage Limits:",
+        subItems: [
+          "Maximum combined limit: $3 million per location",
+          "Covers dwelling, other structures, personal property, and loss of use",
+          "Single location aggregate applies to all residential coverages"
+        ]
+      },
+      { 
+        label: "Commercial Coverage Limits:",
+        subItems: [
+          "Standard Commercial: Up to $20 million per location",
+          "High-Value Commercial (effective July 2025): Up to $20 million per building",
+          "High-Value Commercial aggregate: Up to $100 million per location",
+          "Coverage for buildings, business personal property, and business income"
+        ]
+      },
+      { 
         label: "Important limitations to understand:",
         subItems: [
           "Does NOT include liability coverage",
