@@ -4,6 +4,7 @@ import { Check, ArrowRight, Phone, Shield, Car, Umbrella, Building2, Briefcase, 
 import { Link } from "wouter";
 import type { CoverageContent, PropertyTypeSection } from "@shared/content/coverages";
 import { getIndustryImage } from "@shared/industryImages";
+import californiaFairPlanLogo from "@assets/images_(5)_1765349979547.png";
 
 const getPropertyTypeIcon = (iconName?: string) => {
   switch (iconName) {
@@ -184,6 +185,17 @@ export default function CoverageDetail({ coverage }: CoverageDetailProps) {
           {/* Header - Only show if not an industry (industries have hero image) */}
           {!industryImage && (
             <div className="mb-12">
+              {/* California FAIR Plan Logo */}
+              {coverage.slug === 'california-fair-plan' && (
+                <div className="mb-6">
+                  <img 
+                    src={californiaFairPlanLogo} 
+                    alt="California FAIR Plan Property Insurance" 
+                    className="h-16 md:h-20 w-auto"
+                    data-testid="img-california-fair-plan-logo"
+                  />
+                </div>
+              )}
               <div className="inline-block px-3 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full mb-4">
                 {coverage.category}
               </div>
