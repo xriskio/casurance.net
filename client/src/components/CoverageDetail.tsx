@@ -1,7 +1,10 @@
+import { useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check, ArrowRight, Phone, Shield, Car, Umbrella, Building2, Briefcase, FileCheck, AlertTriangle, CheckCircle2, Home, Store, ShoppingBag, Landmark, Building, MapPin, DollarSign, Ban, Zap, ExternalLink, Truck, Bus } from "lucide-react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Check, ArrowRight, Phone, Shield, Car, Umbrella, Building2, Briefcase, FileCheck, AlertTriangle, CheckCircle2, Home, Store, ShoppingBag, Landmark, Building, MapPin, DollarSign, Ban, Zap, ExternalLink, Truck, Bus, HelpCircle } from "lucide-react";
 import { Link } from "wouter";
+import { Helmet } from "react-helmet-async";
 import type { CoverageContent, PropertyTypeSection } from "@shared/content/coverages";
 import { getIndustryImage } from "@shared/industryImages";
 import californiaFairPlanLogo from "@assets/images_(5)_1765349979547.png";
@@ -17,6 +20,76 @@ const getPropertyTypeIcon = (iconName?: string) => {
     default: return Building2;
   }
 };
+
+function FAQSchemaMarkup({ coverage }: { coverage: CoverageContent }) {
+  const schemas = useMemo(() => {
+    if (!coverage.faqs || coverage.faqs.length === 0) {
+      return null;
+    }
+
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": coverage.faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    };
+
+    const areaServed = coverage.eligibleStates && coverage.eligibleStates.length > 0 
+      ? coverage.eligibleStates.map(state => ({
+          "@type": "State",
+          "name": state
+        }))
+      : {
+          "@type": "Country",
+          "name": "United States"
+        };
+
+    const serviceSchema = {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": coverage.title,
+      "provider": {
+        "@type": "InsuranceAgency",
+        "name": "Casurance",
+        "url": "https://casurance.net",
+        "telephone": "1-888-254-0089",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "714 W Olympic Blvd Suite 906",
+          "addressLocality": "Los Angeles",
+          "addressRegion": "CA",
+          "postalCode": "90015",
+          "addressCountry": "US"
+        }
+      },
+      "description": coverage.summary,
+      "areaServed": areaServed
+    };
+
+    return { faqSchema, serviceSchema };
+  }, [coverage.faqs, coverage.eligibleStates, coverage.title, coverage.summary]);
+
+  if (!schemas) {
+    return null;
+  }
+
+  return (
+    <Helmet>
+      <script type="application/ld+json">
+        {JSON.stringify(schemas.faqSchema)}
+      </script>
+      <script type="application/ld+json">
+        {JSON.stringify(schemas.serviceSchema)}
+      </script>
+    </Helmet>
+  );
+}
 
 interface CoverageDetailProps {
   coverage: CoverageContent;
@@ -660,6 +733,38 @@ export default function CoverageDetail({ coverage }: CoverageDetailProps) {
             </div>
           </div>
         )}
+
+        {/* FAQ Section - People Also Ask */}
+        {coverage.faqs && coverage.faqs.length > 0 && (
+          <Card className="mb-8" id="faq-section">
+            <CardContent className="p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <HelpCircle className="h-5 w-5 text-primary" />
+                </div>
+                <h2 className="text-2xl font-semibold text-foreground">Frequently Asked Questions</h2>
+              </div>
+              <p className="text-muted-foreground mb-6">
+                Common questions about {coverage.title.toLowerCase()} answered by our insurance experts.
+              </p>
+              <Accordion type="single" collapsible className="w-full" data-testid="accordion-faq">
+                {coverage.faqs.map((faq, index) => (
+                  <AccordionItem key={index} value={`faq-${index}`} data-testid={`faq-item-${index}`}>
+                    <AccordionTrigger className="text-left hover:no-underline" data-testid={`faq-trigger-${index}`}>
+                      <span className="font-medium text-foreground">{faq.question}</span>
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground leading-relaxed" data-testid={`faq-content-${index}`}>
+                      {faq.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* FAQPage and Service Schema Markup */}
+        <FAQSchemaMarkup coverage={coverage} />
 
         {/* CTA Section */}
         <div className="mt-12 bg-primary rounded-lg p-8 text-center">

@@ -34,6 +34,11 @@ export interface DeductibleInfo {
   floodEarthquake?: string;
 }
 
+export interface FAQ {
+  question: string;
+  answer: string;
+}
+
 export interface CoverageContent {
   title: string;
   slug: string;
@@ -46,6 +51,8 @@ export interface CoverageContent {
   image?: string;
   seoTitle?: string;
   seoDescription?: string;
+  // FAQ content for schema markup and voice search
+  faqs?: FAQ[];
   // Extended content for detailed industry pages
   coverageServices?: string[];
   productBasics?: ProductBasic[];
@@ -97,6 +104,24 @@ export const coverages: CoverageContent[] = [
       "Meets contractual insurance requirements",
       "Includes defense costs and legal fees",
       "Competitive rates for qualified contractors"
+    ],
+    faqs: [
+      {
+        question: "What does construction casualty insurance cover?",
+        answer: "Construction casualty insurance covers third-party bodily injury, property damage, completed operations liability, and contractual liability arising from construction activities. It protects contractors from lawsuits and claims related to their work on job sites."
+      },
+      {
+        question: "How much does construction liability insurance cost?",
+        answer: "Construction liability insurance typically costs between $500 to $2,500 annually for small contractors, depending on factors like project types, annual revenue, number of employees, claims history, and coverage limits needed."
+      },
+      {
+        question: "Do I need construction insurance if I'm a subcontractor?",
+        answer: "Yes, subcontractors typically need their own construction casualty insurance. Most general contractors require subcontractors to carry liability coverage before allowing them on job sites, and it protects your business from claims arising from your work."
+      },
+      {
+        question: "What is completed operations coverage?",
+        answer: "Completed operations coverage protects contractors from liability claims that arise after a project is finished. If defective work causes injury or property damage months or years later, this coverage responds to those claims."
+      }
     ]
   },
   {
@@ -155,6 +180,24 @@ export const coverages: CoverageContent[] = [
       "Covers legal defense costs",
       "Protects business assets and reputation",
       "Affordable coverage for businesses of all sizes"
+    ],
+    faqs: [
+      {
+        question: "What is general liability insurance and why do I need it?",
+        answer: "General liability insurance protects your business from claims of bodily injury, property damage, and personal injury caused to third parties. Most landlords, clients, and contracts require it, and it covers legal defense costs if you're sued."
+      },
+      {
+        question: "How much general liability coverage do I need?",
+        answer: "Most small businesses need at least $1 million per occurrence and $2 million aggregate coverage. However, requirements vary based on your industry, contracts, and risk exposure. Some industries require higher limits."
+      },
+      {
+        question: "Does general liability cover employee injuries?",
+        answer: "No, general liability only covers third-party injuries (customers, visitors, vendors). Employee injuries are covered by workers' compensation insurance, which is a separate required coverage in most states."
+      },
+      {
+        question: "What's the difference between general liability and professional liability?",
+        answer: "General liability covers physical injuries and property damage, while professional liability (E&O) covers financial losses from professional mistakes, errors, or negligent advice. Many businesses need both types of coverage."
+      }
     ]
   },
   {
@@ -596,6 +639,24 @@ export const coverages: CoverageContent[] = [
       "State-of-the-art coverage enhancements available",
       "Expert claims handling with dedicated cyber specialists",
       "Business continuity and disaster recovery planning assistance"
+    ],
+    faqs: [
+      {
+        question: "What is cyber liability insurance and does my business need it?",
+        answer: "Cyber liability insurance protects your business from financial losses due to data breaches, hacking, ransomware, and other cyber incidents. If your business stores customer data, uses email, or accepts electronic payments, you likely need cyber coverage. 43% of cyber attacks target small businesses."
+      },
+      {
+        question: "What does cyber insurance cover in a ransomware attack?",
+        answer: "Cyber insurance covers ransom payments if authorized, forensic investigation costs, data recovery expenses, business interruption losses, legal fees, customer notification costs, and credit monitoring services for affected customers. Many policies also provide access to negotiation experts."
+      },
+      {
+        question: "How much does cyber liability insurance cost?",
+        answer: "Cyber liability insurance typically costs $1,000 to $7,500 annually for small businesses with $1 million in coverage. Costs vary based on your industry, data volume, security measures, revenue, and claims history. Healthcare and financial services typically pay higher premiums."
+      },
+      {
+        question: "Does cyber insurance cover employee errors?",
+        answer: "Yes, most cyber policies cover losses from employee errors like accidentally sending data to the wrong person, falling for phishing scams, or misconfiguring security settings. In fact, human error causes 68% of all data breaches, making this coverage essential."
+      }
     ],
     seoTitle: "Cyber Liability Insurance - Data Breach & Network Security Coverage",
     seoDescription: "Protect your business from cyber attacks, data breaches, and technology errors with comprehensive cyber liability insurance. Get 24/7 incident response, regulatory defense, and business interruption coverage tailored to your business."
@@ -1310,6 +1371,24 @@ export const coverages: CoverageContent[] = [
       "Covers multiple locations",
       "Business income protection available",
       "Required by most commercial leases"
+    ],
+    faqs: [
+      {
+        question: "What does commercial property insurance cover?",
+        answer: "Commercial property insurance covers your building structure, business equipment, inventory, furniture, and improvements you've made to leased space. It protects against fire, theft, vandalism, certain weather events, and other covered perils. Flood and earthquake typically require separate policies."
+      },
+      {
+        question: "Should I choose replacement cost or actual cash value?",
+        answer: "Replacement cost coverage pays to replace damaged property with new items of similar quality without deducting for depreciation. Actual cash value pays the depreciated value. Replacement cost costs more but provides better protection for most businesses."
+      },
+      {
+        question: "Is business interruption included in commercial property insurance?",
+        answer: "Business interruption coverage is often included or available as an add-on. It covers lost income and operating expenses while your business is closed for repairs after a covered property loss. This is crucial for maintaining cash flow during recovery."
+      },
+      {
+        question: "Do I need commercial property insurance as a tenant?",
+        answer: "Yes, even as a tenant you should have commercial property insurance to cover your business contents, equipment, inventory, and improvements you've made to the space. Your landlord's policy only covers the building structure, not your business property inside."
+      }
     ]
   },
 
@@ -1894,6 +1973,24 @@ export const coverages: CoverageContent[] = [
       "Flexible deductible options",
       "Fleet discounts available",
       "Meets commercial vehicle requirements"
+    ],
+    faqs: [
+      {
+        question: "What is commercial auto insurance and do I need it?",
+        answer: "Commercial auto insurance covers vehicles used for business purposes. You need it if your vehicles are registered to a business, used for transporting goods or people for a fee, or regularly used by employees for work. Personal auto policies typically don't cover business use."
+      },
+      {
+        question: "How much does commercial auto insurance cost per vehicle?",
+        answer: "Commercial auto insurance typically costs $1,200 to $2,400 per vehicle annually, depending on vehicle type, driver records, cargo hauled, miles driven, coverage limits, and your claims history. Fleet policies with multiple vehicles often qualify for discounts."
+      },
+      {
+        question: "What's the difference between hired and non-owned auto coverage?",
+        answer: "Hired auto covers vehicles you rent or hire for business use. Non-owned auto covers liability when employees use their personal vehicles for business purposes. Both are essential for businesses without owned vehicles or those supplementing their fleet."
+      },
+      {
+        question: "Does commercial auto cover employee accidents?",
+        answer: "Yes, commercial auto insurance covers accidents involving employees driving company vehicles for business purposes. Coverage includes liability for injuries and property damage caused to others, as well as damage to your vehicles if you have collision and comprehensive coverage."
+      }
     ]
   },
 
@@ -4864,6 +4961,24 @@ export const industries: CoverageContent[] = [
       "Pay-as-you-go premium options available",
       "Multi-state coverage for businesses operating nationally"
     ],
+    faqs: [
+      {
+        question: "Is workers' compensation insurance required by law?",
+        answer: "Yes, workers' compensation insurance is required in almost every state if you have employees. Requirements vary by state - some require coverage with just one employee, while others have minimum thresholds. Texas is the only state where it's technically optional for most employers."
+      },
+      {
+        question: "How is workers' comp premium calculated?",
+        answer: "Workers' comp premiums are calculated using your total payroll, job classification codes based on risk level, and your experience modification rate (EMR). High-risk industries like construction pay higher rates than office jobs. Your claims history also significantly impacts your premium."
+      },
+      {
+        question: "What happens if an employee gets hurt at work?",
+        answer: "When an employee is injured at work, workers' comp covers their medical expenses, pays a portion of lost wages during recovery, and provides disability benefits if needed. The employee cannot sue you for workplace injuries in exchange for these guaranteed benefits."
+      },
+      {
+        question: "Can I get workers' comp if I'm self-employed?",
+        answer: "Self-employed individuals typically aren't required to carry workers' comp, but many choose to purchase coverage to protect themselves. Some states offer elective coverage for sole proprietors, and certain industries may require it even for self-employed contractors."
+      }
+    ],
     seoTitle: "Workers' Compensation Insurance | Employee Injury Protection",
     seoDescription: "Comprehensive workers' compensation coverage for businesses of all sizes. Protect your employees and your business from workplace injuries with medical benefits, wage replacement, and employer's liability protection."
   },
@@ -4904,6 +5019,24 @@ export const industries: CoverageContent[] = [
       "Affordable coverage for businesses of all sizes",
       "Available as standalone or as part of BOP",
       "Nationwide coverage across all 50 states"
+    ],
+    faqs: [
+      {
+        question: "What is general liability insurance and who needs it?",
+        answer: "General liability insurance protects businesses from claims of bodily injury, property damage, and personal injury to third parties. Every business that interacts with customers, vendors, or the public needs this coverage. Most landlords and clients require it before signing contracts."
+      },
+      {
+        question: "How much does general liability insurance cost for a small business?",
+        answer: "Small business general liability insurance typically costs $400 to $1,500 per year for $1 million in coverage. Costs vary based on your industry, location, business size, claims history, and coverage limits required by your contracts."
+      },
+      {
+        question: "What's the difference between general liability and a BOP?",
+        answer: "A Business Owner's Policy (BOP) bundles general liability with commercial property insurance at a discounted rate. It's ideal for small to mid-sized businesses. General liability alone covers only third-party claims, not damage to your own property or business income losses."
+      },
+      {
+        question: "Does general liability cover my products?",
+        answer: "Yes, general liability includes products and completed operations coverage, which protects you if your products or finished work cause injury or damage to others. For manufacturers and product sellers, additional product liability coverage may be recommended for higher limits."
+      }
     ],
     seoTitle: "General Liability Insurance | Business Liability Protection",
     seoDescription: "Protect your business with comprehensive general liability insurance. Coverage for bodily injury, property damage, advertising injury, and legal defense. Essential protection for businesses of all sizes."
@@ -5320,6 +5453,24 @@ export const industries: CoverageContent[] = [
       "Business interruption through separate commercial policy"
     ],
     eligibleStates: ["California"],
+    faqs: [
+      {
+        question: "What is the California FAIR Plan and how do I qualify?",
+        answer: "The California FAIR Plan is an insurance pool of last resort that provides basic fire coverage when you can't get insurance from regular companies. You qualify if you've been declined by the traditional market due to wildfire risk, brush zone location, or high Fireline scores. You must apply through a licensed broker."
+      },
+      {
+        question: "What does FAIR Plan insurance cover?",
+        answer: "FAIR Plan provides basic fire insurance covering fire damage, lightning, and internal explosion. It does NOT include theft, liability, or comprehensive homeowners coverage. Many policyholders pair FAIR Plan with a Difference in Conditions (DIC) policy to fill these gaps."
+      },
+      {
+        question: "How much does California FAIR Plan cost?",
+        answer: "FAIR Plan premiums are typically higher than traditional insurance because it covers high-risk properties. Costs depend on your property value, location, construction type, and fire protection measures. Properties with defensible space and fire-resistant features may qualify for discounts."
+      },
+      {
+        question: "What are the FAIR Plan coverage limits?",
+        answer: "Residential properties can get up to $3 million per location. Standard commercial coverage is up to $20 million per location. Starting July 2025, high-value commercial properties can get up to $20 million per building with $100 million aggregate per location."
+      }
+    ],
     seoTitle: "California FAIR Plan Insurance | Wildfire & Brush Area Coverage",
     seoDescription: "California FAIR Plan provides basic fire insurance when traditional coverage is unavailable. Coverage for homes and commercial properties in high-risk wildfire and brush areas. Licensed FAIR Plan broker."
   },
