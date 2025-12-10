@@ -112,6 +112,8 @@ export default function Footer() {
             <Link href="/technology-insurance" className="text-white/70 hover:text-white transition-colors cursor-pointer">Technology Companies Insurance</Link>
             <span className="text-white/30">|</span>
             <Link href="/manufacturing-insurance" className="text-white/70 hover:text-white transition-colors cursor-pointer">Manufacturing Insurance</Link>
+            <span className="text-white/30">|</span>
+            <Link href="/coverage/california-fair-plan" className="text-white/70 hover:text-white transition-colors cursor-pointer">California FAIR Plan</Link>
           </div>
         </div>
 
