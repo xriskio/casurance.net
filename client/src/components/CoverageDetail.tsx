@@ -135,6 +135,9 @@ export default function CoverageDetail({ coverage }: CoverageDetailProps) {
     if (coverage.slug === 'tnc-shared-economy') {
       return '/quote/tnc';
     }
+    if (coverage.slug === 'california-fair-plan') {
+      return '/quote/fair-plan';
+    }
     
     return '/quote';
   };
