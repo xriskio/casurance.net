@@ -484,8 +484,17 @@ export default function AgentPortal() {
 
   const createManualBlogPostMutation = useMutation({
     mutationFn: async () => {
+      // Generate slug from title
+      const slug = manualBlogForm.title
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .trim();
+      
       return await apiRequest("POST", "/api/blog-posts", {
         title: manualBlogForm.title,
+        slug: slug,
         excerpt: manualBlogForm.excerpt,
         content: manualBlogForm.content,
         category: manualBlogForm.category,
@@ -671,8 +680,17 @@ export default function AgentPortal() {
 
   const createManualPressReleaseMutation = useMutation({
     mutationFn: async () => {
+      // Generate slug from title
+      const slug = manualPressForm.title
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .trim();
+      
       return await apiRequest("POST", "/api/press-releases", {
         title: manualPressForm.title,
+        slug: slug,
         subtitle: manualPressForm.subtitle || undefined,
         excerpt: manualPressForm.excerpt,
         content: manualPressForm.content,
