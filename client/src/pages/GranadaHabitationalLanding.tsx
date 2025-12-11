@@ -24,6 +24,7 @@ import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import granadaLogo from "@assets/image_1765416946425.png";
 import { 
   Building2, 
   Shield, 
@@ -326,6 +327,15 @@ export default function GranadaHabitationalLanding() {
           <div className="absolute inset-0 bg-black/20" />
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
+              <div className="flex justify-center mb-6">
+                <div className="bg-white rounded-lg p-4 shadow-lg">
+                  <img 
+                    src={granadaLogo} 
+                    alt="Core Programs - Granada Insurance Company" 
+                    className="h-16 md:h-20 w-auto"
+                  />
+                </div>
+              </div>
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-2 rounded-full mb-6">
                 <Award className="h-4 w-4 text-yellow-400" />
                 <span className="text-sm">A- (Excellent) AM Best Rated</span>
