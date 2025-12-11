@@ -217,11 +217,21 @@ export default function GranadaHabitationalLanding() {
     contactName: "",
     email: "",
     phone: "",
+    propertyAddress: "",
+    city: "",
     state: "",
+    zipCode: "",
     propertyType: "",
     numberOfUnits: "",
+    numberOfStories: "",
+    totalSquareFootage: "",
     totalInsuredValue: "",
     yearBuilt: "",
+    constructionType: "",
+    roofType: "",
+    sprinklered: "",
+    hasPool: "",
+    hasRetail: "",
     message: ""
   });
 
@@ -232,12 +242,22 @@ export default function GranadaHabitationalLanding() {
         contact_name: data.contactName,
         email: data.email,
         phone: data.phone,
+        property_address: data.propertyAddress,
+        city: data.city,
         state: data.state,
+        zip_code: data.zipCode,
         insurance_types: ["Granada Habitational Program"],
         property_type: data.propertyType,
         number_of_units: data.numberOfUnits,
+        number_of_stories: data.numberOfStories,
+        total_square_footage: data.totalSquareFootage,
         total_insured_value: data.totalInsuredValue,
         year_built: data.yearBuilt,
+        construction_type: data.constructionType,
+        roof_type: data.roofType,
+        sprinklered: data.sprinklered,
+        has_pool: data.hasPool,
+        has_retail: data.hasRetail,
         message: data.message,
         source: "granada-habitational-landing"
       });
@@ -252,11 +272,21 @@ export default function GranadaHabitationalLanding() {
         contactName: "",
         email: "",
         phone: "",
+        propertyAddress: "",
+        city: "",
         state: "",
+        zipCode: "",
         propertyType: "",
         numberOfUnits: "",
+        numberOfStories: "",
+        totalSquareFootage: "",
         totalInsuredValue: "",
         yearBuilt: "",
+        constructionType: "",
+        roofType: "",
+        sprinklered: "",
+        hasPool: "",
+        hasRetail: "",
         message: ""
       });
     },
@@ -517,127 +547,295 @@ export default function GranadaHabitationalLanding() {
               <Card>
                 <CardContent className="pt-6">
                   <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="businessName">Property/Business Name</Label>
+                    {/* Contact Information */}
+                    <div className="border-b pb-4 mb-4">
+                      <h3 className="font-semibold text-lg mb-4">Contact Information</h3>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="businessName">Property/Business Name *</Label>
+                          <Input
+                            id="businessName"
+                            data-testid="input-business-name"
+                            value={formData.businessName}
+                            onChange={(e) => setFormData({...formData, businessName: e.target.value})}
+                            required
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="contactName">Contact Name *</Label>
+                          <Input
+                            id="contactName"
+                            data-testid="input-contact-name"
+                            value={formData.contactName}
+                            onChange={(e) => setFormData({...formData, contactName: e.target.value})}
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="grid md:grid-cols-2 gap-4 mt-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="email">Email *</Label>
+                          <Input
+                            id="email"
+                            type="email"
+                            data-testid="input-email"
+                            value={formData.email}
+                            onChange={(e) => setFormData({...formData, email: e.target.value})}
+                            required
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="phone">Phone *</Label>
+                          <Input
+                            id="phone"
+                            type="tel"
+                            data-testid="input-phone"
+                            value={formData.phone}
+                            onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Property Location */}
+                    <div className="border-b pb-4 mb-4">
+                      <h3 className="font-semibold text-lg mb-4">Property Location</h3>
+                      <div className="space-y-2 mb-4">
+                        <Label htmlFor="propertyAddress">Property Address *</Label>
                         <Input
-                          id="businessName"
-                          data-testid="input-business-name"
-                          value={formData.businessName}
-                          onChange={(e) => setFormData({...formData, businessName: e.target.value})}
+                          id="propertyAddress"
+                          data-testid="input-property-address"
+                          placeholder="Street address"
+                          value={formData.propertyAddress}
+                          onChange={(e) => setFormData({...formData, propertyAddress: e.target.value})}
                           required
                         />
                       </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="contactName">Contact Name</Label>
-                        <Input
-                          id="contactName"
-                          data-testid="input-contact-name"
-                          value={formData.contactName}
-                          onChange={(e) => setFormData({...formData, contactName: e.target.value})}
-                          required
-                        />
+                      <div className="grid md:grid-cols-3 gap-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="city">City *</Label>
+                          <Input
+                            id="city"
+                            data-testid="input-city"
+                            value={formData.city}
+                            onChange={(e) => setFormData({...formData, city: e.target.value})}
+                            required
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="state">State *</Label>
+                          <Select
+                            value={formData.state}
+                            onValueChange={(value) => setFormData({...formData, state: value})}
+                          >
+                            <SelectTrigger data-testid="select-state">
+                              <SelectValue placeholder="Select state" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {usStates.map(state => (
+                                <SelectItem key={state} value={state}>{state}</SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="zipCode">ZIP Code *</Label>
+                          <Input
+                            id="zipCode"
+                            data-testid="input-zip"
+                            placeholder="e.g., 90015"
+                            value={formData.zipCode}
+                            onChange={(e) => setFormData({...formData, zipCode: e.target.value})}
+                            required
+                          />
+                        </div>
                       </div>
                     </div>
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="email">Email</Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          data-testid="input-email"
-                          value={formData.email}
-                          onChange={(e) => setFormData({...formData, email: e.target.value})}
-                          required
-                        />
+
+                    {/* Property Details */}
+                    <div className="border-b pb-4 mb-4">
+                      <h3 className="font-semibold text-lg mb-4">Property Details</h3>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="propertyType">Property Type *</Label>
+                          <Select
+                            value={formData.propertyType}
+                            onValueChange={(value) => setFormData({...formData, propertyType: value})}
+                          >
+                            <SelectTrigger data-testid="select-property-type">
+                              <SelectValue placeholder="Select type" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="apartment">Apartment Building</SelectItem>
+                              <SelectItem value="condo">Condominium Association</SelectItem>
+                              <SelectItem value="mixed-use">Mixed-Use Property</SelectItem>
+                              <SelectItem value="multi-family">Multi-Family Residential</SelectItem>
+                              <SelectItem value="coop">Co-op Building</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="yearBuilt">Year Built</Label>
+                          <Input
+                            id="yearBuilt"
+                            type="number"
+                            data-testid="input-year-built"
+                            placeholder="e.g., 1985"
+                            value={formData.yearBuilt}
+                            onChange={(e) => setFormData({...formData, yearBuilt: e.target.value})}
+                          />
+                        </div>
                       </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="phone">Phone</Label>
-                        <Input
-                          id="phone"
-                          type="tel"
-                          data-testid="input-phone"
-                          value={formData.phone}
-                          onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                          required
-                        />
+                      <div className="grid md:grid-cols-3 gap-4 mt-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="numberOfUnits">Number of Units</Label>
+                          <Input
+                            id="numberOfUnits"
+                            type="number"
+                            data-testid="input-units"
+                            placeholder="e.g., 50"
+                            value={formData.numberOfUnits}
+                            onChange={(e) => setFormData({...formData, numberOfUnits: e.target.value})}
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="numberOfStories">Number of Stories</Label>
+                          <Input
+                            id="numberOfStories"
+                            type="number"
+                            data-testid="input-stories"
+                            placeholder="e.g., 4"
+                            value={formData.numberOfStories}
+                            onChange={(e) => setFormData({...formData, numberOfStories: e.target.value})}
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="totalSquareFootage">Total Square Footage</Label>
+                          <Input
+                            id="totalSquareFootage"
+                            data-testid="input-sqft"
+                            placeholder="e.g., 50,000"
+                            value={formData.totalSquareFootage}
+                            onChange={(e) => setFormData({...formData, totalSquareFootage: e.target.value})}
+                          />
+                        </div>
+                      </div>
+                      <div className="grid md:grid-cols-2 gap-4 mt-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="constructionType">Construction Type</Label>
+                          <Select
+                            value={formData.constructionType}
+                            onValueChange={(value) => setFormData({...formData, constructionType: value})}
+                          >
+                            <SelectTrigger data-testid="select-construction">
+                              <SelectValue placeholder="Select construction type" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="frame">Frame</SelectItem>
+                              <SelectItem value="joisted-masonry">Joisted Masonry</SelectItem>
+                              <SelectItem value="non-combustible">Non-Combustible</SelectItem>
+                              <SelectItem value="masonry-non-combustible">Masonry Non-Combustible</SelectItem>
+                              <SelectItem value="fire-resistive">Fire Resistive</SelectItem>
+                              <SelectItem value="modified-fire-resistive">Modified Fire Resistive</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="roofType">Roof Type</Label>
+                          <Select
+                            value={formData.roofType}
+                            onValueChange={(value) => setFormData({...formData, roofType: value})}
+                          >
+                            <SelectTrigger data-testid="select-roof">
+                              <SelectValue placeholder="Select roof type" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="asphalt-shingle">Asphalt Shingle</SelectItem>
+                              <SelectItem value="tile">Tile</SelectItem>
+                              <SelectItem value="slate">Slate</SelectItem>
+                              <SelectItem value="tar-gravel">Tar & Gravel</SelectItem>
+                              <SelectItem value="metal">Metal</SelectItem>
+                              <SelectItem value="membrane">Membrane/TPO/EPDM</SelectItem>
+                              <SelectItem value="other">Other</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
                       </div>
                     </div>
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="state">State</Label>
-                        <Select
-                          value={formData.state}
-                          onValueChange={(value) => setFormData({...formData, state: value})}
-                        >
-                          <SelectTrigger data-testid="select-state">
-                            <SelectValue placeholder="Select state" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {usStates.map(state => (
-                              <SelectItem key={state} value={state}>{state}</SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+
+                    {/* Coverage & Features */}
+                    <div className="border-b pb-4 mb-4">
+                      <h3 className="font-semibold text-lg mb-4">Coverage & Features</h3>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="totalInsuredValue">Total Insured Value (TIV)</Label>
+                          <Input
+                            id="totalInsuredValue"
+                            data-testid="input-tiv"
+                            placeholder="e.g., $5,000,000"
+                            value={formData.totalInsuredValue}
+                            onChange={(e) => setFormData({...formData, totalInsuredValue: e.target.value})}
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="sprinklered">Sprinklered?</Label>
+                          <Select
+                            value={formData.sprinklered}
+                            onValueChange={(value) => setFormData({...formData, sprinklered: value})}
+                          >
+                            <SelectTrigger data-testid="select-sprinklered">
+                              <SelectValue placeholder="Select" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="yes-full">Yes - Fully Sprinklered</SelectItem>
+                              <SelectItem value="yes-partial">Yes - Partially Sprinklered</SelectItem>
+                              <SelectItem value="no">No</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
                       </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="propertyType">Property Type</Label>
-                        <Select
-                          value={formData.propertyType}
-                          onValueChange={(value) => setFormData({...formData, propertyType: value})}
-                        >
-                          <SelectTrigger data-testid="select-property-type">
-                            <SelectValue placeholder="Select type" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="apartment">Apartment Building</SelectItem>
-                            <SelectItem value="condo">Condominium Association</SelectItem>
-                            <SelectItem value="mixed-use">Mixed-Use Property</SelectItem>
-                            <SelectItem value="multi-family">Multi-Family Residential</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
-                    <div className="grid md:grid-cols-3 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="numberOfUnits">Number of Units</Label>
-                        <Input
-                          id="numberOfUnits"
-                          type="number"
-                          data-testid="input-units"
-                          placeholder="e.g., 50"
-                          value={formData.numberOfUnits}
-                          onChange={(e) => setFormData({...formData, numberOfUnits: e.target.value})}
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="totalInsuredValue">Total Insured Value</Label>
-                        <Input
-                          id="totalInsuredValue"
-                          data-testid="input-tiv"
-                          placeholder="e.g., $5,000,000"
-                          value={formData.totalInsuredValue}
-                          onChange={(e) => setFormData({...formData, totalInsuredValue: e.target.value})}
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="yearBuilt">Year Built</Label>
-                        <Input
-                          id="yearBuilt"
-                          type="number"
-                          data-testid="input-year-built"
-                          placeholder="e.g., 1985"
-                          value={formData.yearBuilt}
-                          onChange={(e) => setFormData({...formData, yearBuilt: e.target.value})}
-                        />
+                      <div className="grid md:grid-cols-2 gap-4 mt-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="hasPool">Pool or Spa?</Label>
+                          <Select
+                            value={formData.hasPool}
+                            onValueChange={(value) => setFormData({...formData, hasPool: value})}
+                          >
+                            <SelectTrigger data-testid="select-pool">
+                              <SelectValue placeholder="Select" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="yes">Yes</SelectItem>
+                              <SelectItem value="no">No</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="hasRetail">Retail/Commercial Tenants?</Label>
+                          <Select
+                            value={formData.hasRetail}
+                            onValueChange={(value) => setFormData({...formData, hasRetail: value})}
+                          >
+                            <SelectTrigger data-testid="select-retail">
+                              <SelectValue placeholder="Select" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="yes">Yes</SelectItem>
+                              <SelectItem value="no">No</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
                       </div>
                     </div>
+
+                    {/* Additional Information */}
                     <div className="space-y-2">
                       <Label htmlFor="message">Additional Information</Label>
                       <Textarea
                         id="message"
                         data-testid="textarea-message"
-                        placeholder="Describe your property, any special features, retail tenants, etc."
+                        placeholder="Describe any special features, recent updates, retail tenant types, loss history, etc."
                         value={formData.message}
                         onChange={(e) => setFormData({...formData, message: e.target.value})}
                         rows={4}
