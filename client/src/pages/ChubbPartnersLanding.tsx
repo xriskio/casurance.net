@@ -18,10 +18,38 @@ import {
   Phone,
   Star,
   Users,
-  FileText
+  FileText,
+  Package,
+  Factory
 } from "lucide-react";
 
 const chubbProducts = [
+  {
+    title: "Benchmarq Package",
+    slug: "chubb-benchmarq",
+    icon: Package,
+    description: "Industry-leading package policy setting a new benchmark with superior property and liability coverage. Automatic blanket limits and scalable protection.",
+    highlights: [
+      "Broader than standard policies",
+      "Automatic blanket limits",
+      "Scalable coverage tiers",
+      "Global extension available"
+    ],
+    color: "from-indigo-600 to-indigo-800"
+  },
+  {
+    title: "Middle Market Solutions",
+    slug: "chubb-middle-market",
+    icon: Factory,
+    description: "Comprehensive insurance programs for growing businesses with complex operations. Full suite of coverage options with deep industry expertise.",
+    highlights: [
+      "$10M-$1B revenue businesses",
+      "Multinational capabilities",
+      "Specialized underwriting",
+      "#1 claims satisfaction"
+    ],
+    color: "from-slate-600 to-slate-800"
+  },
   {
     title: "Business Owner's Policy (BOP)",
     slug: "chubb-bop",

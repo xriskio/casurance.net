@@ -43,6 +43,8 @@ const staticRoutes = [
   { url: "/partners/chubb-workers-comp", priority: "0.9", changefreq: "weekly" },
   { url: "/partners/chubb-umbrella", priority: "0.9", changefreq: "weekly" },
   { url: "/partners/chubb-cyber", priority: "0.9", changefreq: "weekly" },
+  { url: "/partners/chubb-benchmarq", priority: "0.9", changefreq: "weekly" },
+  { url: "/partners/chubb-middle-market", priority: "0.9", changefreq: "weekly" },
 ];
 
 // Quote and application form routes (exact paths from App.tsx)

@@ -99,6 +99,8 @@ import ChubbBOPLanding from "@/pages/ChubbBOPLanding";
 import ChubbWorkersCompLanding from "@/pages/ChubbWorkersCompLanding";
 import ChubbUmbrellaLanding from "@/pages/ChubbUmbrellaLanding";
 import ChubbCyberLanding from "@/pages/ChubbCyberLanding";
+import ChubbBenchmarqLanding from "@/pages/ChubbBenchmarqLanding";
+import ChubbMiddleMarketLanding from "@/pages/ChubbMiddleMarketLanding";
 import QuoteThankYou from "@/pages/QuoteThankYou";
 import AccessibilityPage from "@/pages/AccessibilityPage";
 import NotFound from "@/pages/not-found";
@@ -185,6 +187,8 @@ function Router() {
       <Route path="/partners/chubb-workers-comp" component={ChubbWorkersCompLanding} />
       <Route path="/partners/chubb-umbrella" component={ChubbUmbrellaLanding} />
       <Route path="/partners/chubb-cyber" component={ChubbCyberLanding} />
+      <Route path="/partners/chubb-benchmarq" component={ChubbBenchmarqLanding} />
+      <Route path="/partners/chubb-middle-market" component={ChubbMiddleMarketLanding} />
       <Route path="/lp/restaurant-insurance" component={RestaurantBarInsuranceLanding} />
       <Route path="/lp/bar-insurance" component={RestaurantBarInsuranceLanding} />
       <Route path="/agent" component={AgentLogin} />

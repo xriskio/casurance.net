@@ -38,6 +38,8 @@ const ALL_SITE_URLS = [
   "/partners/chubb-workers-comp",
   "/partners/chubb-umbrella",
   "/partners/chubb-cyber",
+  "/partners/chubb-benchmarq",
+  "/partners/chubb-middle-market",
   "/industry/auto-services",
   
   "/coverage/commercial-auto",
