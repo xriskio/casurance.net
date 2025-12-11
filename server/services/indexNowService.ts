@@ -40,6 +40,7 @@ const ALL_SITE_URLS = [
   "/partners/chubb-cyber",
   "/partners/chubb-benchmarq",
   "/partners/chubb-middle-market",
+  "/partners/granada-habitational",
   "/industry/auto-services",
   
   "/coverage/commercial-auto",
