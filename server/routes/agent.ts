@@ -709,7 +709,33 @@ export function registerAgentRoutes(app: Express, storage: IStorage) {
         return dateB.getTime() - dateA.getTime();
       });
 
-      res.json({ submissions });
+      // Fetch latest status for all submissions
+      const statusHistory = await db
+        .select()
+        .from(submissionStatusHistory)
+        .orderBy(desc(submissionStatusHistory.createdAt));
+
+      // Create a map of latest status per submission
+      const statusMap = new Map<string, { status: string; notes: string | null }>();
+      for (const history of statusHistory) {
+        const key = `${history.submissionType}-${history.submissionId}`;
+        if (!statusMap.has(key)) {
+          statusMap.set(key, { status: history.status, notes: history.notes });
+        }
+      }
+
+      // Merge status into submissions
+      const submissionsWithStatus = submissions.map((sub) => {
+        const key = `${sub.submissionType}-${sub.id}`;
+        const statusInfo = statusMap.get(key);
+        return {
+          ...sub,
+          status: statusInfo?.status || "new",
+          notes: statusInfo?.notes || null,
+        };
+      });
+
+      res.json({ submissions: submissionsWithStatus });
     } catch (error) {
       console.error("Error fetching submissions:", error);
       res.status(500).json({ error: "Failed to fetch submissions" });
