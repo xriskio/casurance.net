@@ -102,6 +102,7 @@ import ChubbCyberLanding from "@/pages/ChubbCyberLanding";
 import ChubbBenchmarqLanding from "@/pages/ChubbBenchmarqLanding";
 import ChubbMiddleMarketLanding from "@/pages/ChubbMiddleMarketLanding";
 import GranadaHabitationalLanding from "@/pages/GranadaHabitationalLanding";
+import LimousineTransportationPage from "@/pages/LimousineTransportationPage";
 import QuoteThankYou from "@/pages/QuoteThankYou";
 import AccessibilityPage from "@/pages/AccessibilityPage";
 import NotFound from "@/pages/not-found";
@@ -141,6 +142,7 @@ function Router() {
       <Route path="/middle-market" component={MiddleMarket} />
       <Route path="/coverage/:slug" component={CoveragePage} />
       <Route path="/industries" component={IndustriesIndex} />
+      <Route path="/industry/limousine-transportation" component={LimousineTransportationPage} />
       <Route path="/industry/:slug" component={IndustryPage} />
       <Route path="/blog" component={BlogPage} />
       <Route path="/blog/:slug" component={BlogPostPage} />
