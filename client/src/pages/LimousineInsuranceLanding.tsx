@@ -28,10 +28,10 @@ import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 
-import sedanImage from "@assets/stock_images/luxury_black_sedan_l_5863cf6f.jpg";
-import suvImage from "@assets/stock_images/cadillac_escalade_lu_ac93e6a7.jpg";
-import sprinterImage from "@assets/stock_images/mercedes_sprinter_bl_599e2123.jpg";
-import limoImage from "@assets/stock_images/stretch_limousine_pa_6081117d.jpg";
+import fleetImage from "@assets/image_1765689695192.png";
+import sprinterImage from "@assets/Black-van_1765689662600.png";
+import liveryInterior from "@assets/Livery_1765689662600.jpg";
+import motorcoachImage from "@assets/00_Passenger_Transport_1765689662600.png";
 
 const usStates = [
   "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware",
@@ -132,7 +132,7 @@ export default function LimousineInsuranceLanding() {
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-[#0a1628] via-[#1a365d] to-[#0a1628] text-white overflow-hidden">
           <div className="absolute inset-0 opacity-20">
-            <img src={sedanImage} alt="" className="w-full h-full object-cover" />
+            <img src={sprinterImage} alt="" className="w-full h-full object-cover" />
           </div>
           <div className="absolute inset-0 bg-gradient-to-r from-[#0a1628] via-[#0a1628]/90 to-transparent" />
           
@@ -290,15 +290,9 @@ export default function LimousineInsuranceLanding() {
             <h2 className="text-2xl font-bold text-center mb-8">Vehicles We Insure</h2>
             <div className="grid md:grid-cols-4 gap-4">
               <div className="relative rounded-lg overflow-hidden group">
-                <img src={sedanImage} alt="Luxury Sedan" className="w-full h-40 object-cover transition-transform group-hover:scale-105" />
+                <img src={fleetImage} alt="Cadillac Escalade ESV and Mercedes Sprinter" className="w-full h-40 object-cover transition-transform group-hover:scale-105" />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
-                  <h3 className="font-semibold text-white">Black Car Sedans</h3>
-                </div>
-              </div>
-              <div className="relative rounded-lg overflow-hidden group">
-                <img src={suvImage} alt="Luxury SUV" className="w-full h-40 object-cover transition-transform group-hover:scale-105" />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
-                  <h3 className="font-semibold text-white">Executive SUVs</h3>
+                  <h3 className="font-semibold text-white">Executive Fleet</h3>
                 </div>
               </div>
               <div className="relative rounded-lg overflow-hidden group">
@@ -308,9 +302,15 @@ export default function LimousineInsuranceLanding() {
                 </div>
               </div>
               <div className="relative rounded-lg overflow-hidden group">
-                <img src={limoImage} alt="Stretch Limousine" className="w-full h-40 object-cover transition-transform group-hover:scale-105" />
+                <img src={liveryInterior} alt="Luxury Livery Interior" className="w-full h-40 object-cover transition-transform group-hover:scale-105" />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
-                  <h3 className="font-semibold text-white">Stretch Limousines</h3>
+                  <h3 className="font-semibold text-white">Luxury Interior</h3>
+                </div>
+              </div>
+              <div className="relative rounded-lg overflow-hidden group">
+                <img src={motorcoachImage} alt="Motorcoach Charter Bus" className="w-full h-40 object-cover transition-transform group-hover:scale-105" />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
+                  <h3 className="font-semibold text-white">Motorcoach</h3>
                 </div>
               </div>
             </div>

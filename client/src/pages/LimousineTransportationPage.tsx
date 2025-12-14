@@ -39,18 +39,16 @@ import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 
-import sedanImage1 from "@assets/stock_images/luxury_black_sedan_l_5863cf6f.jpg";
-import sedanImage2 from "@assets/stock_images/luxury_black_sedan_l_17b441e0.jpg";
-import suvImage from "@assets/stock_images/cadillac_escalade_lu_ac93e6a7.jpg";
-import sprinterImage from "@assets/stock_images/mercedes_sprinter_bl_599e2123.jpg";
-import limoImage from "@assets/stock_images/stretch_limousine_pa_6081117d.jpg";
-import partyBusImage from "@assets/stock_images/stretch_limousine_pa_bcf9db20.jpg";
+import fleetImage from "@assets/image_1765689695192.png";
+import sprinterImage from "@assets/Black-van_1765689662600.png";
+import liveryInterior from "@assets/Livery_1765689662600.jpg";
+import motorcoachImage from "@assets/00_Passenger_Transport_1765689662600.png";
 
 const fleetVehicles = [
-  { name: "Cadillac Escalade ESV", description: "Premium Luxury SUV", image: suvImage },
+  { name: "Cadillac Escalade ESV", description: "Executive Luxury SUV", image: fleetImage },
   { name: "Mercedes Sprinter", description: "Executive Van Shuttle", image: sprinterImage },
-  { name: "Lincoln Continental", description: "Executive Sedan", image: sedanImage1 },
-  { name: "Stretch Limousine", description: "Special Events", image: limoImage },
+  { name: "Luxury Interior", description: "Premium Livery Seating", image: liveryInterior },
+  { name: "Motorcoach", description: "Charter Bus Transportation", image: motorcoachImage },
 ];
 
 const vehicleTypes = [
