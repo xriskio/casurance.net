@@ -145,6 +145,7 @@ function Router() {
       <Route path="/coverage/:slug" component={CoveragePage} />
       <Route path="/industries" component={IndustriesIndex} />
       <Route path="/industry/limousine-transportation" component={LimousineTransportationPage} />
+      <Route path="/industry/restaurant-bar-tavern" component={RestaurantBarIndustryPage} />
       <Route path="/industry/:slug" component={IndustryPage} />
       <Route path="/blog" component={BlogPage} />
       <Route path="/blog/:slug" component={BlogPostPage} />
@@ -186,7 +187,6 @@ function Router() {
       <Route path="/lp/limo" component={LimousineInsuranceLanding} />
       <Route path="/lp/limousine" component={LimousineInsuranceLanding} />
       <Route path="/restaurant-bar-insurance" component={RestaurantBarInsuranceLanding} />
-      <Route path="/industry/restaurant-bar-tavern" component={RestaurantBarIndustryPage} />
       <Route path="/technology-insurance" component={TechnologyInsuranceLanding} />
       <Route path="/manufacturing-insurance" component={ManufacturingInsuranceLanding} />
       <Route path="/chubb-special-programs" component={ChubbSpecialProgramsLanding} />
