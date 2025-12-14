@@ -49,6 +49,7 @@ const staticRoutes = [
   { url: "/limo-insurance", priority: "0.9", changefreq: "weekly" },
   { url: "/lp/limo", priority: "0.8", changefreq: "weekly" },
   { url: "/lp/limousine", priority: "0.8", changefreq: "weekly" },
+  { url: "/industry/restaurant-bar-tavern", priority: "0.9", changefreq: "weekly" },
 ];
 
 // Quote and application form routes (exact paths from App.tsx)

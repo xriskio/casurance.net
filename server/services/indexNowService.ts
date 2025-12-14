@@ -77,6 +77,7 @@ const ALL_SITE_URLS = [
   "/industry/public-self-storage",
   "/industry/nemt-paratransit",
   "/industry/limousine-transportation",
+  "/industry/restaurant-bar-tavern",
   
   "/quote/commercial-auto",
   "/quote/general-liability",
