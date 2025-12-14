@@ -46,6 +46,9 @@ const staticRoutes = [
   { url: "/partners/chubb-benchmarq", priority: "0.9", changefreq: "weekly" },
   { url: "/partners/chubb-middle-market", priority: "0.9", changefreq: "weekly" },
   { url: "/partners/granada-habitational", priority: "0.9", changefreq: "weekly" },
+  { url: "/limo-insurance", priority: "0.9", changefreq: "weekly" },
+  { url: "/lp/limo", priority: "0.8", changefreq: "weekly" },
+  { url: "/lp/limousine", priority: "0.8", changefreq: "weekly" },
 ];
 
 // Quote and application form routes (exact paths from App.tsx)

@@ -124,6 +124,9 @@ const ALL_SITE_URLS = [
   "/lp/workers-compensation",
   "/lp/commercial-insurance",
   "/lp/insurance",
+  "/limo-insurance",
+  "/lp/limo",
+  "/lp/limousine",
   
   "/location/california/los-angeles",
   "/location/california/san-francisco",
