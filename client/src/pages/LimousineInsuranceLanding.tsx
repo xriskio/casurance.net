@@ -32,6 +32,7 @@ import fleetImage from "@assets/image_1765689695192.png";
 import sprinterImage from "@assets/Black-van_1765689662600.png";
 import liveryInterior from "@assets/Livery_1765689662600.jpg";
 import motorcoachImage from "@assets/00_Passenger_Transport_1765689662600.png";
+import insureLimosLogo from "@assets/generated-image_(3)_1765690259677.png";
 
 const usStates = [
   "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware",
@@ -437,6 +438,33 @@ export default function LimousineInsuranceLanding() {
                   Call 1-888-254-0089
                 </a>
               </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* InsureLimos Sister Company Section */}
+        <section className="py-12 bg-muted/30 border-t">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-col items-center text-center max-w-2xl mx-auto">
+              <a href="https://insurelimos.net" target="_blank" rel="noopener noreferrer" className="mb-4">
+                <img 
+                  src={insureLimosLogo} 
+                  alt="InsureLimos - A Casurance Company" 
+                  className="h-16 object-contain"
+                />
+              </a>
+              <p className="text-muted-foreground">
+                For more Public Transportation fleet options and more risks, visit our sister company at{" "}
+                <a 
+                  href="https://insurelimos.net" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-primary font-semibold hover:underline"
+                >
+                  insurelimos.net
+                </a>{" "}
+                to learn more about our Public Auto Coverages.
+              </p>
             </div>
           </div>
         </section>
