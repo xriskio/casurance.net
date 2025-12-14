@@ -561,6 +561,278 @@ export default function LimousineTransportationPage() {
           </div>
         </section>
 
+        {/* What is Auto Liability Insurance */}
+        <section className="py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold mb-6">What is Auto Liability Insurance?</h2>
+              <p className="text-muted-foreground mb-4">
+                Auto liability insurance is required by law for all commercial vehicles. It protects against financial loss if you or your drivers are found at fault for an accident that injures others or damages their property.
+              </p>
+              <p className="text-muted-foreground mb-4">
+                This coverage pays for bodily injury and property damage to third parties, including medical expenses, lost wages, pain and suffering, and legal defense costs if you're sued.
+              </p>
+              <p className="mb-8">
+                Limits typically range from <strong>$100,000/$300,000</strong> for taxi operations to <strong>$5 Million or more</strong> for charter buses, depending on vehicle capacity and regulatory requirements (PUC/DOT/FMCSA).
+              </p>
+
+              <h3 className="text-2xl font-bold mb-6">What's Covered?</h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                <Card>
+                  <CardHeader className="pb-3">
+                    <CardTitle className="flex items-center gap-2 text-lg">
+                      <Users className="h-5 w-5 text-primary" />
+                      Bodily Injury Liability
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                        <span>Medical expenses for injured parties</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                        <span>Lost wages and income replacement</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                        <span>Pain and suffering compensation</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                        <span>Funeral expenses in fatal accidents</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader className="pb-3">
+                    <CardTitle className="flex items-center gap-2 text-lg">
+                      <Car className="h-5 w-5 text-primary" />
+                      Property Damage Liability
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                        <span>Repair costs for other vehicles</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                        <span>Damage to buildings and structures</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                        <span>Damage to personal property</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                        <span>Rental car costs for the other party</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader className="pb-3">
+                    <CardTitle className="flex items-center gap-2 text-lg">
+                      <Scale className="h-5 w-5 text-primary" />
+                      Legal Defense
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                        <span>Attorney fees and legal representation</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                        <span>Court costs and filing fees</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                        <span>Expert witness fees</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                        <span>Settlement negotiations</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader className="pb-3">
+                    <CardTitle className="flex items-center gap-2 text-lg">
+                      <Shield className="h-5 w-5 text-primary" />
+                      Additional Coverages
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                        <span>Medical Payments (MedPay): $5,000-$10,000</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                        <span>Personal Injury Protection (PIP)</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                        <span>Uninsured Motorist (UM) up to $1M</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                        <span>Underinsured Motorist (UIM)</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Liability Limits by Vehicle Type */}
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center mb-10">Liability Limits by Vehicle Type</h2>
+            <div className="max-w-3xl mx-auto space-y-4">
+              <Card className="border-l-4 border-l-primary">
+                <CardContent className="py-4">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <DollarSign className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg">Taxi & Livery Services</h3>
+                      <p className="text-sm text-muted-foreground">$100,000/$300,000 split limits to $1,000,000 CSL depending on state and local requirements</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-l-4 border-l-primary">
+                <CardContent className="py-4">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <DollarSign className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg">Limousine & Black Car</h3>
+                      <p className="text-sm text-muted-foreground">$750,000 to $1,500,000 CSL - CPUC/TNC requirements for California</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-l-4 border-l-primary">
+                <CardContent className="py-4">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <DollarSign className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg">NEMT & Paratransit</h3>
+                      <p className="text-sm text-muted-foreground">$750,000 to $1,500,000 CSL - Medicaid and managed care contract requirements</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-l-4 border-l-primary">
+                <CardContent className="py-4">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <DollarSign className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg">Motorcoach & Charter Bus</h3>
+                      <p className="text-sm text-muted-foreground">$5,000,000+ CSL - FMCSA requirements for interstate carriers</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* TCP & PUC Compliant Insurance */}
+        <section className="py-16 bg-gradient-to-br from-[#0a1628] to-[#1a365d] text-white">
+          <div className="container mx-auto px-4">
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              <div className="space-y-6">
+                <div className="flex items-center gap-3">
+                  <Badge className="bg-white/20 text-white">California</Badge>
+                  <Badge className="bg-white/20 text-white">CPUC</Badge>
+                </div>
+                <h2 className="text-3xl font-bold">TCP Insurance</h2>
+                <p className="text-gray-300">
+                  Transportation Charter-Party (TCP) permits are required by the California Public Utilities Commission (CPUC) for all limousine, sedan, and charter-party carriers operating in California.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>$750,000 CSL for vehicles seating 7 or fewer passengers</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>$1,500,000 CSL for vehicles seating 8-15 passengers</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>$5,000,000 CSL for vehicles seating 16+ passengers</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>Workers' Compensation coverage required</span>
+                  </li>
+                </ul>
+                <Button asChild className="bg-white text-primary hover:bg-gray-100">
+                  <Link href="/quote/limousine">Get TCP Insurance Quote</Link>
+                </Button>
+              </div>
+
+              <div className="space-y-6">
+                <div className="flex items-center gap-3">
+                  <Badge className="bg-white/20 text-white">All States</Badge>
+                  <Badge className="bg-white/20 text-white">DOT/PUC</Badge>
+                </div>
+                <h2 className="text-3xl font-bold">PUC Compliant Insurance</h2>
+                <p className="text-gray-300">
+                  Public Utilities Commission (PUC) compliance is required in most states for passenger transportation services. We provide policies that meet or exceed all state PUC requirements.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>State-specific liability limit compliance</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>Automatic certificate filing with PUC/DOT</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>MCS-90 endorsements for interstate carriers</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>Electronic filings and rapid certificate issuance</span>
+                  </li>
+                </ul>
+                <Button asChild className="bg-white text-primary hover:bg-gray-100">
+                  <Link href="/quote/limousine">Get PUC Compliant Quote</Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Coverage Includes */}
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">

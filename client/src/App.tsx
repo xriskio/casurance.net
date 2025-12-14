@@ -103,6 +103,7 @@ import ChubbBenchmarqLanding from "@/pages/ChubbBenchmarqLanding";
 import ChubbMiddleMarketLanding from "@/pages/ChubbMiddleMarketLanding";
 import GranadaHabitationalLanding from "@/pages/GranadaHabitationalLanding";
 import LimousineTransportationPage from "@/pages/LimousineTransportationPage";
+import LimousineInsuranceLanding from "@/pages/LimousineInsuranceLanding";
 import QuoteThankYou from "@/pages/QuoteThankYou";
 import AccessibilityPage from "@/pages/AccessibilityPage";
 import NotFound from "@/pages/not-found";
@@ -180,6 +181,9 @@ function Router() {
       <Route path="/lp/bhhc" component={BerkshireHathawayCommercialAutoLanding} />
       <Route path="/uber-black-insurance" component={UberBlackInsuranceLanding} />
       <Route path="/lp/uber-black" component={UberBlackInsuranceLanding} />
+      <Route path="/limo-insurance" component={LimousineInsuranceLanding} />
+      <Route path="/lp/limo" component={LimousineInsuranceLanding} />
+      <Route path="/lp/limousine" component={LimousineInsuranceLanding} />
       <Route path="/restaurant-bar-insurance" component={RestaurantBarInsuranceLanding} />
       <Route path="/technology-insurance" component={TechnologyInsuranceLanding} />
       <Route path="/manufacturing-insurance" component={ManufacturingInsuranceLanding} />
