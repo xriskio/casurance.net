@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import ReligiousOrgQuoteForm from "@/components/ReligiousOrgQuoteForm";
+import ReligiousOrgHeroQuoteForm from "@/components/ReligiousOrgHeroQuoteForm";
 import SEOHead from "@/components/SEOHead";
 import { 
   Shield, 
@@ -171,29 +172,27 @@ export default function ReligiousOrgQuote() {
       <div className="min-h-screen bg-background flex flex-col">
         <Header />
         
-        <div className="bg-gradient-to-br from-[#1e3a8a] via-[#1e40af] to-[#3b5998] py-16 lg:py-20">
+        <ReligiousOrgHeroQuoteForm />
+
+        <main id="main-content" tabIndex={-1} className="flex-1 py-12 lg:py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4" data-testid="text-religious-org-title">
+            
+            <div className="text-center mb-12">
+              <h1 className="text-3xl sm:text-4xl font-bold mb-4" data-testid="text-religious-org-title">
                 Religious Organization Insurance
               </h1>
-              <p className="text-lg lg:text-xl text-white/90 max-w-3xl mx-auto mb-6">
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
                 Comprehensive coverage tailored for the unique needs of houses of worship and faith-based organizations
               </p>
               <div className="flex flex-wrap justify-center gap-3">
                 {["Churches", "Mosques", "Synagogues", "Temples"].map((type) => (
-                  <span key={type} className="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium">
+                  <span key={type} className="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
                     {type}
                   </span>
                 ))}
               </div>
             </div>
-          </div>
-        </div>
 
-        <main id="main-content" tabIndex={-1} className="flex-1 py-12 lg:py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
             <Card className="mb-12">
               <CardContent className="pt-6">
                 <p className="text-muted-foreground leading-relaxed text-lg">
@@ -479,10 +478,9 @@ export default function ReligiousOrgQuote() {
             <Separator className="my-12" />
 
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-2xl font-bold mb-6 text-center">Request a Quote</h2>
+              <h2 className="text-2xl font-bold mb-6 text-center">Detailed Quote Application</h2>
               <p className="text-center text-muted-foreground mb-8">
-                Get comprehensive coverage for your religious organization. Our team specializes in 
-                understanding the unique needs of houses of worship across all faiths.
+                Need a more comprehensive quote? Complete the detailed application below for a tailored insurance proposal.
               </p>
               <ReligiousOrgQuoteForm />
             </div>
