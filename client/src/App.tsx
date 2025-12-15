@@ -109,6 +109,7 @@ import CommercialUmbrellaLanding from "@/pages/CommercialUmbrellaLanding";
 import ReligiousOrgLanding from "@/pages/ReligiousOrgLanding";
 import ReligiousOrgIndustryPage from "@/pages/ReligiousOrgIndustryPage";
 import GeneralLiabilityPage from "@/pages/GeneralLiabilityPage";
+import GeneralLiabilityLanding from "@/pages/GeneralLiabilityLanding";
 import QuoteThankYou from "@/pages/QuoteThankYou";
 import AccessibilityPage from "@/pages/AccessibilityPage";
 import NotFound from "@/pages/not-found";
@@ -215,6 +216,8 @@ function Router() {
       <Route path="/lp/church-insurance" component={ReligiousOrgLanding} />
       <Route path="/lp/house-of-worship" component={ReligiousOrgLanding} />
       <Route path="/religious-organization-insurance" component={ReligiousOrgLanding} />
+      <Route path="/lp/general-liability" component={GeneralLiabilityLanding} />
+      <Route path="/general-liability-insurance" component={GeneralLiabilityLanding} />
       <Route path="/agent" component={AgentLogin} />
       <Route path="/agent/login" component={AgentLogin} />
       <Route path="/agent/portal" component={AgentPortal} />
