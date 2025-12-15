@@ -172,26 +172,10 @@ export default function ReligiousOrgQuote() {
       <div className="min-h-screen bg-background flex flex-col">
         <Header />
         
-        <ReligiousOrgHeroQuoteForm />
+        <ReligiousOrgHeroQuoteForm heroImage={propertyImage} />
 
         <main id="main-content" tabIndex={-1} className="flex-1 py-12 lg:py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div className="text-center mb-12">
-              <h1 className="text-3xl sm:text-4xl font-bold mb-4" data-testid="text-religious-org-title">
-                Religious Organization Insurance
-              </h1>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
-                Comprehensive coverage tailored for the unique needs of houses of worship and faith-based organizations
-              </p>
-              <div className="flex flex-wrap justify-center gap-3">
-                {["Churches", "Mosques", "Synagogues", "Temples"].map((type) => (
-                  <span key={type} className="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
-                    {type}
-                  </span>
-                ))}
-              </div>
-            </div>
 
             <Card className="mb-12">
               <CardContent className="pt-6">
