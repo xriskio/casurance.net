@@ -15,6 +15,8 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { 
   ArrowRight, 
   Phone, 
@@ -29,9 +31,6 @@ import {
   Users,
   Star,
   Home,
-  ArrowLeft,
-  Menu,
-  X,
   MapPin,
   Flame,
   Waves,
@@ -117,57 +116,6 @@ const faqs = [
     answer: "Yes, we specialize in older apartment buildings. Properties of all ages are eligible with appropriate updates to electrical, plumbing, HVAC, and roofing systems."
   },
 ];
-
-function LandingPageHeader() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  
-  return (
-    <header className="bg-[#0a1628]/95 backdrop-blur-sm text-white py-4 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-4">
-          <Link href="/">
-            <span className="text-xl font-bold tracking-wide cursor-pointer" style={{ letterSpacing: '0.15em' }}>
-              CASURANCE
-            </span>
-          </Link>
-          
-          <nav className="hidden md:flex items-center gap-6">
-            <Link href="/" className="text-white/80 hover:text-white text-sm flex items-center gap-1">
-              <ArrowLeft className="h-4 w-4" />
-              Back to Home
-            </Link>
-            <a href="tel:18882540089" className="flex items-center gap-2 text-primary font-medium">
-              <Phone className="h-4 w-4" />
-              1-888-254-0089
-            </a>
-          </nav>
-          
-          <button 
-            className="md:hidden"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
-        </div>
-        
-        {mobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-white/10 pt-4">
-            <div className="flex flex-col gap-4">
-              <Link href="/" className="text-white/80 hover:text-white text-sm flex items-center gap-1">
-                <ArrowLeft className="h-4 w-4" />
-                Back to Home
-              </Link>
-              <a href="tel:18882540089" className="flex items-center gap-2 text-primary font-medium">
-                <Phone className="h-4 w-4" />
-                1-888-254-0089
-              </a>
-            </div>
-          </div>
-        )}
-      </div>
-    </header>
-  );
-}
 
 export default function ApartmentsLanding() {
   const { toast } = useToast();
@@ -287,8 +235,8 @@ export default function ApartmentsLanding() {
         </script>
       </Helmet>
 
-      <main id="top" className="min-h-screen bg-background">
-        <LandingPageHeader />
+      <div className="min-h-screen bg-background">
+        <Header />
         
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-[#0a1628] via-[#1a2d4a] to-[#0a1628] text-white overflow-hidden">
@@ -912,25 +860,8 @@ export default function ApartmentsLanding() {
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="bg-[#0a1628] text-white py-8">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <div>
-                <span className="text-xl font-bold tracking-wide" style={{ letterSpacing: '0.15em' }}>CASURANCE</span>
-                <p className="text-sm text-white/60 mt-1">Insurance Agency Services | License #6005562</p>
-              </div>
-              <div className="flex flex-col md:flex-row items-center gap-4 text-sm text-white/60">
-                <span>714 W. Olympic Blvd, Suite 906, Los Angeles, CA 90015</span>
-                <a href="tel:18882540089" className="text-primary hover:text-primary/80">1-888-254-0089</a>
-              </div>
-            </div>
-            <div className="mt-6 pt-6 border-t border-white/10 text-center text-sm text-white/40">
-              <p>&copy; 2025 Casurance Inc. All rights reserved.</p>
-            </div>
-          </div>
-        </footer>
-      </main>
+        <Footer />
+      </div>
     </>
   );
 }
