@@ -49,6 +49,11 @@ const staticRoutes = [
   { url: "/limo-insurance", priority: "0.9", changefreq: "weekly" },
   { url: "/lp/limo", priority: "0.8", changefreq: "weekly" },
   { url: "/lp/limousine", priority: "0.8", changefreq: "weekly" },
+  { url: "/commercial-umbrella-insurance", priority: "0.9", changefreq: "weekly" },
+  { url: "/lp/commercial-umbrella", priority: "0.8", changefreq: "weekly" },
+  { url: "/lp/umbrella", priority: "0.8", changefreq: "weekly" },
+  { url: "/lp/excess-liability", priority: "0.8", changefreq: "weekly" },
+  { url: "/coverage/commercial-umbrella", priority: "0.8", changefreq: "monthly" },
   { url: "/industry/restaurant-bar-tavern", priority: "0.9", changefreq: "weekly" },
 ];
 

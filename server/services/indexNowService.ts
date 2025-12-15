@@ -128,6 +128,11 @@ const ALL_SITE_URLS = [
   "/limo-insurance",
   "/lp/limo",
   "/lp/limousine",
+  "/commercial-umbrella-insurance",
+  "/lp/commercial-umbrella",
+  "/lp/umbrella",
+  "/lp/excess-liability",
+  "/coverage/commercial-umbrella",
   
   "/location/california/los-angeles",
   "/location/california/san-francisco",
