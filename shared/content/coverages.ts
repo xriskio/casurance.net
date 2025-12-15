@@ -5876,6 +5876,85 @@ export const industries: CoverageContent[] = [
     ],
     seoTitle: "System Integrators Insurance | Technology Integration | Casurance",
     seoDescription: "Insurance for system integrators and implementation specialists. Chubb DigiTech coverage for enterprise, industrial, and government integration projects. Authorized Chubb Agent."
+  },
+
+  // COMMERCIAL UMBRELLA
+  {
+    title: "Commercial Umbrella",
+    slug: "commercial-umbrella",
+    category: "Casualty",
+    summary: "Excess liability protection with limits up to $50M+ for businesses requiring enhanced coverage above primary policies.",
+    description: "Commercial Umbrella Insurance provides crucial excess liability coverage that kicks in when your underlying liability policies reach their limits. With umbrella limits ranging from $1M to $50M+ (and up to $100M for larger businesses), this coverage protects your organization from catastrophic claims that could otherwise threaten business continuity. Umbrella policies typically require $1M-$2M in underlying coverage and provide separate aggregate limits for enhanced protection.",
+    whoNeeds: [
+      "Artisan Contractors seeking project liability protection",
+      "Real Estate investors and property management companies",
+      "Energy sector companies with significant exposure",
+      "Financial Services firms requiring enhanced limits",
+      "Food & Wholesale distributors with product liability",
+      "Healthcare providers and medical facilities",
+      "Manufacturing operations with products liability",
+      "Media and entertainment companies",
+      "Professional Services firms with contract requirements",
+      "Restaurant groups and hospitality businesses",
+      "Retail operations with customer exposure",
+      "Service Businesses with multiple locations",
+      "Technology companies with significant contracts"
+    ],
+    coverageIncludes: [
+      "Excess liability above Commercial General Liability",
+      "Excess coverage over Business Auto Liability",
+      "Excess Employer's Liability protection",
+      "Separate aggregate limits per policy period",
+      "Drop-down coverage when underlying limits exhausted",
+      "Defense costs outside the limit (some policies)",
+      "Worldwide coverage territory options",
+      "Coverage for catastrophic claims and verdicts"
+    ],
+    benefits: [
+      "Limits from $1M to $25M per occurrence/aggregate (standard)",
+      "Higher limits up to $50M+ available for qualified risks",
+      "Large enterprise limits up to $100M for major corporations",
+      "Cost-effective way to significantly increase protection",
+      "Meets high-limit contractual requirements",
+      "Protects business assets from large judgments",
+      "Single policy covers multiple underlying exposures",
+      "Separate aggregate limits feature for enhanced protection",
+      "Minimum underlying requirement: $1M-$2M coverage"
+    ],
+    faqs: [
+      {
+        question: "What is the difference between umbrella and excess liability insurance?",
+        answer: "Commercial umbrella insurance provides broader coverage and may fill gaps in underlying policies, while excess liability strictly follows the terms of the underlying policy. Umbrella policies often include drop-down coverage when underlying policies don't respond, providing more comprehensive protection."
+      },
+      {
+        question: "How much commercial umbrella coverage do I need?",
+        answer: "Coverage needs depend on your industry, contract requirements, and asset exposure. Standard limits range from $1M to $25M per occurrence and aggregate. Larger businesses may need $50M or more, with some corporations requiring up to $100M in umbrella coverage."
+      },
+      {
+        question: "What underlying coverage is required for a commercial umbrella policy?",
+        answer: "Most umbrella policies require minimum underlying coverage of $1M-$2M in Commercial General Liability, Business Auto Liability, and Employer's Liability. The exact requirements vary by carrier and your specific risk profile."
+      },
+      {
+        question: "Does commercial umbrella insurance cover defense costs?",
+        answer: "Yes, commercial umbrella policies typically cover legal defense costs. Some policies provide defense costs outside the limit (supplemental), meaning defense expenses don't reduce your available coverage for settlements or judgments."
+      },
+      {
+        question: "What industries benefit most from commercial umbrella insurance?",
+        answer: "Industries with significant liability exposure benefit most, including construction, manufacturing, healthcare, real estate, transportation, hospitality, and professional services. Any business with large contracts, multiple locations, or high-value assets should consider umbrella coverage."
+      }
+    ],
+    programHighlights: [
+      "Limits from $1M to $50M+ Available",
+      "Large Enterprise Limits to $100M",
+      "Separate Aggregate Limits Feature",
+      "Drop-Down Coverage Protection",
+      "Defense Costs Outside Limit (Select Policies)",
+      "Multi-Line Underlying Coverage",
+      "Competitive Rates for Qualified Risks",
+      "Fast Turnaround Quotes"
+    ],
+    seoTitle: "Commercial Umbrella Insurance | Excess Liability Coverage | Casurance",
+    seoDescription: "Commercial umbrella insurance with limits up to $50M+ for businesses. Excess liability protection above general liability, auto, and employer's liability. Get a quote from Casurance."
   }
 ];
 
