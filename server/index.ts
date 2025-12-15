@@ -8,6 +8,16 @@ import { setupVite, serveStatic, log } from "./vite";
 import { initializeIndexNow } from "./services/indexNowService";
 
 const app = express();
+
+// Health check endpoints MUST be defined BEFORE any middleware
+// This ensures Cloud Run health checks pass even during slow initialization
+app.get("/health", (_req, res) => {
+  res.status(200).json({ status: "ok", timestamp: new Date().toISOString() });
+});
+app.get("/api/health", (_req, res) => {
+  res.status(200).json({ status: "ok", timestamp: new Date().toISOString() });
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -66,16 +76,6 @@ app.use((req, res, next) => {
 });
 
 (async () => {
-  // Health check endpoint - respond immediately for deployment health checks
-  app.get("/health", (_req, res) => {
-    res.status(200).json({ status: "ok", timestamp: new Date().toISOString() });
-  });
-
-  // Also support common health check paths
-  app.get("/api/health", (_req, res) => {
-    res.status(200).json({ status: "ok", timestamp: new Date().toISOString() });
-  });
-
   const server = await registerRoutes(app);
 
   // Serve uploaded media files
