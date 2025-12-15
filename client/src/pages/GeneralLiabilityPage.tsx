@@ -37,6 +37,7 @@ import officeImage from "@assets/066faf8c-7f20-48af-a9d5-679652025966_1765780898
 import constructionImage from "@assets/90941868-99d1-4f1f-a25c-48356e1bcdb4_1765780898435.png";
 import retailImage from "@assets/fa318424-349c-4375-84d6-19442cf39b72_1765780898435.png";
 import contractorImage from "@assets/42c667d5-e4ed-4f7b-b6a3-fd8b0d06a79e_1765780898435.png";
+import QuickQuoteForm from "@/components/QuickQuoteForm";
 
 const aboutProductFeatures = [
   { label: "Wide class coverage options, including roofing", icon: HardHat },
@@ -593,6 +594,23 @@ export default function GeneralLiabilityPage() {
                   </AccordionItem>
                 ))}
               </Accordion>
+            </div>
+          </div>
+        </section>
+
+        {/* Quick Quote Form Section */}
+        <section className="py-16 lg:py-20 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-2xl mx-auto">
+              <div className="text-center mb-8">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-quick-quote-title">
+                  Get a Quick Quote
+                </h2>
+                <p className="text-lg text-muted-foreground">
+                  Fill out this simple form and we'll get back to you within 24 hours with a competitive quote.
+                </p>
+              </div>
+              <QuickQuoteForm insuranceType="General Liability" />
             </div>
           </div>
         </section>
