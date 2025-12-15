@@ -51,8 +51,8 @@ const carrierPartners = [
   { name: "CNA Insurance", rating: "A", description: "Fortune 500 Leader" },
   { name: "AmTrust", rating: "A-", description: "Habitational Experts" },
   { name: "Great American", rating: "A+", description: "Over 150 Years Strong" },
-  { name: "Nationwide", rating: "A+", description: "Multi-Family Leaders" },
   { name: "Markel", rating: "A", description: "Specialty Insurance" },
+  { name: "Guard Insurance", rating: "A+", description: "Berkshire Hathaway Company" },
 ];
 
 const coverageHighlights = [
