@@ -124,6 +124,8 @@ export default function Footer() {
             <Link href="/religious-organization-insurance" className="text-white/70 hover:text-white transition-colors cursor-pointer">Religious Organization Insurance</Link>
             <span className="text-white/30">|</span>
             <Link href="/lp/general-liability" className="text-white/70 hover:text-white transition-colors cursor-pointer">General Liability Insurance</Link>
+            <span className="text-white/30">|</span>
+            <Link href="/industry/apartments-industry" className="text-white/70 hover:text-white transition-colors cursor-pointer">Apartment Building Insurance</Link>
           </div>
         </div>
 
