@@ -108,6 +108,7 @@ import RestaurantBarIndustryPage from "@/pages/RestaurantBarIndustryPage";
 import CommercialUmbrellaLanding from "@/pages/CommercialUmbrellaLanding";
 import ReligiousOrgLanding from "@/pages/ReligiousOrgLanding";
 import ReligiousOrgIndustryPage from "@/pages/ReligiousOrgIndustryPage";
+import GeneralLiabilityPage from "@/pages/GeneralLiabilityPage";
 import QuoteThankYou from "@/pages/QuoteThankYou";
 import AccessibilityPage from "@/pages/AccessibilityPage";
 import NotFound from "@/pages/not-found";
@@ -145,6 +146,7 @@ function Router() {
       <Route path="/service" component={ServicePage} />
       <Route path="/coverages" component={CoveragesIndex} />
       <Route path="/middle-market" component={MiddleMarket} />
+      <Route path="/coverage/general-liability" component={GeneralLiabilityPage} />
       <Route path="/coverage/:slug" component={CoveragePage} />
       <Route path="/industries" component={IndustriesIndex} />
       <Route path="/industry/limousine-transportation" component={LimousineTransportationPage} />
