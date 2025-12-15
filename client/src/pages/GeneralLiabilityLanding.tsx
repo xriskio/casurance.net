@@ -737,37 +737,172 @@ export default function GeneralLiabilityLanding() {
           </div>
         </section>
 
-        {/* Target Businesses Section */}
+        {/* Target Business Classes Section - Colorful Cards */}
         <section className="py-16 bg-background">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Industries We Serve
+                Target Business Classes
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Tailored general liability solutions for businesses of all sizes and across various industries.
+                Tailored solutions for businesses of all sizes and across various industries.
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {targetBusinesses.map((business, index) => {
-                const Icon = business.icon;
-                return (
-                  <Card key={index} className={`${business.highlight ? 'border-primary/50' : ''}`}>
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <div className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 ${business.highlight ? 'bg-primary/10' : 'bg-muted'}`}>
-                          <Icon className={`h-6 w-6 ${business.highlight ? 'text-primary' : 'text-muted-foreground'}`} />
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-foreground mb-1">{business.name}</h3>
-                          <p className="text-sm text-muted-foreground">{business.description}</p>
-                        </div>
-                      </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-shadow">
+                <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-4">
+                  <div className="flex items-center gap-3">
+                    <Briefcase className="h-6 w-6 text-white" />
+                    <h3 className="text-xl font-bold text-white">Small Business</h3>
+                  </div>
+                </div>
+                <CardContent className="p-6 bg-gradient-to-b from-blue-50 to-white dark:from-blue-950/20 dark:to-background">
+                  <p className="text-muted-foreground mb-4">Tailored coverage for small contractors and service businesses</p>
+                  <ul className="space-y-2">
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      <span>Affordable premiums</span>
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      <span>Quick quote turnaround</span>
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      <span>Flexible payment options</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-shadow">
+                <div className="bg-gradient-to-r from-primary to-blue-700 p-4">
+                  <div className="flex items-center gap-3">
+                    <Building2 className="h-6 w-6 text-white" />
+                    <h3 className="text-xl font-bold text-white">Mid-Market</h3>
+                  </div>
+                </div>
+                <CardContent className="p-6 bg-gradient-to-b from-blue-50 to-white dark:from-blue-950/20 dark:to-background">
+                  <p className="text-muted-foreground mb-4">Comprehensive solutions for growing construction operations</p>
+                  <ul className="space-y-2">
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      <span>Higher limits available</span>
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      <span>Multi-location coverage</span>
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      <span>Dedicated account management</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-shadow">
+                <div className="bg-gradient-to-r from-green-500 to-emerald-600 p-4">
+                  <div className="flex items-center gap-3">
+                    <Store className="h-6 w-6 text-white" />
+                    <h3 className="text-xl font-bold text-white">Additional Industries</h3>
+                  </div>
+                </div>
+                <CardContent className="p-6 bg-gradient-to-b from-green-50 to-white dark:from-green-950/20 dark:to-background">
+                  <p className="text-muted-foreground mb-4">Coverage extends beyond construction to diverse business types</p>
+                  <ul className="space-y-2">
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      <span>Retail operations</span>
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      <span>Professional services</span>
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      <span>Manufacturing facilities</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Policy Features & Limits Section */}
+        <section className="py-16 bg-muted/20">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-12 items-start">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                  Policy Features & Limits
+                </h2>
+                <p className="text-lg text-muted-foreground mb-8">
+                  Our comprehensive general liability policies provide robust protection with competitive limits and essential endorsements.
+                </p>
+                
+                <div className="grid grid-cols-2 gap-4 mb-8">
+                  <Card className="bg-gradient-to-br from-blue-50 to-white dark:from-blue-950/20 dark:to-background border-blue-100 dark:border-blue-900/30">
+                    <CardContent className="p-5 text-center">
+                      <p className="text-sm text-muted-foreground mb-1">Per Occurrence</p>
+                      <p className="text-2xl font-bold text-primary">Up to $1M</p>
                     </CardContent>
                   </Card>
-                );
-              })}
+                  <Card className="bg-gradient-to-br from-blue-50 to-white dark:from-blue-950/20 dark:to-background border-blue-100 dark:border-blue-900/30">
+                    <CardContent className="p-5 text-center">
+                      <p className="text-sm text-muted-foreground mb-1">General Aggregate</p>
+                      <p className="text-2xl font-bold text-primary">Up to $2M</p>
+                    </CardContent>
+                  </Card>
+                  <Card className="bg-gradient-to-br from-blue-50 to-white dark:from-blue-950/20 dark:to-background border-blue-100 dark:border-blue-900/30">
+                    <CardContent className="p-5 text-center">
+                      <p className="text-sm text-muted-foreground mb-1">Products/Completed Operations</p>
+                      <p className="text-2xl font-bold text-primary">Up to $2M</p>
+                    </CardContent>
+                  </Card>
+                  <Card className="bg-gradient-to-br from-blue-50 to-white dark:from-blue-950/20 dark:to-background border-blue-100 dark:border-blue-900/30">
+                    <CardContent className="p-5 text-center">
+                      <p className="text-sm text-muted-foreground mb-1">Excess Capacity</p>
+                      <p className="text-2xl font-bold text-primary">Up to $5M</p>
+                    </CardContent>
+                  </Card>
+                </div>
+                
+                <a href="#top">
+                  <Button size="lg" className="gap-2 bg-primary hover:bg-primary/90">
+                    Get Your Quote <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </a>
+              </div>
+              
+              <Card className="border-0 shadow-lg">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Award className="h-5 w-5 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground">Included in Every Policy</h3>
+                  </div>
+                  <ul className="space-y-3">
+                    {[
+                      "Bodily injury liability",
+                      "Property damage liability",
+                      "Personal & advertising injury",
+                      "Products & completed operations",
+                      "Medical payments coverage",
+                      "Contractual liability",
+                      "Legal defense costs"
+                    ].map((item, index) => (
+                      <li key={index} className="flex items-center gap-3">
+                        <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                        <span className="text-foreground">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>
