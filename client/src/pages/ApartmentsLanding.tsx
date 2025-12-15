@@ -49,10 +49,10 @@ import apartmentImage from "@assets/stock_images/modern_apartment_bui_e315080d.j
 const carrierPartners = [
   { name: "Chubb", rating: "A++", description: "World's Largest P&C Insurer" },
   { name: "CNA Insurance", rating: "A", description: "Fortune 500 Leader" },
-  { name: "Travelers", rating: "A++", description: "Property Specialists" },
   { name: "AmTrust", rating: "A-", description: "Habitational Experts" },
   { name: "Great American", rating: "A+", description: "Over 150 Years Strong" },
   { name: "Nationwide", rating: "A+", description: "Multi-Family Leaders" },
+  { name: "Markel", rating: "A", description: "Specialty Insurance" },
 ];
 
 const coverageHighlights = [
