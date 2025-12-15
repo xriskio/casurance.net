@@ -32,6 +32,19 @@ const WORSHIP_TYPES = [
   "Other"
 ];
 
+const COVERAGE_TYPES = [
+  "General Liability",
+  "Commercial Auto",
+  "Workers Compensation",
+  "Commercial Property",
+  "Professional Liability / E&O",
+  "Cyber Liability",
+  "Umbrella / Excess Liability",
+  "Business Owners Policy (BOP)",
+  "Inland Marine / Equipment",
+  "Other"
+];
+
 interface ReligiousOrgHeroQuoteFormProps {
   heroImage: string;
 }
@@ -46,7 +59,9 @@ export default function ReligiousOrgHeroQuoteForm({ heroImage }: ReligiousOrgHer
     email: "",
     phone: "",
     state: "",
-    worshipType: ""
+    worshipType: "",
+    renewalDate: "",
+    coverageTypes: [] as string[]
   });
 
   const submitMutation = useMutation({
@@ -90,9 +105,20 @@ export default function ReligiousOrgHeroQuoteForm({ heroImage }: ReligiousOrgHer
       phone: formData.phone,
       state: formData.state,
       additionalInfo: {
-        worshipType: formData.worshipType
+        worshipType: formData.worshipType,
+        renewalDate: formData.renewalDate,
+        coverageTypes: formData.coverageTypes
       }
     });
+  };
+
+  const handleCoverageToggle = (coverage: string) => {
+    setFormData(prev => ({
+      ...prev,
+      coverageTypes: prev.coverageTypes.includes(coverage)
+        ? prev.coverageTypes.filter(c => c !== coverage)
+        : [...prev.coverageTypes, coverage]
+    }));
   };
 
   return (
@@ -273,6 +299,42 @@ export default function ReligiousOrgHeroQuoteForm({ heroImage }: ReligiousOrgHer
                             ))}
                           </SelectContent>
                         </Select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="renewalDate">Current Policy Expiration / Renewal Date</Label>
+                      <Input
+                        id="renewalDate"
+                        type="date"
+                        value={formData.renewalDate}
+                        onChange={(e) => setFormData({ ...formData, renewalDate: e.target.value })}
+                        data-testid="input-renewal-date"
+                      />
+                    </div>
+
+                    <div>
+                      <Label className="mb-3 block">Coverage Types Interested In (select all that apply)</Label>
+                      <div className="grid grid-cols-2 gap-2">
+                        {COVERAGE_TYPES.map((coverage) => (
+                          <label
+                            key={coverage}
+                            className={`flex items-center gap-2 p-2 rounded-md border cursor-pointer transition-colors text-sm ${
+                              formData.coverageTypes.includes(coverage)
+                                ? "bg-primary/10 border-primary"
+                                : "bg-background hover:bg-muted border-border"
+                            }`}
+                            data-testid={`checkbox-coverage-${coverage.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
+                          >
+                            <input
+                              type="checkbox"
+                              checked={formData.coverageTypes.includes(coverage)}
+                              onChange={() => handleCoverageToggle(coverage)}
+                              className="h-4 w-4 rounded border-gray-300"
+                            />
+                            <span className="text-xs">{coverage}</span>
+                          </label>
+                        ))}
                       </div>
                     </div>
 
