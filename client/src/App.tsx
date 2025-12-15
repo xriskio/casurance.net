@@ -105,6 +105,7 @@ import GranadaHabitationalLanding from "@/pages/GranadaHabitationalLanding";
 import LimousineTransportationPage from "@/pages/LimousineTransportationPage";
 import LimousineInsuranceLanding from "@/pages/LimousineInsuranceLanding";
 import RestaurantBarIndustryPage from "@/pages/RestaurantBarIndustryPage";
+import CommercialUmbrellaLanding from "@/pages/CommercialUmbrellaLanding";
 import QuoteThankYou from "@/pages/QuoteThankYou";
 import AccessibilityPage from "@/pages/AccessibilityPage";
 import NotFound from "@/pages/not-found";
@@ -201,6 +202,10 @@ function Router() {
       <Route path="/partners/granada-habitational" component={GranadaHabitationalLanding} />
       <Route path="/lp/restaurant-insurance" component={RestaurantBarInsuranceLanding} />
       <Route path="/lp/bar-insurance" component={RestaurantBarInsuranceLanding} />
+      <Route path="/lp/commercial-umbrella" component={CommercialUmbrellaLanding} />
+      <Route path="/lp/umbrella" component={CommercialUmbrellaLanding} />
+      <Route path="/lp/excess-liability" component={CommercialUmbrellaLanding} />
+      <Route path="/commercial-umbrella-insurance" component={CommercialUmbrellaLanding} />
       <Route path="/agent" component={AgentLogin} />
       <Route path="/agent/login" component={AgentLogin} />
       <Route path="/agent/portal" component={AgentPortal} />

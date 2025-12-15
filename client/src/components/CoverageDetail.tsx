@@ -211,6 +211,9 @@ export default function CoverageDetail({ coverage }: CoverageDetailProps) {
     if (coverage.slug === 'california-fair-plan') {
       return '/quote/fair-plan';
     }
+    if (coverage.slug === 'commercial-umbrella') {
+      return '/lp/commercial-umbrella';
+    }
     
     return '/quote';
   };

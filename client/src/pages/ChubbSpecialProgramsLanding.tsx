@@ -110,6 +110,15 @@ const specialPrograms = [
     coverages: ["E&O Insurance", "D&O Coverage", "EPL Insurance", "Fiduciary Liability", "Crime Coverage"],
     link: "/quote/professional-liability",
     color: "emerald"
+  },
+  {
+    icon: Shield,
+    title: "Commercial Umbrella",
+    subtitle: "Excess Liability Coverage",
+    description: "High-limit umbrella coverage from $1M to $50M+ for businesses requiring enhanced liability protection above primary policies.",
+    coverages: ["Excess GL Liability", "Excess Auto Liability", "Excess Employer's Liability", "Drop-Down Coverage", "Defense Costs"],
+    link: "/lp/commercial-umbrella",
+    color: "indigo"
   }
 ];
 
