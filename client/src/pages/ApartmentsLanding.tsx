@@ -305,14 +305,14 @@ export default function ApartmentsLanding() {
           <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <div className="inline-flex items-center gap-2 bg-primary/20 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <div className="inline-flex items-center gap-2 bg-yellow-400/20 text-yellow-400 px-4 py-2 rounded-full text-sm font-medium mb-6">
                   <Building2 className="h-4 w-4" />
                   Apartment Building Insurance Programs
                 </div>
                 
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight" data-testid="text-main-heading">
                   Apartment Building Insurance
-                  <span className="text-primary block mt-2">Coverage Up to $100M</span>
+                  <span className="text-yellow-400 block mt-2">Coverage Up to $100M</span>
                 </h1>
                 
                 <p className="text-xl text-white/80 mb-8 max-w-xl">
