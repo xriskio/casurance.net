@@ -202,6 +202,8 @@ const faqs = [
 
 export default function GranadaHabitationalLanding() {
   const { toast } = useToast();
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [confirmationNumber, setConfirmationNumber] = useState("");
   const [formData, setFormData] = useState({
     businessName: "",
     contactName: "",
@@ -254,7 +256,9 @@ export default function GranadaHabitationalLanding() {
         source: "granada-habitational-landing"
       });
     },
-    onSuccess: () => {
+    onSuccess: (data: any) => {
+      setConfirmationNumber(data.referenceNumber || data.id?.toString() || "GRN-" + Date.now());
+      setIsSubmitted(true);
       toast({
         title: "Quote Request Submitted",
         description: "A Casurance agent will contact you shortly about your Granada Habitational quote."
@@ -345,58 +349,314 @@ export default function GranadaHabitationalLanding() {
       <Header />
 
       <main className="min-h-screen bg-background">
-        {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-[#1a5f2a] via-[#228b22] to-[#2e8b57] text-white py-20">
+        {/* Hero Section with Quote Form */}
+        <section className="relative bg-gradient-to-br from-[#1a5f2a] via-[#228b22] to-[#2e8b57] text-white py-12 lg:py-20">
           <div className="absolute inset-0 bg-black/20" />
           <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="flex justify-center mb-6">
-                <div className="bg-white rounded-lg p-4 shadow-lg">
-                  <img 
-                    src={granadaLogo} 
-                    alt="Core Programs - Granada Insurance Company" 
-                    className="h-16 md:h-20 w-auto"
-                  />
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+              {/* Left Column - Hero Content */}
+              <div className="text-left">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="bg-white rounded-lg p-3 shadow-lg">
+                    <img 
+                      src={granadaLogo} 
+                      alt="Core Programs - Granada Insurance Company" 
+                      className="h-12 md:h-16 w-auto"
+                    />
+                  </div>
+                  <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur px-3 py-1.5 rounded-full">
+                    <Award className="h-4 w-4 text-yellow-400" />
+                    <span className="text-sm">A- (Excellent) AM Best Rated</span>
+                  </div>
+                </div>
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                  Granada Habitational Programs
+                </h1>
+                <p className="text-lg md:text-xl text-white/90 mb-3">
+                  Commercial Package Policies for Habitational & Mixed-Use Risks
+                </p>
+                <p className="text-base text-white/80 mb-6">
+                  Competitive pricing, comprehensive coverage, and boutique-level service for apartment buildings and condominium associations
+                </p>
+                <div className="flex flex-wrap gap-3 mb-6">
+                  <div className="flex items-center gap-2 bg-white/10 backdrop-blur px-3 py-1.5 rounded-lg text-sm">
+                    <CheckCircle2 className="h-4 w-4 text-green-300" />
+                    <span>Up to $20M per Location</span>
+                  </div>
+                  <div className="flex items-center gap-2 bg-white/10 backdrop-blur px-3 py-1.5 rounded-lg text-sm">
+                    <CheckCircle2 className="h-4 w-4 text-green-300" />
+                    <span>California & New York</span>
+                  </div>
+                  <div className="flex items-center gap-2 bg-white/10 backdrop-blur px-3 py-1.5 rounded-lg text-sm">
+                    <CheckCircle2 className="h-4 w-4 text-green-300" />
+                    <span>Mixed-Use Eligible</span>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10" asChild>
+                    <a href="tel:1-888-254-0089">
+                      <Phone className="mr-2 h-5 w-5" /> 1-888-254-0089
+                    </a>
+                  </Button>
                 </div>
               </div>
-              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-2 rounded-full mb-6">
-                <Award className="h-4 w-4 text-yellow-400" />
-                <span className="text-sm">A- (Excellent) AM Best Rated</span>
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                Granada Habitational Programs
-              </h1>
-              <p className="text-xl md:text-2xl text-white/90 mb-4 max-w-3xl mx-auto">
-                Commercial Package Policies for Habitational & Mixed-Use Risks
-              </p>
-              <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
-                Competitive pricing, comprehensive coverage, and boutique-level service for apartment buildings and condominium associations
-              </p>
-              <div className="flex flex-wrap justify-center gap-4 mb-8">
-                <div className="flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-2 rounded-lg">
-                  <CheckCircle2 className="h-5 w-5 text-green-300" />
-                  <span>Up to $20M per Location</span>
-                </div>
-                <div className="flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-2 rounded-lg">
-                  <CheckCircle2 className="h-5 w-5 text-green-300" />
-                  <span>California & New York</span>
-                </div>
-                <div className="flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-2 rounded-lg">
-                  <CheckCircle2 className="h-5 w-5 text-green-300" />
-                  <span>Mixed-Use Eligible</span>
-                </div>
-              </div>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Button size="lg" className="bg-white text-[#1a5f2a] hover:bg-white/90" asChild>
-                  <a href="#quote-form">
-                    Get a Quote <ArrowRight className="ml-2 h-5 w-5" />
-                  </a>
-                </Button>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10" asChild>
-                  <a href="tel:1-888-254-0089">
-                    <Phone className="mr-2 h-5 w-5" /> 1-888-254-0089
-                  </a>
-                </Button>
+
+              {/* Right Column - Quote Form */}
+              <div id="quote-form" className="bg-white rounded-lg p-6 shadow-xl">
+                <h2 className="text-xl font-bold text-gray-900 mb-2">Request a Quote</h2>
+                <p className="text-sm text-gray-600 mb-4">
+                  Quotes typically provided within 48-72 hours.
+                </p>
+                {isSubmitted ? (
+                  <div className="text-center py-8" data-testid="form-success">
+                    <CheckCircle2 className="h-16 w-16 text-green-500 mx-auto mb-4" />
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Thank You!</h3>
+                    <p className="text-gray-600 mb-4">Your quote request has been submitted successfully.</p>
+                    <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
+                      <p className="text-sm text-gray-600 mb-1">Your Confirmation Number:</p>
+                      <p className="text-2xl font-bold text-green-600" data-testid="text-confirmation-number">{confirmationNumber}</p>
+                    </div>
+                    <p className="text-sm text-gray-500 mb-4">
+                      A confirmation email has been sent to your email address. A Casurance agent will contact you shortly about your Granada Habitational quote.
+                    </p>
+                    <Button 
+                      onClick={() => setIsSubmitted(false)} 
+                      variant="outline"
+                      className="text-gray-700"
+                      data-testid="button-submit-another"
+                    >
+                      Submit Another Quote
+                    </Button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-3">
+                    {/* Contact Information */}
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="space-y-1">
+                        <Label htmlFor="businessName" className="text-gray-700 text-sm">Property/Business Name *</Label>
+                        <Input
+                          id="businessName"
+                          data-testid="input-business-name"
+                          value={formData.businessName}
+                          onChange={(e) => setFormData({...formData, businessName: e.target.value})}
+                          required
+                          className="h-9"
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <Label htmlFor="contactName" className="text-gray-700 text-sm">Contact Name *</Label>
+                        <Input
+                          id="contactName"
+                          data-testid="input-contact-name"
+                          value={formData.contactName}
+                          onChange={(e) => setFormData({...formData, contactName: e.target.value})}
+                          required
+                          className="h-9"
+                        />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="space-y-1">
+                        <Label htmlFor="email" className="text-gray-700 text-sm">Email *</Label>
+                        <Input
+                          id="email"
+                          type="email"
+                          data-testid="input-email"
+                          value={formData.email}
+                          onChange={(e) => setFormData({...formData, email: e.target.value})}
+                          required
+                          className="h-9"
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <Label htmlFor="phone" className="text-gray-700 text-sm">Phone *</Label>
+                        <Input
+                          id="phone"
+                          type="tel"
+                          data-testid="input-phone"
+                          value={formData.phone}
+                          onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                          required
+                          className="h-9"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Property Location */}
+                    <div className="space-y-1">
+                      <Label htmlFor="propertyAddress" className="text-gray-700 text-sm">Property Address *</Label>
+                      <Input
+                        id="propertyAddress"
+                        data-testid="input-property-address"
+                        placeholder="Street address"
+                        value={formData.propertyAddress}
+                        onChange={(e) => setFormData({...formData, propertyAddress: e.target.value})}
+                        required
+                        className="h-9"
+                      />
+                    </div>
+                    <div className="grid grid-cols-3 gap-2">
+                      <div className="space-y-1">
+                        <Label htmlFor="city" className="text-gray-700 text-sm">City *</Label>
+                        <Input
+                          id="city"
+                          data-testid="input-city"
+                          value={formData.city}
+                          onChange={(e) => setFormData({...formData, city: e.target.value})}
+                          required
+                          className="h-9"
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <Label htmlFor="state" className="text-gray-700 text-sm">State *</Label>
+                        <Select
+                          value={formData.state}
+                          onValueChange={(value) => setFormData({...formData, state: value})}
+                        >
+                          <SelectTrigger data-testid="select-state" className="h-9">
+                            <SelectValue placeholder="Select" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {SERVICE_STATES.map(state => (
+                              <SelectItem key={state.value} value={state.value}>{state.label}</SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="space-y-1">
+                        <Label htmlFor="zipCode" className="text-gray-700 text-sm">ZIP *</Label>
+                        <Input
+                          id="zipCode"
+                          data-testid="input-zip"
+                          placeholder="90015"
+                          value={formData.zipCode}
+                          onChange={(e) => setFormData({...formData, zipCode: e.target.value})}
+                          required
+                          className="h-9"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Property Details */}
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="space-y-1">
+                        <Label htmlFor="propertyType" className="text-gray-700 text-sm">Property Type *</Label>
+                        <Select
+                          value={formData.propertyType}
+                          onValueChange={(value) => setFormData({...formData, propertyType: value})}
+                        >
+                          <SelectTrigger data-testid="select-property-type" className="h-9">
+                            <SelectValue placeholder="Select type" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="apartment">Apartment Building</SelectItem>
+                            <SelectItem value="condo">Condominium Association</SelectItem>
+                            <SelectItem value="mixed-use">Mixed-Use Property</SelectItem>
+                            <SelectItem value="multi-family">Multi-Family Residential</SelectItem>
+                            <SelectItem value="coop">Co-op Building</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="space-y-1">
+                        <Label htmlFor="yearBuilt" className="text-gray-700 text-sm">Year Built</Label>
+                        <Input
+                          id="yearBuilt"
+                          type="number"
+                          data-testid="input-year-built"
+                          placeholder="1985"
+                          value={formData.yearBuilt}
+                          onChange={(e) => setFormData({...formData, yearBuilt: e.target.value})}
+                          className="h-9"
+                        />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-3 gap-2">
+                      <div className="space-y-1">
+                        <Label htmlFor="numberOfUnits" className="text-gray-700 text-sm"># Units</Label>
+                        <Input
+                          id="numberOfUnits"
+                          type="number"
+                          data-testid="input-units"
+                          placeholder="50"
+                          value={formData.numberOfUnits}
+                          onChange={(e) => setFormData({...formData, numberOfUnits: e.target.value})}
+                          className="h-9"
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <Label htmlFor="numberOfStories" className="text-gray-700 text-sm"># Stories</Label>
+                        <Input
+                          id="numberOfStories"
+                          type="number"
+                          data-testid="input-stories"
+                          placeholder="4"
+                          value={formData.numberOfStories}
+                          onChange={(e) => setFormData({...formData, numberOfStories: e.target.value})}
+                          className="h-9"
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <Label htmlFor="totalSquareFootage" className="text-gray-700 text-sm">Sq Ft</Label>
+                        <Input
+                          id="totalSquareFootage"
+                          data-testid="input-sqft"
+                          placeholder="50,000"
+                          value={formData.totalSquareFootage}
+                          onChange={(e) => setFormData({...formData, totalSquareFootage: e.target.value})}
+                          className="h-9"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Coverage Info */}
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="space-y-1">
+                        <Label htmlFor="totalInsuredValue" className="text-gray-700 text-sm">Total Insured Value</Label>
+                        <Input
+                          id="totalInsuredValue"
+                          data-testid="input-tiv"
+                          placeholder="$5,000,000"
+                          value={formData.totalInsuredValue}
+                          onChange={(e) => setFormData({...formData, totalInsuredValue: e.target.value})}
+                          className="h-9"
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <Label htmlFor="effectiveDate" className="text-gray-700 text-sm">Effective Date</Label>
+                        <Input
+                          id="effectiveDate"
+                          type="date"
+                          data-testid="input-effective-date"
+                          value={formData.effectiveDate}
+                          onChange={(e) => setFormData({...formData, effectiveDate: e.target.value})}
+                          className="h-9"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Additional Info */}
+                    <div className="space-y-1">
+                      <Label htmlFor="message" className="text-gray-700 text-sm">Additional Information</Label>
+                      <Textarea
+                        id="message"
+                        data-testid="textarea-message"
+                        placeholder="Construction type, roof, retail tenants, etc."
+                        value={formData.message}
+                        onChange={(e) => setFormData({...formData, message: e.target.value})}
+                        rows={2}
+                      />
+                    </div>
+                    <Button 
+                      type="submit" 
+                      className="w-full bg-[#1a5f2a] hover:bg-[#155a24]" 
+                      size="lg"
+                      data-testid="button-submit-quote"
+                      disabled={submitMutation.isPending}
+                    >
+                      {submitMutation.isPending ? "Submitting..." : "Request Quote"}
+                    </Button>
+                  </form>
+                )}
               </div>
             </div>
           </div>
@@ -523,339 +783,6 @@ export default function GranadaHabitationalLanding() {
                   <span className="text-sm text-red-800 dark:text-red-200">{exclusion}</span>
                 </div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Quote Form */}
-        <section id="quote-form" className="py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="max-w-2xl mx-auto">
-              <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold text-foreground mb-4">Request a Quote</h2>
-                <p className="text-muted-foreground">
-                  Get competitive pricing for your habitational property. Quotes typically provided within 48-72 hours.
-                </p>
-              </div>
-              <Card>
-                <CardContent className="pt-6">
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    {/* Contact Information */}
-                    <div className="border-b pb-4 mb-4">
-                      <h3 className="font-semibold text-lg mb-4">Contact Information</h3>
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                          <Label htmlFor="businessName">Property/Business Name *</Label>
-                          <Input
-                            id="businessName"
-                            data-testid="input-business-name"
-                            value={formData.businessName}
-                            onChange={(e) => setFormData({...formData, businessName: e.target.value})}
-                            required
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="contactName">Contact Name *</Label>
-                          <Input
-                            id="contactName"
-                            data-testid="input-contact-name"
-                            value={formData.contactName}
-                            onChange={(e) => setFormData({...formData, contactName: e.target.value})}
-                            required
-                          />
-                        </div>
-                      </div>
-                      <div className="grid md:grid-cols-2 gap-4 mt-4">
-                        <div className="space-y-2">
-                          <Label htmlFor="email">Email *</Label>
-                          <Input
-                            id="email"
-                            type="email"
-                            data-testid="input-email"
-                            value={formData.email}
-                            onChange={(e) => setFormData({...formData, email: e.target.value})}
-                            required
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="phone">Phone *</Label>
-                          <Input
-                            id="phone"
-                            type="tel"
-                            data-testid="input-phone"
-                            value={formData.phone}
-                            onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                            required
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Property Location */}
-                    <div className="border-b pb-4 mb-4">
-                      <h3 className="font-semibold text-lg mb-4">Property Location</h3>
-                      <div className="space-y-2 mb-4">
-                        <Label htmlFor="propertyAddress">Property Address *</Label>
-                        <Input
-                          id="propertyAddress"
-                          data-testid="input-property-address"
-                          placeholder="Street address"
-                          value={formData.propertyAddress}
-                          onChange={(e) => setFormData({...formData, propertyAddress: e.target.value})}
-                          required
-                        />
-                      </div>
-                      <div className="grid md:grid-cols-3 gap-4">
-                        <div className="space-y-2">
-                          <Label htmlFor="city">City *</Label>
-                          <Input
-                            id="city"
-                            data-testid="input-city"
-                            value={formData.city}
-                            onChange={(e) => setFormData({...formData, city: e.target.value})}
-                            required
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="state">State *</Label>
-                          <Select
-                            value={formData.state}
-                            onValueChange={(value) => setFormData({...formData, state: value})}
-                          >
-                            <SelectTrigger data-testid="select-state">
-                              <SelectValue placeholder="Select state" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {SERVICE_STATES.map(state => (
-                                <SelectItem key={state.value} value={state.value}>{state.label}</SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="zipCode">ZIP Code *</Label>
-                          <Input
-                            id="zipCode"
-                            data-testid="input-zip"
-                            placeholder="e.g., 90015"
-                            value={formData.zipCode}
-                            onChange={(e) => setFormData({...formData, zipCode: e.target.value})}
-                            required
-                          />
-                        </div>
-                      </div>
-                      <div className="mt-4 space-y-2">
-                        <Label htmlFor="effectiveDate">Desired Effective Date</Label>
-                        <Input
-                          id="effectiveDate"
-                          type="date"
-                          data-testid="input-effective-date"
-                          value={formData.effectiveDate}
-                          onChange={(e) => setFormData({...formData, effectiveDate: e.target.value})}
-                        />
-                      </div>
-                    </div>
-
-                    {/* Property Details */}
-                    <div className="border-b pb-4 mb-4">
-                      <h3 className="font-semibold text-lg mb-4">Property Details</h3>
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                          <Label htmlFor="propertyType">Property Type *</Label>
-                          <Select
-                            value={formData.propertyType}
-                            onValueChange={(value) => setFormData({...formData, propertyType: value})}
-                          >
-                            <SelectTrigger data-testid="select-property-type">
-                              <SelectValue placeholder="Select type" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="apartment">Apartment Building</SelectItem>
-                              <SelectItem value="condo">Condominium Association</SelectItem>
-                              <SelectItem value="mixed-use">Mixed-Use Property</SelectItem>
-                              <SelectItem value="multi-family">Multi-Family Residential</SelectItem>
-                              <SelectItem value="coop">Co-op Building</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="yearBuilt">Year Built</Label>
-                          <Input
-                            id="yearBuilt"
-                            type="number"
-                            data-testid="input-year-built"
-                            placeholder="e.g., 1985"
-                            value={formData.yearBuilt}
-                            onChange={(e) => setFormData({...formData, yearBuilt: e.target.value})}
-                          />
-                        </div>
-                      </div>
-                      <div className="grid md:grid-cols-3 gap-4 mt-4">
-                        <div className="space-y-2">
-                          <Label htmlFor="numberOfUnits">Number of Units</Label>
-                          <Input
-                            id="numberOfUnits"
-                            type="number"
-                            data-testid="input-units"
-                            placeholder="e.g., 50"
-                            value={formData.numberOfUnits}
-                            onChange={(e) => setFormData({...formData, numberOfUnits: e.target.value})}
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="numberOfStories">Number of Stories</Label>
-                          <Input
-                            id="numberOfStories"
-                            type="number"
-                            data-testid="input-stories"
-                            placeholder="e.g., 4"
-                            value={formData.numberOfStories}
-                            onChange={(e) => setFormData({...formData, numberOfStories: e.target.value})}
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="totalSquareFootage">Total Square Footage</Label>
-                          <Input
-                            id="totalSquareFootage"
-                            data-testid="input-sqft"
-                            placeholder="e.g., 50,000"
-                            value={formData.totalSquareFootage}
-                            onChange={(e) => setFormData({...formData, totalSquareFootage: e.target.value})}
-                          />
-                        </div>
-                      </div>
-                      <div className="grid md:grid-cols-2 gap-4 mt-4">
-                        <div className="space-y-2">
-                          <Label htmlFor="constructionType">Construction Type</Label>
-                          <Select
-                            value={formData.constructionType}
-                            onValueChange={(value) => setFormData({...formData, constructionType: value})}
-                          >
-                            <SelectTrigger data-testid="select-construction">
-                              <SelectValue placeholder="Select construction type" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="frame">Frame</SelectItem>
-                              <SelectItem value="joisted-masonry">Joisted Masonry</SelectItem>
-                              <SelectItem value="non-combustible">Non-Combustible</SelectItem>
-                              <SelectItem value="masonry-non-combustible">Masonry Non-Combustible</SelectItem>
-                              <SelectItem value="fire-resistive">Fire Resistive</SelectItem>
-                              <SelectItem value="modified-fire-resistive">Modified Fire Resistive</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="roofType">Roof Type</Label>
-                          <Select
-                            value={formData.roofType}
-                            onValueChange={(value) => setFormData({...formData, roofType: value})}
-                          >
-                            <SelectTrigger data-testid="select-roof">
-                              <SelectValue placeholder="Select roof type" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="asphalt-shingle">Asphalt Shingle</SelectItem>
-                              <SelectItem value="tile">Tile</SelectItem>
-                              <SelectItem value="slate">Slate</SelectItem>
-                              <SelectItem value="tar-gravel">Tar & Gravel</SelectItem>
-                              <SelectItem value="metal">Metal</SelectItem>
-                              <SelectItem value="membrane">Membrane/TPO/EPDM</SelectItem>
-                              <SelectItem value="other">Other</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Coverage & Features */}
-                    <div className="border-b pb-4 mb-4">
-                      <h3 className="font-semibold text-lg mb-4">Coverage & Features</h3>
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                          <Label htmlFor="totalInsuredValue">Total Insured Value (TIV)</Label>
-                          <Input
-                            id="totalInsuredValue"
-                            data-testid="input-tiv"
-                            placeholder="e.g., $5,000,000"
-                            value={formData.totalInsuredValue}
-                            onChange={(e) => setFormData({...formData, totalInsuredValue: e.target.value})}
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="sprinklered">Sprinklered?</Label>
-                          <Select
-                            value={formData.sprinklered}
-                            onValueChange={(value) => setFormData({...formData, sprinklered: value})}
-                          >
-                            <SelectTrigger data-testid="select-sprinklered">
-                              <SelectValue placeholder="Select" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="yes-full">Yes - Fully Sprinklered</SelectItem>
-                              <SelectItem value="yes-partial">Yes - Partially Sprinklered</SelectItem>
-                              <SelectItem value="no">No</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                      </div>
-                      <div className="grid md:grid-cols-2 gap-4 mt-4">
-                        <div className="space-y-2">
-                          <Label htmlFor="hasPool">Pool or Spa?</Label>
-                          <Select
-                            value={formData.hasPool}
-                            onValueChange={(value) => setFormData({...formData, hasPool: value})}
-                          >
-                            <SelectTrigger data-testid="select-pool">
-                              <SelectValue placeholder="Select" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="yes">Yes</SelectItem>
-                              <SelectItem value="no">No</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="hasRetail">Retail/Commercial Tenants?</Label>
-                          <Select
-                            value={formData.hasRetail}
-                            onValueChange={(value) => setFormData({...formData, hasRetail: value})}
-                          >
-                            <SelectTrigger data-testid="select-retail">
-                              <SelectValue placeholder="Select" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="yes">Yes</SelectItem>
-                              <SelectItem value="no">No</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Additional Information */}
-                    <div className="space-y-2">
-                      <Label htmlFor="message">Additional Information</Label>
-                      <Textarea
-                        id="message"
-                        data-testid="textarea-message"
-                        placeholder="Describe any special features, recent updates, retail tenant types, loss history, etc."
-                        value={formData.message}
-                        onChange={(e) => setFormData({...formData, message: e.target.value})}
-                        rows={4}
-                      />
-                    </div>
-                    <Button 
-                      type="submit" 
-                      className="w-full" 
-                      size="lg"
-                      data-testid="button-submit-quote"
-                      disabled={submitMutation.isPending}
-                    >
-                      {submitMutation.isPending ? "Submitting..." : "Request Quote"}
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
             </div>
           </div>
         </section>
