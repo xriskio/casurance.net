@@ -142,7 +142,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Quick Quote Requests (Landing Pages)
   app.post("/api/quick-quotes", async (req, res) => {
     try {
-      const { business_name, contact_name, phone, email, state, insurance_type } = req.body;
+      const { business_name, contact_name, phone, email, street_address, address_line2, city, state, postal_code, insurance_type } = req.body;
       
       if (!business_name || !contact_name || !phone || !email) {
         return res.status(400).json({ message: "Missing required fields" });
@@ -150,18 +150,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const referenceNumber = generateReferenceNumber('QQT');
       
-      // Store as a regular quote request
+      // Store as a regular quote request with full address
       const quoteData = {
         businessName: business_name,
         contactName: contact_name,
         phone,
         email,
+        streetAddress: street_address || '',
+        addressLine2: address_line2 || '',
+        city: city || '',
         state: state || '',
+        postalCode: postal_code || '',
         insuranceType: insurance_type || 'Quick Quote Request',
         referenceNumber
       };
       
       const quote = await storage.createQuoteRequest(quoteData as any);
+      
+      // Build full address for email
+      const fullAddress = [street_address, address_line2, city, state, postal_code].filter(Boolean).join(', ');
       
       const emailData = {
         referenceNumber,
@@ -169,7 +176,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         contactName: contact_name,
         email,
         phone,
-        insuranceType: insurance_type || 'Workers Compensation Quote',
+        address: fullAddress,
+        insuranceType: insurance_type || 'Quick Quote Request',
         formName: 'Quick Quote - Landing Page'
       };
       

@@ -288,7 +288,11 @@ export default function WorkersCompLandingPage() {
     contactName: "",
     phone: "",
     email: "",
+    streetAddress: "",
+    addressLine2: "",
+    city: "",
     state: "",
+    zipCode: "",
     industry: "",
     employees: ""
   });
@@ -307,7 +311,11 @@ export default function WorkersCompLandingPage() {
         contact_name: data.contactName,
         phone: data.phone,
         email: data.email,
+        street_address: data.streetAddress,
+        address_line2: data.addressLine2 || undefined,
+        city: data.city,
         state: data.state,
+        postal_code: data.zipCode,
         insurance_type: `Workers Compensation - ${data.industry || 'General'} - ${data.employees || 'Not specified'} employees`
       });
     },
@@ -331,10 +339,10 @@ export default function WorkersCompLandingPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.businessName || !formData.contactName || !formData.phone || !formData.email || !formData.state) {
+    if (!formData.businessName || !formData.contactName || !formData.phone || !formData.email || !formData.streetAddress || !formData.city || !formData.state || !formData.zipCode) {
       toast({
         title: "Please fill all required fields",
-        description: "All fields are required to submit a quote request.",
+        description: "All fields including full address are required to submit a quote request.",
         variant: "destructive",
       });
       return;
@@ -553,20 +561,72 @@ export default function WorkersCompLandingPage() {
                         />
                       </div>
 
+                      {/* Street Address */}
                       <div>
-                        <Label htmlFor="state" className="text-foreground">State *</Label>
-                        <Select 
-                          value={formData.state} 
-                          onValueChange={(value) => setFormData({...formData, state: value})}
-                        >
-                          <SelectTrigger className="mt-1" data-testid="select-state">
-                            <SelectValue placeholder="Select State" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="CA">California</SelectItem>
-                            <SelectItem value="NV">Nevada</SelectItem>
-                          </SelectContent>
-                        </Select>
+                        <Label htmlFor="streetAddress" className="text-foreground">Street Address *</Label>
+                        <Input
+                          id="streetAddress"
+                          placeholder="123 Main Street"
+                          value={formData.streetAddress}
+                          onChange={(e) => setFormData({...formData, streetAddress: e.target.value})}
+                          className="mt-1"
+                          data-testid="input-street-address"
+                        />
+                      </div>
+
+                      {/* Address Line 2 */}
+                      <div>
+                        <Label htmlFor="addressLine2" className="text-foreground">Suite/Unit (Optional)</Label>
+                        <Input
+                          id="addressLine2"
+                          placeholder="Suite 100"
+                          value={formData.addressLine2}
+                          onChange={(e) => setFormData({...formData, addressLine2: e.target.value})}
+                          className="mt-1"
+                          data-testid="input-address-line2"
+                        />
+                      </div>
+
+                      {/* City, State, Zip */}
+                      <div className="grid grid-cols-6 gap-3">
+                        <div className="col-span-2">
+                          <Label htmlFor="city" className="text-foreground">City *</Label>
+                          <Input
+                            id="city"
+                            placeholder="City"
+                            value={formData.city}
+                            onChange={(e) => setFormData({...formData, city: e.target.value})}
+                            className="mt-1"
+                            data-testid="input-city"
+                          />
+                        </div>
+                        <div className="col-span-2">
+                          <Label htmlFor="state" className="text-foreground">State *</Label>
+                          <Select 
+                            value={formData.state} 
+                            onValueChange={(value) => setFormData({...formData, state: value})}
+                          >
+                            <SelectTrigger className="mt-1" data-testid="select-state">
+                              <SelectValue placeholder="State" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="CA">California</SelectItem>
+                              <SelectItem value="NV">Nevada</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                        <div className="col-span-2">
+                          <Label htmlFor="zipCode" className="text-foreground">Zip *</Label>
+                          <Input
+                            id="zipCode"
+                            placeholder="12345"
+                            value={formData.zipCode}
+                            onChange={(e) => setFormData({...formData, zipCode: e.target.value.replace(/\D/g, '').slice(0, 5)})}
+                            maxLength={5}
+                            className="mt-1"
+                            data-testid="input-zip-code"
+                          />
+                        </div>
                       </div>
 
                       <div className="grid grid-cols-2 gap-4">

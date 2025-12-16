@@ -225,8 +225,11 @@ export default function ChubbBOPLanding() {
     contactName: "",
     email: "",
     phone: "",
-    address: "",
+    streetAddress: "",
+    addressLine2: "",
+    city: "",
     state: "",
+    zipCode: "",
     effectiveDate: "",
     businessType: "",
     annualRevenue: "",
@@ -241,8 +244,11 @@ export default function ChubbBOPLanding() {
         contact_name: data.contactName,
         email: data.email,
         phone: data.phone,
-        address: data.address,
+        street_address: data.streetAddress,
+        address_line2: data.addressLine2 || undefined,
+        city: data.city,
         state: data.state,
+        postal_code: data.zipCode,
         effective_date: data.effectiveDate,
         insurance_type: "Chubb Business Owner's Policy (BOP)",
         business_type: data.businessType,
@@ -261,8 +267,11 @@ export default function ChubbBOPLanding() {
         contactName: "",
         email: "",
         phone: "",
-        address: "",
+        streetAddress: "",
+        addressLine2: "",
+        city: "",
         state: "",
+        zipCode: "",
         effectiveDate: "",
         businessType: "",
         annualRevenue: "",
@@ -281,10 +290,10 @@ export default function ChubbBOPLanding() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.businessName || !formData.contactName || !formData.email || !formData.phone || !formData.state) {
+    if (!formData.businessName || !formData.contactName || !formData.email || !formData.phone || !formData.streetAddress || !formData.city || !formData.state || !formData.zipCode) {
       toast({
         title: "Required Fields Missing",
-        description: "Please complete all required fields to submit your quote request.",
+        description: "Please complete all required fields including full address to submit your quote request.",
         variant: "destructive",
       });
       return;
@@ -470,23 +479,49 @@ export default function ChubbBOPLanding() {
                         </div>
                       </div>
 
+                      {/* Street Address */}
                       <div>
-                        <Label htmlFor="address">Business Address</Label>
+                        <Label htmlFor="streetAddress">Street Address *</Label>
                         <Input
-                          id="address"
-                          value={formData.address}
-                          onChange={(e) => setFormData(prev => ({ ...prev, address: e.target.value }))}
-                          placeholder="123 Main St, City, State ZIP"
-                          data-testid="input-address"
+                          id="streetAddress"
+                          value={formData.streetAddress}
+                          onChange={(e) => setFormData(prev => ({ ...prev, streetAddress: e.target.value }))}
+                          placeholder="123 Main Street"
+                          required
+                          data-testid="input-street-address"
                         />
                       </div>
 
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
+                      {/* Address Line 2 */}
+                      <div>
+                        <Label htmlFor="addressLine2">Suite/Unit (Optional)</Label>
+                        <Input
+                          id="addressLine2"
+                          value={formData.addressLine2}
+                          onChange={(e) => setFormData(prev => ({ ...prev, addressLine2: e.target.value }))}
+                          placeholder="Suite 100, Floor 2"
+                          data-testid="input-address-line2"
+                        />
+                      </div>
+
+                      {/* City, State, Zip */}
+                      <div className="grid grid-cols-6 gap-3">
+                        <div className="col-span-2">
+                          <Label htmlFor="city">City *</Label>
+                          <Input
+                            id="city"
+                            value={formData.city}
+                            onChange={(e) => setFormData(prev => ({ ...prev, city: e.target.value }))}
+                            placeholder="City"
+                            required
+                            data-testid="input-city"
+                          />
+                        </div>
+                        <div className="col-span-2">
                           <Label htmlFor="state">State *</Label>
                           <Select value={formData.state} onValueChange={(value) => setFormData(prev => ({ ...prev, state: value }))}>
                             <SelectTrigger data-testid="select-state">
-                              <SelectValue placeholder="Select State" />
+                              <SelectValue placeholder="State" />
                             </SelectTrigger>
                             <SelectContent>
                               {SERVICE_STATES.map((state) => (
@@ -495,6 +530,21 @@ export default function ChubbBOPLanding() {
                             </SelectContent>
                           </Select>
                         </div>
+                        <div className="col-span-2">
+                          <Label htmlFor="zipCode">Zip Code *</Label>
+                          <Input
+                            id="zipCode"
+                            value={formData.zipCode}
+                            onChange={(e) => setFormData(prev => ({ ...prev, zipCode: e.target.value.replace(/\D/g, '').slice(0, 5) }))}
+                            placeholder="12345"
+                            maxLength={5}
+                            required
+                            data-testid="input-zip-code"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-4">
                         <div>
                           <Label htmlFor="effectiveDate">Desired Effective Date</Label>
                           <Input

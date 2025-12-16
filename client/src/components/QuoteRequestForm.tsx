@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowRight, CheckCircle } from "lucide-react";
+import { SERVICE_STATES } from "@shared/constants/states";
 
 const coverageOptions = [
   "General Liability",
@@ -211,6 +212,10 @@ export default function QuoteRequestForm({ compact = false }: QuoteRequestFormPr
     contactLastName: "",
     email: "",
     phone: "",
+    streetAddress: "",
+    addressLine2: "",
+    city: "",
+    state: "",
     zipCode: "",
     selectedCoverages: [] as string[],
     comments: "",
@@ -233,6 +238,9 @@ export default function QuoteRequestForm({ compact = false }: QuoteRequestFormPr
       formData.contactLastName.trim() &&
       formData.email.trim() &&
       formData.phone.trim() &&
+      formData.streetAddress.trim() &&
+      formData.city.trim() &&
+      formData.state.trim() &&
       formData.zipCode.trim()
     );
   };
@@ -250,7 +258,6 @@ export default function QuoteRequestForm({ compact = false }: QuoteRequestFormPr
       const messageDetails = [
         `PRODUCT TYPE: ${formData.insuranceType}`,
         `Coverage Interests: ${coveragesText}`,
-        `Zip Code: ${formData.zipCode}`,
         formData.comments ? `Comments: ${formData.comments}` : ''
       ].filter(Boolean).join('\n');
 
@@ -259,7 +266,11 @@ export default function QuoteRequestForm({ compact = false }: QuoteRequestFormPr
         contactName: `${formData.contactFirstName} ${formData.contactLastName}`,
         email: formData.email,
         phone: formData.phone,
-        state: formData.zipCode,
+        streetAddress: formData.streetAddress,
+        addressLine2: formData.addressLine2 || undefined,
+        city: formData.city,
+        state: formData.state,
+        postalCode: formData.zipCode,
         insuranceType: formData.insuranceType,
         message: messageDetails,
         status: 'pending'
@@ -314,7 +325,7 @@ export default function QuoteRequestForm({ compact = false }: QuoteRequestFormPr
         <p className="text-muted-foreground mb-6 text-sm">
           One of our licensed agents will contact you within 24 hours with a competitive quote.
         </p>
-        <Button onClick={() => { setSubmitted(false); setReferenceNumber(''); setFormData({ insuranceType: "", businessName: "", contactFirstName: "", contactLastName: "", email: "", phone: "", zipCode: "", selectedCoverages: [], comments: "" }); }} data-testid="button-submit-another">
+        <Button onClick={() => { setSubmitted(false); setReferenceNumber(''); setFormData({ insuranceType: "", businessName: "", contactFirstName: "", contactLastName: "", email: "", phone: "", streetAddress: "", addressLine2: "", city: "", state: "", zipCode: "", selectedCoverages: [], comments: "" }); }} data-testid="button-submit-another">
           Submit Another Request
         </Button>
       </div>
@@ -451,19 +462,74 @@ export default function QuoteRequestForm({ compact = false }: QuoteRequestFormPr
             />
           </div>
 
-          {/* Zip Code */}
+          {/* Street Address */}
           <div>
-            <Label htmlFor="zipCode">5 Digit Zip *</Label>
+            <Label htmlFor="streetAddress">Street Address *</Label>
             <Input
-              id="zipCode"
-              value={formData.zipCode}
-              onChange={(e) => setFormData({ ...formData, zipCode: e.target.value.replace(/\D/g, '').slice(0, 5) })}
-              placeholder="Enter the zip code where you need insurance"
-              maxLength={5}
+              id="streetAddress"
+              value={formData.streetAddress}
+              onChange={(e) => setFormData({ ...formData, streetAddress: e.target.value })}
+              placeholder="123 Main Street"
               required
-              data-testid="input-zip-code"
+              data-testid="input-street-address"
             />
-            <p className="text-xs text-muted-foreground mt-1">Enter the zip code where you need insurance</p>
+          </div>
+
+          {/* Address Line 2 */}
+          <div>
+            <Label htmlFor="addressLine2">Suite/Unit/Floor (Optional)</Label>
+            <Input
+              id="addressLine2"
+              value={formData.addressLine2}
+              onChange={(e) => setFormData({ ...formData, addressLine2: e.target.value })}
+              placeholder="Suite 100, Floor 2, etc."
+              data-testid="input-address-line2"
+            />
+          </div>
+
+          {/* City, State, Zip Row */}
+          <div className="grid grid-cols-6 gap-3">
+            <div className="col-span-2">
+              <Label htmlFor="city">City *</Label>
+              <Input
+                id="city"
+                value={formData.city}
+                onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                placeholder="City"
+                required
+                data-testid="input-city"
+              />
+            </div>
+            <div className="col-span-2">
+              <Label htmlFor="state">State *</Label>
+              <Select
+                value={formData.state}
+                onValueChange={(value) => setFormData({ ...formData, state: value })}
+              >
+                <SelectTrigger data-testid="select-state">
+                  <SelectValue placeholder="State" />
+                </SelectTrigger>
+                <SelectContent>
+                  {SERVICE_STATES.map((state) => (
+                    <SelectItem key={state.value} value={state.value}>
+                      {state.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="col-span-2">
+              <Label htmlFor="zipCode">Zip Code *</Label>
+              <Input
+                id="zipCode"
+                value={formData.zipCode}
+                onChange={(e) => setFormData({ ...formData, zipCode: e.target.value.replace(/\D/g, '').slice(0, 5) })}
+                placeholder="12345"
+                maxLength={5}
+                required
+                data-testid="input-zip-code"
+              />
+            </div>
           </div>
 
           {/* Coverage Types Selection */}

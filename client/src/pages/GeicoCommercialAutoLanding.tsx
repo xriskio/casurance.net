@@ -263,7 +263,11 @@ export default function GeicoCommercialAutoLanding() {
     contactName: "",
     email: "",
     phone: "",
+    streetAddress: "",
+    addressLine2: "",
+    city: "",
     state: "",
+    zipCode: "",
     businessType: "",
     vehicleCount: "",
     vehicleTypes: "",
@@ -278,7 +282,11 @@ export default function GeicoCommercialAutoLanding() {
         contact_name: data.contactName || data.businessName,
         email: data.email,
         phone: data.phone,
+        street_address: data.streetAddress,
+        address_line2: data.addressLine2 || undefined,
+        city: data.city,
         state: data.state,
+        postal_code: data.zipCode,
         insurance_type: "GEICO Commercial Auto",
         business_type: data.businessType,
         vehicle_count: data.vehicleCount,
@@ -297,7 +305,11 @@ export default function GeicoCommercialAutoLanding() {
         contactName: "",
         email: "",
         phone: "",
+        streetAddress: "",
+        addressLine2: "",
+        city: "",
         state: "",
+        zipCode: "",
         businessType: "",
         vehicleCount: "",
         vehicleTypes: "",
@@ -316,10 +328,10 @@ export default function GeicoCommercialAutoLanding() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.businessName || !formData.email || !formData.phone || !formData.state) {
+    if (!formData.businessName || !formData.email || !formData.phone || !formData.streetAddress || !formData.city || !formData.state || !formData.zipCode) {
       toast({
         title: "Required Fields Missing",
-        description: "Please complete all required fields to submit your quote request.",
+        description: "Please complete all required fields including full address to submit your quote request.",
         variant: "destructive",
       });
       return;
@@ -598,15 +610,52 @@ export default function GeicoCommercialAutoLanding() {
                         </div>
                       </div>
 
-                      <div className="grid sm:grid-cols-2 gap-4">
-                        <div>
-                          <Label htmlFor="state">Business State *</Label>
+                      {/* Street Address */}
+                      <div>
+                        <Label htmlFor="streetAddress">Street Address *</Label>
+                        <Input
+                          id="streetAddress"
+                          value={formData.streetAddress}
+                          onChange={(e) => updateField("streetAddress", e.target.value)}
+                          placeholder="123 Main Street"
+                          required
+                          data-testid="input-street-address"
+                        />
+                      </div>
+
+                      {/* Address Line 2 */}
+                      <div>
+                        <Label htmlFor="addressLine2">Suite/Unit (Optional)</Label>
+                        <Input
+                          id="addressLine2"
+                          value={formData.addressLine2}
+                          onChange={(e) => updateField("addressLine2", e.target.value)}
+                          placeholder="Suite 100, Floor 2"
+                          data-testid="input-address-line2"
+                        />
+                      </div>
+
+                      {/* City, State, Zip */}
+                      <div className="grid grid-cols-6 gap-3">
+                        <div className="col-span-2">
+                          <Label htmlFor="city">City *</Label>
+                          <Input
+                            id="city"
+                            value={formData.city}
+                            onChange={(e) => updateField("city", e.target.value)}
+                            placeholder="City"
+                            required
+                            data-testid="input-city"
+                          />
+                        </div>
+                        <div className="col-span-2">
+                          <Label htmlFor="state">State *</Label>
                           <Select
                             value={formData.state}
                             onValueChange={(value) => updateField("state", value)}
                           >
                             <SelectTrigger id="state" data-testid="select-state">
-                              <SelectValue placeholder="Select State" />
+                              <SelectValue placeholder="State" />
                             </SelectTrigger>
                             <SelectContent>
                               {commercialAutoStates.map((state) => (
@@ -617,6 +666,21 @@ export default function GeicoCommercialAutoLanding() {
                             </SelectContent>
                           </Select>
                         </div>
+                        <div className="col-span-2">
+                          <Label htmlFor="zipCode">Zip Code *</Label>
+                          <Input
+                            id="zipCode"
+                            value={formData.zipCode}
+                            onChange={(e) => updateField("zipCode", e.target.value.replace(/\D/g, '').slice(0, 5))}
+                            placeholder="12345"
+                            maxLength={5}
+                            required
+                            data-testid="input-zip-code"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid sm:grid-cols-2 gap-4">
                         <div>
                           <Label htmlFor="businessType">Business Type</Label>
                           <Select
