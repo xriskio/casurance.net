@@ -11,6 +11,17 @@ import { initializeIndexNow } from "./services/indexNowService";
 process.on("unhandledRejection", (r) => console.error("[CRASH] unhandledRejection", r));
 process.on("uncaughtException", (e) => console.error("[CRASH] uncaughtException", e));
 
+// Auto-shutdown after 10 minutes of no traffic (only in production)
+let lastRequest = Date.now();
+if (process.env.NODE_ENV === "production") {
+  setInterval(() => {
+    if (Date.now() - lastRequest > 10 * 60 * 1000) {
+      console.log("No traffic — shutting down");
+      process.exit(0);
+    }
+  }, 60_000);
+}
+
 const app = express();
 
 // Health check endpoints MUST be defined BEFORE any middleware
@@ -77,6 +88,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use((req, res, next) => {
+  lastRequest = Date.now(); // Reset idle timer on each request
   const start = Date.now();
   const path = req.path;
   let capturedJsonResponse: Record<string, any> | undefined = undefined;
