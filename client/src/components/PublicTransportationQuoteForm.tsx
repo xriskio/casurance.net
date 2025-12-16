@@ -248,7 +248,7 @@ export default function PublicTransportationQuoteForm() {
         status: "pending",
         payload: data,
       };
-      return await apiRequest("/api/public-transportation-quotes", "POST", payload);
+      return await apiRequest("POST", "/api/public-transportation-quotes", payload);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/public-transportation-quotes"] });

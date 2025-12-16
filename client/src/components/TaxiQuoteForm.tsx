@@ -334,7 +334,7 @@ export default function TaxiQuoteForm() {
 
   const submitMutation = useMutation({
     mutationFn: async (payload: any) => {
-      return await apiRequest("/api/taxi-quote", "POST", payload);
+      return await apiRequest("POST", "/api/taxi-quote", payload);
     },
     onSuccess: () => {
       setSubmitted(true);

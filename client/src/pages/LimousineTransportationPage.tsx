@@ -301,8 +301,17 @@ export default function LimousineTransportationPage() {
   const submitQuoteMutation = useMutation({
     mutationFn: async () => {
       return await apiRequest("POST", "/api/limousine-quotes", {
-        ...quoteForm,
-        source: "limousine-transportation-page"
+        companyName: quoteForm.companyName,
+        contactPerson: `${quoteForm.firstName} ${quoteForm.lastName}`.trim(),
+        email: quoteForm.email,
+        businessPhone: quoteForm.phone,
+        status: "pending",
+        payload: {
+          state: quoteForm.state,
+          vehicles: quoteForm.vehicles,
+          insuranceType: quoteForm.insuranceType,
+          source: "limousine-transportation-page"
+        }
       });
     },
     onSuccess: () => {

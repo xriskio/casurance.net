@@ -287,7 +287,7 @@ export default function LimousineQuoteForm() {
 
   const submitMutation = useMutation({
     mutationFn: async (payload: any) => {
-      return await apiRequest("/api/limousine-quotes", "POST", payload);
+      return await apiRequest("POST", "/api/limousine-quotes", payload);
     },
     onSuccess: () => {
       setSubmitted(true);
@@ -307,11 +307,12 @@ export default function LimousineQuoteForm() {
 
   const handleSubmit = () => {
     const payload = {
-      businessName: formData.companyName,
-      contactName: formData.contactPerson,
+      companyName: formData.companyName,
+      contactPerson: formData.contactPerson,
       email: formData.email,
-      phone: formData.businessPhone,
-      location: formData.mailingAddress,
+      businessPhone: formData.businessPhone,
+      mailingAddress: formData.mailingAddress,
+      status: "pending",
       payload: {
         formData,
         vehicles,

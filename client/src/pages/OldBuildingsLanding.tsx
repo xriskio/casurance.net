@@ -204,7 +204,7 @@ export default function OldBuildingsLanding() {
 
   const submitMutation = useMutation({
     mutationFn: async (payload: any) => {
-      return await apiRequest("/api/quick-quote", "POST", payload);
+      return await apiRequest("POST", "/api/quick-quotes", payload);
     },
     onSuccess: () => {
       setSubmitted(true);
@@ -235,12 +235,13 @@ export default function OldBuildingsLanding() {
     }
 
     submitMutation.mutate({
-      name: formData.name,
+      business_name: formData.company || formData.name,
+      contact_name: formData.name,
       email: formData.email,
       phone: formData.phone,
-      company: formData.company,
-      insuranceType: "Older Apartment Building Insurance",
-      message: `Building Age: ${formData.buildingAge}, Total Units: ${formData.totalUnits}, Property Value: ${formData.propertyValue}, State: ${formData.state}, System Updates: ${formData.systemUpdates}`
+      state: formData.state,
+      insurance_type: "Older Apartment Building Insurance",
+      notes: `Building Age: ${formData.buildingAge}, Total Units: ${formData.totalUnits}, Property Value: ${formData.propertyValue}, System Updates: ${formData.systemUpdates}`
     });
   };
 

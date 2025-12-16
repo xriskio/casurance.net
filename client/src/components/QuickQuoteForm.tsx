@@ -25,7 +25,7 @@ export default function QuickQuoteForm({ insuranceType }: QuickQuoteFormProps) {
 
   const submitMutation = useMutation({
     mutationFn: async (payload: any) => {
-      return await apiRequest("/api/quick-quote", "POST", payload);
+      return await apiRequest("POST", "/api/quick-quotes", payload);
     },
     onSuccess: () => {
       setSubmitted(true);
@@ -56,11 +56,12 @@ export default function QuickQuoteForm({ insuranceType }: QuickQuoteFormProps) {
     }
 
     submitMutation.mutate({
-      name: formData.name,
+      business_name: formData.name,
+      contact_name: formData.name,
       email: formData.email,
       phone: formData.phone,
-      insuranceType,
-      message: formData.message
+      insurance_type: insuranceType,
+      notes: formData.message
     });
   };
 

@@ -60,10 +60,7 @@ export default function CommercialEarthquakeQuoteForm() {
 
   const submitMutation = useMutation({
     mutationFn: async (data: FormData) => {
-      return apiRequest("/api/commercial-earthquake-quotes", {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
+      return apiRequest("POST", "/api/commercial-earthquake-quotes", data);
     },
     onSuccess: () => {
       setSubmitted(true);

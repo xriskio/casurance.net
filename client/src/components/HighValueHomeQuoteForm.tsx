@@ -67,10 +67,7 @@ export default function HighValueHomeQuoteForm() {
 
   const submitMutation = useMutation({
     mutationFn: async (data: FormData) => {
-      return apiRequest("/api/high-value-home-quotes", {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
+      return apiRequest("POST", "/api/high-value-home-quotes", data);
     },
     onSuccess: () => {
       setSubmitted(true);

@@ -61,10 +61,7 @@ export default function CommercialFloodQuoteForm() {
 
   const submitMutation = useMutation({
     mutationFn: async (data: FormData) => {
-      return apiRequest("/api/commercial-flood-quotes", {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
+      return apiRequest("POST", "/api/commercial-flood-quotes", data);
     },
     onSuccess: () => {
       setSubmitted(true);
