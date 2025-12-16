@@ -110,8 +110,8 @@ app.use((req, res, next) => {
   }, () => {
     log(`serving on port ${port}`);
     
-    // IndexNow submission only runs when manually triggered via RUN_INDEX_JOB=true
-    if (process.env.RUN_INDEX_JOB === "true") {
+    // IndexNow submission only runs when manually triggered via RUN_INDEXNOW=true
+    if (process.env.RUN_INDEXNOW === "true") {
       setTimeout(() => {
         initializeIndexNow();
       }, 5000);
