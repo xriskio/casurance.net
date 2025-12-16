@@ -151,10 +151,11 @@ app.use((req, res, next) => {
   }, () => {
     log(`serving on port ${port}`);
     
-    // IndexNow submission only runs when manually triggered via RUN_INDEXNOW=true
-    if (process.env.RUN_INDEXNOW === "true") {
-      setTimeout(() => {
-        initializeIndexNow();
+    // Startup jobs only run when manually triggered via STARTUP_JOBS=true
+    if (process.env.STARTUP_JOBS === "true") {
+      setTimeout(async () => {
+        await initializeIndexNow();
+        // Add other startup jobs here if needed
       }, 5000);
     }
   });
