@@ -11,14 +11,6 @@ import { initializeIndexNow } from "./services/indexNowService";
 process.on("unhandledRejection", (r) => console.error("[CRASH] unhandledRejection", r));
 process.on("uncaughtException", (e) => console.error("[CRASH] uncaughtException", e));
 
-// Auto-shutdown after 10 minutes (production only)
-if (process.env.NODE_ENV === "production") {
-  setTimeout(() => {
-    console.log("Auto-shutdown due to inactivity");
-    process.exit(0);
-  }, 10 * 60 * 1000);
-}
-
 const app = express();
 
 // Health check endpoints MUST be defined BEFORE any middleware
