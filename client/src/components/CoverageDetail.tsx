@@ -215,6 +215,28 @@ export default function CoverageDetail({ coverage }: CoverageDetailProps) {
       return '/lp/commercial-umbrella';
     }
     
+    // Personal Lines - all go to /personal-lines
+    if (coverage.slug === 'personal-auto') {
+      return '/personal-lines';
+    }
+    if (coverage.slug === 'homeowners') {
+      return '/personal-lines';
+    }
+    if (coverage.slug === 'landlord-protector') {
+      return '/personal-lines';
+    }
+    if (coverage.slug === 'wildfire-brush-area') {
+      return '/personal-lines';
+    }
+    if (coverage.slug === 'residential-earthquake') {
+      return '/personal-lines';
+    }
+    
+    // Check by category for any other Personal Lines coverages
+    if (coverage.category === 'Personal Lines') {
+      return '/personal-lines';
+    }
+    
     return '/quote';
   };
 
