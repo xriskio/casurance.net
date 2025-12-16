@@ -12,7 +12,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { SERVICE_STATES } from "@shared/constants/states";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import Header from "@/components/Header";
@@ -120,22 +122,28 @@ const faqs = [
 export default function ApartmentsLanding() {
   const { toast } = useToast();
   const [submitted, setSubmitted] = useState(false);
+  const [confirmationNumber, setConfirmationNumber] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     company: "",
+    propertyAddress: "",
+    city: "",
+    state: "",
+    zipCode: "",
     propertyType: "",
     totalUnits: "",
     propertyValue: "",
-    state: "",
+    message: "",
   });
 
   const submitMutation = useMutation({
     mutationFn: async (payload: any) => {
       return await apiRequest("POST", "/api/quick-quotes", payload);
     },
-    onSuccess: () => {
+    onSuccess: (data: any) => {
+      setConfirmationNumber(data.referenceNumber || data.id?.toString() || "APT-" + Date.now());
       setSubmitted(true);
       toast({
         title: "Quote Request Submitted!",
@@ -170,7 +178,7 @@ export default function ApartmentsLanding() {
       phone: formData.phone,
       state: formData.state,
       insurance_type: "Apartment Building Insurance",
-      notes: `Property Type: ${formData.propertyType}, Total Units: ${formData.totalUnits}, Property Value: ${formData.propertyValue}`
+      notes: `Property Address: ${formData.propertyAddress}, ${formData.city}, ${formData.state} ${formData.zipCode} | Property Type: ${formData.propertyType} | Total Units: ${formData.totalUnits} | Property Value: ${formData.propertyValue} | Message: ${formData.message}`
     });
   };
 
@@ -299,14 +307,25 @@ export default function ApartmentsLanding() {
                 <Card className="bg-white/95 backdrop-blur shadow-2xl border-0">
                   <CardContent className="p-6">
                     {submitted ? (
-                      <div className="text-center py-8">
+                      <div className="text-center py-6" data-testid="form-success">
                         <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                           <CheckCircle className="h-8 w-8 text-green-600" />
                         </div>
                         <h3 className="text-2xl font-bold text-foreground mb-2">Quote Request Received!</h3>
-                        <p className="text-muted-foreground">
-                          An apartment insurance specialist will contact you within 24 hours.
+                        <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
+                          <p className="text-sm text-muted-foreground mb-1">Your Confirmation Number:</p>
+                          <p className="text-xl font-bold text-green-600" data-testid="text-confirmation-number">{confirmationNumber}</p>
+                        </div>
+                        <p className="text-muted-foreground text-sm mb-4">
+                          A confirmation email has been sent. An apartment insurance specialist will contact you within 24 hours.
                         </p>
+                        <Button 
+                          onClick={() => setSubmitted(false)} 
+                          variant="outline"
+                          data-testid="button-submit-another"
+                        >
+                          Submit Another Quote
+                        </Button>
                       </div>
                     ) : (
                       <>
@@ -366,6 +385,54 @@ export default function ApartmentsLanding() {
                             />
                           </div>
                           
+                          {/* Property Address */}
+                          <div>
+                            <Label htmlFor="propertyAddress" className="text-foreground">Property Address</Label>
+                            <Input
+                              id="propertyAddress"
+                              value={formData.propertyAddress}
+                              onChange={(e) => setFormData({ ...formData, propertyAddress: e.target.value })}
+                              placeholder="123 Main Street"
+                              data-testid="input-property-address"
+                            />
+                          </div>
+                          
+                          <div className="grid grid-cols-3 gap-3">
+                            <div>
+                              <Label htmlFor="city" className="text-foreground">City</Label>
+                              <Input
+                                id="city"
+                                value={formData.city}
+                                onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                                placeholder="Los Angeles"
+                                data-testid="input-city"
+                              />
+                            </div>
+                            <div>
+                              <Label className="text-foreground">State</Label>
+                              <Select value={formData.state} onValueChange={(v) => setFormData({ ...formData, state: v })}>
+                                <SelectTrigger data-testid="select-state">
+                                  <SelectValue placeholder="Select" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  {SERVICE_STATES.map(state => (
+                                    <SelectItem key={state.value} value={state.value}>{state.label}</SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
+                            </div>
+                            <div>
+                              <Label htmlFor="zipCode" className="text-foreground">ZIP Code</Label>
+                              <Input
+                                id="zipCode"
+                                value={formData.zipCode}
+                                onChange={(e) => setFormData({ ...formData, zipCode: e.target.value })}
+                                placeholder="90015"
+                                data-testid="input-zip"
+                              />
+                            </div>
+                          </div>
+                          
                           <div className="grid grid-cols-2 gap-4">
                             <div>
                               <Label className="text-foreground">Property Type</Label>
@@ -396,39 +463,33 @@ export default function ApartmentsLanding() {
                             </div>
                           </div>
                           
-                          <div className="grid grid-cols-2 gap-4">
-                            <div>
-                              <Label className="text-foreground">Property Value</Label>
-                              <Select value={formData.propertyValue} onValueChange={(v) => setFormData({ ...formData, propertyValue: v })}>
-                                <SelectTrigger data-testid="select-value">
-                                  <SelectValue placeholder="Select range" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  <SelectItem value="under-5m">Under $5M</SelectItem>
-                                  <SelectItem value="5m-10m">$5M - $10M</SelectItem>
-                                  <SelectItem value="10m-25m">$10M - $25M</SelectItem>
-                                  <SelectItem value="25m-50m">$25M - $50M</SelectItem>
-                                  <SelectItem value="50m-100m">$50M - $100M</SelectItem>
-                                  <SelectItem value="over-100m">Over $100M</SelectItem>
-                                </SelectContent>
-                              </Select>
-                            </div>
-                            <div>
-                              <Label className="text-foreground">State</Label>
-                              <Select value={formData.state} onValueChange={(v) => setFormData({ ...formData, state: v })}>
-                                <SelectTrigger data-testid="select-state">
-                                  <SelectValue placeholder="Select state" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  <SelectItem value="CA">California</SelectItem>
-                                  <SelectItem value="AZ">Arizona</SelectItem>
-                                  <SelectItem value="NV">Nevada</SelectItem>
-                                  <SelectItem value="TX">Texas</SelectItem>
-                                  <SelectItem value="FL">Florida</SelectItem>
-                                  <SelectItem value="other">Other State</SelectItem>
-                                </SelectContent>
-                              </Select>
-                            </div>
+                          <div>
+                            <Label className="text-foreground">Property Value</Label>
+                            <Select value={formData.propertyValue} onValueChange={(v) => setFormData({ ...formData, propertyValue: v })}>
+                              <SelectTrigger data-testid="select-value">
+                                <SelectValue placeholder="Select range" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="under-5m">Under $5M</SelectItem>
+                                <SelectItem value="5m-10m">$5M - $10M</SelectItem>
+                                <SelectItem value="10m-25m">$10M - $25M</SelectItem>
+                                <SelectItem value="25m-50m">$25M - $50M</SelectItem>
+                                <SelectItem value="50m-100m">$50M - $100M</SelectItem>
+                                <SelectItem value="over-100m">Over $100M</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          
+                          <div>
+                            <Label htmlFor="message" className="text-foreground">Additional Comments</Label>
+                            <Textarea
+                              id="message"
+                              value={formData.message}
+                              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                              placeholder="Tell us more about your property, any special requirements, or questions..."
+                              rows={3}
+                              data-testid="textarea-message"
+                            />
                           </div>
                           
                           <Button 
