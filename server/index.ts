@@ -148,15 +148,18 @@ app.use((req, res, next) => {
     port,
     host: "0.0.0.0",
     reusePort: true,
-  }, () => {
+  }, async () => {
     log(`serving on port ${port}`);
     
     // Startup jobs only run when manually triggered via STARTUP_JOBS=true
     if (process.env.STARTUP_JOBS === "true") {
-      setTimeout(async () => {
+      log("Running startup jobs...");
+      try {
         await initializeIndexNow();
-        // Add other startup jobs here if needed
-      }, 5000);
+        log("Startup jobs completed");
+      } catch (error) {
+        console.error("[STARTUP] Error running startup jobs:", error);
+      }
     }
   });
 })();
