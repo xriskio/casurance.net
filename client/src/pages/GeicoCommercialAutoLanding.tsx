@@ -256,6 +256,8 @@ export default function GeicoCommercialAutoLanding() {
   const { toast } = useToast();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [confirmationNumber, setConfirmationNumber] = useState("");
   const [formData, setFormData] = useState({
     businessName: "",
     contactName: "",
@@ -283,7 +285,9 @@ export default function GeicoCommercialAutoLanding() {
         notes: data.notes,
       });
     },
-    onSuccess: () => {
+    onSuccess: (data: any) => {
+      setConfirmationNumber(data.referenceNumber || data.id?.toString() || "GEICO-" + Date.now());
+      setIsSubmitted(true);
       toast({
         title: "Quote Request Submitted!",
         description: "A Casurance agent will contact you within 24 hours with your GEICO commercial auto quote.",
@@ -520,6 +524,28 @@ export default function GeicoCommercialAutoLanding() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-6">
+                    {isSubmitted ? (
+                      <div className="text-center py-8" data-testid="form-success">
+                        <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
+                        <h3 className="text-xl font-semibold text-gray-900 mb-2">Quote Request Received!</h3>
+                        <p className="text-gray-600 mb-4">Your GEICO commercial auto quote request has been submitted successfully.</p>
+                        <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
+                          <p className="text-sm text-gray-600 mb-1">Your Confirmation Number:</p>
+                          <p className="text-2xl font-bold text-green-600" data-testid="text-confirmation-number">{confirmationNumber}</p>
+                        </div>
+                        <p className="text-sm text-gray-500 mb-4">
+                          A confirmation email has been sent to your email address. A Casurance agent will contact you within 24 hours.
+                        </p>
+                        <Button 
+                          onClick={() => setIsSubmitted(false)} 
+                          variant="outline"
+                          className="text-gray-700"
+                          data-testid="button-submit-another"
+                        >
+                          Submit Another Quote
+                        </Button>
+                      </div>
+                    ) : (
                     <form onSubmit={handleSubmit} className="space-y-4">
                       <div className="grid sm:grid-cols-2 gap-4">
                         <div>
@@ -679,6 +705,7 @@ export default function GeicoCommercialAutoLanding() {
                         By submitting, you agree to be contacted about your insurance quote.
                       </p>
                     </form>
+                    )}
                   </CardContent>
                 </Card>
               </div>

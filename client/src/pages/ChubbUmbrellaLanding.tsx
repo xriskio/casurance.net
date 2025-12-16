@@ -359,7 +359,7 @@ export default function ChubbUmbrellaLanding() {
                             </SelectTrigger>
                             <SelectContent>
                               {SERVICE_STATES.map((state) => (
-                                <SelectItem key={state} value={state}>{state}</SelectItem>
+                                <SelectItem key={state.value} value={state.value}>{state.label}</SelectItem>
                               ))}
                             </SelectContent>
                           </Select>

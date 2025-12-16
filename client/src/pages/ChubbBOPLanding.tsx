@@ -218,6 +218,8 @@ const faqs = [
 
 export default function ChubbBOPLanding() {
   const { toast } = useToast();
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [confirmationNumber, setConfirmationNumber] = useState("");
   const [formData, setFormData] = useState({
     businessName: "",
     contactName: "",
@@ -247,7 +249,9 @@ export default function ChubbBOPLanding() {
         notes: `Annual Revenue: ${data.annualRevenue}\nEmployees: ${data.employeeCount}\n${data.notes}`
       });
     },
-    onSuccess: () => {
+    onSuccess: (data: any) => {
+      setConfirmationNumber(data.referenceNumber || data.id?.toString() || "CHUBB-" + Date.now());
+      setIsSubmitted(true);
       toast({
         title: "Quote Request Submitted!",
         description: "A Casurance agent will contact you within 24 hours with your Chubb BOP quote.",
@@ -391,6 +395,28 @@ export default function ChubbBOPLanding() {
                     <CardTitle className="text-xl">Request a Chubb BOP Quote</CardTitle>
                   </CardHeader>
                   <CardContent>
+                    {isSubmitted ? (
+                      <div className="text-center py-8" data-testid="form-success">
+                        <CheckCircle2 className="h-16 w-16 text-green-500 mx-auto mb-4" />
+                        <h3 className="text-xl font-semibold text-gray-900 mb-2">Quote Request Received!</h3>
+                        <p className="text-gray-600 mb-4">Your Chubb BOP quote request has been submitted successfully.</p>
+                        <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
+                          <p className="text-sm text-gray-600 mb-1">Your Confirmation Number:</p>
+                          <p className="text-2xl font-bold text-green-600" data-testid="text-confirmation-number">{confirmationNumber}</p>
+                        </div>
+                        <p className="text-sm text-gray-500 mb-4">
+                          A confirmation email has been sent to your email address. A Casurance agent will contact you within 24 hours.
+                        </p>
+                        <Button 
+                          onClick={() => setIsSubmitted(false)} 
+                          variant="outline"
+                          className="text-gray-700"
+                          data-testid="button-submit-another"
+                        >
+                          Submit Another Quote
+                        </Button>
+                      </div>
+                    ) : (
                     <form onSubmit={handleSubmit} className="space-y-4">
                       <div className="grid grid-cols-2 gap-4">
                         <div>
@@ -464,7 +490,7 @@ export default function ChubbBOPLanding() {
                             </SelectTrigger>
                             <SelectContent>
                               {SERVICE_STATES.map((state) => (
-                                <SelectItem key={state} value={state}>{state}</SelectItem>
+                                <SelectItem key={state.value} value={state.value}>{state.label}</SelectItem>
                               ))}
                             </SelectContent>
                           </Select>
@@ -553,6 +579,7 @@ export default function ChubbBOPLanding() {
                         Or call us at <a href="tel:18882540089" className="text-primary font-medium">1-888-254-0089</a>
                       </p>
                     </form>
+                    )}
                   </CardContent>
                 </Card>
               </div>
