@@ -16,14 +16,17 @@ import { useToast } from "@/hooks/use-toast";
 
 const formSchema = insertCommercialEarthquakeQuoteSchema.extend({
   namedInsured: z.string().min(2, "Please enter the named insured"),
+  contactName: z.string().min(2, "Please enter contact name"),
   email: z.string().email("Please enter a valid email address"),
   phone: z.string().min(10, "Please enter a valid phone number"),
+  mailingAddress: z.string().optional(),
   propertyAddress: z.string().min(5, "Please enter the property address"),
   city: z.string().min(2, "Please enter the city"),
   state: z.string().min(2, "Please select a state"),
   zipCode: z.string().min(5, "Please enter a valid ZIP code"),
   effectiveDate: z.string().min(1, "Please select an effective date"),
   buildingValue: z.string().min(1, "Please enter building value"),
+  contentsValue: z.string().optional(),
   yearBuilt: z.string().min(4, "Please enter the year built"),
   numberOfStories: z.string().min(1, "Please enter number of stories"),
   constructionType: z.string().min(1, "Please select construction type"),
@@ -40,8 +43,10 @@ export default function CommercialEarthquakeQuoteForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       namedInsured: "",
+      contactName: "",
       email: "",
       phone: "",
+      mailingAddress: "",
       propertyAddress: "",
       city: "",
       state: "",
@@ -109,19 +114,35 @@ export default function CommercialEarthquakeQuoteForm() {
             <CardDescription>Primary contact and business details</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <FormField
-              control={form.control}
-              name="namedInsured"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Named Insured / Business Name *</FormLabel>
-                  <FormControl>
-                    <Input placeholder="ABC Corporation" {...field} data-testid="input-named-insured" />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <div className="grid md:grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="namedInsured"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Named Insured / Business Name *</FormLabel>
+                    <FormControl>
+                      <Input placeholder="ABC Corporation" {...field} data-testid="input-named-insured" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="contactName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Contact Name *</FormLabel>
+                    <FormControl>
+                      <Input placeholder="John Smith" {...field} data-testid="input-contact-name" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
 
             <div className="grid md:grid-cols-2 gap-4">
               <FormField
@@ -152,6 +173,20 @@ export default function CommercialEarthquakeQuoteForm() {
                 )}
               />
             </div>
+
+            <FormField
+              control={form.control}
+              name="mailingAddress"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Mailing Address (if different from property)</FormLabel>
+                  <FormControl>
+                    <Input placeholder="456 Office Suite, City, State ZIP" {...field} value={field.value || ""} data-testid="input-mailing-address" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </CardContent>
         </Card>
 
@@ -274,7 +309,7 @@ export default function CommercialEarthquakeQuoteForm() {
                   <FormItem>
                     <FormLabel>Estimated Contents Value</FormLabel>
                     <FormControl>
-                      <Input placeholder="$100,000 (optional)" {...field} data-testid="input-contents-value" />
+                      <Input placeholder="$100,000 (optional)" {...field} value={field.value || ""} data-testid="input-contents-value" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

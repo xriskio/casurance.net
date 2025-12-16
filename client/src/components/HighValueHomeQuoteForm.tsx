@@ -17,8 +17,11 @@ import { useToast } from "@/hooks/use-toast";
 
 const formSchema = insertHighValueHomeQuoteSchema.extend({
   primaryNamedInsured: z.string().min(2, "Please enter the primary named insured"),
+  secondaryNamedInsured: z.string().optional(),
+  contactName: z.string().min(2, "Please enter contact name"),
   email: z.string().email("Please enter a valid email address"),
   phone: z.string().min(10, "Please enter a valid phone number"),
+  mailingAddress: z.string().optional(),
   dwellingAddress: z.string().min(5, "Please enter the dwelling address"),
   city: z.string().min(2, "Please enter the city"),
   state: z.string().min(2, "Please select a state"),
@@ -27,7 +30,10 @@ const formSchema = insertHighValueHomeQuoteSchema.extend({
   constructionType: z.string().min(1, "Please select construction type"),
   yearConstructed: z.string().min(4, "Please enter the year constructed"),
   squareFootage: z.string().min(1, "Please enter square footage"),
+  roofingType: z.string().optional(),
+  protectionClass: z.string().optional(),
   dwellingValue: z.string().min(1, "Please enter estimated dwelling value"),
+  requestedValuation: z.string().optional(),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -46,8 +52,10 @@ export default function HighValueHomeQuoteForm() {
     defaultValues: {
       primaryNamedInsured: "",
       secondaryNamedInsured: "",
+      contactName: "",
       email: "",
       phone: "",
+      mailingAddress: "",
       dwellingAddress: "",
       city: "",
       state: "",
@@ -138,13 +146,27 @@ export default function HighValueHomeQuoteForm() {
                   <FormItem>
                     <FormLabel>Secondary Named Insured</FormLabel>
                     <FormControl>
-                      <Input placeholder="Jane Doe (optional)" {...field} data-testid="input-secondary-named-insured" />
+                      <Input placeholder="Jane Doe (optional)" {...field} value={field.value || ""} data-testid="input-secondary-named-insured" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
             </div>
+
+            <FormField
+              control={form.control}
+              name="contactName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Contact Name *</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Primary contact for this policy" {...field} data-testid="input-contact-name" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
             <div className="grid md:grid-cols-2 gap-4">
               <FormField
@@ -175,6 +197,20 @@ export default function HighValueHomeQuoteForm() {
                 )}
               />
             </div>
+
+            <FormField
+              control={form.control}
+              name="mailingAddress"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Mailing Address (if different from dwelling)</FormLabel>
+                  <FormControl>
+                    <Input placeholder="456 Office Suite, City, State ZIP" {...field} value={field.value || ""} data-testid="input-mailing-address" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </CardContent>
         </Card>
 
