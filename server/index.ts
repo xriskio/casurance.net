@@ -32,6 +32,33 @@ app.get("/api/health", (_req, res) => {
   res.status(200).json({ status: "ok", timestamp: new Date().toISOString() });
 });
 
+// Bot/scanner probe blocking - MUST be before all other middleware
+app.use((req, res, next) => {
+  const p = req.path.toLowerCase();
+  
+  // Block common scanner probes that waste resources and pollute logs
+  if (
+    p.includes(".env") ||
+    p.includes(".git") ||
+    p.endsWith(".php") ||
+    p.includes("wp-") ||
+    p.includes("wp-admin") ||
+    p.includes("wordpress") ||
+    p.includes("passwd") ||
+    p.includes("config.") ||
+    p.includes(".sql") ||
+    p.includes(".bak") ||
+    p.includes("phpmyadmin") ||
+    p.includes("admin.php") ||
+    p.includes("xmlrpc")
+  ) {
+    console.log(`[BOT BLOCKED] ${req.method} ${req.path} from ${req.ip}`);
+    return res.status(404).send("Not found");
+  }
+  
+  next();
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
