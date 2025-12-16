@@ -228,14 +228,14 @@ export default function UberBlackInsuranceLanding() {
 
     setIsSubmitting(true);
     try {
-      await apiRequest("POST", "/api/submissions", {
-        type: "commercial-auto-insurance",
-        status: "new",
-        data: {
-          ...formData,
-          source: "Uber Black Quick Quote Form",
-          coverageType: "Uber Black / Luxury Rideshare"
-        }
+      await apiRequest("POST", "/api/quick-quotes", {
+        business_name: formData.businessName,
+        contact_name: formData.contactName,
+        email: formData.email,
+        phone: formData.phone,
+        state: formData.state,
+        insurance_type: "Uber Black / Luxury Rideshare Commercial Auto",
+        notes: `Vehicles: ${formData.vehicles}, TCP#: ${formData.tcpNumber || 'N/A'}, DOT#: ${formData.dotNumber || 'N/A'}, Source: Uber Black Quick Quote Form`
       });
       toast({
         title: "Quote Request Submitted!",

@@ -134,13 +134,15 @@ export default function CommercialUmbrellaLanding() {
         contactName: form.contactName,
         phone: form.phone,
         email: form.email,
-        state: form.state,
         industry: form.industry,
-        desiredLimit: form.desiredLimit,
-        currentUmbrellaLimit: form.currentUmbrellaLimit,
         annualRevenue: form.annualRevenue,
-        additionalInfo: form.message,
-        source: "commercial-umbrella-landing-page"
+        additionalInfo: JSON.stringify({
+          state: form.state,
+          desiredLimit: form.desiredLimit,
+          currentUmbrellaLimit: form.currentUmbrellaLimit,
+          message: form.message,
+          source: "commercial-umbrella-landing-page"
+        })
       });
     },
     onSuccess: () => {

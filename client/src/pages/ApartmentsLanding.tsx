@@ -133,7 +133,7 @@ export default function ApartmentsLanding() {
 
   const submitMutation = useMutation({
     mutationFn: async (payload: any) => {
-      return await apiRequest("/api/quick-quote", "POST", payload);
+      return await apiRequest("POST", "/api/quick-quotes", payload);
     },
     onSuccess: () => {
       setSubmitted(true);
@@ -164,12 +164,13 @@ export default function ApartmentsLanding() {
     }
 
     submitMutation.mutate({
-      name: formData.name,
+      business_name: formData.company || formData.name,
+      contact_name: formData.name,
       email: formData.email,
       phone: formData.phone,
-      company: formData.company,
-      insuranceType: "Apartment Building Insurance",
-      message: `Property Type: ${formData.propertyType}, Total Units: ${formData.totalUnits}, Property Value: ${formData.propertyValue}, State: ${formData.state}`
+      state: formData.state,
+      insurance_type: "Apartment Building Insurance",
+      notes: `Property Type: ${formData.propertyType}, Total Units: ${formData.totalUnits}, Property Value: ${formData.propertyValue}`
     });
   };
 

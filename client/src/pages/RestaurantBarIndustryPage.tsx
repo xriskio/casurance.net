@@ -247,13 +247,13 @@ export default function RestaurantBarIndustryPage() {
         email: form.email,
         phone: form.phone,
         state: form.state,
-        additionalInfo: {
+        additionalInfo: JSON.stringify({
           city: form.city,
           businessType: form.businessType,
           annualRevenue: form.annualRevenue,
           liquorPercentage: form.liquorPercentage,
           source: "restaurant-bar-industry-page"
-        }
+        })
       });
     },
     onSuccess: () => {

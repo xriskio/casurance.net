@@ -74,12 +74,12 @@ export default function RestaurantBarInsuranceLanding() {
         email: formData.email,
         phone: formData.phone,
         state: formData.state,
-        additionalInfo: {
+        additionalInfo: JSON.stringify({
           businessType: formData.businessType,
           annualRevenue: formData.annualRevenue,
           employees: formData.employees,
           comments: formData.comments
-        }
+        })
       });
 
       toast({

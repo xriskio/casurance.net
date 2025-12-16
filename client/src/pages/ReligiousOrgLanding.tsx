@@ -119,12 +119,12 @@ export default function ReligiousOrgLanding() {
         email: formData.email,
         phone: formData.phone,
         state: formData.state,
-        additionalInfo: {
+        additionalInfo: JSON.stringify({
           worshipType: formData.worshipType,
           renewalDate: formData.renewalDate,
           coverageTypes: formData.coverageTypes,
           source: "landing-page"
-        }
+        })
       });
 
       setFormSubmitted(true);

@@ -185,13 +185,13 @@ export default function ChubbSpecialProgramsLanding() {
         contactName: data.contactName,
         email: data.email,
         phone: data.phone,
-        state: data.state,
-        formData: {
+        annualRevenue: data.annualRevenue,
+        additionalInfo: JSON.stringify({
+          state: data.state,
           programInterest: data.programInterest,
-          annualRevenue: data.annualRevenue,
           message: data.message,
           source: "Chubb Special Programs Landing Page"
-        }
+        })
       });
     },
     onSuccess: () => {

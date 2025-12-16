@@ -86,8 +86,18 @@ export default function LimousineInsuranceLanding() {
   const submitMutation = useMutation({
     mutationFn: async () => {
       return await apiRequest("POST", "/api/limousine-quotes", {
-        ...form,
-        source: "limousine-landing-page"
+        companyName: form.companyName,
+        contactPerson: form.contactName,
+        email: form.email,
+        businessPhone: form.phone,
+        status: "pending",
+        payload: {
+          state: form.state,
+          numVehicles: form.numVehicles,
+          vehicleType: form.vehicleType,
+          currentInsurance: form.currentInsurance,
+          source: "limousine-landing-page"
+        }
       });
     },
     onSuccess: () => {

@@ -58,9 +58,19 @@ export default function TechnologyInsuranceLanding() {
     
     try {
       await apiRequest("POST", "/api/quote-requests", {
-        ...formData,
+        businessName: formData.companyName,
+        contactName: `${formData.firstName} ${formData.lastName}`.trim(),
+        email: formData.email,
+        phone: formData.phone,
         insuranceType: "Technology Companies Insurance",
-        source: "technology-insurance-landing"
+        industry: formData.businessType,
+        employeeCount: formData.employees,
+        annualRevenue: formData.annualRevenue,
+        additionalInfo: JSON.stringify({
+          state: formData.state,
+          message: formData.message,
+          source: "technology-insurance-landing"
+        })
       });
       
       toast({

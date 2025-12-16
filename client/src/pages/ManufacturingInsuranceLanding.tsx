@@ -57,9 +57,19 @@ export default function ManufacturingInsuranceLanding() {
     
     try {
       await apiRequest("POST", "/api/quote-requests", {
-        ...formData,
+        businessName: formData.companyName,
+        contactName: `${formData.firstName} ${formData.lastName}`.trim(),
+        email: formData.email,
+        phone: formData.phone,
         insuranceType: "Manufacturing Insurance",
-        source: "manufacturing-insurance-landing"
+        industry: formData.businessType,
+        employeeCount: formData.employees,
+        annualRevenue: formData.annualRevenue,
+        additionalInfo: JSON.stringify({
+          state: formData.state,
+          message: formData.message,
+          source: "manufacturing-insurance-landing"
+        })
       });
       
       toast({
