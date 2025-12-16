@@ -17,7 +17,8 @@ import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
 const insuranceTypes = [
-  { value: "general-liability", label: "General Liability" },
+  // Core Commercial Lines
+  { value: "general-liability", label: "General Liability Insurance" },
   { value: "commercial-auto", label: "Commercial Auto" },
   { value: "workers-compensation", label: "Workers Compensation" },
   { value: "commercial-property", label: "Commercial Property" },
@@ -26,6 +27,26 @@ const insuranceTypes = [
   { value: "business-owners-policy", label: "Business Owners Policy (BOP)" },
   { value: "commercial-umbrella", label: "Commercial Umbrella" },
   { value: "employment-practices", label: "Employment Practices Liability" },
+  // Special Programs
+  { value: "workers-comp-ca-nv", label: "Workers' Comp CA & NV" },
+  { value: "liquor-store", label: "Liquor Store Insurance" },
+  { value: "builders-risk", label: "Builders Risk Insurance" },
+  { value: "auto-services", label: "Auto Services Insurance" },
+  { value: "geico-commercial-auto", label: "GEICO Commercial Auto" },
+  { value: "geico-private-passenger", label: "GEICO Private Passenger" },
+  { value: "bristol-west-commercial", label: "Bristol West Commercial" },
+  { value: "bristol-west-personal", label: "Bristol West Personal" },
+  { value: "berkshire-hathaway", label: "Berkshire Hathaway BHHC" },
+  { value: "uber-black", label: "Uber Black Insurance" },
+  { value: "restaurant-bar", label: "Restaurant & Bar Insurance" },
+  { value: "technology-companies", label: "Technology Companies Insurance" },
+  { value: "manufacturing", label: "Manufacturing Insurance" },
+  { value: "california-fair-plan", label: "California FAIR Plan" },
+  { value: "chubb-insurance", label: "Chubb Insurance Solutions" },
+  { value: "granada-habitational", label: "Granada Habitational Programs" },
+  { value: "limousine", label: "Limousine Insurance" },
+  { value: "religious-organization", label: "Religious Organization Insurance" },
+  { value: "apartment-building", label: "Apartment Building Insurance" },
   { value: "other", label: "Other / Not Sure" },
 ];
 
@@ -42,8 +63,34 @@ export default function Hero() {
       });
       return;
     }
-    // Navigate to quote page with selected insurance type
-    window.location.href = `/quote?type=${insuranceType}`;
+    
+    // Route to specific landing pages for special programs
+    const specialRoutes: Record<string, string> = {
+      "workers-comp-ca-nv": "/lp/workers-compensation",
+      "liquor-store": "/lp/liquor-store-insurance",
+      "builders-risk": "/lp/builders-risk",
+      "auto-services": "/lp/auto-services",
+      "geico-commercial-auto": "/geico-commercial-auto",
+      "geico-private-passenger": "/geico-private-passenger",
+      "bristol-west-commercial": "/quote",
+      "bristol-west-personal": "/quote",
+      "berkshire-hathaway": "/quote",
+      "uber-black": "/quote",
+      "restaurant-bar": "/lp/restaurant-bar-insurance",
+      "technology-companies": "/quote",
+      "manufacturing": "/quote",
+      "california-fair-plan": "/quote/fair-plan",
+      "chubb-insurance": "/partners/chubb",
+      "granada-habitational": "/partners/granada-habitational",
+      "limousine": "/quote/limousine",
+      "religious-organization": "/quote/religious-organization",
+      "apartment-building": "/industry/apartments-industry",
+      "general-liability": "/lp/general-liability",
+      "commercial-umbrella": "/lp/commercial-umbrella",
+    };
+    
+    const route = specialRoutes[insuranceType] || `/quote?type=${insuranceType}`;
+    window.location.href = route;
   };
 
   return (
