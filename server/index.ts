@@ -11,16 +11,6 @@ import { initializeIndexNow } from "./services/indexNowService";
 process.on("unhandledRejection", (r) => console.error("[CRASH] unhandledRejection", r));
 process.on("uncaughtException", (e) => console.error("[CRASH] uncaughtException", e));
 
-// Memory monitoring - log every 30 seconds
-setInterval(() => {
-  const m = process.memoryUsage();
-  console.log("[MEM]", {
-    rss: Math.round(m.rss / 1024 / 1024) + "MB",
-    heapUsed: Math.round(m.heapUsed / 1024 / 1024) + "MB",
-    heapTotal: Math.round(m.heapTotal / 1024 / 1024) + "MB",
-  });
-}, 30000);
-
 const app = express();
 
 // Health check endpoints MUST be defined BEFORE any middleware
