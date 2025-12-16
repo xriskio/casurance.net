@@ -110,10 +110,11 @@ app.use((req, res, next) => {
   }, () => {
     log(`serving on port ${port}`);
     
-    // Defer IndexNow initialization to avoid blocking startup
-    // This runs after server is ready to accept connections
-    setTimeout(() => {
-      initializeIndexNow();
-    }, 5000);
+    // IndexNow submission only runs when manually triggered via RUN_INDEX_JOB=true
+    if (process.env.RUN_INDEX_JOB === "true") {
+      setTimeout(() => {
+        initializeIndexNow();
+      }, 5000);
+    }
   });
 })();

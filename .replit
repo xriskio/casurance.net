@@ -45,6 +45,6 @@ integrations = ["javascript_database:1.0.0", "javascript_openai_ai_integrations:
 
 [userenv.shared]
 INDEXNOW_API_KEY = "78eb96aa6f124ceb81a5fbaf32694bd0"
-BING_WEBMASTER_API_KEY = "a6997308aa38426b95a02c72a165e6ea"
+BING_WEBMASTER_API_KEY = "a98a83fe00c34c1490a142e8ab27963b"
 GA4_MEASUREMENT_ID = "G-ZMFP47KVV3"
 GA4_API_SECRET = "Bd-mtmxoTKWgc1daqgXzYQ"
