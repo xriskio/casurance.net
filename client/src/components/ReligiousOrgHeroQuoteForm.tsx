@@ -8,17 +8,8 @@ import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { CheckCircle, Clock, ShieldCheck, Mail, Zap, Phone } from "lucide-react";
-
-const US_STATES = [
-  "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut",
-  "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa",
-  "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan",
-  "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire",
-  "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio",
-  "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
-  "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia",
-  "Wisconsin", "Wyoming"
-];
+import { SERVICE_STATES } from "@shared/constants/states";
+import { Textarea } from "@/components/ui/textarea";
 
 const WORSHIP_TYPES = [
   "Church",
@@ -58,10 +49,13 @@ export default function ReligiousOrgHeroQuoteForm({ heroImage }: ReligiousOrgHer
     lastName: "",
     email: "",
     phone: "",
+    address: "",
     state: "",
+    effectiveDate: "",
     worshipType: "",
     renewalDate: "",
-    coverageTypes: [] as string[]
+    coverageTypes: [] as string[],
+    message: ""
   });
 
   const submitMutation = useMutation({
@@ -105,9 +99,12 @@ export default function ReligiousOrgHeroQuoteForm({ heroImage }: ReligiousOrgHer
       phone: formData.phone,
       state: formData.state,
       additionalInfo: {
+        address: formData.address,
+        effectiveDate: formData.effectiveDate,
         worshipType: formData.worshipType,
         renewalDate: formData.renewalDate,
-        coverageTypes: formData.coverageTypes
+        coverageTypes: formData.coverageTypes,
+        message: formData.message
       }
     });
   };
@@ -263,6 +260,17 @@ export default function ReligiousOrgHeroQuoteForm({ heroImage }: ReligiousOrgHer
                       />
                     </div>
 
+                    <div>
+                      <Label htmlFor="address">Organization Address</Label>
+                      <Input
+                        id="address"
+                        value={formData.address}
+                        onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                        placeholder="123 Church Street"
+                        data-testid="input-address"
+                      />
+                    </div>
+
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <Label htmlFor="state">State *</Label>
@@ -274,9 +282,9 @@ export default function ReligiousOrgHeroQuoteForm({ heroImage }: ReligiousOrgHer
                             <SelectValue placeholder="Select" />
                           </SelectTrigger>
                           <SelectContent>
-                            {US_STATES.map((state) => (
-                              <SelectItem key={state} value={state}>
-                                {state}
+                            {SERVICE_STATES.map((state) => (
+                              <SelectItem key={state.value} value={state.value}>
+                                {state.label}
                               </SelectItem>
                             ))}
                           </SelectContent>
@@ -302,15 +310,27 @@ export default function ReligiousOrgHeroQuoteForm({ heroImage }: ReligiousOrgHer
                       </div>
                     </div>
 
-                    <div>
-                      <Label htmlFor="renewalDate">Current Policy Expiration / Renewal Date</Label>
-                      <Input
-                        id="renewalDate"
-                        type="date"
-                        value={formData.renewalDate}
-                        onChange={(e) => setFormData({ ...formData, renewalDate: e.target.value })}
-                        data-testid="input-renewal-date"
-                      />
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="renewalDate">Policy Expiration Date</Label>
+                        <Input
+                          id="renewalDate"
+                          type="date"
+                          value={formData.renewalDate}
+                          onChange={(e) => setFormData({ ...formData, renewalDate: e.target.value })}
+                          data-testid="input-renewal-date"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="effectiveDate">Desired Effective Date</Label>
+                        <Input
+                          id="effectiveDate"
+                          type="date"
+                          value={formData.effectiveDate}
+                          onChange={(e) => setFormData({ ...formData, effectiveDate: e.target.value })}
+                          data-testid="input-effective-date"
+                        />
+                      </div>
                     </div>
 
                     <div>
@@ -336,6 +356,18 @@ export default function ReligiousOrgHeroQuoteForm({ heroImage }: ReligiousOrgHer
                           </label>
                         ))}
                       </div>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="message">Additional Comments</Label>
+                      <Textarea
+                        id="message"
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        placeholder="Tell us more about your organization's insurance needs..."
+                        rows={3}
+                        data-testid="textarea-message"
+                      />
                     </div>
 
                     <Button 

@@ -5,9 +5,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
+import { SERVICE_STATES } from "@shared/constants/states";
 import { 
   Phone, 
   Shield, 
@@ -39,11 +41,7 @@ const vehicleShowcase = [
   { image: teslaSImage, alt: "Black Tesla Model S", category: "Electric Sedan", name: "Black Tesla Model S" },
 ];
 
-const availableStates = [
-  { abbr: "CA", name: "California", highlight: true },
-  { abbr: "NV", name: "Nevada", highlight: true },
-  { abbr: "AZ", name: "Arizona", highlight: true },
-];
+const highlightedStates = ["CA", "NV", "AZ"];
 
 
 const vehicleTypes = [
@@ -209,10 +207,13 @@ export default function UberBlackInsuranceLanding() {
     contactName: "",
     email: "",
     phone: "",
+    address: "",
     state: "",
+    effectiveDate: "",
     vehicles: "",
     tcpNumber: "",
-    dotNumber: ""
+    dotNumber: "",
+    message: ""
   });
 
   const handleQuickQuote = async (e: React.FormEvent) => {
@@ -233,9 +234,11 @@ export default function UberBlackInsuranceLanding() {
         contact_name: formData.contactName,
         email: formData.email,
         phone: formData.phone,
+        address: formData.address,
         state: formData.state,
+        effective_date: formData.effectiveDate,
         insurance_type: "Uber Black / Luxury Rideshare Commercial Auto",
-        notes: `Vehicles: ${formData.vehicles}, TCP#: ${formData.tcpNumber || 'N/A'}, DOT#: ${formData.dotNumber || 'N/A'}, Source: Uber Black Quick Quote Form`
+        notes: `Vehicles: ${formData.vehicles}, TCP#: ${formData.tcpNumber || 'N/A'}, DOT#: ${formData.dotNumber || 'N/A'}, Message: ${formData.message || 'N/A'}, Source: Uber Black Quick Quote Form`
       });
       toast({
         title: "Quote Request Submitted!",
@@ -246,10 +249,13 @@ export default function UberBlackInsuranceLanding() {
         contactName: "",
         email: "",
         phone: "",
+        address: "",
         state: "",
+        effectiveDate: "",
         vehicles: "",
         tcpNumber: "",
-        dotNumber: ""
+        dotNumber: "",
+        message: ""
       });
     } catch (error) {
       toast({
@@ -302,15 +308,15 @@ export default function UberBlackInsuranceLanding() {
                 
                 {/* State Availability */}
                 <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-8">
-                  {availableStates.map((state) => (
+                  {SERVICE_STATES.filter(state => highlightedStates.includes(state.value)).map((state) => (
                     <Badge 
-                      key={state.abbr}
+                      key={state.value}
                       variant="outline" 
                       className="text-base px-4 py-2 bg-red-600/10 border-red-500/40 text-white font-medium"
-                      data-testid={`badge-state-${state.abbr}`}
+                      data-testid={`badge-state-${state.value}`}
                     >
                       <MapPin className="w-4 h-4 mr-2 text-red-400" />
-                      {state.name}
+                      {state.label}
                     </Badge>
                   ))}
                 </div>
@@ -435,6 +441,18 @@ export default function UberBlackInsuranceLanding() {
                       />
                     </div>
 
+                    <div>
+                      <Label htmlFor="address" className="text-gray-900 font-medium">Business Address</Label>
+                      <Input
+                        id="address"
+                        placeholder="123 Main St, City, State ZIP"
+                        value={formData.address}
+                        onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                        className="mt-1 bg-white border-gray-300"
+                        data-testid="input-address"
+                      />
+                    </div>
+
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <Label htmlFor="state" className="text-gray-900 font-medium">State *</Label>
@@ -443,12 +461,26 @@ export default function UberBlackInsuranceLanding() {
                             <SelectValue placeholder="Select State" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="CA">California</SelectItem>
-                            <SelectItem value="NV">Nevada</SelectItem>
-                            <SelectItem value="AZ">Arizona</SelectItem>
+                            {SERVICE_STATES.map((state) => (
+                              <SelectItem key={state.value} value={state.value}>{state.label}</SelectItem>
+                            ))}
                           </SelectContent>
                         </Select>
                       </div>
+                      <div>
+                        <Label htmlFor="effectiveDate" className="text-gray-900 font-medium">Effective Date</Label>
+                        <Input
+                          id="effectiveDate"
+                          type="date"
+                          value={formData.effectiveDate}
+                          onChange={(e) => setFormData({ ...formData, effectiveDate: e.target.value })}
+                          className="mt-1 bg-white border-gray-300"
+                          data-testid="input-effective-date"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
                       <div>
                         <Label htmlFor="vehicles" className="text-gray-900 font-medium">Vehicles *</Label>
                         <Select value={formData.vehicles} onValueChange={(value) => setFormData({ ...formData, vehicles: value })}>
@@ -464,19 +496,31 @@ export default function UberBlackInsuranceLanding() {
                           </SelectContent>
                         </Select>
                       </div>
+                      <div>
+                        <Label htmlFor="tcpNumber" className="text-gray-900 font-medium">
+                          TCP Number <span className="text-gray-400 font-normal">(optional)</span>
+                        </Label>
+                        <Input
+                          id="tcpNumber"
+                          placeholder="TCP-XXXXX"
+                          value={formData.tcpNumber}
+                          onChange={(e) => setFormData({ ...formData, tcpNumber: e.target.value })}
+                          className="mt-1 bg-white border-gray-300"
+                          data-testid="input-tcp"
+                        />
+                      </div>
                     </div>
 
                     <div>
-                      <Label htmlFor="tcpNumber" className="text-gray-900 font-medium">
-                        TCP Number <span className="text-gray-400 font-normal">(if applicable)</span>
-                      </Label>
-                      <Input
-                        id="tcpNumber"
-                        placeholder="TCP-XXXXX"
-                        value={formData.tcpNumber}
-                        onChange={(e) => setFormData({ ...formData, tcpNumber: e.target.value })}
+                      <Label htmlFor="message" className="text-gray-900 font-medium">Additional Comments</Label>
+                      <Textarea
+                        id="message"
+                        placeholder="Tell us about your insurance needs..."
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         className="mt-1 bg-white border-gray-300"
-                        data-testid="input-tcp"
+                        rows={3}
+                        data-testid="textarea-message"
                       />
                     </div>
 

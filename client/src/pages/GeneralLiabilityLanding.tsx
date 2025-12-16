@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -15,6 +16,7 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
+import { SERVICE_STATES } from "@shared/constants/states";
 import { 
   ArrowRight, 
   Phone, 
@@ -290,9 +292,12 @@ export default function GeneralLiabilityLanding() {
     contactName: "",
     phone: "",
     email: "",
+    address: "",
     state: "",
+    effectiveDate: "",
     businessType: "",
-    employees: ""
+    employees: "",
+    message: ""
   });
 
   useEffect(() => {
@@ -309,8 +314,11 @@ export default function GeneralLiabilityLanding() {
         contact_name: data.contactName,
         phone: data.phone,
         email: data.email,
+        address: data.address,
         state: data.state,
-        insurance_type: `General Liability - ${data.businessType || 'General'} - ${data.employees || 'Not specified'} employees`
+        effective_date: data.effectiveDate,
+        insurance_type: `General Liability - ${data.businessType || 'General'} - ${data.employees || 'Not specified'} employees`,
+        message: data.message
       });
     },
     onSuccess: (data: any) => {
@@ -550,62 +558,27 @@ export default function GeneralLiabilityLanding() {
                       </div>
 
                       <div>
+                        <Label htmlFor="address" className="text-sm font-medium">Business Address</Label>
+                        <Input
+                          id="address"
+                          placeholder="123 Main St, City, ZIP"
+                          value={formData.address}
+                          onChange={(e) => setFormData({...formData, address: e.target.value})}
+                          className="mt-1"
+                          data-testid="input-address"
+                        />
+                      </div>
+
+                      <div>
                         <Label htmlFor="state" className="text-sm font-medium">State *</Label>
                         <Select value={formData.state} onValueChange={(value) => setFormData({...formData, state: value})}>
                           <SelectTrigger className="mt-1" data-testid="select-state">
                             <SelectValue placeholder="Select your state" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="AL">Alabama</SelectItem>
-                            <SelectItem value="AK">Alaska</SelectItem>
-                            <SelectItem value="AZ">Arizona</SelectItem>
-                            <SelectItem value="AR">Arkansas</SelectItem>
-                            <SelectItem value="CA">California</SelectItem>
-                            <SelectItem value="CO">Colorado</SelectItem>
-                            <SelectItem value="CT">Connecticut</SelectItem>
-                            <SelectItem value="DE">Delaware</SelectItem>
-                            <SelectItem value="FL">Florida</SelectItem>
-                            <SelectItem value="GA">Georgia</SelectItem>
-                            <SelectItem value="HI">Hawaii</SelectItem>
-                            <SelectItem value="ID">Idaho</SelectItem>
-                            <SelectItem value="IL">Illinois</SelectItem>
-                            <SelectItem value="IN">Indiana</SelectItem>
-                            <SelectItem value="IA">Iowa</SelectItem>
-                            <SelectItem value="KS">Kansas</SelectItem>
-                            <SelectItem value="KY">Kentucky</SelectItem>
-                            <SelectItem value="LA">Louisiana</SelectItem>
-                            <SelectItem value="ME">Maine</SelectItem>
-                            <SelectItem value="MD">Maryland</SelectItem>
-                            <SelectItem value="MA">Massachusetts</SelectItem>
-                            <SelectItem value="MI">Michigan</SelectItem>
-                            <SelectItem value="MN">Minnesota</SelectItem>
-                            <SelectItem value="MS">Mississippi</SelectItem>
-                            <SelectItem value="MO">Missouri</SelectItem>
-                            <SelectItem value="MT">Montana</SelectItem>
-                            <SelectItem value="NE">Nebraska</SelectItem>
-                            <SelectItem value="NV">Nevada</SelectItem>
-                            <SelectItem value="NH">New Hampshire</SelectItem>
-                            <SelectItem value="NJ">New Jersey</SelectItem>
-                            <SelectItem value="NM">New Mexico</SelectItem>
-                            <SelectItem value="NY">New York</SelectItem>
-                            <SelectItem value="NC">North Carolina</SelectItem>
-                            <SelectItem value="ND">North Dakota</SelectItem>
-                            <SelectItem value="OH">Ohio</SelectItem>
-                            <SelectItem value="OK">Oklahoma</SelectItem>
-                            <SelectItem value="OR">Oregon</SelectItem>
-                            <SelectItem value="PA">Pennsylvania</SelectItem>
-                            <SelectItem value="RI">Rhode Island</SelectItem>
-                            <SelectItem value="SC">South Carolina</SelectItem>
-                            <SelectItem value="SD">South Dakota</SelectItem>
-                            <SelectItem value="TN">Tennessee</SelectItem>
-                            <SelectItem value="TX">Texas</SelectItem>
-                            <SelectItem value="UT">Utah</SelectItem>
-                            <SelectItem value="VT">Vermont</SelectItem>
-                            <SelectItem value="VA">Virginia</SelectItem>
-                            <SelectItem value="WA">Washington</SelectItem>
-                            <SelectItem value="WV">West Virginia</SelectItem>
-                            <SelectItem value="WI">Wisconsin</SelectItem>
-                            <SelectItem value="WY">Wyoming</SelectItem>
+                            {SERVICE_STATES.map(state => (
+                              <SelectItem key={state.value} value={state.value}>{state.label}</SelectItem>
+                            ))}
                           </SelectContent>
                         </Select>
                       </div>
@@ -654,6 +627,31 @@ export default function GeneralLiabilityLanding() {
                             </SelectContent>
                           </Select>
                         </div>
+                      </div>
+
+                      <div>
+                        <Label htmlFor="effectiveDate" className="text-sm font-medium">Desired Effective Date</Label>
+                        <Input
+                          id="effectiveDate"
+                          type="date"
+                          value={formData.effectiveDate}
+                          onChange={(e) => setFormData({...formData, effectiveDate: e.target.value})}
+                          className="mt-1"
+                          data-testid="input-effective-date"
+                        />
+                      </div>
+
+                      <div>
+                        <Label htmlFor="message" className="text-sm font-medium">Additional Comments</Label>
+                        <Textarea
+                          id="message"
+                          placeholder="Any additional information about your business or coverage needs..."
+                          value={formData.message}
+                          onChange={(e) => setFormData({...formData, message: e.target.value})}
+                          className="mt-1"
+                          rows={3}
+                          data-testid="input-message"
+                        />
                       </div>
 
                       <Button 

@@ -5,11 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { SERVICE_STATES } from "@shared/constants/states";
 import { 
   Phone, 
   Clock, 
@@ -36,17 +38,6 @@ import {
 import propertyImage from "@assets/stock_images/church_interior_stai_6b566998.jpg";
 import liabilityImage from "@assets/stock_images/church_exterior_buil_5148c578.jpg";
 import managementImage from "@assets/stock_images/priest_pastor_clergy_8032a459.jpg";
-
-const US_STATES = [
-  "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut",
-  "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa",
-  "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan",
-  "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire",
-  "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio",
-  "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
-  "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia",
-  "Wisconsin", "Wyoming"
-];
 
 const WORSHIP_TYPES = [
   "Church",
@@ -83,10 +74,13 @@ export default function ReligiousOrgLanding() {
     lastName: "",
     email: "",
     phone: "",
+    address: "",
     state: "",
+    effectiveDate: "",
     worshipType: "",
     renewalDate: "",
-    coverageTypes: [] as string[]
+    coverageTypes: [] as string[],
+    message: ""
   });
 
   const handleCoverageToggle = (coverage: string) => {
@@ -120,9 +114,12 @@ export default function ReligiousOrgLanding() {
         phone: formData.phone,
         state: formData.state,
         additionalInfo: JSON.stringify({
+          address: formData.address,
+          effectiveDate: formData.effectiveDate,
           worshipType: formData.worshipType,
           renewalDate: formData.renewalDate,
           coverageTypes: formData.coverageTypes,
+          message: formData.message,
           source: "landing-page"
         })
       });
@@ -387,6 +384,17 @@ export default function ReligiousOrgLanding() {
                           />
                         </div>
 
+                        <div>
+                          <Label htmlFor="address">Organization Address</Label>
+                          <Input
+                            id="address"
+                            value={formData.address}
+                            onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                            placeholder="123 Main St, City, State ZIP"
+                            data-testid="input-lp-address"
+                          />
+                        </div>
+
                         <div className="grid grid-cols-2 gap-4">
                           <div>
                             <Label htmlFor="state">State *</Label>
@@ -398,9 +406,9 @@ export default function ReligiousOrgLanding() {
                                 <SelectValue placeholder="Select" />
                               </SelectTrigger>
                               <SelectContent>
-                                {US_STATES.map((state) => (
-                                  <SelectItem key={state} value={state}>
-                                    {state}
+                                {SERVICE_STATES.map((state) => (
+                                  <SelectItem key={state.value} value={state.value}>
+                                    {state.label}
                                   </SelectItem>
                                 ))}
                               </SelectContent>
@@ -426,15 +434,27 @@ export default function ReligiousOrgLanding() {
                           </div>
                         </div>
 
-                        <div>
-                          <Label htmlFor="renewalDate">Current Policy Expiration / Renewal Date</Label>
-                          <Input
-                            id="renewalDate"
-                            type="date"
-                            value={formData.renewalDate}
-                            onChange={(e) => setFormData({ ...formData, renewalDate: e.target.value })}
-                            data-testid="input-lp-renewal-date"
-                          />
+                        <div className="grid grid-cols-2 gap-4">
+                          <div>
+                            <Label htmlFor="effectiveDate">Desired Effective Date</Label>
+                            <Input
+                              id="effectiveDate"
+                              type="date"
+                              value={formData.effectiveDate}
+                              onChange={(e) => setFormData({ ...formData, effectiveDate: e.target.value })}
+                              data-testid="input-lp-effective-date"
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="renewalDate">Current Policy Expiration</Label>
+                            <Input
+                              id="renewalDate"
+                              type="date"
+                              value={formData.renewalDate}
+                              onChange={(e) => setFormData({ ...formData, renewalDate: e.target.value })}
+                              data-testid="input-lp-renewal-date"
+                            />
+                          </div>
                         </div>
 
                         <div>
@@ -460,6 +480,18 @@ export default function ReligiousOrgLanding() {
                               </label>
                             ))}
                           </div>
+                        </div>
+
+                        <div>
+                          <Label htmlFor="message">Additional Comments</Label>
+                          <Textarea
+                            id="message"
+                            value={formData.message}
+                            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                            placeholder="Any additional information about your organization or coverage needs..."
+                            rows={3}
+                            data-testid="input-lp-message"
+                          />
                         </div>
 
                         <Button 

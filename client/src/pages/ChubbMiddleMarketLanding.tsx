@@ -50,6 +50,7 @@ import {
   Car,
   Scale
 } from "lucide-react";
+import { SERVICE_STATES } from "@shared/constants/states";
 
 const productLines = [
   {
@@ -246,17 +247,6 @@ const faqs = [
   }
 ];
 
-const usStates = [
-  "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut",
-  "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa",
-  "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan",
-  "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire",
-  "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio",
-  "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
-  "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia",
-  "Wisconsin", "Wyoming"
-];
-
 export default function ChubbMiddleMarketLanding() {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
@@ -264,7 +254,9 @@ export default function ChubbMiddleMarketLanding() {
     contactName: "",
     email: "",
     phone: "",
+    address: "",
     state: "",
+    effectiveDate: "",
     industry: "",
     annualRevenue: "",
     employeeCount: "",
@@ -279,7 +271,9 @@ export default function ChubbMiddleMarketLanding() {
         contact_name: data.contactName,
         email: data.email,
         phone: data.phone,
+        address: data.address,
         state: data.state,
+        effective_date: data.effectiveDate,
         insurance_types: ["Chubb Middle Market", ...data.coverageNeeds],
         industry: data.industry,
         annual_revenue: data.annualRevenue,
@@ -298,7 +292,9 @@ export default function ChubbMiddleMarketLanding() {
         contactName: "",
         email: "",
         phone: "",
+        address: "",
         state: "",
+        effectiveDate: "",
         industry: "",
         annualRevenue: "",
         employeeCount: "",
@@ -583,6 +579,17 @@ export default function ChubbMiddleMarketLanding() {
                       </div>
                     </div>
 
+                    <div className="space-y-2">
+                      <Label htmlFor="address">Business Address</Label>
+                      <Input
+                        id="address"
+                        data-testid="input-address"
+                        value={formData.address}
+                        onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                        placeholder="123 Main St, City, State ZIP"
+                      />
+                    </div>
+
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="state">Primary State</Label>
@@ -594,31 +601,41 @@ export default function ChubbMiddleMarketLanding() {
                             <SelectValue placeholder="Select state" />
                           </SelectTrigger>
                           <SelectContent>
-                            {usStates.map((state) => (
+                            {SERVICE_STATES.map((state) => (
                               <SelectItem key={state} value={state}>{state}</SelectItem>
                             ))}
                           </SelectContent>
                         </Select>
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="industry">Industry</Label>
-                        <Select
-                          value={formData.industry}
-                          onValueChange={(value) => setFormData({ ...formData, industry: value })}
-                        >
-                          <SelectTrigger data-testid="select-industry">
-                            <SelectValue placeholder="Select industry" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {targetIndustries.flatMap(cat => cat.industries).map((ind) => (
-                              <SelectItem key={ind} value={ind}>{ind}</SelectItem>
-                            ))}
-                            <SelectItem value="Other">Other</SelectItem>
-                          </SelectContent>
-                        </Select>
+                        <Label htmlFor="effectiveDate">Desired Effective Date</Label>
+                        <Input
+                          id="effectiveDate"
+                          type="date"
+                          data-testid="input-effective-date"
+                          value={formData.effectiveDate}
+                          onChange={(e) => setFormData({ ...formData, effectiveDate: e.target.value })}
+                        />
                       </div>
                     </div>
 
+                    <div className="space-y-2">
+                      <Label htmlFor="industry">Industry</Label>
+                      <Select
+                        value={formData.industry}
+                        onValueChange={(value) => setFormData({ ...formData, industry: value })}
+                      >
+                        <SelectTrigger data-testid="select-industry">
+                          <SelectValue placeholder="Select industry" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {targetIndustries.flatMap(cat => cat.industries).map((ind) => (
+                            <SelectItem key={ind} value={ind}>{ind}</SelectItem>
+                          ))}
+                          <SelectItem value="Other">Other</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="annualRevenue">Annual Revenue</Label>

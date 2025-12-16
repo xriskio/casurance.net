@@ -4,10 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { SERVICE_STATES } from "@shared/constants/states";
 import { 
   ArrowRight, 
   Phone, 
@@ -44,7 +46,9 @@ export default function ManufacturingInsuranceLanding() {
     email: "",
     phone: "",
     companyName: "",
+    address: "",
     state: "",
+    effectiveDate: "",
     businessType: "",
     annualRevenue: "",
     employees: "",
@@ -61,12 +65,14 @@ export default function ManufacturingInsuranceLanding() {
         contactName: `${formData.firstName} ${formData.lastName}`.trim(),
         email: formData.email,
         phone: formData.phone,
+        address: formData.address,
+        state: formData.state,
+        effectiveDate: formData.effectiveDate,
         insuranceType: "Manufacturing Insurance",
         industry: formData.businessType,
         employeeCount: formData.employees,
         annualRevenue: formData.annualRevenue,
         additionalInfo: JSON.stringify({
-          state: formData.state,
           message: formData.message,
           source: "manufacturing-insurance-landing"
         })
@@ -83,7 +89,9 @@ export default function ManufacturingInsuranceLanding() {
         email: "",
         phone: "",
         companyName: "",
+        address: "",
         state: "",
+        effectiveDate: "",
         businessType: "",
         annualRevenue: "",
         employees: "",
@@ -345,6 +353,18 @@ export default function ManufacturingInsuranceLanding() {
                       </div>
                     </div>
 
+                    <div>
+                      <Label htmlFor="address" className="text-gray-900 font-medium">Business Address</Label>
+                      <Input
+                        id="address"
+                        value={formData.address}
+                        onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                        placeholder="123 Main St, City, State ZIP"
+                        className="mt-1"
+                        data-testid="input-address"
+                      />
+                    </div>
+
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <Label htmlFor="state" className="text-gray-900 font-medium">State</Label>
@@ -353,38 +373,56 @@ export default function ManufacturingInsuranceLanding() {
                             <SelectValue placeholder="Select" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="CA">California</SelectItem>
-                            <SelectItem value="TX">Texas</SelectItem>
-                            <SelectItem value="OH">Ohio</SelectItem>
-                            <SelectItem value="MI">Michigan</SelectItem>
-                            <SelectItem value="IL">Illinois</SelectItem>
-                            <SelectItem value="PA">Pennsylvania</SelectItem>
-                            <SelectItem value="IN">Indiana</SelectItem>
-                            <SelectItem value="WI">Wisconsin</SelectItem>
-                            <SelectItem value="NC">North Carolina</SelectItem>
-                            <SelectItem value="other">Other State</SelectItem>
+                            {SERVICE_STATES.map((state) => (
+                              <SelectItem key={state.value} value={state.value}>{state.label}</SelectItem>
+                            ))}
                           </SelectContent>
                         </Select>
                       </div>
                       <div>
-                        <Label htmlFor="businessType" className="text-gray-900 font-medium">Manufacturing Type</Label>
-                        <Select value={formData.businessType} onValueChange={(value) => setFormData({ ...formData, businessType: value })}>
-                          <SelectTrigger className="mt-1" data-testid="select-business-type">
-                            <SelectValue placeholder="Select" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="machinery">Machinery</SelectItem>
-                            <SelectItem value="fabricated-metal">Fabricated Metal</SelectItem>
-                            <SelectItem value="auto-parts">Auto Parts</SelectItem>
-                            <SelectItem value="plastics">Plastic Products</SelectItem>
-                            <SelectItem value="chemicals">Chemicals</SelectItem>
-                            <SelectItem value="food">Food Manufacturing</SelectItem>
-                            <SelectItem value="electronics">Electronics</SelectItem>
-                            <SelectItem value="aerospace">Aerospace</SelectItem>
-                            <SelectItem value="other">Other</SelectItem>
-                          </SelectContent>
-                        </Select>
+                        <Label htmlFor="effectiveDate" className="text-gray-900 font-medium">Effective Date</Label>
+                        <Input
+                          id="effectiveDate"
+                          type="date"
+                          value={formData.effectiveDate}
+                          onChange={(e) => setFormData({ ...formData, effectiveDate: e.target.value })}
+                          className="mt-1"
+                          data-testid="input-effective-date"
+                        />
                       </div>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="businessType" className="text-gray-900 font-medium">Manufacturing Type</Label>
+                      <Select value={formData.businessType} onValueChange={(value) => setFormData({ ...formData, businessType: value })}>
+                        <SelectTrigger className="mt-1" data-testid="select-business-type">
+                          <SelectValue placeholder="Select" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="machinery">Machinery</SelectItem>
+                          <SelectItem value="fabricated-metal">Fabricated Metal</SelectItem>
+                          <SelectItem value="auto-parts">Auto Parts</SelectItem>
+                          <SelectItem value="plastics">Plastic Products</SelectItem>
+                          <SelectItem value="chemicals">Chemicals</SelectItem>
+                          <SelectItem value="food">Food Manufacturing</SelectItem>
+                          <SelectItem value="electronics">Electronics</SelectItem>
+                          <SelectItem value="aerospace">Aerospace</SelectItem>
+                          <SelectItem value="other">Other</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="message" className="text-gray-900 font-medium">Additional Comments</Label>
+                      <Textarea
+                        id="message"
+                        placeholder="Tell us about your insurance needs..."
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        className="mt-1"
+                        rows={3}
+                        data-testid="textarea-message"
+                      />
                     </div>
 
                     <Button 

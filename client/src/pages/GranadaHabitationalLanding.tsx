@@ -25,6 +25,7 @@ import { apiRequest } from "@/lib/queryClient";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import granadaLogo from "@assets/image_1765416946425.png";
+import { SERVICE_STATES } from "@shared/constants/states";
 import { 
   Building2, 
   Shield, 
@@ -199,17 +200,6 @@ const faqs = [
   }
 ];
 
-const usStates = [
-  "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut",
-  "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa",
-  "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan",
-  "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire",
-  "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio",
-  "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
-  "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia",
-  "Wisconsin", "Wyoming"
-];
-
 export default function GranadaHabitationalLanding() {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
@@ -221,6 +211,7 @@ export default function GranadaHabitationalLanding() {
     city: "",
     state: "",
     zipCode: "",
+    effectiveDate: "",
     propertyType: "",
     numberOfUnits: "",
     numberOfStories: "",
@@ -246,6 +237,7 @@ export default function GranadaHabitationalLanding() {
         city: data.city,
         state: data.state,
         zip_code: data.zipCode,
+        effective_date: data.effectiveDate,
         insurance_types: ["Granada Habitational Program"],
         property_type: data.propertyType,
         number_of_units: data.numberOfUnits,
@@ -276,6 +268,7 @@ export default function GranadaHabitationalLanding() {
         city: "",
         state: "",
         zipCode: "",
+        effectiveDate: "",
         propertyType: "",
         numberOfUnits: "",
         numberOfStories: "",
@@ -633,8 +626,8 @@ export default function GranadaHabitationalLanding() {
                               <SelectValue placeholder="Select state" />
                             </SelectTrigger>
                             <SelectContent>
-                              {usStates.map(state => (
-                                <SelectItem key={state} value={state}>{state}</SelectItem>
+                              {SERVICE_STATES.map(state => (
+                                <SelectItem key={state.value} value={state.value}>{state.label}</SelectItem>
                               ))}
                             </SelectContent>
                           </Select>
@@ -650,6 +643,16 @@ export default function GranadaHabitationalLanding() {
                             required
                           />
                         </div>
+                      </div>
+                      <div className="mt-4 space-y-2">
+                        <Label htmlFor="effectiveDate">Desired Effective Date</Label>
+                        <Input
+                          id="effectiveDate"
+                          type="date"
+                          data-testid="input-effective-date"
+                          value={formData.effectiveDate}
+                          onChange={(e) => setFormData({...formData, effectiveDate: e.target.value})}
+                        />
                       </div>
                     </div>
 

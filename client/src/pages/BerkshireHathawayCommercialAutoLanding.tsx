@@ -40,25 +40,22 @@ import {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import bhhcLogo from "@assets/image_1765258168209.png";
+import { SERVICE_STATES } from "@shared/constants/states";
 
 const quickQuoteSchema = z.object({
   businessName: z.string().min(2, "Business name is required"),
   contactName: z.string().min(2, "Contact name is required"),
   email: z.string().email("Valid email is required"),
   phone: z.string().min(10, "Valid phone number is required"),
+  address: z.string().optional(),
   state: z.string().min(1, "Please select a state"),
+  effectiveDate: z.string().optional(),
   businessType: z.string().min(1, "Please select a business type"),
   vehicleCount: z.string().min(1, "Please enter number of vehicles"),
   message: z.string().optional(),
 });
 
 type QuickQuoteFormData = z.infer<typeof quickQuoteSchema>;
-
-const availableStates = [
-  { value: "CA", label: "California" },
-  { value: "NV", label: "Nevada" },
-  { value: "OH", label: "Ohio" },
-];
 
 const truckingClasses = [
   { value: "contractors", label: "Contractors", icon: HardHat, description: "General and specialty trade contractors" },
@@ -206,7 +203,9 @@ export default function BerkshireHathawayCommercialAutoLanding() {
       contactName: "",
       email: "",
       phone: "",
+      address: "",
       state: "",
+      effectiveDate: "",
       businessType: "",
       vehicleCount: "",
       message: "",
@@ -223,10 +222,13 @@ export default function BerkshireHathawayCommercialAutoLanding() {
           contact_name: data.contactName,
           email: data.email,
           phone: data.phone,
+          address: data.address || "",
           state: data.state,
+          effective_date: data.effectiveDate || "",
           business_type: data.businessType,
           vehicle_count: data.vehicleCount,
-          message: data.message || "",
+          insurance_type: "Berkshire Hathaway Commercial Auto",
+          notes: data.message || "",
           source: "Berkshire Hathaway Commercial Auto Landing Page",
         }),
       });
@@ -261,7 +263,7 @@ export default function BerkshireHathawayCommercialAutoLanding() {
     "description": "Get Berkshire Hathaway Homestate Companies Commercial Auto insurance quotes for California, Nevada, and Ohio businesses. Trucking, contractors, and commercial vehicle coverage.",
     "url": "https://casurance.net/berkshire-hathaway-commercial-auto",
     "telephone": "1-888-254-0089",
-    "areaServed": availableStates.map(state => ({
+    "areaServed": SERVICE_STATES.map(state => ({
       "@type": "State",
       "name": state.label
     })),
@@ -412,6 +414,19 @@ export default function BerkshireHathawayCommercialAutoLanding() {
                             </FormItem>
                           )}
                         />
+                        <FormField
+                          control={form.control}
+                          name="address"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="text-gray-700">Business Address</FormLabel>
+                              <FormControl>
+                                <Input {...field} placeholder="123 Main St, City, State ZIP" data-testid="input-address" />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
                         <div className="grid grid-cols-2 gap-4">
                           <FormField
                             control={form.control}
@@ -426,7 +441,7 @@ export default function BerkshireHathawayCommercialAutoLanding() {
                                     </SelectTrigger>
                                   </FormControl>
                                   <SelectContent>
-                                    {availableStates.map((state) => (
+                                    {SERVICE_STATES.map((state) => (
                                       <SelectItem key={state.value} value={state.value}>
                                         {state.label}
                                       </SelectItem>
@@ -437,6 +452,21 @@ export default function BerkshireHathawayCommercialAutoLanding() {
                               </FormItem>
                             )}
                           />
+                          <FormField
+                            control={form.control}
+                            name="effectiveDate"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel className="text-gray-700">Desired Effective Date</FormLabel>
+                                <FormControl>
+                                  <Input {...field} type="date" data-testid="input-effective-date" />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
                           <FormField
                             control={form.control}
                             name="vehicleCount"
@@ -795,20 +825,24 @@ export default function BerkshireHathawayCommercialAutoLanding() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold text-foreground mb-4" data-testid="text-states-title">
-                  State Availability
+                  Nationwide Coverage
                 </h2>
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Casurance offers Berkshire Hathaway Commercial Auto coverage in these states
+                  Casurance offers Berkshire Hathaway Commercial Auto coverage across all 50 US states
                 </p>
               </div>
 
               <div className="grid md:grid-cols-3 gap-8">
-                {availableStates.map((state, index) => (
+                {[
+                  { value: "CA", label: "California", highlight: "Most Popular" },
+                  { value: "TX", label: "Texas", highlight: "Major Market" },
+                  { value: "FL", label: "Florida", highlight: "Growing State" },
+                ].map((state, index) => (
                   <Card key={index} className="text-center hover-elevate" data-testid={`state-card-${index}`}>
                     <CardContent className="p-8">
                       <MapPin className="h-12 w-12 text-[#003366] mx-auto mb-4" />
                       <h3 className="text-2xl font-bold mb-2">{state.label}</h3>
-                      <p className="text-muted-foreground mb-4">Full commercial auto coverage available</p>
+                      <p className="text-muted-foreground mb-4">{state.highlight}</p>
                       <a href="#quote-form">
                         <Button variant="outline" className="border-[#003366] text-[#003366] hover:bg-[#003366] hover:text-white">
                           Get {state.value} Quote
@@ -818,6 +852,9 @@ export default function BerkshireHathawayCommercialAutoLanding() {
                   </Card>
                 ))}
               </div>
+              <p className="text-center text-muted-foreground mt-8">
+                Plus coverage available in all other US states - select your state in the quote form above
+              </p>
             </div>
           </section>
 

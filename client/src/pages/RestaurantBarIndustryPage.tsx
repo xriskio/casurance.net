@@ -39,16 +39,8 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
-
-const usStates = [
-  "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware",
-  "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky",
-  "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri",
-  "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York",
-  "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island",
-  "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington",
-  "West Virginia", "Wisconsin", "Wyoming"
-];
+import { SERVICE_STATES } from "@shared/constants/states";
+import { Textarea } from "@/components/ui/textarea";
 
 const businessTypes = [
   { icon: Utensils, name: "Fine Dining", description: "White tablecloth establishments" },
@@ -231,11 +223,14 @@ export default function RestaurantBarIndustryPage() {
     contactName: "",
     phone: "",
     email: "",
+    address: "",
     city: "",
     state: "",
+    effectiveDate: "",
     businessType: "",
     annualRevenue: "",
-    liquorPercentage: ""
+    liquorPercentage: "",
+    message: ""
   });
 
   const submitMutation = useMutation({
@@ -248,10 +243,13 @@ export default function RestaurantBarIndustryPage() {
         phone: form.phone,
         state: form.state,
         additionalInfo: JSON.stringify({
+          address: form.address,
           city: form.city,
+          effectiveDate: form.effectiveDate,
           businessType: form.businessType,
           annualRevenue: form.annualRevenue,
           liquorPercentage: form.liquorPercentage,
+          message: form.message,
           source: "restaurant-bar-industry-page"
         })
       });
@@ -266,11 +264,14 @@ export default function RestaurantBarIndustryPage() {
         contactName: "",
         phone: "",
         email: "",
+        address: "",
         city: "",
         state: "",
+        effectiveDate: "",
         businessType: "",
         annualRevenue: "",
-        liquorPercentage: ""
+        liquorPercentage: "",
+        message: ""
       });
     },
     onError: () => {
@@ -401,6 +402,16 @@ export default function RestaurantBarIndustryPage() {
                         />
                       </div>
                     </div>
+                    <div>
+                      <Label htmlFor="address">Business Address</Label>
+                      <Input
+                        id="address"
+                        value={form.address}
+                        onChange={(e) => setForm({ ...form, address: e.target.value })}
+                        placeholder="123 Restaurant Way"
+                        data-testid="input-address"
+                      />
+                    </div>
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
                         <Label htmlFor="city">City</Label>
@@ -419,31 +430,54 @@ export default function RestaurantBarIndustryPage() {
                             <SelectValue placeholder="Select State" />
                           </SelectTrigger>
                           <SelectContent>
-                            {usStates.map(s => (
-                              <SelectItem key={s} value={s}>{s}</SelectItem>
+                            {SERVICE_STATES.map(s => (
+                              <SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>
                             ))}
                           </SelectContent>
                         </Select>
                       </div>
                     </div>
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="businessType">Business Type</Label>
+                        <Select value={form.businessType} onValueChange={(v) => setForm({ ...form, businessType: v })}>
+                          <SelectTrigger data-testid="select-business-type">
+                            <SelectValue placeholder="Select Type" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="fine-dining">Fine Dining</SelectItem>
+                            <SelectItem value="casual-dining">Casual Dining</SelectItem>
+                            <SelectItem value="fast-casual">Fast Casual</SelectItem>
+                            <SelectItem value="bar-tavern">Bar / Tavern</SelectItem>
+                            <SelectItem value="nightclub">Nightclub</SelectItem>
+                            <SelectItem value="cafe-coffee">Cafe / Coffee Shop</SelectItem>
+                            <SelectItem value="food-truck">Food Truck</SelectItem>
+                            <SelectItem value="catering">Catering</SelectItem>
+                            <SelectItem value="ghost-kitchen">Ghost Kitchen</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div>
+                        <Label htmlFor="effectiveDate">Desired Effective Date</Label>
+                        <Input
+                          id="effectiveDate"
+                          type="date"
+                          value={form.effectiveDate}
+                          onChange={(e) => setForm({ ...form, effectiveDate: e.target.value })}
+                          data-testid="input-effective-date"
+                        />
+                      </div>
+                    </div>
                     <div>
-                      <Label htmlFor="businessType">Business Type</Label>
-                      <Select value={form.businessType} onValueChange={(v) => setForm({ ...form, businessType: v })}>
-                        <SelectTrigger data-testid="select-business-type">
-                          <SelectValue placeholder="Select Type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="fine-dining">Fine Dining</SelectItem>
-                          <SelectItem value="casual-dining">Casual Dining</SelectItem>
-                          <SelectItem value="fast-casual">Fast Casual</SelectItem>
-                          <SelectItem value="bar-tavern">Bar / Tavern</SelectItem>
-                          <SelectItem value="nightclub">Nightclub</SelectItem>
-                          <SelectItem value="cafe-coffee">Cafe / Coffee Shop</SelectItem>
-                          <SelectItem value="food-truck">Food Truck</SelectItem>
-                          <SelectItem value="catering">Catering</SelectItem>
-                          <SelectItem value="ghost-kitchen">Ghost Kitchen</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      <Label htmlFor="message">Additional Comments</Label>
+                      <Textarea
+                        id="message"
+                        value={form.message}
+                        onChange={(e) => setForm({ ...form, message: e.target.value })}
+                        placeholder="Tell us more about your insurance needs..."
+                        rows={3}
+                        data-testid="textarea-message"
+                      />
                     </div>
                     <Button 
                       type="submit" 

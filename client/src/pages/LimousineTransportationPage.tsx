@@ -38,6 +38,8 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
+import { SERVICE_STATES } from "@shared/constants/states";
+import { Textarea } from "@/components/ui/textarea";
 
 import fleetImage from "@assets/image_1765689695192.png";
 import sprinterImage from "@assets/Black-van_1765689662600.png";
@@ -265,16 +267,6 @@ const faqs = [
   }
 ];
 
-const usStates = [
-  "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware",
-  "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky",
-  "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri",
-  "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York",
-  "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island",
-  "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington",
-  "West Virginia", "Wisconsin", "Wyoming"
-];
-
 const insuranceTypes = [
   "Auto Liability",
   "Physical Damage",
@@ -293,9 +285,12 @@ export default function LimousineTransportationPage() {
     lastName: "",
     phone: "",
     email: "",
+    address: "",
     state: "",
+    effectiveDate: "",
     vehicles: "",
-    insuranceType: ""
+    insuranceType: "",
+    message: ""
   });
 
   const submitQuoteMutation = useMutation({
@@ -307,9 +302,12 @@ export default function LimousineTransportationPage() {
         businessPhone: quoteForm.phone,
         status: "pending",
         payload: {
+          address: quoteForm.address,
           state: quoteForm.state,
+          effectiveDate: quoteForm.effectiveDate,
           vehicles: quoteForm.vehicles,
           insuranceType: quoteForm.insuranceType,
+          message: quoteForm.message,
           source: "limousine-transportation-page"
         }
       });
@@ -325,9 +323,12 @@ export default function LimousineTransportationPage() {
         lastName: "",
         phone: "",
         email: "",
+        address: "",
         state: "",
+        effectiveDate: "",
         vehicles: "",
-        insuranceType: ""
+        insuranceType: "",
+        message: ""
       });
     },
     onError: () => {
@@ -461,6 +462,16 @@ export default function LimousineTransportationPage() {
                           />
                         </div>
                       </div>
+                      <div>
+                        <Label htmlFor="address" className="text-sm">Business Address</Label>
+                        <Input
+                          id="address"
+                          placeholder="123 Main St, Suite 100"
+                          value={quoteForm.address}
+                          onChange={(e) => setQuoteForm({...quoteForm, address: e.target.value})}
+                          data-testid="input-address"
+                        />
+                      </div>
                       <div className="grid grid-cols-2 gap-2">
                         <div>
                           <Label htmlFor="state" className="text-sm">State *</Label>
@@ -472,8 +483,8 @@ export default function LimousineTransportationPage() {
                               <SelectValue placeholder="Select..." />
                             </SelectTrigger>
                             <SelectContent>
-                              {usStates.map(state => (
-                                <SelectItem key={state} value={state}>{state}</SelectItem>
+                              {SERVICE_STATES.map(state => (
+                                <SelectItem key={state.value} value={state.value}>{state.label}</SelectItem>
                               ))}
                             </SelectContent>
                           </Select>
@@ -491,21 +502,44 @@ export default function LimousineTransportationPage() {
                           />
                         </div>
                       </div>
+                      <div className="grid grid-cols-2 gap-2">
+                        <div>
+                          <Label htmlFor="insuranceType" className="text-sm">Type of Insurance Desired *</Label>
+                          <Select 
+                            value={quoteForm.insuranceType} 
+                            onValueChange={(value) => setQuoteForm({...quoteForm, insuranceType: value})}
+                          >
+                            <SelectTrigger id="insuranceType" data-testid="select-insurance-type">
+                              <SelectValue placeholder="Select insurance type..." />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {insuranceTypes.map(type => (
+                                <SelectItem key={type} value={type}>{type}</SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+                        <div>
+                          <Label htmlFor="effectiveDate" className="text-sm">Desired Effective Date</Label>
+                          <Input
+                            id="effectiveDate"
+                            type="date"
+                            value={quoteForm.effectiveDate}
+                            onChange={(e) => setQuoteForm({...quoteForm, effectiveDate: e.target.value})}
+                            data-testid="input-effective-date"
+                          />
+                        </div>
+                      </div>
                       <div>
-                        <Label htmlFor="insuranceType" className="text-sm">Type of Insurance Desired *</Label>
-                        <Select 
-                          value={quoteForm.insuranceType} 
-                          onValueChange={(value) => setQuoteForm({...quoteForm, insuranceType: value})}
-                        >
-                          <SelectTrigger id="insuranceType" data-testid="select-insurance-type">
-                            <SelectValue placeholder="Select insurance type..." />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {insuranceTypes.map(type => (
-                              <SelectItem key={type} value={type}>{type}</SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                        <Label htmlFor="message" className="text-sm">Additional Comments</Label>
+                        <Textarea
+                          id="message"
+                          placeholder="Tell us more about your coverage needs..."
+                          value={quoteForm.message}
+                          onChange={(e) => setQuoteForm({...quoteForm, message: e.target.value})}
+                          rows={3}
+                          data-testid="textarea-message"
+                        />
                       </div>
                       <Button 
                         type="submit" 

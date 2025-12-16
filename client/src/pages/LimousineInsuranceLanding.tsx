@@ -7,8 +7,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
+import { SERVICE_STATES } from "@shared/constants/states";
 import { 
   Shield, 
   Car, 
@@ -33,16 +35,6 @@ import sprinterImage from "@assets/Black-van_1765689662600.png";
 import liveryInterior from "@assets/Livery_1765689662600.jpg";
 import motorcoachImage from "@assets/00_Passenger_Transport_1765689662600.png";
 import insureLimosLogo from "@assets/generated-image_(3)_1765690259677.png";
-
-const usStates = [
-  "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware",
-  "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky",
-  "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri",
-  "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York",
-  "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island",
-  "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington",
-  "West Virginia", "Wisconsin", "Wyoming"
-];
 
 const vehicleTypes = [
   "Sedan / Town Car",
@@ -77,10 +69,13 @@ export default function LimousineInsuranceLanding() {
     contactName: "",
     phone: "",
     email: "",
+    address: "",
     state: "",
+    effectiveDate: "",
     numVehicles: "",
     vehicleType: "",
-    currentInsurance: ""
+    currentInsurance: "",
+    message: ""
   });
 
   const submitMutation = useMutation({
@@ -92,10 +87,13 @@ export default function LimousineInsuranceLanding() {
         businessPhone: form.phone,
         status: "pending",
         payload: {
+          address: form.address,
           state: form.state,
+          effectiveDate: form.effectiveDate,
           numVehicles: form.numVehicles,
           vehicleType: form.vehicleType,
           currentInsurance: form.currentInsurance,
+          message: form.message,
           source: "limousine-landing-page"
         }
       });
@@ -110,10 +108,13 @@ export default function LimousineInsuranceLanding() {
         contactName: "",
         phone: "",
         email: "",
+        address: "",
         state: "",
+        effectiveDate: "",
         numVehicles: "",
         vehicleType: "",
-        currentInsurance: ""
+        currentInsurance: "",
+        message: ""
       });
     },
     onError: () => {
@@ -239,6 +240,16 @@ export default function LimousineInsuranceLanding() {
                         data-testid="input-email"
                       />
                     </div>
+                    <div>
+                      <Label htmlFor="address">Business Address</Label>
+                      <Input
+                        id="address"
+                        placeholder="123 Main St, City, ZIP"
+                        value={form.address}
+                        onChange={(e) => setForm({...form, address: e.target.value})}
+                        data-testid="input-address"
+                      />
+                    </div>
                     <div className="grid grid-cols-2 gap-3">
                       <div>
                         <Label htmlFor="state">State *</Label>
@@ -247,7 +258,7 @@ export default function LimousineInsuranceLanding() {
                             <SelectValue placeholder="Select..." />
                           </SelectTrigger>
                           <SelectContent>
-                            {usStates.map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+                            {SERVICE_STATES.map(state => <SelectItem key={state.value} value={state.value}>{state.label}</SelectItem>)}
                           </SelectContent>
                         </Select>
                       </div>
@@ -275,6 +286,27 @@ export default function LimousineInsuranceLanding() {
                           {vehicleTypes.map(t => <SelectItem key={t} value={t}>{t}</SelectItem>)}
                         </SelectContent>
                       </Select>
+                    </div>
+                    <div>
+                      <Label htmlFor="effectiveDate">Desired Effective Date</Label>
+                      <Input
+                        id="effectiveDate"
+                        type="date"
+                        value={form.effectiveDate}
+                        onChange={(e) => setForm({...form, effectiveDate: e.target.value})}
+                        data-testid="input-effective-date"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="message">Additional Comments</Label>
+                      <Textarea
+                        id="message"
+                        placeholder="Any additional information about your fleet or coverage needs..."
+                        value={form.message}
+                        onChange={(e) => setForm({...form, message: e.target.value})}
+                        rows={3}
+                        data-testid="input-message"
+                      />
                     </div>
                     <Button 
                       type="submit" 

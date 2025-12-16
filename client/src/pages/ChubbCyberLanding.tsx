@@ -43,6 +43,7 @@ import {
   Mail,
   CreditCard
 } from "lucide-react";
+import { SERVICE_STATES } from "@shared/constants/states";
 
 const coverageFeatures = [
   {
@@ -122,17 +123,6 @@ const faqs = [
   }
 ];
 
-const usStates = [
-  "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut",
-  "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa",
-  "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan",
-  "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire",
-  "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio",
-  "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
-  "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia",
-  "Wisconsin", "Wyoming"
-];
-
 export default function ChubbCyberLanding() {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
@@ -140,7 +130,9 @@ export default function ChubbCyberLanding() {
     contactName: "",
     email: "",
     phone: "",
+    address: "",
     state: "",
+    effectiveDate: "",
     industry: "",
     annualRevenue: "",
     recordsStored: "",
@@ -154,7 +146,9 @@ export default function ChubbCyberLanding() {
         contact_name: data.contactName,
         email: data.email,
         phone: data.phone,
+        address: data.address,
         state: data.state,
+        effective_date: data.effectiveDate,
         insurance_type: "Chubb Cyber Liability",
         business_type: data.industry,
         notes: `Annual Revenue: ${data.annualRevenue}\nRecords Stored: ${data.recordsStored}\n${data.notes}`
@@ -170,7 +164,9 @@ export default function ChubbCyberLanding() {
         contactName: "",
         email: "",
         phone: "",
+        address: "",
         state: "",
+        effectiveDate: "",
         industry: "",
         annualRevenue: "",
         recordsStored: "",
@@ -354,6 +350,17 @@ export default function ChubbCyberLanding() {
                         </div>
                       </div>
 
+                      <div>
+                        <Label htmlFor="address">Business Address</Label>
+                        <Input
+                          id="address"
+                          value={formData.address}
+                          onChange={(e) => setFormData(prev => ({ ...prev, address: e.target.value }))}
+                          placeholder="123 Main St, City, State ZIP"
+                          data-testid="input-address"
+                        />
+                      </div>
+
                       <div className="grid grid-cols-2 gap-4">
                         <div>
                           <Label htmlFor="state">State *</Label>
@@ -362,25 +369,36 @@ export default function ChubbCyberLanding() {
                               <SelectValue placeholder="Select State" />
                             </SelectTrigger>
                             <SelectContent>
-                              {usStates.map((state) => (
+                              {SERVICE_STATES.map((state) => (
                                 <SelectItem key={state} value={state}>{state}</SelectItem>
                               ))}
                             </SelectContent>
                           </Select>
                         </div>
                         <div>
-                          <Label htmlFor="industry">Industry</Label>
-                          <Select value={formData.industry} onValueChange={(value) => setFormData(prev => ({ ...prev, industry: value }))}>
-                            <SelectTrigger data-testid="select-industry">
-                              <SelectValue placeholder="Select Industry" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {eligibleBusinesses.map((ind) => (
-                                <SelectItem key={ind} value={ind}>{ind}</SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
+                          <Label htmlFor="effectiveDate">Desired Effective Date</Label>
+                          <Input
+                            id="effectiveDate"
+                            type="date"
+                            value={formData.effectiveDate}
+                            onChange={(e) => setFormData(prev => ({ ...prev, effectiveDate: e.target.value }))}
+                            data-testid="input-effective-date"
+                          />
                         </div>
+                      </div>
+
+                      <div>
+                        <Label htmlFor="industry">Industry</Label>
+                        <Select value={formData.industry} onValueChange={(value) => setFormData(prev => ({ ...prev, industry: value }))}>
+                          <SelectTrigger data-testid="select-industry">
+                            <SelectValue placeholder="Select Industry" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {eligibleBusinesses.map((ind) => (
+                              <SelectItem key={ind} value={ind}>{ind}</SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
                       </div>
 
                       <div className="grid grid-cols-2 gap-4">

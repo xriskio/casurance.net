@@ -39,12 +39,15 @@ import {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import bristolWestLogo from "@assets/BristolWest_1765259973928.png";
+import { SERVICE_STATES } from "@shared/constants/states";
 
 const quickQuoteSchema = z.object({
   fullName: z.string().min(2, "Full name is required"),
   email: z.string().email("Valid email is required"),
   phone: z.string().min(10, "Valid phone number is required"),
+  address: z.string().optional(),
   state: z.string().min(1, "Please select a state"),
+  effectiveDate: z.string().optional(),
   vehicleYear: z.string().min(4, "Vehicle year is required"),
   vehicleMake: z.string().min(1, "Vehicle make is required"),
   vehicleModel: z.string().min(1, "Vehicle model is required"),
@@ -53,12 +56,6 @@ const quickQuoteSchema = z.object({
 });
 
 type QuickQuoteFormData = z.infer<typeof quickQuoteSchema>;
-
-const availableStates = [
-  { value: "CA", label: "California" },
-  { value: "NV", label: "Nevada" },
-  { value: "OH", label: "Ohio" },
-];
 
 const coverageTypes = [
   { 
@@ -193,7 +190,9 @@ export default function BristolWestPrivatePassengerLanding() {
       fullName: "",
       email: "",
       phone: "",
+      address: "",
       state: "",
+      effectiveDate: "",
       vehicleYear: "",
       vehicleMake: "",
       vehicleModel: "",
@@ -212,7 +211,9 @@ export default function BristolWestPrivatePassengerLanding() {
           contact_name: data.fullName,
           email: data.email,
           phone: data.phone,
+          address: data.address,
           state: data.state,
+          effective_date: data.effectiveDate,
           coverage_type: "Bristol West Private Passenger Auto",
           message: `Prior Insurance: ${data.priorInsurance}. ${data.message || ""}`,
           source: "bristol-west-private-passenger",
@@ -248,7 +249,7 @@ export default function BristolWestPrivatePassengerLanding() {
     "description": "Get Bristol West Private Passenger Auto insurance quotes for California, Nevada, and Ohio. Coverage for all drivers including those with DUI, no prior insurance, or traffic violations.",
     "url": "https://casurance.net/bristol-west-private-passenger",
     "telephone": "1-888-254-0089",
-    "areaServed": availableStates.map(state => ({
+    "areaServed": SERVICE_STATES.map(state => ({
       "@type": "State",
       "name": state.label
     })),
@@ -385,28 +386,56 @@ export default function BristolWestPrivatePassengerLanding() {
                         </div>
                         <FormField
                           control={form.control}
-                          name="state"
+                          name="address"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-gray-700">State</FormLabel>
-                              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                <FormControl>
-                                  <SelectTrigger data-testid="select-state">
-                                    <SelectValue placeholder="Select State" />
-                                  </SelectTrigger>
-                                </FormControl>
-                                <SelectContent>
-                                  {availableStates.map((state) => (
-                                    <SelectItem key={state.value} value={state.value}>
-                                      {state.label}
-                                    </SelectItem>
-                                  ))}
-                                </SelectContent>
-                              </Select>
+                              <FormLabel className="text-gray-700">Address</FormLabel>
+                              <FormControl>
+                                <Input {...field} placeholder="123 Main Street" data-testid="input-address" />
+                              </FormControl>
                               <FormMessage />
                             </FormItem>
                           )}
                         />
+                        <div className="grid grid-cols-2 gap-4">
+                          <FormField
+                            control={form.control}
+                            name="state"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel className="text-gray-700">State</FormLabel>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                  <FormControl>
+                                    <SelectTrigger data-testid="select-state">
+                                      <SelectValue placeholder="Select State" />
+                                    </SelectTrigger>
+                                  </FormControl>
+                                  <SelectContent>
+                                    {SERVICE_STATES.map((state) => (
+                                      <SelectItem key={state.value} value={state.value}>
+                                        {state.label}
+                                      </SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          <FormField
+                            control={form.control}
+                            name="effectiveDate"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel className="text-gray-700">Effective Date</FormLabel>
+                                <FormControl>
+                                  <Input {...field} type="date" data-testid="input-effective-date" />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </div>
                         <div className="grid grid-cols-3 gap-3">
                           <FormField
                             control={form.control}

@@ -35,6 +35,7 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
+import { SERVICE_STATES } from "@shared/constants/states";
 
 import liabilityClaimImg from "@assets/413464f7-4f80-45bd-86eb-9576beefcec5_1765777516722.png";
 import industriesImg from "@assets/a9e85735-3c00-4b1e-8025-9f476723756f_1765777516722.png";
@@ -42,16 +43,6 @@ import executiveImg from "@assets/e8e0a599-ab6e-41a8-9b29-a3867add4e70_176577751
 import buildingImg from "@assets/506746e6-69d7-4491-83aa-92032d6891c1_1765777516723.png";
 import fleetImg from "@assets/82fdf331-23ca-415a-bb7e-19017c56193c_1765777516723.png";
 import constructionImg from "@assets/c43e8bd7-9068-4bb6-a761-4bd8875ee179_1765777516723.png";
-
-const usStates = [
-  "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware",
-  "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky",
-  "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri",
-  "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York",
-  "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island",
-  "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington",
-  "West Virginia", "Wisconsin", "Wyoming"
-];
 
 const desiredLimits = [
   "$1 Million",
@@ -118,7 +109,9 @@ export default function CommercialUmbrellaLanding() {
     contactName: "",
     phone: "",
     email: "",
+    address: "",
     state: "",
+    effectiveDate: "",
     industry: "",
     desiredLimit: "",
     currentUmbrellaLimit: "",
@@ -137,7 +130,9 @@ export default function CommercialUmbrellaLanding() {
         industry: form.industry,
         annualRevenue: form.annualRevenue,
         additionalInfo: JSON.stringify({
+          address: form.address,
           state: form.state,
+          effectiveDate: form.effectiveDate,
           desiredLimit: form.desiredLimit,
           currentUmbrellaLimit: form.currentUmbrellaLimit,
           message: form.message,
@@ -155,7 +150,9 @@ export default function CommercialUmbrellaLanding() {
         contactName: "",
         phone: "",
         email: "",
+        address: "",
         state: "",
+        effectiveDate: "",
         industry: "",
         desiredLimit: "",
         currentUmbrellaLimit: "",
@@ -294,6 +291,16 @@ export default function CommercialUmbrellaLanding() {
                         data-testid="input-email"
                       />
                     </div>
+                    <div>
+                      <Label htmlFor="address">Business Address</Label>
+                      <Input
+                        id="address"
+                        placeholder="123 Business Ave, Suite 200"
+                        value={form.address}
+                        onChange={(e) => setForm({...form, address: e.target.value})}
+                        data-testid="input-address"
+                      />
+                    </div>
                     <div className="grid grid-cols-2 gap-3">
                       <div>
                         <Label htmlFor="state">State *</Label>
@@ -302,8 +309,8 @@ export default function CommercialUmbrellaLanding() {
                             <SelectValue placeholder="Select state" />
                           </SelectTrigger>
                           <SelectContent>
-                            {usStates.map(state => (
-                              <SelectItem key={state} value={state}>{state}</SelectItem>
+                            {SERVICE_STATES.map(state => (
+                              <SelectItem key={state.value} value={state.value}>{state.label}</SelectItem>
                             ))}
                           </SelectContent>
                         </Select>
@@ -346,6 +353,16 @@ export default function CommercialUmbrellaLanding() {
                           data-testid="input-annual-revenue"
                         />
                       </div>
+                    </div>
+                    <div>
+                      <Label htmlFor="effectiveDate">Desired Effective Date</Label>
+                      <Input
+                        id="effectiveDate"
+                        type="date"
+                        value={form.effectiveDate}
+                        onChange={(e) => setForm({...form, effectiveDate: e.target.value})}
+                        data-testid="input-effective-date"
+                      />
                     </div>
                     <div>
                       <Label htmlFor="message">Additional Information</Label>

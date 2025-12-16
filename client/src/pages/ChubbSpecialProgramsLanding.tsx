@@ -41,20 +41,11 @@ import {
   Package,
   HardDrive
 } from "lucide-react";
+import { SERVICE_STATES } from "@shared/constants/states";
 
 import chubbLogo from "@assets/CHUBB_Logo_Black_RBG_(1)_1765300717619.jpg";
 import techHeroImg from "@assets/stock_images/pexels-divinetechygirl-1181354.jpg";
 
-const US_STATES = [
-  "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut",
-  "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa",
-  "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan",
-  "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire",
-  "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio",
-  "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
-  "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia",
-  "Wisconsin", "Wyoming"
-];
 
 const specialPrograms = [
   {
@@ -171,7 +162,9 @@ export default function ChubbSpecialProgramsLanding() {
     contactName: "",
     email: "",
     phone: "",
+    address: "",
     state: "",
+    effectiveDate: "",
     programInterest: "",
     annualRevenue: "",
     message: ""
@@ -185,6 +178,8 @@ export default function ChubbSpecialProgramsLanding() {
         contactName: data.contactName,
         email: data.email,
         phone: data.phone,
+        address: data.address,
+        effectiveDate: data.effectiveDate,
         annualRevenue: data.annualRevenue,
         additionalInfo: JSON.stringify({
           state: data.state,
@@ -204,7 +199,9 @@ export default function ChubbSpecialProgramsLanding() {
         contactName: "",
         email: "",
         phone: "",
+        address: "",
         state: "",
+        effectiveDate: "",
         programInterest: "",
         annualRevenue: "",
         message: ""
@@ -471,6 +468,17 @@ export default function ChubbSpecialProgramsLanding() {
                         </div>
                       </div>
 
+                      <div className="space-y-2">
+                        <Label htmlFor="address">Business Address</Label>
+                        <Input
+                          id="address"
+                          data-testid="input-address"
+                          value={formData.address}
+                          onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                          placeholder="123 Main St, City, State ZIP"
+                        />
+                      </div>
+
                       <div className="grid md:grid-cols-2 gap-4">
                         <div className="space-y-2">
                           <Label htmlFor="state">State *</Label>
@@ -482,32 +490,43 @@ export default function ChubbSpecialProgramsLanding() {
                               <SelectValue placeholder="Select state" />
                             </SelectTrigger>
                             <SelectContent>
-                              {US_STATES.map((state) => (
+                              {SERVICE_STATES.map((state) => (
                                 <SelectItem key={state} value={state}>{state}</SelectItem>
                               ))}
                             </SelectContent>
                           </Select>
                         </div>
                         <div className="space-y-2">
-                          <Label htmlFor="programInterest">Program Interest *</Label>
-                          <Select 
-                            value={formData.programInterest} 
-                            onValueChange={(v) => setFormData({ ...formData, programInterest: v })}
-                          >
-                            <SelectTrigger data-testid="select-program">
-                              <SelectValue placeholder="Select program" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="technology">Technology Companies (DigiTech)</SelectItem>
-                              <SelectItem value="manufacturing">Manufacturing (Benchmarq)</SelectItem>
-                              <SelectItem value="self-storage">Self Storage Facilities</SelectItem>
-                              <SelectItem value="ocean-cargo">Ocean Cargo</SelectItem>
-                              <SelectItem value="cyber">Cyber Insurance</SelectItem>
-                              <SelectItem value="professional-liability">Professional Liability</SelectItem>
-                              <SelectItem value="multiple">Multiple Programs</SelectItem>
-                            </SelectContent>
-                          </Select>
+                          <Label htmlFor="effectiveDate">Desired Effective Date</Label>
+                          <Input
+                            id="effectiveDate"
+                            type="date"
+                            data-testid="input-effective-date"
+                            value={formData.effectiveDate}
+                            onChange={(e) => setFormData({ ...formData, effectiveDate: e.target.value })}
+                          />
                         </div>
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="programInterest">Program Interest *</Label>
+                        <Select 
+                          value={formData.programInterest} 
+                          onValueChange={(v) => setFormData({ ...formData, programInterest: v })}
+                        >
+                          <SelectTrigger data-testid="select-program">
+                            <SelectValue placeholder="Select program" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="technology">Technology Companies (DigiTech)</SelectItem>
+                            <SelectItem value="manufacturing">Manufacturing (Benchmarq)</SelectItem>
+                            <SelectItem value="self-storage">Self Storage Facilities</SelectItem>
+                            <SelectItem value="ocean-cargo">Ocean Cargo</SelectItem>
+                            <SelectItem value="cyber">Cyber Insurance</SelectItem>
+                            <SelectItem value="professional-liability">Professional Liability</SelectItem>
+                            <SelectItem value="multiple">Multiple Programs</SelectItem>
+                          </SelectContent>
+                        </Select>
                       </div>
 
                       <div className="space-y-2">

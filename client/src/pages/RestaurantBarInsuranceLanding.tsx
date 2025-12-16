@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { SERVICE_STATES } from "@shared/constants/states";
 import { 
   Phone, 
   Mail, 
@@ -46,7 +47,9 @@ export default function RestaurantBarInsuranceLanding() {
     contactName: "",
     email: "",
     phone: "",
+    address: "",
     state: "",
+    effectiveDate: "",
     businessType: "",
     annualRevenue: "",
     employees: "",
@@ -73,7 +76,9 @@ export default function RestaurantBarInsuranceLanding() {
         contactName: formData.contactName,
         email: formData.email,
         phone: formData.phone,
+        address: formData.address,
         state: formData.state,
+        effectiveDate: formData.effectiveDate,
         additionalInfo: JSON.stringify({
           businessType: formData.businessType,
           annualRevenue: formData.annualRevenue,
@@ -92,7 +97,9 @@ export default function RestaurantBarInsuranceLanding() {
         contactName: "",
         email: "",
         phone: "",
+        address: "",
         state: "",
+        effectiveDate: "",
         businessType: "",
         annualRevenue: "",
         employees: "",
@@ -380,6 +387,18 @@ export default function RestaurantBarInsuranceLanding() {
                       />
                     </div>
 
+                    <div>
+                      <Label htmlFor="address" className="text-gray-900 font-medium">Business Address</Label>
+                      <Input
+                        id="address"
+                        placeholder="123 Main St, City, State ZIP"
+                        value={formData.address}
+                        onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                        className="mt-1 bg-white border-gray-300"
+                        data-testid="input-address"
+                      />
+                    </div>
+
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <Label htmlFor="state" className="text-gray-900 font-medium">State *</Label>
@@ -388,78 +407,56 @@ export default function RestaurantBarInsuranceLanding() {
                             <SelectValue placeholder="Select" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="AL">Alabama</SelectItem>
-                            <SelectItem value="AK">Alaska</SelectItem>
-                            <SelectItem value="AZ">Arizona</SelectItem>
-                            <SelectItem value="AR">Arkansas</SelectItem>
-                            <SelectItem value="CA">California</SelectItem>
-                            <SelectItem value="CO">Colorado</SelectItem>
-                            <SelectItem value="CT">Connecticut</SelectItem>
-                            <SelectItem value="DE">Delaware</SelectItem>
-                            <SelectItem value="FL">Florida</SelectItem>
-                            <SelectItem value="GA">Georgia</SelectItem>
-                            <SelectItem value="HI">Hawaii</SelectItem>
-                            <SelectItem value="ID">Idaho</SelectItem>
-                            <SelectItem value="IL">Illinois</SelectItem>
-                            <SelectItem value="IN">Indiana</SelectItem>
-                            <SelectItem value="IA">Iowa</SelectItem>
-                            <SelectItem value="KS">Kansas</SelectItem>
-                            <SelectItem value="KY">Kentucky</SelectItem>
-                            <SelectItem value="LA">Louisiana</SelectItem>
-                            <SelectItem value="ME">Maine</SelectItem>
-                            <SelectItem value="MD">Maryland</SelectItem>
-                            <SelectItem value="MA">Massachusetts</SelectItem>
-                            <SelectItem value="MI">Michigan</SelectItem>
-                            <SelectItem value="MN">Minnesota</SelectItem>
-                            <SelectItem value="MS">Mississippi</SelectItem>
-                            <SelectItem value="MO">Missouri</SelectItem>
-                            <SelectItem value="MT">Montana</SelectItem>
-                            <SelectItem value="NE">Nebraska</SelectItem>
-                            <SelectItem value="NV">Nevada</SelectItem>
-                            <SelectItem value="NH">New Hampshire</SelectItem>
-                            <SelectItem value="NJ">New Jersey</SelectItem>
-                            <SelectItem value="NM">New Mexico</SelectItem>
-                            <SelectItem value="NY">New York</SelectItem>
-                            <SelectItem value="NC">North Carolina</SelectItem>
-                            <SelectItem value="ND">North Dakota</SelectItem>
-                            <SelectItem value="OH">Ohio</SelectItem>
-                            <SelectItem value="OK">Oklahoma</SelectItem>
-                            <SelectItem value="OR">Oregon</SelectItem>
-                            <SelectItem value="PA">Pennsylvania</SelectItem>
-                            <SelectItem value="RI">Rhode Island</SelectItem>
-                            <SelectItem value="SC">South Carolina</SelectItem>
-                            <SelectItem value="SD">South Dakota</SelectItem>
-                            <SelectItem value="TN">Tennessee</SelectItem>
-                            <SelectItem value="TX">Texas</SelectItem>
-                            <SelectItem value="UT">Utah</SelectItem>
-                            <SelectItem value="VT">Vermont</SelectItem>
-                            <SelectItem value="VA">Virginia</SelectItem>
-                            <SelectItem value="WA">Washington</SelectItem>
-                            <SelectItem value="WV">West Virginia</SelectItem>
-                            <SelectItem value="WI">Wisconsin</SelectItem>
-                            <SelectItem value="WY">Wyoming</SelectItem>
+                            {SERVICE_STATES.map((state) => (
+                              <SelectItem key={state.value} value={state.value}>{state.label}</SelectItem>
+                            ))}
                           </SelectContent>
                         </Select>
                       </div>
                       <div>
-                        <Label htmlFor="businessType" className="text-gray-900 font-medium">Business Type</Label>
-                        <Select value={formData.businessType} onValueChange={(value) => setFormData({ ...formData, businessType: value })}>
-                          <SelectTrigger className="mt-1 bg-white border-gray-300" data-testid="select-business-type">
-                            <SelectValue placeholder="Select" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="fine-dining">Fine Dining</SelectItem>
-                            <SelectItem value="casual-dining">Casual Dining</SelectItem>
-                            <SelectItem value="fast-food">Fast Food</SelectItem>
-                            <SelectItem value="cafe">Cafe / Coffee Shop</SelectItem>
-                            <SelectItem value="bar-tavern">Bar / Tavern</SelectItem>
-                            <SelectItem value="brewpub">Brewpub / Wine Bar</SelectItem>
-                            <SelectItem value="food-truck">Food Truck</SelectItem>
-                            <SelectItem value="catering">Catering</SelectItem>
-                            <SelectItem value="ghost-kitchen">Ghost Kitchen</SelectItem>
-                          </SelectContent>
-                        </Select>
+                        <Label htmlFor="effectiveDate" className="text-gray-900 font-medium">Effective Date</Label>
+                        <Input
+                          id="effectiveDate"
+                          type="date"
+                          value={formData.effectiveDate}
+                          onChange={(e) => setFormData({ ...formData, effectiveDate: e.target.value })}
+                          className="mt-1 bg-white border-gray-300"
+                          data-testid="input-effective-date"
+                        />
                       </div>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="businessType" className="text-gray-900 font-medium">Business Type</Label>
+                      <Select value={formData.businessType} onValueChange={(value) => setFormData({ ...formData, businessType: value })}>
+                        <SelectTrigger className="mt-1 bg-white border-gray-300" data-testid="select-business-type">
+                          <SelectValue placeholder="Select" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="fine-dining">Fine Dining</SelectItem>
+                          <SelectItem value="casual-dining">Casual Dining</SelectItem>
+                          <SelectItem value="fast-food">Fast Food</SelectItem>
+                          <SelectItem value="cafe">Cafe / Coffee Shop</SelectItem>
+                          <SelectItem value="bar-tavern">Bar / Tavern</SelectItem>
+                          <SelectItem value="brewpub">Brewpub / Wine Bar</SelectItem>
+                          <SelectItem value="food-truck">Food Truck</SelectItem>
+                          <SelectItem value="catering">Catering</SelectItem>
+                          <SelectItem value="ghost-kitchen">Ghost Kitchen</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="comments" className="text-gray-900 font-medium">Additional Comments</Label>
+                      <Textarea
+                        id="comments"
+                        placeholder="Tell us about your insurance needs..."
+                        value={formData.comments}
+                        onChange={(e) => setFormData({ ...formData, comments: e.target.value })}
+                        className="mt-1 bg-white border-gray-300"
+                        rows={3}
+                        data-testid="textarea-comments"
+                      />
                     </div>
 
                     <Button 
